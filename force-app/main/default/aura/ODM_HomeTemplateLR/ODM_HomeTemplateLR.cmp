@@ -1,0 +1,11 @@
+<aura:component implements="lightning:homeTemplate">
+	<aura:attribute name="left" type="Aura.Component[]" />
+	<aura:attribute name="right" type="Aura.Component[]" />
+
+	<div>
+		<lightning:layout>
+			<lightning:layoutItem flexibility="grow" size="4" class="slds-p-right_small"> {!v.left} </lightning:layoutItem>
+			<lightning:layoutItem flexibility="grow" size="8" class="slds-p-left_small"> {!v.right} </lightning:layoutItem>
+		</lightning:layout>
+	</div>
+</aura:component>

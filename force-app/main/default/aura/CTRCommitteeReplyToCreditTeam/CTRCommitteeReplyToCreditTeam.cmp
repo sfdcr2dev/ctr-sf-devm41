@@ -1,0 +1,21 @@
+<aura:component 
+    implements="force:lightningQuickAction,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName"
+    access="global" controller="CommitteeTakeActionApprove">
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="sendFromSFDC" type="boolean" default="true" />
+    <aura:attribute name="actionButton" type="String"/>
+    <aura:attribute name="actionFromSFDC" type="String"/>
+    <aura:attribute name="CTRCommitteeApprovalId" type="String" />
+    <aura:attribute name="userId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />	
+
+    <!-- <aura:renderif isTrue="{!v.actionButton != ''}">
+        <aura:renderif isTrue="{!v.CTRCommitteeApprovalId != ''}">
+            <c:CTRCommitteeTakeActionApprovalEmail actionButton="{!v.actionButton}" recordId="{!v.CTRCommitteeApprovalId}" />
+        </aura:renderif>
+    </aura:renderif> -->
+    <aura:if isTrue="{!not(empty(v.CTRCommitteeApprovalId))}">
+        <c:CTRCommitteeTakeActionApprovalEmail actionButton="{!v.actionButton}" actionFromSFDC="{!v.actionFromSFDC}" recordId="{!v.CTRCommitteeApprovalId}" isModalOpen="{!false}" sendFromSFDC="{!true}" />
+    </aura:if>
+</aura:component>

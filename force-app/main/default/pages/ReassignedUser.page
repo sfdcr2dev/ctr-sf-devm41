@@ -1,0 +1,134 @@
+<apex:page standardController="Project_Organization__c" extensions="ReassignUserController" lightningStylesheets="true" docType="html-5.0" language="en-US" applyHTMLTag="true" applyBodyTag="true">
+  
+    <apex:form >
+        <html lang="en">
+            <head>
+                <meta charset="utf-8" />
+                <title>Reassign User</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+                
+                <style>
+                    .page-title {
+                        font-size: 20px;
+                        text-align: center;
+                        margin-bottom: 10px;
+                    }
+                    .page-title-not-found {
+                        color:red;
+                    }
+                    
+                    input[type] {
+                        margin-left:0px !important;
+                    }
+                    @font-face {
+                        font-family: SalesforceSans;
+                        src: url({!URLFOR($Resource.fonts, 'SalesforceSans/SalesforceSans.woff')});
+                    }
+                    Body {
+                        font-family: SalesforceSans;
+                    }
+                    .box {
+                      box-shadow: 1px 0 2px 3px rgba(0, 0, 0, 0.16);
+                      border-radius: 8px;
+                      background-color: #ffffff;
+                      padding: 24px;
+                    }
+                </style>
+                
+                <apex:slds /> 
+            </head>
+            
+            <body>
+                <br/>
+                <apex:outputPanel id="CustomError">
+                  <apex:outputPanel rendered="{!AND(AvailableWrapperSize == 0, isUserAssigned == false, isAlreadyAssignedUser == false)}">
+                    <div class="page-title page-title-not-found">
+                        &nbsp;Assign User not available.
+                    </div>
+                  </apex:outputPanel>
+                </apex:outputPanel>
+                
+                
+                <apex:outputPanel id="WholePage">
+                    <apex:outputPanel rendered="{!OR(AvailableWrapperSize != 0, isUserAssigned == true, isAlreadyAssignedUser == true)}">  
+                    <div class="container" style="max-width:none;">
+                      <div class="box">
+                        <div class="page-title">
+                            &nbsp;Assigned User to : {!ProjectName}
+                        </div>
+                        <div>
+                            <div class="row" style="height: 300px; overflow-y: auto;">
+                                <div class="col-md-6">                          
+                                    <div>
+                                    
+                                        <apex:outputPanel id="LeftPanelUser">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col" style="width:100%;text-align: center;">Availabe User</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <apex:repeat value="{!AvailableWrappers}" var="user">
+                                                    <tr>
+                                                        <td style="cursor:pointer;">
+                                                            <apex:commandButton style="background-color: rgb(101, 202, 228);width:60px;height:30px;" image="https://cpem--devsever.my.salesforce.com/img/icon/t4v35/standard/user_120.png" action="{!AddAvailableUser}" reRender="WholePage,LeftPanelUser,RightPanelUser">                                                 
+                                                                <apex:param name="NewAssignUserId" value="{!user.UserId}" assignTo="{!NewAssignUserId}" />
+                                                                <apex:param name="UserIndex" value="{!user.UserIndex}" assignTo="{!UserIndex}" />
+                                                            </apex:commandButton>
+                                                            &nbsp;{!user.UserName}
+                                                        </td>
+                                                    </tr>
+                                                </apex:repeat>
+                                                </tbody>
+                                            </table>
+                                        </apex:outputPanel>
+                                    </div>
+                                </div>
+    
+                                <div class="col-md-6">
+                                    <div>
+                                        <apex:outputPanel id="RightPanelUser" >
+                                            <table class="table table-bordered" style="width:100%;">
+                                                <thead>
+                                                <tr style="width:100%"> 
+                                                    <th scope="col" style="text-align:center;">Assigned User</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <apex:repeat value="{!AssignedWrappers}" var="user">
+                                                    <tr>
+                                                        <td style="cursor:pointer;">
+                                                            <apex:commandButton style="background-color: rgb(101, 202, 228);width:60px;height:30px;" image="https://cpem--devsever.my.salesforce.com/img/icon/t4v35/standard/user_120.png" action="{!RemoveAssignedUser}" reRender="WholePage,LeftPanelUser,RightPanelUser">                                                 
+                                                                <apex:param name="RemoveAssignUserId" value="{!user.UserId}" assignTo="{!RemoveAssignUserId}" />
+                                                                <apex:param name="RemoveUserIndex" value="{!user.UserIndex}" assignTo="{!RemoveUserIndex}" />
+                                                            </apex:commandButton>
+                                                            &nbsp;{!user.UserName}
+                                                        </td>
+                                                    </tr>
+                                                </apex:repeat>
+                                                </tbody>
+                                            </table>
+                                        </apex:outputPanel>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                  
+                        <div style="margin-top:15px;text-align:center;">
+                            <img src="{!URLFOR($Resource.icons,'complete.png')}" />
+                            <apex:commandButton style="border:none;" value="Confirm Assigned User" action="{!AssignSelectedUser}" />
+                        </div>
+                      </div>
+                    </div>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </body>
+        </html>
+    </apex:form>
+</apex:page>

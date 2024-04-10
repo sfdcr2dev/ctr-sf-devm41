@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CTRComplianceRiskLevelMatrix</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- CTRComplianceRiskLevelEvaluation --></label>
+        <name>CTRComplianceRiskLevelEvaluation__c</name>
+        <relationshipLabel><!-- CTRComplianceRiskLevelMatrix --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Compliance Risk News --></label>
+        <name>ComplianceRiskNews__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Level --></label>
+        <name>Level__c</name>
+    </fields>
+    <fields>
+        <label><!-- News --></label>
+        <name>News__c</name>
+        <picklistValues>
+            <masterLabel>Found</masterLabel>
+            <translation><!-- Found --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Found</masterLabel>
+            <translation><!-- Not Found --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Value --></label>
+        <name>Value__c</name>
+        <picklistValues>
+            <masterLabel>Found</masterLabel>
+            <translation><!-- Found --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Found</masterLabel>
+            <translation><!-- Not Found --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>CTRComplianceRiskLevelMatrix Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

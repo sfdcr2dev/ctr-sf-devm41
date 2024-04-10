@@ -1,0 +1,24 @@
+<aura:component >
+    
+    <aura:attribute name="relatedObjects" type="List" default="[]"/>
+    
+    <!-- Aura body Section -->
+    <div class="c-container slds-p-around_medium">
+        <lightning:layout multipleRows="true">
+            
+            <aura:iteration items="{!v.relatedObjects}" var="relObj">
+                
+                <lightning:layoutItem size="12" padding="around-small">
+                    <a href="#" class="slds-text-link_faux">
+                        <div class="slds-box slds-theme_default">
+                            Object Id: {!relObj.Id}  - Object Name: ({!relObj.Name})
+                        </div>
+                    </a>
+                </lightning:layoutItem>
+                
+            </aura:iteration>
+        </lightning:layout>
+    </div>
+    <!-- /Aura body Section -->
+    
+</aura:component>

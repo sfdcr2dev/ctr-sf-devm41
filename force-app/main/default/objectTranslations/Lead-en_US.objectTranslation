@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Test Lead Field set1 --></label>
+        <name>Test_Lead_Field_set_1</name>
+    </fieldSets>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Company Name(English)</value>
+        </caseValues>
+        <name>company_lead</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <label><!-- Building Code --></label>
+        <name>BuildingCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Background --></label>
+        <name>BusinessBackground__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buyer --></label>
+        <name>Buyer__c</name>
+        <picklistValues>
+            <masterLabel>A000 TX:Purchasing Organization</masterLabel>
+            <translation><!-- A000 TX:Purchasing Organization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>H100 TSV:Purchasing Organization</masterLabel>
+            <translation><!-- H100 TSV:Purchasing Organization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>I100 TSR:Purchasing Organization</masterLabel>
+            <translation><!-- I100 TSR:Purchasing Organization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>N100 TX INDIA:Purchasing Organization</masterLabel>
+            <translation><!-- N100 TX INDIA:Purchasing Organization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>S100 JSKem:Purchasing Organization</masterLabel>
+            <translation><!-- S100 JSKem:Purchasing Organization --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- CTRUser --></label>
+        <name>CTRUser__c</name>
+        <relationshipLabel><!-- Leads --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CallOutNews --></label>
+        <name>CallOutNews__c</name>
+    </fields>
+    <fields>
+        <label><!-- City/State --></label>
+        <name>CityState__c</name>
+        <relationshipLabel><!-- Leads (City/State) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Company Name(Other Languages) --></label>
+        <name>CompanyNameOtherLanguages__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Profile --></label>
+        <name>CompanyProfile__c</name>
+    </fields>
+    <fields>
+        <label><!-- Compliance Risk News --></label>
+        <name>ComplianceRiskNews__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Country Code --></label>
+        <name>CountryCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- CountryName --></label>
+        <name>CountryName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+        <relationshipLabel><!-- Leads --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Company Name (English) --></label>
+        <name>CustomerNameEnglish__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Products (Customer) --></label>
+        <name>CustomerOtherProducts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Product Identification --></label>
+        <name>CustomerProductIdentification__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Type --></label>
+        <name>CustomerType__c</name>
+        <picklistValues>
+            <masterLabel>End consumer</masterLabel>
+            <translation><!-- End consumer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retail</masterLabel>
+            <translation><!-- Retail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesale</masterLabel>
+            <translation><!-- Wholesale --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- DB Created Date without Time --></label>
+        <name>DB_Created_Date_without_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- DB Lead Age --></label>
+        <name>DB_Lead_Age__c</name>
+    </fields>
+    <fields>
+        <label><!-- District --></label>
+        <name>District__c</name>
+    </fields>
+    <fields>
+        <label><!-- EmailPageAttachment --></label>
+        <name>EmailPageAttachment__c</name>
+    </fields>
+    <fields>
+        <label><!-- EmailPageEmailCC --></label>
+        <name>EmailPageEmailCC__c</name>
+    </fields>
+    <fields>
+        <label><!-- EmailPageEmailTo --></label>
+        <name>EmailPageEmailTo__c</name>
+    </fields>
+    <fields>
+        <label><!-- EmailPageMessage --></label>
+        <name>EmailPageMessage__c</name>
+    </fields>
+    <fields>
+        <label><!-- EmailPageSubject --></label>
+        <name>EmailPageSubject__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fax Country Code --></label>
+        <name>FaxCountryCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Floor --></label>
+        <name>Floor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Former Name of Company --></label>
+        <name>FormerNameofCompany__c</name>
+    </fields>
+    <fields>
+        <label><!-- GatewayId --></label>
+        <name>GatewayId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Heroku Initial Secret --></label>
+        <name>HerokuInitialSecret__c</name>
+    </fields>
+    <fields>
+        <label><!-- House no --></label>
+        <name>HouseNo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Hydrocarbon Solvent --></label>
+        <name>HydrocarbonSolvent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interested Product Type as Customer TOP --></label>
+        <name>InterestedProductTypeAsCustomerTOP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interested Product Type As Customer TX --></label>
+        <name>InterestedProductTypeAsCustomerTX__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interested Product Type as Supplier TOP --></label>
+        <name>InterestedProductTypeAsSupplierTOP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interested Product Type as Supplier TX --></label>
+        <name>InterestedProductTypeAsSupplierTX__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interested Product Type as Customer --></label>
+        <name>InterestedProductTypeasCustomer__c</name>
+        <picklistValues>
+            <masterLabel>Crude</masterLabel>
+            <translation><!-- Crude --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LABIX Products</masterLabel>
+            <translation><!-- LABIX Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lube Base Products</masterLabel>
+            <translation><!-- Lube Base Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Products</masterLabel>
+            <translation><!-- Other Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Petrochemical Products</masterLabel>
+            <translation><!-- Petrochemical Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Petroleum Products</masterLabel>
+            <translation><!-- Petroleum Products --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Interested Product Type as Supplier --></label>
+        <name>InterestedProductTypeasSupplier__c</name>
+        <picklistValues>
+            <masterLabel>B100/Ethanol</masterLabel>
+            <translation><!-- B100/Ethanol --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Crude</masterLabel>
+            <translation><!-- Crude --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Normal Paraffin</masterLabel>
+            <translation><!-- Normal Paraffin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Products</masterLabel>
+            <translation><!-- Other Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Petrochemical Products</masterLabel>
+            <translation><!-- Petrochemical Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Petroleum and Components</masterLabel>
+            <translation><!-- Petroleum and Components --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Is Current User --></label>
+        <name>IsCurrentUser__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Heroku --></label>
+        <name>IsHeroku__c</name>
+    </fields>
+    <fields>
+        <label><!-- JUSTCHECK --></label>
+        <name>JUSTCHECK__c</name>
+    </fields>
+    <fields>
+        <label><!-- LABIX Products --></label>
+        <name>LABIXProducts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lead No. --></label>
+        <name>LeadNo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lead Number Text --></label>
+        <name>LeadNumberText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lube Base Products --></label>
+        <name>LubeBaseProductsText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mobile Country Code --></label>
+        <name>MobileCountryCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- News Result --></label>
+        <name>NewsResult__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nickname --></label>
+        <name>Nickname__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Social Type --></label>
+        <name>OtherSocialType__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Unqualified Reason --></label>
+        <name>OtherUnqualifiedReason__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overview --></label>
+        <name>Overview__c</name>
+    </fields>
+    <fields>
+        <label><!-- Petroleum Products and Components --></label>
+        <name>PetroleumProductsAndComponents__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone 1 Country Code --></label>
+        <name>Phone1CountryCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone 1 --></label>
+        <name>Phone1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone 2 Country Code --></label>
+        <name>Phone2CountryCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone 2 --></label>
+        <name>Phone2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone 3 Country Code --></label>
+        <name>Phone3CountryCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone 3 --></label>
+        <name>Phone3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone 4 Country Code --></label>
+        <name>Phone4CountryCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone 4 --></label>
+        <name>Phone4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone 5 Country Code --></label>
+        <name>Phone5CountryCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone 5 --></label>
+        <name>Phone5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone Country Code --></label>
+        <name>PhoneCountryCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Position --></label>
+        <name>Position__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code --></label>
+        <name>PostalCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Preferred Contact Channel --></label>
+        <name>PreferredContactChannel__c</name>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mobile</masterLabel>
+            <translation><!-- Mobile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Phone</masterLabel>
+            <translation><!-- Phone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social</masterLabel>
+            <translation><!-- Social --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Preferred Contact End Time (HH:mm) --></label>
+        <name>PreferredContactEndTimeHHmm__c</name>
+    </fields>
+    <fields>
+        <label><!-- Preferred Contact Start Time (HH:mm) --></label>
+        <name>PreferredContactStartTimeHHmm__c</name>
+    </fields>
+    <fields>
+        <help><!-- The attached reference picture requires consent from the customer before uploading. --></help>
+        <label><!-- Reference Picture --></label>
+        <name>ReferencePicture__c</name>
+    </fields>
+    <fields>
+        <label><!-- Referral By --></label>
+        <name>ReferralBy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Registered As --></label>
+        <name>RegisteredAs__c</name>
+    </fields>
+    <fields>
+        <label><!-- Registered as Customer --></label>
+        <name>RegisteredasCustomer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Registered as Supplier --></label>
+        <name>RegisteredasSupplier__c</name>
+    </fields>
+    <fields>
+        <label><!-- Room --></label>
+        <name>Room__c</name>
+    </fields>
+    <fields>
+        <label><!-- Screen News By --></label>
+        <name>ScreenNewsBy__c</name>
+        <relationshipLabel><!-- Leads --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Section of Lead Owner --></label>
+        <name>SectionofLeadOwner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller --></label>
+        <name>Seller__c</name>
+        <picklistValues>
+            <masterLabel>2000-TOP NEXT International Company Limited</masterLabel>
+            <translation><!-- 2000-TOP NEXT International Company Limited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9100-TOP SOLVENT VIETNAM</masterLabel>
+            <translation><!-- 9100-TOP SOLVENT VIETNAM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9200-PT.TIRTA SURYA RAYA</masterLabel>
+            <translation><!-- 9200-PT.TIRTA SURYA RAYA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9300-JSKem Pte Ltd</masterLabel>
+            <translation><!-- 9300-JSKem Pte Ltd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9400-TSChem</masterLabel>
+            <translation><!-- 9400-TSChem --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Input social contact have to rely on selected social type. --></help>
+        <label><!-- Social Contact --></label>
+        <name>SocialContact__c</name>
+    </fields>
+    <fields>
+        <label><!-- Social Type --></label>
+        <name>SocialType__c</name>
+        <picklistValues>
+            <masterLabel>Facebook</masterLabel>
+            <translation><!-- Facebook --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IG</masterLabel>
+            <translation><!-- IG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Line</masterLabel>
+            <translation><!-- Line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Viber</masterLabel>
+            <translation><!-- Viber --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WeChat</masterLabel>
+            <translation><!-- WeChat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Whatsapp</masterLabel>
+            <translation><!-- Whatsapp --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Zalo</masterLabel>
+            <translation><!-- Zalo --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Specify Language of Company Name --></label>
+        <name>SpecifyLanguageofCompanyName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street --></label>
+        <name>Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub District --></label>
+        <name>SubDistrict__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Products (Supplier) --></label>
+        <name>SupplierOtherProducts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supplier Product Identification --></label>
+        <name>SupplierProductIdentification__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supplier Type --></label>
+        <name>SupplierType__c</name>
+        <picklistValues>
+            <masterLabel>Distributors</masterLabel>
+            <translation><!-- Distributors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dropshippers</masterLabel>
+            <translation><!-- Dropshippers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Importers</masterLabel>
+            <translation><!-- Importers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manufacturers</masterLabel>
+            <translation><!-- Manufacturers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retailers</masterLabel>
+            <translation><!-- Retailers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Services</masterLabel>
+            <translation><!-- Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Specialist Suppliers</masterLabel>
+            <translation><!-- Specialist Suppliers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sub-Contractors</masterLabel>
+            <translation><!-- Sub-Contractors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trade Show Reps</masterLabel>
+            <translation><!-- Trade Show Reps --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesale</masterLabel>
+            <translation><!-- Wholesale --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- N = number / A= letter / X = A, B, C, F, G, H, L, J, P, T, or K / Y = letter or number / Z = Z /Thailand: NNNNNNNNNNNNN / India: NNAXXXANNNNAYZY / Vietnam: NNNNNNNNNN / Indonesia: NNNNNNNNNNNNNNN / Singapore: NNNNNNNNNA --></help>
+        <label><!-- TAX Number --></label>
+        <name>TAXNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Time Zone --></label>
+        <name>TimeZone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unqualified Reason --></label>
+        <name>UnqualifiedReason__c</name>
+        <picklistValues>
+            <masterLabel>Already Committed</masterLabel>
+            <translation><!-- Already Committed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Competitor</masterLabel>
+            <translation><!-- Competitor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Compliance Issued</masterLabel>
+            <translation><!-- Compliance Issued --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invalid Data</masterLabel>
+            <translation><!-- Invalid Data --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Access to Decision Maker</masterLabel>
+            <translation><!-- No Access to Decision Maker --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Authority</masterLabel>
+            <translation><!-- No Authority --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No budget</masterLabel>
+            <translation><!-- No budget --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Interested</masterLabel>
+            <translation><!-- Not Interested --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not a Fit</masterLabel>
+            <translation><!-- Not a Fit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not the right timing</masterLabel>
+            <translation><!-- Not the right timing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other (reason not listed)</masterLabel>
+            <translation><!-- Other (reason not listed) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Out of Market</masterLabel>
+            <translation><!-- Out of Market --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pricing Concerns</masterLabel>
+            <translation><!-- Pricing Concerns --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Limitations</masterLabel>
+            <translation><!-- Product Limitations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Too Small</masterLabel>
+            <translation><!-- Too Small --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- isArchive --></label>
+        <name>isArchive__c</name>
+        <picklistValues>
+            <masterLabel>true</masterLabel>
+            <translation><!-- true --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- isConverted --></label>
+        <name>isConverted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Created by Scan to Salesforce --></label>
+        <name>sansancard__CreatedByScanToSalesforce__c</name>
+    </fields>
+    <layouts>
+        <layout>Customer Lead</layout>
+        <sections>
+            <label><!-- Additional Contact Information --></label>
+            <section>Additional Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Channel --></label>
+            <section>Contact Channel</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Person --></label>
+            <section>Contact Person</section>
+        </sections>
+        <sections>
+            <label><!-- Initial Information --></label>
+            <section>Initial Information</section>
+        </sections>
+        <sections>
+            <label><!-- Product Type as Interested --></label>
+            <section>Product Type as Interested</section>
+        </sections>
+        <sections>
+            <label><!-- Reference Picture --></label>
+            <section>Reference Picture</section>
+        </sections>
+        <sections>
+            <label><!-- Registered Address --></label>
+            <section>Registered Address</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Lead Layout</layout>
+        <sections>
+            <label><!-- Additional Contact Information --></label>
+            <section>Additional Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Channel --></label>
+            <section>Contact Channel</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Person --></label>
+            <section>Contact Person</section>
+        </sections>
+        <sections>
+            <label><!-- Initial Information --></label>
+            <section>Initial Information</section>
+        </sections>
+        <sections>
+            <label><!-- Product Type as Interested --></label>
+            <section>Product Type as Interested</section>
+        </sections>
+        <sections>
+            <label><!-- Reference Picture --></label>
+            <section>Reference Picture</section>
+        </sections>
+        <sections>
+            <label><!-- Registered Address --></label>
+            <section>Registered Address</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Supplier Lead</layout>
+        <sections>
+            <label><!-- Additional Contact Information --></label>
+            <section>Additional Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Channel --></label>
+            <section>Contact Channel</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Person --></label>
+            <section>Contact Person</section>
+        </sections>
+        <sections>
+            <label><!-- Initial Information --></label>
+            <section>Initial Information</section>
+        </sections>
+        <sections>
+            <label><!-- Product Type as Interested --></label>
+            <section>Product Type as Interested</section>
+        </sections>
+        <sections>
+            <label><!-- Reference Picture --></label>
+            <section>Reference Picture</section>
+        </sections>
+        <sections>
+            <label><!-- Registered Address --></label>
+            <section>Registered Address</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TOP</layout>
+        <sections>
+            <label><!-- Additional Contact Information --></label>
+            <section>Additional Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Channel --></label>
+            <section>Contact Channel</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Person --></label>
+            <section>Contact Person</section>
+        </sections>
+        <sections>
+            <label><!-- Initial Information --></label>
+            <section>Initial Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Owner --></label>
+            <section>Lead Owner</section>
+        </sections>
+        <sections>
+            <label><!-- Product Type of Interested (*Must Select at least 1 Type) --></label>
+            <section>Product Type of Interested (*Must Select at least 1 Type)</section>
+        </sections>
+        <sections>
+            <label><!-- Reference Picture --></label>
+            <section>Reference Picture</section>
+        </sections>
+        <sections>
+            <label><!-- Registered Address --></label>
+            <section>Registered Address</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TX Customer</layout>
+        <sections>
+            <label><!-- Additional Contact Information --></label>
+            <section>Additional Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Channel --></label>
+            <section>Contact Channel</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Person --></label>
+            <section>Contact Person</section>
+        </sections>
+        <sections>
+            <label><!-- Initial Information --></label>
+            <section>Initial Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Owner --></label>
+            <section>Lead Owner</section>
+        </sections>
+        <sections>
+            <label><!-- Product Type as Interested --></label>
+            <section>Product Type as Interested</section>
+        </sections>
+        <sections>
+            <label><!-- Reference Picture --></label>
+            <section>Reference Picture</section>
+        </sections>
+        <sections>
+            <label><!-- Registered Address --></label>
+            <section>Registered Address</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TX Supplier</layout>
+        <sections>
+            <label><!-- Additional Contact Information --></label>
+            <section>Additional Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Channel --></label>
+            <section>Contact Channel</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Person --></label>
+            <section>Contact Person</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Customer Information --></label>
+            <section>Customer Information</section>
+        </sections>
+        <sections>
+            <label><!-- Initial Information --></label>
+            <section>Initial Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Owner --></label>
+            <section>Lead Owner</section>
+        </sections>
+        <sections>
+            <label><!-- Product Type of Interested --></label>
+            <section>Product Type of Interested</section>
+        </sections>
+        <sections>
+            <label><!-- Reference Picture --></label>
+            <section>Reference Picture</section>
+        </sections>
+        <sections>
+            <label><!-- Registered Address --></label>
+            <section>Registered Address</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Accept Lead --></label>
+        <name>AcceptLead</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Convert Lead --></label>
+        <name>Convert_Lead</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Infrom to Counterparty --></label>
+        <name>Infrom_to_Counterparty</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Infrom to Supplier --></label>
+        <name>Infrom_to_Supplier</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Infrom to customer --></label>
+        <name>Infrom_to_customer</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Request NEWS --></label>
+        <name>RequestNEWS</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Screen News Result --></label>
+        <name>ScreenNewsResult</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Screen News --></label>
+        <name>Screen_News</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- TOP --></label>
+        <name>TOP</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- TX Customer --></label>
+        <name>TxCustomer</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- TX Supplier --></label>
+        <name>TxSupplier</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Please input valid fax format --></errorMessage>
+        <name>Fax_Number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please complete this field --></errorMessage>
+        <name>FirstName_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please input valid phone format (Number Only) --></errorMessage>
+        <name>Phone_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please input valid postal code format (Number Only) --></errorMessage>
+        <name>PostalCode_Number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please complete this field --></errorMessage>
+        <name>Referal_Requried</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Must select at lease 1 register as --></errorMessage>
+        <name>Register_As</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- TAX number length needs to be kept exactly --></errorMessage>
+        <name>TAX_ExactLength</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- TAX Number length needs to be kept exactly, numeric, and without gaps --></errorMessage>
+        <name>TAX_ExactLengthNumericWithoutGaps</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- TAX Number length need to be kept to exactly and without gaps --></errorMessage>
+        <name>TAX_ExactLengthWithoutGaps</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- TAX Number must not exceed the maximum value length --></errorMessage>
+        <name>TAX_MaxLength</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- TAX Number must not exceed the maximum value length and must be numeric --></errorMessage>
+        <name>TAX_MaxLengthNumeric</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- TAX Number must not exceed the maximum value length, be numeric, and without gaps --></errorMessage>
+        <name>TAX_MaxLengthNumericWithoutGaps</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- TAX Number must not exceed the maximum value length and without gaps --></errorMessage>
+        <name>TAX_MaxLengthWithoutGaps</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- TAX Number must not exceed the maximum value length and without gaps --></errorMessage>
+        <name>TAX_OtherRules</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- GoogleMaps --></label>
+        <name>GoogleMaps</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleNews --></label>
+        <name>GoogleNews</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleSearch --></label>
+        <name>GoogleSearch</name>
+    </webLinks>
+</CustomObjectTranslation>

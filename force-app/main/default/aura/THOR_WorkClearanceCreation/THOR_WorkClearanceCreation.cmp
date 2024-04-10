@@ -1,0 +1,1447 @@
+<aura:component Implements="flexipage:availableForRecordHome,force:hasRecordId" controller="THOR_WorkClearanceController">
+	<lightning:navigation aura:id="navService" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<!-- <aura:attribute name="form" type="Work_Clearance__c" default="{ 'sobjectType':'Work_Clearance__c' }"/> -->
+
+	<!-- <aura:attribute name="createNew" type="Boolean" default="false" access="global" /> -->
+	<!-- <aura:attribute name="fromWC" type="Boolean" default="false" access="global" /> -->
+
+	<aura:attribute name="recordId" type="String" default="" />
+	<aura:attribute name="isShowModal" type="Boolean" default="false" />
+	<!-- <aura:attribute name="notificationId" type="String" default=""/> -->
+	<aura:attribute name="activeSectionsMessage" type="String" default="" />
+	<aura:attribute name="activeSections" type="List" default="[]" />
+
+	<aura:attribute name="currentPISUser" type="Map" default="{}" />
+
+	<aura:attribute name="areas" type="List" default="[]" access="private" />
+	<aura:attribute name="form" type="Map" default="{}" access="private" />
+	<aura:attribute name="formOptionDisplay" type="Map" default="" access="private" />
+	<aura:attribute name="formOption" type="Map" default="{}" access="private" />
+	<aura:attribute name="objectInfoFields" type="Map" default="{}" access="private" />
+	<aura:attribute name="isToggleSubModal" type="Map" default="{}" access="private" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+	<aura:attribute name="timeout" type="Integer" access="private" />
+
+	<!-- show/hide -->
+	<aura:attribute name="displayedSection" type="string" default="" />
+	<aura:attribute name="isStep1" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isStep2" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isStep3" type="Boolean" default="false" access="private" />
+
+	<aura:registerEvent name="closeModalEvent" type="c:THOR_Event" />
+	<aura:handler name="closeModalEvent" event="c:THOR_Event" action="{!c.closeConfirmation}" />
+
+	<aura:if isTrue="{!!v.isShowModal}">
+		<div class="container">
+			<lightning:button variant="brand" label="Create Work Clearance" title="Create Work Clearance" onclick="{!c.toggleModal}" />
+		</div>
+	</aura:if>
+
+	<aura:if isTrue="{!v.isShowModal}">
+		<lightning:card class="slds-scrollable_y slds-m-horizontal_large">
+			<div class="slds-is-relative">
+				<aura:if isTrue="{!v.isLoading}">
+					<lightning:spinner alternativeText="Loading" size="medium" />
+				</aura:if>
+				<lightning:recordEditForm
+					density="comfy"
+					objectApiName="Work_Clearance__c"
+					onload="{!c.handleLoad}"
+					onsubmit="{!c.handleSubmit}"
+					onsuccess="{!c.handleSuccess}"
+					onerror="{!c.handleError}"
+				>
+					<!-- Priority -->
+					<div class="slds-hide">
+						<lightning:inputField aura:id="isIRPA__c" fieldName="isIRPA__c" value="{!true}" disabled="true" />
+						<lightning:inputField aura:id="Last_User_Action__c" fieldName="Last_User_Action__c" value="CRTE" disabled="true" />
+						<lightning:inputField aura:id="User_Status__c" fieldName="User_Status__c" value="" disabled="true" />
+						<lightning:inputField aura:id="Planning_Plant__c" fieldName="Planning_Plant__c" value="{!v.form.Planning_Plant__c}" disabled="true" />
+						<lightning:inputField
+							aura:id="Main_Work_Center__c"
+							fieldName="Main_Work_Center__c"
+							value="{!v.form.Main_Work_Center__c}"
+							disabled="true"
+						/>
+						<lightning:inputField aura:id="Requester__c" fieldName="Requester__c" value="{!v.form.Requester__c}" disabled="true" />
+						<lightning:inputField aura:id="Priority__c" fieldName="Priority__c" value="{!v.form.Priority__c}" />
+						<lightning:inputField aura:id="High_Risk_Work__c" fieldName="High_Risk_Work__c" value="{!v.form.High_Risk_Work__c}" />
+						<lightning:inputField aura:id="Latitude__c" fieldName="Latitude__c" value="{!v.form.Latitude__c}" />
+						<lightning:inputField aura:id="Longitude__c" fieldName="Longitude__c" value="{!v.form.Longitude__c}" />
+					</div>
+
+					<!-- Notificition -->
+					<lightning:layout horizontalAlign="spread">
+						<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+							<div class="slds-form-element slds-form-element_stacked">
+								<label class="slds-form-element__label">Notificition</label>
+								<div class="slds-form-element__control">
+									<lightning:inputField
+										aura:id="Notification__c"
+										fieldName="Notification__c"
+										value="{!v.form.Notification__c}"
+										onchange="{!c.handleNotificationChanged}"
+										variant="label-hidden"
+									/>
+								</div>
+							</div>
+						</lightning:layoutItem>
+
+						<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+							<lightning:select label="Priority" value="{!v.form.Priority__c}" disabled="true">
+								<option value="">--None--</option>
+								<option value="1" selected="{!v.form.Priority__c=='1'}">Immediately</option>
+								<option value="2" selected="{!v.form.Priority__c=='2'}">Urgent</option>
+								<option value="3" selected="{!v.form.Priority__c=='3'}">Normal</option>
+								<option value="3" selected="{!v.form.Priority__c=='A'}">Float Time - 1M</option>
+								<option value="3" selected="{!v.form.Priority__c=='C'}">Float Time - 3M</option>
+								<option value="3" selected="{!v.form.Priority__c=='F'}">Float Time - 6M</option>
+								<option value="3" selected="{!v.form.Priority__c=='I'}">Float Time - 9M</option>
+								<option value="3" selected="{!v.form.Priority__c=='L'}">Float Time - 12M</option>
+								<option value="3" selected="{!v.form.Priority__c=='O'}">Float Time - 15M</option>
+								<option value="3" selected="{!v.form.Priority__c=='R'}">Float Time - 18M</option>
+							</lightning:select>
+						</lightning:layoutItem>
+					</lightning:layout>
+
+					<!-- Functional Location -->
+					<!-- <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+						<div class="slds-form-element slds-form-element_stacked">
+							<label class="slds-form-element__label">Functional Location</label>
+							<div class="slds-form-element__control">
+								<lightning:inputField
+									aura:id="FunctionalLocation__c"
+									fieldName="FunctionalLocation__c"
+									value="{!v.form.FunctionalLocation__c}"
+									required="true"
+									onchange="{!c.handleFunctionalLocationChanged}"
+									disabled="{!and(v.form.Notification__c, v.form.Notification__c.length > 0)}"
+									variant="label-hidden"
+								/>
+							</div>
+						</div>
+					</lightning:layoutItem> -->
+					<lightning:layout horizontalAlign="spread">
+						<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+							<div class="slds-form-element slds-form-element_stacked">
+								<label class="slds-form-element__label">Functional Location</label>
+								<div class="slds-form-element__control">
+									<lightning:inputField
+										aura:id="FunctionalLocation__c"
+										fieldName="FunctionalLocation__c"
+										value="{!v.form.FunctionalLocation__c}"
+										required="true"
+										onchange="{!c.handleFunctionalLocationChanged}"
+										disabled="{!and(v.form.Notification__c, v.form.Notification__c.length > 0)}"
+										variant="label-hidden"
+									/>
+								</div>
+							</div>
+						</lightning:layoutItem>
+						<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField aura:id="High_Risk_Work__c" fieldName="High_Risk_Work__c" value="{!v.form.High_Risk_Work__c}" required="true" />
+							<!-- <lightning:select label="High Risk Work" value="{!v.form.High_Risk_Work__c}" >
+								<option value=""></option>
+								<option value="Hot work" selected="{!v.form.High_Risk_Work__c=='Hot work'}">Hot work</option>
+								<option value="Confined Space" selected="{!v.form.High_Risk_Work__c=='Confined Space'}">Confined Space</option>
+								<option value="Crane" selected="{!v.form.High_Risk_Work__c=='Crane'}">Crane</option>
+								<option value="Radiation" selected="{!v.form.High_Risk_Work__c=='Radiation'}">Radiation</option>
+								<option value="Jack Hammer" selected="{!v.form.High_Risk_Work__c=='Jack Hammer'}">Jack Hammer</option>
+								<option value="High Pressure Water Jet" selected="{!v.form.High_Risk_Work__c=='High Pressure Water Jet'}">High Pressure Water Jet</option>
+								<option value="Digging" selected="{!v.form.High_Risk_Work__c=='Digging'}">Digging</option>
+								<option value="Work at High" selected="{!v.form.High_Risk_Work__c=='Work at High'}">Work at High</option>
+								<option value="Online Stop Leak" selected="{!v.form.High_Risk_Work__c=='Online Stop Leak'}">Online Stop Leak</option>
+							</lightning:select> -->
+						</lightning:layoutItem>
+					</lightning:layout>
+
+					<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+						<lightning:inputField aura:id="Description__c" fieldName="Description__c" value="{!v.form.Description__c}" disabled="true" />
+					</lightning:layoutItem>
+
+					<!--
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<label class="slds-form-element__label" for="Requester">Requester (ผู้แจ้ง)</label>
+								<lightning:inputField variant="label-hidden" aura:id="Requester__c" fieldName="Requester__c" value="{!v.form.Requester__c}" disabled="true" />
+							</lightning:layoutItem>
+							-->
+
+					<lightning:layout multipleRows="true">
+						<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+							<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="Requester_UI__c" value="{!v.form.Requester_UI__c}" />
+							<c:thorSuggestLookup
+								required="true"
+								sObjectName="Work_Clearance__c"
+								fieldName="Requester_UI__c"
+								value="{!v.form.Requester_UI__c}"
+								onchangeValue="{!c.handleChange}"
+								fetchSObjectName="PISUsers__c"
+								nameDisplayFormat="{EN_Fullname__c}"
+								descriptionDisplayFormat="{Home Id: HOME_ID__c, Host Id: HOST_ID__c}"
+							/>
+							<!-- alignment="bottom" -->
+						</lightning:layoutItem>
+						<lightning:layoutItem
+							size="12"
+							smallDeviceSize="12"
+							largeDeviceSize="12"
+							flexibility="auto"
+							padding="horizontal-medium"
+							class="slds-hide"
+						>
+							<aura:if isTrue="{!and(v.form.Requester_UI__c, v.form.Requester_UI__c.length > 0)}">
+								<lightning:inputField aura:id="inputField" fieldName="Requester_UI__c" value="{!v.form.Requester_UI__c}" required="true" />
+								<aura:set attribute="else">
+									<div class="slds-form-element slds-form-element_stacked slds-p-horizontal_none">
+										<abbr lightning-groupedcombobox_groupedcombobox="" title="required" class="slds-required">*</abbr>
+										<label class="slds-form-element__label">{!v.objectInfoFields.Requester_UI__c.label}</label>
+										<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+											<lightning:icon
+												class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+												iconName="utility:search"
+												size="xx-small"
+											/>
+											<lightning:input
+												variant="label-hidden"
+												name="Requester_UI__c"
+												label="{!v.objectInfoFields.Requester_UI__c.label}"
+												placeholder="{! 'Select Thaioil Supervisor/Indicator...' }"
+												autocomplete="off"
+												tabindex="-1"
+												onfocus="{!c.handleFocus}"
+												required="true"
+											/>
+										</div>
+									</div>
+									<c:THOR_ModalSelected title="Thaioil Supervisor/Indicator" isToggle="{!v.isToggleSubModal.Requester_UI__c}">
+										<aura:set attribute="body">
+											<lightning:layout class="slds-form" verticalAlign="end">
+												<Lightning:layoutitem flexibility="auto">
+													<lightning:input
+														aura:id="search-input"
+														name="Requester_UI__c"
+														type="search"
+														variant="label-stacked"
+														label="{! 'Search for Thaioil Supervisor/Indicator'}"
+														onchange="{!c.handleSearch}"
+														autocomplete="off"
+													/>
+												</Lightning:layoutitem>
+												<Lightning:layoutitem flexibility="no-grow">
+													<div class="slds-form-element slds-form-element_stacked">
+														<label class="slds-form-element__label">&nbsp;</label>
+														<div class="slds-form-element__control">
+															<lightning:button variant="neutral" label="Search" />
+														</div>
+													</div>
+												</Lightning:layoutitem>
+											</lightning:layout>
+
+											<ul class="slds-listbox slds-listbox_vertical slds-p-horizontal_small" role="presentation">
+												<aura:iteration items="{!v.formOption.Requester_UI__c}" var="item" indexVar="index">
+													<lightning:button
+														variant="base"
+														class="slds-size_1-of-1 slds-text-link_reset slds-m-left_xx-small d-flex"
+														label="{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }"
+														name="Requester_UI__c"
+														value="{! item.Id }"
+														onclick="{!c.handleSeletedButton}"
+													>
+														<aura:set attribute="body">
+															<li role="presentation" class="slds-listbox__item slds-size_1-of-1">
+																<div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+																	<span class="slds-media__figure slds-listbox__option-icon">
+																		<span class="slds-icon_container">
+																			<!-- slds-icon-standard-account -->
+																			<lightning:avatar
+																				size="small"
+																				variant="square"
+																				initials="{!item.avatar}"
+																				fallbackIconName="custom:custom101"
+																				alternativeText="{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }"
+																				class="slds-m-right_small"
+																			/>
+																		</span>
+																	</span>
+
+																	<span class="slds-media__body slds-text-align_left">
+																		<span class="slds-listbox__option-text slds-listbox__option-text_entity">
+																			{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }
+																		</span>
+																		<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"> {!item.EMPLOYEEID__c} </span>
+																	</span>
+																</div>
+															</li>
+														</aura:set>
+													</lightning:button>
+												</aura:iteration>
+											</ul>
+										</aura:set>
+									</c:THOR_ModalSelected>
+								</aura:set>
+							</aura:if>
+						</lightning:layoutItem>
+					</lightning:layout>
+
+					<!-- Master FL -->
+					<!-- <lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<label class="slds-form-element__label" for="Requester"> Description </label>
+								<lightning:inputField   variant="label-hidden" fieldName="Description__c" value="{!v.form.Description__c}"  disabled="true" />
+							</lightning:layoutItem> -->
+					<!--  -->
+
+					<lightning:layout horizontalAlign="spread">
+						<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+							<label class="slds-form-element__label" for="Area"> Area (พื้นที่ปฎิบัติงาน)</label>
+							<lightning:inputField variant="label-hidden" aura:id="Area_Code__c" fieldName="Area_Code__c" value="{!v.form.Area_Code__c}" disabled="true" class="slds-hide" />
+							<lightning:inputField variant="label-hidden" aura:id="Area__c" fieldName="Area__c" value="{!v.form.Area__c}" disabled="true" />
+							<lightning:inputField variant="label-hidden" aura:id="Maintenance_Plant__c" fieldName="Maintenance_Plant__c" value="{!v.form.Maintenance_Plant__c}" disabled="true" class="slds-hide" />
+						</lightning:layoutItem>
+
+						<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+							<label class="slds-form-element__label" for="Maintenance"> Maintenance Unit (หน่วยที่ปฎิบัติงาน)</label>
+							<lightning:inputField
+								variant="label-hidden"
+								aura:id="Maintenance_Unit__c"
+								fieldName="Maintenance_Unit__c"
+								value="{!v.form.Maintenance_Unit__c}"
+								disabled="true"
+							/>
+						</lightning:layoutItem>
+					</lightning:layout>
+
+					<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+						<lightning:inputField fieldName="Work_Clearance_Description__c" value="{!v.form.Work_Clearance_Description__c}" required="true" />
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+						<label class="slds-form-element__label" for="Promblem"> Problem (ปัญหาเบื้องต้น)</label>
+						<lightning:inputField variant="label-hidden" aura:id="Problem__c" fieldName="Problem__c" value="{!v.form.Problem__c}" disabled="true" />
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+						<label class="slds-form-element__label" for="WorkDetail">Work detail (รายละเอียดการปฏิบัติงาน)</label>
+						<lightning:inputField variant="label-hidden" aura:id="Work_Detail__c" fieldName="Work_Detail__c" value="{!v.form.Work_Detail__c}" />
+					</lightning:layoutItem>
+
+					<!--
+							<lightning:layout horizontalAlign="spread">
+								<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+									<label class="slds-form-element__label" for="WorkDetail"> Top Group Applicant or Bearer</label>
+									<h5>(ผู้ความคุมงาน)</h5>
+									<lightning:inputField variant="label-hidden" aura:id="Thaioil_Supervisor_Indicator_UI__c" fieldName="Thaioil_Supervisor_Indicator_UI__c"  value="{!v.form.Thaioil_Supervisor_Indicator__c}" />
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+									<label class="slds-form-element__label" for="WorkDetail"> Telephone No.</label>
+									<lightning:inputField  variant="label-hidden" aura:id="TOP_Supervisor_Telephone__c" fieldName="TOP_Supervisor_Telephone__c"  value="{!v.form.TOP_Supervisor_Telephone__c}"  label=''/>
+								</lightning:layoutItem>
+							</lightning:layout>
+							-->
+
+					<lightning:layout multipleRows="true">
+						<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+							<lightning:inputField
+								class="slds-hide"
+								aura:id="inputField"
+								fieldName="Thaioil_Supervisor_Indicator_UI__c"
+								value="{!v.form.Thaioil_Supervisor_Indicator_UI__c}"
+							/>
+							<c:thorSuggestLookup
+								required="true"
+								sObjectName="Work_Clearance__c"
+								fieldName="Thaioil_Supervisor_Indicator_UI__c"
+								value="{!v.form.Thaioil_Supervisor_Indicator_UI__c}"
+								onchangeValue="{!c.handleChange}"
+								fetchSObjectName="PISUsers__c"
+								nameDisplayFormat="{EN_Fullname__c}"
+								descriptionDisplayFormat="{Home Id: HOME_ID__c, Host Id: HOST_ID__c}"
+							/>
+							<!-- alignment="bottom" -->
+						</lightning:layoutItem>
+						<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium" class="slds-hide">
+							<aura:if isTrue="{!and(v.form.Thaioil_Supervisor_Indicator_UI__c, v.form.Thaioil_Supervisor_Indicator_UI__c.length > 0)}">
+								<abbr lightning-groupedcombobox_groupedcombobox="" title="required" class="slds-required">*</abbr>
+								<label class="slds-form-element__label">TOP Group Applicant or Bearer</label>
+								<lightning:inputField
+									variant="label-hidden"
+									aura:id="Thaioil_Supervisor_Indicator_UI__c"
+									fieldName="Thaioil_Supervisor_Indicator_UI__c"
+									value="{!v.form.Thaioil_Supervisor_Indicator_UI__c}"
+									required="true"
+								/>
+								<aura:set attribute="else">
+									<div class="slds-form-element slds-form-element_stacked slds-p-horizontal_none">
+										<abbr lightning-groupedcombobox_groupedcombobox="" title="required" class="slds-required">*</abbr>
+										<label class="slds-form-element__label">TOP Group Applicant or Bearer</label>
+										<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+											<lightning:icon
+												class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+												iconName="utility:search"
+												size="xx-small"
+											/>
+											<lightning:input
+												variant="label-hidden"
+												name="Thaioil_Supervisor_Indicator_UI__c"
+												label="TOP Group Applicant or Bearer"
+												placeholder="{! 'Select TOP Group Applicant or Bearer...' }"
+												autocomplete="off"
+												tabindex="-1"
+												onfocus="{!c.handleFocus}"
+												required="true"
+											/>
+										</div>
+									</div>
+									<c:THOR_ModalSelected title="TOP Group Applicant or Bearer" isToggle="{!v.isToggleSubModal.Thaioil_Supervisor_Indicator_UI__c}">
+										<aura:set attribute="body">
+											<lightning:layout class="slds-form" verticalAlign="end">
+												<Lightning:layoutitem flexibility="auto">
+													<lightning:input
+														aura:id="search-input"
+														name="Thaioil_Supervisor_Indicator_UI__c"
+														type="search"
+														variant="label-stacked"
+														label="{! 'Search for TOP Group Applicant or Bearer'}"
+														onchange="{!c.handleSearch}"
+														autocomplete="off"
+													/>
+												</Lightning:layoutitem>
+												<Lightning:layoutitem flexibility="no-grow">
+													<div class="slds-form-element slds-form-element_stacked">
+														<label class="slds-form-element__label">&nbsp;</label>
+														<div class="slds-form-element__control">
+															<lightning:button variant="neutral" label="Search" />
+														</div>
+													</div>
+												</Lightning:layoutitem>
+											</lightning:layout>
+
+											<ul class="slds-listbox slds-listbox_vertical slds-p-horizontal_small" role="presentation">
+												<aura:iteration items="{!v.formOption.Thaioil_Supervisor_Indicator_UI__c}" var="item" indexVar="index">
+													<lightning:button
+														variant="base"
+														class="slds-size_1-of-1 slds-text-link_reset slds-m-left_xx-small d-flex"
+														label="{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }"
+														name="Thaioil_Supervisor_Indicator_UI__c"
+														value="{! item.Id }"
+														onclick="{!c.handleSeletedButton}"
+													>
+														<aura:set attribute="body">
+															<li role="presentation" class="slds-listbox__item slds-size_1-of-1">
+																<div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+																	<span class="slds-media__figure slds-listbox__option-icon">
+																		<span class="slds-icon_container">
+																			<!-- slds-icon-standard-account -->
+																			<lightning:avatar
+																				size="small"
+																				variant="square"
+																				initials="{!item.avatar}"
+																				fallbackIconName="custom:custom101"
+																				alternativeText="{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }"
+																				class="slds-m-right_small"
+																			/>
+																		</span>
+																	</span>
+
+																	<span class="slds-media__body slds-text-align_left">
+																		<span class="slds-listbox__option-text slds-listbox__option-text_entity">
+																			{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }
+																		</span>
+																		<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"> {!item.EMPLOYEEID__c} </span>
+																	</span>
+																</div>
+															</li>
+														</aura:set>
+													</lightning:button>
+												</aura:iteration>
+											</ul>
+										</aura:set>
+									</c:THOR_ModalSelected>
+								</aura:set>
+							</aura:if>
+						</lightning:layoutItem>
+
+						<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+							<label class="slds-form-element__label" for="WorkDetail"> Telephone No.</label>
+							<lightning:inputField
+								variant="label-hidden"
+								aura:id="TOP_Supervisor_Telephone__c"
+								fieldName="TOP_Supervisor_Telephone__c"
+								value="{!v.form.TOP_Supervisor_Telephone__c}"
+								label=""
+							/>
+						</lightning:layoutItem>
+					</lightning:layout>
+
+					<!--
+							<lightning:layout horizontalAlign="spread">
+								<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+									<label class="slds-form-element__label" for="WorkDetail"> Contractor  Applicant or Bearer</label>
+									<lightning:inputField variant="label-hidden" aura:id="Applicant_or_Bearer_UI__c" fieldName="Applicant_or_Bearer_UI__c"  value="{!v.form.Applicant_or_Bearer__c}"  />
+								</lightning:layoutItem>
+								<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+									<label class="slds-form-element__label" for="WorkDetail"> Telephone No.</label>
+									<lightning:inputField  variant="label-hidden" aura:id="Applicant_or_Bearer_Telephone__c" fieldName="Applicant_or_Bearer_Telephone__c"  value="{!v.form.Applicant_or_Bearer_Telephone__c}"  />
+								</lightning:layoutItem>
+							</lightning:layout>
+							-->
+
+					<lightning:layout multipleRows="true">
+						<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+							<aura:if isTrue="{!and(v.form.Applicant_or_Bearer_UI__c, v.form.Applicant_or_Bearer_UI__c.length > 0)}">
+								<label class="slds-form-element__label">Contractor Applicant or Bearer</label>
+								<lightning:inputField
+									variant="label-hidden"
+									aura:id="Applicant_or_Bearer_UI__c"
+									fieldName="Applicant_or_Bearer_UI__c"
+									value="{!v.form.Applicant_or_Bearer_UI__c}"
+								/>
+								<aura:set attribute="else">
+									<div class="slds-form-element slds-form-element_stacked slds-p-horizontal_none">
+										<label class="slds-form-element__label">Contractor Applicant or Bearer</label>
+										<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+											<lightning:icon
+												class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+												iconName="utility:search"
+												size="xx-small"
+											/>
+											<lightning:input
+												variant="label-hidden"
+												name="Applicant_or_Bearer_UI__c"
+												label="{!v.objectInfoFields.Applicant_or_Bearer_UI__c.label}"
+												placeholder="{! 'Select ' + (v.objectInfoFields.Applicant_or_Bearer_UI__c.label) + '...' }"
+												autocomplete="off"
+												tabindex="-1"
+												onfocus="{!c.handleFocus}"
+											/>
+										</div>
+									</div>
+									<c:THOR_ModalSelected
+										title="{!v.objectInfoFields.Applicant_or_Bearer_UI__c.label}"
+										isToggle="{!v.isToggleSubModal.Applicant_or_Bearer_UI__c}"
+									>
+										<aura:set attribute="body">
+											<lightning:layout class="slds-form" verticalAlign="end">
+												<Lightning:layoutitem flexibility="auto">
+													<lightning:input
+														aura:id="search-input"
+														name="Applicant_or_Bearer_UI__c"
+														type="search"
+														variant="label-stacked"
+														label="{! 'Search for ' + v.objectInfoFields.Applicant_or_Bearer_UI__c.label}"
+														onchange="{!c.handleSearch}"
+														autocomplete="off"
+													/>
+												</Lightning:layoutitem>
+												<Lightning:layoutitem flexibility="no-grow">
+													<div class="slds-form-element slds-form-element_stacked">
+														<label class="slds-form-element__label">&nbsp;</label>
+														<div class="slds-form-element__control">
+															<lightning:button variant="neutral" label="Search" />
+														</div>
+													</div>
+												</Lightning:layoutitem>
+											</lightning:layout>
+
+											<ul class="slds-listbox slds-listbox_vertical slds-p-horizontal_small" role="presentation">
+												<aura:iteration items="{!v.formOption.Applicant_or_Bearer_UI__c}" var="item" indexVar="index">
+													<lightning:button
+														variant="base"
+														class="slds-size_1-of-1 slds-text-link_reset slds-m-left_xx-small d-flex"
+														label="{! item.Name }"
+														name="Applicant_or_Bearer_UI__c"
+														value="{! item.Id }"
+														onclick="{!c.handleSeletedButton}"
+													>
+														<aura:set attribute="body">
+															<li role="presentation" class="slds-listbox__item slds-size_1-of-1">
+																<div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+																	<span class="slds-media__figure slds-listbox__option-icon">
+																		<span class="slds-icon_container">
+																			<!-- slds-icon-standard-account -->
+																			<lightning:avatar
+																				size="small"
+																				variant="square"
+																				initials="{!item.avatar}"
+																				fallbackIconName="custom:custom101"
+																				alternativeText="{! item.Name }"
+																				class="slds-m-right_small"
+																			/>
+																		</span>
+																	</span>
+
+																	<span class="slds-media__body slds-text-align_left">
+																		<span class="slds-listbox__option-text slds-listbox__option-text_entity"> {! item.Name } </span>
+																		<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"> {!item.Code__c} </span>
+																	</span>
+																</div>
+															</li>
+														</aura:set>
+													</lightning:button>
+												</aura:iteration>
+											</ul>
+										</aura:set>
+									</c:THOR_ModalSelected>
+								</aura:set>
+							</aura:if>
+						</lightning:layoutItem>
+
+						<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+							<label class="slds-form-element__label" for="WorkDetail"> Telephone No.</label>
+							<lightning:inputField
+								variant="label-hidden"
+								aura:id="Applicant_or_Bearer_Telephone__c"
+								fieldName="Applicant_or_Bearer_Telephone__c"
+								value="{!v.form.Applicant_or_Bearer_Telephone__c}"
+							/>
+						</lightning:layoutItem>
+					</lightning:layout>
+
+					<!--
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<lightning:inputField aura:id="Bearer1_UI__c" fieldName="Bearer1_UI__c" value="{!v.form.Bearer1_UI__c}" />
+							</lightning:layoutItem>
+
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<lightning:inputField aura:id="Bearer2_UI__c" fieldName="Bearer2_UI__c" value="{!v.form.Bearer2_UI__c}" />
+							</lightning:layoutItem>
+
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<lightning:inputField aura:id="Bearer3_UI__c" fieldName="Bearer3_UI__c" value="{!v.form.Bearer3_UI__c}" />
+							</lightning:layoutItem>
+
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<lightning:inputField aura:id="Bearer4_UI__c" fieldName="Bearer4_UI__c" value="{!v.form.Bearer4_UI__c}" />
+							</lightning:layoutItem>
+							-->
+
+					<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+						<aura:if isTrue="{!and(v.form.Bearer1_UI__c, v.form.Bearer1_UI__c.length > 0)}">
+							<lightning:inputField aura:id="inputField" fieldName="Bearer1_UI__c" value="{!v.form.Bearer1_UI__c}" />
+							<aura:set attribute="else">
+								<div class="slds-form-element slds-form-element_stacked slds-p-horizontal_none">
+									<label class="slds-form-element__label">{!v.objectInfoFields.Bearer1_UI__c.label}</label>
+									<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+										<lightning:icon
+											class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+											iconName="utility:search"
+											size="xx-small"
+										/>
+										<lightning:input
+											variant="label-hidden"
+											name="Bearer1_UI__c"
+											label="{!v.objectInfoFields.Bearer1_UI__c.label}"
+											placeholder="{! 'Select ' + (v.objectInfoFields.Bearer1_UI__c.label) + '...' }"
+											autocomplete="off"
+											tabindex="-1"
+											onfocus="{!c.handleFocus}"
+										/>
+									</div>
+								</div>
+								<c:THOR_ModalSelected title="{!v.objectInfoFields.Bearer1_UI__c.label}" isToggle="{!v.isToggleSubModal.Bearer1_UI__c}">
+									<aura:set attribute="body">
+										<lightning:layout class="slds-form" verticalAlign="end">
+											<Lightning:layoutitem flexibility="auto">
+												<lightning:input
+													aura:id="search-input"
+													name="Bearer1_UI__c"
+													type="search"
+													variant="label-stacked"
+													label="{! 'Search for ' + v.objectInfoFields.Bearer1_UI__c.label}"
+													onchange="{!c.handleSearch}"
+													autocomplete="off"
+												/>
+											</Lightning:layoutitem>
+											<Lightning:layoutitem flexibility="no-grow">
+												<div class="slds-form-element slds-form-element_stacked">
+													<label class="slds-form-element__label">&nbsp;</label>
+													<div class="slds-form-element__control">
+														<lightning:button variant="neutral" label="Search" />
+													</div>
+												</div>
+											</Lightning:layoutitem>
+										</lightning:layout>
+
+										<ul class="slds-listbox slds-listbox_vertical slds-p-horizontal_small" role="presentation">
+											<aura:iteration items="{!v.formOption.Bearer1_UI__c}" var="item" indexVar="index">
+												<lightning:button
+													variant="base"
+													class="slds-size_1-of-1 slds-text-link_reset slds-m-left_xx-small d-flex"
+													label="{! item.Name }"
+													name="Bearer1_UI__c"
+													value="{! item.Id }"
+													onclick="{!c.handleSeletedButton}"
+												>
+													<aura:set attribute="body">
+														<li role="presentation" class="slds-listbox__item slds-size_1-of-1">
+															<div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+																<span class="slds-media__figure slds-listbox__option-icon">
+																	<span class="slds-icon_container">
+																		<!-- slds-icon-standard-account -->
+																		<lightning:avatar
+																			size="small"
+																			variant="square"
+																			initials="{!item.avatar}"
+																			fallbackIconName="custom:custom101"
+																			alternativeText="{! item.Name }"
+																			class="slds-m-right_small"
+																		/>
+																	</span>
+																</span>
+
+																<span class="slds-media__body slds-text-align_left">
+																	<span class="slds-listbox__option-text slds-listbox__option-text_entity"> {! item.Name } </span>
+																	<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"> {!item.Code__c} </span>
+																</span>
+															</div>
+														</li>
+													</aura:set>
+												</lightning:button>
+											</aura:iteration>
+										</ul>
+									</aura:set>
+								</c:THOR_ModalSelected>
+							</aura:set>
+						</aura:if>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+						<aura:if isTrue="{!and(v.form.Bearer2_UI__c, v.form.Bearer2_UI__c.length > 0)}">
+							<lightning:inputField aura:id="inputField" fieldName="Bearer2_UI__c" value="{!v.form.Bearer2_UI__c}" />
+							<aura:set attribute="else">
+								<div class="slds-form-element slds-form-element_stacked slds-p-horizontal_none">
+									<label class="slds-form-element__label">{!v.objectInfoFields.Bearer2_UI__c.label}</label>
+									<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+										<lightning:icon
+											class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+											iconName="utility:search"
+											size="xx-small"
+										/>
+										<lightning:input
+											variant="label-hidden"
+											name="Bearer2_UI__c"
+											label="{!v.objectInfoFields.Bearer2_UI__c.label}"
+											placeholder="{! 'Select ' + (v.objectInfoFields.Bearer2_UI__c.label) + '...' }"
+											autocomplete="off"
+											tabindex="-1"
+											onfocus="{!c.handleFocus}"
+										/>
+									</div>
+								</div>
+								<c:THOR_ModalSelected title="{!v.objectInfoFields.Bearer2_UI__c.label}" isToggle="{!v.isToggleSubModal.Bearer2_UI__c}">
+									<aura:set attribute="body">
+										<lightning:layout class="slds-form" verticalAlign="end">
+											<Lightning:layoutitem flexibility="auto">
+												<lightning:input
+													aura:id="search-input"
+													name="Bearer2_UI__c"
+													type="search"
+													variant="label-stacked"
+													label="{! 'Search for ' + v.objectInfoFields.Bearer2_UI__c.label}"
+													onchange="{!c.handleSearch}"
+													autocomplete="off"
+												/>
+											</Lightning:layoutitem>
+											<Lightning:layoutitem flexibility="no-grow">
+												<div class="slds-form-element slds-form-element_stacked">
+													<label class="slds-form-element__label">&nbsp;</label>
+													<div class="slds-form-element__control">
+														<lightning:button variant="neutral" label="Search" />
+													</div>
+												</div>
+											</Lightning:layoutitem>
+										</lightning:layout>
+
+										<ul class="slds-listbox slds-listbox_vertical slds-p-horizontal_small" role="presentation">
+											<aura:iteration items="{!v.formOption.Bearer2_UI__c}" var="item" indexVar="index">
+												<lightning:button
+													variant="base"
+													class="slds-size_1-of-1 slds-text-link_reset slds-m-left_xx-small d-flex"
+													label="{! item.Name }"
+													name="Bearer2_UI__c"
+													value="{! item.Id }"
+													onclick="{!c.handleSeletedButton}"
+												>
+													<aura:set attribute="body">
+														<li role="presentation" class="slds-listbox__item slds-size_1-of-1">
+															<div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+																<span class="slds-media__figure slds-listbox__option-icon">
+																	<span class="slds-icon_container">
+																		<!-- slds-icon-standard-account -->
+																		<lightning:avatar
+																			size="small"
+																			variant="square"
+																			initials="{!item.avatar}"
+																			fallbackIconName="custom:custom101"
+																			alternativeText="{! item.Name }"
+																			class="slds-m-right_small"
+																		/>
+																	</span>
+																</span>
+
+																<span class="slds-media__body slds-text-align_left">
+																	<span class="slds-listbox__option-text slds-listbox__option-text_entity"> {! item.Name } </span>
+																	<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"> {!item.Code__c} </span>
+																</span>
+															</div>
+														</li>
+													</aura:set>
+												</lightning:button>
+											</aura:iteration>
+										</ul>
+									</aura:set>
+								</c:THOR_ModalSelected>
+							</aura:set>
+						</aura:if>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+						<aura:if isTrue="{!and(v.form.Bearer3_UI__c, v.form.Bearer3_UI__c.length > 0)}">
+							<lightning:inputField aura:id="inputField" fieldName="Bearer3_UI__c" value="{!v.form.Bearer3_UI__c}" />
+							<aura:set attribute="else">
+								<div class="slds-form-element slds-form-element_stacked slds-p-horizontal_none">
+									<label class="slds-form-element__label">{!v.objectInfoFields.Bearer3_UI__c.label}</label>
+									<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+										<lightning:icon
+											class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+											iconName="utility:search"
+											size="xx-small"
+										/>
+										<lightning:input
+											variant="label-hidden"
+											name="Bearer3_UI__c"
+											label="{!v.objectInfoFields.Bearer3_UI__c.label}"
+											placeholder="{! 'Select ' + (v.objectInfoFields.Bearer3_UI__c.label) + '...' }"
+											autocomplete="off"
+											tabindex="-1"
+											onfocus="{!c.handleFocus}"
+										/>
+									</div>
+								</div>
+								<c:THOR_ModalSelected title="{!v.objectInfoFields.Bearer3_UI__c.label}" isToggle="{!v.isToggleSubModal.Bearer3_UI__c}">
+									<aura:set attribute="body">
+										<lightning:layout class="slds-form" verticalAlign="end">
+											<Lightning:layoutitem flexibility="auto">
+												<lightning:input
+													aura:id="search-input"
+													name="Bearer3_UI__c"
+													type="search"
+													variant="label-stacked"
+													label="{! 'Search for ' + v.objectInfoFields.Bearer3_UI__c.label}"
+													onchange="{!c.handleSearch}"
+													autocomplete="off"
+												/>
+											</Lightning:layoutitem>
+											<Lightning:layoutitem flexibility="no-grow">
+												<div class="slds-form-element slds-form-element_stacked">
+													<label class="slds-form-element__label">&nbsp;</label>
+													<div class="slds-form-element__control">
+														<lightning:button variant="neutral" label="Search" />
+													</div>
+												</div>
+											</Lightning:layoutitem>
+										</lightning:layout>
+
+										<ul class="slds-listbox slds-listbox_vertical slds-p-horizontal_small" role="presentation">
+											<aura:iteration items="{!v.formOption.Bearer3_UI__c}" var="item" indexVar="index">
+												<lightning:button
+													variant="base"
+													class="slds-size_1-of-1 slds-text-link_reset slds-m-left_xx-small d-flex"
+													label="{! item.Name }"
+													name="Bearer3_UI__c"
+													value="{! item.Id }"
+													onclick="{!c.handleSeletedButton}"
+												>
+													<aura:set attribute="body">
+														<li role="presentation" class="slds-listbox__item slds-size_1-of-1">
+															<div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+																<span class="slds-media__figure slds-listbox__option-icon">
+																	<span class="slds-icon_container">
+																		<!-- slds-icon-standard-account -->
+																		<lightning:avatar
+																			size="small"
+																			variant="square"
+																			initials="{!item.avatar}"
+																			fallbackIconName="custom:custom101"
+																			alternativeText="{! item.Name }"
+																			class="slds-m-right_small"
+																		/>
+																	</span>
+																</span>
+
+																<span class="slds-media__body slds-text-align_left">
+																	<span class="slds-listbox__option-text slds-listbox__option-text_entity"> {! item.Name } </span>
+																	<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"> {!item.Code__c} </span>
+																</span>
+															</div>
+														</li>
+													</aura:set>
+												</lightning:button>
+											</aura:iteration>
+										</ul>
+									</aura:set>
+								</c:THOR_ModalSelected>
+							</aura:set>
+						</aura:if>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+						<aura:if isTrue="{!and(v.form.Bearer4_UI__c, v.form.Bearer4_UI__c.length > 0)}">
+							<lightning:inputField aura:id="inputField" fieldName="Bearer4_UI__c" value="{!v.form.Bearer4_UI__c}" />
+							<aura:set attribute="else">
+								<div class="slds-form-element slds-form-element_stacked slds-p-horizontal_none">
+									<label class="slds-form-element__label">{!v.objectInfoFields.Bearer4_UI__c.label}</label>
+									<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+										<lightning:icon
+											class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+											iconName="utility:search"
+											size="xx-small"
+										/>
+										<lightning:input
+											variant="label-hidden"
+											name="Bearer4_UI__c"
+											label="{!v.objectInfoFields.Bearer4_UI__c.label}"
+											placeholder="{! 'Select ' + (v.objectInfoFields.Bearer4_UI__c.label) + '...' }"
+											autocomplete="off"
+											tabindex="-1"
+											onfocus="{!c.handleFocus}"
+										/>
+									</div>
+								</div>
+								<c:THOR_ModalSelected title="{!v.objectInfoFields.Bearer4_UI__c.label}" isToggle="{!v.isToggleSubModal.Bearer4_UI__c}">
+									<aura:set attribute="body">
+										<lightning:layout class="slds-form" verticalAlign="end">
+											<Lightning:layoutitem flexibility="auto">
+												<lightning:input
+													aura:id="search-input"
+													name="Bearer4_UI__c"
+													type="search"
+													variant="label-stacked"
+													label="{! 'Search for ' + v.objectInfoFields.Bearer4_UI__c.label}"
+													onchange="{!c.handleSearch}"
+													autocomplete="off"
+												/>
+											</Lightning:layoutitem>
+											<Lightning:layoutitem flexibility="no-grow">
+												<div class="slds-form-element slds-form-element_stacked">
+													<label class="slds-form-element__label">&nbsp;</label>
+													<div class="slds-form-element__control">
+														<lightning:button variant="neutral" label="Search" />
+													</div>
+												</div>
+											</Lightning:layoutitem>
+										</lightning:layout>
+
+										<ul class="slds-listbox slds-listbox_vertical slds-p-horizontal_small" role="presentation">
+											<aura:iteration items="{!v.formOption.Bearer4_UI__c}" var="item" indexVar="index">
+												<lightning:button
+													variant="base"
+													class="slds-size_1-of-1 slds-text-link_reset slds-m-left_xx-small d-flex"
+													label="{! item.Name }"
+													name="Bearer4_UI__c"
+													value="{! item.Id }"
+													onclick="{!c.handleSeletedButton}"
+												>
+													<aura:set attribute="body">
+														<li role="presentation" class="slds-listbox__item slds-size_1-of-1">
+															<div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+																<span class="slds-media__figure slds-listbox__option-icon">
+																	<span class="slds-icon_container">
+																		<!-- slds-icon-standard-account -->
+																		<lightning:avatar
+																			size="small"
+																			variant="square"
+																			initials="{!item.avatar}"
+																			fallbackIconName="custom:custom101"
+																			alternativeText="{! item.Name }"
+																			class="slds-m-right_small"
+																		/>
+																	</span>
+																</span>
+
+																<span class="slds-media__body slds-text-align_left">
+																	<span class="slds-listbox__option-text slds-listbox__option-text_entity"> {! item.Name } </span>
+																	<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"> {!item.Code__c} </span>
+																</span>
+															</div>
+														</li>
+													</aura:set>
+												</lightning:button>
+											</aura:iteration>
+										</ul>
+									</aura:set>
+								</c:THOR_ModalSelected>
+							</aura:set>
+						</aura:if>
+					</lightning:layoutItem>
+
+					<lightning:accordion aura:id="accordion" allowMultipleSectionsOpen="true" activeSectionName="{! v.activeSections }">
+						<lightning:accordionSection name="collapseA" label="3 What's analysis(การประเมินอันตรายที่อาจเกิดขึ้นได้)">
+							<!-- <aura:set attribute="body"> -->
+							<p>3 What's (1)</p>
+							<h2 class="header"></h2>
+
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<label class="slds-form-element__label">
+									<abbr lightning-groupedcombobox_groupedcombobox="" title="required" class="slds-required">*</abbr>
+									What can go wrong? (ระบุอันตรายที่อาจเกิดขึ้น)(1)
+								</label>
+								<lightning:inputField
+									variant="label-hidden"
+									required="true"
+									aura:id="Can_go_wrong1__c"
+									fieldName="Can_go_wrong1__c"
+									value="{!v.form.Can_go_wrong1__c}"
+								/>
+							</lightning:layoutItem>
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<label class="slds-form-element__label">
+									<abbr lightning-groupedcombobox_groupedcombobox="" title="required" class="slds-required">*</abbr>
+									What can cause it to go wrong? (มีสาเหตุอะไรทำให้เกิดความผิดพลาดได้)(1)
+								</label>
+								<lightning:inputField variant="label-hidden" required="true" aura:id="Cause1__c" fieldName="Cause1__c" value="{!v.form.Cause1__c}" />
+							</lightning:layoutItem>
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<label class="slds-form-element__label">
+									<abbr lightning-groupedcombobox_groupedcombobox="" title="required" class="slds-required">*</abbr>
+									What can you do to prevent it from going wrong? (มีการป้องกันอย่างไร)(1)
+								</label>
+								<lightning:inputField
+									variant="label-hidden"
+									required="true"
+									aura:id="Prevent1__c"
+									fieldName="Prevent1__c"
+									value="{!v.form.Prevent1__c}"
+								/>
+							</lightning:layoutItem>
+
+							<h2 class="header">3 What's (2)</h2>
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<label class="slds-form-element__label">What can go wrong? (ระบุอันตรายที่อาจเกิดขึ้น)(2)</label>
+								<lightning:inputField
+									variant="label-hidden"
+									aura:id="Can_go_wrong2__c"
+									fieldName="Can_go_wrong2__c"
+									value="{!v.form.Can_go_wrong2__c}"
+								/>
+							</lightning:layoutItem>
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<label class="slds-form-element__label">What can cause it to go wrong? (มีสาเหตุอะไรทำให้เกิดความผิดพลาดได้)(2)</label>
+								<lightning:inputField variant="label-hidden" aura:id="Cause2__c" fieldName="Cause2__c" value="{!v.form.Cause2__c}" />
+							</lightning:layoutItem>
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<label class="slds-form-element__label">What can you do to prevent it from going wrong? (มีการป้องกันอย่างไร)(2)</label>
+								<lightning:inputField variant="label-hidden" aura:id="Prevent2__c" fieldName="Prevent2__c" value="{!v.form.Prevent2__c}" />
+							</lightning:layoutItem>
+
+							<h2 class="header">3 What's (3)</h2>
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<label class="slds-form-element__label">What can go wrong? (ระบุอันตรายที่อาจเกิดขึ้น)(3)</label>
+								<lightning:inputField
+									variant="label-hidden"
+									aura:id="Can_go_wrong3__c"
+									fieldName="Can_go_wrong3__c"
+									value="{!v.form.Can_go_wrong3__c}"
+								/>
+							</lightning:layoutItem>
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<label class="slds-form-element__label">What can cause it to go wrong? (มีสาเหตุอะไรทำให้เกิดความผิดพลาดได้)(3)</label>
+								<lightning:inputField variant="label-hidden" aura:id="Cause3__c" fieldName="Cause3__c" value="{!v.form.Cause3__c}" />
+							</lightning:layoutItem>
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<label class="slds-form-element__label">What can you do to prevent it from going wrong? (มีการป้องกันอย่างไร)(3)</label>
+								<lightning:inputField variant="label-hidden" aura:id="Prevent3__c" fieldName="Prevent3__c" value="{!v.form.Prevent3__c}" />
+							</lightning:layoutItem>
+
+							<aura:if isTrue="{!v.isStep1}">
+								<h2 class="header">3 What's (4)</h2>
+								<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+									<label class="slds-form-element__label">What can go wrong? (ระบุอันตรายที่อาจเกิดขึ้น)(4)</label>
+									<lightning:inputField
+										variant="label-hidden"
+										aura:id="Can_go_wrong4__c"
+										fieldName="Can_go_wrong4__c"
+										value="{!v.form.Can_go_wrong4__c}"
+									/>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+									<label class="slds-form-element__label">What can cause it to go wrong? (มีสาเหตุอะไรทำให้เกิดความผิดพลาดได้)(4)</label>
+									<lightning:inputField variant="label-hidden" aura:id="Cause4__c" fieldName="Cause4__c" value="{!v.form.Cause4__c}" />
+								</lightning:layoutItem>
+								<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+									<label class="slds-form-element__label">What can you do to prevent it from going wrong? (มีการป้องกันอย่างไร)(4)</label>
+									<lightning:inputField variant="label-hidden" aura:id="Prevent4__c" fieldName="Prevent4__c" value="{!v.form.Prevent4__c}" />
+								</lightning:layoutItem>
+							</aura:if>
+
+							<aura:if isTrue="{!v.isStep2}">
+								<h2 class="header">3 What's (5)</h2>
+								<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+									<label class="slds-form-element__label">What can go wrong? (ระบุอันตรายที่อาจเกิดขึ้น)(5)</label>
+									<lightning:inputField
+										variant="label-hidden"
+										aura:id="Can_go_wrong5__c"
+										fieldName="Can_go_wrong5__c"
+										value="{!v.form.Can_go_wrong5__c}"
+									/>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+									<label class="slds-form-element__label">What can cause it to go wrong? (มีสาเหตุอะไรทำให้เกิดความผิดพลาดได้)(5)</label>
+									<lightning:inputField variant="label-hidden" aura:id="Cause5__c" fieldName="Cause5__c" value="{!v.form.Cause5__c}" />
+								</lightning:layoutItem>
+								<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+									<label class="slds-form-element__label">What can you do to prevent it from going wrong? (มีการป้องกันอย่างไร)(5)</label>
+									<lightning:inputField variant="label-hidden" aura:id="Prevent5__c" fieldName="Prevent5__c" value="{!v.form.Prevent5__c}" />
+								</lightning:layoutItem>
+							</aura:if>
+
+							<aura:if isTrue="{!v.isStep3}">
+								<h2 class="header">3 What's (6)</h2>
+								<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+									<label class="slds-form-element__label">What can go wrong? (ระบุอันตรายที่อาจเกิดขึ้น)(6)</label>
+									<lightning:inputField
+										variant="label-hidden"
+										aura:id="Can_go_wrong6__c"
+										fieldName="Can_go_wrong6__c"
+										value="{!v.form.Can_go_wrong6__c}"
+									/>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+									<label class="slds-form-element__label">What can cause it to go wrong? (มีสาเหตุอะไรทำให้เกิดความผิดพลาดได้)(6)</label>
+									<lightning:inputField variant="label-hidden" aura:id="Cause6__c" fieldName="Cause6__c" value="{!v.form.Cause6__c}" />
+								</lightning:layoutItem>
+								<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+									<label class="slds-form-element__label">What can you do to prevent it from going wrong? (มีการป้องกันอย่างไร)(6)</label>
+									<lightning:inputField variant="label-hidden" aura:id="Prevent6__c" fieldName="Prevent6__c" value="{!v.form.Prevent6__c}" />
+								</lightning:layoutItem>
+							</aura:if>
+
+							<lightning:layoutItem
+								size="12"
+								smallDeviceSize="12"
+								largeDeviceSize="12"
+								flexibility="auto"
+								padding="horizontal-medium"
+								class="slds-text-align_right"
+							>
+								<lightning:button
+									class="slds-var-m-left_small slds-var-m-top_medium"
+									onclick="{!c.hideRow}"
+									variant="destructive"
+									label="-"
+									title="Remove"
+									aura:id="disablebuttonhide"
+									disabled="true"
+								/>
+
+								<lightning:button
+									class="slds-var-m-left_small slds-var-m-top_medium"
+									variant="brand"
+									label="+"
+									title="Add"
+									onclick="{! c.showRow }"
+									aura:id="disablebuttonid"
+									disabled="false"
+								/>
+							</lightning:layoutItem>
+						</lightning:accordionSection>
+					</lightning:accordion>
+
+					<!--
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<lightning:inputField aura:id="Safety_Permit1_UI__c" fieldName="Safety_Permit1_UI__c" value="{!v.form.Safety_Permit1_UI__c}" />
+							</lightning:layoutItem>
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<lightning:inputField aura:id="Safety_Permit2_UI__c" fieldName="Safety_Permit2_UI__c" value="{!v.form.Safety_Permit2_UI__c}" />
+							</lightning:layoutItem>
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+								<lightning:inputField aura:id="Safety_Permit3_UI__c" fieldName="Safety_Permit3_UI__c" value="{!v.form.Safety_Permit3_UI__c}" />
+							</lightning:layoutItem>
+							-->
+
+					<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+						<aura:if isTrue="{!and(v.form.Safety_Permit1_UI__c, v.form.Safety_Permit1_UI__c.length > 0)}">
+							<lightning:inputField aura:id="inputField" fieldName="Safety_Permit1_UI__c" value="{!v.form.Safety_Permit1_UI__c}" />
+							<aura:set attribute="else">
+								<div class="slds-form-element slds-form-element_stacked slds-p-horizontal_none">
+									<label class="slds-form-element__label">{!v.objectInfoFields.Safety_Permit1_UI__c.label}</label>
+									<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+										<lightning:icon
+											class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+											iconName="utility:search"
+											size="xx-small"
+										/>
+										<lightning:input
+											variant="label-hidden"
+											name="Safety_Permit1_UI__c"
+											label="{!v.objectInfoFields.Safety_Permit1_UI__c.label}"
+											placeholder="{! 'Select ' + (v.objectInfoFields.Safety_Permit1_UI__c.label) + '...' }"
+											autocomplete="off"
+											tabindex="-1"
+											onfocus="{!c.handleFocus}"
+										/>
+									</div>
+								</div>
+								<c:THOR_ModalSelected title="{!v.objectInfoFields.Safety_Permit1_UI__c.label}" isToggle="{!v.isToggleSubModal.Safety_Permit1_UI__c}">
+									<aura:set attribute="body">
+										<lightning:layout class="slds-form" verticalAlign="end">
+											<Lightning:layoutitem flexibility="auto">
+												<lightning:input
+													aura:id="search-input"
+													name="Safety_Permit1_UI__c"
+													type="search"
+													variant="label-stacked"
+													label="{! 'Search for ' + v.objectInfoFields.Safety_Permit1_UI__c.label}"
+													onchange="{!c.handleSearch}"
+													autocomplete="off"
+												/>
+											</Lightning:layoutitem>
+											<Lightning:layoutitem flexibility="no-grow">
+												<div class="slds-form-element slds-form-element_stacked">
+													<label class="slds-form-element__label">&nbsp;</label>
+													<div class="slds-form-element__control">
+														<lightning:button variant="neutral" label="Search" />
+													</div>
+												</div>
+											</Lightning:layoutitem>
+										</lightning:layout>
+
+										<ul class="slds-listbox slds-listbox_vertical slds-p-horizontal_small" role="presentation">
+											<aura:iteration items="{!v.formOption.Safety_Permit1_UI__c}" var="item" indexVar="index">
+												<lightning:button
+													variant="base"
+													class="slds-size_1-of-1 slds-text-link_reset slds-m-left_xx-small d-flex"
+													label="{! item.Name }"
+													name="Safety_Permit1_UI__c"
+													value="{! item.Id }"
+													onclick="{!c.handleSeletedButton}"
+												>
+													<aura:set attribute="body">
+														<li role="presentation" class="slds-listbox__item slds-size_1-of-1">
+															<div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+																<span class="slds-media__figure slds-listbox__option-icon">
+																	<span class="slds-icon_container">
+																		<!-- slds-icon-standard-account -->
+																		<lightning:avatar
+																			size="small"
+																			variant="square"
+																			initials="{!item.avatar}"
+																			fallbackIconName="custom:custom101"
+																			alternativeText="{! item.Name }"
+																			class="slds-m-right_small"
+																		/>
+																	</span>
+																</span>
+
+																<span class="slds-media__body slds-text-align_left">
+																	<span class="slds-listbox__option-text slds-listbox__option-text_entity"> {! item.Name } </span>
+																	<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"> {!item.Code__c} </span>
+																</span>
+															</div>
+														</li>
+													</aura:set>
+												</lightning:button>
+											</aura:iteration>
+										</ul>
+									</aura:set>
+								</c:THOR_ModalSelected>
+							</aura:set>
+						</aura:if>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+						<aura:if isTrue="{!and(v.form.Safety_Permit2_UI__c, v.form.Safety_Permit2_UI__c.length > 0)}">
+							<lightning:inputField aura:id="inputField" fieldName="Safety_Permit2_UI__c" value="{!v.form.Safety_Permit2_UI__c}" />
+							<aura:set attribute="else">
+								<div class="slds-form-element slds-form-element_stacked slds-p-horizontal_none">
+									<label class="slds-form-element__label">{!v.objectInfoFields.Safety_Permit2_UI__c.label}</label>
+									<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+										<lightning:icon
+											class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+											iconName="utility:search"
+											size="xx-small"
+										/>
+										<lightning:input
+											variant="label-hidden"
+											name="Safety_Permit2_UI__c"
+											label="{!v.objectInfoFields.Safety_Permit2_UI__c.label}"
+											placeholder="{! 'Select ' + (v.objectInfoFields.Safety_Permit2_UI__c.label) + '...' }"
+											autocomplete="off"
+											tabindex="-1"
+											onfocus="{!c.handleFocus}"
+										/>
+									</div>
+								</div>
+								<c:THOR_ModalSelected title="{!v.objectInfoFields.Safety_Permit2_UI__c.label}" isToggle="{!v.isToggleSubModal.Safety_Permit2_UI__c}">
+									<aura:set attribute="body">
+										<lightning:layout class="slds-form" verticalAlign="end">
+											<Lightning:layoutitem flexibility="auto">
+												<lightning:input
+													aura:id="search-input"
+													name="Safety_Permit2_UI__c"
+													type="search"
+													variant="label-stacked"
+													label="{! 'Search for ' + v.objectInfoFields.Safety_Permit2_UI__c.label}"
+													onchange="{!c.handleSearch}"
+													autocomplete="off"
+												/>
+											</Lightning:layoutitem>
+											<Lightning:layoutitem flexibility="no-grow">
+												<div class="slds-form-element slds-form-element_stacked">
+													<label class="slds-form-element__label">&nbsp;</label>
+													<div class="slds-form-element__control">
+														<lightning:button variant="neutral" label="Search" />
+													</div>
+												</div>
+											</Lightning:layoutitem>
+										</lightning:layout>
+
+										<ul class="slds-listbox slds-listbox_vertical slds-p-horizontal_small" role="presentation">
+											<aura:iteration items="{!v.formOption.Safety_Permit2_UI__c}" var="item" indexVar="index">
+												<lightning:button
+													variant="base"
+													class="slds-size_1-of-1 slds-text-link_reset slds-m-left_xx-small d-flex"
+													label="{! item.Name }"
+													name="Safety_Permit2_UI__c"
+													value="{! item.Id }"
+													onclick="{!c.handleSeletedButton}"
+												>
+													<aura:set attribute="body">
+														<li role="presentation" class="slds-listbox__item slds-size_1-of-1">
+															<div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+																<span class="slds-media__figure slds-listbox__option-icon">
+																	<span class="slds-icon_container">
+																		<!-- slds-icon-standard-account -->
+																		<lightning:avatar
+																			size="small"
+																			variant="square"
+																			initials="{!item.avatar}"
+																			fallbackIconName="custom:custom101"
+																			alternativeText="{! item.Name }"
+																			class="slds-m-right_small"
+																		/>
+																	</span>
+																</span>
+
+																<span class="slds-media__body slds-text-align_left">
+																	<span class="slds-listbox__option-text slds-listbox__option-text_entity"> {! item.Name } </span>
+																	<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"> {!item.Code__c} </span>
+																</span>
+															</div>
+														</li>
+													</aura:set>
+												</lightning:button>
+											</aura:iteration>
+										</ul>
+									</aura:set>
+								</c:THOR_ModalSelected>
+							</aura:set>
+						</aura:if>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+						<aura:if isTrue="{!and(v.form.Safety_Permit3_UI__c, v.form.Safety_Permit3_UI__c.length > 0)}">
+							<lightning:inputField aura:id="inputField" fieldName="Safety_Permit3_UI__c" value="{!v.form.Safety_Permit3_UI__c}" />
+							<aura:set attribute="else">
+								<div class="slds-form-element slds-form-element_stacked slds-p-horizontal_none">
+									<label class="slds-form-element__label">{!v.objectInfoFields.Safety_Permit3_UI__c.label}</label>
+									<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+										<lightning:icon
+											class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+											iconName="utility:search"
+											size="xx-small"
+										/>
+										<lightning:input
+											variant="label-hidden"
+											name="Safety_Permit3_UI__c"
+											label="{!v.objectInfoFields.Safety_Permit3_UI__c.label}"
+											placeholder="{! 'Select ' + (v.objectInfoFields.Safety_Permit3_UI__c.label) + '...' }"
+											autocomplete="off"
+											tabindex="-1"
+											onfocus="{!c.handleFocus}"
+										/>
+									</div>
+								</div>
+								<c:THOR_ModalSelected title="{!v.objectInfoFields.Safety_Permit3_UI__c.label}" isToggle="{!v.isToggleSubModal.Safety_Permit3_UI__c}">
+									<aura:set attribute="body">
+										<lightning:layout class="slds-form" verticalAlign="end">
+											<Lightning:layoutitem flexibility="auto">
+												<lightning:input
+													aura:id="search-input"
+													name="Safety_Permit3_UI__c"
+													type="search"
+													variant="label-stacked"
+													label="{! 'Search for ' + v.objectInfoFields.Safety_Permit3_UI__c.label}"
+													onchange="{!c.handleSearch}"
+													autocomplete="off"
+												/>
+											</Lightning:layoutitem>
+											<Lightning:layoutitem flexibility="no-grow">
+												<div class="slds-form-element slds-form-element_stacked">
+													<label class="slds-form-element__label">&nbsp;</label>
+													<div class="slds-form-element__control">
+														<lightning:button variant="neutral" label="Search" />
+													</div>
+												</div>
+											</Lightning:layoutitem>
+										</lightning:layout>
+
+										<ul class="slds-listbox slds-listbox_vertical slds-p-horizontal_small" role="presentation">
+											<aura:iteration items="{!v.formOption.Safety_Permit3_UI__c}" var="item" indexVar="index">
+												<lightning:button
+													variant="base"
+													class="slds-size_1-of-1 slds-text-link_reset slds-m-left_xx-small d-flex"
+													label="{! item.Name }"
+													name="Safety_Permit3_UI__c"
+													value="{! item.Id }"
+													onclick="{!c.handleSeletedButton}"
+												>
+													<aura:set attribute="body">
+														<li role="presentation" class="slds-listbox__item slds-size_1-of-1">
+															<div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+																<span class="slds-media__figure slds-listbox__option-icon">
+																	<span class="slds-icon_container">
+																		<!-- slds-icon-standard-account -->
+																		<lightning:avatar
+																			size="small"
+																			variant="square"
+																			initials="{!item.avatar}"
+																			fallbackIconName="custom:custom101"
+																			alternativeText="{! item.Name }"
+																			class="slds-m-right_small"
+																		/>
+																	</span>
+																</span>
+
+																<span class="slds-media__body slds-text-align_left">
+																	<span class="slds-listbox__option-text slds-listbox__option-text_entity"> {! item.Name } </span>
+																	<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"> {!item.Code__c} </span>
+																</span>
+															</div>
+														</li>
+													</aura:set>
+												</lightning:button>
+											</aura:iteration>
+										</ul>
+									</aura:set>
+								</c:THOR_ModalSelected>
+							</aura:set>
+						</aura:if>
+					</lightning:layoutItem>
+
+					<c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+				</lightning:recordEditForm>
+			</div>
+			<aura:set attribute="title">
+				<div class="slds-text-heading_medium slds-p-vertical_small">New Work Clearance</div>
+			</aura:set>
+			<aura:set attribute="footer">
+				<lightning:button label="Cancel" onclick="{!c.toggleModal}" disabled="{!v.isLoading}" />
+				<lightning:button label="Save" onclick="{!c.onSubmitFooter}" disabled="{!v.isLoading}" />
+			</aura:set>
+		</lightning:card>
+	</aura:if>
+</aura:component>

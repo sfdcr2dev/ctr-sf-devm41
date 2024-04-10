@@ -1,0 +1,45 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable,lightning:isUrlAddressable">
+	<aura:attribute name="EQCCItem" type="Object" access="global" />
+	<aura:attribute name="inProgress" type="Boolean" default="false" />
+
+	<div aura:id="card">
+		<div style="margin-top: 0" class="oktana-showup slds-welcome-mat__tile">
+			<div style="box-shadow: 0px 2px 2px 0px #cccccc" class="slds-box slds-media cardHover">
+				<!--############### START MAIN BODY OF THE CARD ###########-->
+				<div class="slds-media__body">
+					<div class="" style="padding: 0em">
+						<div class="preventOverflowX">
+							<lightning:layout verticalAlign="center">
+								<lightning:layoutItem>
+									<lightning:layout>
+										<c:THOR_EQCCHeaderLink inprogress="{!v.inProgress}" header="{!v.EQCCItem.header}" />
+									</lightning:layout>
+
+									<lightning:layout>
+										<span class="slds-text-body_small">
+											<aura:iteration items="{!v.EQCCItem.sheets}" var="item" indexVar="index">
+												<p class="slds-p-left_large">
+													<c:THOR_EQCCCheckedSheetHyperlink
+														headerId="{!v.EQCCItem.header.Id}"
+														headerSheetId="{!item.headerSheetId}"
+														checkedSheetName="{!item.headerSheetName}"
+														checkedSheetCode="{!item.sheet.Sheet_Code__c}"
+														checkedSheetGroup="{!item.sheet.Group__c}"
+														checkedSheetStatus="{!item.status}"
+														checkedSheetRequester="{!item.requester}"
+														checkedSheetCreatedDate="{!item.createdDate}"
+													/>
+												</p>
+											</aura:iteration>
+										</span>
+									</lightning:layout>
+								</lightning:layoutItem>
+							</lightning:layout>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--############### ENDS MAIN BODY OF THE CARD ###########-->
+		</div>
+	</div>
+</aura:component>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Staff ManHours</value>
+    </caseValues>
+    <fields>
+        <label><!-- ExternalId --></label>
+        <name>ExternalId__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Source --></label>
+        <name>External_Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Female (Sync) --></label>
+        <name>Female_Sync__c</name>
+    </fields>
+    <fields>
+        <label><!-- Female --></label>
+        <name>Female__c</name>
+    </fields>
+    <fields>
+        <label><!-- Male (Sync) --></label>
+        <name>Male_Sync__c</name>
+    </fields>
+    <fields>
+        <label><!-- Male --></label>
+        <name>Male__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month Order --></label>
+        <name>Month_Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month --></label>
+        <name>Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company --></label>
+        <name>SD_Company__c</name>
+        <relationshipLabel><!-- Staff ManHours --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Zone --></label>
+        <name>SD_Zone__c</name>
+        <relationshipLabel><!-- Staff ManHours --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Staff Group --></label>
+        <name>Staff_Group__c</name>
+        <picklistValues>
+            <masterLabel>TES</masterLabel>
+            <translation><!-- TES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TOP</masterLabel>
+            <translation><!-- TOP --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Total (Sync) --></label>
+        <name>Total_Sync__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total --></label>
+        <name>Total__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Site --></label>
+        <name>Work_Site__c</name>
+        <picklistValues>
+            <masterLabel>Bangkok</masterLabel>
+            <translation><!-- Bangkok --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sriracha</masterLabel>
+            <translation><!-- Sriracha --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Year --></label>
+        <name>Year__c</name>
+    </fields>
+    <layouts>
+        <layout>Staff ManHours Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

@@ -1,0 +1,90 @@
+<aura:component
+    implements="flexipage:availableForAllPageTypes,force:appHostable"
+    controller="EQCC_PendingForApproveController"
+>
+    <!-- ATTRIBUTES -->
+    <aura:attribute name="stepsForApprove" type="List" default="[]" access="private" />
+    <aura:attribute name="stepsForApproveHeader" type="List" default="[]" access="private" />
+    <aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+    <aura:attribute name="filter" type="Map" default="{}" access="private" />
+    
+    <!-- EVENTS -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:handler name="fitlerEnhanceEvent" event="c:THOR_FilterEnhanceEvent" action="{!c.handleFilter}" />
+
+    <!-- BODY -->
+    <lightning:navigation aura:id="navService" />
+
+    <span class="slds-hide">
+        <c:THOR_navigateBack />
+    </span>
+
+    <lightning:layout>
+        <lightning:layoutItem size="12">
+        
+                
+                <div class="slds-clearfix">
+                    <div class="slds-float_right">
+                        <c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterMyApprovalFrom" />
+                    </div>
+                </div>
+                <div class="slds-text-heading_small title">EQCC Pending for approve</div>
+                
+                <div class="slds-scrollable_x">
+                <aura:if isTrue="{!v.isLoading}">
+                    <lightning:spinner alternativeText="Loading" size="medium" />
+                    <aura:set attribute="else">
+                        <aura:if isTrue="{!empty(v.stepsForApprove)}">
+                            <div class="slds-illustration slds-illustration_small">
+                                <div class="slds-text-longform">
+                                    <h3 class="slds-text-heading_medium">No Forms Awaiting Approval</h3>
+                                    <p class="slds-text-body_regular">
+                                        Check back later when you have forms to approve.
+                                    </p>
+                                </div>
+                            </div>
+                            <aura:set attribute="else">
+                                <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <aura:iteration items="{!v.stepsForApproveHeader}" var="header">
+                                                <th class="header" scope="col">
+                                                    <div class="slds-truncate" title="Check Sheet Code">{!header}</div>
+                                                </th>
+                                            </aura:iteration>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <aura:iteration items="{!v.stepsForApprove}" var="stepForApprove">
+                                            <tr class="slds-hint-parent">
+                                                <aura:iteration items="{!stepForApprove.dropableBody}" var="item">
+                                                    <td data-label="Account Name">
+                                                        <aura:if isTrue="{! item.label == 'Check Sheet Code'}">
+                                                            <div
+                                                                id="{!stepForApprove.recordId + ',' + stepForApprove.formGroup}"
+                                                                class="slds-truncate"
+                                                                title=""
+                                                                onclick="{!c.navigateToRecord}"
+                                                            >
+                                                                <a href="javascript:void(0);">{!item.value}</a>
+                                                            </div>
+                                                            <aura:set attribute="else">
+                                                                <div class="slds-truncate">{!item.value}</div>
+                                                            </aura:set>
+                                                        </aura:if>
+                                                    </td>
+                                                </aura:iteration>
+                                            </tr>
+                                        </aura:iteration>
+                                    </tbody>
+                                </table>
+                            </aura:set>
+                        </aura:if>
+                    </aura:set>
+                </aura:if>
+                
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

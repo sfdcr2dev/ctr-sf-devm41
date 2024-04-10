@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>E-MOC Temporary Extension History</value>
+    </caseValues>
+    <fields>
+        <label><!-- Action by --></label>
+        <name>Action_by__c</name>
+        <relationshipLabel><!-- E-MOC Temporary Extension History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Action by text --></label>
+        <name>Action_by_text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date --></label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- E-MOC Application No. --></label>
+        <name>E_MOC_Application_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- E-MOC Application --></label>
+        <name>E_MOC_Application__c</name>
+        <relationshipLabel><!-- E-MOC Temporary Extension History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- New require end date --></label>
+        <name>New_require_end_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- No --></label>
+        <name>No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Old require end date --></label>
+        <name>Old_require_end_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Remark --></label>
+        <name>Remark__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Correct the problem by using existing solution</masterLabel>
+            <translation><!-- Correct the problem by using existing solution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Extend FN</masterLabel>
+            <translation><!-- Extend FN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Require to extend in this temporary MOC?</masterLabel>
+            <translation><!-- Require to extend in this temporary MOC? --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Require to extend to prevent overdue during return to normal</masterLabel>
+            <translation><!-- Require to extend to prevent overdue during return to normal --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Yes --></label>
+        <name>Yes__c</name>
+    </fields>
+    <layouts>
+        <layout>E-MOC Temporary Extension History Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>E-MOC Temporary History Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

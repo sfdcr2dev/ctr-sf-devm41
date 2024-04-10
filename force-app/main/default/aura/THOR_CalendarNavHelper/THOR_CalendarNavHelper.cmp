@@ -1,0 +1,10 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,lightning:isUrlAddressable" access="global">
+
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+
+    <lightning:navigation aura:id="navLink"/>
+    <aura:handler name="navagationHelper" event="c:THOR_navigateTo" action="{!c.navigateHelper}" />
+
+    <c:THOR_CalendarJS />
+
+</aura:component>

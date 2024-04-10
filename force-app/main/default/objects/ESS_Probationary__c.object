@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Approval_History_JSON__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval History JSON</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Attitude__c</fullName>
+        <externalId>false</externalId>
+        <label>Attitude</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>LackDescipline</fullName>
+                    <default>false</default>
+                    <label>Lack discipline and always create problems</label>
+                </value>
+                <value>
+                    <fullName>NeatAndObey</fullName>
+                    <default>false</default>
+                    <label>Neat and obey supervisor&apos;s order</label>
+                </value>
+                <value>
+                    <fullName>WorkWell</fullName>
+                    <default>false</default>
+                    <label>Work well with colleague and strictly adhere to Company regulations</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CEP_Confirmation_Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>CEP Confirmation Comment</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>CEP_Confirmation__c</fullName>
+        <externalId>false</externalId>
+        <label>CEP Confirmation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Confirm</fullName>
+                    <default>false</default>
+                    <label>Confirm</label>
+                </value>
+                <value>
+                    <fullName>Propose</fullName>
+                    <default>false</default>
+                    <label>Propose</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Company_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Company Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Completed_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Completed Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Confirm_CEP__c</fullName>
+        <externalId>false</externalId>
+        <label>Confirm CEP</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date_Completed_Probation__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Completed Probation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Joined_Company__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Joined Company</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Department_Head_Approve_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Department Head Approve Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Department_Head_Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Department Head Comment</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Department_Head_Employee_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Department Head Employee Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Department_Head_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Department Head Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Department_Head_Position__c</fullName>
+        <externalId>false</externalId>
+        <label>Department Head Position</label>
+        <length>150</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Department_Head_Reject_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Department Head Reject Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Department_Head_Reminder__c</fullName>
+        <externalId>false</externalId>
+        <label>Department Head Reminder</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Department_Head__c</fullName>
+        <externalId>false</externalId>
+        <label>Department Head</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Department__c</fullName>
+        <externalId>false</externalId>
+        <label>Department</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Document_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Document No</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Employee_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Employee ID</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Employee_Name_EN__c</fullName>
+        <externalId>false</externalId>
+        <label>Employee Name EN</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Employee_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Employee Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Engineering_License__c</fullName>
+        <externalId>false</externalId>
+        <label>Engineering License</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>AlreadyPossessed</fullName>
+                    <default>false</default>
+                    <label>The incumbent has already possessed the valid license</label>
+                </value>
+                <value>
+                    <fullName>NotYetPossessed</fullName>
+                    <default>false</default>
+                    <label>The incumbent has not yet possessed the valid license</label>
+                </value>
+                <value>
+                    <fullName>NotRequire</fullName>
+                    <default>false</default>
+                    <label>Not Require</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Function__c</fullName>
+        <externalId>false</externalId>
+        <label>Function</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Knowledge_Skills__c</fullName>
+        <externalId>false</externalId>
+        <label>Knowledge Skills</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Insufficient</fullName>
+                    <default>false</default>
+                    <label>Insufficient knowledge/skills to carry out work up to the required standard</label>
+                </value>
+                <value>
+                    <fullName>Sufficient</fullName>
+                    <default>false</default>
+                    <label>Sufficient knowledge/skills to carry out work up to the required standard</label>
+                </value>
+                <value>
+                    <fullName>SufficientBetter</fullName>
+                    <default>false</default>
+                    <label>Sufficient knowledge/skills to carry out work better than the required standard</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Level__c</fullName>
+        <externalId>false</externalId>
+        <label>Level</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Position__c</fullName>
+        <externalId>false</externalId>
+        <label>Position</label>
+        <length>150</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Probation_Confirmation_Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Probation Confirmation Comment</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Probation_Confirmation__c</fullName>
+        <externalId>false</externalId>
+        <label>Probation Confirmation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Confirm</fullName>
+                    <default>false</default>
+                    <label>To confirm as regular employee of the Company</label>
+                </value>
+                <value>
+                    <fullName>Terminate</fullName>
+                    <default>false</default>
+                    <label>To terminate employment for the following reason</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Probation_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Probation Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ConfirmedToRegularEmployee</fullName>
+                    <default>false</default>
+                    <label>ConfirmedToRegularEmployee</label>
+                </value>
+                <value>
+                    <fullName>TerminateEmployee</fullName>
+                    <default>false</default>
+                    <label>TerminateEmployee</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Propose_CEP__c</fullName>
+        <externalId>false</externalId>
+        <label>Propose CEP</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>KH400 (JG01)</fullName>
+                    <default>false</default>
+                    <label>KH400 (JG01)</label>
+                </value>
+                <value>
+                    <fullName>KH350 (JG02)</fullName>
+                    <default>false</default>
+                    <label>KH350 (JG02)</label>
+                </value>
+                <value>
+                    <fullName>KH304 (JG03)</fullName>
+                    <default>false</default>
+                    <label>KH304 (JG03)</label>
+                </value>
+                <value>
+                    <fullName>KH264 (JG3.5)</fullName>
+                    <default>false</default>
+                    <label>KH264 (JG3.5)</label>
+                </value>
+                <value>
+                    <fullName>KH230 (JG04)</fullName>
+                    <default>false</default>
+                    <label>KH230 (JG04)</label>
+                </value>
+                <value>
+                    <fullName>KH200 (JG05)</fullName>
+                    <default>false</default>
+                    <label>KH200 (JG05)</label>
+                </value>
+                <value>
+                    <fullName>KH175 (JG06)</fullName>
+                    <default>false</default>
+                    <label>KH175 (JG06)</label>
+                </value>
+                <value>
+                    <fullName>KH152 (JG07)</fullName>
+                    <default>false</default>
+                    <label>KH152 (JG07)</label>
+                </value>
+                <value>
+                    <fullName>KH132 (JG08)</fullName>
+                    <default>false</default>
+                    <label>KH132 (JG08)</label>
+                </value>
+                <value>
+                    <fullName>KH115 (JG09)</fullName>
+                    <default>false</default>
+                    <label>KH115 (JG09)</label>
+                </value>
+                <value>
+                    <fullName>KH100 (JG10)</fullName>
+                    <default>false</default>
+                    <label>KH100 (JG10)</label>
+                </value>
+                <value>
+                    <fullName>KH87 (JG11)</fullName>
+                    <default>false</default>
+                    <label>KH87 (JG11)</label>
+                </value>
+                <value>
+                    <fullName>KH76 (JG12)</fullName>
+                    <default>false</default>
+                    <label>KH76 (JG12)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Quality_of_Work__c</fullName>
+        <externalId>false</externalId>
+        <label>Quality of Work</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Below</fullName>
+                    <default>false</default>
+                    <label>Below required standard</label>
+                </value>
+                <value>
+                    <fullName>Meet</fullName>
+                    <default>false</default>
+                    <label>Meet required standard</label>
+                </value>
+                <value>
+                    <fullName>Better</fullName>
+                    <default>false</default>
+                    <label>Better than expectation</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Quantity_Of_Work__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity Of Work</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Learn</fullName>
+                    <default>false</default>
+                    <label>Learn slowly and quantity of work is below expection</label>
+                </value>
+                <value>
+                    <fullName>Meet</fullName>
+                    <default>false</default>
+                    <label>Meet required standard</label>
+                </value>
+                <value>
+                    <fullName>Better</fullName>
+                    <default>false</default>
+                    <label>Better than expectation</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Reassign_Department_Head_Approve_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Reassign Department Head Approve Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Reassign_Department_Head_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Reassign Department Head Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Reassign_Department_Head_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Reassign Department Head Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reassign_Department_Head_JSON__c</fullName>
+        <externalId>false</externalId>
+        <label>Reassign Department Head JSON</label>
+        <length>3000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Reassign_Department_Head_Reminder__c</fullName>
+        <externalId>false</externalId>
+        <label>Reassign Department Head Reminder</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Reassign_Department_Head__c</fullName>
+        <externalId>false</externalId>
+        <label>Reassign Department Head</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reassign_Section_Head_Approve_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Reassign Section Head Approve Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Reassign_Section_Head_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Reassign Section Head Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Reassign_Section_Head_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Reassign Section Head Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reassign_Section_Head_JSON__c</fullName>
+        <externalId>false</externalId>
+        <label>Reassign Section Head JSON</label>
+        <length>3000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Reassign_Section_Head_Reminder__c</fullName>
+        <externalId>false</externalId>
+        <label>Reassign Section Head Reminder</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Reassign_Section_Head__c</fullName>
+        <externalId>false</externalId>
+        <label>Reassign Section Head</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Recommendation_Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Recommendation Comment</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Recommendation__c</fullName>
+        <externalId>false</externalId>
+        <label>Recommendation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Confirm</fullName>
+                    <default>false</default>
+                    <label>To confirm as regular employee of the Company</label>
+                </value>
+                <value>
+                    <fullName>Terminate</fullName>
+                    <default>false</default>
+                    <label>To terminate employment for the following reason</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Reliability__c</fullName>
+        <externalId>false</externalId>
+        <label>Reliability</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>NeedSupervision</fullName>
+                    <default>false</default>
+                    <label>Need close supervision</label>
+                </value>
+                <value>
+                    <fullName>OccasionalSupervision</fullName>
+                    <default>false</default>
+                    <label>Work well and need only occasional supervision</label>
+                </value>
+                <value>
+                    <fullName>WithoutSupervision</fullName>
+                    <default>false</default>
+                    <label>Work independently without supervision</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Safety_Awareness__c</fullName>
+        <externalId>false</externalId>
+        <label>Safety Awareness</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Below</fullName>
+                    <default>false</default>
+                    <label>Below required standard</label>
+                </value>
+                <value>
+                    <fullName>Meet</fullName>
+                    <default>false</default>
+                    <label>Meet required standard</label>
+                </value>
+                <value>
+                    <fullName>Better</fullName>
+                    <default>false</default>
+                    <label>Better than expectation</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Section_Head_Approve_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Section Head Approve Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Section_Head_Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Section Head Comment</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Section_Head_Employee_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Section Head Employee Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Section_Head_Flow__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Section_Head_Id__c != null,false, true)</formula>
+        <label>Section Head Flow</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Section_Head_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Section Head Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Section_Head_Position__c</fullName>
+        <externalId>false</externalId>
+        <label>Section Head Position</label>
+        <length>150</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Section_Head_Reminder__c</fullName>
+        <externalId>false</externalId>
+        <label>Section Head Reminder</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Section_Head__c</fullName>
+        <externalId>false</externalId>
+        <label>Section Head</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Section__c</fullName>
+        <externalId>false</externalId>
+        <label>Section</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>Reassigned</fullName>
+                    <default>false</default>
+                    <label>Reassigned</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+                <value>
+                    <fullName>WaitingForApprovalSectionHead</fullName>
+                    <default>false</default>
+                    <label>WaitingForApprovalSectionHead</label>
+                </value>
+                <value>
+                    <fullName>WaitingForReassignedSectionHead</fullName>
+                    <default>false</default>
+                    <label>WaitingForReassignedSectionHead</label>
+                </value>
+                <value>
+                    <fullName>WaitingForApprovalDepartmentHead</fullName>
+                    <default>false</default>
+                    <label>WaitingForApprovalDepartmentHead</label>
+                </value>
+                <value>
+                    <fullName>WaitingForReassignedDepartmentHead</fullName>
+                    <default>false</default>
+                    <label>WaitingForReassignedDepartmentHead</label>
+                </value>
+                <value>
+                    <fullName>UploadingToPersonalFolder</fullName>
+                    <default>false</default>
+                    <label>UploadingToPersonalFolder</label>
+                </value>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                    <label>Submitted</label>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+                <value>
+                    <fullName>UploadFailed</fullName>
+                    <default>false</default>
+                    <label>UploadFailed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Submitted_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Submitted Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Unit__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Uploaded_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Uploaded Status</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <label>ESS Probationary</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>PRO-{00000}</displayFormat>
+        <label>Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

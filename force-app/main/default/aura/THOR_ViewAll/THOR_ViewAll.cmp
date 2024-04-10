@@ -1,0 +1,32 @@
+<aura:component>
+	<aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" access="private" />
+	<!-- ATTRIBUTES -->
+	<aura:attribute name="title" type="String" default="View all" access="global" />
+	<aura:attribute name="viewingAll" type="Boolean" default="false" access="global" />
+	<aura:attribute name="target" type="String" default="" access="global" />
+
+	<!-- EVENTS -->
+	<aura:registerEvent name="viewAllEvent" type="c:THOR_Event" />
+
+	<!-- BODY -->
+	<!-- <lightning:layout>
+        <lightning:layoutItem size="12">
+            <button class="slds-button slds-button_neutral fadeIn viewAllBtn" onclick='{! c.handleViewAll}'>
+                <div class="slslds-size_1-of-2 alignLeft">{! v.title}</div>
+                <div class="slslds-size_1-of-2 alignRight"> > </div>
+            </button>
+        </lightning:layoutItem>
+    </lightning:layout> -->
+	<div class="slds-card" style="border-top: 0; border-style: hidden">
+		<footer class="{! 'slds-card__footer slds-m-top_none ' + (v.formFactor == 'DESKTOP'? 'slds-var-p-vertical_x-small' : 'slds-var-p-vertical_xxx-small')}">
+			<div class="slds-card__footer-action">
+				<lightning:button
+					variant="base"
+					onclick="{! c.handleViewAll }"
+					label="{! v.title }"
+					title="Show more"
+				/>
+			</div>
+		</footer>
+	</div>
+</aura:component>

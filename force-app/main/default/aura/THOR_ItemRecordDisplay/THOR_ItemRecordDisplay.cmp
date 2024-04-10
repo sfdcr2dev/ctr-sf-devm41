@@ -1,0 +1,369 @@
+<aura:component
+    controller="THOR_ItemController"
+    implements="flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable"
+    access="global"
+>
+    <aura:attribute name="recordId" type="String" />
+    <!-- <aura:handler event="aura:doneRendering" action="{!c.doInit}" /> -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.doRefresh}" />
+    <aura:attribute name="dropableBody" type="List" default="" access="global" />
+    <aura:attribute name="DeleteIsOpen" type="boolean" default="false" />
+    <aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+    <aura:attribute name="hasWriteAccess" type="Boolean" default="false"/>
+    <aura:attribute name="DisplayableCauseObjectFullList" type="List" default="" access="global" />
+    <aura:attribute name="DisplayableActivityObjectFullList" type="List" default="" access="global" />
+    <aura:attribute name="ResendIsOpen" type="boolean" default="false" />
+    <aura:attribute name="interval" type="Object" access="private" />
+    <aura:attribute name="itemRecord" type="Map" default="{}" access="private" />
+    <aura:attribute name="recordError" type="String" access="private" />
+    <aura:attribute name="isAlertIntegration" type="Boolean" default="false" access="private" />
+    <aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" access="private" />
+    <lightning:notificationsLibrary aura:id="notifLib" />
+    <aura:attribute name="notificationId" type="String" />
+    <lightning:navigation aura:id="navLink" />
+
+    <aura:handler name="navagationHelper" event="c:THOR_navigateTo" action="{!c.navigateHelper}" />
+
+    <c:THOR_navigateBack />
+
+    <!--
+    <c:THOR_Header title="Item" iconName="standard:maintenance_plan">
+        <aura:set attribute="actions">
+            <lightning:button variant="brand"
+                              label="Edit"
+                              disabled="{!not(v.hasWriteAccess)}"
+                              title="Edit"
+                              onclick="{! c.navigateToEditPage }" />
+            <lightning:button variant="destructive"
+                              label="Delete"
+                              disabled="{!not(v.hasWriteAccess)}"
+                              title="Delete"
+                              onclick="{!c.openModal}" />
+        </aura:set>
+    </c:THOR_Header>
+	-->
+    
+    <c:THOR_Header title="Item" iconName="standard:maintenance_plan">
+		<aura:set attribute="actions">
+			<lightning:buttonMenu menuAlignment="right" alternativeText="Show menu" label="Actions" onselect="{!c.handleSelectButtonMenu}">
+				<lightning:menuItem
+					label="Edit"
+					title="Edit"
+					value="c.navigateToEditPage"
+					disabled="{!not(v.hasWriteAccess) || (v.itemRecord.Integration_Status__c == 'In Progress')}"
+				/>
+
+				<lightning:menuItem
+					label="Resend"
+					title="Resend"
+					value="c.openResendModal"
+					disabled="{!not(and(v.hasWriteAccess, empty(v.itemRecord.Integration_Status__c) || v.itemRecord.Integration_Status__c == 'Failed')) || (v.itemRecord.Integration_Status__c == 'In Progress')}"
+				/>
+
+                <!--
+				<lightning:menuItem
+					label="Discard"
+					title="Discard"
+					value="c.openModal"
+					disabled="{!not(and(v.hasWriteAccess, v.itemRecord.Integration_Flag__c == 'Created' &amp;&amp; (empty(v.itemRecord.Integration_Status__c) || v.itemRecord.Integration_Status__c == 'Failed')))}"
+				/>
+
+				<lightning:menuItem
+					label="Delete"
+					title="Delete"
+					value="c.openModal"
+					disabled="{!not(and(v.hasWriteAccess, not(v.itemRecord.Integration_Flag__c == 'Created' &amp;&amp; (empty(v.itemRecord.Integration_Status__c) || v.itemRecord.Integration_Status__c == 'Failed'))))}"
+				/>
+                -->
+                
+
+				<lightning:menuItem
+                    label="Delete"
+                    title="Delete"
+                    value="c.openModal"
+                    disabled="{!not(and(v.hasWriteAccess)) || (v.itemRecord.Integration_Status__c == 'In Progress')}"
+                />
+			</lightning:buttonMenu>
+		</aura:set>
+	</c:THOR_Header>
+
+    <aura:if isTrue="{! and(v.itemRecord.Integration_Status__c == 'In Progress', v.formFactor == 'PHONE') }">
+        <aura:html tag="style">
+            div.windowViewMode-normal.oneContent .cTHOR_ItemRecordDisplay { overflow: hidden; }
+        </aura:html>
+    </aura:if>
+    
+    <force:recordData aura:id="recordLoader"
+		              recordId="{!v.recordId ? v.recordId : v.pageReference.state.c__recordId}"
+		              fields="Integration_Flag__c, Integration_Status__c, Integration_Message__c"
+		              targetFields="{!v.itemRecord}"
+		              targetError="{!v.recordError}"
+		              recordUpdated="{!c.handleRecordUpdated}" />
+
+                      <!--
+    <c:THOR_ModalSelected size="empty" isToggle="{!v.itemRecord.Integration_Status__c == 'In Progress'}" isHideCloseButton="true">
+        <div class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center">
+            <div class="slds-col">
+                <div class="slds-is-relative" style="height: 8em">
+                    <lightning:spinner size="large" />
+                </div>
+            </div>
+            <div class="slds-col">
+                <h2 class="slds-text-heading_large slds-text-align_center slds-p-horizontal_medium slds-p-bottom_medium">Please wait...</h2>
+            </div>
+        </div>
+    </c:THOR_ModalSelected>-->
+
+    <lightning:recordEditForm
+		class="slds-hide"
+		aura:id="itemResendForm"
+		recordId="{!v.recordId}"
+		objectApiName="Item__c"
+        onsuccess="{!c.handleSuccess}"
+		onerror="{!c.handleError}"
+	>
+		<lightning:inputField fieldName="Integration_Status__c" value="" />
+	</lightning:recordEditForm>
+
+    <lightning:recordEditForm
+        class="slds-hide"
+        aura:id="recordTimeoutForm"
+        recordId="{!v.recordId}"
+        objectApiName="Item__c"
+        onerror="{!c.handleError}"
+    >
+        <lightning:inputField fieldName="Integration_Status__c" value="Failed" />
+        <lightning:inputField fieldName="Integration_Message__c" value="" />
+    </lightning:recordEditForm>
+
+    <c:THOR_ObjectDisplayer isLoading="{!v.isLoading}">
+        <aura:set attribute="tabs">
+            <c:THOR_SingleTab tabTitle="Item Details">
+                <div class="slds-p-around_medium card">
+                    <lightning:recordViewForm density="comfy" recordId="{!if(v.recordId, v.recordId, '')}" objectApiName="Item__c">
+                        <aura:if isTrue="{! v.isAlertIntegration }">
+                            <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                                <lightning:icon
+                                    iconName="utility:error"
+                                    variant="inverse"
+                                    alternativeText="Error"
+                                    title="error"
+                                    size="{!v.formFactor == 'DESKTOP' ? 'x-small' : 'medium'}"
+                                />
+                                <h2 class="slds-var-p-horizontal_xx-small">
+                                    Integration Failed:
+                                    <aura:if isTrue="{!v.itemRecord.Integration_Message__c}">
+                                        {!v.itemRecord.Integration_Message__c}
+                                        <aura:set attribute="else">
+                                            <span>Your network could not connect to Server. Please contact System Administer.</span>
+                                        </aura:set>
+                                    </aura:if>
+                                </h2>
+
+                                <div class="slds-notify__close">
+                                    <lightning:buttonIcon iconName="utility:close" variant="bare-inverse" title="Close" onclick="{!c.closeAlertIntegration}" />
+                                </div>
+                            </div>
+                        </aura:if>
+                        <lightning:layout multipleRows="true" verticalAlign="stretch">
+                            <lightning:layoutItem
+                                size="12"
+                                flexibility="auto"
+                                padding="around-small"
+                                class="custom-box"
+                            >
+                                <aura:if isTrue="{!v.notificationId != null}">
+                                    <c:THOR_customRedirectTo
+                                        fieldLabel="Notification"
+                                        fromRecord="Item__c"
+                                        relatedObject="Notification__c"
+                                        relatedField="Notification__r.Name"
+                                        toThisComponent="c__THOR_NotificationRecordDisplay"
+                                        recordId="{!v.recordId}"
+                                    />
+                                </aura:if>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <label class="slds-form-element__label">Object Part Code Group</label>
+                                <lightning:outputField fieldName="ObjectPartCodeGroupText__c" variant="label-hidden" />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <label class="slds-form-element__label">Damage Code Group</label>
+                                <lightning:outputField fieldName="DamageCodeGroupText__c" variant="label-hidden" />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <label class="slds-form-element__label">Object Part Code</label>
+                                <lightning:outputField fieldName="ObjectPartText__c" variant="label-hidden" />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <label class="slds-form-element__label">Damage Code</label>
+                                <lightning:outputField fieldName="DamageCodeText__c" variant="label-hidden" />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <label class="slds-form-element__label">Object Part Code Text</label>
+                                <lightning:outputField
+                                    fieldName="Object_Part_Code_Text__c"
+                                    variant="label-hidden"
+                                />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <lightning:outputField
+                                    fieldName="DamageText__c"
+                                />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <lightning:outputField fieldName="Created_On__c" />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <lightning:outputField fieldName="CreatedByText__c" />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem
+                                size="12"
+                                flexibility="auto"
+                                padding="around-small"
+                                class="custom-box"
+                            >
+                                <label class="slds-form-element__label">Text</label>
+                                <lightning:outputField fieldName="Text__c" variant="label-hidden" />
+                            </lightning:layoutItem>
+
+                            <aura:if isTrue="{! v.recordId }">
+                                <lightning:layoutItem size="12" flexibility="auto">
+                                    <label class="slds-form-element__label left-separated top-separated"
+                                        >Cause for Damage</label
+                                    > 
+                                    <!-- <c:THOR_ItemRelatedListDisplayer recordId="{! v.recordId }" objectName="Causes" /> -->
+                                    
+                                    <p class="labelSequence">Cause Code Group, Cause Code, Code Text, Cause Text</p>
+                                    <div class="cardContainer">
+                                        <aura:iteration items="{!v.DisplayableCauseObjectFullList}" var="item" indexVar="index">
+                                            <div style="box-shadow: 0px 2px 2px 0px #cccccc; padding: 0.5rem;" class="slds-box slds-media cardHover">
+                                                <div style="padding: 0em">
+                                                    {!item.Code_Group__r.Name} . {!item.Code_in_Text_Form__c} . {!item.Code_Text__c} . {!item.Text__c}
+                                                    <aura:if isTrue="{!and(item.Integration_Status__c == 'Failed', item.Integration_Message__c)}">
+                                                        <div class="slds-p-left_large slds-text-color_error">{!item.Integration_Message__c}</div>
+                                                    </aura:if>
+                                                </div>
+                                            </div>
+                                        </aura:iteration>
+                                    </div>
+                                </lightning:layoutItem>
+                            </aura:if>
+                            <aura:if isTrue="{! v.recordId }">
+                                <lightning:layoutItem size="12" flexibility="auto">
+                                    <label class="slds-form-element__label left-separated top-separated"
+                                        >Activity for Damage</label
+                                    >
+                                    
+                                    <!--
+                                    <c:THOR_ItemRelatedListDisplayer
+                                        recordId="{! v.recordId }"
+                                        objectName="Activities" />
+									-->
+                                    
+                                    <p class="labelSequence">Activity Code Group, Activity Code, Code Text, Activity Text</p>
+                                    <div class="cardContainer">
+                                        <aura:iteration items="{!v.DisplayableActivityObjectFullList}" var="item" indexVar="index">
+                                            <div style="box-shadow: 0px 2px 2px 0px #cccccc; padding: 0.5rem;" class="slds-box slds-media cardHover">
+                                                <div style="padding: 0em">
+                                                    {!item.Code_Group__r.Name} . {!item.Code_in_Text_Form__c} . {!item.Text_of_Code__c} . {!item.Text__c}
+                                                    <aura:if isTrue="{!and(item.Integration_Status__c == 'Failed', item.Integration_Message__c)}">
+                                                        <div class="slds-p-left_large slds-text-color_error">{!item.Integration_Message__c}</div>
+                                                    </aura:if>
+                                                </div>
+                                            </div>
+                                        </aura:iteration>
+                                    </div>
+                                </lightning:layoutItem>
+                            </aura:if>
+                        </lightning:layout>
+                    </lightning:recordViewForm>
+                </div>
+            </c:THOR_SingleTab>
+        </aura:set>
+    </c:THOR_ObjectDisplayer>
+
+    <!-- Modal section -->
+    <aura:if isTrue="{!v.DeleteIsOpen}">
+        <section
+            role="dialog"
+            tabindex="-1"
+            aria-labelledby="modal-heading-01"
+            aria-modal="true"
+            aria-describedby="modal-content-id-1"
+            class="slds-modal slds-fade-in-open"
+        >
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon
+                        iconName="utility:close"
+                        onclick="{! c.closeModal }"
+                        alternativeText="close"
+                        variant="bare-inverse"
+                        class="slds-modal__close"
+                    />
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Delete "Item"?</h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <p>Deleteing this Item will also delete it's data</p>
+                </div>
+
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral" label="Cancel" title="Cancel" onclick="{!c.closeModal}" />
+                    <lightning:button
+                        variant="neutral"
+                        class="slds-text-color_destructive"
+                        label="Delete"
+                        title="Delete"
+                        onclick="{!c.handleDeleteItem}"
+                    />
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+
+    <aura:if isTrue="{!v.ResendIsOpen}">
+        <section
+            role="dialog"
+            tabindex="-1"
+            aria-labelledby="modal-heading-01"
+            aria-modal="true"
+            aria-describedby="modal-content-id-1"
+            class="slds-modal slds-fade-in-open"
+        >
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon
+                        iconName="utility:close"
+                        onclick="{! c.closeResendModal }"
+                        alternativeText="close"
+                        variant="bare-inverse"
+                        class="slds-modal__close"
+                    />
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Resend "Item"?</h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <p>Are you sure you want to resend this Item?</p>
+                </div>
+
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral" label="Cancel" title="Cancel" onclick="{!c.closeResendModal}" />
+                    <lightning:button
+                        variant="neutral"
+                        class="slds-text-color_destructive"
+                        label="Resend"
+                        title="Resend"
+                        onclick="{!c.handleResendItem}"
+                    />
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+
+    
+</aura:component>

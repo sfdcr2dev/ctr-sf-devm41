@@ -1,0 +1,2575 @@
+<apex:page controller="WorkProcessGroupController" standardStylesheets="true" lightningStylesheets="false" sidebar="false" showHeader="false" applyHtmlTag="true" applyBodyTag="false" docType="html-5.0" language="th">
+
+    <apex:stylesheet value="{!URLFOR($Resource.WorkProcessGroup, '4_WorkProcess_Group.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.WorkProcessGroup, '4_WorkProcess_Group.js')}"/>
+    
+    <html>
+        <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>4-WorkProcess-Group</title>
+            <style>
+                
+                Body {
+                    font-family: 'SalesforceSans';
+                }
+                .WorkProcessLink:hover {
+                    color: rgba(225,19,131,1);
+                }
+                .green-dot {
+                    fill: rgba(133,190,128,1);
+                }
+                .grey-dot {
+                    fill: rgba(141,141,141,1);
+                }
+                .orange-dot {
+                    fill: rgba(237,165,103,1);
+                }
+                .blue-dot {
+                    fill: rgba(128,190,183,1);
+                }
+                #Rectangle_12088_h {
+                    fill: rgba(204,204,204,1);
+                }
+                .Rectangle_12088_h {
+                    position: absolute;
+                    overflow: visible;
+                    width: 182px;
+                    height: 4px;
+                    left: 0px;
+                    top: 36px;
+                }
+                #Rectangle_12088_hr {
+                    fill: rgba(133,190,128,1);
+                }
+                .Rectangle_12088_hr {
+                    position: absolute;
+                    overflow: visible;
+                    width: 180px;
+                    height: 4px;
+                    left: 0px;
+                    top: 36px;
+                }
+                #Rectangle_12089_jn, #Rectangle_12089_fb, #Rectangle_12089_iu, #Rectangle_12089_f {
+                    fill: rgba(133,190,128,1);
+                }
+                .Line_3706 {
+                    top: 260px;
+                }
+                
+                .Ellipse_416 {
+                    top : 274px;
+                }
+                #ID22 {
+                    top: 20px;
+                }
+                .Path_15185 {
+                    margin-top: 8px;
+                }
+                #ID30 {
+                    top: 20px;
+                }
+                #Close_out_report_Lesson_Learnt {
+                    top: 20px;
+                }
+                .WorkProcessDisable {
+                    color : #D1D1D1;
+                    cursor : none;
+                    pointer-events: none;
+                }
+            </style>
+        </head>
+        
+        <body style="background-color:#d9d9d9">
+            <div id="ID4-WorkProcess-Group" style="margin-left:0%;">
+                
+                <svg class="Rectangle_12010">
+                    <rect id="Rectangle_12010" rx="8" ry="8" x="0" y="0" width="1284" height="1299">
+                    </rect>
+                </svg>
+                <svg class="Ellipse_400">
+                    <ellipse id="Ellipse_400" rx="462" ry="336" cx="462" cy="336">
+                    </ellipse>
+                </svg>
+                <svg class="Subtraction_22" viewBox="4158.375 -1612 1284 60.001">
+                    <path id="Subtraction_22" d="M 5442.37548828125 -1551.999267578125 L 5442.37548828125 -1552.000244140625 L 4158.37548828125 -1552.000244140625 L 4158.37548828125 -1603.999633789062 C 4158.37548828125 -1608.411254882812 4161.9638671875 -1612.000366210938 4166.375 -1612.000366210938 L 5434.375 -1612.000366210938 C 5438.78662109375 -1612.000366210938 5442.37548828125 -1608.411254882812 5442.37548828125 -1603.999633789062 L 5442.37548828125 -1552.000244140625 L 5442.37548828125 -1551.999267578125 Z">
+                    </path>
+                </svg>
+                <div id="Work_Process_Group">
+                    <span>Work Process Group</span>
+                </div>
+                <div id="R-1415001_-_Improve_Energy_Sav">
+                    <a class="WorkProcessLink" href="{!PW.ProjectUrl}" style="text-decoration:none;font-weight: bold;" target="_blank"><span>{!PW.ProjectNo} - {!PW.ProjectName}</span></a>
+                </div>
+                <div id="Group_36902">
+                    <div id="Status_">
+                        <span>Status :</span>
+                    </div>
+                    <div id="Group_36898">
+                        <div id="Not_Start">
+                            <span>Not Start</span>
+                        </div>
+                        <svg class="Ellipse_399">
+                            <ellipse id="Ellipse_399" rx="6" ry="6" cx="6" cy="6">
+                            </ellipse>
+                        </svg>
+                    </div>
+                    <div id="Group_36899">
+                        <div id="In_Progress">
+                            <span>In Progress</span>
+                        </div>
+                        <svg class="Ellipse_399_z">
+                            <ellipse id="Ellipse_399_z" rx="6" ry="6" cx="6" cy="6">
+                            </ellipse>
+                        </svg>
+                    </div>
+                    <div id="Group_36900">
+                        <div id="Waiting_for_Previous_Step">
+                            <span>Waiting for Previous Step</span>
+                        </div>
+                        <svg class="Ellipse_399_">
+                            <ellipse id="Ellipse_399_" rx="6" ry="6" cx="6" cy="6">
+                            </ellipse>
+                        </svg>
+                    </div>
+                    <div id="Group_36901">
+                        <div id="Completed">
+                            <span>Completed</span>
+                        </div>
+                        <svg class="Ellipse_399_ba">
+                            <ellipse id="Ellipse_399_ba" rx="6" ry="6" cx="6" cy="6">
+                            </ellipse>
+                        </svg>
+                    </div>
+                </div>
+                <div id="network-group-svgrepo-com">
+                    <div id="Group_37088">
+                        <svg class="Path_15198" viewBox="0 12.006 24 22.874">
+                            <path id="Path_15198" d="M 22.31414031982422 26.13454627990723 C 23.10759353637695 21.32559204101562 20.48690605163574 16.67779541015625 16.09710884094238 14.80593681335449 C 15.45937347412109 13.17145252227783 13.87125110626221 12.0059986114502 12 12.0059986114502 C 10.13203048706055 12.0059986114502 8.541047096252441 13.16924953460693 7.902608394622803 14.8060302734375 C 3.528093576431274 16.6715145111084 0.8981249332427979 21.30309295654297 1.682859420776367 26.11528015136719 C 0.6502499580383301 26.93081092834473 0 28.19460868835449 0 29.57231140136719 C 0 32.96615600585938 3.698577880859375 35.06779479980469 6.600327968597412 33.37748336791992 C 9.906421661376953 35.37609100341797 14.06681251525879 35.38326644897461 17.38176536560059 33.38798522949219 C 20.27835845947266 35.09385681152344 24 33.0020637512207 24 29.59391975402832 C 24 28.21490478515625 23.34848403930664 26.95002937316895 22.31414031982422 26.13454627990723 Z M 20.87760925292969 25.38450050354004 C 16.73929786682129 24.13359260559082 13.50900077819824 29.00906181335449 16.15832710266113 32.32818603515625 C 13.55953025817871 33.69942474365234 10.42771911621094 33.69792175292969 7.829343318939209 32.32195281982422 C 10.5081090927124 28.9982795715332 7.261265277862549 24.10926628112793 3.119999885559082 25.36359214782715 C 2.74790620803833 21.82181167602539 4.507452487945557 18.4035472869873 7.610390186309814 16.64840698242188 C 7.738358497619629 18.9587345123291 9.658265113830566 20.79914093017578 11.99995231628418 20.79914093017578 C 14.34173393249512 20.79914093017578 16.26154708862305 18.9587345123291 16.3895149230957 16.64840507507324 C 19.49540519714355 18.40523338317871 21.25935745239258 21.83118629455566 20.87760925292969 25.38450050354004 Z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                <div id="Group_37179">
+                    <div id="Group_37143">
+                        <div id="Group_37138">
+                            <div id="Group_37018">
+                                <div id="Group_36927">
+                                    <svg class="Rectangle_12085">
+                                        <rect id="Rectangle_12085" rx="20" ry="20" x="0" y="0" width="204" height="588">
+                                        </rect>
+                                    </svg>
+                                    <div id="Group_36996">
+                                        <div id="Procurement_Status_Report_">
+                                            <span>Procurement Status Report </span>
+                                        </div>
+                                        <div id="Group_4">
+                                            <span>Group 4</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="Group_36995">
+                                    <div id="ID14_">
+                                        <svg class="Rectangle_12088">
+                                            <rect id="Rectangle_12088" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                            </rect>
+                                        </svg>
+                                        <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                            <apex:outputPanel rendered="{!item.WPGroup == 4}">
+                                                <apex:outputPanel rendered="{!item.WPPercent == 0}">
+                                                    <svg class="Rectangle_12089">
+                                                        <rect id="Rectangle_12089" rx="2" ry="2" x="0" y="0" width="0" height="4">
+                                                        </rect>
+                                                    </svg>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!item.WPPercent == 14}">
+                                                    <svg class="Rectangle_12089">
+                                                        <rect id="Rectangle_12089" rx="2" ry="2" x="0" y="0" width="22.5" height="4">
+                                                        </rect>
+                                                    </svg>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!item.WPPercent == 28}">
+                                                    <svg class="Rectangle_12089">
+                                                        <rect id="Rectangle_12089" rx="2" ry="2" x="0" y="0" width="45" height="4">
+                                                        </rect>
+                                                    </svg>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!item.WPPercent == 42}">
+                                                    <svg class="Rectangle_12089">
+                                                        <rect id="Rectangle_12089" rx="2" ry="2" x="0" y="0" width="67.5" height="4">
+                                                        </rect>
+                                                    </svg>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!item.WPPercent == 57}">
+                                                    <svg class="Rectangle_12089">
+                                                        <rect id="Rectangle_12089" rx="2" ry="2" x="0" y="0" width="90" height="4">
+                                                        </rect>
+                                                    </svg>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!item.WPPercent == 71}">
+                                                    <svg class="Rectangle_12089">
+                                                        <rect id="Rectangle_12089" rx="2" ry="2" x="0" y="0" width="112.5" height="4">
+                                                        </rect>
+                                                    </svg>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!item.WPPercent == 85}">
+                                                    <svg class="Rectangle_12089">
+                                                        <rect id="Rectangle_12089" rx="2" ry="2" x="0" y="0" width="135" height="4">
+                                                        </rect>
+                                                    </svg>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!item.WPPercent == 100}">
+                                                    <svg class="Rectangle_12089">
+                                                        <rect id="Rectangle_12089" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                                        </rect>
+                                                    </svg>
+                                                </apex:outputPanel>
+                                                <span>{!item.WPPercent} %</span>
+                                            </apex:outputPanel>
+                                        </apex:repeat>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="Group_36965">
+                                <div id="Project__Procurement_Plan">
+                                    
+                                    <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                        <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                            <apex:outputPanel rendered="{!wp.No == 5}">
+                                                <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                    <span>Project <br/>Procurement Plan</span>
+                                                </a>
+                                            </apex:outputPanel>
+                                        </apex:repeat>
+                                    </apex:repeat>
+                                    
+                                </div>
+                                <div id="ID5">
+                                    <span>5)</span>
+                                </div>
+                            </div>
+                            <div id="Group_37045">
+                                <div id="Project__Procurement__and_Cont">
+                                    <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                        <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                            <apex:outputPanel rendered="{!wp.No == 20}">
+                                                <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                    <span>Project <br/>Procurement <br/>and Contract <br/>Management</span>
+                                                </a>
+                                            </apex:outputPanel>
+                                        </apex:repeat>
+                                    </apex:repeat>
+                                    
+                                </div>
+                                <div id="ID20">
+                                    <span>20)</span>
+                                </div>
+                            </div>
+                            <div id="Group_37046">
+                                <div id="Project__Procurement_Plan_bt">
+                                    
+                                    <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                        <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                            <apex:outputPanel rendered="{!wp.No == 22}">
+                                                <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                    <span>Material Inspection <br/>(FAT/SAT)</span>
+                                                </a>
+                                            </apex:outputPanel>
+                                        </apex:repeat>
+                                    </apex:repeat>
+                                    
+                                </div>
+                                <div id="ID22">
+                                    <span>22)</span>
+                                </div>
+                            </div>
+                            <div id="Group_36967">
+                                <div id="ITB_Standard">
+                                    <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                        <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                            <apex:outputPanel rendered="{!AND(wp.No == 10,IsDisable1011 == false)}">
+                                                <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                    <span>ITB Standard</span>
+                                                </a>
+                                            </apex:outputPanel>
+                                        </apex:repeat>
+                                    </apex:repeat>
+                                    
+                                    <apex:outputPanel rendered="{!IsDisable1011 == true}">
+                                        <span class="WorkProcessDisable">ITB Standard</span>
+                                    </apex:outputPanel>
+                                </div>
+                                <div id="ITB_Standard_18">
+                                    <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                        <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                            <apex:outputPanel rendered="{!AND(wp.No == 18, IsDisable1819 == false)}">
+                                                <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                    <span>ITB Standard</span>
+                                                </a>
+                                            </apex:outputPanel>
+                                        </apex:repeat>
+                                    </apex:repeat>
+                                    
+                                    <apex:outputPanel rendered="{!IsDisable1819 == true}">
+                                        <span class="WorkProcessDisable">ITB Standard</span>
+                                    </apex:outputPanel>
+                                </div>
+                                <div id="ID10">
+                                    <apex:outputPanel rendered="{!IsDisable1011 == false}">
+                                        <span>10)</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IsDisable1011 == true}">
+                                        <span class="WorkProcessDisable">10)</span>
+                                    </apex:outputPanel>
+                                </div>
+                                <div id="ID18">
+                                    <apex:outputPanel rendered="{!IsDisable1819 == false}">
+                                        <span>18)</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IsDisable1819 == true}">
+                                        <span class="WorkProcessDisable">18)</span>
+                                    </apex:outputPanel>
+                                </div>
+                            </div>
+                            <div id="Group_37044">
+                                <div id="CCE_Approval__Process">
+                                    <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                        <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                            <apex:outputPanel rendered="{!AND(wp.No == 11,IsDisable1011 == false)}">
+                                                <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                    <span>CCE Approval Process</span>
+                                                </a>
+                                            </apex:outputPanel>
+                                        </apex:repeat>
+                                    </apex:repeat>
+                                    
+                                    <apex:outputPanel rendered="{!IsDisable1011 == true}">
+                                        <span class="WorkProcessDisable">CCE Approval Process</span>
+                                    </apex:outputPanel>
+                                </div>
+                                <div id="CCE_Approval__Process_19">
+                                    <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                        <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                            <apex:outputPanel rendered="{!AND(wp.No == 19, IsDisable1819 == false)}">
+                                                <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                    <span>CCE Approval Process</span>
+                                                </a>
+                                            </apex:outputPanel>
+                                        </apex:repeat>
+                                    </apex:repeat>
+                                    
+                                    <apex:outputPanel rendered="{!IsDisable1819 == true}">
+                                        <span class="WorkProcessDisable">CCE Approval Process</span>
+                                    </apex:outputPanel>
+                                </div>
+                                <div id="ID11">
+                                    <apex:outputPanel rendered="{!IsDisable1011 == false}">
+                                        <span>11)</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IsDisable1011 == true}">
+                                        <span class="WorkProcessDisable">11)</span>
+                                    </apex:outputPanel>
+                                </div>
+                                <div id="ID19">
+                                    <apex:outputPanel rendered="{!IsDisable1819 == false}">
+                                        <span>19)</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IsDisable1819 == true}">
+                                        <span class="WorkProcessDisable">19)</span>
+                                    </apex:outputPanel>
+                                </div>
+                            </div>
+                            <svg class="Line_3709" viewBox="0 0 180 0.5">
+                                <path id="Line_3709" d="M 0 0 L 180 0">
+                                </path>
+                            </svg>
+                            <svg class="Line_3710" viewBox="0 0 180 0.5">
+                                <path id="Line_3710" d="M 0 0 L 180 0">
+                                </path>
+                            </svg>
+                            <svg class="Line_3711" viewBox="0 0 180 0.5">
+                                <path id="Line_3711" d="M 0 0 L 180 0">
+                                </path>
+                            </svg>
+                            <svg class="Line_3722" viewBox="0 0 180 0.5">
+                                <path id="Line_3722" d="M 0 0 L 180 0">
+                                </path>
+                            </svg>
+                            
+                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                
+                                    <!-- Work Process Group 4 -->
+                                    <!-- Group 4 WP : 5 -->
+                                    <apex:outputPanel rendered="{!wp.No == 5}">
+                                        <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                            <svg class="Path_15179" viewBox="0 0 9 9">
+                                                <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                            <svg class="Path_15179" viewBox="0 0 9 9">
+                                                <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                            <svg class="Path_15179" viewBox="0 0 9 9">
+                                                <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                            <svg class="Path_15179" viewBox="0 0 9 9">
+                                                <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    
+                                    <!-- Group 4 : WP 10 -->
+                                    <apex:outputPanel rendered="{!AND(wp.No == 10, IsDisable1011 == false)}">
+                                        <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                            <svg class="Path_15180" viewBox="0 0 9 9">
+                                                <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                            <svg class="Path_15180" viewBox="0 0 9 9">
+                                                <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                            <svg class="Path_15180" viewBox="0 0 9 9">
+                                                <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                            <svg class="Path_15180" viewBox="0 0 9 9">
+                                                <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    
+                                    <!-- Group 4 : WP 18 -->
+                                    <apex:outputPanel rendered="{!AND(wp.No == 18, IsDisable1819 == false)}">
+                                        <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                            <svg class="Path_15181" viewBox="0 0 9 9">
+                                                <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                            <svg class="Path_15181" viewBox="0 0 9 9">
+                                                <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                            <svg class="Path_15181" viewBox="0 0 9 9">
+                                                <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                            <svg class="Path_15181" viewBox="0 0 9 9">
+                                                <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    
+                                    <!-- Group 4 : WP 11 -->
+                                    <apex:outputPanel rendered="{!AND(wp.No == 11, IsDisable1011 == false)}">
+                                        <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                            <svg class="Path_15183" viewBox="0 0 9 9">
+                                                <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                            <svg class="Path_15183" viewBox="0 0 9 9">
+                                                <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                            <svg class="Path_15183" viewBox="0 0 9 9">
+                                                <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                            <svg class="Path_15183" viewBox="0 0 9 9">
+                                                <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    
+                                    <!-- Group 4 : WP 19 -->
+                                    <apex:outputPanel rendered="{!AND(wp.No == 19, IsDisable1819 == false)}">
+                                        <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                            <svg class="Path_15182" viewBox="0 0 9 9">
+                                                <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                            <svg class="Path_15182" viewBox="0 0 9 9">
+                                                <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                            <svg class="Path_15182" viewBox="0 0 9 9">
+                                                <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                            <svg class="Path_15182" viewBox="0 0 9 9">
+                                                <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    
+                                    <!-- Group 4 : WP 20 -->
+                                    <apex:outputPanel rendered="{!wp.No == 20}">
+                                        <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                            <svg class="Path_15184" viewBox="0 0 9 9">
+                                                <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                            <svg class="Path_15184" viewBox="0 0 9 9">
+                                                <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                            <svg class="Path_15184" viewBox="0 0 9 9">
+                                                <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                            <svg class="Path_15184" viewBox="0 0 9 9">
+                                                <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    
+                                    <!-- Group 4 : WP 22 -->
+                                    <apex:outputPanel rendered="{!wp.No == 22}">
+                                        <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                            <svg class="Path_15185" viewBox="0 0 9 9">
+                                                <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                            <svg class="Path_15185" viewBox="0 0 9 9">
+                                                <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                            <svg class="Path_15185" viewBox="0 0 9 9">
+                                                <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                            <svg class="Path_15185" viewBox="0 0 9 9">
+                                                <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                </path>
+                                            </svg>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    
+                                </apex:repeat>
+                            </apex:repeat>
+                        </div>
+                        <img id="g4-procurement-status-report-g" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_gray.png')}" />
+                    </div>
+                    <div id="Group_37141">
+                        <div id="Group_37055">
+                            <div id="Group_37049">
+                                <div id="Group_37018_ci">
+                                    <div id="Group_36927_cj">
+                                        <svg class="Rectangle_12085_ck">
+                                            <rect id="Rectangle_12085_ck" rx="20" ry="20" x="0" y="0" width="204" height="396">
+                                            </rect>
+                                        </svg>
+                                        <div id="Group_36996_cl">
+                                            <div id="Project_Scope_and__Information">
+                                                <span>Project Scope and <br/>Information</span>
+                                            </div>
+                                            <div id="Group_1">
+                                                <span style="font-weight: bold;">Group 1</span>
+                                            </div>
+                                            <img id="g1-project-scope-group" src="{!URLFOR($Resource.icons,'g1-project-scope_gray.png')}"  />
+                                        </div>
+                                    </div>
+                                    <div id="Group_36995_cp">
+                                        <svg class="Rectangle_12088_cr">
+                                            <rect id="Rectangle_12088_cr" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                            </rect>
+                                        </svg>
+                                        <div id="ID100_">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:outputPanel rendered="{!item.WPGroup == 1}">
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 33}">
+                                                        <svg class="Rectangle_12089_cs">
+                                                            <rect id="Rectangle_12089_cs" rx="2" ry="2" x="0" y="0" width="60" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 66}">
+                                                        <svg class="Rectangle_12089_cs">
+                                                            <rect id="Rectangle_12089_cs" rx="2" ry="2" x="0" y="0" width="120" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 100}">
+                                                        <svg class="Rectangle_12089_cs">
+                                                            <rect id="Rectangle_12089_cs" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <span>{!item.WPPercent} %</span>
+                                                </apex:outputPanel>
+                                            </apex:repeat>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                    <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                        <apex:outputPanel rendered="{!wp.No == 1}">
+                                            <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                                <svg class="Path_15193" viewBox="0 0 9 9">
+                                                    <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                                <svg class="Path_15193" viewBox="0 0 9 9">
+                                                    <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                                <svg class="Path_15193" viewBox="0 0 9 9">
+                                                    <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                                <svg class="Path_15193" viewBox="0 0 9 9">
+                                                    <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.No == 2}">
+                                            <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                                <svg class="Path_15194" viewBox="0 0 9 9">
+                                                    <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                                <svg class="Path_15194" viewBox="0 0 9 9">
+                                                    <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                                <svg class="Path_15194" viewBox="0 0 9 9">
+                                                    <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                                <svg class="Path_15194" viewBox="0 0 9 9">
+                                                    <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!wp.No == 3}">
+                                            <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                                <svg class="Path_15195" viewBox="0 0 9 9">
+                                                    <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                                <svg class="Path_15195" viewBox="0 0 9 9">
+                                                    <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                                <svg class="Path_15195" viewBox="0 0 9 9">
+                                                    <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                                <svg class="Path_15195" viewBox="0 0 9 9">
+                                                    <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                    </apex:repeat>
+                                </apex:repeat>
+                                
+                                <div id="Group_37030">
+                                    <div id="Group_36965_cu">
+                                        <div id="Project_Charter">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 1}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank"><span>Project Charter</span></a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                        </div>
+                                        <div id="ID1">
+                                            <span>1)</span>
+                                        </div>
+                                    </div>
+                                    <div id="Group_36967_cx">
+                                        <div id="Project_Organization">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 2}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank"><span>Project<br/>Organization</span></a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                        </div>
+                                        <div id="ID2">
+                                            <span>2)</span>
+                                        </div>
+                                    </div>
+                                    <div id="Group_36968">
+                                        <div id="Lesson_Learnt_Review">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 3}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank"><span>Lesson Learnt<br/>Review</span></a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                            
+                                        </div>
+                                        <div id="ID3">
+                                            <span>3)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <svg class="Line_3696" viewBox="0 0 180 0.5">
+                                <path id="Line_3696" d="M 0 0 L 180 0">
+                                </path>
+                            </svg>
+                            <svg class="Line_3697" viewBox="0 0 180 0.5">
+                                <path id="Line_3697" d="M 0 0 L 180 0">
+                                </path>
+                            </svg>
+                        </div>
+                        <img id="warning" src="{!URLFOR($Resource.icons,'warning.png')}" srcset="{!URLFOR($Resource.icons,'warning.png')} 1x, {!URLFOR($Resource.icons,'warning@2x.png')} 2x" />
+                    </div>
+                    <div id="Group_37140">
+                        <div id="Group_37056">
+                            <div id="Group_37038">
+                                <div id="Group_37018_dc">
+                                    <div id="Group_36927_dd">
+                                        <svg class="Rectangle_12085_de">
+                                            <rect id="Rectangle_12085_de" rx="20" ry="20" x="0" y="0" width="204" height="384">
+                                            </rect>
+                                        </svg>
+                                        <div id="Group_36996_df">
+                                            <div id="Project_Cost_Control_">
+                                                <span>Project Cost Control </span>
+                                            </div>
+                                            <div id="Group_2">
+                                                <span>Group 2</span>
+                                            </div>
+                                            <img id="g2-project-cost-control-group" src="{!URLFOR($Resource.icons,'g2-project-cost-control_gray.png')}" />
+                                        </div>
+                                    </div>
+                                    <div id="Group_36995_dj">
+                                        <div id="ID50_">
+                                            <svg class="Rectangle_12088_dl">
+                                                <rect id="Rectangle_12088_dl" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                                </rect>
+                                            </svg>
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:outputPanel rendered="{!item.WPGroup == 2}">
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 0}">
+                                                        <svg class="Rectangle_12089_dm">
+                                                            <rect id="Rectangle_12089_dm" rx="2" ry="2" x="0" y="0" width="0" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 25}">
+                                                        <svg class="Rectangle_12089_dm">
+                                                            <rect id="Rectangle_12089_dm" rx="2" ry="2" x="0" y="0" width="45" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 50}">
+                                                        <svg class="Rectangle_12089_dm">
+                                                            <rect id="Rectangle_12089_dm" rx="2" ry="2" x="0" y="0" width="90" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 75}">
+                                                        <svg class="Rectangle_12089_dm">
+                                                            <rect id="Rectangle_12089_dm" rx="2" ry="2" x="0" y="0" width="135" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 100}">
+                                                        <svg class="Rectangle_12089_dm">
+                                                            <rect id="Rectangle_12089_dm" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <span>{!item.WPPercent} %</span>
+                                                </apex:outputPanel>
+                                            </apex:repeat>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="Group_37030_dn">
+                                    <div id="Group_36965_do">
+                                        <div id="WBS_and_CBS">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 6}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank"><span>WBS and CBS</span></a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                        </div>
+                                        <div id="ID6">
+                                            <span>6)</span>
+                                        </div>
+                                    </div>
+                                    <div id="Group_36967_dr">
+                                        <div id="Budget_Phasing">
+                                        
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 9}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank"><span>Budget Phasing</span></a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                            
+                                        </div>
+                                        <div id="ID9">
+                                            <span>9)</span>
+                                        </div>
+                                    </div>
+                                    <div id="Group_36968_du">
+                                        <div id="Cost_Estimate">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 16}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank"><span>Cost Estimate</span></a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                        </div>
+                                        <div id="ID16">
+                                            <span>16)</span>
+                                        </div>
+                                    </div>
+                                    <div id="Group_36969">
+                                        <div id="Budget___Change_Control">
+                                            
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 25}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                            <span><apex:outputText value="Budget &" /> <br/><apex:outputText value="Change Control" /></span>
+                                                        </a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                            
+                                        </div>
+                                    </div>
+                                    <div id="Group_37027">
+                                        <div id="ID25">
+                                            <span>25)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <svg class="Line_3713" viewBox="0 0 180 0.5">
+                                <path id="Line_3713" d="M 0 0 L 180 0">
+                                </path>
+                            </svg>
+                            <svg class="Line_3714" viewBox="0 0 180 0.5">
+                                <path id="Line_3714" d="M 0 0 L 180 0">
+                                </path>
+                            </svg>
+                            <svg class="Line_3715" viewBox="0 0 180 0.5">
+                                <path id="Line_3715" d="M 0 0 L 180 0">
+                                </path>
+                            </svg>
+                        </div>
+                        <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                            <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                            
+                                <!-- Work Process Group 2 -->
+                                <!-- Group 2 WP : 6 -->
+                                <apex:outputPanel rendered="{!wp.No == 6}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Path_15189" viewBox="0 0 9 9">
+                                            <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Path_15189" viewBox="0 0 9 9">
+                                            <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Path_15189" viewBox="0 0 9 9">
+                                            <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Path_15189" viewBox="0 0 9 9">
+                                            <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                <!-- Group 2 : WP 9 -->
+                                <apex:outputPanel rendered="{!wp.No == 9}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Path_15190" viewBox="0 0 9 9">
+                                            <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Path_15190" viewBox="0 0 9 9">
+                                            <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Path_15190" viewBox="0 0 9 9">
+                                            <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Path_15190" viewBox="0 0 9 9">
+                                            <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                <!-- Group 2 WP : 16 -->
+                                <apex:outputPanel rendered="{!wp.No == 16}">
+                                
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Path_15191" viewBox="0 0 9 9">
+                                            <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                        
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Path_15191" viewBox="0 0 9 9">
+                                            <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Path_15191" viewBox="0 0 9 9">
+                                            <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Path_15191" viewBox="0 0 9 9">
+                                            <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                <!-- End Group 2 : WP 16 -->
+                            
+                                <!-- Group 2 WP : 25 -->
+                                <apex:outputPanel rendered="{!wp.No == 25}">
+                                
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Path_15192" viewBox="0 0 9 9">
+                                            <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                        
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Path_15192" viewBox="0 0 9 9">
+                                            <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Path_15192" viewBox="0 0 9 9">
+                                            <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Path_15192" viewBox="0 0 9 9">
+                                            <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                <!-- End Group 2 : WP 25 -->
+                                
+                            </apex:repeat>
+                        </apex:repeat>
+                    </div>
+                    <div id="Group_37139">
+                        <div id="Group_37054">
+                            <div id="Group_37039">
+                                <div id="Group_37018_eb">
+                                    <div id="Group_36927_ec">
+                                        <svg class="Rectangle_12085_ed">
+                                            <rect id="Rectangle_12085_ed" rx="20" ry="20" x="0" y="0" width="204" height="336">
+                                            </rect>
+                                        </svg>
+                                        <div id="Group_36996_ee">
+                                            <div id="Project_Schedule_Control_">
+                                                <span>Project Schedule Control </span>
+                                            </div>
+                                            <div id="Group_3">
+                                                <span>Group 3</span>
+                                            </div>
+                                            <img id="g3-project-schedule-control-gr" src="{!URLFOR($Resource.icons,'g3-project-schedule-control_gray.png')}" />
+                                        </div>
+                                    </div>
+                                    <div id="Group_36995_ei">
+                                        <div id="ID100__ej">
+                                            <svg class="Rectangle_12088_ek">
+                                                <rect id="Rectangle_12088_ek" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                                </rect>
+                                            </svg>
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:outputPanel rendered="{!item.WPGroup == 3}">
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 0}">
+                                                        <svg class="Rectangle_12089_el">
+                                                            <rect id="Rectangle_12089_el" rx="2" ry="2" x="0" y="0" width="0" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 50}">
+                                                        <svg class="Rectangle_12089_el">
+                                                            <rect id="Rectangle_12089_el" rx="2" ry="2" x="0" y="0" width="90" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 100}">
+                                                        <svg class="Rectangle_12089_el">
+                                                            <rect id="Rectangle_12089_el" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <span>{!item.WPPercent} %</span>
+                                                </apex:outputPanel>
+                                            </apex:repeat>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="Group_37030_em">
+                                    <div id="Group_36965_en">
+                                        <div id="Schedule">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 7}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                            <span>Schedule</span>
+                                                        </a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                        </div>
+                                        <div id="ID7">
+                                            <span>7)</span>
+                                        </div>
+                                    </div>
+                                    <div id="Group_36967_eq">
+                                        <div id="Project_Status__Control">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 8}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                            <span>Project Status <br/>Control</span>
+                                                        </a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                            
+                                        </div>
+                                        <div id="ID8">
+                                            <span>8)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <svg class="Path_15186" viewBox="-12 0 180 0.5">
+                                <path id="Path_15186" d="M -12 0 L 168 0">
+                                </path>
+                            </svg>
+                        </div>
+                        
+                        <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                            <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                            
+                                <!-- Work Process Group 3 -->
+                                <!-- Group 3 WP : 7 -->
+                                <apex:outputPanel rendered="{!wp.No == 7}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Path_15187" viewBox="0 0 9 9">
+                                            <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Path_15187" viewBox="0 0 9 9">
+                                            <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Path_15187" viewBox="0 0 9 9">
+                                            <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Path_15187" viewBox="0 0 9 9">
+                                            <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                <!-- Group 3 : WP 8 -->
+                                <apex:outputPanel rendered="{!wp.No == 8}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Path_15188" viewBox="0 0 9 9">
+                                            <path class="grey-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Path_15188" viewBox="0 0 9 9">
+                                            <path class="orange-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Path_15188" viewBox="0 0 9 9">
+                                            <path class="blue-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Path_15188" viewBox="0 0 9 9">
+                                            <path class="green-dot" d="M 4.5 0 C 6.985280990600586 0 9 2.014718770980835 9 4.5 C 9 6.985280990600586 6.985280990600586 9 4.5 9 C 2.014718770980835 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 2.014718770980835 0 4.5 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                            </apex:repeat>
+                        </apex:repeat>
+                        
+                    </div>
+                    <div id="Group_37136">
+                        <div id="Group_37020">
+                            <div id="Group_36919">
+                                <svg class="Rectangle_12084">
+                                    <rect id="Rectangle_12084" rx="20" ry="20" x="0" y="0" width="204" height="312">
+                                    </rect>
+                                </svg>
+                                <div id="Group_36929">
+                                    <div id="Surplus__Spar-part_management_">
+                                        <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                            <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                <apex:outputPanel rendered="{!wp.No == 23}">
+                                                    <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                        <span>Material and <br/>Spare-Part <br/>Management</span>
+                                                    </a>
+                                                </apex:outputPanel>
+                                            </apex:repeat>
+                                        </apex:repeat>
+                                        
+                                    </div>
+                                    <div id="ID23">
+                                        <span>23)</span>
+                                    </div>
+                                </div>
+                                <div id="Group_36989">
+                                    <div id="Group_36949">
+                                        <div id="Group7">
+                                            <span>Group 7</span>
+                                        </div>
+                                        <img id="g7-material_-control-group" src="{!URLFOR($Resource.icons,'g7-material-control_gray.png')}"  />
+                                    </div>
+                                    <div id="Material_Control_">
+                                        <span>Material Control </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="Group_36990">
+                                <div id="ID0_">
+                                
+                                    <svg class="Rectangle_12088_fa">
+                                        <rect id="Rectangle_12088_fa" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                        </rect>
+                                    </svg>
+                                    <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                        <apex:outputPanel rendered="{!item.WPGroup == 7}">
+                                            <apex:outputPanel rendered="{!item.WPPercent == 0}">
+                                                <svg class="Rectangle_12089_fb">
+                                                    <rect id="Rectangle_12089_fb" rx="2" ry="2" x="0" y="0" width="0" height="4">
+                                                    </rect>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!item.WPPercent == 100}">
+                                                <svg class="Rectangle_12089_fb">
+                                                    <rect id="Rectangle_12089_fb" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                                    </rect>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <span>{!item.WPPercent} %</span>
+                                        </apex:outputPanel>
+                                    </apex:repeat>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                            <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                            
+                                <!-- Work Process Group 7 -->
+                                <!-- Group 7 : WP 23 -->
+                                <apex:outputPanel rendered="{!wp.No == 23}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Ellipse_426">
+                                            <ellipse class="grey-dot" rx="4.45108699798584" ry="4.5" cx="4.45108699798584" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Ellipse_426">
+                                            <ellipse class="orange-dot" rx="4.45108699798584" ry="4.5" cx="4.45108699798584" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Ellipse_426">
+                                            <ellipse class="blue-dot" rx="4.45108699798584" ry="4.5" cx="4.45108699798584" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Ellipse_426">
+                                            <ellipse class="green-dot" rx="4.45108699798584" ry="4.5" cx="4.45108699798584" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                            </apex:repeat>
+                        </apex:repeat>
+                    </div>
+                    <div id="Group_37086">
+                        <div id="Group_36998">
+                            <div id="Group_36928">
+                                <div id="Group_36921">
+                                    <svg class="Rectangle_12083">
+                                        <rect id="Rectangle_12083" rx="20" ry="20" x="0" y="0" width="204" height="408">
+                                        </rect>
+                                    </svg>
+                                    <div id="Group_36986">
+                                        <div id="Engineering">
+                                            <span>Engineering</span>
+                                        </div>
+                                        <div id="Group_36950">
+                                            <div id="Group_6">
+                                                <span>Group 6</span>
+                                            </div>
+                                            <img id="g6-engineering-group" src="{!URLFOR($Resource.icons,'g6-engineering_gray.png')}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="Group_36985">
+                                    <div id="Group_36943">
+                                        <div id="Engineering_Standard">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 12}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                            <span>Engineering Standard</span>
+                                                        </a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                            
+                                        </div>
+                                        <div id="ID12">
+                                            <span>12)</span>
+                                        </div>
+                                    </div>
+                                    <div id="Group_36958">
+                                        <div id="Design_Safety_Standard">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 15}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                            <span>Design Safety Standard</span>
+                                                        </a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                            
+                                        </div>
+                                        <div id="ID15">
+                                            <span>15)</span>
+                                        </div>
+                                    </div>
+                                    <div id="Group_36917">
+                                        <div id="Group_36910">
+                                            <div id="Engineering_Data__Book_and_3D_">
+                                                <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                    <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                        <apex:outputPanel rendered="{!wp.No == 17}">
+                                                            <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                                <span>Engineering Data <br/>Book and 3D <br/>Model</span>
+                                                            </a>
+                                                        </apex:outputPanel>
+                                                    </apex:repeat>
+                                                </apex:repeat>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="ID17">
+                                        <span>17)</span>
+                                    </div>
+                                </div>
+                                <svg class="Path_15221" viewBox="0 0 180.13 0.5">
+                                    <path id="Path_15221" d="M 0 0 L 180.13037109375 0">
+                                    </path>
+                                </svg>
+                                <svg class="Line_3721" viewBox="0 0 180.63 0.5">
+                                    <path id="Line_3721" d="M 0 0 L 180.6304321289062 0">
+                                    </path>
+                                </svg>
+                                
+                                <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                    <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                    
+                                        <!-- Work Process Group 6 -->
+                                        <!-- Group 6 : WP 12 -->
+                                        <apex:outputPanel rendered="{!wp.No == 12}">
+                                            <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                                <svg class="Path_15177" viewBox="0 0 8.902 9">
+                                                    <path class="grey-dot" d="M 4.45108699798584 0 C 6.909354209899902 0 8.90217399597168 2.014718770980835 8.90217399597168 4.5 C 8.90217399597168 6.985280990600586 6.909354209899902 9 4.45108699798584 9 C 1.992819666862488 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 1.992819666862488 0 4.45108699798584 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            
+                                            <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                                <svg class="Path_15177" viewBox="0 0 8.902 9">
+                                                    <path class="orange-dot" d="M 4.45108699798584 0 C 6.909354209899902 0 8.90217399597168 2.014718770980835 8.90217399597168 4.5 C 8.90217399597168 6.985280990600586 6.909354209899902 9 4.45108699798584 9 C 1.992819666862488 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 1.992819666862488 0 4.45108699798584 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            
+                                            <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                                <svg class="Path_15177" viewBox="0 0 8.902 9">
+                                                    <path class="blue-dot" d="M 4.45108699798584 0 C 6.909354209899902 0 8.90217399597168 2.014718770980835 8.90217399597168 4.5 C 8.90217399597168 6.985280990600586 6.909354209899902 9 4.45108699798584 9 C 1.992819666862488 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 1.992819666862488 0 4.45108699798584 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            
+                                            <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                                <svg class="Path_15177" viewBox="0 0 8.902 9">
+                                                    <path class="green-dot" d="M 4.45108699798584 0 C 6.909354209899902 0 8.90217399597168 2.014718770980835 8.90217399597168 4.5 C 8.90217399597168 6.985280990600586 6.909354209899902 9 4.45108699798584 9 C 1.992819666862488 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 1.992819666862488 0 4.45108699798584 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                        
+                                        <!-- Group 6 : WP 15 -->
+                                        <apex:outputPanel rendered="{!wp.No == 15}">
+                                            <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                                <svg class="Path_15178" viewBox="0 0 8.902 9">
+                                                    <path class="grey-dot" d="M 4.45108699798584 0 C 6.909354209899902 0 8.90217399597168 2.014718770980835 8.90217399597168 4.5 C 8.90217399597168 6.985280990600586 6.909354209899902 9 4.45108699798584 9 C 1.992819666862488 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 1.992819666862488 0 4.45108699798584 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            
+                                            <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                                <svg class="Path_15178" viewBox="0 0 8.902 9">
+                                                    <path class="orange-dot" d="M 4.45108699798584 0 C 6.909354209899902 0 8.90217399597168 2.014718770980835 8.90217399597168 4.5 C 8.90217399597168 6.985280990600586 6.909354209899902 9 4.45108699798584 9 C 1.992819666862488 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 1.992819666862488 0 4.45108699798584 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            
+                                            <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                                <svg class="Path_15178" viewBox="0 0 8.902 9">
+                                                    <path class="blue-dot" d="M 4.45108699798584 0 C 6.909354209899902 0 8.90217399597168 2.014718770980835 8.90217399597168 4.5 C 8.90217399597168 6.985280990600586 6.909354209899902 9 4.45108699798584 9 C 1.992819666862488 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 1.992819666862488 0 4.45108699798584 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            
+                                            <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                                <svg class="Path_15178" viewBox="0 0 8.902 9">
+                                                    <path class="green-dot" d="M 4.45108699798584 0 C 6.909354209899902 0 8.90217399597168 2.014718770980835 8.90217399597168 4.5 C 8.90217399597168 6.985280990600586 6.909354209899902 9 4.45108699798584 9 C 1.992819666862488 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 1.992819666862488 0 4.45108699798584 0 Z">
+                                                    </path>
+                                                </svg>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                        
+                                        <!-- Group 6 : WP 17 -->
+                                        <apex:outputPanel rendered="{!wp.No == 17}">
+                                            <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                                <svg class="Ellipse_427">
+                                                    <ellipse class="grey-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                                    </ellipse>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            
+                                            <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                                <svg class="Ellipse_427">
+                                                    <ellipse class="orange-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                                    </ellipse>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            
+                                            <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                                <svg class="Ellipse_427">
+                                                    <ellipse class="blue-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                                    </ellipse>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            
+                                            <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                                <svg class="Ellipse_427">
+                                                    <ellipse class="green-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                                    </ellipse>
+                                                </svg>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                    </apex:repeat>
+                                </apex:repeat>
+                            </div>
+                            <div id="Group_36988">
+                                <div id="ID0__f">
+                                    <svg class="Rectangle_12088_f">
+                                        <rect id="Rectangle_12088_f" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                        </rect>
+                                    </svg>
+                                    <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                        <apex:outputPanel rendered="{!item.WPGroup == 6}">
+                                            <apex:outputPanel rendered="{!item.WPPercent == 0}">
+                                                <svg class="Rectangle_12089_f">
+                                                    <rect id="Rectangle_12089_f" rx="2" ry="2" x="0" y="0" width="0" height="4">
+                                                    </rect>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!item.WPPercent == 33}">
+                                                <svg class="Rectangle_12089_f">
+                                                    <rect id="Rectangle_12089_f" rx="2" ry="2" x="0" y="0" width="60" height="4">
+                                                    </rect>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!item.WPPercent == 66}">
+                                                <svg class="Rectangle_12089_f">
+                                                    <rect id="Rectangle_12089_f" rx="2" ry="2" x="0" y="0" width="120" height="4">
+                                                    </rect>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!item.WPPercent == 100}">
+                                                <svg class="Rectangle_12089_f">
+                                                    <rect id="Rectangle_12089_f" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                                    </rect>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <span>{!item.WPPercent} %</span>
+                                        </apex:outputPanel>
+                                    </apex:repeat>
+                                </div>
+                            </div>
+                        </div>
+                        <img id="warning_f" src="{!URLFOR($Resource.icons,'warning_f.png')}" srcset="{!URLFOR($Resource.icons,'warning_f.png')} 1x, {!URLFOR($Resource.icons,'warning_f@2x.png')} 2x" />
+                        <img id="warning_ga" src="{!URLFOR($Resource.icons,'warning_ga.png')}" srcset="{!URLFOR($Resource.icons,'warning_ga.png')} 1x, {!URLFOR($Resource.icons,'warning_ga@2x.png')} 2x" />
+                        <img id="warning_gb" src="{!URLFOR($Resource.icons,'warning_gb.png')}" srcset="{!URLFOR($Resource.icons,'warning_gb.png')} 1x, {!URLFOR($Resource.icons,'warning_gb@2x.png')} 2x" />
+                    </div>
+                    <div id="Group_37135">
+                        <div id="Group_37019">
+                            <div id="Group_36918">
+                                <div id="Group_37134">
+                                    <svg class="Rectangle_12076">
+                                        <rect id="Rectangle_12076" rx="20" ry="20" x="0" y="0" width="204" height="516">
+                                        </rect>
+                                    </svg>
+                                    <div id="Group_36993">
+                                        <div id="Group_8">
+                                            <span>Group 8</span>
+                                        </div>
+                                        <div id="Execution">
+                                            <span>Execution</span>
+                                        </div>
+                                        <img id="g8-execution-group" src="{!URLFOR($Resource.icons,'g8-execution_gray.png')}" />
+                                    </div>
+                                    <div id="Group_36991">
+                                        <div id="Group_36965_gk">
+                                            <div id="Project_Execution__Plan_and_Pe">
+                                                <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                    <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                        <apex:outputPanel rendered="{!wp.No == 4}">
+                                                            <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                                <span>Project Execution <br/>Plan and Permit</span>
+                                                            </a>
+                                                        </apex:outputPanel>
+                                                    </apex:repeat>
+                                                </apex:repeat>
+                                                
+                                            </div>
+                                            <div id="ID4">
+                                                <span>4)</span>
+                                            </div>
+                                        </div>
+                                        <div id="Group_36967_gn">
+                                            <div id="Construction__Management">
+                                                <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                    <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                        <apex:outputPanel rendered="{!wp.No == 24}">
+                                                            <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                                <span>Construction <br/>Management</span>
+                                                            </a>
+                                                        </apex:outputPanel>
+                                                    </apex:repeat>
+                                                </apex:repeat>
+                                                
+                                            </div>
+                                            <div id="ID24">
+                                                <span>24)</span>
+                                            </div>
+                                        </div>
+                                        <div id="Group_36968_gq">
+                                            <div id="System__Test__Pack_Identificat">
+                                                <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                    <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                        <apex:outputPanel rendered="{!wp.No == 26}">
+                                                            <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                                <span><apex:outputText value="System & Test"/> <br/>Pack Identification</span>
+                                                            </a>
+                                                        </apex:outputPanel>
+                                                    </apex:repeat>
+                                                </apex:repeat>
+                                                
+                                            </div>
+                                            <div id="ID26">
+                                                <span>26)</span>
+                                            </div>
+                                        </div>
+                                        <div id="Group_36969_gt">
+                                            <div id="Punch_list__Management__system">
+                                                
+                                                <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                    <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                        <apex:outputPanel rendered="{!wp.No == 27}">
+                                                            <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                                <span>Punch List <br/>Management <br/>System</span>
+                                                            </a>
+                                                        </apex:outputPanel>
+                                                    </apex:repeat>
+                                                </apex:repeat>
+                                                
+                                            </div>
+                                        </div>
+                                        <div id="Group_37027_gv">
+                                            <div id="ID27">
+                                                <span>27)</span>
+                                            </div>
+                                        </div>
+                                        <div id="Group_37033">
+                                            <div id="Group_37028">
+                                                <div id="MCRFSU">
+                                                    <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                        <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                            <apex:outputPanel rendered="{!wp.No == 28}">
+                                                                <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                                    <span><apex:outputText value="MC&RFSU" /></span>
+                                                                </a>
+                                                            </apex:outputPanel>
+                                                        </apex:repeat>
+                                                    </apex:repeat>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div id="Group_37029">
+                                                <div id="ID28">
+                                                    <span>28)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <svg class="Line_3716" viewBox="0 0 180 0.5">
+                                            <path id="Line_3716" d="M 0 0 L 180 0">
+                                            </path>
+                                        </svg>
+                                        <svg class="Line_3717" viewBox="0 0 180 0.5">
+                                            <path id="Line_3717" d="M 0 0 L 180 0">
+                                            </path>
+                                        </svg>
+                                        <svg class="Line_3718" viewBox="0 0 180 0.5">
+                                            <path id="Line_3718" d="M 0 0 L 180 0">
+                                            </path>
+                                        </svg>
+                                        <svg class="Line_3719" viewBox="0 0 180 0.5">
+                                            <path id="Line_3719" d="M 0 0 L 180 0">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="Group_36992">
+                                <div id="ID20_">
+                                    <svg class="Rectangle_12088_g">
+                                        <rect id="Rectangle_12088_g" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                        </rect>
+                                    </svg>
+                                    <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                        <apex:outputPanel rendered="{!item.WPGroup == 8}">
+                                            <apex:outputPanel rendered="{!item.WPPercent == 0}">
+                                                <svg class="Rectangle_12089_g">
+                                                    <rect id="Rectangle_12089_g" rx="2" ry="2" x="0" y="0" width="0" height="4">
+                                                    </rect>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!item.WPPercent == 20}">
+                                                <svg class="Rectangle_12089_g">
+                                                    <rect id="Rectangle_12089_g" rx="2" ry="2" x="0" y="0" width="36" height="4">
+                                                    </rect>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!item.WPPercent == 40}">
+                                                <svg class="Rectangle_12089_g">
+                                                    <rect id="Rectangle_12089_g" rx="2" ry="2" x="0" y="0" width="72" height="4">
+                                                    </rect>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!item.WPPercent == 60}">
+                                                <svg class="Rectangle_12089_g">
+                                                    <rect id="Rectangle_12089_g" rx="2" ry="2" x="0" y="0" width="108" height="4">
+                                                    </rect>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!item.WPPercent == 80}">
+                                                <svg class="Rectangle_12089_g">
+                                                    <rect id="Rectangle_12089_g" rx="2" ry="2" x="0" y="0" width="144" height="4">
+                                                    </rect>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!item.WPPercent == 100}">
+                                                <svg class="Rectangle_12089_g">
+                                                    <rect id="Rectangle_12089_g" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                                    </rect>
+                                                </svg>
+                                            </apex:outputPanel>
+                                            <span>{!item.WPPercent} %</span>
+                                        </apex:outputPanel>
+                                    </apex:repeat>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                            <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                            
+                                <!-- Work Process Group 8 -->
+                                <!-- Group 8 : WP 4 -->
+                                <apex:outputPanel rendered="{!wp.No == 4}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Path_15176" viewBox="0 0 8.902 9">
+                                            <path class="grey-dot" d="M 4.45108699798584 0 C 6.909354209899902 0 8.90217399597168 2.014718770980835 8.90217399597168 4.5 C 8.90217399597168 6.985280990600586 6.909354209899902 9 4.45108699798584 9 C 1.992819666862488 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 1.992819666862488 0 4.45108699798584 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Path_15176" viewBox="0 0 8.902 9">
+                                            <path class="orange-dot" d="M 4.45108699798584 0 C 6.909354209899902 0 8.90217399597168 2.014718770980835 8.90217399597168 4.5 C 8.90217399597168 6.985280990600586 6.909354209899902 9 4.45108699798584 9 C 1.992819666862488 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 1.992819666862488 0 4.45108699798584 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Path_15176" viewBox="0 0 8.902 9">
+                                            <path class="blue-dot" d="M 4.45108699798584 0 C 6.909354209899902 0 8.90217399597168 2.014718770980835 8.90217399597168 4.5 C 8.90217399597168 6.985280990600586 6.909354209899902 9 4.45108699798584 9 C 1.992819666862488 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 1.992819666862488 0 4.45108699798584 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Path_15176" viewBox="0 0 8.902 9">
+                                            <path class="green-dot" d="M 4.45108699798584 0 C 6.909354209899902 0 8.90217399597168 2.014718770980835 8.90217399597168 4.5 C 8.90217399597168 6.985280990600586 6.909354209899902 9 4.45108699798584 9 C 1.992819666862488 9 0 6.985280990600586 0 4.5 C 0 2.014718770980835 1.992819666862488 0 4.45108699798584 0 Z">
+                                            </path>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                <!-- Group 8 : WP 24 -->
+                                <apex:outputPanel rendered="{!wp.No == 24}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Ellipse_422">
+                                            <ellipse class="grey-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Ellipse_422">
+                                            <ellipse class="orange-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Ellipse_422">
+                                            <ellipse class="blue-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Ellipse_422">
+                                            <ellipse class="green-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                <!-- Group 8 : WP 26 -->
+                                <apex:outputPanel rendered="{!wp.No == 26}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Ellipse_423">
+                                            <ellipse class="grey-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Ellipse_423">
+                                            <ellipse class="orange-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Ellipse_423">
+                                            <ellipse class="blue-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Ellipse_423">
+                                            <ellipse class="green-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                
+                                <!-- Group 8 : WP 27 -->
+                                <apex:outputPanel rendered="{!wp.No == 27}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Ellipse_424">
+                                            <ellipse class="grey-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Ellipse_424">
+                                            <ellipse class="orange-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Ellipse_424">
+                                            <ellipse class="blue-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Ellipse_424">
+                                            <ellipse class="green-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                <!-- Group 8 : WP 28 -->
+                                <apex:outputPanel rendered="{!wp.No == 28}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Ellipse_425">
+                                            <ellipse class="grey-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Ellipse_425">
+                                            <ellipse class="orange-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Ellipse_425">
+                                            <ellipse class="blue-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Ellipse_425">
+                                            <ellipse class="green-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:repeat>
+                        </apex:repeat>
+                    </div>
+                    <div id="Group_37133">
+                        <div id="Group_37057">
+                            <div id="Group_37034">
+                                <div id="Group_37018_hi">
+                                    <div id="Group_36927_hj">
+                                        <svg class="Rectangle_12085_hk">
+                                            <rect id="Rectangle_12085_hk" rx="20" ry="20" x="0" y="0" width="204" height="432">
+                                            </rect>
+                                        </svg>
+                                        <div id="Group_36996_hl">
+                                            <div id="Project_Handover_">
+                                                <span>Project Handover </span>
+                                            </div>
+                                            <div id="Group_9">
+                                                <span>Group 9</span>
+                                            </div>
+                                            <img id="g9-project-handover-group" src="{!URLFOR($Resource.icons,'g9-project-handover_gray.png')}" />
+                                        </div>
+                                    </div>
+                                    <div id="Group_36995_hp">
+                                        <div id="ID0__hq">
+                                            <svg class="Rectangle_12088_h">
+                                                <rect id="Rectangle_12088_h" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                                </rect>
+                                            </svg>
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:outputPanel rendered="{!item.WPGroup == 9}">
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 0}">
+                                                        <svg class="Rectangle_12088_hr">
+                                                            <rect id="Rectangle_12088_hr" rx="2" ry="2" x="0" y="0" width="0" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 25}">
+                                                        <svg class="Rectangle_12088_hr">
+                                                            <rect id="Rectangle_12088_hr" rx="2" ry="2" x="0" y="0" width="45" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 50}">
+                                                        <svg class="Rectangle_12088_hr">
+                                                            <rect id="Rectangle_12088_hr" rx="2" ry="2" x="0" y="0" width="90" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 75}">
+                                                        <svg class="Rectangle_12088_hr">
+                                                            <rect id="Rectangle_12088_hr" rx="2" ry="2" x="0" y="0" width="135" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 100}">
+                                                        <svg class="Rectangle_12088_hr">
+                                                            <rect id="Rectangle_12088_hr" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <span>{!item.WPPercent} %</span>
+                                                </apex:outputPanel>
+                                            </apex:repeat>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="Group_37030_hs">
+                                    <div id="Group_36965_ht">
+                                        <div id="MCA">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 29}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                            <span><apex:outputText value="MCA & Final "/><br/>Document Handover</span>
+                                                        </a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                            
+                                        </div>
+                                        <div id="ID29">
+                                            <span>29)</span>
+                                        </div>
+                                    </div>
+                                    <div id="Group_36967_hw">
+                                        <div id="Close_out_report_Lesson_Learnt">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 30}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                            <span>Close Out Report</span>
+                                                        </a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                            
+                                        </div>
+                                        <div id="ID30">
+                                            <span>30)</span>
+                                        </div>
+                                    </div>
+                                    <div id="Group_36968_hz">
+                                        <div id="Close_out__Database">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 31}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                            <span>Close Out <br/>Statistic</span>
+                                                        </a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                            
+                                        </div>
+                                        <div id="ID31">
+                                            <span>31)</span>
+                                        </div>
+                                    </div>
+                                    <div id="Group_36969_h">
+                                        <div id="CR_Completion__Report">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 32}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                            <span>CR: Completion <br/>Report</span>
+                                                        </a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                            
+                                        </div>
+                                    </div>
+                                    <div id="Group_37027_h">
+                                        <div id="ID32">
+                                            <span>32)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <svg class="Line_3706" viewBox="0 0 184 0.5">
+                                <path id="Line_3706" d="M 0 0 L 184 0">
+                                </path>
+                            </svg>
+                            <svg class="Line_3707" viewBox="0 0 184 0.5">
+                                <path id="Line_3707" d="M 0 0 L 184 0">
+                                </path>
+                            </svg>
+                            <svg class="Line_3708" viewBox="0 0 184 0.5">
+                                <path id="Line_3708" d="M 0 0 L 184 0">
+                                </path>
+                            </svg>
+                            
+                        </div>
+                        
+                        <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                            <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                            
+                                <!-- Work Process Group 9 -->
+                                <!-- Group 9 : WP 29 -->
+                                <apex:outputPanel rendered="{!wp.No == 29}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Ellipse_415">
+                                            <ellipse class="grey-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Ellipse_415">
+                                            <ellipse class="orange-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Ellipse_415">
+                                            <ellipse class="blue-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Ellipse_415">
+                                            <ellipse class="green-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                <!-- Group 9 : WP 30 -->
+                                <apex:outputPanel rendered="{!wp.No == 30}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Ellipse_416">
+                                            <ellipse class="grey-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Ellipse_416">
+                                            <ellipse class="orange-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Ellipse_416">
+                                            <ellipse class="blue-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Ellipse_416">
+                                            <ellipse class="green-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                <!-- Group 9 : WP 31 -->
+                                <apex:outputPanel rendered="{!wp.No == 31}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Ellipse_417">
+                                            <ellipse class="grey-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Ellipse_417">
+                                            <ellipse class="orange-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Ellipse_417">
+                                            <ellipse class="blue-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Ellipse_417">
+                                            <ellipse class="green-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                
+                                <!-- Group 9 : WP 32 -->
+                                <apex:outputPanel rendered="{!wp.No == 32}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Ellipse_418">
+                                            <ellipse class="grey-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Ellipse_418">
+                                            <ellipse class="orange-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Ellipse_418">
+                                            <ellipse class="orange-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Ellipse_418">
+                                            <ellipse class="green-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                            </apex:repeat>
+                        </apex:repeat>
+                        
+                        <img id="warning_ie" src="{!URLFOR($Resource.icons,'warning_ie.png')}" srcset="{!URLFOR($Resource.icons,'warning_ie.png')} 1x, {!URLFOR($Resource.icons,'warning_ie@2x.png')} 2x" />
+                        <img id="warning_if" src="{!URLFOR($Resource.icons,'warning_if.png')}" srcset="{!URLFOR($Resource.icons,'warning_if.png')} 1x, {!URLFOR($Resource.icons,'warning_if@2x.png')} 2x" />
+                        <img id="warning_ig" src="{!URLFOR($Resource.icons,'warning_ig.png')}" srcset="{!URLFOR($Resource.icons,'warning_ig.png')} 1x, {!URLFOR($Resource.icons,'warning_ig@2x.png')} 2x" />
+                        <img id="warning_ih" src="{!URLFOR($Resource.icons,'warning_ih.png')}" srcset="{!URLFOR($Resource.icons,'warning_ih.png')} 1x, {!URLFOR($Resource.icons,'warning_ih@2x.png')} 2x" />
+                    </div>
+                    <div id="Group_37137">
+                        <div id="Group_37051">
+                            <div id="Group_37047">
+                                <div id="Group_37018_il">
+                                    <div id="Group_36927_im">
+                                        <svg class="Rectangle_12085_in">
+                                            <rect id="Rectangle_12085_in" rx="20" ry="20" x="0" y="0" width="204" height="396">
+                                            </rect>
+                                        </svg>
+                                        <div id="Group_36996_io">
+                                            <div id="Document_Management_">
+                                                <span>Document Management </span>
+                                            </div>
+                                            <div id="Group_5">
+                                                <span>Group 5</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="Group_36995_ir">
+                                        <div id="ID0__is">
+                                            
+                                            <svg class="Rectangle_12088_it">
+                                                <rect id="Rectangle_12088_it" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                                </rect>
+                                            </svg>
+                                            
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:outputPanel rendered="{!item.WPGroup == 5}">
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 0}">
+                                                        <svg class="Rectangle_12089_iu">
+                                                            <rect id="Rectangle_12089_iu" rx="2" ry="2" x="0" y="0" width="0" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 33}">
+                                                        <svg class="Rectangle_12089_iu">
+                                                            <rect id="Rectangle_12089_iu" rx="2" ry="2" x="0" y="0" width="60" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 66}">
+                                                        <svg class="Rectangle_12089_iu">
+                                                            <rect id="Rectangle_12089_iu" rx="2" ry="2" x="0" y="0" width="120" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!item.WPPercent == 100}">
+                                                        <svg class="Rectangle_12089_iu">
+                                                            <rect id="Rectangle_12089_iu" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                                            </rect>
+                                                        </svg>
+                                                    </apex:outputPanel>
+                                                    <span>{!item.WPPercent} %</span>
+                                                </apex:outputPanel>
+                                            </apex:repeat>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div id="Group_37030_iv">
+                                    <div id="Group_36965_iw">
+                                        <div id="Deliverable_List">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 13}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                            <span>Deliverable List</span>
+                                                        </a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                        </div>
+                                        <div id="ID13">
+                                            <span>13)</span>
+                                        </div>
+                                    </div>
+                                    <div id="Group_36967_iz">
+                                        <div id="Document__Distribution__Matrix">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 14}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                            <span>Document <br/>Distribution <br/>Matrix</span>
+                                                        </a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                            
+                                        </div>
+                                        <div id="ID14">
+                                            <span>14)</span>
+                                        </div>
+                                    </div>
+                                    <div id="Group_37048">
+                                        <div id="Vendor_Data">
+                                            <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                                <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                    <apex:outputPanel rendered="{!wp.No == 21}">
+                                                        <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                            <span>Vendor Data <br/> Management</span>
+                                                        </a>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                            
+                                        </div>
+                                        <div id="ID21">
+                                            <span>21)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <svg class="Line_3698" viewBox="0 0 180 0.5">
+                                <path id="Line_3698" d="M 0 0 L 180 0">
+                                </path>
+                            </svg>
+                            <svg class="Line_3699" viewBox="0 0 180 0.5">
+                                <path id="Line_3699" d="M 0 0 L 180 0">
+                                </path>
+                            </svg>
+                            <img id="g5-document-management-group" src="{!URLFOR($Resource.icons,'g5-document-management_gray.png')}" />
+                        </div>
+                        
+                        <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                            <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                            
+                                <!-- Work Process Group 5 -->
+                                <!-- Group 5 : WP 13 -->
+                                <apex:outputPanel rendered="{!wp.No == 13}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Ellipse_428">
+                                            <ellipse class="grey-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Ellipse_428">
+                                            <ellipse class="orange-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Ellipse_428">
+                                            <ellipse class="blue-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Ellipse_428">
+                                            <ellipse class="green-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                <!-- Group 5 : WP 14 -->
+                                <apex:outputPanel rendered="{!wp.No == 14}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Ellipse_429">
+                                            <ellipse class="grey-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Ellipse_429">
+                                            <ellipse class="orange-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Ellipse_429">
+                                            <ellipse class="blue-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Ellipse_429">
+                                            <ellipse class="green-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                <!-- Group 5 : WP 21 -->
+                                <apex:outputPanel rendered="{!wp.No == 21}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Ellipse_430">
+                                            <ellipse class="grey-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Ellipse_430">
+                                            <ellipse class="orange-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Ellipse_430">
+                                            <ellipse class="blue-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Ellipse_430">
+                                            <ellipse class="green-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:repeat>
+                        </apex:repeat>
+                    </div>
+                    <div id="Group_37142">
+                        <div id="Group_37058">
+                            <div id="Group_37031">
+                                <div id="Group_36927_je">
+                                    <svg class="Rectangle_12085_jf">
+                                        <rect id="Rectangle_12085_jf" rx="20" ry="20" x="0" y="0" width="204" height="252">
+                                        </rect>
+                                    </svg>
+                                    <div id="Group_36996_jg">
+                                        <div id="Risk_Analyst_">
+                                            <span>Risk Analyst </span>
+                                        </div>
+                                        <div id="Group_10">
+                                            <span>Group 10</span>
+                                        </div>
+                                        <img id="g10-risk-analyst-group" src="{!URLFOR($Resource.icons,'g10-risk-analyst_gray.png')}"/>
+                                    </div>
+                                </div>
+                                <div id="Group_36995_jk">
+                                    <div id="ID0__jl">
+                                        
+                                        <svg class="Rectangle_12088_jm">
+                                            <rect id="Rectangle_12088_jm" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                            </rect>
+                                        </svg>
+                                        
+                                        <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                            <apex:outputPanel rendered="{!item.WPGroup == 10}">
+                                                <apex:outputPanel rendered="{!item.WPPercent == 0}">
+                                                    <svg class="Rectangle_12089_jn">
+                                                        <rect id="Rectangle_12089_jn" rx="2" ry="2" x="0" y="0" width="0" height="4">
+                                                        </rect>
+                                                    </svg>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!item.WPPercent == 100}">
+                                                    <svg class="Rectangle_12089_jn">
+                                                        <rect id="Rectangle_12089_jn" rx="2" ry="2" x="0" y="0" width="180" height="4">
+                                                        </rect>
+                                                    </svg>
+                                                </apex:outputPanel>
+                                                <span>{!item.WPPercent} %</span>
+                                            </apex:outputPanel>
+                                        </apex:repeat>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="Group_37032">
+                                <div id="Group_36965_jp">
+                                    <div id="Risk_Assessment">
+                                        <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                                            <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                                                <apex:outputPanel rendered="{!wp.No == 00}">
+                                                    <a class="WorkProcessLink" href="{!wp.WPURL}" style="text-decoration:none;" target="_blank">
+                                                        <span>Risk Assessment</span>
+                                                    </a>
+                                                </apex:outputPanel>
+                                            </apex:repeat>
+                                        </apex:repeat>
+                                    </div>
+                                    <div id="ID00">
+                                        <span>00)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <img id="warning_js" src="{!URLFOR($Resource.icons,'warning_js.png')}" srcset="{!URLFOR($Resource.icons,'warning_js.png')} 1x, {!URLFOR($Resource.icons,'warning_js@2x.png')} 2x" />
+                        </div>
+                        
+                        <apex:repeat value="{!PW.ProjectGroups}" var="item">
+                            <apex:repeat value="{!item.WorkProcesses}" var="wp">
+                            
+                                <!-- Work Process Group 10 -->
+                                <!-- Group 10 : WP 00 -->
+                                <apex:outputPanel rendered="{!wp.No == 00}">
+                                    <apex:outputPanel rendered="{!wp.Status == 'Not Start'}">
+                                        <svg class="Ellipse_421">
+                                            <ellipse id="Ellipse_421" rx="4.45108699798584" ry="4.5" cx="4.45108699798584" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'In Progress'}">
+                                        <svg class="Ellipse_421">
+                                            <ellipse class="orange-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Waiting for Previous Step'}">
+                                        <svg class="Ellipse_421">
+                                            <ellipse class="blue-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!wp.Status == 'Completed'}">
+                                        <svg class="Ellipse_421">
+                                            <ellipse class="green-dot" rx="4.5" ry="4.5" cx="4.5" cy="4.5">
+                                            </ellipse>
+                                        </svg>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:repeat>
+                        </apex:repeat>
+                    </div>
+                    <img id="warning_ju" src="{!URLFOR($Resource.icons,'images/warning_ju.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_ju.png')} 1x, {!URLFOR($Resource.icons,'images/warning_ju@2x.png')} 2x" />
+                    <img id="warning_jv" src="{!URLFOR($Resource.icons,'images/warning_jv.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_jv.png')} 1x, {!URLFOR($Resource.icons,'images/warning_jv@2x.png')} 2x" />
+                    <img id="warning_jw" src="{!URLFOR($Resource.icons,'images/warning_jw.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_jw.png')} 1x, {!URLFOR($Resource.icons,'images/warning_jw@2x.png')} 2x" />
+                    <img id="warning_jx" src="{!URLFOR($Resource.icons,'images/warning_jx.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_jx.png')} 1x, {!URLFOR($Resource.icons,'images/warning_jx@2x.png')} 2x" />
+                    <img id="warning_jy" src="{!URLFOR($Resource.icons,'images/warning_jy.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_jy.png')} 1x, {!URLFOR($Resource.icons,'images/warning_jy@2x.png')} 2x" />
+                    <img id="warning_jz" src="{!URLFOR($Resource.icons,'images/warning_jz.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_jz.png')} 1x, {!URLFOR($Resource.icons,'images/warning_jz@2x.png')} 2x" />
+                    <img id="warning_j" src="{!URLFOR($Resource.icons,'images/warning_j.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_j.png')} 1x, {!URLFOR($Resource.icons,'images/warning_j@2x.png')} 2x" />
+                    <img id="warning_ka" src="{!URLFOR($Resource.icons,'images/warning_ka.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_ka.png')} 1x, {!URLFOR($Resource.icons,'images/warning_ka@2x.png')} 2x" />
+                    <img id="warning_kb" src="{!URLFOR($Resource.icons,'images/warning_kb.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_kb.png')} 1x, {!URLFOR($Resource.icons,'images/warning_kb@2x.png')} 2x" />
+                    <img id="warning_kc" src="{!URLFOR($Resource.icons,'images/warning_kc.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_kc.png')} 1x, {!URLFOR($Resource.icons,'images/warning_kc@2x.png')} 2x" />
+                    <img id="warning_kd" src="{!URLFOR($Resource.icons,'images/warning_kd.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_kd.png')} 1x, {!URLFOR($Resource.icons,'images/warning_kd@2x.png')} 2x" />
+                    <img id="warning_ke" src="{!URLFOR($Resource.icons,'images/warning_ke.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_ke.png')} 1x, {!URLFOR($Resource.icons,'images/warning_ke@2x.png')} 2x" />
+                    <img id="warning_kf" src="{!URLFOR($Resource.icons,'images/warning_kf.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_kf.png')} 1x, {!URLFOR($Resource.icons,'images/warning_kf@2x.png')} 2x" />
+                    <img id="warning_kg" src="{!URLFOR($Resource.icons,'images/warning_kg.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_kg.png')} 1x, {!URLFOR($Resource.icons,'images/warning_kg@2x.png')} 2x" />
+                    <img id="warning_kh" src="{!URLFOR($Resource.icons,'images/warning_kh.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_kh.png')} 1x, {!URLFOR($Resource.icons,'images/warning_kh@2x.png')} 2x" />
+                    <img id="warning_ki" src="{!URLFOR($Resource.icons,'images/warning_ki.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_ki.png')} 1x, {!URLFOR($Resource.icons,'images/warning_ki@2x.png')} 2x" />
+                    <img id="warning_kj" src="{!URLFOR($Resource.icons,'images/warning_kj.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_kj.png')} 1x, {!URLFOR($Resource.icons,'images/warning_kj@2x.png')} 2x" />
+                    <img id="warning_kk" src="{!URLFOR($Resource.icons,'images/warning_kk.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_kk.png')} 1x, {!URLFOR($Resource.icons,'images/warning_kk@2x.png')} 2x" />
+                    <img id="warning_kl" src="{!URLFOR($Resource.icons,'images/warning_kl.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_kl.png')} 1x, {!URLFOR($Resource.icons,'images/warning_kl@2x.png')} 2x" />
+                    <img id="warning_km" src="{!URLFOR($Resource.icons,'images/warning_km.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_km.png')} 1x, {!URLFOR($Resource.icons,'images/warning_km@2x.png')} 2x" />
+                    <img id="warning_kn" src="{!URLFOR($Resource.icons,'images/warning_kn.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_kn.png')} 1x, {!URLFOR($Resource.icons,'images/warning_kn@2x.png')} 2x" />
+                    <img id="warning_ko" src="{!URLFOR($Resource.icons,'images/warning_ko.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_ko.png')} 1x, {!URLFOR($Resource.icons,'images/warning_ko@2x.png')} 2x" />
+                    <img id="warning_kp" src="{!URLFOR($Resource.icons,'images/warning_kp.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_kp.png')} 1x, {!URLFOR($Resource.icons,'images/warning_kp@2x.png')} 2x" />
+                    <img id="warning_kq" src="{!URLFOR($Resource.icons,'images/warning_kq.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_kq.png')} 1x, {!URLFOR($Resource.icons,'images/warning_kq@2x.png')} 2x" />
+                    <img id="warning_kr" src="{!URLFOR($Resource.icons,'images/warning_kr.png')}" srcset="{!URLFOR($Resource.icons,'images/warning_kr.png')} 1x, {!URLFOR($Resource.icons,'images/warning_kr@2x.png')} 2x" />
+                </div>
+            </div>
+        </body>
+    </html>
+
+</apex:page>

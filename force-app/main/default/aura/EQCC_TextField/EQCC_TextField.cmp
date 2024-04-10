@@ -1,0 +1,7 @@
+<aura:component>
+    <aura:attribute name="input" type="list" default="" access="global" />
+    <aura:attribute name="isDisabled" type="boolean" default="false" access="global" />
+
+    <lightning:input type="text" name="" placeholder="Type a valid reason" value="{!v.input.reason}"
+        onchange="{!c.handleChange}" disabled="{!v.isDisabled}" />
+</aura:component>

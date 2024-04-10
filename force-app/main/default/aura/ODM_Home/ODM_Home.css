@@ -1,0 +1,97 @@
+.THIS {
+    padding: 10px;
+}
+
+.THIS .thaioil_logo {
+    width: 100px;
+}
+.THIS .header {
+    font-size: 1.5rem;
+}
+
+.THIS .header-title {
+    font-size: 1.2rem;
+    color: #888888;
+}
+
+.THIS .menu-button .slds-button {
+    display: block;
+}
+
+.THIS .slds-button label {
+    color: black;
+    font-weight: bold;
+    line-height: 1rem;
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.THIS .slds-box {
+	background-color: #ffffff;
+}
+
+.THIS .icon-type {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #dde5ff;
+    border-radius: 20px;
+    background: #dde5ff;
+    color: black;
+    font-size: 18px;
+    padding: 6px;
+    text-align: center;
+}
+
+.THIS .show-more {
+    /* display: inline-block; */
+
+    height: 36px;
+    padding-right: 10px;
+    padding-left: 10px;
+    /* margin-right: 10px; */
+    font-weight: bold;
+	border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-color: #5c77cc;
+    border-radius: 10px;
+    color: #5c77cc;
+}
+
+@media (max-width: 602px) {
+
+	.THIS {
+		padding: 6px;
+	}
+
+    .THIS .slds-button img {
+        width: 70px;
+    }
+
+    .THIS .show-more {
+        height: 36px;
+        font-size: 0.9rem;
+    }
+
+    .THIS .heading-notification {
+        font-size: 1.2rem;
+        padding-right: 0.5rem;
+    }
+
+    .THIS .heading-notification-column {
+        font-size: 0.75rem;
+        padding-right: 0.5rem;
+    }
+}
+
+/*
+.THIS .thaioil_logo {
+	width: 5rem !important;
+	height: 10% !important;
+}
+.THIS .inline{
+    display: inline-block;
+}
+*/

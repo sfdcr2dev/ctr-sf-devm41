@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>DG Service Approvers</value>
+    </caseValues>
+    <fields>
+        <label><!-- DGVP --></label>
+        <name>DGVP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requester Manager --></label>
+        <name>Requester_Manager__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requester Type --></label>
+        <name>Requester_Type__c</name>
+        <picklistValues>
+            <masterLabel>Section Head</masterLabel>
+            <translation><!-- Section Head --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Staff</masterLabel>
+            <translation><!-- Staff --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VP</masterLabel>
+            <translation><!-- VP --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Requester VP --></label>
+        <name>Requester_VP__c</name>
+    </fields>
+</CustomObjectTranslation>

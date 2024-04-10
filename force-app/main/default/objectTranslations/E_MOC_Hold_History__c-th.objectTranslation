@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>E-MOC Hold History</value>
+    </caseValues>
+    <fields>
+        <label><!-- Comment --></label>
+        <name>Comment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Day --></label>
+        <name>Day__c</name>
+    </fields>
+    <fields>
+        <label><!-- E-MOC Application --></label>
+        <name>E_MOC_Application__c</name>
+        <relationshipLabel><!-- E-MOC Hold History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Next Reminder Date --></label>
+        <name>Next_Reminder_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Position --></label>
+        <name>Position__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Budget Registration</masterLabel>
+            <translation><!-- Budget Registration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Concept Approval</masterLabel>
+            <translation><!-- Concept Approval --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Step --></label>
+        <name>Step__c</name>
+        <picklistValues>
+            <masterLabel>Budget Registration</masterLabel>
+            <translation><!-- Budget Registration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Concept Approval</masterLabel>
+            <translation><!-- Concept Approval --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>E-MOC Hold History Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

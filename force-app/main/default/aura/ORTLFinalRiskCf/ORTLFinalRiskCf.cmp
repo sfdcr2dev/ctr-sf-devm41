@@ -1,0 +1,41 @@
+<!-- Final Risk Assessment Confirm Modal Boday Component display after save final risk assessment -->
+<aura:component>
+    <aura:attribute name="message" type="String" />
+    <aura:attribute name="finalRiskLevel" type="String" />
+    <aura:attribute name="setting" type="Map" default="{
+        enableSelectConsequence: false,
+        bgColor: {
+            levelH: 'rgb(255, 0, 0, 0.7)',
+            levelM: 'rgb(255, 255, 0, 0.7)',
+            levelL: 'rgb(0, 255, 0, 0.7)',
+            levelLN: 'rgb(0, 0, 255, 0.5)',
+            orange: 'rgb(255, 248, 204, 1)',
+            gray: 'rgb(128, 128, 128, 0.25)'
+        }
+    }"/>
+
+    <aura:html tag="style">
+        .text-level-h {
+            color: {!v.setting.bgColor.levelH}
+        }
+
+        .text-level-m {
+            color: {!v.setting.bgColor.levelM};
+        }
+
+        .text-level-l {
+            color: {!v.setting.bgColor.levelL};
+        }
+
+        .text-level-ln {
+            color: {!v.setting.bgColor.levelLN};
+        }
+    </aura:html>
+
+    <div>
+        <div>{!v.message}</div>
+        <div>
+            <span style="color:gray;font-style:italic;">{!$Label.c.ORTLCurrentLv}</span>&nbsp;<span class="{!v.finalRiskLevel == 'H' ? 'text-level-h cursor-pointer' : v.finalRiskLevel == 'M' ? 'text-level-m cursor-pointer' : v.finalRiskLevel == 'L' ? 'text-level-l cursor-pointer' : 'text-level-ln cursor-pointer'}"><strong>{!v.finalRiskLevel}</strong></span>
+        </div>
+    </div>
+</aura:component>

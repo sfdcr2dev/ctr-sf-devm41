@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Financial guarantee</value>
+    </caseValues>
+    <fields>
+        <label><!-- Additional Information --></label>
+        <name>AdditionalInformation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Allowed Overdraft --></label>
+        <name>AllowedOverdraft__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Guarantee SAP Number --></label>
+        <name>BankGuaranteeSAPNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Name --></label>
+        <name>BankName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Number --></label>
+        <name>BankNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>CompanyCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Created By --></label>
+        <name>CreatedBy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Created Date/Time --></label>
+        <name>CreatedDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Currency --></label>
+        <name>Currency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>Customer__c</name>
+        <relationshipLabel><!-- Financial guarantee --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Date of Receipt --></label>
+        <name>DateOfReceipt__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document Status --></label>
+        <name>DocumentStatus__c</name>
+        <picklistValues>
+            <masterLabel>D</masterLabel>
+            <translation><!-- D --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E</masterLabel>
+            <translation><!-- E --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z</masterLabel>
+            <translation><!-- Z --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Expiry Date --></label>
+        <name>ExpiryDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incoterms 1 --></label>
+        <name>Incoterms1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incoterms 2 --></label>
+        <name>Incoterms2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fin Doc. --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Latest Shipping Date --></label>
+        <name>LatestShippingDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opening Date --></label>
+        <name>OpeningDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason for Change --></label>
+        <name>ReasonForChange__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason --></label>
+        <name>Reason__c</name>
+        <picklistValues>
+            <masterLabel>Amendment</masterLabel>
+            <translation><!-- Amendment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transfer Value: Consolidated Collateral</masterLabel>
+            <translation><!-- Transfer Value: Consolidated Collateral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transfer Value: Credit Limit</masterLabel>
+            <translation><!-- Transfer Value: Credit Limit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transfer Value: Indochina Collateral</masterLabel>
+            <translation><!-- Transfer Value: Indochina Collateral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transfer Value: Indochina Tax</masterLabel>
+            <translation><!-- Transfer Value: Indochina Tax --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Typing error</masterLabel>
+            <translation><!-- Typing error --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Remaining Days --></label>
+        <name>RemainingDays__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Date --></label>
+        <name>RequestDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Terms of Payment --></label>
+        <name>TermsOfPayment__c</name>
+        <relationshipLabel><!-- Financial guarantee (Terms of Payment) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>BG</masterLabel>
+            <translation><!-- BG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CA</masterLabel>
+            <translation><!-- CA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CI</masterLabel>
+            <translation><!-- CI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CL</masterLabel>
+            <translation><!-- CL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LC</masterLabel>
+            <translation><!-- LC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OD</masterLabel>
+            <translation><!-- OD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OT</masterLabel>
+            <translation><!-- OT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZC</masterLabel>
+            <translation><!-- ZC --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Bank Guarantee Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

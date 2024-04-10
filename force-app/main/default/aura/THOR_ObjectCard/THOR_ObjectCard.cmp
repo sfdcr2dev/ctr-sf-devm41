@@ -1,0 +1,143 @@
+<aura:component>
+	<!--Interface-->
+	<aura:attribute name="isOpen" type="Boolean" default="false" access="global" description="Adds open in animation" />
+	<aura:attribute name="isNew" type="Boolean" default="false" access="global" description="Adds drop in animation" />
+	<aura:attribute name="isDeletable" type="String" default="true" access="global" />
+	<aura:attribute name="isDeleted" type="Boolean" default="false" access="global" description="Adds deletion animation" />
+	<aura:attribute name="isSelectable" type="Boolean" default="false" access="global" />
+	<aura:attribute name="isNavigable" type="Boolean" default="true" />
+	<aura:attribute name="isDropable" type="Boolean" default="false" />
+	<aura:attribute name="title" type="String" default="" access="global" />
+	<aura:attribute name="titleLabel" type="String" default="" access="global" />
+	<aura:attribute name="titleSize" type="String" default="6" access="global" />
+	<aura:attribute name="recordId" type="String" default="" access="global" />
+	<aura:attribute name="navigateToComponent" type="String" />
+	<aura:attribute name="dropableBody" type="List" default="" access="global" />
+	<aura:attribute name="actions" type="Aura.Component[]" default="" access="global" />
+	<!--Interface-->
+	<aura:attribute name="isVisible" type="Boolean" default="true" access="private" />
+	<aura:attribute name="isActionsDisplayed" type="Boolean" default="false" access="private" />
+	<aura:attribute name="options" type="List" default="[{'label': '', 'value': 'selected'}]" access="private" />
+	<aura:attribute name="value" type="List" default="not selected" access="private" />
+	<lightning:navigation aura:id="navLink" />
+	<!--############# CARD CONFIGURATION ############-->
+	<div aura:id="card">
+		<div style="margin-top: 0" class="{! v.isVisible ? ( v.isNew ? 'oktana-showup slds-welcome-mat__tile': 'slds-welcome-mat__tile'): 'slds-hide'}">
+			<div onclick="{!c.handleOpenClose}" style="box-shadow: 0px 2px 2px 0px #cccccc" class="slds-box slds-media cardHover">
+				<!--############# ICON ###############-->
+				<!--############### START MAIN BODY OF THE CARD ###########-->
+				<div class="slds-media__body">
+					<div class="" style="padding: 0em">
+						<div class="preventOverflowX">
+							<lightning:layout verticalAlign="center">
+								<!--DISPLAY TITLE-->
+								<lightning:layoutItem>
+									<lightning:layout>
+										<a class="slds-text-body_small"> {!v.title} </a>
+									</lightning:layout>
+									<lightning:layout>
+										<span class="slds-text-body_small">
+											<aura:iteration items="{! v.dropableBody}" var="item" indexVar="index">
+												<aura:if isTrue="{! item.label != 'Description'}">
+													{!item.value}
+													<aura:if isTrue="{!  item.label != 'Create on'}"> .&nbsp; </aura:if>
+												</aura:if>
+											</aura:iteration>
+										</span>
+									</lightning:layout>
+									<aura:iteration items="{!v.dropableBody}" var="item">
+										<aura:if isTrue="{! item.label == 'Description'}">
+											<div class="trunc-text">{!item.value}</div>
+										</aura:if>
+									</aura:iteration>
+								</lightning:layoutItem>
+								<!--DISPLAY TITLE-->
+								<aura:if isTrue="{! v.actions.length > 0 }">
+									<aura:if isTrue="{!v.actions.length == 1 &amp;&amp; !v.isDeletable &amp;&amp;!v.isNavigable }">
+										<lightning:layoutItem alignmentBump="left"> {!v.actions} </lightning:layoutItem>
+										<aura:set attribute="else">
+											<!--SLIDING ACTIONS-->
+											<!--SLIDING Arrow BUTTON-->
+											<lightning:layoutItem class="{! v.isActionsDisplayed ? 'slideLeft' : 'slideBack'}" flexibility="auto">
+												<div>
+													<lightning:layout>
+														<lightning:layoutItem flexibility="grow">
+															<lightning:buttonIcon
+																iconName="utility:chevronleft"
+																variant="bare"
+																onclick="{! c.handleSlide }"
+																alternativeText="Settings"
+																title="Settings"
+																class="{! v.isActionsDisplayed ? 'rotateOut' : 'rotateIn'}"
+																aura:id="chevron"
+															/>
+														</lightning:layoutItem>
+														<lightning:layoutItem>
+															<div style="padding-left: 1em">{! v.actions }</div>
+														</lightning:layoutItem>
+													</lightning:layout>
+												</div>
+											</lightning:layoutItem>
+											<!--SLIDING Arrow BUTTON-->
+											<aura:if isTrue="{!v. isDeletable }">
+												<!--DELETE  BUTTON-->
+												<lightning:layoutItem padding="horizontal-small" alignmentBump="left">
+													<div style="transform: scale(0.8)">
+														<!-- top: 10%; left: calc(100% - 7vh);-->
+														<lightning:buttonIcon alternativeText="" iconName="utility:delete" variant="bare" size="large" onclick="{! c.delete }" />
+													</div>
+												</lightning:layoutItem>
+												<!--DELETE  BUTTON-->
+											</aura:if>
+											<!--SLIDING ACTIONS-->
+										</aura:set>
+									</aura:if>
+									<aura:set attribute="else">
+										<aura:if isTrue="{!v. isDeletable }">
+											<!--DELETE  BUTTON-->
+											<lightning:layoutItem padding="horizontal-small" alignmentBump="left">
+												<div style="transform: scale(0.8)">
+													<!-- top: 10%; left: calc(100% - 7vh);-->
+													<lightning:buttonIcon alternativeText="" iconName="utility:delete" variant="bare" size="large" onclick="{! c.delete }" />
+												</div>
+											</lightning:layoutItem>
+											<!--DELETE  BUTTON-->
+										</aura:if>
+									</aura:set>
+								</aura:if>
+								<aura:if isTrue="{!v.isSelectable}">
+									<lightning:checkboxGroup
+										style="transform: scale(1.2)"
+										name="Checkbox Group"
+										label=""
+										options="{! v.options }"
+										value="{! v.value }"
+										onchange="{! c.handleSelect }"
+									/>
+								</aura:if>
+							</lightning:layout>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--############### ENDS MAIN BODY OF THE CARD ###########-->
+			<!--######### HIDDEN BODY #########-->
+			<div aura:id="hideDiv" class="preventOverflowY">
+				<div
+					aura:id="showSection"
+					style="border-color: rgb(228, 228, 228); transition: margin-top 0.5s cubic-bezier(0.43, -0.17, 0.35, 0.37)"
+					class="{! v.isOpen ? 'slds-box oktanaShow' : 'slds-box oktanaHide'}"
+				>
+					<lightning:layout verticalAlign="center" multipleRows="true">
+						<aura:iteration items="{! v.dropableBody}" var="item">
+							<lightning:layoutItem flexibility="auto" padding="around-small">
+								<p class="slds-welcome-mat__tile-description">{!item.label}</p>
+								<h3 class="slds-welcome-mat__tile-title">{!item.value}</h3>
+							</lightning:layoutItem>
+						</aura:iteration>
+					</lightning:layout>
+				</div>
+			</div>
+		</div>
+	</div>
+</aura:component>

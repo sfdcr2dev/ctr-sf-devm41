@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>BOM with Spare Part</value>
+    </caseValues>
+    <fields>
+        <label><!-- BOMNo --></label>
+        <name>BOMNo__c</name>
+        <relationshipLabel><!-- BOM with Spare Part --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- bomWithSparePartKey --></label>
+        <name>bomWithSparePartKey__c</name>
+    </fields>
+    <fields>
+        <label><!-- item --></label>
+        <name>item__c</name>
+    </fields>
+    <fields>
+        <label><!-- quantity --></label>
+        <name>quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- sparePartNo --></label>
+        <name>sparePartNo__c</name>
+        <relationshipLabel><!-- BOM with Spare Part --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- unit --></label>
+        <name>unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- validFrom --></label>
+        <name>validFrom__c</name>
+    </fields>
+    <layouts>
+        <layout>BOM with Spare Part Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

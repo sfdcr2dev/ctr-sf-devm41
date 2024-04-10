@@ -1,0 +1,61 @@
+<aura:component controller="THOR_FileUploadActionController" implements="flexipage:availableForRecordHome,force:hasRecordId">
+	<aura:attribute name="notificationId" type="String" default="" />
+	<aura:attribute name="multiple" type="Boolean" default="true" />
+	<aura:attribute name="disabled" type="Boolean" default="true" />
+	<aura:attribute name="currentUploadedDocumentId" type="String" />
+	<aura:attribute name="hasWriteAccess" type="Boolean" default="false" />
+	<aura:attribute name="body" type="Aura.Component[]" />
+	<aura:attribute name="originalFileName" type="String" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<lightning:navigation aura:id="navLink" />
+
+	<aura:registerEvent name="refreshFileList" type="c:THOR_Event_notificationAttachmentUploadFinished" />
+
+	<aura:attribute name="notificationInfo" type="Map" default="{}" />
+	<force:recordData aura:id="recordDataLoader" recordId="{!v.notificationId}" fields="Integration_Status__c" targetFields="{!v.notificationInfo}" />
+
+	<lightning:layout>
+		<!-- <lightning:layoutItem class="slds-hide">
+			<c:THOR_navigateBack backToTabIndex="3" />
+		</lightning:layoutItem> -->
+		<lightning:layoutItem>
+			<lightning:buttonIcon
+				class="slds-p-horizontal_large"
+				size="large"
+				variant="border-filled"
+				iconName="utility:chevronleft"
+				onclick="{!c.redirectBack}"
+			/>
+		</lightning:layoutItem>
+
+		<lightning:layoutItem alignmentBump="left" class="slds-grid slds-grid_vertical-align-center">
+			<aura:if isTrue="{!v.body}">
+				<aura:iteration items="{!v.body}" var="cmp">
+					<div class="slds-col slds-grow-none slds-m-horizontal_xx-small">{!cmp}</div>
+				</aura:iteration>
+			</aura:if>
+
+			<lightning:fileUpload
+				disabled="{! or(not(v.hasWriteAccess), v.notificationInfo.Integration_Status__c != 'Success') }"
+				class="muh-class slds-col slds-grow-none"
+				label=""
+				name="fileUploader"
+				recordId="{!v.notificationId}"
+				onuploadfinished="{!c.handleUploadFinished}"
+				onclick="{!c.uploadFile}"
+			/>
+		</lightning:layoutItem>
+	</lightning:layout>
+
+	<div aura:id="changeNameModal" class="hide-me changeNameModal">
+		<div class="close-button" onclick="{!c.submitName}">
+			<lightning:icon iconName="utility:close" />
+		</div>
+		<div class="input-container">
+			<h3 class="slds-text-heading_medium">Change File Name:</h3>
+			<lightning:input type="text" class="changeNameInput" id="changeNameInput" aura:id="changeNameInput" name="fileName" />
+			<button class="submitName slds-button slds-button_brand" onclick="{! c.submitName }" id="submitName" aura:id="submitName">Submit</button>
+		</div>
+	</div>
+</aura:component>

@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Daily Buying Performance</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account Number --></label>
+        <name>AccountNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Type --></label>
+        <name>Account_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Add.qty. - L30 --></label>
+        <name>AddqtyL30__c</name>
+    </fields>
+    <fields>
+        <label><!-- Add.qty. - Litre --></label>
+        <name>AddqtyLitre__c</name>
+    </fields>
+    <fields>
+        <label><!-- Add.qty. -MT --></label>
+        <name>AddqtyMTTPX__c</name>
+    </fields>
+    <fields>
+        <label><!-- Add.qty. - MT --></label>
+        <name>AddqtyMT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount B/F Vat (Local) --></label>
+        <name>AmountBFVatLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount B/F Vat (THB) --></label>
+        <name>AmountBFVatTHB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount B/F Vat (USD) --></label>
+        <name>AmountBFVatUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount(THB) --></label>
+        <name>AmountTHBTLBReport__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount(USD) --></label>
+        <name>AmountUSDTLBReport__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Price/MT (THB) --></label>
+        <name>Average_Price_MT_THB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Price/MT (USD) --></label>
+        <name>Average_Price_MT_USD__c</name>
+    </fields>
+    <fields>
+        <label><!-- B/L Date --></label>
+        <name>BLDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Berting --></label>
+        <name>BertingTLBReport__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billed Quantity --></label>
+        <name>BilledQuantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Date --></label>
+        <name>BillingDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Document --></label>
+        <name>BillingDocument__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Type --></label>
+        <name>BillingType__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Date (Year-Month) --></label>
+        <name>BillingYearMonth__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Unit --></label>
+        <name>BusinessUnit__c</name>
+    </fields>
+    <fields>
+        <label><!-- COGS --></label>
+        <name>COGS__c</name>
+    </fields>
+    <fields>
+        <label><!-- CP target Net Profit (Local) --></label>
+        <name>CPtargetNetProfitLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- CP target Net Profit (USD) --></label>
+        <name>CPtargetNetProfitUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- CP target Pocket Margin (Local) --></label>
+        <name>CPtargetPocketMarginLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- CP target Pocket Margin (USD) --></label>
+        <name>CPtargetPocketMarginUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- CP target Volume --></label>
+        <name>CPtargetVolume__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cancelled --></label>
+        <name>Cancelled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Check (BBL) --></label>
+        <name>CheckBBL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Check (L15) --></label>
+        <name>CheckL15__c</name>
+    </fields>
+    <fields>
+        <label><!-- Check (L30) --></label>
+        <name>CheckL30__c</name>
+    </fields>
+    <fields>
+        <label><!-- Check (MT) --></label>
+        <name>CheckMT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contract Line Item Report --></label>
+        <name>ContractLineItemReport__c</name>
+        <relationshipLabel><!-- Daily Buying Performance --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cum CP Target Volume --></label>
+        <name>CumCPTargetVolume__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cum CP target Net Profit (Local) --></label>
+        <name>CumCPtargetNetProfitLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cum CP target Net Profit (USD) --></label>
+        <name>CumCPtargetNetProfitUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cum CP target Pocket Margin (Local) --></label>
+        <name>CumCPtargetPocketMarginLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cum CP target Pocket Margin (USD) --></label>
+        <name>CumCPtargetPocketMarginUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Currency (Local) --></label>
+        <name>CurrencyLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer --></label>
+        <name>CustomerText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Type --></label>
+        <name>CustomerType__c</name>
+        <picklistValues>
+            <masterLabel>ct</masterLabel>
+            <translation><!-- ct --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>Customer__c</name>
+        <relationshipLabel><!-- Daily Buying Performance (Company Name) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- DO Number --></label>
+        <name>DONumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery Date --></label>
+        <name>DeliveryDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery Quantity --></label>
+        <name>DeliveryQuantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Destination --></label>
+        <name>Destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Diff Shore VS Ship Tank (Litre@30) --></label>
+        <name>DiffShoreVSShipTankLitre30__c</name>
+    </fields>
+    <fields>
+        <label><!-- Diff Shore VS Ship Tank (MT) --></label>
+        <name>DiffShoreVSShipTankMT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distribution Channel --></label>
+        <name>DistributionChannel__c</name>
+    </fields>
+    <fields>
+        <label><!-- Division --></label>
+        <name>Division__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exchange rate --></label>
+        <name>Exchangerate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Excise Duty Curr (ZEX1) --></label>
+        <name>ExciseDutyCurrZEX1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Excise Duty Curr (ZEX2) --></label>
+        <name>ExciseDutyCurrZEX2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Excise Duty (ZEX1) --></label>
+        <name>ExciseDutyZEX1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Excise Duty (ZEX2) --></label>
+        <name>ExciseDutyZEX2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Export Invoice No. --></label>
+        <name>ExportInvoiceNo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Freight Charge(THB) --></label>
+        <name>FreightChargeTHB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Freight Charge(USD) --></label>
+        <name>FreightChargeUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Freight cost (Local) --></label>
+        <name>FreightcostLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Freight cost (USD) --></label>
+        <name>FreightcostUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- From --></label>
+        <name>From__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incoterm --></label>
+        <name>Incoterm__c</name>
+    </fields>
+    <fields>
+        <label><!-- Industry --></label>
+        <name>Industry__c</name>
+    </fields>
+    <fields>
+        <label><!-- InterGroup --></label>
+        <name>InterGroup__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invoice/Tax Inv. --></label>
+        <name>InvoiceTaxInv__c</name>
+    </fields>
+    <fields>
+        <label><!-- Item Number --></label>
+        <name>ItemNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key Jetty --></label>
+        <name>KeyJetty__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key Report --></label>
+        <name>KeyReport__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- % L/G (L15) --></label>
+        <name>LGL15__c</name>
+    </fields>
+    <fields>
+        <label><!-- % L/G (L30) --></label>
+        <name>LGL30__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loading Port --></label>
+        <name>LoadingPort__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loss/Gain fx (Local) --></label>
+        <name>LossGainfxLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loss/Gain fx (USD) --></label>
+        <name>LossGainfxUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Group 2 --></label>
+        <name>MaterialGroup2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Net Profit (Local) --></label>
+        <name>NetProfitLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Net Profit (USD) --></label>
+        <name>NetProfitUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Net Value (Local) --></label>
+        <name>NetValueLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Net Value (USD) --></label>
+        <name>NetValueUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO Number --></label>
+        <name>PONumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pack Type --></label>
+        <name>PackType__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pay (BBL) --></label>
+        <name>PayBBL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pay (L15) --></label>
+        <name>PayL15__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pay (L30) --></label>
+        <name>PayL30__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pay (MT) --></label>
+        <name>PayMT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plant Name --></label>
+        <name>PlantName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plant --></label>
+        <name>Plant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pocket margin (Local) --></label>
+        <name>PocketmarginLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pocket margin (USD) --></label>
+        <name>PocketmarginUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pricing date --></label>
+        <name>Pricingdate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Code --></label>
+        <name>ProductCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Group. --></label>
+        <name>ProductGroupReport__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Group --></label>
+        <name>ProductGroup__c</name>
+    </fields>
+    <fields>
+        <label><!-- ProductNameText --></label>
+        <name>ProductNameText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Name --></label>
+        <name>Product__c</name>
+        <relationshipLabel><!-- Daily Buying Performance --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Quantity (BBL15) --></label>
+        <name>QuantityBBL15__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quantity (BBL) --></label>
+        <name>QuantityBBL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quantity (L30) --></label>
+        <name>QuantityL30__c</name>
+    </fields>
+    <fields>
+        <label><!-- Qty L/G (L15) --></label>
+        <name>QuantityLGL15__c</name>
+    </fields>
+    <fields>
+        <label><!-- Qty L/G (L30) --></label>
+        <name>QuantityLGL30__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quantity (MT) Adjust --></label>
+        <name>QuantityMTAdjust__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quantity(MT) --></label>
+        <name>QuantityMTTNXReport__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quantity(MT) --></label>
+        <name>QuantityMTTPX__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quantity (MT) --></label>
+        <name>QuantityMT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Revenue (Local) --></label>
+        <name>RevenueLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Revenue (USD) --></label>
+        <name>RevenueUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unit --></label>
+        <name>SU__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>SalesOrganization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Price Curr (ZPR1) --></label>
+        <name>SalesPriceCurrZPR1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Price Curr (ZPR2) --></label>
+        <name>SalesPriceCurrZPR2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Price (ZPR1) --></label>
+        <name>SalesPriceZPR1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Price (ZPR2) --></label>
+        <name>SalesPriceZPR2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Group --></label>
+        <name>Salesgroup__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales mode --></label>
+        <name>Salesmode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales unit --></label>
+        <name>Salesunit__c</name>
+    </fields>
+    <fields>
+        <label><!-- SearchTerm --></label>
+        <name>SearchTerm__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ship Tank (Litre@30) --></label>
+        <name>ShipTankLitre30__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ship Tank (MT) --></label>
+        <name>ShipTankMT__c</name>
+    </fields>
+    <fields>
+        <label><!-- ship-to party Number --></label>
+        <name>ShipTo__c</name>
+        <relationshipLabel><!-- Daily Buying Performance (ship-to party Number) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Shipping Point --></label>
+        <name>ShippingPoint__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ship to Name --></label>
+        <name>ShiptoName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ship to country --></label>
+        <name>Shiptocountry__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shore Tank (Litre@30) --></label>
+        <name>ShoreTankLitre30__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shore Tank (MT) --></label>
+        <name>ShoreTankMT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sold To Text --></label>
+        <name>SoldToText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub industry --></label>
+        <name>Subindustry__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supply group --></label>
+        <name>Supplygroup__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tank --></label>
+        <name>Tank__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tax amount(THB) --></label>
+        <name>TaxamountTHB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tax amount(USD) --></label>
+        <name>TaxamountUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tax amount --></label>
+        <name>Taxamount__c</name>
+    </fields>
+    <fields>
+        <label><!-- To --></label>
+        <name>To__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total (THB) --></label>
+        <name>TotalTHB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total (USD) --></label>
+        <name>TotalUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total --></label>
+        <name>Total__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trip No. --></label>
+        <name>TripNo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unit Price --></label>
+        <name>UnitPriceUSDTemporary__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unit Price --></label>
+        <name>UnitPriceUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vessel Name --></label>
+        <name>VesselName__c</name>
+    </fields>
+    <layouts>
+        <layout>TOP Daily Buying Performance Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Daily Buying Performance --></label>
+            <section>Daily Buying Performance</section>
+        </sections>
+        <sections>
+            <label><!-- Document Information --></label>
+            <section>Document Information</section>
+        </sections>
+        <sections>
+            <label><!-- Price Information --></label>
+            <section>Price Information</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Area --></label>
+            <section>Sales Area</section>
+        </sections>
+        <sections>
+            <label><!-- Ship-to --></label>
+            <section>Ship-to</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TS Daily Buying Performance Actual Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Daily Buying Performance --></label>
+            <section>Daily Buying Performance</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Area --></label>
+            <section>Sales Area</section>
+        </sections>
+        <sections>
+            <label><!-- Ship-to --></label>
+            <section>Ship-to</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TS Daily Buying Performance Target Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Daily Buying Performance --></label>
+            <section>Daily Buying Performance</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Area --></label>
+            <section>Sales Area</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Transfer Jetty</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Daily Buying Performance --></label>
+            <section>Daily Buying Performance</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Area --></label>
+            <section>Sales Area</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- TLB TPX LABIX --></description>
+        <label><!-- Daily Performance --></label>
+        <name>DailyPerformance</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- TSTH TSV TSR TSChem TSJSKem --></description>
+        <label><!-- TX Daily Performance --></label>
+        <name>TXDailyPerformance</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- TX Target Daily Performance --></label>
+        <name>TXTargetDailyPerformance</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Transfer Jetty --></label>
+        <name>TransferJetty</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- TPX --></description>
+        <label><!-- Transfer Pipe --></label>
+        <name>TransferPipe</name>
+    </recordTypes>
+</CustomObjectTranslation>

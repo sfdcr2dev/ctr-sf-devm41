@@ -1,0 +1,33 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:lightningQuickActionWithoutHeader,force:hasRecordId">
+ 
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+ 
+    <force:recordData aura:id="recordLoader"
+      fields="Name,URL__c"
+      recordId="{!v.recordId}"
+      targetFields="{!v.simpleRecord}"
+      targetError="{!v.recordError}"
+      recordUpdated="{!c.handleRecord}"
+      />
+ 
+    <!-- Display a lightning card with details about the record -->
+    <div class="Record Details"> 
+    <lightning:card iconName="" title="" >
+        <div class="slds-p-horizontal--small">
+            <p class="slds-text-heading--small">
+                <lightning:formattedText title="URL" value="{!v.simpleRecord.URL__c}" />
+            </p>
+			<lightning:button label="Link to Record" iconName="standard:link" iconPosition="left" variant="brand" onclick="{!c.handleClick}"/>
+			<lightning:button label="Home" iconName="utility:home" iconPosition="left" variant="" onclick="{!c.homeClick}"/>
+        </div>
+    </lightning:card>
+    </div>
+ 
+    <!-- Display Lightning Data Service errors, if any -->
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            {!v.recordError}</div>
+    </aura:if>
+</aura:component>

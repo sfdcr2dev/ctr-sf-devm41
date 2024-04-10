@@ -1,0 +1,10 @@
+<aura:component>
+	<aura:attribute name="body" type="Aura.ComponentDefRef[]" />
+	<aura:attribute name="isActive" type="Boolean" default="true" />
+	<aura:attribute name="tabTitle" type="String" access="global" />
+	<aura:attribute name="items" type="Object[]" default=" " />
+
+	<aura:if isTrue="{!v.isActive}">
+		<aura:iteration items="{!v.items}" var="{!myVar}" template="{!v.body}"> {!myVar} </aura:iteration>
+	</aura:if>
+</aura:component>

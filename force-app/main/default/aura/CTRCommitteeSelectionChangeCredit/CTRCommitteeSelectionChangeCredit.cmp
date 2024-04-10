@@ -1,0 +1,1663 @@
+<aura:component
+    access="global"
+    controller="CTRCommitteeSelectionController"
+    implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName">
+
+    <aura:attribute name="requestFormObj" type="CTRRequestFormItem__c" default="{}" />
+    <aura:attribute name="committeeInfo" type="CTRRequestFormItem__c" default="{}" />
+
+    <aura:attribute name="buProfile" type="String" />
+    <aura:attribute name="bu" type="String" default="TOP" />
+    <aura:attribute name="subBU" type="String" default="TOP" />
+    <aura:attribute name="counterpartyType" type="String" default="" />
+    <aura:attribute name="interestedProduct" type="String" default="" />
+    <aura:attribute name="hasCrudeProduct" type="String" default="" />
+
+    <aura:attribute name="requiredTypeOfBusinessOther" type="Boolean" default="false"/>
+
+    <aura:attribute name="groupedCommittees" type="List" default="[]" />
+    <aura:attribute name="lstCommittees" type="List" default="[]" />
+    <aura:attribute name="selectedCommittees" type="List" default="[]" />
+    <aura:attribute name="includedCommittees" type="List" default="[]" />
+    <aura:attribute name="selectedEmailCommittees" type="List" default="[]" />
+    <aura:attribute name="lstCEO" type="List" default="[]" />
+
+    <aura:attribute name="emailInfo" type="sObject" default="{}" />
+    <aura:attribute name="emailUrgent" type="String" default="No" />
+
+    <aura:attribute name="isModalOpen" type="Boolean" default="false" />
+    <aura:attribute name="previewEMailInfo" type="Object" default="{}" />
+    <aura:attribute name="previewEmailAttachments" type="List" default="[]" />
+
+    <aura:attribute name="isEdit" type="Boolean" default="false" />
+    <aura:attribute name="canEdit" type="Boolean" default="false" />
+    <aura:attribute name="committeeStatus" type="String" default="" />
+    <aura:attribute name="creditOwner" type="String" default="" />
+    <aura:attribute name="creditOwnerOld" type="String" default="" />
+    <aura:attribute name="TRCROwnerWhereCondition" type="String" default="" />
+
+    <aura:attribute name="enableCommitteeSelection" type="Boolean" default="false"/>
+    <aura:attribute name="enableMailToCommittee" type="Boolean" default="false"/>
+
+    <aura:attribute name="isDataLoading" type="Boolean" default="false" />
+    <aura:attribute name="isDataSaving" type="Boolean" default="false" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.selectedCommittees}" action="{!c.handleChangeSelectedCommittees}"/>
+    <aura:handler name="change" value="{!v.selectedEmailCommittees}" action="{!c.handleChangeSelectedEmailCommittees}"/>
+
+    <section>
+        <aura:if isTrue="{!NOT(AND(AND(v.counterpartyType == 'Supplier', OR(v.bu == 'TOP', v.bu == 'LABIX')), NOT(v.hasCrudeProduct)))}">
+            <aura:renderIf isTrue="{!!v.isEdit}">
+                <div class="slds-text-align_right slds-var-p-vertical_medium">
+                    <aura:if isTrue="{!v.canEdit}">
+                        <lightning:button
+                            variant="brand-outline"
+                            label="Select Committee"
+                            title="Select Committee"
+                            onclick="{!c.handleClickSelectCommittee}" />
+                    </aura:if>
+                </div>
+            </aura:renderIf>
+        </aura:if>
+
+        <lightning:recordEditForm
+            recordId="{!v.recordId}"
+            objectApiName="CTRRequestFormItem__c"
+            onsubmit="{!c.handleSave}">
+
+            <aura:renderIf isTrue="{!OR(v.isDataLoading, v.isDataSaving)}">
+                <lightning:spinner size="large" variant="brand" />
+            </aura:renderIf>
+
+            <!-- TOP Customer -->
+            <aura:if isTrue="{!AND(v.counterpartyType == 'Customer', OR(v.bu == 'TOP', v.bu == 'LABIX'))}">
+                <div class="slds-section slds-is-open" aura:id="counterpartyInformationSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="counterpartyInformationDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="counterpartyInformationSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate" title="Counterparty Information">
+                                Counterparty Information
+                            </span>
+                        </button>
+                    </h3>
+
+                    <div class="slds-section__content">
+                        <lightning:layoutItem padding="around-small">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-size_1-of-7">
+                                    <p>Company Name:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    <lightning:outputField
+                                        fieldName="Customer__c"
+                                        variant="label-hidden"
+                                        readonly="true" />
+                                </div>
+                                <div class="slds-size_1-of-7"></div>
+                                <div class="slds-size_1-of-7">
+                                    <p>Contact Person:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    {!v.committeeInfo.CTRRequestFormHeader__r.FirstName__c + ' ' + v.committeeInfo.CTRRequestFormHeader__r.LastName__c}
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-var-m-top_large">
+                                <div class="slds-size_1-of-7">
+                                    <p>Email:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    {!v.committeeInfo.CTRRequestFormHeader__r.Email__c}
+                                </div>
+                                <div class="slds-size_1-of-7" />
+                                <div class="slds-size_1-of-7">
+                                    <p>Telephone:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    {!v.committeeInfo.CTRRequestFormHeader__r.MobilePhone__c}
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-var-m-top_large">
+                                <div class="slds-size_2-of-7">
+                                    <p>Interested Product Type {!v.counterpartyType}:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    <lightning:outputField
+                                        fieldName="InterestedProductTypeAsCustomerTOP__c"
+                                        variant="label-hidden"
+                                        readonly="true" />
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="emailAuthorizationSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="emailAuthorizationDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="emailAuthorizationSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">
+                                Email Authorization
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content">
+                        <lightning:layoutItem padding="around-small">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-size_1-of-7">
+                                    <label>Email Authorization:</label>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    <lightning:inputField
+                                        aura:id="EmailAuthorization"
+                                        fieldName="EmailAuthorization__c"
+                                        variant="label-hidden"
+                                        disabled="{!!v.isEdit}"
+                                        onchange="{!c.handleChangeEmailAuthorization}"
+                                        value="{!v.requestFormObj.EmailAuthorization__c}" />
+                                </div>
+                                <div class="slds-size_1-of-7"></div>
+                                <div class="slds-size_1-of-7"></div>
+                                <div class="slds-size_2-of-7"></div>
+                            </div>
+                        </lightning:layoutItem>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="selectCommitteeSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="selectCommitteeDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="selectCommitteeSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate" title="Select Committee">
+                                Select Committee
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="selectCommitteeDetail">
+                        <c:CTRCommitteeCheckbox
+                            committees="{!v.lstCommittees}"
+                            selectedCommittees="{!v.selectedCommittees}"
+                            includedCommittees="{!v.includedCommittees}"
+                            selectedEmailCommittees="{!v.selectedEmailCommittees}"
+                            disabled="{!OR(!v.isEdit, !v.enableCommitteeSelection)}"/>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="mailToCommitteeSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="mailtoCommitteeDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="mailToCommitteeSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">
+                                Mail to Committee
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="mailToCommitteeDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-1">
+                                <div class="slds-form slds-form_horizontal email-urgent">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__legend">
+                                            Email Urgent:
+                                        </label>
+                                        <div>
+                                            <lightning:select
+                                                variant="label-hidden"
+                                                value="{!v.emailUrgent}"
+                                                disabled="{!OR(!v.isEdit, !v.enableMailToCommittee)}"
+                                                onchange="{!c.handleChangeEmailUrgent}">
+
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </lightning:select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1">
+                                <div class="slds-form slds-form_horizontal email-to">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label">
+                                            Email To:
+                                        </label>
+                                        <div>
+                                            <lightning:input
+                                                type="text"
+                                                variant="label-inline"
+                                                disabled="true"
+                                                value="{!v.requestFormObj.EmailTo__c}">
+                                            </lightning:input>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 email">
+                                <c:CTRMailToCommittee
+                                    recordId="{!v.recordId}"
+                                    isEdit="{!AND(v.isEdit, v.enableMailToCommittee)}"
+                                    isCommittee="{!true}"
+                                    selectedEmailCC="{!v.emailInfo.EmailCC__c}"
+                                    emailInfo="{!v.emailInfo}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="attachmentSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="attachmentDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="attachmentSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">
+                                Attachment
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="attachmentDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-1">
+                                <c:CTRFileUpload
+                                    aura:id="CTRFileUpload"
+                                    recordId="{!v.recordId}"
+                                    sObjectName="CTRRequestFormItem__c"
+                                    fieldName="CommitteeAttachment__c"
+                                    disabled="{!!v.isEdit}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aura:renderIf isTrue="{!AND(v.isEdit, OR(empty(v.committeeStatus), OR(v.committeeStatus == 'Draft', v.committeeStatus == 'Reverted to Credit Team')))}">
+                    <div class=" slds-section slds-is-open" aura:id="trcrReassignTaskSection">
+                        <h3 class="slds-section__title">
+                            <button
+                                type="button"
+                                aria-controls="trcrReassignTaskDetail"
+                                aria-expanded="true"
+                                class="slds-button slds-section__title-action"
+                                data-auraid="trcrReassignTaskSection"
+                                onclick="{!c.handleClickToggleSection}">
+
+                                <lightning:icon
+                                    iconName="utility:switch"
+                                    alternativeText="switch"
+                                    title=""
+                                    size="x-small"
+                                    class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                <span class="slds-truncate">
+                                    Credit Team Owner
+                                </span>
+                            </button>
+                        </h3>
+                        <div class="slds-section__content" id="trcrReassignTaskDetail">
+                            <lightning:layoutItem padding="around-small">
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                        <div class="slds-col slds-size_1-of-7 slds-var-p-top_x-small">
+                                            <p>Owner: </p>
+                                        </div>
+                                        <div class="slds-form_horizontal slds-col slds-size_3-of-6">
+                                            <aura:if isTrue="{!!v.isDataLoading}">
+                                                <c:CTRCustomLookupSearch
+                                                    aura:id="CreditOwner"
+                                                    objectAPIName="User"
+                                                    IconName="standard:user"
+                                                    whereCondition="{!v.TRCROwnerWhereCondition}"
+                                                    selectedRecordId="{!v.creditOwner}"
+                                                    label=""
+                                                    disabled="{!!v.isEdit}" />
+                                            </aura:if>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+                        </div>
+                    </div>
+                </aura:renderIf>
+
+                <div class="slds-section slds-is-open" aura:id="commentSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="commentDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="commentSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">
+                                Section Head Comment (if any)
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="slds-grid slds-wrap slds-var-p-around_x-small">
+                                    <div class="slds-col slds-size_4-of-12">
+                                        <label>Comment</label>
+                                    </div>
+                                    <div class="slds-col slds-size_8-of-12">
+                                        <lightning:inputField
+                                            fieldName="Comment__c"
+                                            variant="label-hidden"
+                                            value="{!v.requestFormObj.Comment__c}"
+                                            disabled="{!OR(!v.isEdit, v.committeeStatus != 'Waiting Section Head Review')}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2" />
+                        </div>
+                    </div>
+                </div>
+
+                <aura:renderIf isTrue="{!v.isModalOpen}">
+                    <c:CTRCommitteePreviewEmail
+                        isModalOpen="{!v.isModalOpen}"
+                        email="{!v.previewEMailInfo}"
+                        attachments="{!v.previewEmailAttachments}" />
+                </aura:renderIf>
+
+                <aura:renderIf isTrue="{!v.isEdit}">
+                    <div class="slds-align_absolute-center">
+                        <lightning:button
+                            class="preview-button"
+                            variant="brand"
+                            label="Preview"
+                            title="Preview"
+                            onclick="{!c.handleClickPreview}" />
+                        <lightning:button
+                            variant="brand-outline"
+                            label="Cancel"
+                            title="Cancel"
+                            onclick="{!c.handleClickCancel}" />
+                        <aura:renderIf isTrue="{!AND(v.committeeStatus == 'Waiting Section Head Review', v.creditOwner == v.creditOwnerOld)}">
+                            <lightning:button
+                                variant="destructive"
+                                label="Revert"
+                                title="Revert"
+                                onclick="{!c.handleClickRevert}" />
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!v.committeeStatus != 'Submitted'}">
+                            <lightning:button
+                                aura:id="btnSave"
+                                type="submit"
+                                variant="brand"
+                                label="Save"
+                                title="Save" />
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!AND(empty(v.committeeStatus) || v.committeeStatus == 'Draft' || v.committeeStatus == 'Reverted to Credit Team', v.creditOwner == v.creditOwnerOld)}">
+                            <lightning:button
+                                variant="brand"
+                                label="Submit"
+                                title="Submit"
+                                onclick="{!c.handleClickSubmitToSH}"/>
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!AND(v.committeeStatus == 'Waiting Section Head Review', v.creditOwner == v.creditOwnerOld)}">
+                            <lightning:button
+                                variant="brand"
+                                label="Submit"
+                                title="Submit"
+                                onclick="{!c.handleClickSubmitToCommittees}"/>
+                        </aura:renderIf>
+                    </div>
+                    <button id="buttonSave" class="slds-hide" type="submit"></button>
+                </aura:renderIf>
+            </aura:if>
+
+            <!-- TX Customer -->
+            <aura:if isTrue="{!AND(v.counterpartyType == 'Customer', v.bu == 'TX')}">
+                <div class="slds-section slds-is-open" aura:id="counterpartyInformationSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="counterpartyInformationDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="counterpartyInformationSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate" title="Counterparty Information">
+                                Counterparty Information
+                            </span>
+
+                        </button>
+                    </h3>
+
+                    <div class="slds-section__content">
+                        <lightning:layoutItem padding="around-small">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-size_1-of-7">
+                                    <p>Company Name:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    <lightning:outputField
+                                        fieldName="Customer__c"
+                                        variant="label-hidden"
+                                        readonly="true" />
+                                </div>
+                                <div class="slds-size_1-of-7"></div>
+                                <div class="slds-size_1-of-7">
+                                    <p>Contact Person:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    {!v.committeeInfo.CTRRequestFormHeader__r.FirstName__c + ' ' + v.committeeInfo.CTRRequestFormHeader__r.LastName__c}
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-var-m-top_large">
+                                <div class="slds-size_1-of-7">
+                                    <p>Email:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    {!v.committeeInfo.CTRRequestFormHeader__r.Email__c}
+                                </div>
+                                <div class="slds-size_1-of-7" />
+                                <div class="slds-size_1-of-7">
+                                    <p>Telephone:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    {!v.committeeInfo.CTRRequestFormHeader__r.MobilePhone__c}
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-var-m-top_large">
+                                <div class="slds-size_2-of-7">
+                                    <p>Interested Product Type {!v.counterpartyType}:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    <aura:renderIf isTrue="{!v.counterpartyType == 'Customer'}">
+                                        <aura:renderIf isTrue="{!OR(v.bu == 'TOP',v.bu == 'LABIX')}">
+                                            <lightning:outputField
+                                                fieldName="InterestedProductTypeAsCustomerTOP__c"
+                                                variant="label-hidden"
+                                                readonly="true" />
+                                        </aura:renderIf>
+                                        <aura:renderIf isTrue="{!v.bu == 'TX'}">
+                                            <lightning:outputField
+                                                fieldName="InterestedProductTypeAsCustomerTX__c"
+                                                variant="label-hidden"
+                                                readonly="true" />
+                                        </aura:renderIf>
+                                    </aura:renderIf>
+                                    <aura:renderIf isTrue="{!v.counterpartyType == 'Supplier'}">
+                                        <aura:renderIf isTrue="{!OR(v.bu == 'TOP',v.bu == 'LABIX')}">
+                                            <lightning:outputField
+                                                fieldName="InterestedProductTypeAsSupplierTOP__c"
+                                                variant="label-hidden"
+                                                readonly="true" />
+                                        </aura:renderIf>
+                                        <aura:renderIf isTrue="{!v.bu == 'TX'}">
+                                            <lightning:outputField
+                                                fieldName="InterestedProductTypeAsSupplierTX__c"
+                                                variant="label-hidden"
+                                                readonly="true" />
+                                        </aura:renderIf>
+                                    </aura:renderIf>
+                                </div>
+                            </div>
+                            
+                            <aura:renderIf isTrue="{!AND(v.counterpartyType == 'Supplier', v.bu == 'TX')}">
+                                <div class="slds-grid slds-wrap slds-var-m-top_large">
+                                    <div class="slds-size_1-of-7">
+                                        <label>
+                                            <abbr class="slds-required">*</abbr>
+                                            Payment Term:
+                                        </label>
+                                    </div>
+                                    <div class="slds-size_2-of-7">
+                                        <lightning:inputField
+                                            fieldName="TermOfPayment__c"
+                                            variant="label-hidden"
+                                            value="{!v.requestFormObj.TermOfPayment__c}"
+                                            disabled="{!!v.isEdit}"
+                                            required="true" />
+                                    </div>
+                                    <div class="slds-size_1-of-7" />
+                                    <div class="slds-size_1-of-7">
+                                        <label>
+                                            <abbr class="slds-required">*</abbr>
+                                            Payment Term:
+                                            <lightning:helptext content="Evaluate risk by FA or TRCR"/>
+                                        </label>
+                                    </div>
+                                    <div class="slds-size_2-of-7">
+                                        <lightning:inputField
+                                            fieldName="FinRiskCategory__c"
+                                            variant="label-hidden"
+                                            value="{!v.requestFormObj.FinRiskCategory__c}"
+                                            disabled="{!!v.isEdit}"
+                                            required="true" />
+                                    </div>
+                                </div>
+                            </aura:renderIf>
+                        </lightning:layoutItem>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="emailAuthorizationSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="emailAuthorizationDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="emailAuthorizationSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">
+                                Email Authorization
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content">
+                        <lightning:layoutItem padding="around-small">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-size_1-of-7">
+                                    <label>Email Authorization:</label>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    <lightning:inputField
+                                        aura:id="EmailAuthorization"
+                                        fieldName="EmailAuthorization__c"
+                                        variant="label-hidden"
+                                        disabled="{!!v.isEdit}"
+                                        onchange="{!c.handleChangeEmailAuthorization}"
+                                        value="{!v.requestFormObj.EmailAuthorization__c}" />
+                                </div>
+                                <div class="slds-size_1-of-7"></div>
+                                <div class="slds-size_1-of-7"></div>
+                                <div class="slds-size_2-of-7"></div>
+                            </div>
+                        </lightning:layoutItem>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="selectCommitteeSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="selectCommitteeDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="selectCommitteeSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate" title="Select Committee">
+                                Select Committee
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="selectCommitteeDetail">
+                        <c:CTRCommitteeCheckbox
+                            committees="{!v.lstCommittees}"
+                            selectedCommittees="{!v.selectedCommittees}"
+                            includedCommittees="{!v.includedCommittees}"
+                            selectedEmailCommittees="{!v.selectedEmailCommittees}"
+                            disabled="{!OR(!v.isEdit, !v.enableCommitteeSelection)}"/>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="mailToCommitteeSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="mailtoCommitteeDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="mailToCommitteeSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">
+                                Mail to Committee
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="mailToCommitteeDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-1">
+                                <div class="slds-form slds-form_horizontal email-urgent">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__legend">
+                                            Email Urgent:
+                                        </label>
+                                        <div>
+                                            <lightning:select
+                                                variant="label-hidden"
+                                                value="{!v.emailUrgent}"
+                                                disabled="{!OR(!v.isEdit, !v.enableMailToCommittee)}"
+                                                onchange="{!c.handleChangeEmailUrgent}">
+
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </lightning:select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1">
+                                <div class="slds-form slds-form_horizontal email-to">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label">
+                                            Email To:
+                                        </label>
+                                        <div>
+                                            <lightning:input
+                                                type="text"
+                                                variant="label-inline"
+                                                disabled="true"
+                                                value="{!v.requestFormObj.EmailTo__c}">
+                                            </lightning:input>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 email">
+                                <c:CTRMailToCommittee
+                                    recordId="{!v.recordId}"
+                                    isEdit="{!AND(v.isEdit, v.enableMailToCommittee)}"
+                                    isCommittee="{!true}"
+                                    selectedEmailCC="{!v.emailInfo.EmailCC__c}"
+                                    emailInfo="{!v.emailInfo}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="attachmentSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="attachmentDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="attachmentSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">
+                                Attachment
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="attachmentDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-1">
+                                <c:CTRFileUpload
+                                    aura:id="CTRFileUpload"
+                                    recordId="{!v.recordId}"
+                                    sObjectName="CTRRequestFormItem__c"
+                                    fieldName="CommitteeAttachment__c"
+                                    disabled="{!!v.isEdit}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aura:renderIf isTrue="{!AND(v.isEdit, OR(empty(v.committeeStatus), OR(v.committeeStatus == 'Draft', v.committeeStatus == 'Reverted to Credit Team')))}">
+                    <div class=" slds-section slds-is-open" aura:id="trcrReassignTaskSection">
+                        <h3 class="slds-section__title">
+                            <button
+                                type="button"
+                                aria-controls="trcrReassignTaskDetail"
+                                aria-expanded="true"
+                                class="slds-button slds-section__title-action"
+                                data-auraid="trcrReassignTaskSection"
+                                onclick="{!c.handleClickToggleSection}">
+
+                                <lightning:icon
+                                    iconName="utility:switch"
+                                    alternativeText="switch"
+                                    title=""
+                                    size="x-small"
+                                    class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                <span class="slds-truncate">
+                                    Credit Team Owner
+                                </span>
+                            </button>
+                        </h3>
+                        <div class="slds-section__content" id="trcrReassignTaskDetail">
+                            <lightning:layoutItem padding="around-small">
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                        <div class="slds-col slds-size_1-of-7 slds-var-p-top_x-small">
+                                            <p>Owner: </p>
+                                        </div>
+                                        <div class="slds-form_horizontal slds-col slds-size_3-of-6">
+                                            <aura:if isTrue="{!!v.isDataLoading}">
+                                                <c:CTRCustomLookupSearch
+                                                    aura:id="CreditOwner"
+                                                    objectAPIName="User"
+                                                    IconName="standard:user"
+                                                    whereCondition="{!v.TRCROwnerWhereCondition}"
+                                                    selectedRecordId="{!v.creditOwner}"
+                                                    label=""
+                                                    disabled="{!!v.isEdit}" />
+                                            </aura:if>
+                                        </div>
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+                        </div>
+                    </div>
+                </aura:renderIf>
+
+                <aura:renderIf isTrue="{!v.isModalOpen}">
+                    <c:CTRCommitteePreviewEmail
+                        isModalOpen="{!v.isModalOpen}"
+                        email="{!v.previewEMailInfo}"
+                        attachments="{!v.previewEmailAttachments}" />
+                </aura:renderIf>
+
+                <aura:renderIf isTrue="{!v.isEdit}">
+                    <div class="slds-align_absolute-center">
+                        <lightning:button
+                            variant="brand"
+                            label="Preview"
+                            title="Preview"
+                            onclick="{!c.handleClickPreview}" />
+                        <lightning:button
+                            variant="brand-outline"
+                            label="Cancel"
+                            title="Cancel"
+                            onclick="{!c.handleClickCancel}" />
+                        <aura:renderIf isTrue="{!v.committeeStatus != 'Submitted'}">
+                            <lightning:button
+                                aura:id="btnSaveTX"
+                                type="submit"
+                                variant="brand"
+                                label="Save"
+                                title="Save" />
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!AND(OR(empty(v.committeeStatus), v.committeeStatus == 'Draft'), v.creditOwner == v.creditOwnerOld)}">
+                            <lightning:button
+                                variant="brand"
+                                label="Submit"
+                                title="Submit"
+                                onclick="{!c.handleClickSubmitToCommittees}"/>
+                        </aura:renderIf>
+                    </div>
+                    <button id="buttonSave" class="slds-hide" type="submit"></button>
+                </aura:renderIf>
+            </aura:if>
+
+            <!-- TOP Supplier No Crude -->
+            <aura:if isTrue="{!AND(AND(v.counterpartyType == 'Supplier', OR(v.bu == 'TOP', v.bu == 'LABIX')), NOT(v.hasCrudeProduct))}">
+                <div>
+                    This function isn't required in this request.
+                </div>
+            </aura:if>
+
+            <!-- TOP Supplier Crude -->
+            <aura:if isTrue="{!AND(AND(v.counterpartyType == 'Supplier', OR(v.bu == 'TOP', v.bu == 'LABIX')), v.hasCrudeProduct)}">
+                <div class="slds-section slds-is-open" aura:id="counterpartyInformationSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="counterpartyInformationDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="counterpartyInformationSection"
+                            onclick="{!c.handleClickToggleSection}">
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">
+                                Counterparty Information
+                            </span>
+                        </button>
+                    </h3>
+
+                    <div class="slds-section__content">
+                        <lightning:layoutItem padding="around-small">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-size_1-of-7">
+                                    <p>Company Name:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    <lightning:outputField 
+                                        fieldName="Customer__c" 
+                                        readonly="True" 
+                                        variant="label-hidden" />
+                                </div>
+                                <div class="slds-size_1-of-7" />
+                                <div class="slds-size_1-of-7">
+                                    <p>Contact Person:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    {!v.committeeInfo.CTRRequestFormHeader__r.FirstName__c + ' ' + v.committeeInfo.CTRRequestFormHeader__r.LastName__c}
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-var-m-top_large">
+                                <div class="slds-size_1-of-7">
+                                    <p>Email:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    {!v.committeeInfo.CTRRequestFormHeader__r.Email__c}
+                                </div>
+                                <div class="slds-size_1-of-7" />
+                                <div class="slds-size_1-of-7">
+                                    <p>Telephone:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    {!v.committeeInfo.CTRRequestFormHeader__r.MobilePhone__c}
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-var-m-top_large">
+                                <div class="slds-size_2-of-7">
+                                    <p>Interested Product Type {!v.counterpartyType}:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    <lightning:outputField 
+                                        aura:id="Interested" 
+                                        variant="label-hidden"
+                                        fieldName="InterestedProductTypeAsSupplierTOP__c" 
+                                        readonly="True" />
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="emailAuthorizationSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="emailAuthorizationDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="emailAuthorizationSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">
+                                Email Authorization
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content">
+                        <lightning:layoutItem padding="around-small">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-size_1-of-7">
+                                    <label>Email Authorization:</label>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    <lightning:inputField
+                                        aura:id="EmailAuthorization"
+                                        fieldName="EmailAuthorization__c"
+                                        variant="label-hidden"
+                                        disabled="{!!v.isEdit}"
+                                        onchange="{!c.handleChangeEmailAuthorization}"
+                                        value="{!v.requestFormObj.EmailAuthorization__c}" />
+                                </div>
+                                <div class="slds-size_1-of-7"></div>
+                                <div class="slds-size_1-of-7"></div>
+                                <div class="slds-size_2-of-7"></div>
+                            </div>
+                        </lightning:layoutItem>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="selectCommitteeSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="selectCommitteeDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="selectCommitteeSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate" title="Select Committee">
+                                Select Committee
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="selectCommitteeDetail">
+                        <c:CTRCommitteeCheckbox
+                            committees="{!v.lstCommittees}"
+                            selectedCommittees="{!v.selectedCommittees}"
+                            includedCommittees="{!v.includedCommittees}"
+                            selectedEmailCommittees="{!v.selectedEmailCommittees}"
+                            disabled="{!OR(!v.isEdit, !v.enableCommitteeSelection)}"/>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="mailToCommitteeSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="mailtoCommitteeDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="mailToCommitteeSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">
+                                Mail to Committee
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="mailToCommitteeDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-1">
+                                <div class="slds-form slds-form_horizontal email-urgent">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__legend">
+                                            Email Urgent:
+                                        </label>
+                                        <div>
+                                            <lightning:select
+                                                variant="label-hidden"
+                                                value="{!v.emailUrgent}"
+                                                disabled="{!OR(!v.isEdit, !v.enableMailToCommittee)}"
+                                                onchange="{!c.handleChangeEmailUrgent}">
+
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </lightning:select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1">
+                                <div class="slds-form slds-form_horizontal email-to">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label">
+                                            Email To:
+                                        </label>
+                                        <div>
+                                            <lightning:input
+                                                type="text"
+                                                variant="label-inline"
+                                                disabled="true"
+                                                value="{!v.requestFormObj.EmailTo__c}">
+                                            </lightning:input>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 email">
+                                <c:CTRMailToCommittee
+                                    recordId="{!v.recordId}"
+                                    isEdit="{!AND(v.isEdit, v.enableMailToCommittee)}"
+                                    isCommittee="{!true}"
+                                    selectedEmailCC="{!v.emailInfo.EmailCC__c}"
+                                    emailInfo="{!v.emailInfo}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="attachmentSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="attachmentDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="attachmentSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">
+                                Attachment
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="attachmentDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-1">
+                                <c:CTRFileUpload
+                                    aura:id="CTRFileUpload"
+                                    recordId="{!v.recordId}"
+                                    sObjectName="CTRRequestFormItem__c"
+                                    fieldName="CommitteeAttachment__c"
+                                    disabled="{!!v.isEdit}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aura:renderIf isTrue="{!AND(v.isEdit, OR(empty(v.committeeStatus), OR(v.committeeStatus == 'Draft', v.committeeStatus == 'Reverted to Credit Team')))}">
+                    <div class=" slds-section slds-is-open" aura:id="trcrReassignTaskSection">
+                        <h3 class="slds-section__title">
+                            <button
+                                type="button"
+                                aria-controls="trcrReassignTaskDetail"
+                                aria-expanded="true"
+                                class="slds-button slds-section__title-action"
+                                data-auraid="trcrReassignTaskSection"
+                                onclick="{!c.handleClickToggleSection}">
+
+                                <lightning:icon
+                                    iconName="utility:switch"
+                                    alternativeText="switch"
+                                    title=""
+                                    size="x-small"
+                                    class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                <span class="slds-truncate">
+                                    Credit Team Owner
+                                </span>
+                            </button>
+                        </h3>
+                        <div class="slds-section__content" id="trcrReassignTaskDetail">
+                            <lightning:layoutItem padding="around-small">
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                        <div class="slds-col slds-size_1-of-7 slds-var-p-top_x-small">
+                                            <p>Owner: </p>
+                                        </div>
+                                        <div class="slds-form_horizontal slds-col slds-size_3-of-6">
+                                            <aura:if isTrue="{!!v.isDataLoading}">
+                                                <c:CTRCustomLookupSearch
+                                                    aura:id="CreditOwner"
+                                                    objectAPIName="User"
+                                                    IconName="standard:user"
+                                                    whereCondition="{!v.TRCROwnerWhereCondition}"
+                                                    selectedRecordId="{!v.creditOwner}"
+                                                    label=""
+                                                    disabled="{!!v.isEdit}" />
+                                            </aura:if>
+                                        </div>
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+                        </div>
+                    </div>
+                </aura:renderIf>
+
+                <div class="slds-section slds-is-open" aura:id="commentSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="commentDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="commentSection"
+                            onclick="{!c.handleToggleSection}">
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">Section Head Comment (if any)</span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="commentDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="slds-grid slds-wrap slds-var-p-around_x-small">
+                                    <div class="slds-col slds-size_4-of-12">
+                                        <label>Comment</label>
+                                    </div>
+                                    <div class="slds-col slds-size_8-of-12">
+                                        <lightning:inputField
+                                            fieldName="Comment__c"
+                                            variant="label-hidden"
+                                            value="{!v.requestFormObj.Comment__c}"
+                                            disabled="{!OR(!v.isEdit, v.committeeStatus != 'Waiting Section Head Review')}" />
+                                    </div>
+                                    <!-- <div class="slds-col slds-size_2-of-12" /> -->
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2" />
+                        </div>
+                    </div>
+                </div>
+
+                <aura:renderIf isTrue="{!v.isModalOpen}">
+                    <c:CTRCommitteePreviewEmail
+                        isModalOpen="{!v.isModalOpen}"
+                        email="{!v.previewEMailInfo}"
+                        attachments="{!v.previewEmailAttachments}" />
+                </aura:renderIf>
+
+                <aura:renderIf isTrue="{!v.isEdit}">
+                    <div class="slds-align_absolute-center">
+                        <lightning:button
+                            class="preview-button"
+                            variant="brand"
+                            label="Preview"
+                            title="Preview"
+                            onclick="{!c.handleClickPreview}" />
+                        <lightning:button
+                            variant="brand-outline"
+                            label="Cancel"
+                            title="Cancel"
+                            onclick="{!c.handleClickCancel}" />
+                        <aura:renderIf isTrue="{!AND(v.committeeStatus == 'Waiting Section Head Review', v.creditOwner == v.creditOwnerOld)}">
+                            <lightning:button
+                                variant="destructive"
+                                label="Revert"
+                                title="Revert"
+                                onclick="{!c.handleClickRevert}" />
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!v.committeeStatus != 'Submitted'}">
+                            <lightning:button
+                                aura:id="btnSave"
+                                type="submit"
+                                variant="brand"
+                                label="Save"
+                                title="Save" />
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!AND(empty(v.committeeStatus) || v.committeeStatus == 'Draft' || v.committeeStatus == 'Reverted to Credit Team', v.creditOwner == v.creditOwnerOld)}">
+                            <lightning:button
+                                variant="brand"
+                                label="Submit"
+                                title="Submit"
+                                onclick="{!c.handleClickSubmitToSH}"/>
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!AND(v.committeeStatus == 'Waiting Section Head Review', v.creditOwner == v.creditOwnerOld)}">
+                            <lightning:button
+                                variant="brand"
+                                label="Submit"
+                                title="Submit"
+                                onclick="{!c.handleClickSubmitToCommittees}"/>
+                        </aura:renderIf>
+                    </div>
+                    <button id="buttonSave" class="slds-hide" type="submit"></button>
+                </aura:renderIf>
+            </aura:if>
+
+            <!-- TX Supplier -->
+            <aura:if isTrue="{!AND(v.counterpartyType == 'Supplier', v.bu == 'TX')}">
+                <div class="slds-section slds-is-open" aura:id="counterpartyInformationSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="counterpartyInformationDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="counterpartyInformationSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate" title="Counterparty Information">
+                                Counterparty Information
+                            </span>
+
+                        </button>
+                    </h3>
+
+                    <div class="slds-section__content">
+                        <lightning:layoutItem padding="around-small">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-size_1-of-7">
+                                    <p>Company Name:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    <lightning:outputField
+                                        fieldName="Customer__c"
+                                        variant="label-hidden"
+                                        readonly="true" />
+                                </div>
+                                <div class="slds-size_1-of-7"></div>
+                                <div class="slds-size_1-of-7">
+                                    <p>Contact Person:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    {!v.committeeInfo.CTRRequestFormHeader__r.FirstName__c + ' ' + v.committeeInfo.CTRRequestFormHeader__r.LastName__c}
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-var-m-top_large">
+                                <div class="slds-size_1-of-7">
+                                    <p>Email:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    {!v.committeeInfo.CTRRequestFormHeader__r.Email__c}
+                                </div>
+                                <div class="slds-size_1-of-7" />
+                                <div class="slds-size_1-of-7">
+                                    <p>Telephone:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    {!v.committeeInfo.CTRRequestFormHeader__r.MobilePhone__c}
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-var-m-top_large">
+                                <div class="slds-size_2-of-7">
+                                    <p>Interested Product Type {!v.counterpartyType}:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    <lightning:outputField
+                                        fieldName="InterestedProductTypeAsSupplierTX__c"
+                                        variant="label-hidden"
+                                        readonly="true" />
+                                </div>
+                            </div>
+                            
+                            <div class="slds-grid slds-wrap slds-var-m-top_large">
+                                <div class="slds-size_1-of-7">
+                                    <label>
+                                        <abbr class="slds-required">*</abbr>
+                                        Payment Term:
+                                    </label>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    <lightning:inputField
+                                        fieldName="TermOfPayment__c"
+                                        variant="label-hidden"
+                                        value="{!v.requestFormObj.TermOfPayment__c}"
+                                        disabled="{!!v.isEdit}"
+                                        required="true" />
+                                </div>
+                                <div class="slds-size_1-of-7" />
+                                <div class="slds-size_1-of-7">
+                                    <label>
+                                        <abbr class="slds-required">*</abbr>
+                                        Risk Category:
+                                        <lightning:helptext content="Evaluate risk by FA or TRCR"/>
+                                    </label>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    <lightning:inputField
+                                        fieldName="FinRiskCategory__c"
+                                        variant="label-hidden"
+                                        value="{!v.requestFormObj.FinRiskCategory__c}"
+                                        disabled="{!!v.isEdit}"
+                                        required="true" />
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="emailAuthorizationSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="emailAuthorizationDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="emailAuthorizationSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">
+                                Email Authorization
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content">
+                        <lightning:layoutItem padding="around-small">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-size_1-of-7">
+                                    <label>Email Authorization:</label>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    <lightning:inputField
+                                        aura:id="EmailAuthorization"
+                                        fieldName="EmailAuthorization__c"
+                                        variant="label-hidden"
+                                        disabled="{!!v.isEdit}"
+                                        onchange="{!c.handleChangeEmailAuthorization}"
+                                        value="{!v.requestFormObj.EmailAuthorization__c}" />
+                                </div>
+                                <div class="slds-size_1-of-7"></div>
+                                <div class="slds-size_1-of-7"></div>
+                                <div class="slds-size_2-of-7"></div>
+                            </div>
+                        </lightning:layoutItem>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="selectCommitteeSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="selectCommitteeDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="selectCommitteeSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate" title="Select Committee">
+                                Select Committee
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="selectCommitteeDetail">
+                        <c:CTRCommitteeCheckbox
+                            committees="{!v.lstCommittees}"
+                            selectedCommittees="{!v.selectedCommittees}"
+                            includedCommittees="{!v.includedCommittees}"
+                            selectedEmailCommittees="{!v.selectedEmailCommittees}"
+                            disabled="{!OR(!v.isEdit, !v.enableCommitteeSelection)}"/>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="mailToCommitteeSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="mailtoCommitteeDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="mailToCommitteeSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">
+                                Mail to Committee
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="mailToCommitteeDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-1">
+                                <div class="slds-form slds-form_horizontal email-urgent">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__legend">
+                                            Email Urgent:
+                                        </label>
+                                        <div>
+                                            <lightning:select
+                                                variant="label-hidden"
+                                                value="{!v.emailUrgent}"
+                                                disabled="{!OR(!v.isEdit, !v.enableMailToCommittee)}"
+                                                onchange="{!c.handleChangeEmailUrgent}">
+
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </lightning:select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1">
+                                <div class="slds-form slds-form_horizontal email-to">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label">
+                                            Email To:
+                                        </label>
+                                        <div>
+                                            <lightning:input
+                                                type="text"
+                                                variant="label-inline"
+                                                disabled="true"
+                                                value="{!v.requestFormObj.EmailTo__c}">
+                                            </lightning:input>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 email">
+                                <c:CTRMailToCommittee
+                                    recordId="{!v.recordId}"
+                                    isEdit="{!AND(v.isEdit, v.enableMailToCommittee)}"
+                                    isCommittee="{!true}"
+                                    selectedEmailCC="{!v.emailInfo.EmailCC__c}"
+                                    emailInfo="{!v.emailInfo}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-section slds-is-open" aura:id="attachmentSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="attachmentDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="attachmentSection"
+                            onclick="{!c.handleClickToggleSection}">
+
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">
+                                Attachment
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="attachmentDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-1">
+                                <c:CTRFileUpload
+                                    aura:id="CTRFileUpload"
+                                    recordId="{!v.recordId}"
+                                    sObjectName="CTRRequestFormItem__c"
+                                    fieldName="CommitteeAttachment__c"
+                                    disabled="{!!v.isEdit}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aura:renderIf isTrue="{!AND(v.isEdit, OR(empty(v.committeeStatus), OR(v.committeeStatus == 'Draft', v.committeeStatus == 'Reverted to Credit Team')))}">
+                    <div class=" slds-section slds-is-open" aura:id="trcrReassignTaskSection">
+                        <h3 class="slds-section__title">
+                            <button
+                                type="button"
+                                aria-controls="trcrReassignTaskDetail"
+                                aria-expanded="true"
+                                class="slds-button slds-section__title-action"
+                                data-auraid="trcrReassignTaskSection"
+                                onclick="{!c.handleClickToggleSection}">
+
+                                <lightning:icon
+                                    iconName="utility:switch"
+                                    alternativeText="switch"
+                                    title=""
+                                    size="x-small"
+                                    class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                <span class="slds-truncate">
+                                    Credit Team Owner
+                                </span>
+                            </button>
+                        </h3>
+                        <div class="slds-section__content" id="trcrReassignTaskDetail">
+                            <lightning:layoutItem padding="around-small">
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                        <div class="slds-col slds-size_1-of-7 slds-var-p-top_x-small">
+                                            <p>Owner: </p>
+                                        </div>
+                                        <div class="slds-form_horizontal slds-col slds-size_3-of-6">
+                                            <aura:if isTrue="{!!v.isDataLoading}">
+                                                <c:CTRCustomLookupSearch
+                                                    aura:id="CreditOwner"
+                                                    objectAPIName="User"
+                                                    IconName="standard:user"
+                                                    whereCondition="{!v.TRCROwnerWhereCondition}"
+                                                    selectedRecordId="{!v.creditOwner}"
+                                                    label=""
+                                                    disabled="{!!v.isEdit}" />
+                                            </aura:if>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+                        </div>
+                    </div>
+                </aura:renderIf>
+
+                <aura:renderIf isTrue="{!v.isModalOpen}">
+                    <c:CTRCommitteePreviewEmail
+                        isModalOpen="{!v.isModalOpen}"
+                        email="{!v.previewEMailInfo}"
+                        attachments="{!v.previewEmailAttachments}" />
+                </aura:renderIf>
+
+                <aura:renderIf isTrue="{!v.isEdit}">
+                    <div class="slds-align_absolute-center">
+                        <lightning:button
+                            variant="brand"
+                            label="Preview"
+                            title="Preview"
+                            onclick="{!c.handleClickPreview}" />
+                        <lightning:button
+                            variant="brand-outline"
+                            label="Cancel"
+                            title="Cancel"
+                            onclick="{!c.handleClickCancel}" />
+                        <aura:renderIf isTrue="{!v.committeeStatus != 'Submitted'}">
+                            <lightning:button
+                                aura:id="btnSaveTX"
+                                type="submit"
+                                variant="brand"
+                                label="Save"
+                                title="Save" />
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!AND(OR(empty(v.committeeStatus), v.committeeStatus == 'Draft'), v.creditOwner == v.creditOwnerOld)}">
+                            <lightning:button
+                                variant="brand"
+                                label="Submit"
+                                title="Submit"
+                                onclick="{!c.handleClickSubmitToCommittees}"/>
+                        </aura:renderIf>
+                    </div>
+                    <button id="buttonSave" class="slds-hide" type="submit"></button>
+                </aura:renderIf>
+            </aura:if>
+
+        </lightning:recordEditForm>
+    </section>
+
+</aura:component>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_email_to_TA2</name>
+        <label>Send email to TA2</label>
+        <locationX>609</locationX>
+        <locationY>420</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Body</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$Record.TA2_Name__r.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>sfdc.r2@roundtwosolutions.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>Subject</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <description>Revise email Noti TA2</description>
+    <interviewLabel>E-MOC email noti MOC when TA3 review complete {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>E-MOC email noti MOC when TA3 review complete</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <startElementReference>Send_email_to_TA2</startElementReference>
+    <status>Active</status>
+    <textTemplates>
+        <name>Body</name>
+        <text>MOC Title : {!$Record.E_MOC_Application__r.E_MOC_Title__c}
+Functional Location : {!$Record.E_MOC_Application__r.Functional_Location__c}
+FL Description : {!$Record.E_MOC_Application__r.Functional_Location_Description__c}
+Category Type : {!$Record.E_MOC_Application__r.Category_Type__c}
+Status : {!$Record.E_MOC_Application__r.Status_Common_Workflow__c}
+Link : https://thaioil.lightning.force.com/lightning/r/E_MOC_Application__c/{!$Record.E_MOC_Application__r.Id}/view</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Subject</name>
+        <text>[E-MOC Application] Please review TA3&apos;s comment; Common Workflow / {!$Record.E_MOC_Application__r.Name}/{!$Record.E_MOC_Application__r.Functional_Location__r.Name}</text>
+    </textTemplates>
+    <variables>
+        <name>recipient</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

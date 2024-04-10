@@ -1,0 +1,29 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" controller="EMOC_OrderListController" access="global">
+	<lightning:navigation aura:id="navService" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<!-- IMPORTED STYLES-->
+	<ltng:require styles="{!$Resource.noHeader}" />
+
+	<!-- ATTRIBUTES -->
+	<aura:attribute name="recordId" type="String" />
+    <aura:attribute name="Notification__c" type="String" />
+    <aura:attribute name="orders_length" type="Integer" default="0" access="private" />
+
+	<!-- BODY-->
+    
+    <lightning:layout class="slds-border_bottom border-under-bottom slds-p-around_small">
+        <lightning:layoutItem class="slds-var-p-around_xx-small">
+            <lightning:icon iconName="standard:related_list" alternativeText="" class="thaiColor" />
+        </lightning:layoutItem>
+        <lightning:layoutItem class="slds-var-p-around_x-small">
+            <div class="slds-text-heading_medium">Orders</div>
+        </lightning:layoutItem>
+        <aura:if isTrue="{!and(equals(v.orders_length,0),notequals(v.Notification__c,''))}">
+            <lightning:layoutItem alignmentBump="left">
+                <lightning:button variant="brand" label="Create Order" title="Create Order" onclick="{! c.newOrder }" />
+            </lightning:layoutItem>
+        </aura:if>
+	</lightning:layout>
+	
+</aura:component>

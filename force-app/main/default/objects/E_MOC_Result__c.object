@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Document__c</fullName>
+        <externalId>false</externalId>
+        <label>Document</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Document Require Checklist</fullName>
+                    <default>false</default>
+                    <label>Document Require Checklist</label>
+                </value>
+                <value>
+                    <fullName>Hazard Screen Checklist</fullName>
+                    <default>false</default>
+                    <label>Hazard Screen Checklist</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>E_MOC_Application__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>E-MOC Application</label>
+        <referenceTo>E_MOC_Application__c</referenceTo>
+        <relationshipLabel>E-MOC Result</relationshipLabel>
+        <relationshipName>E_MOC_Result</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Help_text__c</fullName>
+        <externalId>false</externalId>
+        <label>Help text</label>
+        <length>5000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>N_A__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>N/A</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>No__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>No</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Position__c</fullName>
+        <externalId>false</externalId>
+        <label>Position</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>MROA</fullName>
+                    <default>false</default>
+                    <label>MROA</label>
+                </value>
+                <value>
+                    <fullName>MROB</fullName>
+                    <default>false</default>
+                    <label>MROB</label>
+                </value>
+                <value>
+                    <fullName>MROC</fullName>
+                    <default>false</default>
+                    <label>MROC</label>
+                </value>
+                <value>
+                    <fullName>MMLF</fullName>
+                    <default>false</default>
+                    <label>MMLF</label>
+                </value>
+                <value>
+                    <fullName>MMLD</fullName>
+                    <default>false</default>
+                    <label>MMLD</label>
+                </value>
+                <value>
+                    <fullName>MPOF</fullName>
+                    <default>false</default>
+                    <label>MPOF</label>
+                </value>
+                <value>
+                    <fullName>MFOP</fullName>
+                    <default>false</default>
+                    <label>MFOP</label>
+                </value>
+                <value>
+                    <fullName>TNPA</fullName>
+                    <default>false</default>
+                    <label>TNPA</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>Priority</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>A</fullName>
+                    <default>false</default>
+                    <label>A</label>
+                </value>
+                <value>
+                    <fullName>B</fullName>
+                    <default>false</default>
+                    <label>B</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Question_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Question No</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Question__c</fullName>
+        <externalId>false</externalId>
+        <label>Question</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>30</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Remark__c</fullName>
+        <externalId>false</externalId>
+        <label>Remark</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>30</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Common</fullName>
+                    <default>false</default>
+                    <label>Common</label>
+                </value>
+                <value>
+                    <fullName>Operations Document</fullName>
+                    <default>false</default>
+                    <label>Operations Document</label>
+                </value>
+                <value>
+                    <fullName>Technologist Document</fullName>
+                    <default>false</default>
+                    <label>Technologist Document</label>
+                </value>
+                <value>
+                    <fullName>Hazard screen checklist</fullName>
+                    <default>false</default>
+                    <label>Hazard screen checklist</label>
+                </value>
+                <value>
+                    <fullName>Common document</fullName>
+                    <default>false</default>
+                    <label>Common document</label>
+                </value>
+                <value>
+                    <fullName>Process Control Document</fullName>
+                    <default>false</default>
+                    <label>Process Control Document</label>
+                </value>
+                <value>
+                    <fullName>Instrument Engineering Document</fullName>
+                    <default>false</default>
+                    <label>Instrument Engineering Document</label>
+                </value>
+                <value>
+                    <fullName>Stationary Equipment and Piping Document</fullName>
+                    <default>false</default>
+                    <label>Stationary Equipment and Piping Document</label>
+                </value>
+                <value>
+                    <fullName>Rotating Document</fullName>
+                    <default>false</default>
+                    <label>Rotating Document</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Document Common</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Document Common</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Document Driver/Actuator (process) at Valve (e.g. Motor, MOV)</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Document Driver/Actuator (process) at Valve (e.g. Motor, MOV)</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Document Electrical equipment/system</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Document Electrical equipment/system</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Document Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Document Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Document Comunication (e.g. talk-back, CCTV, radio, public announce and telecomunication network)</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Document Comunication (e.g. talk-back, CCTV, radio, public announce and telecomunication network)</label>
+                </value>
+                <value>
+                    <fullName>Maintenance document</fullName>
+                    <default>false</default>
+                    <label>Maintenance document</label>
+                </value>
+                <value>
+                    <fullName>Civil and Structure document</fullName>
+                    <default>false</default>
+                    <label>Civil and Structure document</label>
+                </value>
+                <value>
+                    <fullName>Combustion document</fullName>
+                    <default>false</default>
+                    <label>Combustion document</label>
+                </value>
+                <value>
+                    <fullName>HSE document</fullName>
+                    <default>false</default>
+                    <label>HSE document</label>
+                </value>
+                <value>
+                    <fullName>Process Safety and Fire Safety document</fullName>
+                    <default>false</default>
+                    <label>Process Safety and Fire Safety document</label>
+                </value>
+                <value>
+                    <fullName>Environment document</fullName>
+                    <default>false</default>
+                    <label>Environment document</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Version__c</fullName>
+        <externalId>false</externalId>
+        <label>Version</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Yes__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Yes</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>E-MOC Result</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>E_MOC_Application__c</columns>
+        <columns>Question__c</columns>
+        <columns>Remark__c</columns>
+        <columns>Version__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>EMO-{000000000}</displayFormat>
+        <label>E-MOC Result No.</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

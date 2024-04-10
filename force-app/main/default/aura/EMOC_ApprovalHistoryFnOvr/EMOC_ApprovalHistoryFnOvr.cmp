@@ -1,0 +1,48 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" controller="EMOC_ApprovalHistoryFnOvrController" access="global">
+    <aura:handler event="lightning:tabFocused" action="{! c.onTabFocused }"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="recordId" type="String" />     
+    <aura:attribute name="opportunityApproversHistory" type="ProcessInstanceStep[]"/>
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="sortDirection" type="String" default="asc" />
+    <aura:attribute name="defaultSortDirection" type="String" default="asc" />
+    <aura:attribute name="sortedBy" type="String" />
+    <lightning:workspaceAPI aura:id="workspace" />
+	<lightning:empApi aura:id="empApi" />
+    <aura:attribute name="subscription" type="Map" />
+    
+    <div class="body">
+       <div class="slds-page-header slds-page-header_record-home forceHighlightsStencilDesktop forceRecordLayout border_style_top">
+           <div class="slds-grid primaryFieldRow">
+               <div class="slds-grid slds-col slds-has-flexi-truncate">
+                   <div class="profilePicWrapper slds-media slds-no-space">
+                       <div class="slds-media__figure slds-icon forceEntityIcon" style="background-color: #DCD861; width: 1.5rem; height: 1.5rem;">
+                           <span class="uiImage">
+                           		<img class="icon" src="/img/icon/t4v35/standard/approval_120.png"></img>
+                           </span>
+                       </div>
+                   </div>
+                   <div class="slds-media__body" style="text-align: left;">
+                      <h2>
+                        <div class="slds-page-header__title slds-m-right--small slds-align-middle clip-text">
+                          <div><span class="uiOutputText runtime_approval_processOutputName title_size">Approval History ({!v.opportunityApproversHistory.length})</span></div>
+                        </div>
+                      </h2>
+                   </div>
+               </div>        
+           </div>
+        </div>
+        <div class="border_style_bottom">
+            <lightning:datatable
+                keyField="id"
+                columns="{!v.columns }"
+                data="{!v.opportunityApproversHistory}"
+                defaultSortDirection="{!v.defaultSortDirection}"
+                sortedDirection="{!v.sortDirection}"
+                sortedBy="{!v.sortedBy}"
+                onsort="{! c.updateColumnSorting }"
+                hideCheckboxColumn="true">
+            </lightning:datatable>
+    	</div>
+    </div>
+</aura:component>

@@ -1,0 +1,58 @@
+<aura:component controller="OPP_ApplicationController" access="global"  
+implements="flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="notis" type="OPP_Notification__c[]"/>
+
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+            <tr class="slds-text-title_caps">
+                <th scope="col" class="">
+                    <div class="slds-truncate" title="URL"></div>
+                </th>  
+                <th scope="col" class="">
+                    <div class="slds-truncate" title="Date">Date</div>
+                </th>
+                <th scope="col" class="">
+                    <div class="slds-truncate" title="Subject">Subject</div>
+                </th>
+                <th scope="col" class="">
+                    <div class="slds-truncate" title="Subject">Status</div>
+                </th>
+                <th scope="col" class="">
+                    <div class="slds-truncate" title="Subject">Ref</div>
+                </th>
+
+            </tr>
+        </thead>  
+        <tbody>
+            <aura:iteration items="{!v.notis}" var="noti">
+                <tr>   
+                    <td data-label="URL">
+                        <div class="slds-truncate" >
+                            <lightning:formattedUrl 
+                                value="{!noti.URL__c}"
+                                label="Go"
+                                target="_blank" />
+                        </div>
+                    </td>
+                    <td data-label="Date">
+                        <div class="slds-truncate" >
+                            <!--<lightning:formattedDateTime value="{!noti.CreatedDate}"/>-->
+                            <lightning:formattedDateTime value="{!noti.CreatedDate}" year="numeric" month="numeric" day="numeric" hour="2-digit"
+                                 minute="2-digit" hour12="false"/>
+                        </div>
+                    </td>
+                    <td scope="row" data-label="Subject" class="">
+                        <div class="slds-truncate" >{!noti.Subject__c}</div>
+                    </td>
+                    <td scope="row" data-label="Subject" class="">
+                        <div class="slds-truncate" >{!noti.Status__c}</div>
+                    </td>
+                    <td scope="row" data-label="Subject" class="">
+                        <div class="slds-truncate" >{!noti.ReferenceID__c}</div>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+</aura:component>

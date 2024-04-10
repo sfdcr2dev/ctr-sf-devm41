@@ -1,0 +1,89 @@
+<aura:component
+	implements="flexipage:availableForRecordHome,force:hasRecordId"
+	controller="THOR_OrderListRelatedController"
+	access="global"
+>
+	<!-- Attributes -->
+	<aura:attribute name="NotificationsRelated" type="List" default="[]" access="global" />
+	<aura:attribute name="SubOrdersRelated" type="List" default="[]" access="global" />
+	<aura:attribute name="OperationsRelated" type="List" default="[]" access="global" />
+	<aura:attribute name="recordId" type="String" default="" access="global" />
+
+	<aura:attribute
+		name="pageState"
+		type="String"
+		default="fatherBody"
+		description="variable for representing the only 4 states that the page can be in: 'fatherBody','showNotifications', 'showSubOrders', 'showOperations'
+                                 'fatherBody' represents the initial state and the 3 other states ('showNotifications', 'showSubOrders', 'showOperations') indicate that the user clicked the respective related list"
+	/>
+
+	<!-- Handlers -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.doInit}" />
+	<lightning:navigation aura:id="navLink" />
+
+	<aura:registerEvent name="stopLoadingEvent" type="c:THOR_Event" />
+
+	<aura:method name="childMessageMethod" action="{!c.getMessage}" access="public">
+		<aura:attribute name="Title" type="String" default="Related" />
+	</aura:method>
+
+	<!-- Aura body Section -->
+	<div class="c-container slds-p-around_medium">
+		<lightning:layout multipleRows="true">
+			<lightning:layoutItem size="12" padding="around-small">
+				<a href="javascript:void(0);" class="slds-text-link_faux">
+					<div
+						class="slds-box slds-theme_default clickable-div"
+						onclick="{!c.navigateToRelated }"
+						id="Notifications__r"
+					>
+						<lightning:layout verticalAlign="center">
+							<lightning:layoutItem>
+								<lightning:icon iconName="custom:custom53" alternativeText="" class="thaiColor" />
+							</lightning:layoutItem>
+							<lightning:layoutItem padding="horizontal-small">
+								Notification ({! v.NotificationsRelated.length})
+							</lightning:layoutItem>
+						</lightning:layout>
+					</div>
+				</a>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="12" padding="around-small">
+				<a href="javascript:void(0);" class="slds-text-link_faux">
+					<div class="slds-box slds-theme_default clickable-div" onclick="{!c.navigateToRelated }" id="Orders__r">
+						<lightning:layout verticalAlign="center">
+							<lightning:layoutItem>
+								<lightning:icon iconName="standard:related_list" alternativeText="" class="thaiColor" />
+							</lightning:layoutItem>
+							<lightning:layoutItem padding="horizontal-small">
+								Sub Order ({! v.SubOrdersRelated.length})
+							</lightning:layoutItem>
+						</lightning:layout>
+					</div>
+				</a>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="12" padding="around-small">
+				<a href="javascript:void(0);" class="slds-text-link_faux">
+					<div
+						class="slds-box slds-theme_default clickable-div"
+						onclick="{!c.navigateToRelated }"
+						id="Order_Operations__r"
+					>
+						<lightning:layout verticalAlign="center">
+							<lightning:layoutItem>
+								<lightning:icon iconName="standard:data_integration_hub" alternativeText="" class="thaiColor" />
+							</lightning:layoutItem>
+							<lightning:layoutItem padding="horizontal-small">
+								Operation ({! v.OperationsRelated.length})
+							</lightning:layoutItem>
+						</lightning:layout>
+					</div>
+				</a>
+			</lightning:layoutItem>
+		</lightning:layout>
+	</div>
+	<!-- /Aura body Section -->
+</aura:component>

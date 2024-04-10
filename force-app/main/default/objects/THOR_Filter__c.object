@@ -1,0 +1,894 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Area__c</fullName>
+        <externalId>false</externalId>
+        <label>Area</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Breakdown__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Breakdown</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Check_Sheet_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Check Sheet Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Check_Sheet_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Check Sheet Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Clearance_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Clearance Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Create_Date_From__c</fullName>
+        <externalId>false</externalId>
+        <label>Create Date From</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Create_Date_To__c</fullName>
+        <externalId>false</externalId>
+        <label>Create Date To</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Created_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Created By</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Creator__c</fullName>
+        <externalId>false</externalId>
+        <label>Creator</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>- Notification Description 
+- Order Description</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EQCC_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>EQCC Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EQCC_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>EQCC Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Equipment__c</fullName>
+        <externalId>false</externalId>
+        <label>Equipment</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Filter_type__c</fullName>
+        <externalId>false</externalId>
+        <label>Filter type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>HomeNotification</fullName>
+                    <default>false</default>
+                    <label>HomeNotification</label>
+                </value>
+                <value>
+                    <fullName>HomeOrder</fullName>
+                    <default>false</default>
+                    <label>HomeOrder</label>
+                </value>
+                <value>
+                    <fullName>Notification</fullName>
+                    <default>false</default>
+                    <label>Notification</label>
+                </value>
+                <value>
+                    <fullName>Order</fullName>
+                    <default>false</default>
+                    <label>Order</label>
+                </value>
+                <value>
+                    <fullName>EQCC</fullName>
+                    <default>false</default>
+                    <label>EQCC</label>
+                </value>
+                <value>
+                    <fullName>My Approval</fullName>
+                    <default>false</default>
+                    <label>My Approval</label>
+                </value>
+                <value>
+                    <fullName>Work Clearance</fullName>
+                    <default>false</default>
+                    <label>Work Clearance</label>
+                </value>
+                <value>
+                    <fullName>NotificationHistorical</fullName>
+                    <default>false</default>
+                    <label>Notification Historical</label>
+                </value>
+                <value>
+                    <fullName>OrderHistorical</fullName>
+                    <default>false</default>
+                    <label>Order Historical</label>
+                </value>
+                <value>
+                    <fullName>WorkClearanceHistorical</fullName>
+                    <default>false</default>
+                    <label>Work Clearance Historical</label>
+                </value>
+                <value>
+                    <fullName>EQCCHistorical</fullName>
+                    <default>false</default>
+                    <label>EQCC Historical</label>
+                </value>
+                <value>
+                    <fullName>ODM Notification</fullName>
+                    <default>false</default>
+                    <label>ODM Notification</label>
+                </value>
+                <value>
+                    <fullName>ODM_HistoricalNotification</fullName>
+                    <default>false</default>
+                    <label>ODM_HistoricalNotification</label>
+                </value>
+                <value>
+                    <fullName>ODM WorkClearance</fullName>
+                    <default>false</default>
+                    <label>ODM WorkClearance</label>
+                </value>
+                <value>
+                    <fullName>ODM_HistoricalWorkClearance</fullName>
+                    <default>false</default>
+                    <label>ODM_HistoricalWorkClearance</label>
+                </value>
+                <value>
+                    <fullName>ODM WorkClearance Inspection</fullName>
+                    <default>false</default>
+                    <label>ODM WorkClearance Inspection</label>
+                </value>
+                <value>
+                    <fullName>ODM WorkClearance Verification</fullName>
+                    <default>false</default>
+                    <label>ODM WorkClearance Verification</label>
+                </value>
+                <value>
+                    <fullName>ODM NotificationSwitchOver</fullName>
+                    <default>false</default>
+                    <label>ODM NotificationSwitchOver</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Functional_Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Functional Location</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IsActive__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Main_Work_Center__c</fullName>
+        <externalId>false</externalId>
+        <label>Main Work Center</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Maintenance_Plant__c</fullName>
+        <externalId>false</externalId>
+        <label>Maintenance Plant</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>My_Tasks__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>My Tasks</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>NotificationTypeMulti__c</fullName>
+        <externalId>false</externalId>
+        <label>NotificationTypeMulti</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>CM</fullName>
+                    <default>false</default>
+                    <label>CM</label>
+                </value>
+                <value>
+                    <fullName>PM</fullName>
+                    <default>false</default>
+                    <label>PM</label>
+                </value>
+                <value>
+                    <fullName>SH</fullName>
+                    <default>false</default>
+                    <label>SH</label>
+                </value>
+                <value>
+                    <fullName>OP</fullName>
+                    <default>false</default>
+                    <label>OP</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Notification_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Notification Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Notification_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Notification Number</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Notification_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Notification Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>CM</fullName>
+                    <default>false</default>
+                    <label>CM</label>
+                </value>
+                <value>
+                    <fullName>PM</fullName>
+                    <default>false</default>
+                    <label>PM</label>
+                </value>
+                <value>
+                    <fullName>SH</fullName>
+                    <default>false</default>
+                    <label>SH</label>
+                </value>
+                <value>
+                    <fullName>OP</fullName>
+                    <default>false</default>
+                    <label>OP</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>OrderTypeMulti__c</fullName>
+        <externalId>false</externalId>
+        <label>OrderTypeMulti</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>CM01</fullName>
+                    <default>false</default>
+                    <label>CM01</label>
+                </value>
+                <value>
+                    <fullName>PM01</fullName>
+                    <default>false</default>
+                    <label>PM01</label>
+                </value>
+                <value>
+                    <fullName>SH01</fullName>
+                    <default>false</default>
+                    <label>SH01</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Order_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Order Number</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Order_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Order Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>CM01</fullName>
+                    <default>false</default>
+                    <label>CM01</label>
+                </value>
+                <value>
+                    <fullName>PM01</fullName>
+                    <default>false</default>
+                    <label>PM01</label>
+                </value>
+                <value>
+                    <fullName>SH01</fullName>
+                    <default>false</default>
+                    <label>SH01</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Plant_Section__c</fullName>
+        <externalId>false</externalId>
+        <label>Plant Section</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PriorityMulti__c</fullName>
+        <externalId>false</externalId>
+        <label>Priority</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Normal</fullName>
+                    <default>false</default>
+                    <label>Normal</label>
+                </value>
+                <value>
+                    <fullName>Urgent</fullName>
+                    <default>false</default>
+                    <label>Urgent</label>
+                </value>
+                <value>
+                    <fullName>Immediately</fullName>
+                    <default>false</default>
+                    <label>Immediately</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 1M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 1M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 3M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 3M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 6M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 6M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 9M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 9M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 12M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 12M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 15M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 15M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 18M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 18M</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>Priority</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Normal</fullName>
+                    <default>false</default>
+                    <label>Normal</label>
+                </value>
+                <value>
+                    <fullName>Urgent</fullName>
+                    <default>false</default>
+                    <label>Urgent</label>
+                </value>
+                <value>
+                    <fullName>Immediately</fullName>
+                    <default>false</default>
+                    <label>Immediately</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 1M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 1M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 3M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 3M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 6M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 6M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 9M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 9M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 12M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 12M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 15M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 15M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 18M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 18M</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Requested_Date_Form__c</fullName>
+        <externalId>false</externalId>
+        <label>Requested Date Form</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Requested_Date_To__c</fullName>
+        <externalId>false</externalId>
+        <label>Requested Date To</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Requester__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Responsible_Person__c</fullName>
+        <externalId>false</externalId>
+        <label>Responsible Person</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StatusMulti__c</fullName>
+        <externalId>false</externalId>
+        <label>StatusMulti</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>false</default>
+                    <label>New</label>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>false</default>
+                    <label>In Progress</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+                <value>
+                    <fullName>Created</fullName>
+                    <default>false</default>
+                    <label>Created</label>
+                </value>
+                <value>
+                    <fullName>Delete Flag</fullName>
+                    <default>false</default>
+                    <label>Delete Flag</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+                <value>
+                    <fullName>Inactive</fullName>
+                    <default>false</default>
+                    <label>Inactive</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>Pending for Approval</fullName>
+                    <default>false</default>
+                    <label>Pending for Approval</label>
+                </value>
+                <value>
+                    <fullName>Need Revision</fullName>
+                    <default>false</default>
+                    <label>Need Revision</label>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Recalled</fullName>
+                    <default>false</default>
+                    <label>Recalled</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Rejected</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Submission_Date_From__c</fullName>
+        <externalId>false</externalId>
+        <label>Submission Date From</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Submission_Date_To__c</fullName>
+        <externalId>false</externalId>
+        <label>Submission Date To</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Super_Order__c</fullName>
+        <externalId>false</externalId>
+        <label>Super Order</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>THOR_Filter</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Work_Clearance_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Clearance Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Created</fullName>
+                    <default>false</default>
+                    <label>Created</label>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>false</default>
+                    <label>In Progress</label>
+                </value>
+                <value>
+                    <fullName>Inactive</fullName>
+                    <default>false</default>
+                    <label>Inactive</label>
+                </value>
+                <value>
+                    <fullName>Delete Flag</fullName>
+                    <default>false</default>
+                    <label>Delete Flag</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+                <value>
+                    <fullName>EXTD</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>EXTD</label>
+                </value>
+                <value>
+                    <fullName>EXTH</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>EXTH</label>
+                </value>
+                <value>
+                    <fullName>WCCL</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>WCCL</label>
+                </value>
+                <value>
+                    <fullName>WIP1</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>WIP1</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>THOR Filter</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Main_Work_Center__c</columns>
+        <columns>User__c</columns>
+        <columns>Notification_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>User__c</field>
+            <operation>contains</operation>
+            <value>Worawet</value>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>THOR Filter Name</label>
+        <type>Text</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

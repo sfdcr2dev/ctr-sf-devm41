@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <submitter>MMLD_OIL_MOVEMENTS_Senior</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MMLD_Section_Head</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MMLF_OFFSITE_Senior</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MMLF_Section_Head</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MPOE_Section_Head</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MPOE_Senior</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MPOF_LABIX_Senior</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MPOF_Section_Head</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MPOF_Senior</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MROA_Section_Head</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MROA_TOC_1_Senior</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MROA_TOC_2_Senior</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MROB_Section_Head</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MROB_TOC_4_Senior</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MROB_U_SPP_Senior</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MROB_U_TOP_Senior</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MROC_Section_Head</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MROC_TOC_3_Senior</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>MROC_TOC_5_Senior</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>SM</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>FN_Technical_Review</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>MROA_Section_Head</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <booleanFilter>1 AND 2 AND (3 OR 4 OR 5)</booleanFilter>
+            <criteriaItems>
+                <field>E_MOC_Application__c.Area__c</field>
+                <operation>equals</operation>
+                <value>A</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.Status_Functional_Override__c</field>
+                <operation>equals</operation>
+                <value>Risk assessment</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>SIL 2</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>SIL 3</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>No SIL Assessment</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>FN-Risk assessment-Area A-POM</label>
+        <name>FN_Risk_assessment_Area_A_POM</name>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>FN_Technical_Review</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>MROB_Section_Head</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <booleanFilter>1 AND 2 AND (3 OR 4 OR 5)</booleanFilter>
+            <criteriaItems>
+                <field>E_MOC_Application__c.Area__c</field>
+                <operation>equals</operation>
+                <value>B</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.Status_Functional_Override__c</field>
+                <operation>equals</operation>
+                <value>Risk assessment</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>SIL 2</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>SIL 3</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>No SIL Assessment</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>FN-Risk assessment-AREA B-POM</label>
+        <name>FN_Risk_assessment_AREA_B_POM</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>FN_Technical_Review</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>MROC_Section_Head</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <booleanFilter>1 AND 2 AND (3 OR 4 OR 5)</booleanFilter>
+            <criteriaItems>
+                <field>E_MOC_Application__c.Area__c</field>
+                <operation>equals</operation>
+                <value>C</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.Status_Functional_Override__c</field>
+                <operation>equals</operation>
+                <value>Risk assessment</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>SIL 2</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>SIL 3</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>No SIL Assessment</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>FN-Risk assessment-AREA C-POM</label>
+        <name>FN_Risk_assessment_AREA_C_POM</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>FN_Technical_Review</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>MMLF_Section_Head</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <booleanFilter>1 AND 2 AND 3 AND (4 OR 5 OR 6)</booleanFilter>
+            <criteriaItems>
+                <field>E_MOC_Application__c.Area__c</field>
+                <operation>equals</operation>
+                <value>D</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.Status_Functional_Override__c</field>
+                <operation>equals</operation>
+                <value>Risk assessment</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.PlantSection__c</field>
+                <operation>equals</operation>
+                <value>OF</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>SIL 2</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>SIL 3</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>No SIL Assessment</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>FN-Risk assessment-AREA D-OF-POM</label>
+        <name>FN_Risk_assessment_AREA_D_OF_POM</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>FN_Technical_Review</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>MMLD_Section_Head</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <booleanFilter>1 AND 2 AND 3 AND (4 OR 5 OR 6)</booleanFilter>
+            <criteriaItems>
+                <field>E_MOC_Application__c.Area__c</field>
+                <operation>equals</operation>
+                <value>D</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.Status_Functional_Override__c</field>
+                <operation>equals</operation>
+                <value>Risk assessment</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.PlantSection__c</field>
+                <operation>equals</operation>
+                <value>MO</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>SIL 2</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>SIL 3</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>No SIL Assessment</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>FN-Risk assessment-AREA D-MO-POM</label>
+        <name>FN_Risk_assessment_AREA_D_MO_POM</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>FN_Technical_Review</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>MPOE_Section_Head</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <booleanFilter>1 AND 2 AND (3 OR 4 OR 5)</booleanFilter>
+            <criteriaItems>
+                <field>E_MOC_Application__c.Area__c</field>
+                <operation>equals</operation>
+                <value>E</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.Status_Functional_Override__c</field>
+                <operation>equals</operation>
+                <value>Risk assessment</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>SIL 2</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>SIL 3</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>No SIL Assessment</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>FN-Risk assessment-AREA E-POM</label>
+        <name>FN_Risk_assessment_AREA_E_POM</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>FN_Technical_Review</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>MPOF_Section_Head</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <booleanFilter>1 AND 2 AND (3 OR 4 OR 5)</booleanFilter>
+            <criteriaItems>
+                <field>E_MOC_Application__c.Area__c</field>
+                <operation>equals</operation>
+                <value>F</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.Status_Functional_Override__c</field>
+                <operation>equals</operation>
+                <value>Risk assessment</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>SIL 2</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>SIL 3</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>E_MOC_Application__c.SIL_Level__c</field>
+                <operation>equals</operation>
+                <value>No SIL Assessment</value>
+            </criteriaItems>
+        </entryCriteria>
+        <label>FN-Risk assessment-AREA F-POM</label>
+        <name>FN_Risk_assessment_AREA_F_POM</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <emailTemplate>EMOC/FN_Risk_Approval</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>FN-Risk Approval-POM</label>
+    <recallActions>
+        <action>
+            <name>FN_Button_2_False</name>
+            <type>FieldUpdate</type>
+        </action>
+    </recallActions>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Contractor PIR</value>
+    </caseValues>
+    <fields>
+        <label><!-- Area --></label>
+        <name>Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- Close (Sync) --></label>
+        <name>Close_Sync__c</name>
+    </fields>
+    <fields>
+        <label><!-- Close --></label>
+        <name>Close__c</name>
+    </fields>
+    <fields>
+        <label><!-- ExternalId --></label>
+        <name>ExternalId__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Source --></label>
+        <name>External_Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month Order --></label>
+        <name>Month_Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month --></label>
+        <name>Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- PIR (Sync) --></label>
+        <name>PIR_Sync__c</name>
+    </fields>
+    <fields>
+        <label><!-- PIR Type --></label>
+        <name>PIR_Type__c</name>
+        <picklistValues>
+            <masterLabel>Unsafe Act</masterLabel>
+            <translation><!-- Unsafe Act --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unsafe Condition</masterLabel>
+            <translation><!-- Unsafe Condition --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- PIR --></label>
+        <name>PIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company --></label>
+        <name>SD_Company__c</name>
+        <relationshipLabel><!-- Contractor PIR --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Contractor --></label>
+        <name>SD_Contractor__c</name>
+        <relationshipLabel><!-- Contractor PIR --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sub Area --></label>
+        <name>SD_Sub_Area__c</name>
+        <relationshipLabel><!-- Contractor PIR --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Zone --></label>
+        <name>SD_Zone__c</name>
+        <relationshipLabel><!-- Contractor PIR --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Year --></label>
+        <name>Year__c</name>
+    </fields>
+    <layouts>
+        <layout>Contractor PIR Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

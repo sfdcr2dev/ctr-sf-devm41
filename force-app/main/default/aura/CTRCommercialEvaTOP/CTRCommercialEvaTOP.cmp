@@ -1,0 +1,233 @@
+<aura:component controller="CTRInitialCustomerTOP"  implements="lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+  
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    <aura:attribute name="IsDisable" type="Boolean" default="true"/>
+    <aura:attribute name="IsDomesticDisabled" type="Boolean" default="true"/>
+    <aura:attribute name="IsInterDisabled" type="Boolean" default="true"/>
+    <aura:attribute name="isTX" type="Boolean" default="false" />
+    <aura:attribute name="BUInfo" type="CTRBuProfile__mdt" />
+    <aura:attribute name="LogInUserId" type="String"/>
+    <aura:attribute name="Country" type="String"/>
+    <aura:attribute name="SalesOrg" type="String"/>
+    <aura:attribute name="GoogleLink" type="String"/>
+    <aura:attribute name="IsShowedButton" type="Boolean" default="true"/>
+    <aura:attribute name="IsShowPage" type="Boolean" default="false"/>
+    <aura:attribute name="NotShowText" type="String"/>
+    
+    <aura:renderIf isTrue="{!!v.IsShowPage}">
+        <br /><br />
+        <center><p>{!v.NotShowText}</p></center>
+        <br /><br />
+    </aura:renderIf>
+    <aura:renderIf isTrue="{!v.IsShowPage}">
+        <div class="slds-float_right">
+            <aura:renderIf isTrue="{!v.IsShowedButton}">
+                <lightning:button variant="brand-outline" label="Commercial Evaluation" title="Commercial Evaluation" onclick="{!c.CommercialhandleClick }" />
+            </aura:renderIf>
+        </div><br/> <br/> 
+        <!--<lightning:button variant="brand-outline" label="Commercial Evaluation" title="Commercial Evaluation" onclick="{!c.CommercialhandleClick }" />-->
+        <lightning:layoutItem padding="around-small">
+            <lightning:recordEditForm aura:id="recordEditForm" objectApiName="CTRRequestFormItem__c" recordId="{!v.recordId}" onsubmit="{!c.handleSubmit}" onsuccess="{!c.handleSuccess}" >
+                
+                    <div class="slds-section slds-is-open animate" aura:id="Commercial">
+                        <h3 class="slds-section__title">
+                            <button aria-controls="CommercialList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="Commercial">
+                                <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                                <span class="slds-truncate" title="Counterparty Information">Pre-Screen-Commercial Evaluation</span>
+                            </button>
+                        </h3>
+                        <div class="slds-section__content" id="CommercialList">
+                            <div class="slds-grid slds-wrap">
+                                <!-- <div class="slds-col slds-size_1-of-2 slds-var-p-around_medium"> -->
+                                    <aura:if isTrue="{!!v.isTX}">
+                                        <aura:if isTrue="{!and(v.SalesOrg == '1100',v.Country == 'TH')}">
+                                        <div class="slds-col slds-size_1-of-1 slds-var-p-around_medium">
+                                            <!-- <label>1. Number of registration issues by Ministry of Energy</label>
+                                            <lightning:inputField aura:id="NumberRegistrationMinistryEnergy__c" fieldName="NumberRegistrationMinistryEnergy__c" variant="label-hidden" disabled="{!v.IsDisable}" onchange="{!c.handlePercentCalculate}"/> -->
+                                            <div class="slds-form">
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label">
+                                                        <span style="color:red; font-style: italic;" >* </span>
+                                                        Do you have oil trader registration letter (N.P. 104 or N.P.105 or N.P.106) which issued by Ministry of Energy? <br/>(ใบทะเบียนเป็นผู้ค้าน้ำมันตามมาตราต่างๆ ที่ออกโดยกรมธุรกิจพลังงาน)</label>
+                                                    <lightning:helptext content="Scores are automatically based on information provided by the customer."></lightning:helptext>
+                                                    <div class="slds-form-element__control slds-var-p-top_xxx-small" style="padding-left: 0% !important;">
+                                                        <lightning:inputField aura:id="NumberRegistrationMinistryEnergy__c" fieldName="NumberRegistrationMinistryEnergy__c" 
+                                                                              variant="label-hidden" disabled="{!v.IsDisable}" onchange="{!c.handlePercentCalculate}"
+                                                                              required="true"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </aura:if>
+                                    </aura:if>
+                                    <div class="slds-col slds-size_1-of-2 slds-var-p-around_medium">
+                                        <!-- <label>2. Level of reputation in the market and credibility of a company</label>
+                                        <lightning:inputField aura:id="Thelevelofreputation__c" fieldName="Thelevelofreputation__c" variant="label-hidden" disabled="{!v.IsDisable}" onchange="{!c.handlePercentCalculate}"/> -->
+                                        <div class="slds-form">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label">
+                                                    <span style="color:red; font-style: italic;" >* </span> Level of reputation in the market and credibility of a company 
+                                                    <lightning:helptext content="Scores are automatically determined based on customer-provided 'Business Type' and 'Legal Entity' information, specifically for options that meet the criteria."></lightning:helptext>
+                                                </label>
+                                                <div class="slds-form-element__control slds-var-p-top_xxx-small" style="padding-left: 0% !important;">
+                                                    <lightning:inputField aura:id="Thelevelofreputation__c" fieldName="Thelevelofreputation__c" variant="label-hidden" 
+                                                                          disabled="{!v.IsDisable}" onchange="{!c.handlePercentCalculate}" required="true"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2 slds-var-p-around_medium">
+                                        <!-- <label>3. Destination country</label>
+                                        <lightning:inputField aura:id="TheDestinationCountry__c" fieldName="TheDestinationCountry__c" variant="label-hidden" disabled="{!v.IsDisable}" onchange="{!c.handlePercentCalculate}"/> -->
+                                        <div class="slds-form">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label">
+                                                    <span style="color:red; font-style: italic;" >* </span> Destination country
+                                                    <lightning:helptext content="Scores are automatically based on information provided by the customer."></lightning:helptext>
+                                                </label>
+                                                <div class="slds-form-element__control slds-var-p-top_xxx-small" style="padding-left: 0% !important;">
+                                                    <lightning:inputField aura:id="TheDestinationCountry__c" fieldName="TheDestinationCountry__c" 
+                                                                          variant="label-hidden" disabled="{!v.IsDisable}" onchange="{!c.handlePercentCalculate}"
+                                                                          required="true"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2 slds-var-p-around_medium">
+                                        <!-- <label>4.1 Location of the office (for Domestic only)</label>
+                                        <lightning:inputField aura:id="DomesticOfficeLocation__c" fieldName="DomesticOfficeLocation__c" variant="label-hidden" disabled="{!v.IsDisable}" onchange="{!c.handlePercentCalculate}"/> -->
+                                        <div class="slds-form">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label">
+                                                    <aura:If isTrue="{!!v.IsDomesticDisabled}">
+                                                        <span style="color:red; font-style: italic;" >* </span> 
+                                                    </aura:If>
+                                                        Location of the office (for Domestic only)
+                                                    <lightning:helptext content="1 = No landmarks in Google Maps / 4 = There are any landmarks in Google Maps"></lightning:helptext>
+                                                </label>
+                                                <div class="slds-form-element__control slds-var-p-top_xxx-small" style="padding-left: 0% !important;">
+                                                    <lightning:inputField aura:id="DomesticOfficeLocation__c" fieldName="DomesticOfficeLocation__c" 
+                                                                          variant="label-hidden" disabled="{!v.IsDomesticDisabled}" 
+                                                                          onchange="{!c.handlePercentCalculate}" required="{!!v.IsDomesticDisabled}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2 slds-var-p-around_medium">
+                                        <!-- <label>4.2 Location of the office (for International only)</label>
+                                        <br/>(In the case of international customers, we will check using Google Maps to see if there any landmarks.)
+                                        <lightning:inputField aura:id="InternationalOfficeLocation__c" fieldName="InternationalOfficeLocation__c" variant="label-hidden" disabled="{!v.IsDisable}" onchange="{!c.handlePercentCalculate}"/> -->
+                                        <div class="slds-form">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label">
+                                                    <aura:If isTrue="{!!v.IsInterDisabled}">
+                                                        <span style="color:red; font-style: italic;" >* </span> 
+                                                    </aura:If>
+                                                    Location of the office (for International only)
+                                                    <lightning:helptext content="In the cae of international customers, we will check by using Google Maps to see if there are any landmarks."></lightning:helptext>
+                                                </label>
+                                                <div class="slds-form-element__control slds-var-p-top_xxx-small" style="padding-left: 0% !important;">
+                                                    <lightning:inputField aura:id="InternationalOfficeLocation__c" fieldName="InternationalOfficeLocation__c" 
+                                                                          variant="label-hidden" disabled="{!v.IsInterDisabled}" 
+                                                                          onchange="{!c.handlePercentCalculate}" required="{!!v.IsInterDisabled}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2 slds-var-p-around_medium">
+                                        <!-- <label>5. Level of experience in trading, distributing, or regitering products or related items of the company's customers/owners</label>
+                                        <br/>(In the case where they told 100% ownership)
+                                        <lightning:inputField aura:id="TheLevelOfExperience__c" fieldName="TheLevelOfExperience__c" variant="label-hidden" disabled="{!v.IsDisable}" onchange="{!c.handlePercentCalculate}"/> -->
+                                        <div class="slds-form">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label">
+                                                    <span style="color:red; font-style: italic;" >* </span> Level of experience in trading, distributing, or regitering products or related items of the company's customers/owners:
+                                                    <br/>(In the case where they told 100% ownership)<br/>
+                                                    <lightning:helptext content="Scores are automatically based on information provided by the customer."></lightning:helptext>
+                                                </label>
+                                                <div class="slds-form-element__control slds-var-p-top_xxx-small" style="padding-left: 0% !important;">
+                                                    <lightning:inputField aura:id="TheLevelOfExperience__c" fieldName="TheLevelOfExperience__c" 
+                                                                          variant="label-hidden" disabled="{!v.IsDisable}" 
+                                                                          onchange="{!c.handlePercentCalculate}" required="true" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2 slds-var-p-around_medium">
+                                        <!-- <label>6. Efficiency level of Facility/Storage tank</label>
+                                        <lightning:inputField aura:id="TheEfficiencyLevelOfFacility__c" fieldName="TheEfficiencyLevelOfFacility__c" variant="label-hidden" disabled="{!v.IsDisable}" onchange="{!c.handlePercentCalculate}"/> -->
+                                        <div class="slds-form">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label">
+                                                    <br /><br /><br />
+                                                    <span style="color:red; font-style: italic;" >* </span> Efficiency level of Facility/Storage tank
+                                                    <lightning:helptext content="Scores are automatically based on information provided by the customer."></lightning:helptext>
+                                                </label>
+                                                <div class="slds-form-element__control slds-var-p-top_xxx-small" style="padding-left: 0% !important;">
+                                                    <lightning:inputField aura:id="TheEfficiencyLevelOfFacility__c" fieldName="TheEfficiencyLevelOfFacility__c" 
+                                                                          variant="label-hidden" disabled="{!v.IsDisable}" onchange="{!c.handlePercentCalculate}"
+                                                                          required="true"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                            </div>
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-3" />
+                                <div class="slds-col slds-size_1-of-3 slds-var-p-around_medium">
+                                    <div>
+                                        <!-- <label>Commercial Scoring Result</label>
+                                        <lightning:inputField aura:id="CommercialScoringResult__c" fieldName="CommercialScoringResult__c" variant="label-hidden" disabled="true"/> -->
+                                        <div class="slds-form">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label">Commercial Scoring Result</label>
+                                                <div class="slds-form-element__control slds-var-p-top_xxx-small" style="padding-left: 0% !important;">
+                                                    <lightning:inputField aura:id="CommercialScoringResult__c" fieldName="CommercialScoringResult__c" variant="label-hidden" disabled="true"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <!-- <label>Commercial Scoring by</label>
+                                        <lightning:inputField aura:id="CommercialScoringBy__c" fieldName="CommercialScoringBy__c" variant="label-hidden" disabled="true"/> -->
+                                        <div class="slds-form">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label">Commercial Scoring by</label>
+                                                <div class="slds-form-element__control slds-var-p-top_xxx-small" style="padding-left: 0% !important;">
+                                                    <lightning:inputField aura:id="CommercialScoringBy__c" fieldName="CommercialScoringBy__c" variant="label-hidden" disabled="true" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <!-- <label>Commercial Scoring Date</label>
+                                        <lightning:inputField aura:id="CommercialScoringDate__c" fieldName="CommercialScoringDate__c" variant="label-hidden" disabled="true"/> -->
+                                        <div class="slds-form">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label">Commercial Scoring Date</label>
+                                                <div class="slds-form-element__control slds-var-p-top_xxx-small" style="padding-left: 0% !important;">
+                                                    <lightning:inputField aura:id="CommercialScoringDate__c" fieldName="CommercialScoringDate__c" variant="label-hidden" disabled="true"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-3" />
+                            </div>
+                            <br/>
+                            <aura:renderIf isTrue="{!!v.IsDisable}">
+                                <div class="slds-align_absolute-center" style="height:5rem">
+                                    <lightning:button variant="brand-outline" label="Cancel" onclick="{! c.handleCancelCommercial }"/>
+                                    <lightning:button variant="brand" label="Submit" type="submit" name="save" />
+                                </div>
+                            </aura:renderIf>
+                        </div>
+                        <br /><br />
+                    </div>
+                
+          </lightning:recordEditForm>
+        </lightning:layoutItem>
+    </aura:renderIf>
+    
+</aura:component>

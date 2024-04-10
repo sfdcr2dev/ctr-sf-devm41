@@ -1,0 +1,10 @@
+<aura:component>
+	<aura:attribute name="header" type="EQCC_Header__c" access="global" />
+	<aura:attribute name="inprogress" type="Boolean" access="global" default="false" />
+	<aura:attribute name="linkText" type="String" default="" />
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<lightning:navigation aura:id="navService" />
+
+	<a class="{!v.header.Id}" href="#" onclick="{!c.goToHeaderPage}"> {!v.linkText} </a>
+</aura:component>

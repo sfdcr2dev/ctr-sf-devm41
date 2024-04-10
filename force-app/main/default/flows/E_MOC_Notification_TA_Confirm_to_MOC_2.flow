@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_email_to_TA</name>
+        <label>Send email to TA</label>
+        <locationX>1113</locationX>
+        <locationY>315</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Assign_Email_list_0</targetReference>
+        </connector>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Body</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddressesArray</name>
+            <value>
+                <elementReference>Recipient</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>sfdc.r2@roundtwosolutions.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>Subject</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Assign_Email_list</name>
+        <label>Assign Email list</label>
+        <locationX>911</locationX>
+        <locationY>318</locationY>
+        <assignmentItems>
+            <assignToReference>Recipient</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_TA_mandatory.TA2_Name__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_email_to_TA</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Email_list_0</name>
+        <label>Assign Email list</label>
+        <locationX>1109</locationX>
+        <locationY>483</locationY>
+        <assignmentItems>
+            <assignToReference>Recipient</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_TA_mandatory</targetReference>
+        </connector>
+    </assignments>
+    <description>change get condition = Get only E-MOC mapping The comment need to be verified = True</description>
+    <interviewLabel>E-MOC - Notification TA Confirm to MOC 2 {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>E-MOC - Notification TA Confirm to MOC 2</label>
+    <loops>
+        <name>Loop_TA_mandatory</name>
+        <label>Loop TA mandatory</label>
+        <locationX>616</locationX>
+        <locationY>326</locationY>
+        <collectionReference>Get_TA_mandatory_mapping</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Email_list</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_TA_mandatory_mapping</name>
+        <label>Get TA mandatory mapping</label>
+        <locationX>616</locationX>
+        <locationY>206</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_TA_mandatory</targetReference>
+        </connector>
+        <filters>
+            <field>E_MOC_Application__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>The_comment_need_to_be_verified__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>E_MOC_TA_Mandatory_Mapping__c</object>
+    </recordLookups>
+    <startElementReference>Get_TA_mandatory_mapping</startElementReference>
+    <status>Active</status>
+    <textTemplates>
+        <name>Body</name>
+        <text>MOC Title: {!Loop_TA_mandatory.E_MOC_Application__r.E_MOC_Title__c}
+Functional Location: {!Loop_TA_mandatory.E_MOC_Application__r.Functional_Location__r.Name}
+FL Description: {!Loop_TA_mandatory.E_MOC_Application__r.Functional_Location_Description__c}
+Category Type: {!Loop_TA_mandatory.E_MOC_Application__r.Category_Type__c}
+Status: {!Loop_TA_mandatory.E_MOC_Application__r.Status_Common_Workflow__c}
+Link: https://thaioil.lightning.force.com/lightning/r/E_MOC_Application__c/{!Loop_TA_mandatory.E_MOC_Application__r.Id}/view</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Subject</name>
+        <text>[E-MOC Application] Please review MOC focal point&apos;s clarification ; Common Workflow/{!Loop_TA_mandatory.E_MOC_Application__r.Name}/{!Loop_TA_mandatory.E_MOC_Application__r.Functional_Location__r.Name}</text>
+    </textTemplates>
+    <variables>
+        <name>Email_list</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>Recipient</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

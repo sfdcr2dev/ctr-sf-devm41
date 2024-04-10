@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Step 3 : Lesson Learnt Review</value>
+    </caseValues>
+    <fields>
+        <label><!-- Assigned User --></label>
+        <name>Assigned_User__c</name>
+        <relationshipLabel><!-- Step 3: Lesson Learnt Review --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IsWaitingForPreviousStep --></label>
+        <name>IsWaitingForPreviousStep__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Process --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- No --></label>
+        <name>No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project --></label>
+        <name>Project__c</name>
+        <relationshipLabel><!-- Step 3 : Lesson Learnt Review --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Remark --></label>
+        <name>Remark__c</name>
+    </fields>
+    <fields>
+        <label><!-- SME --></label>
+        <lookupFilter>
+            <errorMessage><!-- Selected User is not SME. Please select SME user. --></errorMessage>
+            <informationalMessage><!-- Please select SME user. --></informationalMessage>
+        </lookupFilter>
+        <name>SME__c</name>
+        <relationshipLabel><!-- Step 3: Lesson Learnt Review --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- การค้นหาข้อมูล --></label>
+        <name>Seach_Project__c</name>
+        <picklistValues>
+            <masterLabel>ต้องการค้นหาข้อมูลโครงการอื่น</masterLabel>
+            <translation><!-- ต้องการค้นหาข้อมูลโครงการอื่น --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ไม่ต้องการค้นหาข้อมูลโครงการอื่น</masterLabel>
+            <translation><!-- ไม่ต้องการค้นหาข้อมูลโครงการอื่น --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- รูป Capture การค้นหาข้อมูลโครงการอื่นๆ --></help>
+        <label><!-- Search Project File --></label>
+        <name>Search_Project_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- Submit Status --></label>
+        <name>Submit_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Waiting for Approve --></label>
+        <name>Waiting_for_Approve__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Process Status --></label>
+        <name>Work_Process_Status__c</name>
+    </fields>
+    <layouts>
+        <layout>Lesson Learnt Review Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว)</section>
+        </sections>
+        <sections>
+            <label><!-- Lesson Learnt --></label>
+            <section>Lesson Learnt</section>
+        </sections>
+        <sections>
+            <label><!-- Remark --></label>
+            <section>Remark</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Lesson Learnt Review Submit Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว)</section>
+        </sections>
+        <sections>
+            <label><!-- Lesson Learnt --></label>
+            <section>Lesson Learnt</section>
+        </sections>
+        <sections>
+            <label><!-- Remark --></label>
+            <section>Remark</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Step 3 : After Submit --></label>
+        <name>Step_3_After_Submit</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Step 3 : Before Submit --></label>
+        <name>Step_3_Before_Submit</name>
+    </recordTypes>
+</CustomObjectTranslation>

@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>false</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>false</enableSharing>
+    <enableStreamingApi>false</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>As_Built_P_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>As Built P&amp;ID</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>As_Built__c</fullName>
+        <externalId>false</externalId>
+        <label>As Built</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>COD__c</fullName>
+        <externalId>false</externalId>
+        <label>COD</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Concerned_Equipment_Installation__c</fullName>
+        <externalId>false</externalId>
+        <label>Concerned Equipment Installation</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Contractor__c</fullName>
+        <externalId>false</externalId>
+        <label>Contractor</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>E_and_I_Work_Election__c</fullName>
+        <externalId>false</externalId>
+        <label>E and I Work Election</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Function_Testing__c</fullName>
+        <externalId>false</externalId>
+        <label>Function Testing</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>HOC__c</fullName>
+        <externalId>false</externalId>
+        <label>HOC</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Item__c</fullName>
+        <externalId>false</externalId>
+        <label>Item</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Loop_Testing__c</fullName>
+        <externalId>false</externalId>
+        <label>Loop Testing</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>MCC__c</fullName>
+        <externalId>false</externalId>
+        <label>MCC</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>MC_P__c</fullName>
+        <externalId>false</externalId>
+        <label>MC P</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MC__c</fullName>
+        <externalId>false</externalId>
+        <label>MC</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Operating_Manal__c</fullName>
+        <externalId>false</externalId>
+        <label>Operating Manual</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>PSSR__c</fullName>
+        <externalId>false</externalId>
+        <label>PSSR</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>P_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>P&amp;ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Piping_ReInstatement__c</fullName>
+        <externalId>false</externalId>
+        <label>Piping ReInstatement</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Punch_A_Complete__c</fullName>
+        <externalId>false</externalId>
+        <label>Punch A Complete</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Punch_B__c</fullName>
+        <externalId>false</externalId>
+        <label>Punch B</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Punch_C__c</fullName>
+        <externalId>false</externalId>
+        <label>Punch C</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Punch_List_Management_System__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Punch List Management System</label>
+        <referenceTo>Punch_List_Management_System__c</referenceTo>
+        <relationshipLabel>Handover</relationshipLabel>
+        <relationshipName>Handover</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>RSFU_P__c</fullName>
+        <externalId>false</externalId>
+        <label>RFSU P</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>RSFU__c</fullName>
+        <externalId>false</externalId>
+        <label>RFSU</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Red_Mark__c</fullName>
+        <externalId>false</externalId>
+        <label>Red Mark</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>SAP_Data__c</fullName>
+        <externalId>false</externalId>
+        <label>SAP Data</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Spare_Parts_List__c</fullName>
+        <externalId>false</externalId>
+        <label>Spare Parts List</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Tag_and_Datasheet__c</fullName>
+        <externalId>false</externalId>
+        <label>Tag and Datasheet</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Test_Pack__c</fullName>
+        <externalId>false</externalId>
+        <label>Test Pack</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <label>Handover</label>
+    <nameField>
+        <label>Sub System Numbering</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>As_Built_P_ID_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>As_Built_P_ID__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>As_Built_P_ID__c</errorDisplayField>
+        <errorMessage>As Built P&amp;ID cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>As_Built_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>As_Built__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>As_Built__c</errorDisplayField>
+        <errorMessage>As Built cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Check_No_Alphabet_allow</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+NOT(ISBLANK(Item__c)),
+NOT(REGEX(Item__c,&quot;^[0-9,.*]+$&quot;))
+)</errorConditionFormula>
+        <errorDisplayField>Item__c</errorDisplayField>
+        <errorMessage>No letter are allow.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Concerned_Equipment_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>Concerned_Equipment_Installation__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>Concerned_Equipment_Installation__c</errorDisplayField>
+        <errorMessage>Concerned Equipment Installaion cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>E_I_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>E_and_I_Work_Election__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>E_and_I_Work_Election__c</errorDisplayField>
+        <errorMessage>E and I Work Election cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Function_Testing_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>Function_Testing__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>Function_Testing__c</errorDisplayField>
+        <errorMessage>Function Testing cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>HOC_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>HOC__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>HOC__c</errorDisplayField>
+        <errorMessage>HOC cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Loop_Testing_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>Loop_Testing__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>Loop_Testing__c</errorDisplayField>
+        <errorMessage>Loop Testing cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>MCC_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>MCC__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>MCC__c</errorDisplayField>
+        <errorMessage>MCC cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Operating_Manual_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>Operating_Manal__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>Operating_Manal__c</errorDisplayField>
+        <errorMessage>Operating Manual cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Piping_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>Piping_ReInstatement__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>Piping_ReInstatement__c</errorDisplayField>
+        <errorMessage>Piping ReInstatement cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Punch_A_Complete_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>Punch_A_Complete__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>Punch_A_Complete__c</errorDisplayField>
+        <errorMessage>Punch A Complete cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Punch_B_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>Punch_B__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>Punch_B__c</errorDisplayField>
+        <errorMessage>Punch B cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Punch_C_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>Punch_C__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>Punch_C__c</errorDisplayField>
+        <errorMessage>Punch C cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Red_Mark_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>Red_Mark__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>Red_Mark__c</errorDisplayField>
+        <errorMessage>Red Mark cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAP_Data_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>SAP_Data__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>SAP_Data__c</errorDisplayField>
+        <errorMessage>SAP Data cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Spare_Parts_List_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>Spare_Parts_List__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>Spare_Parts_List__c</errorDisplayField>
+        <errorMessage>Spare Parts List cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Tag_And_DataSheet_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>Tag_and_Datasheet__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>Tag_and_Datasheet__c</errorDisplayField>
+        <errorMessage>Tag and Datasheet cannot be greater than 100</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Test_Pack_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>Test_Pack__c &gt; 100</errorConditionFormula>
+        <errorDisplayField>Test_Pack__c</errorDisplayField>
+        <errorMessage>Test Pack cannot be greater than 100</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

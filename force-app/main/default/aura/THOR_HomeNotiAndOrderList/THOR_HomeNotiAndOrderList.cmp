@@ -1,0 +1,125 @@
+<!--
+  @description       :
+  @author            : narathip.s@roundtwosolutions.com
+  @group             :
+  @last modified on  : 03-29-2022
+  @last modified by  : narathip.s@roundtwosolutions.com
+-->
+<aura:component
+	implements="force:appHostable,flexipage:availableForAllPageTypes"
+	controller="THOR_NotificationAndOrderCtrl"
+	access="global"
+>
+	<lightning:navigation aura:id="navService" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="fitlerEnhanceEvent" event="c:THOR_FilterEnhanceEvent" action="{!c.handleFilter}" />
+
+	<aura:attribute name="filter" type="Map" default="{}" access="private" />
+
+	<aura:attribute name="results" type="Map" default="{}" access="private" />
+	<aura:attribute name="notifications" type="List" default="[]" access="private" />
+	<aura:attribute name="orders" type="List" default="[]" access="private" />
+
+	<div class="container">
+		<lightning:layout multipleRows="true">
+			<!-- <lightning:layoutItem class="slds-p-vertical_small slds-p-bottom_small" padding="horizontal-small" size="12">
+
+			</lightning:layoutItem> -->
+			<lightning:layoutItem class="slds-p-bottom_small" padding="horizontal-small" size="12">
+				<lightning:card>
+					<aura:set attribute="actions">
+						<c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterHomeNotificationFrom" />
+					</aura:set>
+					<aura:set attribute="title">
+						<div>You have {!v.results.notifications.count ? v.results.notifications.count : '0'} New Notifications</div>
+					</aura:set>
+					<aura:set attribute="footer">
+						<aura:if isTrue="{! v.results.notifications.count gt 3}">
+							<lightning:button variant="base" label="Show more" title="Show more" onclick="{!c.redirectNotiAll}" />
+						</aura:if>
+					</aura:set>
+
+					<aura:if isTrue="{!empty(v.results.notifications)}">
+						<lightning:spinner alternativeText="Loading" size="small" />
+					</aura:if>
+					<p class="slds-var-p-around_medium bg-gray">
+						Notification number, Notification type, FL, Priority, Request date, Description
+					</p>
+
+					<div class="slds-p-around_x-small">
+						<aura:iteration items="{!v.notifications}" var="noti" indexVar="index">
+							<aura:if isTrue="{! index lt 3}">
+								<div class="slds-box slds-box_small">
+									<a
+										data-record-id="{!noti.Id}"
+										data-component-def="c__THOR_NotificationRecordDisplay"
+										href="javascript:void(0);"
+										class="slds-text-link_reset"
+										onclick="{!c.navigateToDisplay}"
+									>
+										<aura:if isTrue="{!noti.Name}">
+											<p class="slds-text-link">{!noti.Name}</p>
+										</aura:if>
+										<p>{! noti.info }</p>
+										<aura:if isTrue="{!noti.Description__c}">
+											<p class="slds-hyphenate">{! noti.Description__c }</p>
+										</aura:if>
+									</a>
+								</div>
+							</aura:if>
+						</aura:iteration>
+					</div>
+				</lightning:card>
+			</lightning:layoutItem>
+
+			<!-- <lightning:layoutItem class="slds-p-vertical_small slds-p-bottom_small" padding="horizontal-small" size="12">
+				<c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterHomeOrderFrom" />
+			</lightning:layoutItem> -->
+			<lightning:layoutItem class="slds-p-bottom_small" padding="horizontal-small" size="12">
+				<lightning:card>
+					<aura:set attribute="actions">
+						<c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterHomeOrderFrom" />
+					</aura:set>
+					<aura:set attribute="title">
+						<div>You have {!v.results.orders.count ? v.results.orders.count : '0'} New Orders</div>
+					</aura:set>
+					<aura:set attribute="footer">
+						<aura:if isTrue="{! v.results.orders.count gt 3}">
+							<lightning:button variant="base" label="Show more" title="Show more" onclick="{!c.redirectOrderAll}" />
+						</aura:if>
+					</aura:set>
+
+					<aura:if isTrue="{!empty(v.results.orders)}">
+						<lightning:spinner alternativeText="Loading" size="small" />
+					</aura:if>
+					<p class="slds-var-p-around_medium bg-gray">Order number, Order type, FL, Priority, Create on, Description</p>
+
+					<div class="slds-p-around_x-small">
+						<aura:iteration items="{!v.orders}" var="o" indexVar="index">
+							<aura:if isTrue="{! index lt 3}">
+								<div class="slds-box slds-box_small">
+									<a
+										data-record-id="{!o.Id}"
+										data-component-def="c__THOR_OrderRecordDisplay"
+										href="javascript:void(0);"
+										class="slds-text-link_reset"
+										onclick="{!c.navigateToDisplay}"
+									>
+										<aura:if isTrue="{!o.Name}">
+											<p class="slds-text-link">{!o.Name}</p>
+										</aura:if>
+										<p>{! o.info }</p>
+										<aura:if isTrue="{!o.Description__c}">
+											<p class="slds-hyphenate">{! o.Description__c }</p>
+										</aura:if>
+									</a>
+								</div>
+							</aura:if>
+						</aura:iteration>
+					</div>
+				</lightning:card>
+			</lightning:layoutItem>
+		</lightning:layout>
+	</div>
+</aura:component>

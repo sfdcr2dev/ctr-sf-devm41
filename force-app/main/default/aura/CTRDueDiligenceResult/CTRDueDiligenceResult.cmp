@@ -1,0 +1,94 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName,force:lightningQuickActionWithoutHeader" controller="CTRCheckDueDiligenceController" access="global">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="sObjectName" type="String" />
+    <aura:attribute name="recordObject" type="Object" />
+    <aura:attribute name="recordLoadError" type="String" />
+    <aura:attribute name="riskLevelList" type="List" />
+    <aura:attribute name="dueDiligenceResultList" type="List" />
+    <aura:attribute name="isLoaded" type="Boolean" default="false" />
+    <aura:attribute name="openLinkToNewsModal" type="Boolean" default="false" />
+    <aura:attribute name="displayRiskBySystem" type="Boolean" default="false" />
+    <aura:attribute name="riskLevelBySystem" type="Object" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <!-- <aura:handler name="change" value="{!v.openLinkToNewsModal}" action="{!c.handleReload}" /> -->
+
+    <div class="slds-grid slds-wrap">
+        <aura:iteration items="{!v.dueDiligenceResultList}" var="result" indexVar="resultIndex">
+            <div class="slds-col slds-size_1-of-1 slds-var-p-around_medium" style="background-color:rgb(199, 197, 197)">
+                <b>{!result.riskLevel}</b>
+            </div>
+            <div class="slds-grid slds-wrap slds-var-p-around_large">
+                <aura:iteration items="{!result.details}" var="detail" indexVar="detailIndex">
+                    <div class="slds-col slds-size_9-of-12 slds-var-p-around_large" style="display: flex;">
+                        <aura:renderIf isTrue="{!!detail.hidePosition}"><div class="slds-text-title slds-var-p-top_xxx-small">{!detail.position}.&emsp;</div></aura:renderIf><aura:unescapedHtml value="{!detail.detail}" />
+                    </div>
+                    <div class="slds-col slds-size_3-of-12 slds-var-p-around_large" style="text-align: right;">
+                        <aura:renderIf isTrue="{!not(empty(detail.value))}">
+                            <div class="slds-var-p-right_large">
+                                <aura:if isTrue="{!detail.value == 'Not Available'}">
+                                    <button class="slds-button slds-button_neutral button-custom-style button-notavailable-style"><b>{!detail.value}</b></button>
+                                    <aura:set attribute="else">
+                                        <aura:if isTrue="{!detail.value == 'Found'}">
+                                            <button class="slds-button slds-button_neutral button-custom-style button-found-style" onclick="{!c.handleReportLink}" value="{!detail.reportLink}"><b>{!detail.value}</b></button>
+                                            <aura:set attribute="else">
+                                                <aura:if isTrue="{!detail.value == 'Yes'}">
+                                                    <button class="slds-button slds-button_neutral button-custom-style button-yes-style" disabled="true"><b>{!detail.value}</b></button>
+                                                    <aura:set attribute="else">
+                                                        <button class="slds-button slds-button_neutral button-custom-style button-notfound-style" disabled="true"><b>{!detail.value}</b></button>
+                                                    </aura:set>
+                                                </aura:if>
+                                            </aura:set>
+                                        </aura:if>
+                                    </aura:set>
+                                </aura:if>
+                            </div>
+                        </aura:renderIf>
+                    </div>
+                    <aura:renderIf isTrue="{!not(empty(detail.childList))}">
+                        <div class="slds-col slds-size_1-of-1 slds-var-p-left_large slds-var-p-right_large">
+                            <div class="slds-grid slds-wrap slds-var-p-left_large">
+                                <aura:iteration items="{!detail.childList}" var="child" indexVar="childIndex">
+                                    <div class="slds-col slds-size_9-of-12 slds-var-p-around_large" style="display: flex;">
+                                        <aura:renderIf isTrue="{!!child.hidePosition}"><div class="slds-text-title">{!child.position}.&emsp;</div></aura:renderIf><aura:unescapedHtml value="{!child.detail}" /> <!-- slds-var-p-top_xxx-small -->
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-12 slds-var-p-around_large" style="text-align: right;">
+                                        <aura:renderIf isTrue="{!not(empty(child.value))}">
+                                            <aura:if isTrue="{!child.value == 'Not Available'}">
+                                                <button class="slds-button slds-button_neutral button-custom-style button-notavailable-style"><b>{!child.value}</b></button>
+                                                <aura:set attribute="else">
+                                                    <aura:if isTrue="{!child.value == 'Found'}">
+                                                        <button class="slds-button slds-button_neutral button-custom-style button-found-style" onclick="{!c.handleReportLink}" value="{!child.reportLink}"><b>{!child.value}</b></button>
+                                                        <aura:set attribute="else">
+                                                            <aura:if isTrue="{!child.value == 'Yes'}">
+                                                                <button class="slds-button slds-button_neutral button-custom-style button-yes-style" disabled="true"><b>{!child.value}</b></button>
+                                                                <aura:set attribute="else">
+                                                                    <button class="slds-button slds-button_neutral button-custom-style button-notfound-style" disabled="true"><b>{!child.value}</b></button>
+                                                                </aura:set>
+                                                            </aura:if>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </aura:set>
+                                            </aura:if>
+                                        </aura:renderIf>
+                                    </div>
+                                    <aura:renderIf isTrue="{!child.linkToNews}">
+                                        <div class="slds-col slds-size_1-of-1 slds-var-p-left_large">
+                                            <lightning:button variant="base" label="Link to NEWS" title="Link to NEWS" class="text-underline" onclick="{!c.handleLinkToNewsClick}" />
+                                        </div>
+                                    </aura:renderIf>
+                                </aura:iteration>
+                            </div>
+                        </div>
+                    </aura:renderIf>
+                </aura:iteration>
+            </div>
+        </aura:iteration>
+        <aura:if isTrue="{!!v.isLoaded}">
+            <lightning:spinner variant="brand" style="z-index:2" />
+        </aura:if>
+    </div>
+    <aura:if isTrue="{!v.openLinkToNewsModal}">
+        <c:CTRScreenNews recordId="{!v.recordId}" sObjectName="{!v.sObjectName}" isChildModal="true" openModal="{!v.openLinkToNewsModal}" isEdit="{!v.displayRiskBySystem}" />
+    </aura:if>
+</aura:component>

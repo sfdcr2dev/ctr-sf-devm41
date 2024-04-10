@@ -1,0 +1,191 @@
+<aura:component
+	controller="THOR_OrderRecordDisplayController"
+	implements="force:appHostable,lightning:isUrlAddressable"
+>
+	<lightning:navigation aura:id="navLink" />
+	<lightning:overlayLibrary aura:id="overlayLib" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.reInitRetriever}" />
+	<force:recordData
+		aura:id="force_recordData"
+		recordId="{!$SObjectType.CurrentUser.Id}"
+		fields="Name"
+		targetFields="{!v.userObj}"
+	/>
+
+	<aura:attribute name="userObj" type="Map" default="{}" access="private" />
+	<aura:attribute name="orderId" type="String" />
+	<aura:attribute
+		name="orderMap"
+		type="Map"
+		default="{
+      'newLimit': 3,
+      'inprogressLimit': 3
+    }"
+		access="private"
+	/>
+	<aura:attribute
+		name="filter"
+		type="Map"
+		default="{
+      userIsActive: false,
+      dateIsActive: false,
+    }"
+		access="private"
+	/>
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+
+	<c:THOR_Header title="{! 'Related Sub Orders' }" iconName="standard:related_list"> </c:THOR_Header>
+
+	<div class="slds-grid slds-m-vertical_small slds-m-right_small">
+		<div class="slds-col">
+			<c:THOR_navigateBack backToTabIndex="4" />
+		</div>
+		<div class="slds-col slds-grow-none slds-col_bump-right">
+			<lightning:button
+				variant="link"
+				onclick="{!c.toggleUserActive}"
+				disabled="{!v.orderMap.newIsLoading || v.orderMap.inprogressIsLoading}"
+			>
+				<lightning:icon
+					class="{!v.filter.userIsActive ? 'active' : ''}"
+					iconName="utility:user"
+					size="small"
+					alternativeText="alternativeText"
+				/>
+			</lightning:button>
+		</div>
+		<div class="slds-col slds-grow-none">
+			<lightning:button
+				name="dateIsActive"
+				variant="link"
+				onclick="{!c.toggleModalDate}"
+				disabled="{!v.orderMap.newIsLoading || v.orderMap.inprogressIsLoading}"
+			>
+				<lightning:icon
+					class="{!v.filter.dateIsActive ? 'active' : ''}"
+					iconName="utility:date_input"
+					size="small"
+					alternativeText="alternativeText"
+				/>
+			</lightning:button>
+			<c:THOR_ModalSelected size="empty" isToggle="{!v.filter.dateIsModalToggle}">
+				<div class="slds-grid slds-wrap slds-grid_vertical-align-end">
+					<div class="slds-p-horizontal_small slds-p-bottom_small slds-col slds-size_1-of-2">
+						<lightning:input type="date" name="input_from" label="From" value="{!v.filter.CreatedDatedFrom}" />
+					</div>
+					<div class="slds-p-horizontal_small slds-p-bottom_small slds-col slds-size_1-of-2">
+						<lightning:input type="date" name="input_to" label="To" value="{!v.filter.CreatedDatedTo}" />
+					</div>
+					<div class="slds-p-horizontal_small slds-p-bottom_small slds-col slds-text-align_right">
+						<lightning:button name="clear" onclick="{!c.toggleModalDate}">Clear</lightning:button>
+						<lightning:button name="submit" onclick="{!c.toggleModalDate}">Submit</lightning:button>
+					</div>
+				</div>
+			</c:THOR_ModalSelected>
+		</div>
+	</div>
+
+	<div class="container">
+		<lightning:layout multipleRows="true">
+			<lightning:layoutItem class="slds-p-bottom_small" padding="horizontal-small" size="12">
+				<lightning:card>
+					<aura:set attribute="title">
+						<div>{!v.orderMap.newTitle}</div>
+					</aura:set>
+					<aura:set attribute="footer">
+						<aura:if isTrue="{! v.orderMap.newList.length gt v.orderMap.newLimit }">
+							<lightning:button variant="base" label="Show more" title="Show more" name="New" onclick="{!c.showmore}" />
+						</aura:if>
+						<aura:if
+							isTrue="{! and(v.orderMap.newList.length eq v.orderMap.newLimit, not(v.orderMap.newList.length eq 3)) }"
+						>
+							<lightning:button variant="base" label="Show less" title="Show less" name="New" onclick="{!c.showless}" />
+						</aura:if>
+					</aura:set>
+
+					<aura:if isTrue="{!empty(v.orderMap.newIsLoading)}">
+						<lightning:spinner alternativeText="Loading" size="small" />
+					</aura:if>
+					<p class="slds-var-p-around_medium bg-gray">{!v.orderMap.newLabel}</p>
+
+					<div class="slds-p-around_x-small">
+						<aura:iteration items="{!v.orderMap.newList}" var="item" indexVar="index">
+							<aura:if isTrue="{! index lt v.orderMap.newLimit}">
+								<div class="slds-box slds-box_small">
+									<a
+										data-record-id="{!item.Id}"
+										href="javascript:void(0);"
+										class="slds-text-link_reset"
+										onclick="{!c.navigateToDisplay}"
+									>
+										<aura:if isTrue="{!item.Name}">
+											<p class="slds-text-link">{!item.Name}</p>
+										</aura:if>
+										<p>{! item.info }</p>
+										<aura:if isTrue="{!item.Description__c}">
+											<p class="slds-hyphenate">{! item.Description__c }</p>
+										</aura:if>
+									</a>
+								</div>
+							</aura:if>
+						</aura:iteration>
+					</div>
+				</lightning:card>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem class="slds-p-bottom_small" padding="horizontal-small" size="12">
+				<lightning:card>
+					<aura:set attribute="title">
+						<div>{!v.orderMap.inprogressTitle}</div>
+					</aura:set>
+					<aura:set attribute="footer">
+						<aura:if isTrue="{! v.orderMap.inprogressList.length gt v.orderMap.inprogressLimit }">
+							<lightning:button
+								variant="base"
+								label="Show more"
+								title="Show more"
+								name="In Progress"
+								onclick="{!c.showmore}"
+							/>
+						</aura:if>
+						<aura:if
+							isTrue="{! and(v.orderMap.inprogressList.length eq v.orderMap.inprogressLimit, not(v.orderMap.inprogressList.length eq 3)) }"
+						>
+							<lightning:button variant="base" label="Show less" title="Show less" name="New" onclick="{!c.showless}" />
+						</aura:if>
+					</aura:set>
+
+					<aura:if isTrue="{!empty(v.orderMap.inprogressIsLoading)}">
+						<lightning:spinner alternativeText="Loading" size="small" />
+					</aura:if>
+					<p class="slds-var-p-around_medium bg-gray">{!v.orderMap.inprogressLabel}</p>
+
+					<div class="slds-p-around_x-small">
+						<aura:iteration items="{!v.orderMap.inprogressList}" var="item" indexVar="index">
+							<aura:if isTrue="{! index lt v.orderMap.inprogressLimit}">
+								<div class="slds-box slds-box_small">
+									<a
+										data-record-id="{!item.Id}"
+										href="javascript:void(0);"
+										class="slds-text-link_reset"
+										onclick="{!c.navigateToDisplay}"
+									>
+										<aura:if isTrue="{!item.Name}">
+											<p class="slds-text-link">{!item.Name}</p>
+										</aura:if>
+										<p>{! item.info }</p>
+										<aura:if isTrue="{!item.Description__c}">
+											<p class="slds-hyphenate">{! item.Description__c }</p>
+										</aura:if>
+									</a>
+								</div>
+							</aura:if>
+						</aura:iteration>
+					</div>
+				</lightning:card>
+			</lightning:layoutItem>
+		</lightning:layout>
+	</div>
+</aura:component>

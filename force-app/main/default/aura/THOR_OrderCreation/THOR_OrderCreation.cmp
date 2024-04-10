@@ -1,0 +1,1346 @@
+<aura:component implements="force:lightningQuickAction,force:hasRecordId" controller="FunctionalLocationController">
+	<!-- ATTRIBUTES -->
+	<aura:attribute name="recordId" type="String" />
+	<aura:attribute name="notificationId" type="String" default="" access="global" />
+	<aura:attribute name="notificationRecord" type="Object" access="private" />
+	<aura:attribute name="notificationObject" type="Object" access="private" />
+	<aura:attribute name="recordError" type="String" access="private" />
+	<aura:attribute name="currentUserId" type="String" access="private" />
+	<aura:attribute name="notificationHasOrder" type="Boolean" default="false" access="private" />
+	<aura:attribute name="orderType" type="String" access="private" />
+	<aura:attribute name="createdOrderId" type="String" access="private" />
+	<aura:attribute name="today" type="Date" />
+	<aura:attribute name="lookupEquipments" type="Boolean" default="true" />
+	<aura:attribute name="equipmentOptions" type="List" default="[]" />
+	<aura:attribute name="equipmentValue" type="String" default="" />
+	<aura:attribute name="planningPlantValue" type="String" default="" />
+	<aura:attribute name="showConfirmation" type="Boolean" access="private" />
+
+	<aura:attribute name="pmActivityTypeOptions" type="List" default="[]" />
+	<aura:attribute name="pmActivityTypesFilteredAndSearched" type="List" default="[]" />
+	<aura:attribute name="pmActivityTypeValue" type="String" default="" access="global" />
+	<aura:attribute name="pmActivityTypeModal" type="Boolean" default="false" access="global" />
+
+	<aura:attribute name="mainWorkCenterValue" type="String" default="" access="global" />
+	<aura:attribute name="mainWorkCenterId" type="String" default="" access="global" />
+	<aura:attribute name="mainWorkCenterOptions" type="List" default="[]" />
+	<aura:attribute name="mainWorkCentersFilteredAndSearched" type="List" default="[]" />
+	<aura:attribute name="mainWorkCenterModal" type="Boolean" default="false" access="global" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+
+	<aura:attribute name="mainWorkCenterPlantValue" type="String" default="" access="global" />
+	<aura:attribute name="mainWorkCenterPlantId" type="String" default="" access="global" />
+	<aura:attribute name="mainWorkCenterPlantModal" type="Boolean" default="false" access="global" />
+	<aura:attribute name="mainWorkCenterPlantOptions" type="List" default="[]" />
+	<aura:attribute name="mainWorkCenterPlantsFilteredAndSearched" type="List" default="[]" />
+
+	<aura:attribute name="form" type="Map" default="{}" access="private" />
+	<aura:attribute name="formOptionDisplay" type="Map" default="" access="private" />
+	<aura:attribute name="formOption" type="Map" default="{}" access="private" />
+	<aura:attribute name="objectInfoFields" type="Map" default="{}" access="private" />
+	<aura:attribute name="isToggleSubModal" type="Map" default="{}" access="private" />
+	<aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" access="private" />
+	<aura:attribute name="timeout" type="Integer" access="private" />
+
+	<lightning:navigation aura:id="navLink" />
+	<!-- EVENTS -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<!-- <aura:registerEvent name="closeModalEvent" type="c:THOR_Event" />
+	<aura:handler name="closeModalEvent" event="c:THOR_Event" action="{!c.closeConfirmation}" />
+	<aura:if isTrue="{!v.showConfirmation}">
+		<c:THOR_ConfirmationModal />
+	</aura:if> -->
+
+	<lightning:card class="slds-scrollable_y slds-m-horizontal_large">
+		<div class="slds-is-relative">
+			<aura:if isTrue="{!v.isLoading}">
+				<lightning:spinner alternativeText="Loading" size="medium" />
+			</aura:if>
+			<!-- FROM ORDER PAGE -->
+			<aura:if isTrue="{!v.notificationId == ''}">
+				<div class="newOrderForm">
+					<lightning:recordEditForm
+						density="comfy"
+						aura:id="OrderRecordEditForm"
+						objectApiName="Order__c"
+						onload="{! c.handleLoad }"
+						onsubmit="{! c.handleSubmit }"
+						onsuccess="{! c.showSuccesToastOrder }"
+						onerror="{! c.showErrorToast }"
+					>
+						<lightning:messages aura:id="lightning-messages" />
+						<lightning:layout multipleRows="true" verticalAlign="stretch">
+							<lightning:inputField class="slds-hide" fieldName="Integration_Status__c" value="In Progress" />
+
+							<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+								<lightning:inputField aura:id="Order_Type__c" fieldName="Order_Type__c" value="" required="true" />
+							</lightning:layoutItem>
+
+							<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+								<lightning:inputField fieldName="Description__c" required="true" />
+							</lightning:layoutItem>
+
+							<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+								<lightning:inputField aura:id="fl" required="true" fieldName="Functional_Location__c" onchange="{!c.handleFLSelected}" />
+							</lightning:layoutItem>
+
+							<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+								<aura:if isTrue="{!v.lookupEquipments}">
+									<lightning:inputField aura:id="equipment" fieldName="Equipment__c" />
+									<aura:set attribute="else">
+										<lightning:combobox
+											aura:id="equipmentOptions"
+											name="equipment"
+											label="Equipment"
+											placeholder="Select Equipment..."
+											options="{!v.equipmentOptions}"
+											value="{!v.equipmentValue}"
+										/>
+
+										<lightning:inputField class="hidden" value="{!v.equipmentValue}" fieldName="Equipment__c" />
+									</aura:set>
+								</aura:if>
+							</lightning:layoutItem>
+
+							<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+								<lightning:inputField value="{!v.planningPlantValue}" disabled="true" fieldName="Planning_Plant__c" />
+							</lightning:layoutItem>
+
+							<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+								<div class="slds-form-element slds-form-element_stacked">
+									<label class="slds-form-element__label">
+										<abbr class="slds-required">*</abbr>
+										Plant of Main Work Center
+									</label>
+									<div class="slds-form-element__control">
+										<aura:if isTrue="{!v.mainWorkCenterPlantValue}">
+											<lightning:inputField
+												value="{!v.mainWorkCenterPlantValue}"
+												onchange="{!c.clearMainWorkCenterPlantValue}"
+												fieldName="mainWorkCenterPlant__c"
+												variant="label-hidden"
+											/>
+											<aura:set attribute="else">
+												<lightning:input
+													aura:id="mainWorkCenterPlant__c"
+													onfocus="{!c.openMainWorkCenterPlantModal}"
+													variant="label-hidden"
+													required="true"
+												/>
+											</aura:set>
+										</aura:if>
+									</div>
+								</div>
+							</lightning:layoutItem>
+							<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+								<div class="slds-form-element slds-form-element_stacked">
+									<label class="slds-form-element__label">
+										<abbr class="slds-required">*</abbr>
+										Main Work Center
+									</label>
+									<div class="slds-form-element__control">
+										<aura:if isTrue="{!v.mainWorkCenterValue}">
+											<lightning:inputField
+												value="{!v.mainWorkCenterValue}"
+												onchange="{!c.clearMainWorkCenterValue}"
+												fieldName="Main_Work_Center__c"
+												variant="label-hidden"
+											/>
+											<aura:set attribute="else">
+												<lightning:input
+													aura:id="Main_Work_Center__c"
+													onfocus="{!c.openMainWorkCenterModal}"
+													variant="label-hidden"
+													required="true"
+												/>
+											</aura:set>
+										</aura:if>
+									</div>
+								</div>
+							</lightning:layoutItem>
+
+							<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+								<lightning:inputField aura:id="Start_Date__c" fieldName="Start_Date__c" required="true" />
+							</lightning:layoutItem>
+
+							<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+								<lightning:inputField fieldName="Finished_Date__c" />
+							</lightning:layoutItem>
+
+							<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+								<aura:if isTrue="{!v.pmActivityTypeValue}">
+									<lightning:inputField
+										value="{!v.pmActivityTypeValue}"
+										onchange="{!c.clearPMActivityTypeValue}"
+										aura:id="PM_Activity_Type__c"
+										fieldName="PM_Activity_Type__c"
+										required="true"
+									/>
+									<aura:set attribute="else">
+										<lightning:input
+											aura:id="lightningInputPMActivityType"
+											value=""
+											onfocus="{!c.openPMActivityTypeModal}"
+											label="PM Activity Type"
+											required="true"
+										/>
+										<lightning:inputField class="hidden" value="{!v.pmActivityTypeValue}" fieldName="PM_Activity_Type__c" />
+									</aura:set>
+								</aura:if>
+							</lightning:layoutItem>
+
+							<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+								<lightning:inputField fieldName="Priority__c" required="true" />
+							</lightning:layoutItem>
+
+							<!--
+								<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:inputField aura:id="requester" fieldName="Requester__c" required="true" />
+								</lightning:layoutItem>
+                                -->
+
+							<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+								<lightning:inputField
+									class="slds-hide"
+									aura:id="inputField"
+									fieldName="Requester_PISUser__c"
+									value="{!v.form.Requester_PISUser__c}"
+								/>
+								<c:thorSuggestLookup
+									required="true"
+									sObjectName="Order__c"
+									fieldName="Requester_PISUser__c"
+									value="{!v.form.Requester_PISUser__c}"
+									onchangeValue="{!c.handleChange}"
+									fetchSObjectName="PISUsers__c"
+									nameDisplayFormat="{EN_Fullname__c}"
+									descriptionDisplayFormat="{Home Id: HOME_ID__c, Host Id: HOST_ID__c}"
+								/>
+
+								<!-- alignment="bottom" -->
+							</lightning:layoutItem>
+							<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box slds-hide">
+								<aura:if isTrue="{!and(v.form.Requester_PISUser__c, v.form.Requester_PISUser__c.length > 0)}">
+									<lightning:inputField
+										aura:id="inputField"
+										fieldName="Requester_PISUser__c"
+										value="{!v.form.Requester_PISUser__c}"
+										required="true"
+									/>
+									<aura:set attribute="else">
+										<lightning:inputField class="slds-hide" fieldName="Requester_PISUser__c" value="{!v.form.Requester_PISUser__c}" required="true" />
+										<div class="slds-form-element slds-form-element_stacked">
+											<label class="slds-form-element__label">
+												<abbr title="required" class="slds-required">*</abbr>
+												{!v.objectInfoFields.Requester_PISUser__c.label}
+											</label>
+											<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+												<lightning:icon
+													class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+													iconName="utility:search"
+													size="xx-small"
+												/>
+												<lightning:input
+													variant="label-hidden"
+													name="Requester_PISUser__c"
+													label="{!v.objectInfoFields.Requester_PISUser__c.label}"
+													placeholder="{! 'Select ' + (v.objectInfoFields.Requester_PISUser__c.label) + '...' }"
+													autocomplete="off"
+													tabindex="-1"
+													onfocus="{!c.handleFocus}"
+												/>
+											</div>
+										</div>
+										<c:THOR_ModalSelected
+											title="{!v.objectInfoFields.Requester_PISUser__c.label}"
+											isToggle="{!v.isToggleSubModal.Requester_PISUser__c}"
+										>
+											<aura:set attribute="body">
+												<lightning:layout class="slds-form" verticalAlign="end">
+													<Lightning:layoutitem flexibility="auto">
+														<lightning:input
+															aura:id="search-input"
+															name="Requester_PISUser__c"
+															type="search"
+															variant="label-stacked"
+															label="{! 'Search for ' + v.objectInfoFields.Requester_PISUser__c.label}"
+															onchange="{!c.handleSearch}"
+															autocomplete="off"
+														/>
+													</Lightning:layoutitem>
+													<Lightning:layoutitem flexibility="no-grow">
+														<div class="slds-form-element slds-form-element_stacked">
+															<label class="slds-form-element__label">&nbsp;</label>
+															<div class="slds-form-element__control">
+																<lightning:button variant="neutral" label="Search" />
+															</div>
+														</div>
+													</Lightning:layoutitem>
+												</lightning:layout>
+
+												<ul class="slds-listbox slds-listbox_vertical slds-p-horizontal_small" role="presentation">
+													<aura:iteration items="{!v.formOption.Requester_PISUser__c}" var="item" indexVar="index">
+														<lightning:button
+															variant="base"
+															class="slds-size_1-of-1 slds-text-link_reset slds-m-left_xx-small d-flex"
+															label="{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }"
+															name="Requester_PISUser__c"
+															value="{! item.Id }"
+															onclick="{!c.handleSeletedButton}"
+														>
+															<aura:set attribute="body">
+																<li role="presentation" class="slds-listbox__item slds-size_1-of-1">
+																	<div
+																		class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
+																		role="option"
+																	>
+																		<span class="slds-media__figure slds-listbox__option-icon">
+																			<span class="slds-icon_container">
+																				<!-- slds-icon-standard-account -->
+																				<lightning:avatar
+																					size="small"
+																					variant="square"
+																					initials="{!item.avatar}"
+																					fallbackIconName="custom:custom101"
+																					alternativeText="{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }"
+																					class="slds-m-right_small"
+																				/>
+																			</span>
+																		</span>
+
+																		<span class="slds-media__body slds-text-align_left">
+																			<span class="slds-listbox__option-text slds-listbox__option-text_entity">
+																				{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }
+																			</span>
+																			<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"> {!item.EMPLOYEEID__c} </span>
+																		</span>
+																	</div>
+																</li>
+															</aura:set>
+														</lightning:button>
+													</aura:iteration>
+												</ul>
+											</aura:set>
+										</c:THOR_ModalSelected>
+									</aura:set>
+								</aura:if>
+							</lightning:layoutItem>
+
+							<!--
+								<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:inputField fieldName="Responsible_person__c" required="true" />
+								</lightning:layoutItem>
+								-->
+
+							<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+								<lightning:inputField
+									class="slds-hide"
+									aura:id="inputField"
+									fieldName="Requester_PISUser__c"
+									value="{!v.form.Requester_PISUser__c}"
+								/>
+								<c:thorSuggestLookup
+									required="true"
+									sObjectName="Order__c"
+									fieldName="Responsible_person_PISUser__c"
+									value="{!v.form.Responsible_person_PISUser__c}"
+									onchangeValue="{!c.handleChange}"
+									fetchSObjectName="PISUsers__c"
+									nameDisplayFormat="{EN_Fullname__c}"
+									descriptionDisplayFormat="{Home Id: HOME_ID__c, Host Id: HOST_ID__c}"
+								/>
+								<!-- alignment="bottom" -->
+							</lightning:layoutItem>
+							<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box slds-hide">
+								<aura:if isTrue="{!and(v.form.Responsible_person_PISUser__c, v.form.Responsible_person_PISUser__c.length > 0)}">
+									<lightning:inputField
+										aura:id="inputField"
+										fieldName="Responsible_person_PISUser__c"
+										value="{!v.form.Responsible_person_PISUser__c}"
+										required="true"
+									/>
+									<aura:set attribute="else">
+										<lightning:inputField
+											class="slds-hide"
+											fieldName="Responsible_person_PISUser__c"
+											value="{!v.form.Responsible_person_PISUser__c}"
+											required="true"
+										/>
+										<div class="slds-form-element slds-form-element_stacked">
+											<label class="slds-form-element__label">
+												<abbr title="required" class="slds-required">*</abbr>
+												{!v.objectInfoFields.Responsible_person_PISUser__c.label}
+											</label>
+											<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+												<lightning:icon
+													class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+													iconName="utility:search"
+													size="xx-small"
+												/>
+												<lightning:input
+													required="true"
+													variant="label-hidden"
+													name="Responsible_person_PISUser__c"
+													label="{!v.objectInfoFields.Responsible_person_PISUser__c.label}"
+													placeholder="{! 'Select ' + (v.objectInfoFields.Responsible_person_PISUser__c.label) + '...' }"
+													autocomplete="off"
+													tabindex="-1"
+													onfocus="{!c.handleFocus}"
+												/>
+											</div>
+										</div>
+										<c:THOR_ModalSelected
+											title="{!v.objectInfoFields.Responsible_person_PISUser__c.label}"
+											isToggle="{!v.isToggleSubModal.Responsible_person_PISUser__c}"
+										>
+											<aura:set attribute="body">
+												<lightning:layout class="slds-form" verticalAlign="end">
+													<Lightning:layoutitem flexibility="auto">
+														<lightning:input
+															aura:id="search-input"
+															name="Responsible_person_PISUser__c"
+															type="search"
+															variant="label-stacked"
+															label="{! 'Search for ' + v.objectInfoFields.Responsible_person_PISUser__c.label}"
+															onchange="{!c.handleSearch}"
+															autocomplete="off"
+														/>
+													</Lightning:layoutitem>
+													<Lightning:layoutitem flexibility="no-grow">
+														<div class="slds-form-element slds-form-element_stacked">
+															<label class="slds-form-element__label">&nbsp;</label>
+															<div class="slds-form-element__control">
+																<lightning:button variant="neutral" label="Search" />
+															</div>
+														</div>
+													</Lightning:layoutitem>
+												</lightning:layout>
+
+												<ul class="slds-listbox slds-listbox_vertical slds-p-horizontal_small" role="presentation">
+													<aura:iteration items="{!v.formOption.Responsible_person_PISUser__c}" var="item" indexVar="index">
+														<lightning:button
+															variant="base"
+															class="slds-size_1-of-1 slds-text-link_reset slds-m-left_xx-small d-flex"
+															label="{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }"
+															name="Responsible_person_PISUser__c"
+															value="{! item.Id }"
+															onclick="{!c.handleSeletedButton}"
+														>
+															<aura:set attribute="body">
+																<li role="presentation" class="slds-listbox__item slds-size_1-of-1">
+																	<div
+																		class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
+																		role="option"
+																	>
+																		<span class="slds-media__figure slds-listbox__option-icon">
+																			<span class="slds-icon_container">
+																				<!-- slds-icon-standard-account -->
+																				<lightning:avatar
+																					size="small"
+																					variant="square"
+																					initials="{!item.avatar}"
+																					fallbackIconName="custom:custom101"
+																					alternativeText="{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }"
+																					class="slds-m-right_small"
+																				/>
+																			</span>
+																		</span>
+
+																		<span class="slds-media__body slds-text-align_left">
+																			<span class="slds-listbox__option-text slds-listbox__option-text_entity">
+																				{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }
+																			</span>
+																			<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"> {!item.EMPLOYEEID__c} </span>
+																		</span>
+																	</div>
+																</li>
+															</aura:set>
+														</lightning:button>
+													</aura:iteration>
+												</ul>
+											</aura:set>
+										</c:THOR_ModalSelected>
+									</aura:set>
+								</aura:if>
+							</lightning:layoutItem>
+
+							<lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" padding="around-small" class="custom-box">
+								<lightning:inputField aura:id="inputField" fieldName="WBS__c" value="{!v.form.WBS__c}" />
+							</lightning:layoutItem>
+
+							<!--lightning:inputField fieldName="System_Status_Text__c" value="CRTD" class="slds-hidden"/>
+                                <lightning:inputField fieldName="Requested_Date__c" value="{!v.today}" class="slds-hidden"/-->
+						</lightning:layout>
+
+						<!-- <div class="slds-float_right slds-p-around_medium">
+								<lightning:button variant="neutral" class="slds-m-top_small" type="button" label="Cancel" onclick="{! c.showConfirmation }" />
+								<lightning:button name="{!}" variant="neutral" class="slds-m-top_small" type="submit" label="Save" />
+							</div> -->
+						<c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+					</lightning:recordEditForm>
+				</div>
+				<!-- MAIN WORK CENTER -->
+				<aura:if isTrue="{!v.mainWorkCenterModal}">
+					<section
+						role="dialog"
+						tabindex="-1"
+						aria-labelledby="modal-heading-01"
+						aria-modal="true"
+						aria-describedby="modal-content-id-1"
+						class="slds-modal slds-fade-in-open"
+					>
+						<div class="slds-modal__container">
+							<header class="slds-modal__header">
+								<lightning:buttonIcon
+									iconName="utility:close"
+									onclick="{!c.closeMainWorkCenterModal}"
+									alternativeText="close"
+									variant="bare-inverse"
+									class="slds-modal__close"
+								/>
+								<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Main Work Center</h2>
+							</header>
+							<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+								<!--Search Bar Start-->
+								<lightning:layout verticalAlign="center">
+									<lightning:layoutitem size="10" flexibility="auto" class="slds-p-bottom_small">
+										<div onkeyup="{!c.handleOnKeyUpMainWorkCenter}">
+											<lightning:input
+												aura:id="enter-search-mainWorkCenter"
+												name="enter-search-mainWorkCenter"
+												label="Search for Main Work Center"
+												type="search"
+											/>
+										</div>
+									</lightning:layoutitem>
+									<lightning:layoutitem size="2" flexibility="auto">
+										<lightning:button
+											class="slds-p-left_small slds-p-top_small"
+											variant="bare"
+											title="Search"
+											label="Search"
+											onclick="{!c.handleMainWorkCenterSearch}"
+										/>
+									</lightning:layoutitem>
+								</lightning:layout>
+								<!--Search Bar End-->
+								<aura:iteration items="{!v.mainWorkCentersFilteredAndSearched}" var="item">
+									<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+										<lightning:button
+											variant="base"
+											value="{!item.RelatedMasterMap1__c}"
+											title="{!item.RelatedMasterMap1__r.Name}"
+											label="{!item.RelatedMasterMap1__r.Name + ' ' + item.RelatedMasterMap1__r.Description__c}"
+											onclick="{!c.selectMainWorkCenter}"
+										/>
+									</lightning:layoutItem>
+								</aura:iteration>
+							</div>
+						</div>
+					</section>
+					<div class="slds-backdrop slds-backdrop_open"></div>
+				</aura:if>
+
+				<aura:if isTrue="{!v.mainWorkCenterPlantModal}">
+					<section
+						role="dialog"
+						tabindex="-1"
+						aria-labelledby="modal-heading-01"
+						aria-modal="true"
+						aria-describedby="modal-content-id-1"
+						class="slds-modal slds-fade-in-open"
+					>
+						<div class="slds-modal__container">
+							<header class="slds-modal__header">
+								<lightning:buttonIcon
+									iconName="utility:close"
+									onclick="{!c.closeMainWorkCenterPlantModal}"
+									alternativeText="close"
+									variant="bare-inverse"
+									class="slds-modal__close"
+								/>
+								<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Main Work Center Plant</h2>
+							</header>
+							<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+								<!--Search Bar Start-->
+								<lightning:layout verticalAlign="center">
+									<lightning:layoutitem size="10" flexibility="auto" class="slds-p-bottom_small">
+										<div onkeyup="{!c.handleOnKeyUpMainWorkCenterPlant}">
+											<lightning:input
+												aura:id="enter-search-mainWorkCenterPlant"
+												name="enter-search-mainWorkCenterPlant"
+												label="Search for Main Work Center Plant"
+												type="search"
+											/>
+										</div>
+									</lightning:layoutitem>
+									<lightning:layoutitem size="2" flexibility="auto">
+										<lightning:button
+											class="slds-p-left_small slds-p-top_small"
+											variant="bare"
+											title="Search"
+											label="Search"
+											onclick="{!c.handleMainWorkCenterPlantSearch}"
+										/>
+									</lightning:layoutitem>
+								</lightning:layout>
+								<!--Search Bar End-->
+								<aura:iteration items="{!v.mainWorkCenterPlantsFilteredAndSearched}" var="item">
+									<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+										<lightning:button
+											variant="base"
+											value="{!item.Id}"
+											title="{!item.Name}"
+											label="{!item.Name + ' ' + item.Description__c}"
+											onclick="{!c.selectMainWorkCenterPlant}"
+										/>
+									</lightning:layoutItem>
+								</aura:iteration>
+							</div>
+						</div>
+					</section>
+					<div class="slds-backdrop slds-backdrop_open"></div>
+				</aura:if>
+
+				<!-- PM ACTIVITY TYPE MODAL START -->
+				<aura:if isTrue="{!v.pmActivityTypeModal}">
+					<section
+						role="dialog"
+						tabindex="-1"
+						aria-labelledby="modal-heading-01"
+						aria-modal="true"
+						aria-describedby="modal-content-id-1"
+						class="slds-modal slds-fade-in-open"
+					>
+						<div class="slds-modal__container">
+							<header class="slds-modal__header">
+								<lightning:buttonIcon
+									iconName="utility:close"
+									onclick="{!c.closePMActivityModal}"
+									alternativeText="close"
+									variant="bare-inverse"
+									class="slds-modal__close"
+								/>
+
+								<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">PM Activity Type</h2>
+							</header>
+							<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+								<!--Search Bar Start-->
+
+								<lightning:layout verticalAlign="center">
+									<lightning:layoutitem size="10" flexibility="auto" class="slds-p-bottom_small">
+										<div onkeyup="{!c.handleOnKeyUpPMActivityType}">
+											<lightning:input
+												aura:id="enter-search-pmActivityType"
+												name="enter-search-pmActivityType"
+												label="Search for PM Activity Type"
+												type="search"
+											/>
+										</div>
+									</lightning:layoutitem>
+									<lightning:layoutitem size="2" flexibility="auto">
+										<lightning:button
+											class="slds-p-left_small slds-p-top_small"
+											variant="bare"
+											title="Search"
+											label="Search"
+											onclick="{!c.handlePMActivityTypeSearch}"
+										/>
+									</lightning:layoutitem>
+								</lightning:layout>
+
+								<!--Search Bar End-->
+								<aura:iteration items="{!v.pmActivityTypesFilteredAndSearched}" var="item">
+									<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+										<lightning:button
+											variant="base"
+											value="{!item.Id}"
+											label="{!item.Name + ' ' + item.Description__c}"
+											onclick="{!c.selectPMActivityType}"
+										/>
+									</lightning:layoutItem>
+								</aura:iteration>
+							</div>
+						</div>
+					</section>
+					<div class="slds-backdrop slds-backdrop_open"></div>
+				</aura:if>
+				<!-- PM ACTIVITY TYPE MODAL END -->
+
+				<aura:set attribute="else">
+					<!-- FROM NOTIFICATION PAGE -->
+					<force:recordData
+						aura:id="recordLoader"
+						layoutType="FULL"
+						recordId="{!v.notificationId}"
+						targetFields="{!v.notificationRecord}"
+						targetRecord="{!v.notificationObject}"
+						targetError="{!v.recordError}"
+						recordUpdated="{!c.handleRecordUpdated}"
+					/>
+
+					<aura:if isTrue="{!v.notificationHasOrder}">
+						<div class="slds-align_absolute-center slds-m-top_x-small" style="aspect-ratio: 21/9">
+							<p>This notification already has an order. Press Cancel to return.</p>
+						</div>
+						<!-- <div class="slds-clearfix">
+								<div class="slds-float_right">
+									<lightning:button
+										variant="neutral"
+										class="slds-m-top_small slds-m-right_small slds-m-bottom_x-small"
+										type="button"
+										label="Cancel"
+										onclick="{! c.closeModal }"
+									/>
+								</div>
+							</div> -->
+						<aura:set attribute="else">
+							<!--
+									@Description Thor2 - Integration improvement
+									Sync noti after sap send to update
+								 -->
+							<!-- <lightning:recordEditForm
+									class="slds-hide"
+									aura:id="notificationRecordEditForm"
+									recordId="{!v.notificationId}"
+									objectApiName="Notification__c"
+									onsuccess="{! c.showSuccessToastNotification }"
+									onerror="{! c.showErrorToastNotification }"
+								>
+									<lightning:inputField aura:id="notification_order" fieldName="Order__c" value="{!v.createdOrderId}" />
+								</lightning:recordEditForm> -->
+
+							<lightning:layout multipleRows="true">
+								<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+									<div class="slds-form-element" style="padding: 0 4px">
+										<label class="slds-form-element__label" for="text-input-id-1">Notification Number</label>
+										<div class="slds-form-element__control">
+											<input
+												type="text"
+												id="text-input-id-1"
+												placeholder="{!v.notificationRecord.Notification_Number__c}"
+												disabled="true"
+												class="slds-input"
+											/>
+										</div>
+									</div>
+								</lightning:layoutItem>
+							</lightning:layout>
+
+							<lightning:recordEditForm
+								density="comfy"
+								aura:id="OrderRecordEditForm"
+								objectApiName="Order__c"
+								onload="{! c.handleLoad }"
+								onsubmit="{! c.handleSubmit }"
+								onsuccess="{! c.createOrderSuccess }"
+								onerror="{! c.showErrorToast }"
+							>
+								<lightning:inputField fieldName="Notification__c" value="{!v.notificationId}" required="true" class="slds-hide" />
+								<lightning:inputField fieldName="Integration_Status__c" value="In Progress" required="true" class="slds-hide" />
+
+								<lightning:layout multipleRows="true" verticalAlign="stretch">
+									<lightning:messages />
+
+									<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+										<lightning:inputField aura:id="Order_Type__c" fieldName="Order_Type__c" value="" required="true" />
+									</lightning:layoutItem>
+
+									<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+										<lightning:inputField fieldName="Description__c" value="{!v.notificationRecord.Description__c}" required="true" />
+									</lightning:layoutItem>
+
+									<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+										<!-- <lightning:inputField fieldName="Functional_Location__c"
+                                            value="{!v.notificationRecord.Functional_Location__c}" onchange="{!c.handleFLSelected}" required="true" /> -->
+										<lightning:inputField
+											aura:id="Functional_Location__c"
+											value=""
+											required="true"
+											fieldName="Functional_Location__c"
+											onchange="{!c.handleFLSelected2}"
+										/>
+									</lightning:layoutItem>
+
+									<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+										<!-- <lightning:inputField fieldName="Equipment__c"
+                                            value="{!v.notificationRecord.Equipment__c}" required="false" /> -->
+										<aura:if isTrue="{!v.lookupEquipments}">
+											<lightning:inputField aura:id="Equipment__c" fieldName="Equipment__c" />
+											<aura:set attribute="else">
+												<lightning:combobox
+													aura:id="equipmentOptions"
+													name="equipment"
+													label="Equipment"
+													placeholder="Select Equipment..."
+													options="{!v.equipmentOptions}"
+													value="{!v.equipmentValue}"
+												/>
+
+												<lightning:inputField class="hidden" value="{!v.equipmentValue}" fieldName="Equipment__c" />
+											</aura:set>
+										</aura:if>
+									</lightning:layoutItem>
+
+									<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+										<lightning:inputField disabled="true" value="{!v.planningPlantValue}" aura:id="Planning_Plant__c" fieldName="Planning_Plant__c" />
+									</lightning:layoutItem>
+
+									<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+										<div class="slds-form-element slds-form-element_stacked">
+											<label class="slds-form-element__label">
+												<abbr class="slds-required">*</abbr>
+												Plant of Main Work Center
+											</label>
+											<div class="slds-form-element__control">
+												<aura:if isTrue="{!v.mainWorkCenterPlantValue}">
+													<lightning:inputField
+														value="{!v.mainWorkCenterPlantValue}"
+														onchange="{!c.clearMainWorkCenterPlantValue}"
+														fieldName="mainWorkCenterPlant__c"
+														variant="label-hidden"
+														required="true"
+													/>
+													<aura:set attribute="else">
+														<lightning:input
+															aura:id="mainWorkCenterPlant__c"
+															onfocus="{!c.openMainWorkCenterPlantModal}"
+															variant="label-hidden"
+															required="true"
+														/>
+													</aura:set>
+												</aura:if>
+											</div>
+										</div>
+									</lightning:layoutItem>
+									<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+										<div class="slds-form-element slds-form-element_stacked">
+											<label class="slds-form-element__label">
+												<abbr class="slds-required">*</abbr>
+												Main Work Center
+											</label>
+											<div class="slds-form-element__control">
+												<aura:if isTrue="{!v.mainWorkCenterValue}">
+													<lightning:inputField
+														value="{!v.mainWorkCenterValue}"
+														onchange="{!c.clearMainWorkCenterValue}"
+														fieldName="Main_Work_Center__c"
+														variant="label-hidden"
+													/>
+													<aura:set attribute="else">
+														<lightning:input
+															aura:id="Main_Work_Center__c"
+															onfocus="{!c.openMainWorkCenterModal}"
+															variant="label-hidden"
+															required="true"
+														/>
+													</aura:set>
+												</aura:if>
+											</div>
+										</div>
+									</lightning:layoutItem>
+
+									<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+										<lightning:inputField fieldName="Start_Date__c" required="true" value="{!v.notificationRecord.Required_Start__c}" />
+									</lightning:layoutItem>
+
+									<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+										<lightning:inputField fieldName="Finished_Date__c" value="{!v.notificationRecord.Required_End__c}" />
+									</lightning:layoutItem>
+
+									<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+										<aura:if isTrue="{!v.pmActivityTypeValue}">
+											<lightning:inputField
+												value="{!v.pmActivityTypeValue}"
+												onchange="{!c.clearPMActivityTypeValue}"
+												aura:id="PM_Activity_Type__c"
+												fieldName="PM_Activity_Type__c"
+												required="true"
+											/>
+											<aura:set attribute="else">
+												<lightning:input
+													aura:id="lightningInputPMActivityType"
+													value=""
+													onfocus="{!c.openPMActivityTypeModal}"
+													label="PM Activity Type"
+													required="true"
+												/>
+												<lightning:inputField class="hidden" value="{!v.pmActivityTypeValue}" fieldName="PM_Activity_Type__c" />
+											</aura:set>
+										</aura:if>
+									</lightning:layoutItem>
+
+									<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+										<lightning:inputField fieldName="Priority__c" value="{!v.notificationRecord.Priority__c}" required="true" />
+									</lightning:layoutItem>
+
+									<!-- <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+											<lightning:inputField
+												aura:id="requester"
+												fieldName="Requester__c"
+												value="{!v.notificationRecord.Requester__c}"
+												required="true"
+											/>
+										</lightning:layoutItem>
+
+										<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+											<lightning:inputField fieldName="Responsible_person__c" required="true" />
+										</lightning:layoutItem> -->
+
+									<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+										<aura:if isTrue="{!and(v.form.Requester_PISUser__c, v.form.Requester_PISUser__c.length > 0)}">
+											<lightning:inputField
+												aura:id="inputField"
+												fieldName="Requester_PISUser__c"
+												value="{!v.notificationRecord.Requester_PISUser__c}"
+												disabled="true"
+											/>
+											<aura:set attribute="else">
+												<div class="slds-form-element slds-form-element_stacked">
+													<label class="slds-form-element__label">
+														<!-- <abbr title="required" class="slds-required">*</abbr> -->
+														{!v.objectInfoFields.Requester_PISUser__c.label}
+													</label>
+													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+														<lightning:icon
+															class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+															iconName="utility:search"
+															size="xx-small"
+														/>
+														<lightning:input
+															variant="label-hidden"
+															name="Requester_PISUser__c"
+															label="{!v.objectInfoFields.Requester_PISUser__c.label}"
+															placeholder="{! 'Select ' + (v.objectInfoFields.Requester_PISUser__c.label) + '...' }"
+															autocomplete="off"
+															tabindex="-1"
+															disabled="true"
+														/>
+														<!-- onfocus="{!c.handleFocus}" -->
+													</div>
+												</div>
+												<c:THOR_ModalSelected
+													title="{!v.objectInfoFields.Requester_PISUser__c.label}"
+													isToggle="{!v.isToggleSubModal.Requester_PISUser__c}"
+												>
+													<aura:set attribute="body">
+														<lightning:layout class="slds-form" verticalAlign="end">
+															<Lightning:layoutitem flexibility="auto">
+																<lightning:input
+																	aura:id="search-input"
+																	name="Requester_PISUser__c"
+																	type="search"
+																	variant="label-stacked"
+																	label="{! 'Search for ' + v.objectInfoFields.Requester_PISUser__c.label}"
+																	onchange="{!c.handleSearch}"
+																	autocomplete="off"
+																/>
+															</Lightning:layoutitem>
+															<Lightning:layoutitem flexibility="no-grow">
+																<div class="slds-form-element slds-form-element_stacked">
+																	<label class="slds-form-element__label">&nbsp;</label>
+																	<div class="slds-form-element__control">
+																		<lightning:button variant="neutral" label="Search" />
+																	</div>
+																</div>
+															</Lightning:layoutitem>
+														</lightning:layout>
+
+														<ul class="slds-listbox slds-listbox_vertical slds-p-horizontal_small" role="presentation">
+															<aura:iteration items="{!v.formOption.Requester_PISUser__c}" var="item" indexVar="index">
+																<lightning:button
+																	variant="base"
+																	class="slds-size_1-of-1 slds-text-link_reset slds-m-left_xx-small d-flex"
+																	label="{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }"
+																	name="Requester_PISUser__c"
+																	value="{! item.Id }"
+																	onclick="{!c.handleSeletedButton}"
+																>
+																	<aura:set attribute="body">
+																		<li role="presentation" class="slds-listbox__item slds-size_1-of-1">
+																			<div
+																				class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
+																				role="option"
+																			>
+																				<span class="slds-media__figure slds-listbox__option-icon">
+																					<span class="slds-icon_container">
+																						<!-- slds-icon-standard-account -->
+																						<lightning:avatar
+																							size="small"
+																							variant="square"
+																							initials="{!item.avatar}"
+																							fallbackIconName="custom:custom101"
+																							alternativeText="{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }"
+																							class="slds-m-right_small"
+																						/>
+																					</span>
+																				</span>
+
+																				<span class="slds-media__body slds-text-align_left">
+																					<span class="slds-listbox__option-text slds-listbox__option-text_entity">
+																						{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }
+																					</span>
+																					<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"> {!item.EMPLOYEEID__c} </span>
+																				</span>
+																			</div>
+																		</li>
+																	</aura:set>
+																</lightning:button>
+															</aura:iteration>
+														</ul>
+													</aura:set>
+												</c:THOR_ModalSelected>
+											</aura:set>
+										</aura:if>
+									</lightning:layoutItem>
+
+									<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+										<lightning:inputField
+											class="slds-hide"
+											aura:id="inputField"
+											fieldName="Responsible_person_PISUser__c"
+											value="{!v.form.Responsible_person_PISUser__c}"
+											required="true"
+										/>
+										<c:thorSuggestLookup
+											required="true"
+											sObjectName="Order__c"
+											fieldName="Responsible_person_PISUser__c"
+											value="{!v.form.Responsible_person_PISUser__c}"
+											onchangeValue="{!c.handleChange}"
+											fetchSObjectName="PISUsers__c"
+											nameDisplayFormat="{EN_Fullname__c}"
+											descriptionDisplayFormat="{Home Id: HOME_ID__c, Host Id: HOST_ID__c}"
+										/>
+										<!-- <aura:if isTrue="{!and(v.form.Responsible_person_PISUser__c, v.form.Responsible_person_PISUser__c.length > 0)}">
+											<lightning:inputField
+												aura:id="inputField"
+												fieldName="Responsible_person_PISUser__c"
+												value="{!v.form.Responsible_person_PISUser__c}"
+												required="true"
+											/>
+											<aura:set attribute="else">
+												<div class="slds-form-element slds-form-element_stacked">
+													<label class="slds-form-element__label">
+														<abbr title="required" class="slds-required">*</abbr>
+														{!v.objectInfoFields.Responsible_person_PISUser__c.label}
+													</label>
+													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+														<lightning:icon
+															class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+															iconName="utility:search"
+															size="xx-small"
+														/>
+														<lightning:input
+															required="true"
+															variant="label-hidden"
+															name="Responsible_person_PISUser__c"
+															label="{!v.objectInfoFields.Responsible_person_PISUser__c.label}"
+															placeholder="{! 'Select ' + (v.objectInfoFields.Responsible_person_PISUser__c.label) + '...' }"
+															autocomplete="off"
+															tabindex="-1"
+															onfocus="{!c.handleFocus}"
+														/>
+													</div>
+												</div>
+												<c:THOR_ModalSelected
+													title="{!v.objectInfoFields.Responsible_person_PISUser__c.label}"
+													isToggle="{!v.isToggleSubModal.Responsible_person_PISUser__c}"
+												>
+													<aura:set attribute="body">
+														<lightning:layout class="slds-form" verticalAlign="end">
+															<Lightning:layoutitem flexibility="auto">
+																<lightning:input
+																	aura:id="search-input"
+																	name="Responsible_person_PISUser__c"
+																	type="search"
+																	variant="label-stacked"
+																	label="{! 'Search for ' + v.objectInfoFields.Responsible_person_PISUser__c.label}"
+																	onchange="{!c.handleSearch}"
+																	autocomplete="off"
+																/>
+															</Lightning:layoutitem>
+															<Lightning:layoutitem flexibility="no-grow">
+																<div class="slds-form-element slds-form-element_stacked">
+																	<label class="slds-form-element__label">&nbsp;</label>
+																	<div class="slds-form-element__control">
+																		<lightning:button variant="neutral" label="Search" />
+																	</div>
+																</div>
+															</Lightning:layoutitem>
+														</lightning:layout>
+
+														<ul class="slds-listbox slds-listbox_vertical slds-p-horizontal_small" role="presentation">
+															<aura:iteration items="{!v.formOption.Responsible_person_PISUser__c}" var="item" indexVar="index">
+																<lightning:button
+																	variant="base"
+																	class="slds-size_1-of-1 slds-text-link_reset slds-m-left_xx-small d-flex"
+																	label="{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }"
+																	name="Responsible_person_PISUser__c"
+																	value="{! item.Id }"
+																	onclick="{!c.handleSeletedButton}"
+																>
+																	<aura:set attribute="body">
+																		<li role="presentation" class="slds-listbox__item slds-size_1-of-1">
+																			<div
+																				class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
+																				role="option"
+																			>
+																				<span class="slds-media__figure slds-listbox__option-icon">
+																					<span class="slds-icon_container">
+																						<lightning:avatar
+																							size="small"
+																							variant="square"
+																							initials="{!item.avatar}"
+																							fallbackIconName="custom:custom101"
+																							alternativeText="{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }"
+																							class="slds-m-right_small"
+																						/>
+																					</span>
+																				</span>
+
+																				<span class="slds-media__body slds-text-align_left">
+																					<span class="slds-listbox__option-text slds-listbox__option-text_entity">
+																						{! item.ENFIRSTNAME__c + ' ' + item.ENLASTNAME__c }
+																					</span>
+																					<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"> {!item.EMPLOYEEID__c} </span>
+																				</span>
+																			</div>
+																		</li>
+																	</aura:set>
+																</lightning:button>
+															</aura:iteration>
+														</ul>
+													</aura:set>
+												</c:THOR_ModalSelected>
+											</aura:set>
+										</aura:if> -->
+									</lightning:layoutItem>
+								</lightning:layout>
+
+								<!-- <div class="slds-float_right slds-p-top_x-small">
+										<lightning:button variant="neutral" type="button" label="Cancel" onclick="{! c.showConfirmation }" />
+										<lightning:button variant="neutral" type="submit" label="Save" />
+									</div> -->
+								<c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+							</lightning:recordEditForm>
+
+							<!-- Display Lightning Data Service errors, if any -->
+							<aura:if isTrue="{!not(empty(v.recordError))}">
+								<div class="recordError">{!v.recordError}</div>
+								<p>ERROR</p>
+							</aura:if>
+						</aura:set>
+					</aura:if>
+
+					<!-- MAIN WORK CENTER -->
+					<aura:if isTrue="{!v.mainWorkCenterModal}">
+						<section
+							role="dialog"
+							tabindex="-1"
+							aria-labelledby="modal-heading-01"
+							aria-modal="true"
+							aria-describedby="modal-content-id-1"
+							class="slds-modal slds-fade-in-open"
+						>
+							<div class="slds-modal__container">
+								<header class="slds-modal__header">
+									<lightning:buttonIcon
+										iconName="utility:close"
+										onclick="{!c.closeMainWorkCenterModal}"
+										alternativeText="close"
+										variant="bare-inverse"
+										class="slds-modal__close"
+									/>
+									<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Main Work Center</h2>
+								</header>
+								<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+									<!--Search Bar Start-->
+									<lightning:layout verticalAlign="center">
+										<lightning:layoutitem size="10" flexibility="auto" class="slds-p-bottom_small">
+											<div onkeyup="{!c.handleOnKeyUpMainWorkCenter}">
+												<lightning:input
+													aura:id="enter-search-mainWorkCenter"
+													name="enter-search-mainWorkCenter"
+													label="Search for Main Work Center"
+													type="search"
+												/>
+											</div>
+										</lightning:layoutitem>
+										<lightning:layoutitem size="2" flexibility="auto">
+											<lightning:button
+												class="slds-p-left_small slds-p-top_small"
+												variant="bare"
+												title="Search"
+												label="Search"
+												onclick="{!c.handleMainWorkCenterSearch}"
+											/>
+										</lightning:layoutitem>
+									</lightning:layout>
+									<!--Search Bar End-->
+									<aura:iteration items="{!v.mainWorkCentersFilteredAndSearched}" var="item">
+										<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+											<lightning:button
+												variant="base"
+												value="{!item.RelatedMasterMap1__c}"
+												title="{!item.RelatedMasterMap1__r.Name}"
+												label="{!item.RelatedMasterMap1__r.Name + ' ' + item.RelatedMasterMap1__r.Description__c}"
+												onclick="{!c.selectMainWorkCenter}"
+											/>
+										</lightning:layoutItem>
+									</aura:iteration>
+								</div>
+							</div>
+						</section>
+						<div class="slds-backdrop slds-backdrop_open"></div>
+					</aura:if>
+
+					<aura:if isTrue="{!v.mainWorkCenterPlantModal}">
+						<section
+							role="dialog"
+							tabindex="-1"
+							aria-labelledby="modal-heading-01"
+							aria-modal="true"
+							aria-describedby="modal-content-id-1"
+							class="slds-modal slds-fade-in-open"
+						>
+							<div class="slds-modal__container">
+								<header class="slds-modal__header">
+									<lightning:buttonIcon
+										iconName="utility:close"
+										onclick="{!c.closeMainWorkCenterPlantModal}"
+										alternativeText="close"
+										variant="bare-inverse"
+										class="slds-modal__close"
+									/>
+									<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Main Work Center Plant</h2>
+								</header>
+								<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+									<!--Search Bar Start-->
+									<lightning:layout verticalAlign="center">
+										<lightning:layoutitem size="10" flexibility="auto" class="slds-p-bottom_small">
+											<div onkeyup="{!c.handleOnKeyUpMainWorkCenterPlant}">
+												<lightning:input
+													aura:id="enter-search-mainWorkCenterPlant"
+													name="enter-search-mainWorkCenterPlant"
+													label="Search for Main Work Center Plant"
+													type="search"
+												/>
+											</div>
+										</lightning:layoutitem>
+										<lightning:layoutitem size="2" flexibility="auto">
+											<lightning:button
+												class="slds-p-left_small slds-p-top_small"
+												variant="bare"
+												title="Search"
+												label="Search"
+												onclick="{!c.handleMainWorkCenterPlantSearch}"
+											/>
+										</lightning:layoutitem>
+									</lightning:layout>
+									<!--Search Bar End-->
+									<aura:iteration items="{!v.mainWorkCenterPlantsFilteredAndSearched}" var="item">
+										<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+											<lightning:button
+												variant="base"
+												value="{!item.Id}"
+												title="{!item.Name}"
+												label="{!item.Name + ' ' + item.Description__c}"
+												onclick="{!c.selectMainWorkCenterPlant}"
+											/>
+										</lightning:layoutItem>
+									</aura:iteration>
+								</div>
+							</div>
+						</section>
+						<div class="slds-backdrop slds-backdrop_open"></div>
+					</aura:if>
+
+					<!-- PM ACTIVITY TYPE MODAL START -->
+					<aura:if isTrue="{!v.pmActivityTypeModal}">
+						<section
+							role="dialog"
+							tabindex="-1"
+							aria-labelledby="modal-heading-01"
+							aria-modal="true"
+							aria-describedby="modal-content-id-1"
+							class="slds-modal slds-fade-in-open"
+						>
+							<div class="slds-modal__container">
+								<header class="slds-modal__header">
+									<lightning:buttonIcon
+										iconName="utility:close"
+										onclick="{!c.closePMActivityModal}"
+										alternativeText="close"
+										variant="bare-inverse"
+										class="slds-modal__close"
+									/>
+
+									<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">PM Activity Type</h2>
+								</header>
+								<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+									<!--Search Bar Start-->
+
+									<lightning:layout verticalAlign="center">
+										<lightning:layoutitem size="10" flexibility="auto" class="slds-p-bottom_small">
+											<div onkeyup="{!c.handleOnKeyUpPMActivityType}">
+												<lightning:input
+													aura:id="enter-search-pmActivityType"
+													name="enter-search-pmActivityType"
+													label="Search for PM Activity Type"
+													type="search"
+												/>
+											</div>
+										</lightning:layoutitem>
+										<lightning:layoutitem size="2" flexibility="auto">
+											<lightning:button
+												class="slds-p-left_small slds-p-top_small"
+												variant="bare"
+												title="Search"
+												label="Search"
+												onclick="{!c.handlePMActivityTypeSearch}"
+											/>
+										</lightning:layoutitem>
+									</lightning:layout>
+
+									<!--Search Bar End-->
+									<aura:iteration items="{!v.pmActivityTypesFilteredAndSearched}" var="item">
+										<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+											<lightning:button
+												variant="base"
+												value="{!item.Id}"
+												label="{!item.Name + ' ' + item.Description__c}"
+												onclick="{!c.selectPMActivityType}"
+											/>
+										</lightning:layoutItem>
+									</aura:iteration>
+								</div>
+							</div>
+						</section>
+						<div class="slds-backdrop slds-backdrop_open"></div>
+					</aura:if>
+					<!-- PM ACTIVITY TYPE MODAL END -->
+				</aura:set>
+			</aura:if>
+		</div>
+
+		<aura:set attribute="title"><div class="slds-hyphenate slds-text-heading_medium slds-p-vertical_small">New order</div></aura:set>
+		<aura:set attribute="footer">
+			<!-- <aura:if isTrue="{!v.notificationHasOrder}">
+				<lightning:button label="Cancel" onclick="{! c.closeModal }" />
+				<aura:set attribute="else">
+					<lightning:button label="Cancel" onclick="{! c.showConfirmation }" />
+				</aura:set>
+			</aura:if> -->
+			<c:THOR_ModalSelected title="Confirmation" isToggle="{!v.isToggleSubModal.CancelButton}" size="empty" isHideCloseButton="true">
+				<aura:set attribute="body"> <div style="text-align: center; font-size: 0.875rem">Are you sure you want to cancel?</div> </aura:set>
+				<aura:set attribute="footer">
+					<lightning:button name="No" label="No" onclick="{!c.handleCancel}" />
+					<lightning:button name="Yes" label="Yes" variant="brand" onclick="{!c.handleCancel}" />
+				</aura:set>
+			</c:THOR_ModalSelected>
+			<lightning:button label="Cancel" onclick="{!c.handleCancel}" />
+			<lightning:button label="Save" onclick="{!c.onClickSubmit}" disabled="{! v.isLoading || v.notificationHasOrder }" />
+		</aura:set>
+	</lightning:card>
+</aura:component>

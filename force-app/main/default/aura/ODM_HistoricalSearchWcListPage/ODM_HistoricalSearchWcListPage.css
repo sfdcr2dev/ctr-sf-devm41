@@ -1,0 +1,78 @@
+.THIS h1{
+    font-size: 18px;
+	padding-left: 5px ;
+	font-weight: bold !important;
+
+}
+.THIS .slds-icon_container.active svg {
+	fill: #5679c0;
+}
+
+
+@media (max-width: 602px) {
+	.THIS .pagination button {
+		padding-left: 8px;
+		padding-right: 8px;
+	}
+
+	.THIS.container .header__label p {
+		padding-top: 5px !important;
+		padding-bottom: 5px !important;
+		font-size: 0.875rem;
+	}
+
+	.THIS.container .box-detail,
+	.THIS.container .header__label p {
+		font-size: 0.75rem;
+	}
+	
+	.THIS.container.slds-card .slds-card__header-title .slds-text-heading_small {
+		font-size: 0.875rem;
+	}
+
+	.THIS.container.slds-card__body .slds-box {
+		font-size: var(--lwc-fontSize4, 0.875rem);
+		padding-top: 0.5em !important;
+		padding-bottom: 0.5em !important;
+	}
+
+	.THIS.container.slds-card .slds-card__footer button {
+		font-size: var(--lwc-fontSize5, 1rem);
+		font-weight: bold !important;
+	}
+}
+
+.THIS.container.slds-card {
+	background-color: #a0b76e;
+	/* background-color: #EAEFDE; */
+}
+
+.THIS.container.slds-card .slds-card__header-title .slds-text-heading_small {
+	font-size: var(--lwc-fontSize5, 1rem);
+	font-weight: normal !important;
+}
+
+.THIS.container .header__label {
+	background-color: #dddbda;
+	font-weight: 700;
+}
+
+.THIS.container.slds-card .slds-card__body {
+	background-color: #eaefde;
+	margin-bottom: 0;
+}
+
+.THIS.container.slds-card .slds-card__footer {
+	background-color: #ffffff;
+	margin-top: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.THIS.container .slds-box {
+	background-color: #fff !important;
+}
+
+.THIS.container .slds-box:hover {
+	background-color: #f7f7f7 !important;
+}

@@ -1,0 +1,16 @@
+<!--c:OPP_NewsCategoryButtonGroup-->
+<aura:component controller="OPP_NewsController"
+                implements="flexipage:availableForAllPageTypes"
+                access="global">
+
+    <aura:registerEvent name="appEvent" type="c:OPP_NewsCategoryChangedEvent" />
+    <aura:attribute name="categories" type="String[]" />
+    <aura:attribute name="selectedCategory" type="String" default="Highlight" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <aura:iteration items="{!v.categories}" var="category">
+        <lightning:button label="{!category}" value="{!category}" onclick="{!c.selectedCategoryChanged}" />
+    </aura:iteration>
+
+</aura:component>

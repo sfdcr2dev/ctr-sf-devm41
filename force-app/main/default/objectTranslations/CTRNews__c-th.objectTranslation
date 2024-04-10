@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CTR News</value>
+    </caseValues>
+    <fields>
+        <label><!-- Content --></label>
+        <name>Content__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer --></label>
+        <name>Customer__c</name>
+        <relationshipLabel><!-- CTR News --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Date (วันที่ของข่าว) --></label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Headline --></label>
+        <name>Headline__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Keyword --></label>
+        <name>Keyword__c</name>
+    </fields>
+    <fields>
+        <label><!-- Language --></label>
+        <name>Language__c</name>
+        <picklistValues>
+            <masterLabel>EN</masterLabel>
+            <translation><!-- EN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TH</masterLabel>
+            <translation><!-- TH --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Lead --></label>
+        <name>Lead__c</name>
+        <relationshipLabel><!-- CTR News --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Name --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Form Header --></label>
+        <name>RequestFormHeader__c</name>
+        <relationshipLabel><!-- CTR News --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Shareholder --></label>
+        <name>Shareholder__c</name>
+        <relationshipLabel><!-- CTR News --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Source URL --></label>
+        <name>SourceURL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source (แหล่งข่าว) --></label>
+        <name>Source__c</name>
+    </fields>
+    <layouts>
+        <layout>Create New Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

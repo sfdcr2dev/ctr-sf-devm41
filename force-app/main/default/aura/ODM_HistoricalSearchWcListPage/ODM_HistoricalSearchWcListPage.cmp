@@ -1,0 +1,140 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" controller="ODM_HistoricalSearchController" access="global">
+	
+	<lightning:navigation aura:id="navService" />
+	<lightning:notificationsLibrary aura:id="notifLib" />
+
+	<aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" />
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<aura:attribute name="filter" type="Map" default="{}" access="private" />
+	<aura:attribute name="filterRecordId" type="String" />
+
+    <aura:attribute name="wclist" type="List" default="[]" access="private" />
+	<aura:attribute name="wclist_loaded" type="Boolean" default="false" access="private" />
+    <aura:attribute name="isActive" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isInitialized" type="Boolean" default="false" access="private" />
+
+	<aura:attribute name="pagination" type="List" default="['...']" access="private" />
+	<aura:attribute name="totalrecord" type="Integer" default="0" access="private" />
+	<aura:attribute name="totalpage" type="Integer" default="0" access="private" />
+	<aura:attribute name="currentpage" type="Integer" default="1" access="private" />
+	<aura:attribute name="offset" type="Integer" default="0" access="private" />
+	<aura:attribute name="rowlimit" type="Integer" default="20" access="private" />
+
+	<aura:html tag="style">
+		.slds-page-header.header.flexipageHeader { display: none !important; }
+	</aura:html> 
+
+	<div class="slds-card__header slds-grid box1">
+		<header class="slds-media slds-media_center slds-has-flexi-truncate">
+			<lightning:icon iconName="utility:search" alternativeText="Historical Search" title="Historical Search" />
+			<div class="slds-media__body slds-grid icn">
+				<h1>
+					Historical Search
+				</h1>
+			</div>
+			<div class="container__filter">
+				<lightning:button variant="link" onclick="{!c.navigateToPreviousUrl}">
+					<lightning:icon class="{!v.isActive ? 'active' : ''}" iconName="utility:filterList" size="small" alternativeText="alternativeText" />
+				</lightning:button>
+			</div>
+		</header>
+	</div>
+
+	<lightning:card class="container">
+		<aura:set attribute="title">
+			<div>Search Result for Work Clearance ({!v.totalrecord})</div>
+		</aura:set>
+
+		<aura:set attribute="footer">
+			<div class="pagination">
+				<lightning:buttonGroup>
+					<lightning:buttonIcon
+						name="first"
+						size="large"
+						iconName="utility:jump_to_left"
+						variant="border-filled"
+						alternativeText="Settings"
+						title="Settings"
+						disabled="{!v.currentpage == 1}"
+						onclick="{!c.navigateToPaging}"
+					/>
+					<lightning:buttonIcon
+						name="previous"
+						size="large"
+						iconName="utility:chevronleft"
+						variant="border-filled"
+						alternativeText="Settings"
+						title="Settings"
+						disabled="{!v.currentpage == 1}"
+						onclick="{!c.navigateToPaging}"
+					/>
+
+					<aura:iteration items="{!v.pagination}" var="page_label">
+						<lightning:button
+							name="{!page_label}"
+							label="{!page_label}"
+							variant="{! page_label == v.currentpage ? 'brand' : 'neutral' }"
+							disabled="{! page_label == '...' }"
+							onclick="{!c.navigateToPaging}"
+						/>
+					</aura:iteration>
+
+					<lightning:buttonIcon
+						name="next"
+						size="large"
+						iconName="utility:chevronright"
+						variant="border-filled"
+						alternativeText="Settings"
+						title="Settings"
+						disabled="{!or(v.currentpage == v.totalpage, v.totalpage == 0)}"
+						onclick="{!c.navigateToPaging}"
+					/>
+					<lightning:buttonIcon
+						name="last"
+						size="large"
+						iconName="utility:jump_to_right"
+						variant="border-filled"
+						alternativeText="Settings"
+						title="Settings"
+						disabled="{!or(v.currentpage == v.totalpage, v.totalpage == 0)}"
+						onclick="{!c.navigateToPaging}"
+					/>
+				</lightning:buttonGroup>
+			</div>
+		</aura:set>
+
+		<div class="header__label">
+			<p class="slds-var-p-around_medium">Work Clearance number, Order Number, Function Location, Function Location Description, Main Work Center, Notification Number, Description</p>
+		</div>
+
+		<div class="slds-p-around_x-small">
+			<aura:if isTrue="{!v.wclist_loaded}">
+				<lightning:spinner alternativeText="Loading" size="small" />
+			</aura:if>
+			<aura:if isTrue="{!and(and(not(v.wclist_loaded), v.isInitialized), v.wclist.length == 0)}">
+				<div class="slds-text-align_center">Data not found</div>
+			</aura:if>
+			<aura:iteration items="{!v.wclist}" var="item" indexVar="index">
+				<div class="slds-box slds-box_small">
+					<div class="slds-grid">
+						<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+							<lightning:icon iconName="utility:edit_form" alternativeText="{!item.Name}" title="{!item.Name}" />
+						</div>
+						<div class="box-detail slds-col">
+							<a data-record-id="{!item.Id}" href="javascript:void(0);" class="slds-text-link_reset" onclick="{!c.navigateToDisplay}">
+								<aura:if isTrue="{!item.Name}">
+									<p class="slds-text-link">{!item.Name}</p>
+								</aura:if>
+								<p>{! item.info }</p>
+								<aura:if isTrue="{!item.description}">
+									<p class="slds-hyphenate">{! item.description }</p>
+								</aura:if>
+							</a>
+						</div>
+					</div>
+				</div>
+			</aura:iteration>
+		</div>
+	</lightning:card>
+</aura:component>

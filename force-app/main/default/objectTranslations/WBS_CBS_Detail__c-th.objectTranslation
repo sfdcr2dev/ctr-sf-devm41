@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>WBS and CBS Detail*</value>
+    </caseValues>
+    <fields>
+        <label><!-- Budget --></label>
+        <name>Budget__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- No --></label>
+        <name>No__c</name>
+    </fields>
+    <fields>
+        <label><!-- WBS/CBS --></label>
+        <name>WBS_CBS__c</name>
+    </fields>
+    <fields>
+        <label><!-- WBS and CBS --></label>
+        <name>WBS_and_CBS__c</name>
+        <relationshipLabel><!-- WBS and CBS Detail* --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>WBS and CBS Detail Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

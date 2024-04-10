@@ -1,0 +1,1955 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Read</externalSharingModel>
+    <fields>
+        <fullName>AGT_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>AGT</label>
+        <referenceTo>PISUsers__c</referenceTo>
+        <relationshipLabel>Work Clearance (AGT)</relationshipLabel>
+        <relationshipName>Work_Clearance9</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AGT__c</fullName>
+        <externalId>false</externalId>
+        <label>AGT</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Applicant_or_Bearer_Telephone__c</fullName>
+        <externalId>false</externalId>
+        <label>Applicant or Bearer Telephone</label>
+        <length>12</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Applicant_or_Bearer_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Applicant Bearer</label>
+        <referenceTo>THOR_Applicant_Bearer__c</referenceTo>
+        <relationshipLabel>Work Clearance</relationshipLabel>
+        <relationshipName>Work_Clearance</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Applicant_or_Bearer__c</fullName>
+        <externalId>false</externalId>
+        <label>Applicant or Bearer</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Area_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Area Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Area__c</fullName>
+        <externalId>false</externalId>
+        <label>Area</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Authorized_Date_Month__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(MONTH(  Authorized_Date_UI__c ),
+1, &quot;January&quot;,
+2, &quot;February&quot;,
+3, &quot;March&quot;,
+4, &quot;April&quot;,
+5, &quot;May&quot;,
+6, &quot;June&quot;,
+7, &quot;July&quot;,
+8, &quot;August&quot;,
+9, &quot;September&quot;,
+10, &quot;October&quot;,
+11, &quot;November&quot;,
+12, &quot;December&quot;,
+&quot;None&quot;) &amp; &quot; &quot; &amp; TEXT(Year(  Authorized_Date_UI__c  ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Authorized Date (Month)</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Authorized_Date_UI__c</fullName>
+        <externalId>false</externalId>
+        <label>Authorized Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Authorized_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Authorized Date</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Authorized_Indicator_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Authorized Indicator</label>
+        <referenceTo>PISUsers__c</referenceTo>
+        <relationshipLabel>Work Clearance (Authorized Indicator)</relationshipLabel>
+        <relationshipName>Work_Clearance8</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Authorized_Indicator__c</fullName>
+        <externalId>false</externalId>
+        <label>Authorized Indicator</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Authorized_Signatory_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Authorized Signatory</label>
+        <referenceTo>PISUsers__c</referenceTo>
+        <relationshipLabel>Work Clearance (Authorized Signatory)</relationshipLabel>
+        <relationshipName>Work_Clearance4</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Authorized_Signatory__c</fullName>
+        <externalId>false</externalId>
+        <label>Authorized Signatory</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Authorized_Signature_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Authorized Signature</label>
+        <referenceTo>PISUsers__c</referenceTo>
+        <relationshipLabel>Work Clearance (Authorized Signature)</relationshipLabel>
+        <relationshipName>Work_Clearance7</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Authorized_Signature__c</fullName>
+        <externalId>false</externalId>
+        <label>Authorized Signature</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Authorized_Time_UI__c</fullName>
+        <externalId>false</externalId>
+        <label>Authorized Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
+        <fullName>Authorized_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Authorized Time</label>
+        <length>8</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Bearer1_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Bearer 1</label>
+        <referenceTo>THOR_Applicant_Bearer__c</referenceTo>
+        <relationshipLabel>Work Clearance (Bearer 1)</relationshipLabel>
+        <relationshipName>Work_Clearance1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Bearer1__c</fullName>
+        <externalId>false</externalId>
+        <label>Bearer1</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Bearer2_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Bearer 2</label>
+        <referenceTo>THOR_Applicant_Bearer__c</referenceTo>
+        <relationshipLabel>Work Clearance (Bearer 2)</relationshipLabel>
+        <relationshipName>Work_Clearance2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Bearer2__c</fullName>
+        <externalId>false</externalId>
+        <label>Bearer2</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Bearer3_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Bearer 3</label>
+        <referenceTo>THOR_Applicant_Bearer__c</referenceTo>
+        <relationshipLabel>Work Clearance (Bearer3)</relationshipLabel>
+        <relationshipName>Work_Clearance3</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Bearer3__c</fullName>
+        <externalId>false</externalId>
+        <label>Bearer3</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Bearer4_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Bearer 4</label>
+        <referenceTo>THOR_Applicant_Bearer__c</referenceTo>
+        <relationshipLabel>Work Clearance (Bearer4)</relationshipLabel>
+        <relationshipName>Work_Clearance4</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Bearer4__c</fullName>
+        <externalId>false</externalId>
+        <label>Bearer4</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Block_Valv_Remark__c</fullName>
+        <externalId>false</externalId>
+        <label>Block Valv Remark</label>
+        <length>70</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Block_Valv__c</fullName>
+        <externalId>false</externalId>
+        <label>Block Valv</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Block_gas__c</fullName>
+        <externalId>false</externalId>
+        <label>Block gas</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Can_go_wrong1__c</fullName>
+        <externalId>false</externalId>
+        <label>Can go wrong1</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Can_go_wrong2__c</fullName>
+        <externalId>false</externalId>
+        <label>Can go wrong2</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Can_go_wrong3__c</fullName>
+        <externalId>false</externalId>
+        <label>Can go wrong3</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Can_go_wrong4__c</fullName>
+        <externalId>false</externalId>
+        <label>Can go wrong4</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Can_go_wrong5__c</fullName>
+        <externalId>false</externalId>
+        <label>Can go wrong5</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Can_go_wrong6__c</fullName>
+        <externalId>false</externalId>
+        <label>Can go wrong6</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cause1__c</fullName>
+        <externalId>false</externalId>
+        <label>Cause1</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cause2__c</fullName>
+        <externalId>false</externalId>
+        <label>Cause2</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cause3__c</fullName>
+        <externalId>false</externalId>
+        <label>Cause3</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cause4__c</fullName>
+        <externalId>false</externalId>
+        <label>Cause4</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cause5__c</fullName>
+        <externalId>false</externalId>
+        <label>Cause5</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cause6__c</fullName>
+        <externalId>false</externalId>
+        <label>Cause6</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Check_Date_UI__c</fullName>
+        <externalId>false</externalId>
+        <label>Check Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Check_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Check Date</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Check_Time_UI__c</fullName>
+        <externalId>false</externalId>
+        <label>Check Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
+        <fullName>Check_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Check Time</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CloseApplicantorBearer_PISUser_Text__c</fullName>
+        <description>Host Id or Home Id for sync data to SAP Integration</description>
+        <externalId>false</externalId>
+        <label>Close Applicant or Bearer Text</label>
+        <length>8</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Close_Applicant_or_Bearer_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Applicant or Bearer (ผู้ขออนุญาตปิดงาน)</label>
+        <referenceTo>PISUsers__c</referenceTo>
+        <relationshipLabel>Work Clearance (Close Applicant or Bearer)</relationshipLabel>
+        <relationshipName>Work_Clearance3</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Close_Applicant_or_Bearer__c</fullName>
+        <externalId>false</externalId>
+        <label>Close Applicant or Bearer</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Close_Authorized_Sign_Indc__c</fullName>
+        <externalId>false</externalId>
+        <label>Close Authorized Sign.Indc</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Close_Authorized_Sign_off_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Close Authorized Sign.off</label>
+        <referenceTo>PISUsers__c</referenceTo>
+        <relationshipLabel>Work Clearance (Close Authorized Sign.off)</relationshipLabel>
+        <relationshipName>Work_Clearance6</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Close_Authorized_Sign_off__c</fullName>
+        <externalId>false</externalId>
+        <label>Close Authorized Sign.off</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>ExtendApplicantOrBearer_PISUser_Text__c</fullName>
+        <description>Host Id or Home Id for sync data to SAP Integration</description>
+        <externalId>false</externalId>
+        <label>Extend Applicant or Bearer Text</label>
+        <length>8</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Extend_Applicant_or_Bearer_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Applicant or Bearer(ผู้ขออนุญาตขยายเวลา)</label>
+        <referenceTo>PISUsers__c</referenceTo>
+        <relationshipLabel>Work Clearance (Extend Applicant or Bearer)</relationshipLabel>
+        <relationshipName>Work_Clearance2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Extend_Applicant_or_Bearer__c</fullName>
+        <externalId>false</externalId>
+        <label>Extend Applicant or Bearer</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Extend_Authorized_Sign_Indc__c</fullName>
+        <externalId>false</externalId>
+        <label>Extend Authorized Sign.Indc</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Extend_Authorized_Sign_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Extend Authorized Sign</label>
+        <referenceTo>PISUsers__c</referenceTo>
+        <relationshipLabel>Work Clearance (Extend Authorized Sign)</relationshipLabel>
+        <relationshipName>Work_Clearance5</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Extend_Authorized_Sign__c</fullName>
+        <externalId>false</externalId>
+        <label>Extend Authorized Sign.</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Extend_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Extend Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Extend_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Extend No</label>
+        <length>2</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Extend_Time_Flag_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Extend_Time_Flag__c == &apos;X&apos;, true, false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Extend Time Flag Formula</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Extend_Time_Flag__c</fullName>
+        <externalId>false</externalId>
+        <label>Extend Time Flag</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Extend_Time_To_UI__c</fullName>
+        <externalId>false</externalId>
+        <label>Extend Time To</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
+        <fullName>Extend_Time_To__c</fullName>
+        <externalId>false</externalId>
+        <label>Extend Time To</label>
+        <length>8</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Extend_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Extend Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
+        <fullName>Fire_Watch_Stand_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Fire Watch Stand By</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Flamable_amt__c</fullName>
+        <externalId>false</externalId>
+        <label>Flamable amt</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Flamable_gas__c</fullName>
+        <externalId>false</externalId>
+        <label>Flamable gas</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FunctionalLocation__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Functional Location</label>
+        <referenceTo>Functional_Location__c</referenceTo>
+        <relationshipLabel>Work Clearance</relationshipLabel>
+        <relationshipName>Work_Clearance</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Functional_Location__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+	NOT(ISBLANK(FunctionalLocation__c)),
+	FunctionalLocation__r.Name,
+	IF( 
+		NOT(ISBLANK(Order__c)),
+		Order__r.Functional_Location__r.Name,
+		IF(
+			NOT(ISBLANK(Notification__c)),
+			Notification__r.Functional_Location__r.Name,
+			FunctionalLocation__r.Name
+		)
+	)
+)</formula>
+        <label>Functional Location</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>High_Risk_Work__c</fullName>
+        <externalId>false</externalId>
+        <label>High risk work Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>0</fullName>
+                    <default>false</default>
+                    <label>งานทั่วไป</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>Hot work</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>Confined Space</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>Crane/Lifting</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>Radiation</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>Jack Hammer</label>
+                </value>
+                <value>
+                    <fullName>6</fullName>
+                    <default>false</default>
+                    <label>High Pressure Water Jet</label>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                    <label>Digging</label>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                    <label>Work at Height</label>
+                </value>
+                <value>
+                    <fullName>9</fullName>
+                    <default>false</default>
+                    <label>Online Stop Leak</label>
+                </value>
+                <value>
+                    <fullName>10</fullName>
+                    <default>false</default>
+                    <label>Non Type Of Work</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Integration_Message__c</fullName>
+        <externalId>false</externalId>
+        <label>Integration Message</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Integration_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Integration Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Success</fullName>
+                    <default>false</default>
+                    <label>Success</label>
+                </value>
+                <value>
+                    <fullName>Failed</fullName>
+                    <default>false</default>
+                    <label>Failed</label>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>false</default>
+                    <label>In Progress</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>IsCheckingGas__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>ไม่ต้องตรวจวัดก๊าซ</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Isolate_Breaker__c</fullName>
+        <externalId>false</externalId>
+        <label>Isolate Breaker</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Isolate_Elec__c</fullName>
+        <externalId>false</externalId>
+        <label>Isolate Elec</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LINK__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/lightning/cmp/c__THOR_WorkClearanceRecordDisplay?c__recordId=&quot; +  Id + &quot;&amp;c__backToTabIndex=1&quot; + &quot;&amp;c__tab=WorkClearance&quot;, &quot;LINK TO RECORD&quot;)</formula>
+        <label>LINK</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_User_Action_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Last User Action Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pending</fullName>
+                    <default>false</default>
+                    <label>Pending</label>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>false</default>
+                    <label>In Progress</label>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Last_User_Action__c</fullName>
+        <externalId>false</externalId>
+        <label>Last User Action</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Latitude__c</fullName>
+        <externalId>false</externalId>
+        <label>Latitude</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(Order__r.Location__c), Notification__r.Location__c, Order__r.Location__c)</formula>
+        <label>Location</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lock_off_RCU__c</fullName>
+        <externalId>false</externalId>
+        <label>Lock off RCU</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Longitude__c</fullName>
+        <externalId>false</externalId>
+        <label>Longitude</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MPAC__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(MaintenancePlantText__c = &apos;4200&apos;,&apos;TLB&apos;,
+IF(MaintenancePlantText__c = &apos;3200&apos;,&apos;TPX&apos;,
+IF(MaintenancePlantText__c = &apos;7200&apos;,&apos;LABIX&apos;,
+IF(MaintenancePlantText__c = &apos;8200&apos;,&apos;SPP&apos;,
+IF(AND(MaintenancePlantText__c = &apos;1200&apos;,Area_Code__c = &apos;T1&apos;),&apos;TOC1&apos;,
+IF(AND(MaintenancePlantText__c = &apos;1200&apos;,Area_Code__c = &apos;T2&apos;),&apos;TOC2&apos;,
+IF(AND(MaintenancePlantText__c = &apos;1200&apos;,Area_Code__c = &apos;T3&apos;),&apos;TOC3&apos;,
+IF(AND(MaintenancePlantText__c = &apos;1200&apos;,Area_Code__c = &apos;T4&apos;),&apos;TOC4&apos;,
+IF(AND(MaintenancePlantText__c = &apos;1200&apos;,Area_Code__c = &apos;T5&apos;),&apos;TOC5&apos;,
+IF(AND(MaintenancePlantText__c = &apos;1200&apos;,Area_Code__c = &apos;UT&apos;),&apos;UTILITY&apos;,
+IF(AND(MaintenancePlantText__c = &apos;1200&apos;,Area_Code__c = &apos;UT2&apos;),&apos;UTILITY&apos;,
+IF(AND(MaintenancePlantText__c = &apos;1200&apos;,Area_Code__c = &apos;MO&apos;),&apos;MOVEMENT&apos;,
+IF(AND(MaintenancePlantText__c = &apos;1200&apos;,Area_Code__c = &apos;OF&apos;),&apos;OFFSITE&apos;,
+IF(AND(MaintenancePlantText__c = &apos;1200&apos;,Area_Code__c = &apos;OC1&apos;),&apos;CFP&apos;,
+IF(AND(MaintenancePlantText__c = &apos;1200&apos;,Area_Code__c = &apos;OC3&apos;),&apos;CFP&apos;,&quot;&quot;)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+))))</formula>
+        <label>WorkAtPlot Area</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Main_Work_Center_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>Main Work Center Text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Main_Work_Center__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Main Work Center</label>
+        <lookupFilter>
+            <active>true</active>
+            <errorMessage>It must be a valid Main Work Center from Master Map</errorMessage>
+            <filterItems>
+                <field>Master_Map__c.Type__c</field>
+                <operation>equals</operation>
+                <value>Main Work Center</value>
+            </filterItems>
+            <infoMessage>Choose a Main Work Center from Master Map</infoMessage>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Master_Map__c</referenceTo>
+        <relationshipLabel>Work Clearances</relationshipLabel>
+        <relationshipName>Work_Clearances</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Main_Work_Center_for_Report__c</fullName>
+        <externalId>false</externalId>
+        <formula>Authorized_Signature_UI__r.User__r.Main_Work_Center__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Main Work Center</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MaintenancePlantText__c</fullName>
+        <externalId>false</externalId>
+        <label>Maintenance plant Text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Maintenance_Plant__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(Order__r.Maintenance_Plant__c), IF(ISBLANK(Notification__r.Maintenance_Plant__c), FunctionalLocation__r.Maintenance_Plant__r.Name ,Notification__r.Maintenance_Plant__c), Order__r.Maintenance_Plant__c)</formula>
+        <label>Maintenance Plant</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Maintenance_Unit__c</fullName>
+        <externalId>false</externalId>
+        <label>Maintenance Unit</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Month__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(MONTH(DATEVALUE(CreatedDate)),
+1, &quot;January&quot;,
+2, &quot;February&quot;,
+3, &quot;March&quot;, 
+4, &quot;April&quot;, 
+5, &quot;May&quot;, 
+6, &quot;June&quot;,
+7, &quot;July&quot;,
+8, &quot;August&quot;,
+9, &quot;September&quot;,
+10, &quot;October&quot;,
+11, &quot;November&quot;,
+12, &quot;December&quot;,
+&quot;None&quot;)  &amp; &quot; &quot; &amp;  TEXT(Year(DATEVALUE(CreatedDate)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Month</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Notification__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Notification</label>
+        <referenceTo>Notification__c</referenceTo>
+        <relationshipLabel>Work Clearances</relationshipLabel>
+        <relationshipName>Work_Clearances</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OPSMainWorkCenter__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(MaintenancePlantText__c == &apos;4200&apos;, &apos;OPS-TLB&apos;,
+ IF(MaintenancePlantText__c == &apos;3200&apos;, &apos;OPS-TPX&apos;,
+  IF(MaintenancePlantText__c == &apos;7200&apos;, &apos;OPS-LABI&apos;,
+   IF(MaintenancePlantText__c == &apos;8200&apos;, &apos;OPS-SPP&apos;,
+    IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), Area_Code__c == &apos;T1&apos;), &apos;OPS-TOC1&apos;,
+     IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), Area_Code__c == &apos;T2&apos;), &apos;OPS-TOC2&apos;,
+      IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), Area_Code__c == &apos;T3&apos;), &apos;OPS-TOC3&apos;, 
+       IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), Area_Code__c == &apos;T4&apos;), &apos;OPS-TOC4&apos;, 
+        IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), Area_Code__c == &apos;T5&apos;), &apos;OPS-TOC5&apos;, 
+         IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), OR(Area_Code__c == &apos;UT&apos;, Area_Code__c == &apos;UT2&apos;)), &apos;OPS-UTIL&apos;, 
+          IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), Area_Code__c == &apos;MO&apos;), &apos;OPS-MOVE&apos;, 
+           IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), Area_Code__c == &apos;OF&apos;), &apos;OPS-OFFS&apos;,
+            IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), OR(Area_Code__c == &apos;ID1&apos;, Area_Code__c == &apos;OC&apos;)), &apos;OPS-TOC1 OPS-TOC2 OPS-TOC3 OPS-TOC4 OPS-TOC5 OPS-UTIL OPS-MOV OPS-OFFS&apos;, &apos;&apos;)))))))))))))</formula>
+        <label>OPS Main Work Center</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Operation_Stand_by__c</fullName>
+        <externalId>false</externalId>
+        <label>Operation Stand by</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Order</label>
+        <referenceTo>Order__c</referenceTo>
+        <relationshipLabel>Work Clearances</relationshipLabel>
+        <relationshipName>Work_Clearances</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Oxygen__c</fullName>
+        <externalId>false</externalId>
+        <label>Oxygen</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Oxygen_amt__c</fullName>
+        <externalId>false</externalId>
+        <label>Oxygen amt</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PPE1__c</fullName>
+        <externalId>false</externalId>
+        <label>PPE1</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PPE2__c</fullName>
+        <externalId>false</externalId>
+        <label>PPE2</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PPE3__c</fullName>
+        <externalId>false</externalId>
+        <label>PPE3</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PPE_Flag__c</fullName>
+        <externalId>false</externalId>
+        <label>PPE Flag</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Permit_flag__c</fullName>
+        <externalId>false</externalId>
+        <label>Permit flag</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Planning_Plant__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Planning Plant</label>
+        <lookupFilter>
+            <active>true</active>
+            <errorMessage>Insert a Master Map record with type: Plant</errorMessage>
+            <filterItems>
+                <field>Master_Map__c.Type__c</field>
+                <operation>equals</operation>
+                <value>Plant</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Master_Map__c</referenceTo>
+        <relationshipLabel>Work Clearances (Planning Plant)</relationshipLabel>
+        <relationshipName>Work_Clearances1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Plant_Section__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(Order__r.Plant_Section__c), Notification__r.Plant_Section__c, Order__r.Plant_Section__c)</formula>
+        <label>Plant Section</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Prevent1__c</fullName>
+        <externalId>false</externalId>
+        <label>Prevent1</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Prevent2__c</fullName>
+        <externalId>false</externalId>
+        <label>Prevent2</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Prevent3__c</fullName>
+        <externalId>false</externalId>
+        <label>Prevent3</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Prevent4__c</fullName>
+        <externalId>false</externalId>
+        <label>Prevent4</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Prevent5__c</fullName>
+        <externalId>false</externalId>
+        <label>Prevent5</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Prevent6__c</fullName>
+        <externalId>false</externalId>
+        <label>Prevent6</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Priority_Map__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL(Priority__c, &apos;1&apos;) , &apos;Immediately&apos;, 
+ IF(ISPICKVAL(Priority__c, &apos;2&apos;) , &apos;Urgent&apos;,  
+  IF(ISPICKVAL(Priority__c, &apos;3&apos;), &apos;Normal&apos;,  
+   IF(ISPICKVAL(Priority__c, &apos;A&apos;), &apos;Float Time - 1M&apos;,  
+    IF(ISPICKVAL(Priority__c, &apos;C&apos;), &apos;Float Time - 3M&apos;,
+     IF(ISPICKVAL(Priority__c, &apos;F&apos;), &apos;Float Time - 6M&apos;, 
+      IF(ISPICKVAL(Priority__c, &apos;I&apos;), &apos;Float Time - 9M&apos;,
+       IF(ISPICKVAL(Priority__c, &apos;L&apos;), &apos;Float Time - 12M&apos;,
+        IF(ISPICKVAL(Priority__c, &apos;O&apos;), &apos;Float Time - 15M&apos;,
+         IF(ISPICKVAL(Priority__c, &apos;R&apos;), &apos;Float Time - 18M&apos;, &apos;&apos; ) ) ) ) ) ) ) ) ) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Priority Map</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>Priority</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>Immediately</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>Urgent</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>Normal</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>A</fullName>
+                    <default>false</default>
+                    <label>Float Time - 1M</label>
+                </value>
+                <value>
+                    <fullName>C</fullName>
+                    <default>false</default>
+                    <label>Float Time - 3M</label>
+                </value>
+                <value>
+                    <fullName>F</fullName>
+                    <default>false</default>
+                    <label>Float Time - 6M</label>
+                </value>
+                <value>
+                    <fullName>I</fullName>
+                    <default>false</default>
+                    <label>Float Time - 9M</label>
+                </value>
+                <value>
+                    <fullName>L</fullName>
+                    <default>false</default>
+                    <label>Float Time - 12M</label>
+                </value>
+                <value>
+                    <fullName>O</fullName>
+                    <default>false</default>
+                    <label>Float Time - 15M</label>
+                </value>
+                <value>
+                    <fullName>R</fullName>
+                    <default>false</default>
+                    <label>Float Time - 18M</label>
+                </value>
+                <value>
+                    <fullName>Immediately</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Immediately</label>
+                </value>
+                <value>
+                    <fullName>Normal</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Normal</label>
+                </value>
+                <value>
+                    <fullName>Urgent</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Urgent</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Problem__c</fullName>
+        <externalId>false</externalId>
+        <label>Problem</label>
+        <length>131072</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Reduce_Pressure__c</fullName>
+        <externalId>false</externalId>
+        <label>Reduce Pressure</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reject_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Reject Reason</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Rejected_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Rejected By</label>
+        <referenceTo>PISUsers__c</referenceTo>
+        <relationshipLabel>Work Clearance (Rejected By)</relationshipLabel>
+        <relationshipName>Work_ClearanceSvhz</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Request_Extend_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Request Extend Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Request_Extend_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Request Extend Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
+        <fullName>Requester_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Requester</label>
+        <referenceTo>PISUsers__c</referenceTo>
+        <relationshipLabel>Work Clearance (Requester)</relationshipLabel>
+        <relationshipName>Work_Clearance1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Requester__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Safety_Permit1_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Safety Permit 1</label>
+        <referenceTo>Safety_Permit__c</referenceTo>
+        <relationshipLabel>Work Clearance</relationshipLabel>
+        <relationshipName>Work_Clearance</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Safety_Permit1__c</fullName>
+        <externalId>false</externalId>
+        <label>Safety Permit1</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Safety_Permit2_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Safety Permit 2</label>
+        <referenceTo>Safety_Permit__c</referenceTo>
+        <relationshipLabel>Work Clearance (Safety Permit 2)</relationshipLabel>
+        <relationshipName>Work_Clearance1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Safety_Permit2__c</fullName>
+        <externalId>false</externalId>
+        <label>Safety Permit2</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Safety_Permit3_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Safety Permit 3</label>
+        <referenceTo>Safety_Permit__c</referenceTo>
+        <relationshipLabel>Work Clearance (Safety Permit 3)</relationshipLabel>
+        <relationshipName>Work_Clearance2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Safety_Permit3__c</fullName>
+        <externalId>false</externalId>
+        <label>Safety Permit3</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sign_off_Flag_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Sign_off_Flag__c == &apos;X&apos;, true, false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sign off Flag Formula</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sign_off_Flag__c</fullName>
+        <externalId>false</externalId>
+        <label>Sign off Flag</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Spade_off__c</fullName>
+        <externalId>false</externalId>
+        <label>Spade off</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Stop_machine__c</fullName>
+        <externalId>false</externalId>
+        <label>Stop machine</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>System_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>System Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TOPGroupApplicantorBearer_PISUser_Text__c</fullName>
+        <description>Host Id or Home Id for sync data to SAP Integration</description>
+        <externalId>false</externalId>
+        <label>TOP Group Applicant or Bearer Text</label>
+        <length>8</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TOP_Supervisor_Telephone__c</fullName>
+        <externalId>false</externalId>
+        <label>TOP Supervisor Telephone</label>
+        <length>12</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tag_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Tag No</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tag_Out__c</fullName>
+        <externalId>false</externalId>
+        <label>Tag Out</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Telephone_No_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Telephone No (Not used)</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Telephone_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Telephone No (Not used)</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Thaioil_Supervisor_Indicator_UI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>TOP Group Applicant or Bearer</label>
+        <referenceTo>PISUsers__c</referenceTo>
+        <relationshipLabel>Work Clearance</relationshipLabel>
+        <relationshipName>Work_Clearance</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Thaioil_Supervisor_Indicator__c</fullName>
+        <externalId>false</externalId>
+        <label>TOP Group Applicant or Bearer</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Toxic_PPM__c</fullName>
+        <externalId>false</externalId>
+        <label>Toxic PPM</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Toxic_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Toxic Type</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Toxic__c</fullName>
+        <externalId>false</externalId>
+        <label>Toxic</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>User Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ventilation__c</fullName>
+        <externalId>false</externalId>
+        <label>Ventilation</label>
+        <length>1</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Verification_Status__c</fullName>
+        <description>Back End Field to populate Verification Status</description>
+        <externalId>false</externalId>
+        <label>Verification Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WBS__c</fullName>
+        <externalId>false</externalId>
+        <label>WBS</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Clearance_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Clearance Description</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Clearance_Historical__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Work Clearance Historical</label>
+        <referenceTo>THOR_Work_Clearance_Historical__c</referenceTo>
+        <relationshipLabel>Work Clearance</relationshipLabel>
+        <relationshipName>Work_Clearance</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Work_Clearance_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(CONTAINS(System_Status__c, &quot;DLFL&quot;), &quot;Delete Flag&quot;,
+    IF(CONTAINS(System_Status__c, &quot;REJC&quot;), &quot;Rejected&quot;,
+        IF(CONTAINS(System_Status__c, &quot;CLSD&quot;), &quot;Closed&quot;,
+            IF(CONTAINS(System_Status__c, &quot;CLSE&quot;), &quot;Closed&quot;,
+                IF(CONTAINS(System_Status__c, &quot;INAC&quot;), &quot;Inactive&quot;,
+                    IF(CONTAINS(System_Status__c, &quot;INC&quot;), &quot;Inactive&quot;,
+                        IF(CONTAINS(System_Status__c, &quot;CRTE&quot;), &quot;Created&quot;,
+                            IF(CONTAINS(System_Status__c, &quot;CRET&quot;), &quot;Created&quot;,
+                                IF(CONTAINS(System_Status__c, &quot;PREP&quot;), &quot;In Progress&quot;,
+                                    IF(CONTAINS(System_Status__c, &quot;CHNG&quot;), &quot;In Progress&quot;, &quot;&quot;)
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+)</formula>
+        <label>Work Clearance Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Clearance__c</fullName>
+        <externalId>true</externalId>
+        <label>Work Clearance</label>
+        <length>16</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Detail</label>
+        <length>10000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>isIRPA__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isIRPA</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>number_of_month__c</fullName>
+        <externalId>false</externalId>
+        <formula>(MONTH(DATEVALUE(CreatedDate)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>number of month</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Work Clearance</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Description__c</columns>
+        <columns>Functional_Location__c</columns>
+        <columns>Notification__c</columns>
+        <columns>Order__c</columns>
+        <columns>Extend_No__c</columns>
+        <columns>Extend_Time_To__c</columns>
+        <columns>Extend_Authorized_Sign__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>Check_Date__c</columns>
+        <columns>Check_Time__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LINK__c</columns>
+        <columns>Main_Work_Center__c</columns>
+        <columns>Main_Work_Center_Text__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>equals</operation>
+            <value>900645412</value>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Work Clearance Name</label>
+        <type>Text</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>Read</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

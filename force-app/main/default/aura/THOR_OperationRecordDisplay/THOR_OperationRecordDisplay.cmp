@@ -1,0 +1,45 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable" access="global">
+	<aura:attribute name="recordId" type="String" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.handleRefresh}" />
+
+	<lightning:navigation aura:id="navLink" />
+
+	<c:THOR_navigateBack />
+
+	<aura:if isTrue="{!v.recordId}">
+		<c:THOR_Operations />
+
+		<c:THOR_ObjectDisplayer isLoading="{!v.isLoading}">
+			<aura:set attribute="tabs">
+				<c:THOR_SingleTab tabTitle="Detail">
+					<div class="slds-p-around_medium" style="background-color: white; margin: 1em; box-shadow: 0 2px 2px 0 #cccccc">
+						<lightning:recordViewForm density="comfy" recordId="{! v.recordId }" objectApiName="Order_Operation__c">
+							<!-- onload="{!c.handleOnLoad}" -->
+							<lightning:layout multipleRows="true" verticalAlign="stretch">
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label" for="of-Name">Operation Number</label>
+									<lightning:outputField aura:id="of-Name" variant="label-hidden" fieldName="Operation_Text__c" />
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:outputField fieldName="SubOperation__c" />
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:outputField fieldName="Main_Work_Center_Text__c" />
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:outputField fieldName="Operation_Shot_Text__c" />
+								</lightning:layoutItem>
+							</lightning:layout>
+						</lightning:recordViewForm>
+					</div>
+				</c:THOR_SingleTab>
+			</aura:set>
+		</c:THOR_ObjectDisplayer>
+	</aura:if>
+</aura:component>

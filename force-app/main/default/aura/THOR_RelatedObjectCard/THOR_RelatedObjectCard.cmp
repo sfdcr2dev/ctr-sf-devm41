@@ -1,0 +1,20 @@
+<aura:component controller="THOR_RetrieverController" implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="recordId" type="String"/>
+
+    <aura:attribute name="viewAll" type="Boolean" default="true" access="private" />
+
+    <aura:attribute name="labelSequence" type="String" default="" access="global" />
+    <aura:attribute name="DisplayableObjectFullList" type="List" default='[]' access="global" />
+    <aura:attribute name="object" type="String" default="" access="global" />
+    
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <lightning:layout>
+        <lightning:layoutItem padding="horizontal-small" size="12">
+            <c:THOR_ListObjectDisplayer viewAll='{! v.viewAll}'
+               items="{! v.DisplayableObjectFullList}"/>
+        </lightning:layoutItem>
+    </lightning:layout>
+
+</aura:component>

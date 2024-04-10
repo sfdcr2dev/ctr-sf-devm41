@@ -1,0 +1,732 @@
+<aura:component>
+	<lightning:navigation aura:id="navService" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<aura:attribute name="recordId" type="Id" />
+
+	<aura:attribute name="form" type="Map" default="{}" access="private" />
+	<aura:attribute name="recordUi" type="Map" default="{}" access="private" />
+	<aura:attribute name="wcRecordUi" type="Map" default="{}" access="private" />
+	<aura:attribute name="wcStageApprove" type="String" default="" description="Work Clearance stage for approve" access="private" />
+	<aura:attribute name="wcOrderApprover" type="String" default="" description="Work Clearance order for approver" access="private" />
+
+	<aura:attribute name="isBlockValv" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isCheckingGas" type="Boolean" default="true" access="private" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isValid" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isInitialized" type="Boolean" default="false" access="private" />
+	<aura:attribute name="threeWhatOptionsList" type="List" default="[]" access="private" />
+	<!-- <aura:attribute name="activeSections" type="List" default="['A', 'B', 'C']" access="private" /> -->
+	<aura:attribute name="activeSections" type="List" default="" access="private" />
+	<aura:attribute
+		name="sectionTitle"
+		type="Map"
+		default="{
+			'A': '3-What’s analysis (การประเมินอันตรายที่อาจเกิดขึ้นได้)',
+			'B': 'การดำเนินงานเพื่อความปลอดภัยในการทำงาน',
+			'C': 'ผลการตรวจวัดก๊าซ (ทำการตรวจวัดปริมาณก๊าซก่อนการปฏิบัติงานทุกครั้งเพื่อความปลอดภัย)',
+		}"
+		access="private"
+	/>
+	<aura:attribute name="pressKey" type="Map" default="{}" access="private" />
+
+	<aura:attribute name="wcDisplay" type="Map" default="{}" access="private" />
+	<aura:attribute
+		name="displayFields"
+		type="List"
+		default="[
+			'Work_Clearance__c',
+			'AGT_UI__r.EN_Fullname__c',
+			'Authorized_Signatory_UI__r.EN_Fullname__c',
+			'Authorized_Signature_UI__r.EN_Fullname__c',
+			'Extend_Authorized_Sign_UI__r.EN_Fullname__c',
+			'Close_Authorized_Sign_off_UI__r.EN_Fullname__c',
+			'Extend_Applicant_or_Bearer_UI__r.EN_Fullname__c',
+			'Close_Applicant_or_Bearer_UI__r.EN_Fullname__c',
+			'Safety_Permit1_UI__r.Name',
+			'Safety_Permit2_UI__r.Name',
+			'Safety_Permit3_UI__r.Name',
+			'System_Status__c',
+			'User_Status__c',
+			'AGT_UI__c',
+			'Authorized_Signature_UI__c',
+			'Authorized_Signatory_UI__c',
+			'Extend_Applicant_or_Bearer_UI__c',
+			'Extend_Authorized_Sign_UI__c',
+			'Close_Applicant_or_Bearer_UI__c',
+			'Close_Authorized_Sign_off_UI__c',
+			'Safety_Permit1__c',
+			'Safety_Permit2__c',
+			'Safety_Permit3__c',
+			'Extend_No__c',
+		]"
+		access="private"
+	/>
+	<force:recordData aura:id="recordLoader" recordId="{!v.recordId}" fields="{!v.displayFields}" targetFields="{!v.wcDisplay}" />
+
+	<lightning:card variant="narrow" class="slds-is-relative">
+		<aura:set attribute="title">
+			<div class="slds-text-heading_small">Approve Work Clearance</div>
+		</aura:set>
+		<aura:set attribute="footer">
+			<lightning:button aura:id="btnApprove" class="slds-button_success" name="Approve" label="Approve" disabled="{!v.isLoading || not(v.isValid)}" onclick="{!c.handleSubmitBtn}" />
+			<lightning:button aura:id="btnCancel" type="button" name="Cancel" label="Cancel" onclick="{!c.handleCancel}" />
+		</aura:set>
+
+		<aura:if isTrue="{!v.isLoading}">
+			<lightning:spinner alternativeText="Loading" size="medium" />
+		</aura:if>
+
+		<lightning:recordEditForm
+			density="comfy"
+			objectApiName="Work_Clearance__c"
+			onerror="{!c.handleError}"
+			onload="{!c.handleLoad}"
+			onsubmit="{!c.handleSubmit}"
+			onsuccess="{!c.handleSuccess}"
+			recordId="{!v.recordId}"
+		>
+			<lightning:inputField class="slds-hide" fieldName="Integration_Status__c" value="" />
+			<lightning:inputField class="slds-hide" fieldName="isIRPA__c" value="{!true}" />
+
+			<lightning:accordion
+				aura:id="accordion"
+				allowMultipleSectionsOpen="true"
+				activeSectionName="{!v.activeSections}"
+				onsectiontoggle="{!c.handleSectiontoggle}"
+			>
+				<!-- <aura:if isTrue="{!v.wcStageApprove != 'Approve extend next day'}"> -->
+				<lightning:accordionSection aura:id="accordionSection" name="A" label="{!v.sectionTitle.A}">
+					<div class="slds-p-top_small text-bold">3 What’s (1)</div>
+					<div class="slds-form-element slds-form-element_stacked">
+						<label class="slds-form-element__label">
+							<abbr class="slds-required">*</abbr>
+							What can go wrong? (ระบุอันตรายที่อาจเกิดขึ้น)(1)
+						</label>
+						<div class="slds-form-element__control">
+							<lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="Can_go_wrong1__c" required="true" disabled="{!v.wcOrderApprover == '3rdApprove'}" onchange="{!c.handleApproveChange}" />
+						</div>
+					</div>
+					<div class="slds-form-element slds-form-element_stacked">
+						<label class="slds-form-element__label">
+							<abbr class="slds-required">*</abbr>
+							What can cause it to go wrong? (มีสาเหตุอะไรทำให้เกิดความผิดพลาดได้)(1)
+						</label>
+						<div class="slds-form-element__control">
+							<lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="Cause1__c" required="true" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+						</div>
+					</div>
+					<div class="slds-form-element slds-form-element_stacked">
+						<label class="slds-form-element__label">
+							<abbr class="slds-required">*</abbr>
+							What can you do to prevent it from going wrong? (มีมาตราการป้องกันผลกระทบจากอันตรายที่อาจเกิดขึ้น)(1)
+						</label>
+						<div class="slds-form-element__control">
+							<lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="Prevent1__c" required="true" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+						</div>
+					</div>
+
+					<aura:iteration items="{!v.threeWhatOptionsList}" var="item">
+						<div class="slds-p-top_small text-bold">3 What’s ({!item.indexVar})</div>
+						<div class="slds-form-element slds-form-element_stacked">
+							<label class="slds-form-element__label"> What can go wrong? (ระบุอันตรายที่อาจเกิดขึ้น)({!item.indexVar}) </label>
+							<div class="slds-form-element__control">
+								<lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="{!item.Can_go_wrong.fieldName}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+							</div>
+						</div>
+						<div class="slds-form-element slds-form-element_stacked">
+							<label class="slds-form-element__label">
+								What can cause it to go wrong? (มีสาเหตุอะไรทำให้เกิดความผิดพลาดได้)({!item.indexVar})
+							</label>
+							<div class="slds-form-element__control">
+								<lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="{!item.Cause.fieldName}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+							</div>
+						</div>
+						<div class="slds-form-element slds-form-element_stacked">
+							<label class="slds-form-element__label">
+								What can you do to prevent it from going wrong? (มีมาตราการป้องกันผลกระทบจากอันตรายที่อาจเกิดขึ้น)({!item.indexVar})
+							</label>
+							<div class="slds-form-element__control">
+								<lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="{!item.Prevent.fieldName}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+							</div>
+						</div>
+					</aura:iteration>
+
+					<aura:if isTrue="{!not(v.wcOrderApprover == '3rdApprove')}">
+						<div class="slds-grid slds-grid_align-end slds-p-horizontal_xx-small">
+							<div class="slds-col">
+								<lightning:buttonIcon name="remove" iconName="utility:dash" class="slds-button_destructive" onclick="{!c.handleAddRemove}" />
+								<lightning:buttonIcon name="add" iconName="utility:add" onclick="{!c.handleAddRemove}" />
+							</div>
+						</div>
+					</aura:if>
+
+					<div class="slds-form-element slds-form-element_stacked">
+						<label class="slds-form-element__label">
+							<abbr class="slds-required">*</abbr>
+							<span class="text-bold">4 ลงชื่อผู้ประเมินอันตราย (Authorized Signature / Indicator)</span>
+						</label>
+						<div class="slds-form-element__control">
+							<aura:if isTrue="{!not(wcOrderApprover == '3rdApprove')}" >
+								<lightning:inputField aura:id="inputField" class="slds-hide" required="true" fieldName="Authorized_Signature_UI__c" />
+								<c:odmFilterSuggestLookup
+									required="true"
+									alignment="bottom"
+									sObjectName="Work_Clearance__c"
+									fieldName="Authorized_Signature_UI__c"
+									value="{!v.form.Authorized_Signature_UI__c}"
+									onchangeValue="{!c.handleChange}"
+									fetchSObjectName="PISUsers__c"
+									nameDisplayFormat="{EN_Fullname__c}"
+									descriptionDisplayFormat="{Home Id: HOME_ID__c, Host Id: HOST_ID__c}"
+								/>
+								
+								<aura:set attribute="else">
+									<div class="slds-form-element__static">{!v.wcDisplay.Authorized_Signature_UI__r.EN_Fullname__c}</div>
+								</aura:set>
+							</aura:if>
+						</div>
+					</div>
+				</lightning:accordionSection>
+
+				<lightning:accordionSection aura:id="accordionSection" name="B" label="{!v.sectionTitle.B}">
+					<table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+						<tbody>
+							<tr class="slds-hint-parent">
+								<th scope="row" data-label="{!v.recordUi.Reduce_Pressure__c.label}">
+									<div class="slds-truncate">
+										<div class="slds-form-element__label">ทำการลดความดันในอุปกรณ์ถึงระดับความปลอดภัย
+											<lightning:helptext content="{!v.recordUi.Reduce_Pressure__c.label}" />
+										</div>
+									</div>
+								</th>
+								<td>
+									<div class="slds-truncate">
+										<lightning:inputField aura:id="inputField" class="slds-hide" fieldName="Reduce_Pressure__c" />
+										<lightning:input aura:id="inputCheckbox" type="checkbox" name="Reduce_Pressure__c" onchange="{!c.handleChecked}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+									</div>
+								</td>
+							</tr>
+							<tr class="slds-hint-parent">
+								<th scope="row" data-label="{!v.recordUi.Block_gas__c.label}">
+									<div class="slds-truncate">
+										<div class="slds-form-element__label">ทำการปิดกั้น หรือระบายทิ้งก๊าซ / ของเหลวภายในระบบ
+											<lightning:helptext content="{!v.recordUi.Block_gas__c.label}" />
+										</div>
+									</div>
+								</th>
+								<td>
+									<div class="slds-truncate">
+										<lightning:inputField aura:id="inputField" class="slds-hide" fieldName="Block_gas__c" />
+										<lightning:input aura:id="inputCheckbox" type="checkbox" name="Block_gas__c" onchange="{!c.handleChecked}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+									</div>
+								</td>
+							</tr>
+							<tr class="slds-hint-parent">
+								<th scope="row" data-label="{!v.recordUi.Block_Valv__c.label}">
+									<div class="slds-truncate">
+										<div class="slds-form-element__label">ปิดกั้นระบบโดยการปิดวาล์ว
+											<lightning:helptext content="{!v.recordUi.Block_Valv__c.label}" />
+										</div>
+										<aura:if isTrue="{!v.isBlockValv}">
+											<lightning:inputField aura:id="inputField" fieldName="Block_Valv_Remark__c" variant="label-hidden" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+										</aura:if>
+									</div>
+								</th>
+								<td>
+									<div class="slds-truncate">
+										<lightning:inputField aura:id="inputField" class="slds-hide" fieldName="Block_Valv__c" />
+										<lightning:input aura:id="inputCheckbox" type="checkbox" name="Block_Valv__c" onchange="{!c.handleChecked}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+									</div>
+								</td>
+							</tr>
+							<tr class="slds-hint-parent">
+								<th scope="row" data-label="{!v.recordUi.Spade_off__c.label}">
+									<div class="slds-truncate">
+										<div class="slds-form-element__label">ปิดกั้นระบบโดยการ SPADE OFF / BLIND
+											<lightning:helptext content="{!v.recordUi.Spade_off__c.label}" />
+										</div>
+									</div>
+								</th>
+								<td>
+									<div class="slds-truncate">
+										<lightning:inputField aura:id="inputField" class="slds-hide" fieldName="Spade_off__c" />
+										<lightning:input aura:id="inputCheckbox" type="checkbox" name="Spade_off__c" onchange="{!c.handleChecked}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+									</div>
+								</td>
+							</tr>
+							<tr class="slds-hint-parent">
+								<th scope="row" data-label="{!v.recordUi.Ventilation__c.label}">
+									<div class="slds-truncate">
+										<div class="slds-form-element__label">ทำการระบายอากาศ
+											<lightning:helptext content="{!v.recordUi.Ventilation__c.label}" />
+										</div>
+									</div>
+								</th>
+								<td>
+									<div class="slds-truncate">
+										<lightning:inputField aura:id="inputField" class="slds-hide" fieldName="Ventilation__c" />
+										<lightning:input aura:id="inputCheckbox" type="checkbox" name="Ventilation__c" onchange="{!c.handleChecked}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+									</div>
+								</td>
+							</tr>
+							<tr class="slds-hint-parent">
+								<th scope="row" data-label="{!v.recordUi.Stop_machine__c.label}">
+									<div class="slds-truncate">
+										<div class="slds-form-element__label">ต้องหยุดเดินเครื่องจักร
+											<lightning:helptext content="{!v.recordUi.Stop_machine__c.label}" />
+										</div>
+									</div>
+								</th>
+								<td>
+									<div class="slds-truncate">
+										<lightning:inputField aura:id="inputField" class="slds-hide" fieldName="Stop_machine__c" />
+										<lightning:input aura:id="inputCheckbox" type="checkbox" name="Stop_machine__c" onchange="{!c.handleChecked}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+									</div>
+								</td>
+							</tr>
+							<tr class="slds-hint-parent">
+								<th scope="row" data-label="{!v.recordUi.Tag_Out__c.label}">
+									<div class="slds-truncate">
+										<div class="slds-form-element__label">กั้นเชือก / ติดป้ายเตือนเพื่อความปลอดภัย
+											<lightning:helptext content="{!v.recordUi.Tag_Out__c.label}" />
+										</div>
+									</div>
+								</th>
+								<td>
+									<div class="slds-truncate">
+										<lightning:inputField aura:id="inputField" class="slds-hide" fieldName="Tag_Out__c" />
+										<lightning:input aura:id="inputCheckbox" type="checkbox" name="Tag_Out__c" onchange="{!c.handleChecked}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+									</div>
+								</td>
+							</tr>
+							<tr class="slds-hint-parent">
+								<th scope="row" data-label="{!v.recordUi.Isolate_Elec__c.label}">
+									<div class="slds-truncate">
+										<div class="slds-form-element__label">การ ISOLATED ระบบไฟฟ้า
+											<lightning:helptext content="{!v.recordUi.Isolate_Elec__c.label}" />
+										</div>
+									</div>
+								</th>
+								<td>
+									<div class="slds-truncate">
+										<lightning:inputField aura:id="inputField" class="slds-hide" fieldName="Isolate_Elec__c" />
+										<lightning:input aura:id="inputCheckbox" type="checkbox" name="Isolate_Elec__c" onchange="{!c.handleChecked}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+									</div>
+								</td>
+							</tr>
+							<tr class="slds-hint-parent">
+								<th scope="row" data-label="{!v.recordUi.Isolate_Breaker__c.label}">
+									<div class="slds-truncate">
+										<div class="slds-form-element__label">ISOLATED BRAKER / MOTOR STARTER
+											<lightning:helptext content="{!v.recordUi.Isolate_Breaker__c.label}" />
+										</div>
+									</div>
+								</th>
+								<td>
+									<div class="slds-truncate">
+										<lightning:inputField aura:id="inputField" class="slds-hide" fieldName="Isolate_Breaker__c" />
+										<lightning:input aura:id="inputCheckbox" type="checkbox" name="Isolate_Breaker__c" onchange="{!c.handleChecked}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+									</div>
+								</td>
+							</tr>
+							<tr class="slds-hint-parent">
+								<th scope="row" data-label="{!v.recordUi.Lock_off_RCU__c.label}">
+									<div class="slds-truncate">
+										<div class="slds-form-element__label">LOCK OFF RCU.
+											<lightning:helptext content="{!v.recordUi.Lock_off_RCU__c.label}" />
+										</div>
+									</div>
+								</th>
+								<td>
+									<div class="slds-truncate">
+										<lightning:inputField aura:id="inputField" class="slds-hide" fieldName="Lock_off_RCU__c" />
+										<lightning:input aura:id="inputCheckbox" type="checkbox" name="Lock_off_RCU__c" onchange="{!c.handleChecked}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+									</div>
+								</td>
+							</tr>
+							<tr class="slds-hint-parent">
+								<th scope="row" data-label="{!v.recordUi.Operation_Stand_by__c.label}">
+									<div class="slds-truncate">
+										<div class="slds-form-element__label">จัดให้มี Operation Stand by
+											<lightning:helptext content="{!v.recordUi.Operation_Stand_by__c.label}" />
+										</div>
+									</div>
+								</th>
+								<td>
+									<div class="slds-truncate">
+										<lightning:inputField aura:id="inputField" class="slds-hide" fieldName="Operation_Stand_by__c" />
+										<lightning:input aura:id="inputCheckbox" type="checkbox" name="Operation_Stand_by__c" onchange="{!c.handleChecked}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+									</div>
+								</td>
+							</tr>
+							<tr class="slds-hint-parent">
+								<th scope="row" data-label="{!v.recordUi.Fire_Watch_Stand_By__c.label}">
+									<div class="slds-truncate">
+										<div class="slds-form-element__label">จัดให้มี Fire Watch Stand by
+											<lightning:helptext content="{!v.recordUi.Fire_Watch_Stand_By__c.label}" />
+										</div>
+									</div>
+								</th>
+								<td>
+									<div class="slds-truncate">
+										<lightning:inputField aura:id="inputField" class="slds-hide" fieldName="Fire_Watch_Stand_By__c" />
+										<lightning:input aura:id="inputCheckbox" type="checkbox" name="Fire_Watch_Stand_By__c" onchange="{!c.handleChecked}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="slds-form-element slds-form-element_horizontal slds-m-top_large">
+						<label class="slds-form-element__label">
+							High Risk Work
+						</label>
+						<div class="slds-form-element__control input-required hide-label">
+							<lightning:inputField variant="label-hidden" aura:id="inputField" fieldName="High_Risk_Work__c" />
+						</div>
+					</div>
+
+					<div class="slds-form-element slds-form-element_stacked slds-m-top_small">
+						<label class="slds-form-element__label">
+							<span class="text-bold">อุปกรณ์ป้องกันส่วนบุคคลเพิ่มเติม (พิเศษ) จากที่กำหนด</span>
+						</label>
+						<div class="slds-form-element__control">
+							<div class="slds-text-body_regular slds-text-color_weak slds-p-top_small">1)</div>
+							<lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="PPE1__c" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+							<div class="slds-text-body_regular slds-text-color_weak slds-p-top_small">2)</div>
+							<lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="PPE2__c" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+							<div class="slds-text-body_regular slds-text-color_weak slds-p-top_small">3)</div>
+							<lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="PPE3__c" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+						</div>
+					</div>
+
+					<div class="slds-form-element slds-form-element_stacked slds-m-top_small">
+						<label class="slds-form-element__label">
+							<span class="text-bold">ใบรับรองความปลอดภัย (SAFETY Permit) No.</span>
+						</label>
+						<div class="slds-form-element__control">
+							<div class="slds-grid slds-wrap">
+								<div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-p-horizontal_x-small">
+									<aura:if isTrue="{!not(wcOrderApprover == '3rdApprove')}" >
+										<lightning:inputField aura:id="inputField" class="slds-hide" fieldName="Safety_Permit1_UI__c" />
+										<c:thorFilterSuggestLookup
+											alignment="bottom"
+											sObjectName="Work_Clearance__c"
+											fieldName="Safety_Permit1_UI__c"
+											labelName=""
+											value="{!v.form.Safety_Permit1_UI__c}"
+											onchangeValue="{!c.handleChange}"
+											fetchSObjectName="Safety_Permit__c"
+											nameDisplayFormat="{Name}"
+											descriptionDisplayFormat="{}"
+										/>
+										<aura:set attribute="else">
+											<div class="slds-form-element__static">{!v.wcDisplay.Safety_Permit1_UI__r.Name}</div>
+										</aura:set>
+									</aura:if>
+								</div>
+								<div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-p-horizontal_x-small">
+									<aura:if isTrue="{!not(wcOrderApprover == '3rdApprove')}" >
+										<lightning:inputField aura:id="inputField" class="slds-hide" fieldName="Safety_Permit2_UI__c" />
+										<c:thorFilterSuggestLookup
+											alignment="bottom"
+											sObjectName="Work_Clearance__c"
+											fieldName="Safety_Permit2_UI__c"
+											labelName=""
+											value="{!v.form.Safety_Permit2_UI__c}"
+											onchangeValue="{!c.handleChange}"
+											fetchSObjectName="Safety_Permit__c"
+											nameDisplayFormat="{Name}"
+											descriptionDisplayFormat="{}"
+										/>
+										<aura:set attribute="else">
+											<div class="slds-form-element__static">{!v.wcDisplay.Safety_Permit2_UI__r.Name}</div>
+										</aura:set>
+									</aura:if>
+								</div>
+								<div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-p-horizontal_x-small">
+									<aura:if isTrue="{!not(wcOrderApprover == '3rdApprove')}" >
+										<lightning:inputField aura:id="inputField" class="slds-hide" fieldName="Safety_Permit3_UI__c" />
+										<c:thorFilterSuggestLookup
+											alignment="bottom"
+											sObjectName="Work_Clearance__c"
+											fieldName="Safety_Permit3_UI__c"
+											labelName=""
+											value="{!v.form.Safety_Permit3_UI__c}"
+											onchangeValue="{!c.handleChange}"
+											fetchSObjectName="Safety_Permit__c"
+											nameDisplayFormat="{Name}"
+											descriptionDisplayFormat="{}"
+										/>
+										<aura:set attribute="else">
+											<div class="slds-form-element__static">{!v.wcDisplay.Safety_Permit3_UI__r.Name}</div>
+										</aura:set>
+									</aura:if>
+								</div>
+							</div>
+						</div>
+					</div>
+				</lightning:accordionSection>
+				<!-- </aura:if> -->
+
+				<lightning:accordionSection aura:id="accordionSection" name="C" label="{!v.sectionTitle.C}">
+					<!-- Topic at 1st -->
+					<div class="slds-form" role="list">
+						<div class="slds-p-around_medium bg-gray-0 text-bold">
+							ผลการตรวจวัดก๊าซ (ทำการตรวจวัดปริมาณก๊าซก่อนการปฏิบัติงานทุกครั้งเพื่อความปลอดภัย)
+						</div>
+						<div class="slds-form-element slds-form-element_horizontal">
+							<label class="slds-form-element__label"> {!v.recordUi.IsCheckingGas__c.label} </label>
+							<div class="slds-form-element__control">
+								<lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="IsCheckingGas__c" onchange="{!c.handleCheckingGas}" disabled="{!v.wcOrderApprover == '3rdApprove'}" />
+							</div>
+						</div>
+						<div class="slds-form-element slds-form-element_horizontal">
+							<label class="slds-form-element__label">
+								<abbr class="slds-required">*</abbr>
+								สารไวไฟ (Flammable gas)
+							</label>
+							<div class="slds-form-element__control">
+								<div class="slds-grid slds-grid_vertical-align-center">
+									<lightning:inputField
+										class="slds-col slds-size_1-of-3 input-required"
+										aura:id="inputField"
+										variant="label-hidden"
+										required="true"
+										fieldName="Flamable_amt__c"
+									/>
+									<div class="slds-col slds-grow-none slds-p-left_small">%LEL</div>
+								</div>
+							</div>
+						</div>
+						<div class="slds-form-element slds-form-element_horizontal">
+							<label class="slds-form-element__label"> อ๊อกซิเจน (Oxygen) </label>
+							<div class="slds-form-element__control">
+								<div class="slds-grid slds-grid_vertical-align-center">
+									<lightning:inputField class="slds-col slds-size_1-of-3" aura:id="inputField" variant="label-hidden" fieldName="Oxygen_amt__c" />
+									<div class="slds-col slds-grow-none slds-p-left_small">%VOL</div>
+								</div>
+							</div>
+						</div>
+						<div class="slds-form-element slds-form-element_horizontal">
+							<label class="slds-form-element__label"> สารพิษ (Toxic gas) ระบุชนิด: </label>
+							<div class="slds-form-element__control">
+								<div class="slds-grid slds-grid_vertical-align-center">
+									<lightning:inputField class="slds-col slds-size_1-of-3" aura:id="inputField" variant="label-hidden" fieldName="Toxic_Type__c" />
+									<div class="slds-col slds-grow-none slds-p-around_x-small">:</div>
+									<lightning:inputField class="slds-col slds-size_1-of-3" aura:id="inputField" variant="label-hidden" fieldName="Toxic_PPM__c" />
+									<div class="slds-col slds-grow-none slds-p-left_small">ppm</div>
+								</div>
+							</div>
+						</div>
+                        <!--
+						<div class="slds-form-element slds-form-element_horizontal">
+							<label class="slds-form-element__label"> ผู้ทำการตรวจวัดก๊าซ (AGT./Indicator) </label>
+							<div class="slds-form-element__control">
+								<div class="slds-grid slds-grid_vertical-align-center">
+									<lightning:inputField class="slds-col slds-size_1-of-3" aura:id="inputField" variant="label-hidden" fieldName="AGT__c" />
+								</div>
+							</div>
+						</div>
+						-->
+                        <div class="slds-form-element slds-form-element_horizontal">
+							<label class="slds-form-element__label">
+								ผู้ทำการตรวจวัดก๊าซ (AGT./Indicator)
+							</label>
+							<div class="slds-form-element__control input-required hide-label">
+								<aura:if isTrue="{!and(not(v.isCheckingGas), not(v.wcOrderApprover == '3rdApprove'))}">
+									<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="AGT_UI__c" />
+									<c:thorFilterSuggestLookup
+										disabled="true"
+										sObjectName="Work_Clearance__c"
+										fieldName="AGT_UI__c"
+										value="{!v.form.AGT_UI__c}"
+										onchangeValue="{!c.handleChange}"
+										fetchSObjectName="PISUsers__c"
+										nameDisplayFormat="{EN_Fullname__c}"
+										descriptionDisplayFormat="{Home Id: HOME_ID__c, Host Id: HOST_ID__c}"
+									/>
+									<aura:set attribute="else">
+										<div class="slds-form-element__static">{!v.wcDisplay.AGT_UI__r.EN_Fullname__c}</div>
+									</aura:set>
+								</aura:if>
+							</div>
+						</div>
+						<div class="slds-form-element slds-form-element_horizontal">
+							<label class="slds-form-element__label"> วันที่ตรวจวัด (Date) </label>
+							<div class="slds-form-element__control">
+								<div class="slds-grid slds-grid_vertical-align-center">
+									<lightning:inputField class="slds-col slds-size_1-of-3" aura:id="inputField" variant="label-hidden" fieldName="Check_Date_UI__c" />
+									<div class="slds-col slds-grow-none slds-p-around_x-small">(Time)</div>
+									<lightning:inputField class="slds-col slds-size_1-of-3" aura:id="inputField" variant="label-hidden" fieldName="Check_Time_UI__c" />
+									<div class="slds-col slds-grow-none slds-p-left_small">(Hrs)</div>
+								</div>
+							</div>
+						</div>
+						<div class="slds-border_bottom slds-m-bottom_small"></div>
+					</div>
+
+					<!-- Topic at 2nd -->
+					<div class="slds-form slds-p-bottom_medium" role="list">
+						<div class="slds-form-element slds-form-element_horizontal">
+							<label class="slds-form-element__label">
+								<abbr class="slds-required">*</abbr>
+								ผู้อนุญาตให้ปฏิบัติงาน (Authorized Signatory/ Indicator)
+							</label>
+							<div class="slds-form-element__control input-required hide-label">
+								<aura:if isTrue="{!not(v.wcOrderApprover == '3rdApprove')}">
+									<lightning:inputField class="slds-hide" aura:id="inputField" required="true" fieldName="Authorized_Signatory_UI__c" />
+									<c:odmFilterSuggestLookup
+										required="true"
+										sObjectName="Work_Clearance__c"
+										fieldName="Authorized_Signatory_UI__c"
+										value="{!v.form.Authorized_Signatory_UI__c}"
+										onchangeValue="{!c.handleChange}"
+										fetchSObjectName="PISUsers__c"
+										nameDisplayFormat="{EN_Fullname__c}"
+										descriptionDisplayFormat="{Home Id: HOME_ID__c, Host Id: HOST_ID__c}"
+									/>
+									<aura:set attribute="else">
+										<div class="slds-form-element__static">{!v.wcDisplay.Authorized_Signatory_UI__r.EN_Fullname__c}</div>
+									</aura:set>
+								</aura:if>
+							</div>
+						</div>
+
+						<div class="slds-form-element slds-form-element_horizontal">
+							<label class="slds-form-element__label"> วันที่ (Date) </label>
+							<div class="slds-form-element__control">
+								<div class="slds-grid slds-grid_vertical-align-center">
+									<aura:if isTrue="{!not(v.wcOrderApprover == '3rdApprove')}">
+										<lightning:inputField
+											class="slds-col slds-size_1-of-3"
+											aura:id="inputField"
+											variant="label-hidden"
+											disabled="false"
+											fieldName="Authorized_Date_UI__c"
+										/>
+										<aura:set attribute="else">
+											<lightning:outputField
+												class="slds-col slds-grow-none slds-border_bottom"
+												variant="label-hidden"
+												fieldName="Authorized_Date_UI__c"
+											/>
+										</aura:set>
+									</aura:if>
+									<div class="slds-col slds-grow-none slds-p-around_x-small">(Time)</div>
+									<aura:if isTrue="{!not(v.wcOrderApprover == '3rdApprove')}">
+										<lightning:inputField
+											class="slds-col slds-size_1-of-3"
+											aura:id="inputField"
+											variant="label-hidden"
+											disabled="false"
+											fieldName="Authorized_Time_UI__c"
+										/>
+										<aura:set attribute="else">
+											<lightning:outputField
+												class="slds-col slds-grow-none slds-border_bottom"
+												variant="label-hidden"
+												fieldName="Authorized_Time_UI__c"
+											/>
+										</aura:set>
+									</aura:if>
+									<div class="slds-col slds-grow-none slds-p-left_small">(Hrs)</div>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="slds-border_bottom slds-m-bottom_small"></div> -->
+					</div>
+
+					<!-- Topic at 3rd -->
+					<div class="slds-form slds-p-bottom_medium" role="list">
+						<div class="slds-p-around_medium bg-gray-0 text-bold">การขยายเวลาทำงานต่อเนื่องเกิน 16:30 น. (Extending time)</div>
+						<div class="slds-form-element slds-form-element_horizontal">
+							<label class="slds-form-element__label"> ขยายเวลาถึง (Extend time to) </label>
+							<div class="slds-form-element__control">
+								<div class="slds-grid slds-grid_vertical-align-center">
+									<lightning:outputField class="slds-col slds-grow-none slds-border_bottom" variant="label-hidden" fieldName="Extend_Time_To_UI__c" />
+									<div class="slds-col slds-grow-none slds-p-left_small"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="slds-form-element slds-form-element_horizontal">
+							<label class="slds-form-element__label"> ผู้ขอขยายเวลา (Applicant or Bearer) </label>
+							<div class="slds-form-element__control">
+								<div class="slds-form-element__static">{!v.wcDisplay.Extend_Applicant_or_Bearer_UI__r.EN_Fullname__c}</div>
+							</div>
+						</div>
+
+						<div class="slds-form-element slds-form-element_horizontal">
+							<label class="slds-form-element__label">
+								<abbr class="slds-required">*</abbr>
+								ผู้อนุญาตให้ขยายเวลา (Extend Authorized Sign./ Indicator)
+							</label>
+							<div class="slds-form-element__control input-required hide-label">
+								<aura:if isTrue="{!v.wcOrderApprover == '2ndApprove'}">
+									<lightning:inputField class="slds-hide" aura:id="inputField" required="true" fieldName="Extend_Authorized_Sign_UI__c" />
+									<c:odmFilterSuggestLookup
+										aura:id="odmFilterSuggestLookup"
+										required="true"
+										sObjectName="Work_Clearance__c"
+										fieldName="Extend_Authorized_Sign_UI__c"
+										value="{!v.form.Extend_Authorized_Sign_UI__c}"
+										onchangeValue="{!c.handleChange}"
+										fetchSObjectName="PISUsers__c"
+										nameDisplayFormat="{EN_Fullname__c}"
+										descriptionDisplayFormat="{Home Id: HOME_ID__c, Host Id: HOST_ID__c}"
+									/>
+									<aura:set attribute="else">
+										<div class="slds-form-element__static">{!v.wcDisplay.Extend_Authorized_Sign_UI__r.EN_Fullname__c}</div>
+									</aura:set>
+								</aura:if>
+							</div>
+						</div>
+						<!-- <div class="slds-border_bottom slds-m-bottom_small"></div> -->
+					</div>
+
+					<!-- Topic at 4th -->
+					<div class="slds-form slds-p-bottom_medium" role="list">
+						<div class="slds-p-around_medium bg-gray-0 text-bold">การปิดงาน (Sign off)</div>
+						<div class="slds-form-element slds-form-element_horizontal">
+							<label class="slds-form-element__label"> ผู้ขอปิดงาน (Applicant or Bearer) </label>
+							<div class="slds-form-element__control">
+								<div class="slds-form-element__static">{!v.wcDisplay.Close_Applicant_or_Bearer_UI__r.EN_Fullname__c}</div>
+							</div>
+						</div>
+
+						<div class="slds-form-element slds-form-element_horizontal">
+							<label class="slds-form-element__label">
+								<abbr class="slds-required">*</abbr>
+								ผู้อนุญาตให้ปิดงาน (Authorized Sign. off / Indicator)
+							</label>
+							<div class="slds-form-element__control input-required hide-label">
+								<aura:if isTrue="{!v.wcOrderApprover == '3rdApprove'}">
+									<lightning:inputField class="slds-hide" aura:id="inputField" required="true" fieldName="Close_Authorized_Sign_off_UI__c" />
+									<c:odmFilterSuggestLookup
+										aura:id="odmFilterSuggestLookup"
+										required="true"
+										sObjectName="Work_Clearance__c"
+										fieldName="Close_Authorized_Sign_off_UI__c"
+										value="{!v.form.Close_Authorized_Sign_off_UI__c}"
+										onchangeValue="{!c.handleChange}"
+										fetchSObjectName="PISUsers__c"
+										nameDisplayFormat="{EN_Fullname__c}"
+										descriptionDisplayFormat="{Home Id: HOME_ID__c, Host Id: HOST_ID__c}"
+									/>
+									<aura:set attribute="else">
+										<div class="slds-form-element__static">{!v.wcDisplay.Close_Authorized_Sign_off_UI__r.EN_Fullname__c}</div>
+									</aura:set>
+								</aura:if>
+							</div>
+						</div>
+					</div>
+				</lightning:accordionSection>
+			</lightning:accordion>
+
+			<c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+		</lightning:recordEditForm>
+	</lightning:card>
+</aura:component>

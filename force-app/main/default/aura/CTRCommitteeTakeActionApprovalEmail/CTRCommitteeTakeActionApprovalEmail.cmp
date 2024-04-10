@@ -1,0 +1,248 @@
+<aura:component
+    implements="force:lightningQuickAction,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName"
+    access="global" controller="CommitteeTakeActionApprove">
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="actionButton" type="String" />
+    <aura:attribute name="actionApproved" type="String" />
+    <aura:attribute name="requestField" type="Boolean" default="false" />
+    <aura:attribute name="commonError" type="Boolean" default="false" />
+    <aura:attribute name="sendFromSFDC" type="Boolean" default="false" />
+    <aura:attribute name="actionFromSFDC" type="String" />
+    <aura:attribute name="inputCondition" type="String" />
+    <aura:attribute name="input" type="String" />
+    <aura:attribute name="NameRequestFormItem" type="String" />
+    <aura:attribute name="recordTypeName" type="String" />
+    <aura:attribute name="conditionApprove" type="String" />
+    <aura:attribute name="isModalOpen" type="boolean" default="false" />
+
+    <aura:attribute name="messageType" type="string" default="success" />
+    <aura:attribute name="message" type="string" />
+    <aura:attribute name="autoCloseTime" type="Integer" default="3000" />
+    <aura:attribute name="autoClose" type="Boolean" default="true" />
+    <aura:attribute name="autoCloseErrorWarning" type="Boolean" default="true" />
+    <aura:attribute name="showToast" type="Boolean" default="flase" />
+    <aura:attribute name="showLoading" type="Boolean" default="false" />
+
+    <lightning:notificationsLibrary aura:id="notifLib" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <!-- send From Email -->
+    <aura:if isTrue="{!v.sendFromSFDC == false}">
+        <aura:if isTrue="{!v.showLoading}">
+            <lightning:spinner alternativeText="Loading" size="medium" />
+        </aura:if>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+            class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="slds-modal__content slds-p-around_medium slds-modal__content_headless"
+                    id="modal-content-id-1" style="padding-bottom: 60px;">
+                    <aura:if isTrue="{!v.actionButton == 'Approved'}">
+                        <b>Do you want to approved? </b>
+                        <p style="padding-top: 12px; padding-left: 24px;">
+                            Committee {!v.NameRequestFormItem}
+                        </p>
+                    </aura:if>
+                    <aura:if isTrue="{!v.actionButton == 'ApproveWithCondition'}">
+                        <b>Please input condition</b>
+                    </aura:if>
+                    <aura:if isTrue="{!v.actionButton == 'ReplyTRCR'}">
+                        <b>Reply to TRCR</b>
+                    </aura:if>
+                    <aura:if isTrue="{!v.actionButton == 'ReplyFA'}">
+                        <b>Reply to FA</b>
+                    </aura:if>
+                    <aura:if isTrue="{!v.actionButton == 'ReplyFALB'}">
+                        <b>Reply to FALB</b>
+                    </aura:if>
+                    <aura:if isTrue="{!v.actionButton == 'Rejected'}">
+                        <b>Reject Reason</b>
+                    </aura:if>
+                    <aura:if isTrue="{!v.actionButton != 'Approved'}">
+                        <aura:if isTrue="{!v.commonError == false}">
+                            <lightning:textarea aura:id="input1" name="input" value="{!v.input}" />
+                        </aura:if>
+                        <aura:if isTrue="{!v.commonError == true}">
+                            <div class="slds-form-element slds-has-error">
+                                <label class="slds-form-element__label" for="form-element-05"></label>
+                                <div class="slds-form-element__control">
+                                    <lightning:textarea aura:id="input1" name="input" value="{!v.input}" />
+                                </div>
+                                <div class="slds-form-element__help" id="form-error-01">Please complete this field</div>
+                            </div>
+                        </aura:if>
+                    </aura:if>
+                    <div style="right: 15px; position: absolute; margin-top: 15px;">
+                        <button class="slds-button slds-button_brand" onclick="{!c.buttonConfirm}">Confirm</button>
+                        <button class="slds-button slds-button_neutral" aria-label="Cancel and close"
+                            onclick="{!c.buttonClose}">Close</button>
+                    </div>
+
+                </div>
+            </div>
+            <!-- </aura:if> -->
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </aura:if>
+
+    <!-- send From SFDC -->
+    <aura:if isTrue="{!v.sendFromSFDC == true}">
+        <aura:if isTrue="{!v.isModalOpen}">
+            <aura:if isTrue="{!v.showLoading}">
+                <lightning:spinner alternativeText="Loading" size="medium" />
+            </aura:if>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                class="slds-modal slds-fade-in-open slds-modal_small" style="width:100%;display:flex;flex-direction:column;justify-content:center;">
+                <!-- Modal Header -->
+                <header class="slds-modal__header">
+                    <!-- <aura:if isTrue="{!v.actionFromSFDC == 'ApproveFormSFDC'}">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Approve the Registration request
+                        </h2>
+                    </aura:if> -->
+                    
+                    <!-- <aura:if isTrue="{!v.actionFromSFDC == 'ApproveWithConditionFormSFDC'}">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Approve the Registration request
+                        </h2>
+                    </aura:if> -->
+                    <!--<aura:if isTrue="{!v.actionFromSFDC == 'RejectFormSFDC'}">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Reject the Registration request
+                        </h2>
+                    </aura:if>-->
+                    
+                    <aura:if isTrue="{!v.conditionApprove == 'Approve the Registration request'}">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Approve the Registration request
+                        </h2>
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.conditionApprove == 'Approve the change Credit Condition request'}">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Approve the change Credit Condition request
+                        </h2>
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.conditionApprove == 'RecordType Null'}">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Approve the Registration request
+                        </h2>
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.conditionApprove == 'Reject the Registration request'}">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Reject the Registration request
+                        </h2>
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.conditionApprove == 'Reject the change Credit Condition request'}">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Reject the change Credit Condition request
+                        </h2>
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.conditionApprove == 'RejectRecordType Null'}">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Reject the Registration request
+                        </h2>
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.actionButton == 'ReplyTRCR'}">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Reply to TRCR
+                        </h2>
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.actionButton == 'ReplyFA'}">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Reply to FA
+                        </h2>
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.actionButton == 'ReplyFALB'}">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Reply to FALB
+                        </h2>
+                    </aura:if>
+                </header>
+                <!-- Modal Body -->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div class="slds-var-m-top_medium slds-var-m-bottom_x-large" style="background-color: white;">
+                        <aura:if isTrue="{!v.actionFromSFDC == 'ApproveFormSFDC'}">
+                            <p style="text-align: center;">
+                                Are you sure you want to approve this request?
+                            </p>
+                        </aura:if>
+                        <aura:if isTrue="{!v.actionFromSFDC == 'ApproveWithConditionFormSFDC'}">
+                            <p style="padding-bottom: 10px;">
+                                Are you sure you want to approve with condition on this request?
+                            </p>
+                            <lightning:textarea aura:id="input1" name="inputCondition" label="Approval Condition:"
+                                required="true" messageWhenValueMissing="Plase complete this field"
+                                value="{!v.inputCondition}" />
+                        </aura:if>
+                        <aura:if isTrue="{!v.actionFromSFDC == 'RejectFormSFDC'}">
+                            <p style="padding-bottom: 10px;">
+                                Are you sure you want to reject this request?
+                            </p>
+                            <lightning:textarea aura:id="input1" name="inputCondition" label="Reject Reason:"
+                                required="true" messageWhenValueMissing="Plase complete this field"
+                                value="{!v.inputCondition}" />
+                        </aura:if>
+                        <aura:if isTrue="{!v.actionButton == 'ReplyTRCR'}">
+                            <p style="padding-bottom: 10px;">
+                                Are you sure you want to reply to TRCR?
+                            </p>
+                            <lightning:textarea aura:id="input1" name="input" label="Reply Message::"
+                                required="true" messageWhenValueMissing="Plase complete this field"
+                                value="{!v.input}" />
+                        </aura:if>
+                        <aura:if isTrue="{!v.actionButton == 'ReplyFA'}">
+                            <p style="padding-bottom: 10px;">
+                                Are you sure you want to reply to FA?
+                            </p>
+                            <lightning:textarea aura:id="input1" name="input" label="Reply Message::"
+                                required="true" messageWhenValueMissing="Plase complete this field"
+                                value="{!v.input}" />
+                        </aura:if>
+                        <aura:if isTrue="{!v.actionButton == 'ReplyFALB'}">
+                            <p style="padding-bottom: 10px;">
+                                Are you sure you want to reply to FALB?
+                            </p>
+                            <lightning:textarea aura:id="input1" name="input" label="Reply Message::"
+                                required="true" messageWhenValueMissing="Plase complete this field"
+                                value="{!v.input}" />
+                        </aura:if>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" aria-label="Cancel and close"
+                        onclick="{!c.closeModal}">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick="{!c.buttonConfirm}">Confirm</button>
+                </div>
+            </section>
+        </aura:if>
+    </aura:if>
+
+
+    <aura:if isTrue="{!v.showToast}">
+        <div class="slds-notify_container slds-is-relative">
+            <div class="{!'slds-notify slds-notify_toast slds-theme_'+v.messageType}" role="status">
+                <span class="slds-assistive-text">{!v.messageType}</span>
+                <span
+                    class="{!'slds-icon_container slds-icon-utility-'+v.messageType+' slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top'}"
+                    title="{!v.message}">
+                    <lightning:icon iconName="{!'utility:'+v.messageType}" size="small" variant="inverse"
+                        styleclass="slds-icon slds-icon_small" />
+                </span>
+                <div class="slds-notify__content">
+                    <h2 class="slds-text-heading_small ">{!v.message}</h2>
+                </div>
+            </div>
+        </div>
+    </aura:if>
+</aura:component>

@@ -1,0 +1,22 @@
+<aura:component
+    access="global"
+    controller="CTRCommitteeSelectionController"
+    implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName">
+
+    <aura:attribute name="requestType" type="String" default="" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:if isTrue="{!v.requestType == 'Initial'}">
+        <c:CTRCommitteeSelectionInitial recordId="{!v.recordId}"/>
+    </aura:if>
+
+    <aura:if isTrue="{!v.requestType == 'ChangeCredit'}">
+        <c:CTRCommitteeSelectionChangeCredit recordId="{!v.recordId}" />
+    </aura:if>
+
+    <aura:if isTrue="{!v.requestType == 'Block'}">
+        <c:CTRCommitteeSelectionBlock recordId="{!v.recordId}" />
+    </aura:if>
+
+</aura:component>

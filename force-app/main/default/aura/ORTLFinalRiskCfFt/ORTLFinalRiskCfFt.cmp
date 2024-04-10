@@ -1,0 +1,9 @@
+<!-- Final Risk Assessment Confirm Modal Footer Component display after save final risk assessment -->
+<aura:component>
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <div class="slds-grid">
+        <div class="slds-col slds-text-align_center">
+            <lightning:button variant="brand" label="OK" title="OK" onclick="{! c.handleClickOK }"/>
+        </div>
+    </div>
+</aura:component>

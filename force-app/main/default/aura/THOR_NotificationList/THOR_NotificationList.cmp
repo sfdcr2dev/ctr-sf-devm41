@@ -1,0 +1,98 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" controller="THOR_NotificationAndOrderCtrl" access="global">
+	<lightning:navigation aura:id="navService" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="fitlerEnhanceEvent" event="c:THOR_FilterEnhanceEvent" action="{!c.handleFilter}" />
+
+	<aura:attribute name="filter" type="Map" default="{}" access="private" />
+	<aura:attribute name="notifications" type="Map" default="{}" access="private" />
+
+	<aura:attribute name="notifications_length" type="Integer" default="0" access="private" />
+	<aura:attribute name="notifications_new" type="List" default="[]" access="private" />
+	<aura:attribute name="notifications_execution" type="List" default="[]" access="private" />
+
+	<div class="notification__container">
+		<lightning:layout multipleRows="true">
+			<lightning:layoutItem class="slds-p-vertical_small slds-p-bottom_small" padding="horizontal-small" size="12">
+				<div class="d-flex d-justify-space-between">
+					<h5 style="display: flex; align-items: center">Notification List ({! v.notifications_length })</h5>
+					<c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterNotificationListFrom" />
+				</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem class="slds-p-bottom_small" padding="horizontal-small" size="12">
+				<lightning:card>
+					<aura:set attribute="title">
+						<div>You have {!v.notifications.status_new.count ? v.notifications.status_new.count : '0'} New Notifications</div>
+					</aura:set>
+
+					<aura:set attribute="footer">
+						<aura:if isTrue="{! v.notifications.status_new.count gt 3}">
+							<lightning:button variant="base" label="Show more" title="Show more" name="New" onclick="{!c.redirectNotiAll}" />
+						</aura:if>
+					</aura:set>
+
+					<aura:if isTrue="{!empty(v.notifications.status_new)}">
+						<lightning:spinner alternativeText="Loading" size="small" />
+					</aura:if>
+					<p class="slds-var-p-around_medium notification__bg-gray">Notification number, Notification type, FL, Priority, Request date, Description</p>
+
+					<div class="slds-p-around_x-small">
+						<aura:iteration items="{!v.notifications_new}" var="noti" indexVar="index">
+							<aura:if isTrue="{! index lt 3}">
+								<div class="slds-box slds-box_small">
+									<a data-record-id="{!noti.Id}" href="javascript:void(0);" class="slds-text-link_reset" onclick="{!c.navigateToDisplay}">
+										<aura:if isTrue="{!noti.Name}">
+											<p class="slds-text-link">{!noti.Name}</p>
+										</aura:if>
+										<p>{! noti.info }</p>
+										<aura:if isTrue="{!noti.Description__c}">
+											<p class="slds-hyphenate">{! noti.Description__c }</p>
+										</aura:if>
+									</a>
+								</div>
+							</aura:if>
+						</aura:iteration>
+					</div>
+				</lightning:card>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem class="slds-p-bottom_small" padding="horizontal-small" size="12">
+				<lightning:card>
+					<aura:set attribute="title">
+						<div>You have {!v.notifications.status_inprogess.count ? v.notifications.status_inprogess.count : '0'} Execution Notifications</div>
+					</aura:set>
+
+					<aura:set attribute="footer">
+						<aura:if isTrue="{! v.notifications.status_inprogess.count gt 3}">
+							<lightning:button variant="base" label="Show more" title="Show more" name="In Progress" onclick="{!c.redirectNotiAll}" />
+						</aura:if>
+					</aura:set>
+
+					<aura:if isTrue="{!empty(v.notifications.status_inprogess)}">
+						<lightning:spinner alternativeText="Loading" size="small" />
+					</aura:if>
+					<p class="slds-var-p-around_medium notification__bg-gray">Notification number, Notification type, FL, Priority, Request date, Description</p>
+
+					<div class="slds-p-around_x-small">
+						<aura:iteration items="{!v.notifications_execution}" var="noti" indexVar="index">
+							<aura:if isTrue="{! index lt 3}">
+								<div class="slds-box slds-box_small">
+									<a data-record-id="{!noti.Id}" href="javascript:void(0);" class="slds-text-link_reset" onclick="{!c.navigateToDisplay}">
+										<aura:if isTrue="{!noti.Name}">
+											<p class="slds-text-link">{!noti.Name}</p>
+										</aura:if>
+										<p>{! noti.info }</p>
+										<aura:if isTrue="{!noti.Description__c}">
+											<p class="slds-hyphenate">{! noti.Description__c }</p>
+										</aura:if>
+									</a>
+								</div>
+							</aura:if>
+						</aura:iteration>
+					</div>
+				</lightning:card>
+			</lightning:layoutItem>
+		</lightning:layout>
+	</div>
+</aura:component>

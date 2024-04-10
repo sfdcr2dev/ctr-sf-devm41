@@ -1,0 +1,52 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName,force:lightningQuickActionWithoutHeader" controller="CTRSubmitRegistrationFormController" access="global">
+    
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="recordObject" type="Object" />
+    <aura:attribute name="isLoaded" type="Boolean" default="false" />
+    <aura:attribute name="isTX" type="Boolean" default="false" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:html tag="style">
+        .slds-modal__container {        
+        	width: 60% !important;
+            max-width: 70% !important;
+        	height: 100% !important; 
+            /*   width:210mm;
+            height:297mm;*/
+        }
+        .cuf-content {
+            padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+            padding: 0rem !important;
+        }       
+        .slds-modal__content {
+            overflow-y: hidden !important;
+            height: unset !important;
+            max-height: unset !important;
+        }
+    </aura:html>
+
+    <div class="slds-modal--large">
+        <div class="slds-modal__header slds-size_1-of-1">
+            <h2 class="slds-text-heading--medium">Confirmation of Require Document</h2>
+        </div>
+        <div class="slds-modal__content slds-var-p-around_xx-large slds-size_1-of-1 slds-is-relative slds-text-heading_small" style="text-align: center;">
+            I have attached the&nbsp;<b>Certificate of Incorporation (COI)</b>
+            <aura:renderIf isTrue="{!v.isTX}">
+                and&nbsp;<b>Certificate of VAT Registration (ภพ20 or ภพ.01 or ภพ.09)</b>&nbsp;documents for this registration.
+                <aura:set attribute="else">
+                    document for this registration.
+                </aura:set>
+            </aura:renderIf>
+        </div>
+        <div class="modal-footer slds-modal__footer slds-size_1-of-1" style="text-align: right;">
+            <lightning:button variant="neutral" label="Cancel" onclick="{!c.handleCancel}" />
+            <lightning:button variant="brand" label="Confirm" onclick="{!c.handleConfirm}" disabled="{!!v.isLoaded}" />
+        </div>
+        <aura:if isTrue="{!!v.isLoaded}">
+            <lightning:spinner variant="brand" style="z-index:2" />
+        </aura:if>
+    </div>
+</aura:component>

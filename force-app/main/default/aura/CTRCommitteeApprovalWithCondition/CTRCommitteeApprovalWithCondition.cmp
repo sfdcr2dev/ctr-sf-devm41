@@ -1,0 +1,16 @@
+<aura:component
+    implements="force:lightningQuickAction,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName"
+    access="global" controller="CommitteeTakeActionApprove">
+
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="sendFromSFDC" type="boolean" default="true" />
+    <aura:attribute name="actionFromSFDC" type="String" default="ApproveWithConditionFormSFDC" />
+    <aura:attribute name="recordTypeName" type="String" />
+    <aura:attribute name="isModalOpen" type="boolean" default="false" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+<aura:if isTrue="{!v.recordTypeName != null}">
+    <c:CTRCommitteeTakeActionApprovalEmail recordId="{!v.recordId}" sendFromSFDC="{!v.sendFromSFDC}" actionFromSFDC="{!v.actionFromSFDC}" recordTypeName="{!v.recordTypeName}" isModalOpen="{!v.isModalOpen}"></c:CTRCommitteeTakeActionApprovalEmail>
+    <aura:set attribute="else"> <c:CTRCommitteeTakeActionApprovalEmail recordId="{!v.recordId}" sendFromSFDC="{!v.sendFromSFDC}" actionFromSFDC="{!v.actionFromSFDC}" recordTypeName="Type Null"  isModalOpen="{!v.isModalOpen}"></c:CTRCommitteeTakeActionApprovalEmail> </aura:set>
+</aura:if>
+    </aura:component>

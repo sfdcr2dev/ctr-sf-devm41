@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CTR Committee Approval</value>
+    </caseValues>
+    <fields>
+        <label><!-- Approval Date --></label>
+        <name>ApprovalDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Result --></label>
+        <name>ApprovalResult__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Submitted Yet</masterLabel>
+            <translation><!-- Not Submitted Yet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reply to FA</masterLabel>
+            <translation><!-- Reply to FA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reply to FALB</masterLabel>
+            <translation><!-- Reply to FALB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reply to TRCR</masterLabel>
+            <translation><!-- Reply to TRCR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reverted to Credit Team</masterLabel>
+            <translation><!-- Reverted to Credit Team --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submit to Committee</masterLabel>
+            <translation><!-- Submit to Committee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting Section Head Review</masterLabel>
+            <translation><!-- Waiting Section Head Review --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Approver Name --></label>
+        <name>ApproverName__c</name>
+        <relationshipLabel><!-- CTR Committee Approval --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CTR Request Form Item Record Type Name --></label>
+        <name>CTRReqItemName__c</name>
+    </fields>
+    <fields>
+        <label><!-- CTR Request Form Item --></label>
+        <name>CTRRequestFormItem__c</name>
+        <relationshipLabel><!-- CTR Committee Approval --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CustomerName --></label>
+        <name>CustomerName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Message --></label>
+        <name>Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Remark --></label>
+        <name>Remark__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reply to FALB (Not Used) --></label>
+        <name>ReplytoFALB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reply to FA (Not Used) --></label>
+        <name>ReplytoFA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reply to TRCR --></label>
+        <name>ReplytoTRCR__c</name>
+    </fields>
+    <fields>
+        <label><!-- TRCRSectionHead --></label>
+        <name>TRCRSectionHead__c</name>
+    </fields>
+    <layouts>
+        <layout>Committee Approval Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

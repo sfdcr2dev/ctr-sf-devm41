@@ -1,0 +1,279 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global"
+    controller="OPP_CaseController">
+    <lightning:navigation aura:id="navService" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" />
+
+    <!-- <aura:registerEvent name="oppEvent" type="c:OPP_CaseEvent" /> -->
+    <!-- <aura:handler name="removeRow" event="c:OPP_DeleteRowEvent" action="{!c.handleRemove}" /> -->
+
+    <aura:attribute name="case" type="Case" />
+    <aura:attribute name="records" type="OPP_Case_Line_Items__c[]" default="[{}]" />
+    <aura:attribute name="recordsOther" type="OPP_Case_Line_Items__c[]" default="[{}]" />
+
+    <aura:attribute name="recordTypeIdsMap" type="Map" default="{}" />
+    <aura:attribute name="describeFields" type="Map" default="{}" />
+    <aura:attribute name="picklistMap" type="Map" default="{}" />
+
+
+    <aura:attribute name="isEmployee" type="Boolean" default="true" />
+    <aura:attribute name="isLoading" type="Boolean" default="false" />
+    <aura:attribute name="autoApproval" type="Boolean" default="false" />
+
+    <div class="slds-var-m-bottom_x-large slds-is-relative">
+
+        <ui:scrollerWrapper class="scrollerWrapper">
+            <lightning:recordEditForm recordTypeId="{!v.case.RecordTypeId}" density="{!v.formFactor == 'PHONE' ? 'comfy' : 'compact'}" objectApiName="Case"
+                onsubmit="{!c.handleSubmit}" onsuccess="{!c.handleSuccess}" onerror="{!c.handleError}" aura:id="softwareForm">
+                <lightning:card>
+
+                    <aura:if isTrue="{!v.isLoading}">
+                        <lightning:spinner alternativeText="Loading" size="medium" />
+                    </aura:if>
+                    <aura:set attribute="title">
+                        <div class="header">New case : Software request</div>
+                    </aura:set>
+
+                    <div class="slds-form_horizontal slds-form slds-grid slds-wrap slds-var-m-horizontal_small">
+                        <lightning:messages aura:id="messages" />
+                        <div class="slds-scoped-notification slds-scoped-notification_light pink">
+                            <div class="slds-media">
+                                <div class="slds-media__body">
+                                    <p>Owner Information | ข้อมูลผู้ครอบครองเครื่อง
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-1">
+                            <lightning:inputField fieldName="OwnerId" disabled="true" />
+                        </div>
+                        <!-- <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-1"></div> -->
+                        <aura:if isTrue="{!!v.isEmployee}">
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-1">
+                                <lightning:input type="email" label="{!v.describeFields.Case.Creator_Email__c.label}" required="true"
+                                    value="{!v.case.Creator_Email__c}" />
+                                <lightning:inputField class="slds-hide" fieldName="Creator_Email__c" value="{!v.case.Creator_Email__c}" />
+                            </div>
+                        </aura:if>
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-1">
+                            <lightning:inputField fieldName="Requester__c" required="true" value="{!v.case.Requester__c}" onchange="{!c.handleRequester}" />
+                        </div>
+                        <!-- <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-1"></div> -->
+
+                        <div class="slds-scoped-notification slds-scoped-notification_light blue">
+                            <div class="slds-media">
+                                <div class="slds-media__body">
+                                    <p>Request Information | รายละเอียดการขอเบิก
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <lightning:inputField fieldName="Objective__c" required="true" />
+                        <lightning:inputField fieldName="Phone__c" required="true"/>
+
+
+                        <lightning:radioGroup name="Software_Type__c" label="{!v.describeFields.Case.Software_Type__c.label}" required="true"
+                            options="{!v.picklistMap.Case.Software_Type__c}" value="{!v.case.Software_Type__c}" variant="label-inline"
+                            onchange="{!c.handlesoftwareType}" />
+                        <lightning:inputField fieldName="Software_Type__c" value="{!v.case.Software_Type__c}" class="slds-hide" />
+
+
+                        <lightning:card>
+                            <aura:if isTrue="{!v.case.Software_Type__c}">
+                                <lightning:button variant="brand" label="Add Row" title="Add Row" onclick="{! c.handleAdd }"
+                                    class="slds-var-m-vertical_x-small" />
+                            </aura:if>
+
+                            <lightning:recordEditForm density="{!v.formFactor == 'PHONE' ? 'comfy' : 'compact'}" objectApiName="OPP_Case_Line_Items__c"
+                                onsubmit="{!c.preventBlock}" aura:id="caselineitem">
+                                <aura:if isTrue="{!or(v.case.Software_Type__c == 'Standard Software', v.case.Software_Type__c == 'Specific Software')}">
+                                    <table
+                                        class="{! 'slds-table slds-table_bordered slds-table_cell-buffer' + (v.formFactor == 'PHONE' ? ' slds-max-medium-table_stacked' : '') }">
+                                        <thead>
+                                            <tr class="slds-text-title_caps">
+                                                <th scope="col">
+                                                    <div class="slds-truncate">No.</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate slds-text-align_center">
+                                                        {!v.describeFields.OPP_Case_Line_Items__c.OPP_Software_Asset__c.label}
+                                                    </div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate slds-text-align_center">Price</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate slds-text-align_center">
+                                                        {!v.describeFields.OPP_Case_Line_Items__c.Asset_Owner__c.label}
+                                                    </div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate slds-text-align_center">
+                                                        {!v.describeFields.OPP_Case_Line_Items__c.OPP_IT_Asset__c.label}
+                                                    </div>
+                                                </th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <aura:iteration items="{!v.records}" var="record" indexVar="index">
+                                                <tr class="slds-hint-parent">
+                                                    <td data-label="No." class="slds-size_1-of-12">
+                                                        <div class="slds-truncate">{!index + 1}.</div>
+                                                    </td>
+                                                    <td data-label="{!v.describeFields.OPP_Case_Line_Items__c.OPP_Software_Asset__c.label}"
+                                                        class="slds-size_4-of-12">
+                                                        <lightning:select aura:id="ITAssetItem" class="label-hidden" variant="label-hidden" required="true"
+                                                            value="{!record.OPP_Software_Asset__c}" name="{!index}" onchange="{!c.handleSoftwareAsset}">
+                                                            <option value="">--None--</option>
+                                                            <aura:iteration items="{!v.picklistMap.Case.SoftwareAssetTemp}" var="item" indexVar="key">
+                                                                <option text="{!item.Name}" value="{!item.Id}" />
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </td>
+                                                    <td data-label="Price" class="slds-size_2-of-12 slds-text-align_center">
+                                                        <lightning:formattedText aura:id="price_software" />
+                                                    </td>
+                                                    <td data-label="{!v.describeFields.OPP_Case_Line_Items__c.Asset_Owner__c.label}" class="slds-size_2-of-12">
+                                                        <lightning:inputField class="{! index + ' label-hidden'}" variant="label-hidden"
+                                                            fieldName="Asset_Owner__c" required="true" value="{!record.Asset_Owner__c}"
+                                                            onchange="{!c.handleITAssetOwnerItem}" />
+                                                    </td>
+                                                    <td data-label="{!v.describeFields.OPP_Case_Line_Items__c.OPP_IT_Asset__c.label}" class="slds-size_2-of-12">
+                                                        <lightning:select aura:id="ITAssetItem" label="" class="label-hidden" variant="label-hidden"
+                                                            required="true" value="{!record.OPP_IT_Asset__c}">
+                                                            <option value="">--None--</option>
+                                                            <aura:iteration items="{!v.picklistMap.OPP_Case_Line_Items__c.OPP_IT_Asset__c}" var="ITAsset"
+                                                                indexVar="indexITAsset">
+                                                                <aura:if isTrue="{!index == indexITAsset}">
+                                                                    <aura:iteration items="{!ITAsset}" var="item" indexVar="key">
+                                                                        <option text="{!item.label}" value="{!item.value}" />
+                                                                    </aura:iteration>
+                                                                </aura:if>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                        <lightning:inputField class="slds-hide" fieldName="OPP_IT_Asset__c" value="{!record.OPP_IT_Asset__c}" />
+                                                    </td>
+                                                    <td class="slds-text-align_center slds-size_1-of-12">
+                                                        <a name="{!index}" onclick="{!c.handleRemove}">
+                                                            <lightning:icon iconName="utility:delete" alternativeText="delete" variant="error"
+                                                                class="slds-icon slds-icon_small" size="small" />
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </aura:iteration>
+                                        </tbody>
+                                    </table>
+                                </aura:if>
+
+                                <aura:if isTrue="{!v.case.Software_Type__c == 'Other'}">
+                                    <table
+                                        class="{! 'slds-table slds-table_bordered slds-table_cell-buffer' + (v.formFactor == 'PHONE' ? ' slds-max-medium-table_stacked' : '') }">
+                                        <thead>
+                                            <tr class="slds-text-title_caps">
+                                                <th scope="col">
+                                                    <div class="slds-truncate">No.</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate slds-text-align_center">
+                                                        {!v.describeFields.OPP_Case_Line_Items__c.Software_Other__c.label}</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate slds-text-align_center">
+                                                        {!v.describeFields.OPP_Case_Line_Items__c.Asset_Owner__c.label}</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate slds-text-align_center">
+                                                        {!v.describeFields.OPP_Case_Line_Items__c.OPP_IT_Asset__c.label}
+                                                    </div>
+                                                </th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <aura:iteration items="{!v.recordsOther}" var="record" indexVar="index">
+                                                <tr class="slds-hint-parent">
+                                                    <td data-label="No." class="slds-size_1-of-12">
+                                                        <div class="slds-truncate">{!index + 1}.</div>
+                                                    </td>
+                                                    <td data-label="{!v.describeFields.OPP_Case_Line_Items__c.Software_Other__c.label}"
+                                                        class="slds-size_6-of-12">
+                                                        <lightning:input aura:id="ITAssetItem" label="Description" variant="label-hidden" class="label-hidden"
+                                                            required="true" value="{!record.Software_Other__c}" />
+                                                    </td>
+                                                    <td data-label="{!v.describeFields.OPP_Case_Line_Items__c.Asset_Owner__c.label}" class="slds-size_2-of-12">
+                                                        <lightning:inputField class="{! index + ' label-hidden'}" variant="label-hidden"
+                                                            fieldName="Asset_Owner__c" required="true" value="{!record.Asset_Owner__c}"
+                                                            onchange="{!c.handleITAssetOwnerItem}" />
+                                                    </td>
+                                                    <td data-label="{!v.describeFields.OPP_Case_Line_Items__c.OPP_IT_Asset__c.label}" class="slds-size_2-of-12">
+                                                        <lightning:select aura:id="ITAssetItem" label="" class="label-hidden" variant="label-hidden"
+                                                            required="true" value="{!record.OPP_IT_Asset__c}">
+                                                            <option value="">--None--</option>
+                                                            <aura:iteration items="{!v.picklistMap.OPP_Case_Line_Items__c.OPP_IT_Asset__c}" var="ITAsset"
+                                                                indexVar="indexITAsset">
+                                                                <aura:if isTrue="{!index == indexITAsset}">
+                                                                    <aura:iteration items="{!ITAsset}" var="item" indexVar="key">
+                                                                        <option text="{!item.label}" value="{!item.value}" />
+                                                                    </aura:iteration>
+                                                                </aura:if>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                        <lightning:inputField class="slds-hide" fieldName="OPP_IT_Asset__c" value="{!record.OPP_IT_Asset__c}" />
+                                                    </td>
+                                                    <td class="slds-text-align_center slds-size_1-of-12">
+                                                        <a name="{!index}" onclick="{!c.handleRemoveOther}">
+                                                            <lightning:icon iconName="utility:delete" alternativeText="delete" variant="error"
+                                                                class="slds-icon slds-icon_small" size="small" />
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </aura:iteration>
+                                        </tbody>
+                                    </table>
+                                </aura:if>
+                            </lightning:recordEditForm>
+                        </lightning:card>
+
+                        <lightning:inputField fieldName="More_Details__c" class="slds-size_1-of-1" />
+
+                        <aura:if isTrue="{!v.formFactor == 'PHONE'}">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label"></label>
+                                <div class="slds-form-element__control">
+                                    <lightning:formattedText value="{!$Label.c.DG_Service_Help_text_on_forms}" />
+                                </div>
+                            </div>
+                        </aura:if>
+                    </div>
+
+                    <aura:set attribute="actions">
+                        <aura:if isTrue="{!v.formFactor == 'DESKTOP'}">
+                            <lightning:button class="slds-var-m-left_small" variant="neutral" label="Cancel" onclick="{!c.closeModal}" />
+                            <lightning:button class="slds-var-m-left_small" variant="neutral" label="Save Draft" type="submit" />
+                            <lightning:button class="slds-var-m-left_small" variant="neutral" label="Submit for Approval" type="button"
+                                onclick="{!c.handleAutoApproval}" />
+                            <c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+                        </aura:if>
+                    </aura:set>
+
+                    <aura:set attribute="footer">
+                        <aura:if isTrue="{!v.formFactor == 'PHONE'}">
+                            <lightning:buttonGroup>
+                                <lightning:button variant="neutral" label="Cancel" onclick="{!c.closeModal}" />
+                                <lightning:button variant="neutral" label="Save Draft" type="submit" />
+                                <lightning:button variant="neutral" label="Submit for Approval" type="button" onclick="{!c.handleAutoApproval}" />
+                            </lightning:buttonGroup>
+                            <c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+                        </aura:if>
+                    </aura:set>
+
+                </lightning:card>
+            </lightning:recordEditForm>
+        </ui:scrollerWrapper>
+
+    </div>
+</aura:component>

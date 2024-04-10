@@ -1,0 +1,102 @@
+<aura:component implements="force:hasRecordId" controller="ORTLActionCtrl">
+
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <lightning:notificationsLibrary aura:id="notifLib"/>
+
+    <aura:attribute name="ownerId" type="String" />
+    <aura:attribute name="relevantUsers" type="List" />
+    <aura:attribute name="deleteRelevantUsers" type="List" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:html tag="style">
+        @media (min-width: 768px) {
+            .slds-modal__container {
+                width: 90%;
+                max-width: 90%
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .slds-modal__container {
+                width: 80%;
+                max-width: 80%
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .slds-modal__container {
+                width: 75%;
+                max-width: 75%
+            }
+        }
+    </aura:html>
+
+    <div>
+        <article class="slds-card">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__figure stencil slds-avatar slds-avatar_small">
+                        <lightning:icon iconName="standard:user" alternativeText="user" title="user" />
+                    </div>
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title">
+                            <div class="slds-card__header-link slds-truncate" title="Relevant User (CC to) ">
+                                <span>Relevant User (CC to) ({!v.relevantUsers.length})</span>
+                            </div>
+                        </h2>
+                    </div>
+                    <div class="slds-no-flex">
+                        <button class="slds-button slds-button_brand" onclick="{! c.handleClickAddRelevantUser}">Add CC to</button>
+                    </div>
+                </header>
+            </div>
+            <div class="slds-card__body">
+                <lightning:recordEditForm recordId="" objectApiName="ORTLRelevantUser__c">
+                    <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_fixed-layout table-relevant-user">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="No.">No.</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Relavant User">Relavant User Name</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Delete"></div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.relevantUsers}" var="relevantUser" indexVar="index">
+                                <tr class="slds-hint-parent">
+                                    <th scope="row">
+                                        <div class="slds-truncate">{!index + 1}</div>
+                                    </th>
+                                    <td role="gridcell">
+                                        <div class="relevant-user">
+                                            <lightning:inputField fieldName="RelevantUser__c" value="{!relevantUser.RelevantUser__c}" variant="label-hidden" onchange="{!c.handleChangeRelevantUser}" class="{!'relevant-'+index}" />
+                                        </div>
+                                    </td>
+                                    <td role="gridcell">
+                                        <div onclick="{!c.handleClickDeleteRelevantUser}" data-index="{!index}">
+                                            <lightning:buttonIcon iconName="utility:delete" alternativeText="Delete" title="Delete" size="medium" variant="bare" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                </lightning:recordEditForm>
+            </div>
+        </article>
+
+        <div class="slds-grid relevant-user-footer">
+            <div class="slds-col slds-text-align_right">
+                <lightning:button variant="neutral" label="Cancel" title="Cancel" onclick="{! c.handleClickCancel }" />
+                <lightning:button variant="brand" label="Save" title="Save Initial Risk Assessment" onclick="{! c.handleClickSave }" />
+            </div>
+        </div>
+    </div>
+
+</aura:component>

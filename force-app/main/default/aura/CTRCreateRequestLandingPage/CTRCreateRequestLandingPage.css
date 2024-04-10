@@ -1,0 +1,21 @@
+.THIS .h-75 {
+    height: 75%;
+}
+.THIS .modal-w-full {
+    padding-top: 10%;
+    width: 100vw;
+    margin-left: -50%;
+}
+@media (max-width: 768px) {
+    .THIS .modal-w-full {
+        margin-left: -5%;
+    }
+}
+@media (min-width: 1280px) {
+    .THIS .modal-w-full {
+        width: 80vw;
+    }
+}
+.THIS .radio-padding-bottom .slds-form-element__control .slds-radio {
+    padding-bottom: 10px;
+}

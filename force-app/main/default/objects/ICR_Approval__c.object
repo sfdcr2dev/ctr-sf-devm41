@@ -1,0 +1,1337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>Custom</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Custom</fullName>
+        <fields>Name</fields>
+        <label>Custom</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>AMM_Conclusion__c</fullName>
+        <externalId>false</externalId>
+        <label>AMM Conclusion</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Appoint</fullName>
+                    <default>false</default>
+                    <label>Appoint</label>
+                </value>
+                <value>
+                    <fullName>Disappoint</fullName>
+                    <default>false</default>
+                    <label>Disappoint</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Appointed_Disappointed_File__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>กรุณา Checked เมื่ออัพโหลดเอกสาร Appointed หรือ Disappoint ผลมติการประชุม</inlineHelpText>
+        <label>Appointed/Disappointed File</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Approver_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Approver__r.FirstName_EN__c + &apos; &apos; + Approver__r.LastName_EN__c</formula>
+        <label>Approver Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Approver</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>ICR_Approval</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Ask_to_Review__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Ask to Review</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Auto_Approve__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Auto Approve</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>BE_EVP_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>BE EVP ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BE_File_Upload__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>BE File Upload</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>BE_GSCS_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>BE GSCS ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BE_GSCS_Staff_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>BE GSCS Staff ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BE_GSVP_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>BE GSVP ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BE_Line_Manager_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>BE Line Manager ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BE_PMSV_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>BE PMSV ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cancel_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Cancel Reason</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Circular_File__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>กรุณา Checked เมื่อได้ทำการอัพโหลดเอกสาร Circular หลังมติการประชุม</inlineHelpText>
+        <label>Circular File</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Circular_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Circular No</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Circular_Template__c</fullName>
+        <defaultValue>&quot;https://thaioil.my.salesforce.com/sfc/p/2v000003OMdM/a/2v0000009u0w/J7_xaYHzQ3b.jjjdanWUzxYt_AjZgBysV9Pp_fjJA9E&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>Circular Template</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Committee_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Committee Title</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Confidential__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Confidential</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Draft_Circular_File__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>กรุณา Checked เมื่อทำการอัพโหลดเอกสาร Draft of Circular</inlineHelpText>
+        <label>Draft Circular File</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EVP_Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>EVP Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Employee_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.Employee_Id__c</formula>
+        <label>Employee Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>End_Date_Wording__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK(End_Date__c) , &apos;จนกว่าจะมีคำสั่งเปลี่ยนแปลง&apos; , &apos;จะเป็นไปตามที่กำหนดข้างต้น&apos; )</formula>
+        <label>End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>วันสิ้นสุ</inlineHelpText>
+        <label>End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>File_URL__c</fullName>
+        <externalId>false</externalId>
+        <label>File URL</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Finished_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Finished Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Objective__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>จุดประสงค์ของการทำ ICR ในครั้งนี้</inlineHelpText>
+        <label>Committee Objective</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Owner_Full_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.FirstName_EN__c + &apos; &apos; + Owner:User.LastName_EN__c</formula>
+        <label>Owner Full Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Remark__c</fullName>
+        <externalId>false</externalId>
+        <label>หมายเหตุ</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Request_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Request Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Request_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Request Reason</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Requester__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.FirstName_EN__c + &apos; &apos; +  Owner:User.LastName_EN__c</formula>
+        <label>Requester</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Signed_Circular_File__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>กรุณา Checked เมื่อทำการอัพโหลดเอกสาร Signed Circular</inlineHelpText>
+        <label>Signed Circular File</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>วันเริ่มต้น</inlineHelpText>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Not Submit</fullName>
+                    <default>true</default>
+                    <label>Not Submit</label>
+                </value>
+                <value>
+                    <fullName>Waiting Requester Revise</fullName>
+                    <default>false</default>
+                    <label>Waiting Requester Revise</label>
+                </value>
+                <value>
+                    <fullName>Waiting Line Manager Approval</fullName>
+                    <default>false</default>
+                    <label>Waiting Line Manager Approval</label>
+                </value>
+                <value>
+                    <fullName>Waiting Submit Approval Type</fullName>
+                    <default>false</default>
+                    <label>Waiting Submit Approval Type</label>
+                </value>
+                <value>
+                    <fullName>Waiting GSCS Approval</fullName>
+                    <default>false</default>
+                    <label>Waiting GSCS Approval</label>
+                </value>
+                <value>
+                    <fullName>Waiting Requester Update Result</fullName>
+                    <default>false</default>
+                    <label>Waiting Requester Update Result</label>
+                </value>
+                <value>
+                    <fullName>Waiting EVP Approval</fullName>
+                    <default>false</default>
+                    <label>Waiting EVP Approval</label>
+                </value>
+                <value>
+                    <fullName>Waiting Circular No.</fullName>
+                    <default>false</default>
+                    <label>Waiting Circular No.</label>
+                </value>
+                <value>
+                    <fullName>Waiting Signed Circular File</fullName>
+                    <default>false</default>
+                    <label>Waiting Signed Circular File</label>
+                </value>
+                <value>
+                    <fullName>Cancelled Request</fullName>
+                    <default>false</default>
+                    <label>Cancelled Request</label>
+                </value>
+                <value>
+                    <fullName>Appointed</fullName>
+                    <default>false</default>
+                    <label>Appointed</label>
+                </value>
+                <value>
+                    <fullName>Disappointed</fullName>
+                    <default>false</default>
+                    <label>Disappointed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Today__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY()</formula>
+        <label>Today</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Type_Remark__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>หมายเหตุในการเลือก Approval Type</inlineHelpText>
+        <label>Reason for select type</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>AMM</fullName>
+                    <default>false</default>
+                    <label>AMM</label>
+                </value>
+                <value>
+                    <fullName>CEO</fullName>
+                    <default>false</default>
+                    <label>CEO</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>ICR Approval</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Request</fullName>
+        <columns>NAME</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Request</label>
+    </listViews>
+    <nameField>
+        <displayFormat>{YYYY}-{000}</displayFormat>
+        <label>Document No</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>AMM_Circular</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>Custom</compactLayoutAssignment>
+        <label>AMM Circular</label>
+        <picklistValues>
+            <picklist>AMM_Conclusion__c</picklist>
+            <values>
+                <fullName>Appoint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disappoint</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Appointed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disappointed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Submit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Circular No%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting EVP Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting GSCS Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Line Manager Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Revise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Update Result</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Submit Approval Type</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>AMM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>AMM_Signed_Circular</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>Custom</compactLayoutAssignment>
+        <label>AMM Signed Circular</label>
+        <picklistValues>
+            <picklist>AMM_Conclusion__c</picklist>
+            <values>
+                <fullName>Appoint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disappoint</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Appointed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Submit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Circular No%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting EVP Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting GSCS Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Line Manager Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Revise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Update Result</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Signed Circular File</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Submit Approval Type</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>AMM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>AMM_Type</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>Custom</compactLayoutAssignment>
+        <label>AMM Type</label>
+        <picklistValues>
+            <picklist>AMM_Conclusion__c</picklist>
+            <values>
+                <fullName>Appoint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disappoint</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Cancelled Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disappointed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Submit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting EVP Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting GSCS Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Line Manager Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Revise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Update Result</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Submit Approval Type</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>AMM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Approval_Type</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>Custom</compactLayoutAssignment>
+        <label>Approval Type</label>
+        <picklistValues>
+            <picklist>AMM_Conclusion__c</picklist>
+            <values>
+                <fullName>Appoint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disappoint</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Cancelled Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disappointed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Submit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting GSCS Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Line Manager Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Revise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Update Result</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Submit Approval Type</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>AMM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CEO_Circular</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>Custom</compactLayoutAssignment>
+        <label>CEO Circular</label>
+        <picklistValues>
+            <picklist>AMM_Conclusion__c</picklist>
+            <values>
+                <fullName>Appoint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disappoint</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Appointed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Submit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Circular No%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting EVP Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting GSCS Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Line Manager Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Revise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Update Result</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Submit Approval Type</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>AMM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CEO_Signed_Circular</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>Custom</compactLayoutAssignment>
+        <label>CEO Signed Circular</label>
+        <picklistValues>
+            <picklist>AMM_Conclusion__c</picklist>
+            <values>
+                <fullName>Appoint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disappoint</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Appointed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Submit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Circular No%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting EVP Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting GSCS Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Line Manager Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Revise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Update Result</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Signed Circular File</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Submit Approval Type</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>AMM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CEO_Type</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>Custom</compactLayoutAssignment>
+        <label>CEO Type</label>
+        <picklistValues>
+            <picklist>AMM_Conclusion__c</picklist>
+            <values>
+                <fullName>Appoint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disappoint</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Not Submit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting EVP Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting GSCS Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Line Manager Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Revise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Update Result</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Submit Approval Type</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>AMM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Completed</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>Custom</compactLayoutAssignment>
+        <label>Completed</label>
+        <picklistValues>
+            <picklist>AMM_Conclusion__c</picklist>
+            <values>
+                <fullName>Appoint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disappoint</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Appointed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disappointed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Submit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Circular No%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting EVP Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting GSCS Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Line Manager Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Revise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Update Result</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Signed Circular File</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Submit Approval Type</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>AMM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Request</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>Custom</compactLayoutAssignment>
+        <label>Request</label>
+        <picklistValues>
+            <picklist>AMM_Conclusion__c</picklist>
+            <values>
+                <fullName>Appoint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disappoint</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Cancelled Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Submit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Line Manager Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waiting Requester Revise</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>AMM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CEO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Check_AMM_Appoint_Disappoint_File</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL(Type__c, &quot;AMM&quot;), ISPICKVAL(AMM_Conclusion__c, &quot;Appoint&quot;), Appointed_Disappointed_File__c = false, ISPICKVAL(Status__c, &quot;Waiting Requester Update Result&quot;))</errorConditionFormula>
+        <errorDisplayField>Appointed_Disappointed_File__c</errorDisplayField>
+        <errorMessage>Appointed/Disappointed File need to be uploaded and checked if AMM Conclusion is &quot;Appoint&quot; .</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Check_AMM_Circular_File</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL(Type__c, &quot;AMM&quot;), ISPICKVAL(AMM_Conclusion__c, &quot;Appoint&quot;), Circular_File__c = false, ISPICKVAL(Status__c, &quot;Waiting Requester Update Result&quot;))</errorConditionFormula>
+        <errorDisplayField>Circular_File__c</errorDisplayField>
+        <errorMessage>Circular File need to be check.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Check_AMM_Conclusion_Disappoint</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL(AMM_Conclusion__c, &quot;Disappoint&quot;),  Appointed_Disappointed_File__c = false)</errorConditionFormula>
+        <errorDisplayField>Appointed_Disappointed_File__c</errorDisplayField>
+        <errorMessage>Appointed/Disappointed File need to be uploaded and checked if AMM Conclusion is &quot;Disappoint&quot;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Check_AMM_EVP_Approved</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL(Type__c, &quot;AMM&quot;), ISPICKVAL(AMM_Conclusion__c, &quot;Appoint&quot;), EVP_Approved__c = false, ISPICKVAL(Status__c, &quot;Waiting Requester Update Result&quot;))</errorConditionFormula>
+        <errorDisplayField>EVP_Approved__c</errorDisplayField>
+        <errorMessage>EVP Approved need to be checked if AMM Conclusion is &quot;Appoint&quot;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Check_AMM_Signed_Circular_File</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL(Type__c, &quot;AMM&quot;), ISPICKVAL(Status__c, &quot;Waiting Signed Circular File&quot;), NOT(ISBLANK(Circular_No__c)), Signed_Circular_File__c = false)</errorConditionFormula>
+        <errorDisplayField>Signed_Circular_File__c</errorDisplayField>
+        <errorMessage>Signed Circular File need to be check, if Circular No is filled.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Check_CEO_Circular_File</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL(Type__c, &quot;CEO&quot;),  Circular_File__c = false, ISPICKVAL(Status__c, &quot;Waiting Requester Update Result&quot;))</errorConditionFormula>
+        <errorDisplayField>Circular_File__c</errorDisplayField>
+        <errorMessage>Circular File need to be check.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Check_CEO_EVP_Approved</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL(Type__c, &quot;CEO&quot;), EVP_Approved__c = false, ISPICKVAL(Status__c, &quot;Waiting Requester Update Result&quot;))</errorConditionFormula>
+        <errorDisplayField>EVP_Approved__c</errorDisplayField>
+        <errorMessage>EVP Approved need to be checked when Status is &quot;Waiting Requester Update Result&quot;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Check_CEO_Signed_Circular_File</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL(Type__c, &quot;CEO&quot;), ISPICKVAL(Status__c, &quot;Waiting Signed Circular File&quot;), NOT(ISBLANK(Circular_No__c)), Signed_Circular_File__c = false)</errorConditionFormula>
+        <errorDisplayField>Signed_Circular_File__c</errorDisplayField>
+        <errorMessage>Signed Circular File need to be check, if status is &apos;Appointed&apos;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Check_Circular_No</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR
+(
+AND(ISPICKVAL(Status__c,&apos;Waiting Circular No.&apos;),ISBLANK(Circular_No__c))
+,
+AND(ISPICKVAL(Status__c,&apos;Waiting Signed Circular File&apos;),ISBLANK(Circular_No__c))
+)</errorConditionFormula>
+        <errorDisplayField>Circular_No__c</errorDisplayField>
+        <errorMessage>Please enter Circular No before Save</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Check_End_Date_with_Start_Date</fullName>
+        <active>true</active>
+        <errorConditionFormula>End_Date__c &lt; Start_Date__c</errorConditionFormula>
+        <errorDisplayField>End_Date__c</errorDisplayField>
+        <errorMessage>Please check your &quot;End Date&quot;. End Date should not less than Start Date</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Type_Reason_Require</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND
+(OR
+(ISPICKVAL(Type__c, &apos;Other&apos;), ISPICKVAL(Type__c, &apos;CEO&apos;)) ,ISBLANK(Type_Remark__c) )</errorConditionFormula>
+        <errorDisplayField>Type_Remark__c</errorDisplayField>
+        <errorMessage>กรุณากรอกหมายเหตุ ถ้าเลือก Type เป็น CEO หรือ อื่นๆ</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

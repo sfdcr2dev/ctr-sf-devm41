@@ -1,0 +1,47 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <!-- Register 2 Lightning Event for handle add or Delete rows on Parent Component  -->
+    
+    <aura:attribute name="rowIndex" type="String"/>
+    <aura:registerEvent name="CTRDeleteRowDestinationEvt" type="c:CTRDeleteRowDestinationEvt"/>
+    <aura:registerEvent name="CTRAddNewRowDestinationEvt" type="c:CTRAddNewRowDestinationEvt"/>
+    <aura:attribute name="country" type="String[]" />
+    <aura:attribute name="location" type="String[]" />
+    <aura:attribute name="Shipping" type="CTRShippingCountry__c"/>
+    <aura:attribute name="displayLocationType" type="Boolean" default="true" />
+    <aura:attribute name="rowcolumn" type="Boolean" default="true" />
+    <aura:attribute name="isDisabled" type="Boolean" default="false" />
+    
+    <!-- Table Row -->
+    <tr>
+        <aura:renderIf isTrue = "{!v.rowcolumn}">
+            <td class="">
+                
+                {!v.rowIndex + 1}
+            </td>
+        </aura:renderIf>
+        <td class="">
+            
+            <lightning:select name="select" required="{!!v.isDisabled}" value="{!v.Shipping.ShippingCountry__c}" disabled = "{!v.isDisabled}">
+                <aura:iteration items="{!v.country}" var="item">
+                    <option value="{!item.value}">{!item.label}</option>
+                </aura:iteration>
+            </lightning:select>
+        </td>
+        <aura:if isTrue="{!v.displayLocationType}">
+            <td class="">
+                <lightning:select name="select" required="{!!v.isDisabled}" value="{!v.Shipping.LocationType__c}" disabled = "{!v.isDisabled}">
+                    <aura:iteration items="{!v.location}" var="item">
+                        <option value="{!item.value}">{!item.label}</option>
+                    </aura:iteration>
+                </lightning:select>
+            </td>
+        </aura:if>
+        <td>
+            <a onclick="{!c.removeRow}">
+                <lightning:icon iconName="utility:delete" variant="error" class="slds-icon slds-icon_small" size="small" alternativeText="icon"/>
+                <span class="slds-assistive-text">Delete Icon</span>
+            </a>
+        </td>
+        
+    </tr>
+</aura:component>

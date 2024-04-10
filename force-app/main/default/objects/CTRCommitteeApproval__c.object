@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>ApprovalDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ApprovalResult__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Result</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Not Submitted Yet</fullName>
+                    <default>false</default>
+                    <label>Not Submitted Yet</label>
+                </value>
+                <value>
+                    <fullName>Waiting Section Head Review</fullName>
+                    <default>false</default>
+                    <label>Waiting Section Head Review</label>
+                </value>
+                <value>
+                    <fullName>Reverted to Credit Team</fullName>
+                    <default>false</default>
+                    <label>Reverted to Credit Team</label>
+                </value>
+                <value>
+                    <fullName>Submit to Committee</fullName>
+                    <default>false</default>
+                    <label>Submit to Committee</label>
+                </value>
+                <value>
+                    <fullName>Reply to TRCR</fullName>
+                    <default>false</default>
+                    <label>Reply to TRCR</label>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+                <value>
+                    <fullName>Reply to FA</fullName>
+                    <default>false</default>
+                    <label>Reply to FA</label>
+                </value>
+                <value>
+                    <fullName>Reply to FALB</fullName>
+                    <default>false</default>
+                    <label>Reply to FALB</label>
+                </value>
+                <value>
+                    <fullName>Reverted to FA</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Reverted to FA</label>
+                </value>
+                <value>
+                    <fullName>Submit for Approval</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Submit for Approval</label>
+                </value>
+                <value>
+                    <fullName>Waiting for Approval</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Waiting for Approval</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ApproverName__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Approver Name</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Committee_Approval</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CTRReqItemName__c</fullName>
+        <externalId>false</externalId>
+        <formula>CTRRequestFormItem__r.RecordType.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CTR Request Form Item Record Type Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CTRRequestFormItem__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CTR Request Form Item</label>
+        <referenceTo>CTRRequestFormItem__c</referenceTo>
+        <relationshipName>Committee_Approval</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CustomerName__c</fullName>
+        <externalId>false</externalId>
+        <formula>CTRRequestFormItem__r.CTRRequestFormHeader__r.Customer__r.CompanyNameENF__c</formula>
+        <label>CustomerName</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Message__c</fullName>
+        <externalId>false</externalId>
+        <label>Message</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Remark__c</fullName>
+        <externalId>false</externalId>
+        <label>Remark</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReplytoFALB__c</fullName>
+        <description>dup field reply to TRCR ถ้าอยากใช้ให้สร้าง formula แสดงตาม layout เอา</description>
+        <externalId>false</externalId>
+        <label>Reply to FALB (Not Used)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReplytoFA__c</fullName>
+        <description>dup field reply to TRCR ถ้าอยากใช้ให้สร้าง formula แสดงตาม layout เอา</description>
+        <externalId>false</externalId>
+        <label>Reply to FA (Not Used)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReplytoTRCR__c</fullName>
+        <externalId>false</externalId>
+        <label>Reply to TRCR</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TRCRSectionHead__c</fullName>
+        <externalId>false</externalId>
+        <formula>CTRRequestFormItem__r.CreditOwnerSectionHead__r.FirstName &amp; &quot; &quot; &amp; CTRRequestFormItem__r.CreditOwnerSectionHead__r.LastName</formula>
+        <label>TRCRSectionHead</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>CTR Committee Approval</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>CTRRequestFormItem__c</columns>
+        <columns>ApprovalResult__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Committee Approval Name</label>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>ENSD Co-Or-Shutdown planning/All APU</name>
+    <queueMembers>
+        <roles>
+            <role>X00002704_SHUTDOWN_PLANNING_TEAM</role>
+            <role>X60003690_SHUTDOWN_PLANNING_TEAM</role>
+            <role>X60003691_SHUTDOWN_PLANNING_TEAM</role>
+            <role>X60004825_SHUTDOWN_PLANNING_TEAM</role>
+            <role>X60004826_SHUTDOWN_PLANNING_TEAM</role>
+            <role>TOP_THOR_ENSD_Co_Ordinator_Shutdown_planning_All_APU</role>
+        </roles>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>EQCC_Step__c</sobjectType>
+    </queueSobject>
+</Queue>

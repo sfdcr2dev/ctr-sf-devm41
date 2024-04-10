@@ -1,0 +1,380 @@
+<aura:component
+    implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+    access="global" controller="OPP_ApplicationController">
+
+    <!-- <aura:attribute name="applications" type="Object[]" /> -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:attribute name="categories" type="Object" />
+    <aura:attribute name="notifications" type="Object" />
+    <aura:attribute name="applications" type="Object" />
+    <aura:attribute name="deApps" type="Object[]" />
+    <aura:attribute name="alerts" type="Object" />
+    <aura:attribute name="applicationNotifications" type="Object" />
+
+    <aura:attribute name="selectedDocumentId" type="string" />
+    <aura:attribute name="lstContentDoc" type="List" />
+    <aura:attribute name="hasModalOpen" type="boolean" default="false" />
+
+    <aura:attribute name="Appp" type="OPP_Application__c[]" />
+    <aura:attribute name="Notis" type="OPP_Notification__c[]" />
+
+    <aura:attribute name="appName" type="string" />
+    <aura:attribute name="appUrl" type="string" />
+    <aura:attribute name="count" type="Integer" />
+    <aura:attribute name="tabId" type="String" default="General"/>
+
+    <aura:html tag="style">
+        @font-face {
+            font-family: 'DB Heavent';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('DB Heavent'), local('DB Heavent-Regular'), url({!$Resource.OPPNews + '/assets/font/DB_Heavent_v3.2.ttf'}) format('truetype');
+        }
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('Poppins'), local('Poppins-Regular'), url({!$Resource.OPPNews + '/assets/font/Poppins-Regular.otf'}) format('opentype');;
+        }
+    </aura:html>
+
+    <div class="slds-p-horizontal_medium">
+        <lightning:card title="">
+            <p class="slds-p-horizontal_small">
+            <div class="padding">
+                App Store
+            </div>
+            <div class="OPP_AppStore">
+                <lightning:tabset variant="vertical" selectedTabId="{!v.tabId}">
+                    <aura:iteration items="{!v.categories}" var="category">
+                        <lightning:tab label="{!category}" id="{!category}">
+                            <ul class="slds-grid slds-grid_pull-padded slds-wrap">
+                                <aura:iteration items="{!v.applications}" var="application">
+                                    <aura:if isTrue="{!application.Category__c == category}">
+                                        <li
+                                            class="slds-p-horizontal_small slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-6">
+                                            <div class="polaroid">
+                                                <div class="notification">
+                                                    <aura:if isTrue="{!application.ContentDocumentLinks[0].ContentDocumentId}">
+                                                        <img class="apps"
+                                                            src="{!'/sfc/servlet.shepherd/document/download/' + application.ContentDocumentLinks[0].ContentDocumentId}"></img>
+                                                        <aura:set attribute="else">
+                                                            <img class="apps"
+                                                                src="https://theprachakorn.com/imgDetail/noImg.jpg" />
+                                                        </aura:set>
+                                                    </aura:if>
+                                                    <div class="container">
+                                                        <p>
+                                                            <aura:if
+                                                                isTrue="{!not(empty(application.OPP_Favorite_Application__r))}">
+                                                                <aura:iteration
+                                                                    items="{!application.OPP_Favorite_Application__r}"
+                                                                    var="app">
+                                                                    <aura:if
+                                                                        isTrue="{!app.OPP_Application__c == application.Id}">
+                                                                        <div class="slds-checkbox">
+                                                                            <input type="checkbox" name="options"
+                                                                                id="{!app.OPP_Application__c}"
+                                                                                onclick="{!c.defualtApplication}"
+                                                                                value="{!app.OPP_Application__c}"
+                                                                                checked="true" />
+                                                                            <label class="slds-checkbox__label"
+                                                                                for="{!app.OPP_Application__c}">
+                                                                                <span class="slds-checkbox_faux"></span>
+                                                                                <span
+                                                                                    class="slds-form-element__label"></span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </aura:if>
+                                                                </aura:iteration>
+                                                                <aura:set attribute="else">
+                                                                    <div class="slds-checkbox">
+                                                                        <input type="checkbox" name="options"
+                                                                            id="{!application.Id}"
+                                                                            onclick="{!c.defualtApplication}"
+                                                                            value="{!application.Id}" checked="" />
+                                                                        <label class="slds-checkbox__label"
+                                                                            for="{!application.Id}">
+                                                                            <span class="slds-checkbox_faux"></span>
+                                                                            <span
+                                                                                class="slds-form-element__label"></span>
+                                                                        </label>
+                                                                    </div>
+                                                                </aura:set>
+                                                            </aura:if>
+                                                            <span class="slds-a">{!application.Name}&nbsp;
+                                                                <aura:if isTrue="{!not(empty(application.URL_Android__c))}">
+                                                                    <img src="{!$Resource.android}" class="mobile-icon"/>
+                                                                </aura:if>
+                                                                <aura:if isTrue="{!not(empty(application.URL_IOS__c))}">
+                                                                    <img src="{!$Resource.ios}" class="mobile-icon"/>
+                                                                </aura:if>
+                                                                <aura:if isTrue="{!not(empty(application.URL_Web__c))}">
+                                                                    <img src="{!$Resource.web}" class="mobile-icon"/>
+                                                                </aura:if>
+                                                            </span><br />
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </aura:if>
+                                </aura:iteration>
+                            </ul>
+                        </lightning:tab>
+                    </aura:iteration>
+                </lightning:tabset>
+            </div>
+            <div class="slds-card__body slds-card__body_inner text-right">
+                <lightning:button label="Cancel" title="Cancel" onclick="{! c.handleCancel }" />
+                <lightning:button variant="brand" label="Save" title="Brand action" onclick="{! c.handleSave }" />
+            </div>
+            </p>
+        </lightning:card>
+    </div>
+
+    <!-- <aura:if isTrue="{!$Browser.formFactor == 'DESKTOP'}">
+        <div class="slds-p-horizontal_small">
+            <div class="padding">
+                <img class="icon"
+                    src="https://cdn2.iconfinder.com/data/icons/simple-ui-vol-3/32/UI_Icon_3_18_Add_App-512.png" />
+                ThaiOil Apps
+            </div>
+            <div class="OPP_AppStore">
+                <lightning:tabset variant="vertical">
+                    <aura:iteration items="{!v.categories}" var="category">
+                        <lightning:tab label="{!category}">
+                            <ul class="slds-grid slds-grid_pull-padded slds-wrap">
+                                <aura:iteration items="{!v.applications}" var="application">
+                                    <aura:if isTrue="{!application.Category__c == category}">
+                                        <li
+                                            class="slds-p-horizontal_small slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-6 box-center">
+                                            <aura:if isTrue="{!application.Icon__c}">
+                                                <span class="slds-avatar slds-avatar_circle slds-avatar_large image">
+                                                    <img src="{!application.Icon__c}" />
+                                                </span>
+                                                <aura:set attribute="else">
+                                                    <span
+                                                        class="slds-avatar slds-avatar_circle slds-avatar_large image">
+                                                        <img src="https://theprachakorn.com/imgDetail/noImg.jpg" />
+                                                    </span>
+                                                </aura:set>
+                                            </aura:if>
+                                            <p>
+                                                <aura:if
+                                                    isTrue="{!not(empty(application.OPP_Favorite_Application__r))}">
+                                                    <aura:iteration items="{!application.OPP_Favorite_Application__r}"
+                                                        var="app">
+                                                        <aura:if isTrue="{!app.OPP_Application__c == application.Id}">
+                                                            <div class="slds-checkbox">
+                                                                <input type="checkbox" name="options"
+                                                                    id="{!app.OPP_Application__c}"
+                                                                    onclick="{!c.defualtApplication}"
+                                                                    value="{!app.OPP_Application__c}" checked="true" />
+                                                                <label class="slds-checkbox__label"
+                                                                    for="{!app.OPP_Application__c}">
+                                                                    <span class="slds-checkbox_faux"></span>
+                                                                    <span class="slds-form-element__label"></span>
+                                                                </label>
+                                                            </div>
+                                                        </aura:if>
+                                                    </aura:iteration>
+                                                    <aura:set attribute="else">
+                                                        <div class="slds-checkbox">
+                                                            <input type="checkbox" name="options" id="{!application.Id}"
+                                                                onclick="{!c.defualtApplication}"
+                                                                value="{!application.Id}" checked="" />
+                                                            <label class="slds-checkbox__label" for="{!application.Id}">
+                                                                <span class="slds-checkbox_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </div>
+                                                    </aura:set>
+                                                </aura:if>
+
+                                                <span data-name="{!application.Name}"
+                                                    data-url="{!application.URL_Web__c}"
+                                                    data-id="{!application.Id}">{!application.Name}</span><br />
+                                            </p>
+                                        </li>
+                                    </aura:if>
+                                </aura:iteration>
+                            </ul>
+                        </lightning:tab>
+                    </aura:iteration>
+
+                </lightning:tabset>
+            </div>
+            <div class="slds-card">
+                <div class="slds-card__body slds-card__body_inner text-right">
+                    <lightning:button label="Cancel" title="Cancel" onclick="{! c.handleCancel }" />
+                    <lightning:button variant="brand" label="Save" title="Brand action" onclick="{! c.handleSave }" />
+                </div>
+            </div>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!$Browser.isAndroid}">
+        <div class="slds-p-horizontal_small">
+            <div class="padding">
+                <img class="icon"
+                    src="https://cdn2.iconfinder.com/data/icons/simple-ui-vol-3/32/UI_Icon_3_18_Add_App-512.png" />
+                ThaiOil Apps
+            </div>
+            <div class="OPP_AppStore">
+                <lightning:tabset variant="scoped">
+                    <aura:iteration items="{!v.categories}" var="category">
+                        <lightning:tab label="{!category}">
+                            <ul class="slds-grid slds-grid_pull-padded slds-wrap">
+                                <aura:iteration items="{!v.applications}" var="application">
+                                    <aura:if isTrue="{!application.Category__c == category}">
+                                        <li
+                                            class="slds-p-horizontal_small slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-6 box-center">
+                                            <aura:if isTrue="{!application.Icon__c}">
+                                                <span class="slds-avatar slds-avatar_circle slds-avatar_large image">
+                                                    <img src="{!application.Icon__c}" />
+                                                </span>
+                                                <aura:set attribute="else">
+                                                    <span
+                                                        class="slds-avatar slds-avatar_circle slds-avatar_large image">
+                                                        <img src="https://theprachakorn.com/imgDetail/noImg.jpg" />
+                                                    </span>
+                                                </aura:set>
+                                            </aura:if>
+                                            <p>
+                                                <aura:if
+                                                    isTrue="{!not(empty(application.OPP_Favorite_Application__r))}">
+                                                    <aura:iteration items="{!application.OPP_Favorite_Application__r}"
+                                                        var="app">
+                                                        <aura:if isTrue="{!app.OPP_Application__c == application.Id}">
+                                                            <div class="slds-checkbox">
+                                                                <input type="checkbox" name="options"
+                                                                    id="{!app.OPP_Application__c}"
+                                                                    onclick="{!c.defualtApplication}"
+                                                                    value="{!app.OPP_Application__c}" checked="true" />
+                                                                <label class="slds-checkbox__label"
+                                                                    for="{!app.OPP_Application__c}">
+                                                                    <span class="slds-checkbox_faux"></span>
+                                                                    <span class="slds-form-element__label"></span>
+                                                                </label>
+                                                            </div>
+                                                        </aura:if>
+                                                    </aura:iteration>
+                                                    <aura:set attribute="else">
+                                                        <div class="slds-checkbox">
+                                                            <input type="checkbox" name="options" id="{!application.Id}"
+                                                                onclick="{!c.defualtApplication}"
+                                                                value="{!application.Id}" checked="" />
+                                                            <label class="slds-checkbox__label" for="{!application.Id}">
+                                                                <span class="slds-checkbox_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </div>
+                                                    </aura:set>
+                                                </aura:if>
+
+                                                <span data-name="{!application.Name}"
+                                                    data-url="{!application.URL_Web__c}"
+                                                    data-id="{!application.Id}">{!application.Name}</span><br />
+                                            </p>
+                                        </li>
+                                    </aura:if>
+                                </aura:iteration>
+                            </ul>
+                        </lightning:tab>
+                    </aura:iteration>
+
+                </lightning:tabset>
+            </div>
+            <div class="slds-card">
+                <div class="slds-card__body slds-card__body_inner text-right">
+                    <lightning:button label="Cancel" title="Cancel" onclick="{! c.handleCancel }" />
+                    <lightning:button variant="brand" label="Save" title="Brand action" onclick="{! c.handleSave }" />
+                </div>
+            </div>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!$Browser.isIPhone}">
+        <div class="slds-p-horizontal_small">
+            <div class="padding">
+                <img class="icon"
+                    src="https://cdn2.iconfinder.com/data/icons/simple-ui-vol-3/32/UI_Icon_3_18_Add_App-512.png" />
+                ThaiOil Apps
+            </div>
+            <div class="OPP_AppStore">
+                <lightning:tabset variant="scoped">
+                    <aura:iteration items="{!v.categories}" var="category">
+                        <lightning:tab label="{!category}">
+                            <ul class="slds-grid slds-grid_pull-padded slds-wrap">
+                                <aura:iteration items="{!v.applications}" var="application">
+                                    <aura:if isTrue="{!application.Category__c == category}">
+                                        <li
+                                            class="slds-p-horizontal_small slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-6 box-center">
+                                            <aura:if isTrue="{!application.Icon__c}">
+                                                <span class="slds-avatar slds-avatar_circle slds-avatar_large image">
+                                                    <img src="{!application.Icon__c}" />
+                                                </span>
+                                                <aura:set attribute="else">
+                                                    <span
+                                                        class="slds-avatar slds-avatar_circle slds-avatar_large image">
+                                                        <img src="https://theprachakorn.com/imgDetail/noImg.jpg" />
+                                                    </span>
+                                                </aura:set>
+                                            </aura:if>
+                                            <p>
+                                                <aura:if
+                                                    isTrue="{!not(empty(application.OPP_Favorite_Application__r))}">
+                                                    <aura:iteration items="{!application.OPP_Favorite_Application__r}"
+                                                        var="app">
+                                                        <aura:if isTrue="{!app.OPP_Application__c == application.Id}">
+                                                            <div class="slds-checkbox">
+                                                                <input type="checkbox" name="options"
+                                                                    id="{!app.OPP_Application__c}"
+                                                                    onclick="{!c.defualtApplication}"
+                                                                    value="{!app.OPP_Application__c}" checked="true" />
+                                                                <label class="slds-checkbox__label"
+                                                                    for="{!app.OPP_Application__c}">
+                                                                    <span class="slds-checkbox_faux"></span>
+                                                                    <span class="slds-form-element__label"></span>
+                                                                </label>
+                                                            </div>
+                                                        </aura:if>
+                                                    </aura:iteration>
+                                                    <aura:set attribute="else">
+                                                        <div class="slds-checkbox">
+                                                            <input type="checkbox" name="options" id="{!application.Id}"
+                                                                onclick="{!c.defualtApplication}"
+                                                                value="{!application.Id}" checked="" />
+                                                            <label class="slds-checkbox__label" for="{!application.Id}">
+                                                                <span class="slds-checkbox_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </div>
+                                                    </aura:set>
+                                                </aura:if>
+
+                                                <span data-name="{!application.Name}"
+                                                    data-url="{!application.URL_Web__c}"
+                                                    data-id="{!application.Id}">{!application.Name}</span><br />
+                                            </p>
+                                        </li>
+                                    </aura:if>
+                                </aura:iteration>
+                            </ul>
+                        </lightning:tab>
+                    </aura:iteration>
+
+                </lightning:tabset>
+            </div>
+            <div class="slds-card">
+                <div class="slds-card__body slds-card__body_inner text-right">
+                    <lightning:button label="Cancel" title="Cancel" onclick="{! c.handleCancel }" />
+                    <lightning:button variant="brand" label="Save" title="Brand action" onclick="{! c.handleSave }" />
+                </div>
+            </div>
+        </div>
+    </aura:if> -->
+
+</aura:component>

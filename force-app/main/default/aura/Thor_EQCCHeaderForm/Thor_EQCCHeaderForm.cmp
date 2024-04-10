@@ -1,0 +1,259 @@
+<aura:component
+	controller="THOR_CheckedSheetController"
+	implements="flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable,force:appHostable"
+	access="global"
+>
+	<lightning:navigation aura:id="navService" />
+
+	<aura:attribute name="recordId" type="String" default="" />
+	<aura:attribute name="orderId" type="String" default="" />
+	<aura:attribute name="orderOperationId" type="String" default="" />
+	<aura:attribute name="notificationId" type="String" default="" />
+	<aura:attribute name="ownerOrAdmin" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isModal" type="Boolean" default="false" />
+	<aura:attribute name="parent" type="Aura.Component" />
+	<aura:attribute name="options" type="List" default="[]" />
+	<aura:attribute name="sheetsToRelate" type="List" default="[]" />
+	<aura:attribute name="incomingSheets" type="List" default="[]" />
+	<aura:attribute name="sheetsName" type="List" default="[]" />
+	<aura:attribute name="lookupNotifications" type="Boolean" default="true" />
+	<aura:attribute name="notificationOptions" type="List" default="[]" />
+	<aura:attribute name="lookupOrders" type="Boolean" default="true" />
+	<aura:attribute name="orderOptions" type="List" default="[]" />
+	<aura:attribute name="lookupEquipments" type="Boolean" default="true" />
+	<aura:attribute name="equipmentOptions" type="List" default="[]" />
+	<aura:attribute name="lookupOperations" type="Boolean" default="true" />
+	<aura:attribute name="orderOperationOptions" type="List" default="[]" />
+	<aura:attribute name="equipmentValue" type="String" default="" />
+	<aura:attribute name="hasSheets" type="Boolean" default="false" />
+	<aura:attribute name="hasMWC" type="Boolean" default="true" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+	<lightning:notificationsLibrary aura:id="notifLib" />
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.handleRefresh}" />
+
+	<aura:attribute name="doneRender" type="Boolean" default="false" />
+	<aura:handler event="aura:doneRendering" action="{!c.doneRendering}" />
+
+	<aura:if isTrue="{!v.isLoading}">
+		<lightning:spinner alternativeText="Loading" size="medium" />
+	</aura:if>
+
+	<div class="card slds-scrollable_y">
+		<div class="slds-box slds-p-horizontal_medium">
+			<aura:if isTrue="{! not(v.isModal) }">
+				<!-- <div class="slds-hide">
+          <c:THOR_navigateBack />
+				</div>
+				<lightning:button label="Back" onclick="{!c.handleClickBack}" /> -->
+			</aura:if>
+
+			<aura:if isTrue="{!v.recordId}">
+				<div class="slds-text-heading_small">Edit EQCC Header</div>
+				<aura:set attribute="else">
+					<div class="slds-text-heading_small">Create EQCC form</div>
+				</aura:set>
+			</aura:if>
+		</div>
+
+		<lightning:recordEditForm
+			aura:id="header-edit-form"
+			density="comfy"
+			objectApiName="EQCC_Header__c"
+			onsubmit="{!c.handleSheetCreation}"
+			onsuccess="{!c.handleSheetSuccess}"
+			recordId="{!v.recordId}"
+		>
+			<lightning:layout multipleRows="true" verticalAlign="stretch">
+				<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+					<aura:if isTrue="{! and(v.lookupNotifications, not(v.hasSheets), not(empty(v.notificationOptions))) }">
+						<label class="slds-form-element__label" for="notification">Notification</label>
+						<lightning:inputField
+							aura:id="notification"
+							variant="label-hidden"
+							fieldName="Notification__c"
+							onchange="{!c.handleNotificationSelected}"
+						/>
+						<aura:set attribute="else">
+							<lightning:combobox
+								aura:id="notificationOptions"
+								name="notification"
+								label="Notification"
+								placeholder="Select Notification..."
+								options="{!v.notificationOptions}"
+								onchange="{!c.handleNotificationSelected}"
+							/>
+						</aura:set>
+					</aura:if>
+				</lightning:layoutItem>
+				<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+					<aura:if isTrue="{! and(v.lookupOrders, not(v.hasSheets), not(empty(v.orderOptions))) }">
+						<label class="slds-form-element__label" for="order">Order</label>
+						<lightning:inputField aura:id="order" variant="label-hidden" fieldName="Order__c" onchange="{!c.handleOrderSelected}" />
+						<aura:set attribute="else">
+							<lightning:combobox
+								aura:id="orderOptions"
+								name="order"
+								label="Order"
+								placeholder="Select Order..."
+								options="{!v.orderOptions}"
+								onchange="{!c.handleOrderSelected}"
+							/>
+						</aura:set>
+					</aura:if>
+				</lightning:layoutItem>
+				<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+					<label class="slds-form-element__label" for="fl">Functional Location</label>
+					<aura:if isTrue="{! not(v.hasSheets) }">
+						<lightning:inputField
+							aura:id="fl"
+							variant="label-hidden"
+							fieldName="FunctionalLocation__c"
+							required="true"
+							onchange="{!c.handleFLSelected}"
+						/>
+
+						<aura:set attribute="else">
+							<lightning:inputField aura:id="fl" disabled="true" variant="label-hidden" fieldName="FunctionalLocation__c" />
+						</aura:set>
+					</aura:if>
+				</lightning:layoutItem>
+				<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+					<aura:if isTrue="{! and(not(v.hasSheets), not(v.orderId), not(v.notificationId)) }">
+						<aura:if isTrue="{!v.lookupEquipments}">
+							<label class="slds-form-element__label" for="equipment">Equipment</label>
+							<lightning:inputField aura:id="equipment" variant="label-hidden" fieldName="Equipment__c" onchange="{!c.handleEquipmentSelected}" />
+							<aura:set attribute="else">
+								<lightning:combobox
+									aura:id="equipmentOptions"
+									name="equipment"
+									label="Equipment"
+									placeholder="Select Equipment..."
+									options="{!v.equipmentOptions}"
+									value="{!v.equipmentValue}"
+									onchange="{!c.handleEquipmentSelected}"
+								/>
+							</aura:set>
+						</aura:if>
+						<aura:set attribute="else">
+							<aura:if isTrue="{!v.lookupEquipments}">
+								<label class="slds-form-element__label" for="equipment">Equipment</label>
+								<lightning:inputField
+									aura:id="equipment"
+									disabled="true"
+									variant="label-hidden"
+									fieldName="Equipment__c"
+									onchange="{!c.handleEquipmentSelected}"
+								/>
+								<aura:set attribute="else">
+									<lightning:combobox
+										aura:id="equipmentOptions"
+										name="equipment"
+										label="Equipment"
+										placeholder="Select Equipment..."
+										options="{!v.equipmentOptions}"
+										value="{!v.equipmentValue}"
+										onchange="{!c.handleEquipmentSelected}"
+									/>
+								</aura:set>
+							</aura:if>
+						</aura:set>
+					</aura:if>
+				</lightning:layoutItem>
+				<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+					<aura:if isTrue="{! or(v.lookupOperations, v.hasSheets) }">
+						<label class="slds-form-element__label" for="operation">Operation</label>
+						<lightning:inputField aura:id="operation" variant="label-hidden" fieldName="Operation__c" />
+						<aura:set attribute="else">
+							<lightning:combobox
+								aura:id="orderOperationOptions"
+								name="operations"
+								label="Operation"
+								placeholder="Select Operations..."
+								options="{!v.orderOperationOptions}"
+								onchange="{!c.handleOperationSelected}"
+							/>
+						</aura:set>
+					</aura:if>
+				</lightning:layoutItem>
+				<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+					<lightning:combobox
+						aura:id="sheet"
+						name="sheet"
+						label="Sheet Name"
+						placeholder="Select Sheet"
+						onchange="{!c.preventTyping}"
+						options="{!v.options}"
+					/>
+				</lightning:layoutItem>
+				<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box slds-align_absolute-center">
+					<lightning:buttonIcon iconName="utility:arrowdown" alternativeText="Select Sheet" title="Select Sheet" onclick="{!c.handleSheetSelected}" />
+				</lightning:layoutItem>
+
+				<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+					<div class="slds-text-heading_small">Check Sheet</div>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem size="12" class="custom-box slds-m-bottom_x-large">
+					<aura:if isTrue="{!not(empty(v.sheetsToRelate))}">
+						<lightning:layout verticalAlign="center" multipleRows="true">
+							<aura:iteration items="{!v.sheetsToRelate}" var="sheet">
+								<lightning:layoutItem size="11" padding="around-small">
+									<span>{!sheet.label}</span>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="1" padding="around-small">
+									<aura:if isTrue="{!sheet.isDeletable}">
+										<div class="slds-align_absolute-center">
+											<aura:if isTrue="{!sheet.isDisabled}">
+												<aura:if isTrue="{!sheet.status == 'Draft'}">
+													<lightning:buttonIcon
+														name="{!sheet.id}"
+														iconName="utility:ban"
+														size="small"
+														tooltip="Cannot delete. The sheet was approved .It can only be rejected"
+													/>
+													<aura:set attribute="else">
+														<lightning:buttonIcon
+															name="{!sheet.id}"
+															iconName="utility:ban"
+															size="small"
+															tooltip="Check sheet status unavailable to be deleted"
+														/>
+													</aura:set>
+												</aura:if>
+												<aura:set attribute="else">
+													<aura:if isTrue="{!v.ownerOrAdmin}">
+														<lightning:buttonIcon name="{!sheet.id}" iconName="utility:ban" size="small" onclick="{!c.handleRemoveSheet}" />
+
+														<aura:set attribute="else">
+															<lightning:buttonIcon
+																name="{!sheet.id}"
+																iconName="utility:ban"
+																size="small"
+																tooltip="Cannot remove because your account has no authorize"
+															/>
+														</aura:set>
+													</aura:if>
+												</aura:set>
+											</aura:if>
+										</div>
+									</aura:if>
+								</lightning:layoutItem>
+							</aura:iteration>
+						</lightning:layout>
+						<aura:set attribute="else">
+							<p class="slds-var-m-around_x-small">There are no related EQCC Check Sheets</p>
+						</aura:set>
+					</aura:if>
+				</lightning:layoutItem>
+				<lightning:layoutItem size="12" flexibility="auto" padding="around-small">
+					<lightning:button class="slds-m-horizontal_x-small slds-float_right" type="submit" label="Save" />
+
+					<aura:if isTrue="{! v.isModal }">
+						<lightning:button class="slds-m-horizontal_x-small slds-float_right" onclick="{!c.cancelConfirm}" label="Cancel" />
+					</aura:if>
+				</lightning:layoutItem>
+			</lightning:layout>
+		</lightning:recordEditForm>
+	</div>
+</aura:component>

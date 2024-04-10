@@ -1,0 +1,322 @@
+<aura:component controller="CTRInitialCustomerTOP"  implements="lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="IsCommercial" type="Boolean" default="false"/>
+    <aura:attribute name="IsPreScreen" type="Boolean" default="false"/>
+    <aura:attribute name="IsViewable" type="Boolean" default="true"/>
+    <aura:attribute name="userRole" type="String" default="Trader"/>
+    <aura:attribute name="IsDisable" type="Boolean" default="true"/>
+    <aura:attribute name="IsTraderButtonDisable" type="Boolean" default="true"/>
+    <aura:attribute name="IsSHButtonDisable" type="Boolean" default="true"/>
+    <aura:attribute name="IsVPButtonDisable" type="Boolean" default="true"/>
+
+    
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    
+    <!--
+    <div class="slds-float_right">
+        <lightning:button variant="brand-outline" label="Commercial Evaluation" title="Brand action" onclick="{! c.handleCommercialEva }" />
+        <lightning:button variant="brand-outline" label="Pre-Screen Result" title="Brand action" onclick="{! c.handlePreScreen }" />
+    </div><br/> <br/> -->
+    
+    <lightning:layoutItem padding="around-small">
+        <lightning:recordEditForm aura:id="recordEditForm" objectApiName="CTRRequestFormItem__c" recordId="{!v.recordId}" onsubmit="{!c.handleSubmit}" >
+            <!--
+            <aura:renderIf isTrue="{!v.IsCommercial || v.IsViewable}">
+            	<div class="slds-section slds-is-open animate" aura:id="Commercial">
+                    <h3 class="slds-section__title">
+                        <button aria-controls="CommercialList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="Commercial">
+                            <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                            <span class="slds-truncate" title="Counterparty Information">Pre-Screen-Commercial Evaluation</span>
+                        </button>
+                    </h3>
+                <br/>
+                    <div class="slds-section__content" id="CommercialList">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_2-of-5">
+                                <label>The level of reputation and credibility of a company</label>
+                                <lightning:inputField aura:id="Thelevelofreputation__c" fieldName="Thelevelofreputation__c" variant="label-hidden" disabled="{!v.IsViewable}"/>
+                            </div>
+                            <div class="slds-col slds-size_1-of-5"></div>
+                            <div class="slds-col slds-size_2-of-5">
+                                <label>Commercial Scoring Result</label>
+                                <lightning:inputField aura:id="CommercialScoringResult__c" fieldName="CommercialScoringResult__c" variant="label-hidden" disabled="{!v.IsDisable}"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_2-of-5">
+                                <label>The destination country that receives the goods</label>
+                                <lightning:inputField aura:id="TheDestinationCountry__c" fieldName="TheDestinationCountry__c" variant="label-hidden" disabled="{!v.IsViewable}"/>
+                            </div>
+                            <div class="slds-col slds-size_1-of-5"></div>
+                            <div class="slds-col slds-size_2-of-5">
+                                <label>Commercial Scoring by</label>
+                                <lightning:inputField aura:id="CommercialScoringBy__c" fieldName="CommercialScoringBy__c" variant="label-hidden" disabled="{!v.IsDisable}"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_2-of-5">
+                                <label>The location of the office (for Domestic only)</label>
+                                <lightning:inputField aura:id="DomesticOfficeLocation__c" fieldName="DomesticOfficeLocation__c" variant="label-hidden" disabled="{!v.IsViewable}"/>
+                            </div>
+                            <div class="slds-col slds-size_1-of-5"></div>
+                            <div class="slds-col slds-size_2-of-5">
+                                <label>Commercial Scoring Date</label>
+                                <lightning:inputField aura:id="CommercialScoringDate__c" fieldName="CommercialScoringDate__c" variant="label-hidden" disabled="{!v.IsDisable}"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_2-of-5">
+                                <label>The location of the office (for International only)</label>
+                                <br/>(In the case of international customers, we will check using Google Maps to see if there any landmarks.)
+                                <lightning:inputField aura:id="InternationalOfficeLocation__c" fieldName="InternationalOfficeLocation__c" variant="label-hidden" disabled="{!v.IsViewable}"/>
+                            </div>
+                            <div class="slds-col slds-size_3-of-5"></div>
+                            
+                        </div>
+                        <br/>
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_2-of-5">
+                                <label>The level of experience in trading, distributing, or regitering products or related items of the company's customers/owners</label>
+                                <br/>(In the case where they told 100% ownership)
+                                <lightning:inputField aura:id="TheLevelOfExperience__c" fieldName="TheLevelOfExperience__c" variant="label-hidden" disabled="{!v.IsViewable}"/>
+                            </div>
+                            <div class="slds-col slds-size_3-of-5"></div>
+                            
+                        </div>
+                        <br/>
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_2-of-5">
+                                <label>The efficiency level of Facility/Storage tank</label>
+                                <lightning:inputField aura:id="TheEfficiencyLevelOfFacility__c" fieldName="TheEfficiencyLevelOfFacility__c" variant="label-hidden" disabled="{!v.IsViewable}"/>
+                            </div>
+                            <div class="slds-col slds-size_3-of-5"></div>
+                            
+                        </div>
+                        <br/>
+                        <aura:renderIf isTrue="{!v.IsCommercial}">
+                        <div class="slds-align_absolute-center" style="height:5rem">
+                            <lightning:button variant="brand-outline" label="Cancel" onclick="{! c.handleCancelCommercial }"/>
+                            <lightning:button variant="brand" label="Save" type="submit" name="save"  onclick="{! c.handleSaveCommercial }"/>
+                            
+                        </div>
+                        </aura:renderIf>
+                    </div>
+                    <br /><br />
+                </div>
+            </aura:renderIf>
+            -->
+            <aura:renderIf isTrue="{!v.IsPreScreen || v.IsViewable}">
+                
+                <div class="slds-section slds-is-open animate" aura:id="Trader">
+                        <!--section header-->
+                    <div class="slds-float_right">
+                        <lightning:button variant="brand-outline" label="Pre-Screen Result" title="Brand action" onclick="{! c.handlePreScreenTrader }" disabled="{!v.IsTraderButtonDisable}"/>
+                    </div><br/> <br/> 
+                        <h3 class="slds-section__title">
+                            <button aria-controls="TraderList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="Trader">
+                                <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                                <span class="slds-truncate" title="Trader Pre-Screen Result">Trader Pre-Screen Result</span>
+                            </button>
+                        </h3>
+                    <br/>
+                        <!--section body-->
+                        <div class="slds-section__content" id="TraderList">
+                            <!--<lightning:messages />-->
+                            
+                            <div class="slds-grid slds-wrap">                                
+                                <aura:renderIf isTrue="{!v.IsViewable || and(v.IsPreScreen, v.userRole !='Trader')}">
+                                    <div class="slds-col slds-size_2-of-5">
+                                        <!-- Your lightning:inputField components here -->
+                                        <label>Trader Pre-Screen Decision:</label>
+                                        <lightning:inputField aura:id="TraderPreScreenDecision__c" fieldName="TraderPreScreenDecision__c" variant="label-hidden" disabled="{!v.IsDisable}"/>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-5"></div>
+                                    <div class="slds-col slds-size_2-of-5">
+                                        <!-- More lightning:inputField components here -->
+                                        <label>Trader Pre-Screen Comment</label>
+                                        <lightning:inputField aura:id="TraderPreScreenComment__c" fieldName="TraderPreScreenComment__c" variant="label-hidden" disabled="{!v.IsDisable}"/>
+                                    </div>
+                                </aura:renderIf>
+                                
+                                <aura:renderIf isTrue="{! and(v.IsPreScreen , v.userRole=='Trader')}">
+                                    <div class="slds-col slds-size_2-of-5">
+                                        <!-- Your lightning:inputField components here -->
+                                        <label>Trader Pre-Screen Decision:</label>
+                                        <lightning:inputField aura:id="TraderPreScreenDecision__c" fieldName="TraderPreScreenDecision__c" variant="label-hidden" />
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-5"></div>
+                                    <div class="slds-col slds-size_2-of-5">
+                                        <!-- More lightning:inputField components here -->
+                                        <label>Trader Pre-Screen Comment</label>
+                                        <lightning:inputField aura:id="TraderPreScreenComment__c" fieldName="TraderPreScreenComment__c" variant="label-hidden" />
+                                    </div>
+                                </aura:renderIf>
+                            </div>
+                            <br/>
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_2-of-5">
+                                    <!-- Your lightning:inputField components here -->
+                                    <label>Trader Pre-Screen By</label>
+                                    <lightning:inputField aura:id="TraderPreScreenBy__c" fieldName="TraderPreScreenBy__c" variant="label-hidden" disabled="{!v.IsDisable}"/>
+                                </div>
+                                <div class="slds-col slds-size_1-of-5"></div>
+                                <div class="slds-col slds-size_2-of-5">
+                                    <!-- More lightning:inputField components here -->
+                                    <label>Trader Pre-Screen Date/Time</label>
+                                    <lightning:inputField aura:id="TraderPreScreenDateTime__c" fieldName="TraderPreScreenDateTime__c" variant="label-hidden" disabled="{!v.IsDisable}"/>
+                                </div>
+                            </div>
+                            <br /><br />
+                            
+                            <aura:renderIf isTrue="{!and(v.IsPreScreen , v.userRole=='Trader')}">
+                                <div class="slds-align_absolute-center" style="height:5rem">
+                                    <lightning:button variant="brand-outline" label="Cancel" onclick="{! c.handleCancelPreScreen }"/>
+                                    <lightning:button variant="brand" label="Save" type="submit" name="save" onclick="{! c.handleSavePreScreen }"/>
+                                </div>
+                            </aura:renderIf>
+                            
+                        </div>
+                </div>
+                
+                <div class="slds-section slds-is-open animate" aura:id="SH">
+                        <!--section header-->
+                    <div class="slds-float_right">
+                        <lightning:button variant="brand-outline" label="Pre-Screen Result" title="Brand action" onclick="{! c.handlePreScreenSH }" disabled="{!v.IsSHButtonDisable}"/>
+                    </div><br/> <br/>
+                        <h3 class="slds-section__title">
+                            <button aria-controls="SHList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="SH">
+                                <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                                <span class="slds-truncate" title="SH Pre-Screen Result">S/H Pre-Screen Result</span>
+                            </button>
+                        </h3>
+                    <br/>
+                        <!--section body-->
+                        <div class="slds-section__content" id="SHList">
+                            <!--<lightning:messages />-->
+                            <div class="slds-grid slds-wrap">
+                                <aura:renderIf isTrue="{!v.IsViewable || and(v.IsPreScreen, v.userRole !='SH')}">
+                                <div class="slds-col slds-size_2-of-5">
+                                    <!-- Your lightning:inputField components here -->
+                                    <label>S/H Pre-Screen Decision:</label>
+                                    <lightning:inputField aura:id="SHPrescreenDecision__c" fieldName="SHPrescreenDecision__c" variant="label-hidden" disabled="{!v.IsDisable}"/>
+                                </div>
+                                <div class="slds-col slds-size_1-of-5"></div>
+                                <div class="slds-col slds-size_2-of-5">
+                                    <!-- More lightning:inputField components here -->
+                                    <label>S/H Pre-Screen Comment</label>
+                                    <lightning:inputField aura:id="SHPreScreenComment__c" fieldName="SHPreScreenComment__c" variant="label-hidden" disabled="{!v.IsDisable}"/>
+                                    </div>
+                                </aura:renderIf>
+                                <aura:renderIf isTrue="{! and(v.IsPreScreen , v.userRole=='SH')}">
+                                    <div class="slds-col slds-size_2-of-5">
+                                        <!-- Your lightning:inputField components here -->
+                                        <label>S/H Pre-Screen Decision:</label>
+                                        <lightning:inputField aura:id="SHPrescreenDecision__c" fieldName="SHPrescreenDecision__c" variant="label-hidden"/>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-5"></div>
+                                    <div class="slds-col slds-size_2-of-5">
+                                        <!-- More lightning:inputField components here -->
+                                        <label>S/H Pre-Screen Comment</label>
+                                        <lightning:inputField aura:id="SHPreScreenComment__c" fieldName="SHPreScreenComment__c" variant="label-hidden"/>
+                                    </div>
+                                </aura:renderIf>
+                            </div>
+                            <br/>
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_2-of-5">
+                                    <!-- Your lightning:inputField components here -->
+                                    <label>S/H Pre-Screen By</label>
+                                    <lightning:inputField aura:id="SHPreScreenBy__c" fieldName="SHPreScreenBy__c" variant="label-hidden" disabled="{!v.IsDisable}"/>
+                                </div>
+                                <div class="slds-col slds-size_1-of-5"></div>
+                                <div class="slds-col slds-size_2-of-5">
+                                    <!-- More lightning:inputField components here -->
+                                    <label>S/H Pre-Screen Date/Time</label>
+                                    <lightning:inputField aura:id="SHPreScreenDateTime__c" fieldName="SHPreScreenDateTime__c" variant="label-hidden" disabled="{!v.IsDisable}"/>
+                                </div>
+                            </div>
+                            <br /><br />
+                            <aura:renderIf isTrue="{!and(v.IsPreScreen , v.userRole=='SH')}">
+                                <div class="slds-align_absolute-center" style="height:5rem">
+                                    <lightning:button variant="brand-outline" label="Cancel" onclick="{! c.handleCancelPreScreen }"/>
+                                    <lightning:button variant="brand" label="Save" type="submit" name="save" onclick="{! c.handleSavePreScreen }"/>
+                                </div>
+                            </aura:renderIf>
+                        </div>
+                    </div>
+                
+                <div class="slds-section slds-is-open animate" aura:id="VP">
+                    <!--section header-->
+                    <div class="slds-float_right">
+                        <lightning:button variant="brand-outline" label="Pre-Screen Result" title="Brand action" onclick="{! c.handlePreScreenVP }" disabled="{!v.IsVPButtonDisable}"/>
+                    </div><br/> <br/>
+                    <h3 class="slds-section__title">
+                        <button aria-controls="VPList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="VP">
+                            <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                            <span class="slds-truncate" title="CMVP Pre-Screen Result">CMVP Pre-Screen Result</span>
+                        </button>
+                    </h3>
+                <br/>
+                    <!--section body-->
+                    <div class="slds-section__content" id="VPList">
+                        <!--<lightning:messages />-->
+                        <div class="slds-grid slds-wrap">
+                            <aura:renderIf isTrue="{!v.IsViewable || and(v.IsPreScreen, v.userRole !='VP')}">
+                            <div class="slds-col slds-size_2-of-5">
+                                <!-- Your lightning:inputField components here -->
+                                <label>VP Pre-Screen Decision:</label>
+                                <lightning:inputField aura:id="CMVPPreScreenDecision__c" fieldName="CMVPPreScreenDecision__c" variant="label-hidden" disabled="{!v.IsDisable}"/>
+                            </div>
+                            <div class="slds-col slds-size_1-of-5"></div>
+                            <div class="slds-col slds-size_2-of-5">
+                                <!-- More lightning:inputField components here -->
+                                <label>VP Pre-Screen Comment</label>
+                                <lightning:inputField aura:id="CMVPPreScreenComment__c" fieldName="CMVPPreScreenComment__c" variant="label-hidden" disabled="{!v.IsDisable}"/>
+                            </div>
+                            </aura:renderIf>
+                            
+                            <aura:renderIf isTrue="{! and(v.IsPreScreen, v.userRole =='VP')}">
+                            <div class="slds-col slds-size_2-of-5">
+                                <!-- Your lightning:inputField components here -->
+                                <label>VP Pre-Screen Decision:</label>
+                                <lightning:inputField aura:id="CMVPPreScreenDecision__c" fieldName="CMVPPreScreenDecision__c" variant="label-hidden"/>
+                            </div>
+                            <div class="slds-col slds-size_1-of-5"></div>
+                            <div class="slds-col slds-size_2-of-5">
+                                <!-- More lightning:inputField components here -->
+                                <label>VP Pre-Screen Comment</label>
+                                <lightning:inputField aura:id="CMVPPreScreenComment__c" fieldName="CMVPPreScreenComment__c" variant="label-hidden"/>
+                            </div>
+                            </aura:renderIf>
+                        </div>
+                        <br/>
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_2-of-5">
+                                <!-- Your lightning:inputField components here -->
+                                <label>VP Pre-Screen By</label>
+                                <lightning:inputField aura:id="CMVPPreScreenBy__c" fieldName="CMVPPreScreenBy__c" variant="label-hidden" disabled="{!v.IsDisable}"/>
+                            </div>
+                            <div class="slds-col slds-size_1-of-5"></div>
+                            <div class="slds-col slds-size_2-of-5">
+                                <!-- More lightning:inputField components here -->
+                                <label>VP Pre-Screen Date/Time</label>
+                                <lightning:inputField aura:id="CMVPPreScreenDateTime__c" fieldName="CMVPPreScreenDateTime__c" variant="label-hidden" disabled="{!v.IsDisable}"/>
+                            </div>
+                        </div>
+                        <aura:renderIf isTrue="{!and(v.IsPreScreen, v.userRole =='VP')}">
+                        <div class="slds-align_absolute-center" style="height:5rem">
+                            <lightning:button variant="brand-outline" label="Cancel" onclick="{! c.handleCancelPreScreen }"/>
+                            <lightning:button variant="brand" label="Save" type="submit" name="save" onclick="{! c.handleSavePreScreen }"/>
+                        </div>
+                        </aura:renderIf>
+                        
+                    </div>
+                </div>
+                
+            </aura:renderIf>
+        </lightning:recordEditForm>
+    </lightning:layoutItem>
+</aura:component>

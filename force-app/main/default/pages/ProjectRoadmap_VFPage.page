@@ -1,0 +1,2329 @@
+<apex:page controller="RoadmapController" standardStylesheets="true" lightningStylesheets="false" sidebar="true" showHeader="true" applyHtmlTag="true" applyBodyTag="false" docType="html-5.0" language="th"> {!LanguageThai}
+
+    <apex:stylesheet value="{!URLFOR($Resource.Project_Roadmap, '3_Project_Roadmap.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Project_Roadmap, 'reset.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Project_Roadmap, '3_Project_Roadmap.js')}"/>
+    
+    <apex:form >
+    <html>
+        <head>
+            <meta charset="utf-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <title>3-Project-Roadmap</title>
+            <style>
+                Body {
+                    font-family: 'SalesforceSans';
+                }
+                .WPNameInProgress {
+                    color: rgba(225,19,131,1);
+                }
+                .WorkProcessLink:hover {
+                    color: rgba(225,19,131,1);
+                }
+                #ID10 {
+                    color : rgba(77,126,167,1);
+                }
+                .WorkProcessDisable {
+                    color : #D1D1D1;
+                    cursor : none;
+                    pointer-events: none;
+                }
+            </style>
+        </head>
+        <body style="background-color:#d9d9d9;">
+            <div id="ID3-Project-Roadmap" style="margin-left:0%">
+                <svg class="Rectangle_12010">
+                    <rect id="Rectangle_12010" rx="8" ry="8" x="0" y="0" width="1284" height="1299">
+                    </rect>
+                </svg>
+                <svg class="Path_15135" viewBox="4595.885 16333.965 1116.298 912.193">
+                    <path id="Path_15135" d="M 4680 16334 L 5688 16334 C 5688 16334 5712 16331.4326171875 5712 16370 C 5712 16408.56640625 5712 16538 5712 16538 C 5712 16538 5715.875 16561.869140625 5688 16562 C 5660.125 16562.130859375 4620 16562 4620 16562 C 4620 16562 4596 16566.82421875 4596 16598 C 4596 16629.17578125 4596 16754 4596 16754 C 4596 16754 4593.49951171875 16790 4620 16790 C 4646.50048828125 16790 5688 16790 5688 16790 C 5688 16790 5712 16791.740234375 5712 16826 C 5712 16860.259765625 5712 16982 5712 16982 C 5712 16982 5714.56689453125 17018 5688 17018 C 5661.43310546875 17018 4620 17018 4620 17018 C 4620 17018 4596 17021.91796875 4596 17054 C 4596 17086.08203125 4596 17210 4596 17210 C 4596 17210 4592.81591796875 17246 4620 17246 C 4646.80322265625 17246 5134.06103515625 17245.671875 5148 17245.67578125 C 5147.90185546875 17245.67578125 5148 17246.158203125 5148 17246.158203125">
+                    </path>
+                </svg>
+                <svg class="Subtraction_22" viewBox="4158.375 -1612 1284 60.001">
+                    <path id="Subtraction_22" d="M 5442.37548828125 -1551.999267578125 L 5442.37548828125 -1552.000244140625 L 4158.37548828125 -1552.000244140625 L 4158.37548828125 -1603.999633789062 C 4158.37548828125 -1608.411254882812 4161.9638671875 -1612.000366210938 4166.375 -1612.000366210938 L 5434.375 -1612.000366210938 C 5438.78662109375 -1612.000366210938 5442.37548828125 -1608.411254882812 5442.37548828125 -1603.999633789062 L 5442.37548828125 -1552.000244140625 L 5442.37548828125 -1551.999267578125 Z">
+                    </path>
+                </svg>
+                <div id="Project_Roadmap">
+                    <span>Project Roadmap</span>
+                </div>
+                <div id="R-1415001_-_Improve_Energy_Sav">
+                    <span><a class="WorkProcessLink" href="{!PW.ProjectUrl}" style="text-decoration:none;" target="_blank"><span>{!PW.ProjectNo} - {!PW.ProjectName}</span></a></span>
+                </div>
+                <div id="Repeat_Grid_621">
+                    <apex:repeat value="{!PW.WorkProcesses}" var="item">
+                
+                        <!-- WP00 -->
+                        <apex:outputPanel rendered="{!item.No == 0}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_34" class="">
+                                    <div id="Project_Project_Risk_Assessmen">
+                                        <span>Project<br/>Risk Assessment</span>
+                                    </div>
+                                    <div id="ID00_dp">
+                                        <span>00</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_34" class="">
+                                    <div id="Project_Project_Risk_Assessmen">
+                                        <span class="WPNameInProgress">Project<br/>Project Risk Assessment</span>
+                                    </div>
+                                    <div id="ID00_dp">
+                                        <span class="WPNameInProgress">00</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 1 -->
+                        <apex:outputPanel rendered="{!item.No == 1}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_0">
+                                    <div id="Project_Charter">
+                                        <span>Project<br/>Charter</span>
+                                    </div>
+                                    <div id="ID1">
+                                        <span>1</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_0">
+                                    <div id="Project_Charter">
+                                        <span class="WPNameInProgress">Project<br/>Charter</span>
+                                    </div>
+                                    <div id="ID1">
+                                        <span class="WPNameInProgress">1</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 2 -->
+                        <apex:outputPanel rendered="{!item.No == 2}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_1">
+                                    <div id="Project_Organization">
+                                        <span>Project<br/>Organization</span>
+                                    </div>
+                                    <div id="ID2">
+                                        <span>2</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_1">
+                                    <div id="Project_Organization">
+                                        <span class="WPNameInProgress">Project<br/>Organization</span>
+                                    </div>
+                                    <div id="ID2">
+                                        <span class="WPNameInProgress">2</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 3 -->
+                        <apex:outputPanel rendered="{!item.No == 3}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_2" class="">
+                                    <div id="Lesson_Learnt_Review">
+                                        <span>Lesson Learnt<br/>Review</span>
+                                    </div>
+                                    <div id="ID3">
+                                        <span>3</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_2" class="">
+                                    <div id="Lesson_Learnt_Review">
+                                        <span class="WPNameInProgress">Lesson Learnt<br/>Review</span>
+                                    </div>
+                                    <div id="ID3">
+                                        <span class="WPNameInProgress">3</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 4 -->
+                        <apex:outputPanel rendered="{!item.No == 4}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_3" class="">
+                                    <div id="Project_Execution_Plan_and_Per">
+                                        <span>Project Execution Plan<br/>and Permit</span>
+                                    </div>
+                                    <div id="ID4">
+                                        <span>4</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_3" class="">
+                                    <div id="Project_Execution_Plan_and_Per">
+                                        <span class="WPNameInProgress">Project Execution Plan<br/>and Permit</span>
+                                    </div>
+                                    <div id="ID4">
+                                        <span class="WPNameInProgress">4</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 5 -->
+                        <apex:outputPanel rendered="{!item.No == 5}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_4" class="">
+                                    <div id="Project_Procurement_Plan">
+                                        <span>Project Procurement Plan</span>
+                                    </div>
+                                    <div id="ID5">
+                                        <span>5</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_4" class="">
+                                    <div id="Project_Procurement_Plan">
+                                        <span class="WPNameInProgress">Project Procurement Plan</span>
+                                    </div>
+                                    <div id="ID5">
+                                        <span class="WPNameInProgress">5</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 6 -->
+                        <apex:outputPanel rendered="{!item.No == 6}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_5" class="">
+                                    <div id="WBS_and_CBS">
+                                        <span>WBS and CBS</span>
+                                    </div>
+                                    <div id="ID6">
+                                        <span>6</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_5" class="">
+                                    <div id="WBS_and_CBS">
+                                        <span class="WPNameInProgress">WBS and CBS</span>
+                                    </div>
+                                    <div id="ID6">
+                                        <span class="WPNameInProgress">6</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 7 -->
+                        <apex:outputPanel rendered="{!item.No == 7}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_6" class="">
+                                    <div id="Schedule">
+                                        <span>Schedule</span>
+                                    </div>
+                                    <div id="ID7">
+                                        <span>7</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_6" class="">
+                                    <div id="Schedule">
+                                        <span class="WPNameInProgress">Schedule</span>
+                                    </div>
+                                    <div id="ID7">
+                                        <span class="WPNameInProgress">7</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 8 -->
+                        <apex:outputPanel rendered="{!item.No == 8}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_13" class="">
+                                    <div id="Project_Status_Control">
+                                        <span>Project Status Control</span>
+                                    </div>
+                                    <div id="ID8">
+                                        <span>8</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_13" class="">
+                                    <div id="Project_Status_Control">
+                                        <span class="WPNameInProgress">Project Status Control</span>
+                                    </div>
+                                    <div id="ID8">
+                                        <span class="WPNameInProgress">8</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 9 -->
+                        <apex:outputPanel rendered="{!item.No == 9}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_12" class="">
+                                    <div id="Budget_Phasing">
+                                        <span>Budget Phasing</span>
+                                    </div>
+                                    <div id="ID9">
+                                        <span>9</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_12" class="">
+                                    <div id="Budget_Phasing">
+                                        <span class="WPNameInProgress">Budget Phasing</span>
+                                    </div>
+                                    <div id="ID9">
+                                        <span class="WPNameInProgress">9</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 10 -->
+                        <apex:outputPanel rendered="{!item.No == 10}">
+                            <apex:outputPanel rendered="{!AND(item.Status != 'In Progress', IsDisable1011 == false)}">
+                                <div id="Repeat_Grid_621_11" class="">
+                                    <div id="ITB_Standard">
+                                        <span>ITB Standard</span>
+                                    </div>
+                                    <div id="ID10">
+                                        <span>10</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'In Progress', IsDisable1011 == false)}">
+                                <div id="Repeat_Grid_621_11" class="">
+                                    <div id="ITB_Standard">
+                                        <span class="WPNameInProgress">ITB Standard</span>
+                                    </div>
+                                    <div id="ID10">
+                                        <span class="WPNameInProgress">10</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!IsDisable1011 == true}">
+                                <div id="Repeat_Grid_621_11" class="">
+                                    <div id="ITB_Standard">
+                                        <span class="WorkProcessDisable">ITB Standard</span>
+                                    </div>
+                                    <div id="ID10">
+                                        <span class="WorkProcessDisable">10</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 11 -->
+                        <apex:outputPanel rendered="{!item.No == 11}">
+                            <apex:outputPanel rendered="{!AND(item.Status != 'In Progress', IsDisable1011 == false)}">
+                                <div id="Repeat_Grid_621_10" class="">
+                                    <div id="CCE_Approval_Process">
+                                        <span>CCE Approval Process</span>
+                                    </div>
+                                    <div id="ID11">
+                                        <span>11</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'In Progress', IsDisable1011 == false)}">
+                                <div id="Repeat_Grid_621_10" class="">
+                                    <div id="CCE_Approval_Process">
+                                        <span class="WPNameInProgress">CCE Approval Process</span>
+                                    </div>
+                                    <div id="ID11">
+                                        <span class="WPNameInProgress">11</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            
+                            <apex:outputPanel rendered="{!IsDisable1011 == true}">
+                                <div id="Repeat_Grid_621_10" class="">
+                                    <div id="CCE_Approval_Process">
+                                        <span class="WorkProcessDisable">CCE Approval Process</span>
+                                    </div>
+                                    <div id="ID11">
+                                        <span class="WorkProcessDisable">11</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 12 -->
+                        <apex:outputPanel rendered="{!item.No == 12}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_9" class="">
+                                    <div id="Engineering_Standard">
+                                        <span>Engineering Standard</span>
+                                    </div>
+                                    <div id="ID12">
+                                        <span>12</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_9" class="">
+                                    <div id="Engineering_Standard">
+                                        <span class="WPNameInProgress">Engineering Standard</span>
+                                    </div>
+                                    <div id="ID12">
+                                        <span class="WPNameInProgress">12</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 13 -->
+                        <apex:outputPanel rendered="{!item.No == 13}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_8" class="">
+                                    <div id="Deliverable_list">
+                                        <span>Deliverable List</span>
+                                    </div>
+                                    <div id="ID13">
+                                        <span>13</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_8" class="">
+                                    <div id="Deliverable_list">
+                                        <span class="WPNameInProgress">Deliverable list</span>
+                                    </div>
+                                    <div id="ID13">
+                                        <span class="WPNameInProgress">13</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 14 -->
+                        <apex:outputPanel rendered="{!item.No == 14}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_7" class="">
+                                    <div id="Document_Distribution_Matrix">
+                                        <span>Document Distribution Matrix</span>
+                                    </div>
+                                    <div id="ID14">
+                                        <span>14</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_7" class="">
+                                    <div id="Document_Distribution_Matrix">
+                                        <span class="WPNameInProgress">Document Distribution Matrix</span>
+                                    </div>
+                                    <div id="ID14">
+                                        <span class="WPNameInProgress">14</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 15 -->
+                        <apex:outputPanel rendered="{!item.No == 15}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_14" class="">
+                                    <div id="Design_Safety_Standard">
+                                        <span>Design Safety Standard</span>
+                                    </div>
+                                    <div id="ID15">
+                                        <span>15</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_14" class="">
+                                    <div id="Design_Safety_Standard">
+                                        <span class="WPNameInProgress">Design Safety Standard</span>
+                                    </div>
+                                    <div id="ID15">
+                                        <span class="WPNameInProgress">15</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 16 -->
+                        <apex:outputPanel rendered="{!item.No == 16}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_15" class="">
+                                    <div id="Cost_Estimate">
+                                        <span>Cost Estimate</span>
+                                    </div>
+                                    <div id="ID16">
+                                        <span>16</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_15" class="">
+                                    <div id="Cost_Estimate">
+                                        <span class="WPNameInProgress">Cost Estimate</span>
+                                    </div>
+                                    <div id="ID16">
+                                        <span class="WPNameInProgress">16</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 17 -->
+                        <apex:outputPanel rendered="{!item.No == 17}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_16" class="">
+                                    <div id="Engineering_Data_Book_and_3D_M">
+                                        <span>Engineering Data Book and 3D Model</span>
+                                    </div>
+                                    <div id="ID17">
+                                        <span>17</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_16" class="">
+                                    <div id="Engineering_Data_Book_and_3D_M">
+                                        <span class="WPNameInProgress">Engineering Data Book and 3D Model</span>
+                                    </div>
+                                    <div id="ID17">
+                                        <span class="WPNameInProgress">17</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 18 -->
+                        <apex:outputPanel rendered="{!item.No == 18}">
+                            <apex:outputPanel rendered="{!AND(item.Status != 'In Progress', IsDisable1819 == false)}">
+                                <div id="Repeat_Grid_621_17" class="">
+                                    <div id="ITB_Standard_b">
+                                        <span>ITB Standard</span>
+                                    </div>
+                                    <div id="ID18">
+                                        <span>18</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'In Progress', IsDisable1819 == false)}">
+                                <div id="Repeat_Grid_621_17" class="">
+                                    <div id="ITB_Standard_b">
+                                        <span class="WPNameInProgress">ITB Standard</span>
+                                    </div>
+                                    <div id="ID18">
+                                        <span class="WPNameInProgress">18</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            
+                            <apex:outputPanel rendered="{!IsDisable1819 == true}">
+                                <div id="Repeat_Grid_621_17" class="">
+                                    <div id="ITB_Standard_b">
+                                        <span class="WorkProcessDisable">ITB Standard</span>
+                                    </div>
+                                    <div id="ID18">
+                                        <span class="WorkProcessDisable">18</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 19 -->
+                        <apex:outputPanel rendered="{!item.No == 19}">
+                            <apex:outputPanel rendered="{!AND(item.Status != 'In Progress', IsDisable1819 == false)}">
+                                <div id="Repeat_Grid_621_18" class="">
+                                    <div id="CCE_Approval_Process_cc">
+                                        <span>CCE Approval<br/>Process</span>
+                                    </div>
+                                    <div id="ID19">
+                                        <span>19</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'In Progress', IsDisable1819 == false)}">
+                                <div id="Repeat_Grid_621_18" class="">
+                                    <div id="CCE_Approval_Process_cc">
+                                        <span class="WPNameInProgress">CCE Approval<br/>Process</span>
+                                    </div>
+                                    <div id="ID19">
+                                        <span class="WPNameInProgress">19</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            
+                            <apex:outputPanel rendered="{!IsDisable1819 == true}">
+                                <div id="Repeat_Grid_621_18" class="">
+                                    <div id="CCE_Approval_Process_cc">
+                                        <span class="WorkProcessDisable">CCE Approval<br/>Process</span>
+                                    </div>
+                                    <div id="ID19">
+                                        <span class="WorkProcessDisable">19</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        
+                        <!-- WP 20 -->
+                        <apex:outputPanel rendered="{!item.No == 20}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_19" class="">
+                                    <div id="Project_Procurement_and_Contra">
+                                        <span>Project Procurement and Contract Management</span>
+                                    </div>
+                                    <div id="ID20">
+                                        <span>20</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_19" class="">
+                                    <div id="Project_Procurement_and_Contra">
+                                        <span class="WPNameInProgress">Project Procurement and Contract Management</span>
+                                    </div>
+                                    <div id="ID20">
+                                        <span class="WPNameInProgress">20</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 21 -->
+                        <apex:outputPanel rendered="{!item.No == 21}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_20" class="">
+                                    <div id="Vendor_Data_Management">
+                                        <span>Vendor Data Management</span>
+                                    </div>
+                                    <div id="ID21">
+                                        <span>21</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_20" class="">
+                                    <div id="Vendor_Data_Management">
+                                        <span class="WPNameInProgress">Vendor Data Management</span>
+                                    </div>
+                                    <div id="ID21">
+                                        <span class="WPNameInProgress">21</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 22 -->
+                        <apex:outputPanel rendered="{!item.No == 22}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_27" class="">
+                                    <div id="Material_Inspection_FATSAT">
+                                        <span>Material Inspection (FAT/SAT)</span>
+                                    </div>
+                                    <div id="ID22">
+                                        <span>22</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_27" class="">
+                                    <div id="Material_Inspection_FATSAT">
+                                        <span class="WPNameInProgress">Material Inspection (FAT/SAT)</span>
+                                    </div>
+                                    <div id="ID22">
+                                        <span class="WPNameInProgress">22</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 23 -->
+                        <apex:outputPanel rendered="{!item.No == 23}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_26" class="">
+                                    <div id="Surplus__Spar-part_management_">
+                                        <span><apex:outputText value="Material and Spare-Part Management"/></span>
+                                    </div>
+                                    <div id="ID23">
+                                        <span>23</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_26" class="">
+                                    <div id="Surplus__Spar-part_management_">
+                                        <span class="WPNameInProgress"><apex:outputText value="Surplus & Spare-Part Management (Site Material Balance)"/></span>
+                                    </div>
+                                    <div id="ID23">
+                                        <span class="WPNameInProgress">23</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 24 -->
+                        <apex:outputPanel rendered="{!item.No == 24}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_25" class="">
+                                    <div id="Construction_Management">
+                                        <span>Construction Management</span>
+                                    </div>
+                                    <div id="ID24">
+                                        <span>24</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_25" class="">
+                                    <div id="Construction_Management">
+                                        <span class="WPNameInProgress">Construction Management</span>
+                                    </div>
+                                    <div id="ID24">
+                                        <span class="WPNameInProgress">24</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 25 -->
+                        <apex:outputPanel rendered="{!item.No == 25}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_24" class="">
+                                    <div id="Budget__Change_Control">
+                                        <span><apex:outputText value="Budget & Change Control"/></span>
+                                    </div>
+                                    <div id="ID25">
+                                        <span>25</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_24" class="">
+                                    <div id="Budget__Change_Control">
+                                        <span class="WPNameInProgress"><apex:outputText value="Budget & Change Control"/></span>
+                                    </div>
+                                    <div id="ID25">
+                                        <span class="WPNameInProgress">25</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 26 -->
+                        <apex:outputPanel rendered="{!item.No == 26}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_23" class="">
+                                    <div id="System__Test-pack_Identificati">
+                                        <span><apex:outputText value="System & Test-Pack Identification"/></span>
+                                    </div>
+                                    <div id="ID26">
+                                        <span>26</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_23" class="">
+                                    <div id="System__Test-pack_Identificati">
+                                        <span class="WPNameInProgress"><apex:outputText value="System & Test-pack Identification"/></span>
+                                    </div>
+                                    <div id="ID26">
+                                        <span class="WPNameInProgress">26</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 27 -->
+                        <apex:outputPanel rendered="{!item.No == 27}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_22" class="">
+                                    <div id="Punch_list_Management_system">
+                                        <span>Punch List Management<br/>System</span>
+                                    </div>
+                                    <div id="ID27">
+                                        <span>27</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_22" class="">
+                                    <div id="Punch_list_Management_system">
+                                        <span class="WPNameInProgress">Punch List Management<br/>System</span>
+                                    </div>
+                                    <div id="ID27">
+                                        <span class="WPNameInProgress">27</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 28 -->
+                        <apex:outputPanel rendered="{!item.No == 28}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_21" class="">
+                                    <div id="MC__RFSU">
+                                        <span><apex:outputText value="MC & RFSU"/></span>
+                                    </div>
+                                    <div id="ID28">
+                                        <span>28</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_21" class="">
+                                    <div id="MC__RFSU">
+                                        <span class="WPNameInProgress"><apex:outputText value="MC & RFSU"/></span>
+                                    </div>
+                                    <div id="ID28">
+                                        <span class="WPNameInProgress">28</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 29 -->
+                        <apex:outputPanel rendered="{!item.No == 29}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_28" class="">
+                                    <div id="MCA">
+                                        <span><apex:outputText value="MCA & Final Document Handover"/></span>
+                                    </div>
+                                    <div id="ID29">
+                                        <span>29</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_28" class="">
+                                    <div id="MCA">
+                                        <span class="WPNameInProgress"><apex:outputText value="MCA & Final Document Handover"/></span>
+                                    </div>
+                                    <div id="ID29">
+                                        <span class="WPNameInProgress">29</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 30 -->
+                        <apex:outputPanel rendered="{!item.No == 30}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_29" class="">
+                                    <div id="Close_out_reportLesson_Learnt">
+                                        <span>Close Out Report/Lesson Learnt</span>
+                                    </div>
+                                    <div id="ID30">
+                                        <span>30</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_29" class="">
+                                    <div id="Close_out_reportLesson_Learnt">
+                                        <span class="WPNameInProgress">Close Out report/Lesson Learnt</span>
+                                    </div>
+                                    <div id="ID30">
+                                        <span class="WPNameInProgress">30</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 31 -->
+                        <apex:outputPanel rendered="{!item.No == 31}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_30" class="">
+                                    <div id="Close_out_Database">
+                                        <span>Close Out<br/>Statistic</span>
+                                    </div>
+                                    <div id="ID31">
+                                        <span>31</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_30" class="">
+                                    <div id="Close_out_Database">
+                                        <span class="WPNameInProgress">Close Out<br/>Statistic</span>
+                                    </div>
+                                    <div id="ID31">
+                                        <span class="WPNameInProgress">31</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        <!-- WP 32 -->
+                        <apex:outputPanel rendered="{!item.No == 32}">
+                            <apex:outputPanel rendered="{!item.Status != 'In Progress'}">
+                                <div id="Repeat_Grid_621_31" class="">
+                                    <div id="CR_Completion_Report">
+                                        <span>CR: Completion<br/>Report</span>
+                                    </div>
+                                    <div id="ID32">
+                                        <span>32</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <div id="Repeat_Grid_621_31" class="">
+                                    <div id="CR_Completion_Report">
+                                        <span class="WPNameInProgress">CR: Completion<br/>Report</span>
+                                    </div>
+                                    <div id="ID32">
+                                        <span class="WPNameInProgress">32</span>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        
+                        
+                    </apex:repeat>
+                </div>
+                <div id="Repeat_Grid_620">
+                    <div id="Repeat_Grid_620_0" class="">
+                        <svg class="Ellipse_346">
+                            <ellipse id="Ellipse_346" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810">
+                            <svg class="Ellipse_345">
+                                <ellipse id="Ellipse_345" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_1" class="">
+                        <svg class="Ellipse_346_dw">
+                            <ellipse id="Ellipse_346_dw" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_dx">
+                            <svg class="Ellipse_345_dy">
+                                <ellipse id="Ellipse_345_dy" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_2" class="">
+                        <svg class="Ellipse_346_d">
+                            <ellipse id="Ellipse_346_d" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_d">
+                            <svg class="Ellipse_345_d">
+                                <ellipse id="Ellipse_345_d" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_3" class="">
+                        <svg class="Ellipse_346_ea">
+                            <ellipse id="Ellipse_346_ea" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_ea">
+                            <svg class="Ellipse_345_ea">
+                                <ellipse id="Ellipse_345_ea" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_4" class="">
+                        <svg class="Ellipse_346_eb">
+                            <ellipse id="Ellipse_346_eb" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_eb">
+                            <svg class="Ellipse_345_eb">
+                                <ellipse id="Ellipse_345_eb" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_5" class="">
+                        <svg class="Ellipse_346_ec">
+                            <ellipse id="Ellipse_346_ec" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_ed">
+                            <svg class="Ellipse_345_ee">
+                                <ellipse id="Ellipse_345_ee" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_6" class="">
+                        <svg class="Ellipse_346_eg">
+                            <ellipse id="Ellipse_346_eg" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_eh">
+                            <svg class="Ellipse_345_ei">
+                                <ellipse id="Ellipse_345_ei" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_7" class="">
+                        <svg class="Ellipse_346_ek">
+                            <ellipse id="Ellipse_346_ek" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_el">
+                            <svg class="Ellipse_345_em">
+                                <ellipse id="Ellipse_345_em" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_8" class="">
+                        <svg class="Ellipse_346_eo">
+                            <ellipse id="Ellipse_346_eo" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_ep">
+                            <svg class="Ellipse_345_eq">
+                                <ellipse id="Ellipse_345_eq" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_9" class="">
+                        <svg class="Ellipse_346_es">
+                            <ellipse id="Ellipse_346_es" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_et">
+                            <svg class="Ellipse_345_eu">
+                                <ellipse id="Ellipse_345_eu" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_10" class="">
+                        <svg class="Ellipse_346_ew">
+                            <ellipse id="Ellipse_346_ew" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_ex">
+                            <svg class="Ellipse_345_ey">
+                                <ellipse id="Ellipse_345_ey" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_11" class="">
+                        <svg class="Ellipse_346_e">
+                            <ellipse id="Ellipse_346_e" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_e">
+                            <svg class="Ellipse_345_e">
+                                <ellipse id="Ellipse_345_e" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_12" class="">
+                        <svg class="Ellipse_346_fa">
+                            <ellipse id="Ellipse_346_fa" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_fa">
+                            <svg class="Ellipse_345_fa">
+                                <ellipse id="Ellipse_345_fa" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_13" class="">
+                        <svg class="Ellipse_346_fb">
+                            <ellipse id="Ellipse_346_fb" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_fb">
+                            <svg class="Ellipse_345_fb">
+                                <ellipse id="Ellipse_345_fb" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_14" class="">
+                        <svg class="Ellipse_346_fc">
+                            <ellipse id="Ellipse_346_fc" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_fd">
+                            <svg class="Ellipse_345_fe">
+                                <ellipse id="Ellipse_345_fe" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_15" class="">
+                        <svg class="Ellipse_346_fg">
+                            <ellipse id="Ellipse_346_fg" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_fh">
+                            <svg class="Ellipse_345_fi">
+                                <ellipse id="Ellipse_345_fi" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_16" class="">
+                        <svg class="Ellipse_346_fk">
+                            <ellipse id="Ellipse_346_fk" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_fl">
+                            <svg class="Ellipse_345_fm">
+                                <ellipse id="Ellipse_345_fm" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_17" class="">
+                        <svg class="Ellipse_346_fo">
+                            <ellipse id="Ellipse_346_fo" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_fp">
+                            <svg class="Ellipse_345_fq">
+                                <ellipse id="Ellipse_345_fq" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_18" class="">
+                        <svg class="Ellipse_346_fs">
+                            <ellipse id="Ellipse_346_fs" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_ft">
+                            <svg class="Ellipse_345_fu">
+                                <ellipse id="Ellipse_345_fu" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_19" class="">
+                        <svg class="Ellipse_346_fw">
+                            <ellipse id="Ellipse_346_fw" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_fx">
+                            <svg class="Ellipse_345_fy">
+                                <ellipse id="Ellipse_345_fy" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_20" class="">
+                        <svg class="Ellipse_346_f">
+                            <ellipse id="Ellipse_346_f" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_f">
+                            <svg class="Ellipse_345_f">
+                                <ellipse id="Ellipse_345_f" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_21" class="">
+                        <svg class="Ellipse_346_ga">
+                            <ellipse id="Ellipse_346_ga" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_ga">
+                            <svg class="Ellipse_345_ga">
+                                <ellipse id="Ellipse_345_ga" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_22" class="">
+                        <svg class="Ellipse_346_gb">
+                            <ellipse id="Ellipse_346_gb" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_gb">
+                            <svg class="Ellipse_345_gb">
+                                <ellipse id="Ellipse_345_gb" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_23" class="">
+                        <svg class="Ellipse_346_gc">
+                            <ellipse id="Ellipse_346_gc" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_gd">
+                            <svg class="Ellipse_345_ge">
+                                <ellipse id="Ellipse_345_ge" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_24" class="">
+                        <svg class="Ellipse_346_gg">
+                            <ellipse id="Ellipse_346_gg" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_gh">
+                            <svg class="Ellipse_345_gi">
+                                <ellipse id="Ellipse_345_gi" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_25" class="">
+                        <svg class="Ellipse_346_gk">
+                            <ellipse id="Ellipse_346_gk" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_gl">
+                            <svg class="Ellipse_345_gm">
+                                <ellipse id="Ellipse_345_gm" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_26" class="">
+                        <svg class="Ellipse_346_go">
+                            <ellipse id="Ellipse_346_go" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_gp">
+                            <svg class="Ellipse_345_gq">
+                                <ellipse id="Ellipse_345_gq" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_27" class="">
+                        <svg class="Ellipse_346_gs">
+                            <ellipse id="Ellipse_346_gs" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_gt">
+                            <svg class="Ellipse_345_gu">
+                                <ellipse id="Ellipse_345_gu" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_28" class="">
+                        <svg class="Ellipse_346_gw">
+                            <ellipse id="Ellipse_346_gw" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_gx">
+                            <svg class="Ellipse_345_gy">
+                                <ellipse id="Ellipse_345_gy" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_29" class="">
+                        <svg class="Ellipse_346_g">
+                            <ellipse id="Ellipse_346_g" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_g">
+                            <svg class="Ellipse_345_g">
+                                <ellipse id="Ellipse_345_g" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_30" class="">
+                        <svg class="Ellipse_346_ha">
+                            <ellipse id="Ellipse_346_ha" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_ha">
+                            <svg class="Ellipse_345_ha">
+                                <ellipse id="Ellipse_345_ha" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_31" class="">
+                        <svg class="Ellipse_346_hb">
+                            <ellipse id="Ellipse_346_hb" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_hb">
+                            <svg class="Ellipse_345_hb">
+                                <ellipse id="Ellipse_345_hb" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_32" class="">
+                        <svg class="Ellipse_346_hc">
+                            <ellipse id="Ellipse_346_hc" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_hd">
+                            <svg class="Ellipse_345_he">
+                                <ellipse id="Ellipse_345_he" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_33" class="">
+                        <svg class="Ellipse_346_hg">
+                            <ellipse id="Ellipse_346_hg" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_hh">
+                            <svg class="Ellipse_345_hi">
+                                <ellipse id="Ellipse_345_hi" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="Repeat_Grid_620_34" class="">
+                        <svg class="Ellipse_346_hk">
+                            <ellipse id="Ellipse_346_hk" rx="42" ry="42" cx="42" cy="42">
+                            </ellipse>
+                        </svg>
+                        <div id="Group_36810_hl">
+                            <svg class="Ellipse_345_hm">
+                                <ellipse id="Ellipse_345_hm" rx="38" ry="38" cx="38" cy="38">
+                                </ellipse>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div id="Group_36902">
+                    <div id="Status_">
+                        <span>Status :</span>
+                    </div>
+                    <div id="Group_36898">
+                        <div id="Not_Start">
+                            <span>Not Start</span>
+                        </div>
+                        <svg class="Ellipse_399">
+                            <ellipse id="Ellipse_399" rx="6" ry="6" cx="6" cy="6">
+                            </ellipse>
+                        </svg>
+                    </div>
+                    <div id="Group_36899">
+                        <div id="In_Progress">
+                            <span>In Progress</span>
+                        </div>
+                        <svg class="Ellipse_399_hv">
+                            <ellipse id="Ellipse_399_hv" rx="6" ry="6" cx="6" cy="6">
+                            </ellipse>
+                        </svg>
+                    </div>
+                    <div id="Group_36900">
+                        <div id="Waiting_for_Previous_Step">
+                            <span>Waiting for Previous Step</span>
+                        </div>
+                        <svg class="Ellipse_399_hy">
+                            <ellipse id="Ellipse_399_hy" rx="6" ry="6" cx="6" cy="6">
+                            </ellipse>
+                        </svg>
+                    </div>
+                    <div id="Group_36901">
+                        <div id="Completed">
+                            <span>Completed</span>
+                        </div>
+                        <svg class="Ellipse_399_h">
+                            <ellipse id="Ellipse_399_h" rx="6" ry="6" cx="6" cy="6">
+                            </ellipse>
+                        </svg>
+                    </div>
+                </div>
+                <div id="J5ecnttif">
+                    <div id="Group_37087">
+                        <svg class="Path_15196" viewBox="906.673 -529.239 24.103 25.566">
+                            <path id="Path_15196" d="M 918.895751953125 -515.9100952148438 C 916.5441284179688 -515.9100952148438 914.1925659179688 -515.9091796875 911.8410034179688 -515.910400390625 C 910.4579467773438 -515.9111938476562 909.3232421875 -515.1234130859375 908.8928833007812 -513.8095703125 C 908.4389038085938 -512.423828125 909.0577392578125 -510.8982849121094 910.4033813476562 -510.208251953125 C 910.83935546875 -509.9847412109375 911.3055419921875 -509.8831176757812 911.7957763671875 -509.8834533691406 C 913.8645629882812 -509.8849182128906 915.9334106445312 -509.8842163085938 918.0020141601562 -509.8860778808594 C 918.064453125 -509.8861389160156 918.1528930664062 -509.8509216308594 918.1846923828125 -509.9170532226562 C 918.2196044921875 -509.9900512695312 918.1289672851562 -510.0272827148438 918.0856323242188 -510.0708312988281 C 917.39892578125 -510.7609558105469 916.70703125 -511.4459228515625 916.0228881835938 -512.138671875 C 915.5827026367188 -512.584228515625 915.6058959960938 -513.2848510742188 916.0626831054688 -513.6934204101562 C 916.4849853515625 -514.071044921875 917.1161499023438 -514.0526733398438 917.533935546875 -513.63720703125 C 918.4016723632812 -512.7742309570312 919.2634887695312 -511.9053039550781 920.1278076171875 -511.0389709472656 C 920.6047973632812 -510.56103515625 921.0823364257812 -510.0838317871094 921.55908203125 -509.6056823730469 C 922.0233154296875 -509.1400756835938 922.031005859375 -508.5035095214844 921.5684204101562 -508.0385131835938 C 920.2333984375 -506.6961364746094 918.8967895507812 -505.3555297851562 917.5567626953125 -504.0181579589844 C 916.966064453125 -503.428466796875 916.0471801757812 -503.6195983886719 915.763427734375 -504.4007263183594 C 915.6106567382812 -504.8212280273438 915.719970703125 -505.207275390625 916.0404052734375 -505.5274047851562 C 916.7035522460938 -506.1898498535156 917.3659057617188 -506.8529968261719 918.0286865234375 -507.5158386230469 C 918.0521240234375 -507.5393676757812 918.077880859375 -507.5611572265625 918.0987548828125 -507.5868225097656 C 918.132568359375 -507.6282653808594 918.2098999023438 -507.657958984375 918.190673828125 -507.7132873535156 C 918.1657104492188 -507.7845764160156 918.0839233398438 -507.7509155273438 918.0277099609375 -507.7509765625 C 915.9589233398438 -507.7524108886719 913.8901977539062 -507.7518005371094 911.8214111328125 -507.751953125 C 909.70361328125 -507.752197265625 907.7896728515625 -509.0582885742188 907.021484375 -511.0267944335938 C 906.0122680664062 -513.6129150390625 907.2704467773438 -516.5859375 909.8252563476562 -517.6433715820312 C 910.46630859375 -517.9088134765625 911.135986328125 -518.0426635742188 911.83154296875 -518.0426025390625 C 916.462646484375 -518.0421142578125 921.0936279296875 -518.0418090820312 925.7247924804688 -518.0426635742188 C 927.0147094726562 -518.04296875 928.1889038085938 -518.9193725585938 928.5595092773438 -520.153564453125 C 929.0297241210938 -521.71923828125 928.1885986328125 -523.3723754882812 926.6486206054688 -523.8973999023438 C 926.3602905273438 -523.9957275390625 926.0618286132812 -524.0512084960938 925.7523803710938 -524.0509033203125 C 923.0957641601562 -524.0479736328125 920.4390258789062 -524.047607421875 917.7825317382812 -524.0535278320312 C 917.62890625 -524.0538330078125 917.5740966796875 -523.9967041015625 917.5298461914062 -523.86474609375 C 917.0740966796875 -522.5060424804688 916.1634521484375 -521.596435546875 914.7943725585938 -521.1770629882812 C 912.716064453125 -520.54052734375 910.5307006835938 -521.6158447265625 909.7537231445312 -523.6594848632812 C 908.9588623046875 -525.7499389648438 909.978515625 -528.0718383789062 912.0116577148438 -528.9118041992188 C 914.1660766601562 -529.8018798828125 916.5258178710938 -528.817138671875 917.4351196289062 -526.66064453125 C 917.458740234375 -526.604736328125 917.47802734375 -526.5469970703125 917.4993286132812 -526.4900512695312 C 917.61572265625 -526.1796875 917.61572265625 -526.1796875 917.95361328125 -526.1796875 C 920.5271606445312 -526.1796875 923.1005249023438 -526.1799926757812 925.6739501953125 -526.1796264648438 C 927.722412109375 -526.1792602539062 929.6030883789062 -524.9029541015625 930.378173828125 -522.998291015625 C 930.7559204101562 -522.070068359375 930.8809204101562 -521.1094970703125 930.6834106445312 -520.1318359375 C 930.3088989257812 -518.2784423828125 929.2401733398438 -516.9744262695312 927.48291015625 -516.2520751953125 C 926.881103515625 -516.0046997070312 926.2518310546875 -515.9066162109375 925.6011352539062 -515.9080810546875 C 923.3660888671875 -515.9135131835938 921.130859375 -515.91015625 918.895751953125 -515.9100952148438 Z M 913.6228637695312 -527.1082153320312 C 912.5289306640625 -527.107421875 911.641357421875 -526.2160034179688 911.6416625976562 -525.1185302734375 C 911.6419677734375 -524.01416015625 912.535888671875 -523.1190185546875 913.635986328125 -523.1217041015625 C 914.7271118164062 -523.1242065429688 915.61669921875 -524.0187377929688 915.61865234375 -525.1149291992188 C 915.6205444335938 -526.2183837890625 914.7288818359375 -527.1089477539062 913.6228637695312 -527.1082153320312 Z">
+                            </path>
+                        </svg>
+                        <svg class="Path_15197" viewBox="1147.817 -285.457 8.238 8.246">
+                            <path id="Path_15197" d="M 1156.054809570312 -281.3269348144531 C 1156.053833007812 -279.04736328125 1154.216918945312 -277.2105712890625 1151.937744140625 -277.2105712890625 C 1149.662353515625 -277.2104797363281 1147.817138671875 -279.0546264648438 1147.817138671875 -281.3286743164062 C 1147.817016601562 -283.6107788085938 1149.668579101562 -285.4657897949219 1151.947631835938 -285.4565124511719 C 1154.248413085938 -285.4471740722656 1156.07861328125 -283.5655212402344 1156.054809570312 -281.3269348144531 Z M 1153.922119140625 -281.2990417480469 C 1153.89208984375 -282.623291015625 1152.891845703125 -283.3068542480469 1151.812622070312 -283.3079223632812 C 1150.810791015625 -283.3088989257812 1149.959716796875 -282.4426879882812 1149.949829101562 -281.347900390625 C 1149.939819335938 -280.2570495605469 1150.823974609375 -279.3492736816406 1151.898071289062 -279.3411254882812 C 1153.018920898438 -279.3327331542969 1153.913818359375 -280.1981811523438 1153.922119140625 -281.2990417480469 Z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                <div id="flag-point-svgrepo-com">
+                    <svg class="Path_15207" viewBox="2.987 0 35.379 48">
+                        <path id="Path_15207" d="M 38.36543273925781 14.5670919418335 C 38.38022232055664 15.08462905883789 38.07181167602539 15.55991744995117 37.5922966003418 15.75637149810791 L 15.92965888977051 24.6199893951416 C 15.77967929840088 24.68336296081543 15.61913681030273 24.71293640136719 15.45859527587891 24.71293640136719 C 15.21566963195801 24.71293640136719 14.97274494171143 24.64111328125 14.76361656188965 24.50169372558594 C 14.41929531097412 24.26933097839355 14.21228122711182 23.88276290893555 14.21228122711182 23.46873092651367 L 14.21228122711182 7.25186014175415 C 14.21228122711182 6.850504398345947 14.4066219329834 6.472385406494141 14.73193168640137 6.240021228790283 C 15.05935001373291 6.007658004760742 15.47760486602783 5.944286346435547 15.85783576965332 6.075254440307617 L 37.52046966552734 13.42850971221924 C 38.01266479492188 13.59327697753906 38.3464241027832 14.04955387115479 38.36543273925781 14.5670919418335 Z M 17.78223037719727 43.64212799072266 C 17.78223037719727 46.08406066894531 14.53125095367432 48.00000381469727 10.38461589813232 48.00000381469727 C 6.233755111694336 48.00000381469727 2.987000703811646 46.08406066894531 2.987000703811646 43.64212799072266 C 2.987000703811646 41.58042526245117 5.304300308227539 39.90318298339844 8.517257690429688 39.42366790771484 L 8.517257690429688 5.783743381500244 C 8.517257690429688 5.637988090515137 8.540494918823242 5.494345188140869 8.570068359375 5.357039451599121 C 7.735670566558838 4.850064277648926 7.17165994644165 3.941733121871948 7.17165994644165 2.891871690750122 C 7.171658992767334 1.294899582862854 8.468670845031738 0 10.06353092193604 0 L 11.20211315155029 0 C 12.79908561706543 0 14.09398555755615 1.294899582862854 14.09398555755615 2.891871690750122 C 14.09398555755615 4.12551212310791 13.31873512268066 5.171148300170898 12.2329626083374 5.585178852081299 C 12.24141311645508 5.652775287628174 12.25408744812012 5.716146945953369 12.25408744812012 5.783743858337402 L 12.25408744812012 39.42366790771484 C 15.46493148803711 39.90318298339844 17.78223037719727 41.58042526245117 17.78223037719727 43.64212799072266 Z M 16.53802871704102 43.64423751831055 C 16.53802871704102 42.28596878051758 14.70235538482666 41.11359024047852 12.25197505950928 40.69955444335938 L 12.25197505950928 43.6062126159668 C 12.25197505950928 44.63917541503906 11.41546630859375 45.47568511962891 10.38250255584717 45.47568511962891 C 9.349540710449219 45.47568511962891 8.513031959533691 44.63917541503906 8.513031959533691 43.6062126159668 L 8.513031959533691 40.69955444335938 C 6.062650203704834 41.11358642578125 4.226976871490479 42.28596496582031 4.226976871490479 43.64423751831055 C 4.226976871490479 45.3320426940918 7.04702615737915 46.75791168212891 10.38038921356201 46.75791168212891 C 13.72009086608887 46.75580596923828 16.53802871704102 45.3320426940918 16.53802871704102 43.64423751831055 Z">
+                        </path>
+                    </svg>
+                </div>
+                <div id="Start">
+                    <span>Start</span>
+                </div>
+                <div id="Finish">
+                    <span>Finish</span>
+                </div>
+                <div id="Group_37146">
+                    <svg class="Polygon_9" viewBox="0 0 31 27">
+                        <path id="Polygon_9" d="M 12.89824104309082 4.532096385955811 C 14.05128574371338 2.523566484451294 16.9487133026123 2.523566246032715 18.10175895690918 4.532096385955811 L 28.42033958435059 22.50639724731445 C 29.56848526000977 24.50638961791992 28.12470245361328 27 25.81858253479004 27 L 5.18142032623291 27 C 2.875298738479614 27 1.431517839431763 24.50638961791992 2.579660892486572 22.50639724731445 Z">
+                        </path>
+                    </svg>
+                    <svg class="Rectangle_12199">
+                        <rect id="Rectangle_12199" rx="0" ry="0" x="0" y="0" width="6" height="11">
+                        </rect>
+                    </svg>
+                    <svg class="Rectangle_12200">
+                        <rect id="Rectangle_12200" rx="0" ry="0" x="0" y="0" width="6" height="11">
+                        </rect>
+                    </svg>
+                    <svg class="Rectangle_12201">
+                        <rect id="Rectangle_12201" rx="0" ry="0" x="0" y="0" width="6" height="11">
+                        </rect>
+                    </svg>
+                </div>
+                <apex:repeat value="{!PW.WorkProcesses}" var="item">
+                
+                    <apex:outputPanel rendered="{!item.No == 1}">
+                        
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g1-project-scope_green" src="{!URLFOR($Resource.icons,'g1-project-scope_gray.png')}" /> 
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g1-project-scope_green" src="{!URLFOR($Resource.icons,'g1-project-scope_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g1-project-scope_green" src="{!URLFOR($Resource.icons,'g1-project-scope_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g1-project-scope_green" src="{!URLFOR($Resource.icons,'g1-project-scope_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 1}">
+                                <svg class="Ellipse_1">
+                                    <ellipse id="Ellipse_1" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                        
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 2}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g1-project-scope_green_ig" src="{!URLFOR($Resource.icons,'g1-project-scope_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g1-project-scope_green_ig" src="{!URLFOR($Resource.icons,'g1-project-scope_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g1-project-scope_green_ig" src="{!URLFOR($Resource.icons,'g1-project-scope_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g1-project-scope_green_ig" src="{!URLFOR($Resource.icons,'g1-project-scope_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 2}">
+                                <svg class="Ellipse_2">
+                                    <ellipse id="Ellipse_2" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 3}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g1-project-scope_green_ih" src="{!URLFOR($Resource.icons,'g1-project-scope_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g1-project-scope_green_ih" src="{!URLFOR($Resource.icons,'g1-project-scope_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g1-project-scope_green_ih" src="{!URLFOR($Resource.icons,'g1-project-scope_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g1-project-scope_green_ih" src="{!URLFOR($Resource.icons,'g1-project-scope_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 3}">
+                                <svg class="Ellipse_3">
+                                    <ellipse id="Ellipse_3" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 4}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g8-execution_green" src="{!URLFOR($Resource.icons,'g8-execution_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g8-execution_green" src="{!URLFOR($Resource.icons,'g8-execution_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g8-execution_green" src="{!URLFOR($Resource.icons,'g8-execution_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g8-execution_green" src="{!URLFOR($Resource.icons,'g8-execution_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 4}">
+                                <svg class="Ellipse_4">
+                                    <ellipse id="Ellipse_4" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 5}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g4-procurement-status-report_g" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g4-procurement-status-report_g" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g4-procurement-status-report_g" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g4-procurement-status-report_g" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 5}">
+                                <svg class="Ellipse_5">
+                                    <ellipse id="Ellipse_5" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 6}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g2-project-cost-control_green" src="{!URLFOR($Resource.icons,'g2-project-cost-control_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g2-project-cost-control_green" src="{!URLFOR($Resource.icons,'g2-project-cost-control_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g2-project-cost-control_green" src="{!URLFOR($Resource.icons,'g2-project-cost-control_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g2-project-cost-control_green" src="{!URLFOR($Resource.icons,'g2-project-cost-control_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 6}">
+                                <svg class="Ellipse_6">
+                                    <ellipse id="Ellipse_6" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 7}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g3-project-schedule-control_gr" src="{!URLFOR($Resource.icons,'g3-project-schedule-control_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g3-project-schedule-control_gr" src="{!URLFOR($Resource.icons,'g3-project-schedule-control_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g3-project-schedule-control_gr" src="{!URLFOR($Resource.icons,'g3-project-schedule-control_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g3-project-schedule-control_gr" src="{!URLFOR($Resource.icons,'g3-project-schedule-control_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 7}">
+                                <svg class="Ellipse_7">
+                                    <ellipse id="Ellipse_7" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 8}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g3-project-schedule-control_gr_in" src="{!URLFOR($Resource.icons,'g3-project-schedule-control_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g3-project-schedule-control_gr_in" src="{!URLFOR($Resource.icons,'g3-project-schedule-control_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g3-project-schedule-control_gr_in" src="{!URLFOR($Resource.icons,'g3-project-schedule-control_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g3-project-schedule-control_gr_in" src="{!URLFOR($Resource.icons,'g3-project-schedule-control_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 8}">
+                                <svg class="Ellipse_8">
+                                    <ellipse id="Ellipse_8" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 9}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g2-project-cost-control_green_il" src="{!URLFOR($Resource.icons,'g2-project-cost-control_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g2-project-cost-control_green_il" src="{!URLFOR($Resource.icons,'g2-project-cost-control_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g2-project-cost-control_green_il" src="{!URLFOR($Resource.icons,'g2-project-cost-control_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g2-project-cost-control_green_il" src="{!URLFOR($Resource.icons,'g2-project-cost-control_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 9}">
+                                <svg class="Ellipse_9">
+                                    <ellipse id="Ellipse_9" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 10}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!AND(item.Status == 'Not Start', IsDisable1011 == false)}">
+                                <img id="g4-procurement-status-report_o" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'In Progress', IsDisable1011 == false)}">
+                                <img id="g4-procurement-status-report_o" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'Waiting for Previous Step', IsDisable1011 == false)}">
+                                <img id="g4-procurement-status-report_o" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'Completed', IsDisable1011 == false)}">
+                                <img id="g4-procurement-status-report_o" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(CurrentStep == 10, IsDisable1011 == false)}">
+                                <svg class="Ellipse_10">
+                                    <ellipse id="Ellipse_10" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!IsDisable1011 == true}">
+                                <img id="g4-procurement-status-report_o" class="WorkProcessDisable" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_gray.png')}" />
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 11}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!AND(item.Status == 'Not Start', IsDisable1011 == false)}">
+                                <img id="g4-procurement-status-report_b" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'In Progress', IsDisable1011 == false)}">
+                                <img id="g4-procurement-status-report_b" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'Waiting for Previous Step', IsDisable1011 == false)}">
+                                <img id="g4-procurement-status-report_b" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'Completed', IsDisable1011 == false)}">
+                                <img id="g4-procurement-status-report_b" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(CurrentStep == 11, IsDisable1011 == false)}">
+                                <svg class="Ellipse_11">
+                                    <ellipse id="Ellipse_11" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!IsDisable1011 == true}">
+                                <img id="g4-procurement-status-report_b" class="WorkProcessDisable" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_gray.png')}" />
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    
+                    <apex:outputPanel rendered="{!item.No == 12}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g6-engineering_orange" src="{!URLFOR($Resource.icons,'g6-engineering_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g6-engineering_orange" src="{!URLFOR($Resource.icons,'g6-engineering_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g6-engineering_orange" src="{!URLFOR($Resource.icons,'g6-engineering_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g6-engineering_orange" src="{!URLFOR($Resource.icons,'g6-engineering_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 12}">
+                                <svg class="Ellipse_12">
+                                    <ellipse id="Ellipse_12" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 13}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g5-document-management_blue_iu" src="{!URLFOR($Resource.icons,'g5-document-management_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g5-document-management_blue_iu" src="{!URLFOR($Resource.icons,'g5-document-management_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g5-document-management_blue_iu" src="{!URLFOR($Resource.icons,'g5-document-management_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g5-document-management_blue_iu" src="{!URLFOR($Resource.icons,'g5-document-management_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 13}">
+                                <svg class="Ellipse_13">
+                                    <ellipse id="Ellipse_13" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 14}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g5-document-management_blue" src="{!URLFOR($Resource.icons,'g5-document-management_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g5-document-management_blue" src="{!URLFOR($Resource.icons,'g5-document-management_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g5-document-management_blue" src="{!URLFOR($Resource.icons,'g5-document-management_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g5-document-management_blue" src="{!URLFOR($Resource.icons,'g5-document-management_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 14}">
+                                <svg class="Ellipse_14">
+                                    <ellipse id="Ellipse_14" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 15}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g6-engineering_orange_is" src="{!URLFOR($Resource.icons,'g6-engineering_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g6-engineering_orange_is" src="{!URLFOR($Resource.icons,'g6-engineering_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g6-engineering_orange_is" src="{!URLFOR($Resource.icons,'g6-engineering_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g6-engineering_orange_is" src="{!URLFOR($Resource.icons,'g6-engineering_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 15}">
+                                <svg class="Ellipse_15">
+                                    <ellipse id="Ellipse_15" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 16}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g2-project-cost-control_orange" src="{!URLFOR($Resource.icons,'g2-project-cost-control_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g2-project-cost-control_orange" src="{!URLFOR($Resource.icons,'g2-project-cost-control_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g2-project-cost-control_orange" src="{!URLFOR($Resource.icons,'g2-project-cost-control_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g2-project-cost-control_orange" src="{!URLFOR($Resource.icons,'g2-project-cost-control_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 16}">
+                                <svg class="Ellipse_16">
+                                    <ellipse id="Ellipse_16" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 17}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g6-engineering_gray" src="{!URLFOR($Resource.icons,'g6-engineering_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g6-engineering_gray" src="{!URLFOR($Resource.icons,'g6-engineering_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g6-engineering_gray" src="{!URLFOR($Resource.icons,'g6-engineering_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g6-engineering_gray" src="{!URLFOR($Resource.icons,'g6-engineering_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 17}">
+                                <svg class="Ellipse_17">
+                                    <ellipse id="Ellipse_17" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 18}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!AND(item.Status == 'Not Start', IsDisable1819 == false)}">
+                                <img id="g4-procurement-status-report_g_iy" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'In Progress', IsDisable1819 == false)}">
+                                <img id="g4-procurement-status-report_g_iy" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'Waiting for Previous Step', IsDisable1819 == false)}">
+                                <img id="g4-procurement-status-report_g_iy" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'Completed', IsDisable1819 == false)}">
+                                <img id="g4-procurement-status-report_g_iy" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(CurrentStep == 18, IsDisable1819 == false)}">
+                                <svg class="Ellipse_18">
+                                    <ellipse id="Ellipse_18" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                            
+                            <apex:outputPanel rendered="{!IsDisable1819 == true}">
+                                <img id="g4-procurement-status-report_g_iy" class="WorkProcessDisable" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_gray.png')}" />
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 19}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!AND(item.Status == 'Not Start', IsDisable1819 == false)}">
+                                <img id="g4-procurement-status-report_o_ip" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'In Progress', IsDisable1819 == false)}">
+                                <img id="g4-procurement-status-report_o_ip" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'Waiting for Previous Step', IsDisable1819 == false)}">
+                                <img id="g4-procurement-status-report_o_ip" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(item.Status == 'Completed', IsDisable1819 == false)}">
+                                <img id="g4-procurement-status-report_o_ip" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(CurrentStep == 19,IsDisable1819 == false)}">
+                                <svg class="Ellipse_19">
+                                    <ellipse id="Ellipse_19" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                            
+                            <apex:outputPanel rendered="{!IsDisable1819 == true}">
+                                <img id="g4-procurement-status-report_o_ip" class="WorkProcessDisable" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_gray.png')}" />
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    
+                    <apex:outputPanel rendered="{!item.No == 20}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g4-procurement-status-report_g_iw" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g4-procurement-status-report_g_iw" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g4-procurement-status-report_g_iw" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g4-procurement-status-report_g_iw" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 20}">
+                                <svg class="Ellipse_20">
+                                    <ellipse id="Ellipse_20" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 21}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g5-document-management_gray" src="{!URLFOR($Resource.icons,'g5-document-management_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g5-document-management_gray" src="{!URLFOR($Resource.icons,'g5-document-management_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g5-document-management_gray" src="{!URLFOR($Resource.icons,'g5-document-management_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g5-document-management_gray" src="{!URLFOR($Resource.icons,'g5-document-management_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 21}">
+                                <svg class="Ellipse_21">
+                                    <ellipse id="Ellipse_21" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 22}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g4-procurement-status-report_g_ix" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g4-procurement-status-report_g_ix" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g4-procurement-status-report_g_ix" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g4-procurement-status-report_g_ix" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 22}">
+                                <svg class="Ellipse_22">
+                                    <ellipse id="Ellipse_22" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 23}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g7-material-control_gray" src="{!URLFOR($Resource.icons,'g7-material-control_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g7-material-control_gray" src="{!URLFOR($Resource.icons,'g7-material-control_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g7-material-control_gray" src="{!URLFOR($Resource.icons,'g7-material-control_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g7-material-control_gray" src="{!URLFOR($Resource.icons,'g7-material-control_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 23}">
+                                <svg class="Ellipse_23">
+                                    <ellipse id="Ellipse_23" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 24}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g8-execution_gray" src="{!URLFOR($Resource.icons,'g8-execution_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g8-execution_gray" src="{!URLFOR($Resource.icons,'g8-execution_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g8-execution_gray" src="{!URLFOR($Resource.icons,'g8-execution_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g8-execution_gray" src="{!URLFOR($Resource.icons,'g8-execution_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 24}">
+                                <svg class="Ellipse_24">
+                                    <ellipse id="Ellipse_24" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 25}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g2-project-cost-control_gray" src="{!URLFOR($Resource.icons,'g2-project-cost-control_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g2-project-cost-control_gray" src="{!URLFOR($Resource.icons,'g2-project-cost-control_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g2-project-cost-control_gray" src="{!URLFOR($Resource.icons,'g2-project-cost-control_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g2-project-cost-control_gray" src="{!URLFOR($Resource.icons,'g2-project-cost-control_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 25}">
+                                <svg class="Ellipse_25">
+                                    <ellipse id="Ellipse_25" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 26}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g8-execution_gray_i" src="{!URLFOR($Resource.icons,'g8-execution_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g8-execution_gray_i" src="{!URLFOR($Resource.icons,'g8-execution_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g8-execution_gray_i" src="{!URLFOR($Resource.icons,'g8-execution_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g8-execution_gray_i" src="{!URLFOR($Resource.icons,'g8-execution_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 26}">
+                                <svg class="Ellipse_26">
+                                    <ellipse id="Ellipse_26" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 27}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g8-execution_gray_ja" src="{!URLFOR($Resource.icons,'g8-execution_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g8-execution_gray_ja" src="{!URLFOR($Resource.icons,'g8-execution_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g8-execution_gray_ja" src="{!URLFOR($Resource.icons,'g8-execution_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g8-execution_gray_ja" src="{!URLFOR($Resource.icons,'g8-execution_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 27}">
+                                <svg class="Ellipse_27">
+                                    <ellipse id="Ellipse_27" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 28}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g8-execution_gray_jb" src="{!URLFOR($Resource.icons,'g8-execution_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g8-execution_gray_jb" src="{!URLFOR($Resource.icons,'g8-execution_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g8-execution_gray_jb" src="{!URLFOR($Resource.icons,'g8-execution_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g8-execution_gray_jb" src="{!URLFOR($Resource.icons,'g8-execution_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 28}">
+                                <svg class="Ellipse_28">
+                                    <ellipse id="Ellipse_28" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 29}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g9-project-handover_gray_jb" src="{!URLFOR($Resource.icons,'g9-project-handover_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g9-project-handover_gray_jb" src="{!URLFOR($Resource.icons,'g9-project-handover_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g9-project-handover_gray_jb" src="{!URLFOR($Resource.icons,'g9-project-handover_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g9-project-handover_gray_jb" src="{!URLFOR($Resource.icons,'g9-project-handover_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 29}">
+                                <svg class="Ellipse_29">
+                                    <ellipse id="Ellipse_29" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 30}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g9-project-handover_gray_ja" src="{!URLFOR($Resource.icons,'g9-project-handover_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g9-project-handover_gray_ja" src="{!URLFOR($Resource.icons,'g9-project-handover_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g9-project-handover_gray_ja" src="{!URLFOR($Resource.icons,'g9-project-handover_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g9-project-handover_gray_ja" src="{!URLFOR($Resource.icons,'g9-project-handover_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 30}">
+                                <svg class="Ellipse_30">
+                                    <ellipse id="Ellipse_30" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 31}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g9-project-handover_gray_i" src="{!URLFOR($Resource.icons,'g9-project-handover_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g9-project-handover_gray_i" src="{!URLFOR($Resource.icons,'g9-project-handover_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g9-project-handover_gray_i" src="{!URLFOR($Resource.icons,'g9-project-handover_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g9-project-handover_gray_i" src="{!URLFOR($Resource.icons,'g9-project-handover_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 31}">
+                                <svg class="Ellipse_31">
+                                    <ellipse id="Ellipse_31" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 32}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g9-project-handover_gray" src="{!URLFOR($Resource.icons,'g9-project-handover_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g9-project-handover_gray" src="{!URLFOR($Resource.icons,'g9-project-handover_orange.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g9-project-handover_gray" src="{!URLFOR($Resource.icons,'g9-project-handover_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g9-project-handover_gray" src="{!URLFOR($Resource.icons,'g9-project-handover_green.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!CurrentStep == 32}">
+                                <svg class="Ellipse_32">
+                                    <ellipse id="Ellipse_32" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!item.No == 00}">
+                        <a class="WorkProcessLink" href="{!item.WPURL}" style="text-decoration:none;" target="_blank"> 
+                            <apex:outputPanel rendered="{!item.Status == 'Not Start'}">
+                                <img id="g10-risk-analyst_gray" src="{!URLFOR($Resource.icons,'g10-risk-analyst_gray.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'In Progress'}">
+                                <img id="g10-risk-analyst_gray" src="{!URLFOR($Resource.icons,'g10-risk-analyst_orange.png')}" />
+                                <svg class="Ellipse_00">
+                                    <ellipse id="Ellipse_00" rx="38" ry="38" cx="38" cy="38">
+                                    </ellipse>
+                                </svg>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Waiting for Previous Step'}">
+                                <img id="g10-risk-analyst_gray" src="{!URLFOR($Resource.icons,'g10-risk-analyst_blue.png')}" />
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!item.Status == 'Completed'}">
+                                <img id="g10-risk-analyst_gray" src="{!URLFOR($Resource.icons,'g10-risk-analyst_green.png')}" />
+                            </apex:outputPanel>
+                        </a>
+                    </apex:outputPanel>
+                    
+                
+                    <!-- <tr>
+                        <td><apex:outputText value="{!item.No}." /></td>
+                        <td><apex:outputText value="{!item.Name}" /></td>
+                        <td><apex:outputText value="{!item.Status}" /></td>
+                    </tr> -->
+                </apex:repeat>
+                <!-- <img id="g2-project-cost-control_green_il" src="{!URLFOR($Resource.Project_Roadmap,'images/g2-project-cost-control_green_il.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g2-project-cost-control_green_il.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g2-project-cost-control_green_il@2x.png')} 2x"/>
+                <img id="g3-project-schedule-control_gr" src="{!URLFOR($Resource.Project_Roadmap,'images/g3-project-schedule-control_gr.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g3-project-schedule-control_gr.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g3-project-schedule-control_gr@2x.png')} 2x"/>
+                <img id="g3-project-schedule-control_gr_in" src="{!URLFOR($Resource.Project_Roadmap,'images/g3-project-schedule-control_gr_in.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g3-project-schedule-control_gr_in.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g3-project-schedule-control_gr_in@2x.png')} 2x"/>
+                <img id="g4-procurement-status-report_o" src="{!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_o.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_o.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_o@2x.png')} 2x"/>
+                <img id="g4-procurement-status-report_o_ip" src="{!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_o_ip.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_o_ip.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_o_ip@2x.png')} 2x"/>
+                <img id="g4-procurement-status-report_b" src="{!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_b.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_b.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_b@2x.png')} 2x"/>
+                <img id="g6-engineering_orange" src="{!URLFOR($Resource.Project_Roadmap,'images/g6-engineering_orange.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g6-engineering_orange.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g6-engineering_orange@2x.png')} 2x"/>
+                <img id="g6-engineering_orange_is" src="{!URLFOR($Resource.Project_Roadmap,'images/g6-engineering_orange_is.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g6-engineering_orange_is.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g6-engineering_orange_is@2x.png')} 2x"/>
+                <img id="g5-document-management_blue" src="{!URLFOR($Resource.Project_Roadmap,'images/g5-document-management_blue.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g5-document-management_blue.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g5-document-management_blue@2x.png')} 2x"/>
+                <img id="g5-document-management_blue_iu" src="{!URLFOR($Resource.Project_Roadmap,'images/g5-document-management_blue_iu.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g5-document-management_blue_iu.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g5-document-management_blue_iu@2x.png')} 2x"/>
+                <img id="g5-document-management_gray" src="{!URLFOR($Resource.Project_Roadmap,'images/g5-document-management_gray.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g5-document-management_gray.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g5-document-management_gray@2x.png')} 2x"/>
+                <img id="g4-procurement-status-report_g_iw" src="{!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_g_iw.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_g_iw.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_g_iw@2x.png')} 2x"/>
+                <img id="g4-procurement-status-report_g_ix" src="{!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_g_ix.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_g_ix.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_g_ix@2x.png')} 2x"/>
+                <img id="g4-procurement-status-report_g_iy" src="{!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_g_iy.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_g_iy.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g4-procurement-status-report_g_iy@2x.png')} 2x"/>
+                <img id="g6-engineering_gray" src="{!URLFOR($Resource.Project_Roadmap,'images/g6-engineering_gray.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g6-engineering_gray.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g6-engineering_gray@2x.png')} 2x"/>
+                <img id="g2-project-cost-control_orange" src="{!URLFOR($Resource.Project_Roadmap,'images/g2-project-cost-control_orange.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g2-project-cost-control_orange.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g2-project-cost-control_orange@2x.png')} 2x"/>
+                <img id="g7-material-control_gray" src="{!URLFOR($Resource.Project_Roadmap,'images/g7-material-control_gray.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g7-material-control_gray.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g7-material-control_gray@2x.png')} 2x"/>
+                <img id="g8-execution_gray" src="{!URLFOR($Resource.Project_Roadmap,'images/g8-execution_gray.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g8-execution_gray.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g8-execution_gray@2x.png')} 2x"/>
+                <img id="g8-execution_gray_i" src="{!URLFOR($Resource.Project_Roadmap,'images/g8-execution_gray_i.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g8-execution_gray_i.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g8-execution_gray_i@2x.png')} 2x"/>
+                <img id="g8-execution_gray_ja" src="{!URLFOR($Resource.Project_Roadmap,'images/g8-execution_gray_ja.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g8-execution_gray_ja.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g8-execution_gray_ja@2x.png')} 2x"/>
+                <img id="g8-execution_gray_jb" src="{!URLFOR($Resource.Project_Roadmap,'images/g8-execution_gray_jb.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g8-execution_gray_jb.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g8-execution_gray_jb@2x.png')} 2x"/>
+                <img id="g2-project-cost-control_gray" src="{!URLFOR($Resource.Project_Roadmap,'images/g2-project-cost-control_gray.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g2-project-cost-control_gray.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g2-project-cost-control_gray@2x.png')} 2x"/>
+                <img id="g9-project-handover_gray" src="{!URLFOR($Resource.Project_Roadmap,'images/g9-project-handover_gray.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g9-project-handover_gray.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g9-project-handover_gray@2x.png')} 2x"/>
+                <img id="g9-project-handover_gray_i" src="{!URLFOR($Resource.Project_Roadmap,'images/g9-project-handover_gray_i.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g9-project-handover_gray_i.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g9-project-handover_gray_i@2x.png')} 2x"/>
+                <img id="g9-project-handover_gray_ja" src="{!URLFOR($Resource.Project_Roadmap,'images/g9-project-handover_gray_ja.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g9-project-handover_gray_ja.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g9-project-handover_gray_ja@2x.png')} 2x"/>
+                <img id="g9-project-handover_gray_jb" src="{!URLFOR($Resource.Project_Roadmap,'images/g9-project-handover_gray_jb.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g9-project-handover_gray_jb.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g9-project-handover_gray_jb@2x.png')} 2x"/>
+                <img id="g10-risk-analyst_gray" src="{!URLFOR($Resource.Project_Roadmap,'images/g10-risk-analyst_gray.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/g10-risk-analyst_gray.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/g10-risk-analyst_gray@2x.png')} 2x"/> -->
+                
+                <!-- <div id="Repeat_Grid_629">
+                    <div id="Repeat_Grid_629_0" class="">
+                        <img id="warning" src="{!URLFOR($Resource.Project_Roadmap,'images/.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_1" class="">
+                        <img id="warning_jg" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_jg.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_jg.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_jg@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_2" class="">
+                        <img id="warning_ji" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_ji.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_ji.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_ji@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_3" class="">
+                        <img id="warning_jk" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_jk.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_jk.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_jk@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_4" class="">
+                        <img id="warning_jm" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_jm.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_jm.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_jm@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_5" class="">
+                        <img id="warning_jo" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_jo.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_jo.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_jo@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_6" class="">
+                        <img id="warning_jq" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_jq.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_jq.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_jq@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_7" class="">
+                        <img id="warning_js" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_js.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_js.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_js@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_8" class="">
+                        <img id="warning_ju" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_ju.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_ju.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_ju@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_9" class="">
+                        <img id="warning_jw" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_jw.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_jw.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_jw@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_10" class="">
+                        <img id="warning_jy" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_jy.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_jy.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_jy@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_11" class="">
+                        <img id="warning_j" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_j.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_j.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_j@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_12" class="">
+                        <img id="warning_ka" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_ka.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_ka.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_ka@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_13" class="">
+                        <img id="warning_kb" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_kb.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_kb.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_kb@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_14" class="">
+                        <img id="warning_kc" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_kc.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_kc.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_kc@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_15" class="">
+                        <img id="warning_kd" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_kd.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_kd.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_kd@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_16" class="">
+                        <img id="warning_ke" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_ke.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_ke.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_ke@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_17" class="">
+                        <img id="warning_kf" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_kf.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_kf.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_kf@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_18" class="">
+                        <img id="warning_kg" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_kg.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_kg.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_kg@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_19" class="">
+                        <img id="warning_kh" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_kh.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_kh.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_kh@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_20" class="">
+                        <img id="warning_ki" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_ki.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_ki.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_ki@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_21" class="">
+                        <img id="warning_kk" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_kk.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_kk.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_kk@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_22" class="">
+                        <img id="warning_km" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_km.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_km.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_km@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_23" class="">
+                        <img id="warning_ko" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_ko.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_ko.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_ko@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_24" class="">
+                        <img id="warning_kq" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_kq.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_kq.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_kq@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_25" class="">
+                        <img id="warning_ks" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_ks.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_ks.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_ks@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_26" class="">
+                        <img id="warning_ku" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_ku.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_ku.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_ku@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_27" class="">
+                        <img id="warning_kw" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_kw.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_kw.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_kw@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_28" class="">
+                        <img id="warning_ky" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_ky.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_ky.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_ky@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_29" class="">
+                        <img id="warning_k" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_k.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_k.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_k@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_30" class="">
+                        <img id="warning_la" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_la.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_la.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_la@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_31" class="">
+                        <img id="warning_lb" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_lb.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_lb.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_lb@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_32" class="">
+                        <img id="warning_lc" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_lc.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_lc.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_lc@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_33" class="">
+                        <img id="warning_ld" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_ld.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_ld.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_ld@2x.png')} 2x"/>
+                    </div>
+                    <div id="Repeat_Grid_629_34" class="">
+                        <img id="warning_le" src="{!URLFOR($Resource.Project_Roadmap,'images/warning_le.png')}" srcset="{!URLFOR($Resource.Project_Roadmap,'images/warning_le.png')} 1x, {!URLFOR($Resource.Project_Roadmap,'images/warning_le@2x.png')} 2x"/>
+                    </div>
+                </div> -->
+                <svg class="Rectangle_12070">
+                    <rect id="Rectangle_12070" rx="0" ry="0" x="0" y="0" width="276" height="184">
+                    </rect>
+                </svg>
+            </div>
+        </body>
+    </html>
+    </apex:form>
+    
+</apex:page>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CTR Shareholder</value>
+    </caseValues>
+    <fields>
+        <label><!-- CTR Request Form Header --></label>
+        <name>CTRRequestFormHeader__c</name>
+        <relationshipLabel><!-- CTR Shareholder --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Customer --></label>
+        <name>Customer__c</name>
+        <relationshipLabel><!-- CTR Shareholder --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- who hold an interest in the company more than 10% --></help>
+        <label><!-- % of Shareholder --></label>
+        <name>of_Shareholder__c</name>
+    </fields>
+</CustomObjectTranslation>

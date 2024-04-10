@@ -1,0 +1,206 @@
+<aura:component
+	implements="flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable"
+	controller="THOR_NotificationRelatedEQCCController"
+>
+	<aura:attribute name="recordId" type="String" access="global" />
+
+	<aura:attribute name="notificationId" type="String" default="" access="global" />
+	<aura:attribute name="orderId" type="String" default="" access="global" />
+	<aura:attribute name="orderOperationId" type="String" default="" access="global" />
+	<aura:attribute name="showConfirmModal" type="Boolean" default="false" access="global" />
+	<aura:attribute name="showCreateModal" type="Boolean" default="false" />
+	<aura:attribute name="sheetsToSend" type="List" default="[]" />
+
+	<aura:attribute name="isLoadingRetrieve" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isLoadingSetNOId" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isLoadingDelete" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+	<aura:attribute name="ownerOrAdmin" type="Boolean" default="false" access="private" />
+	<aura:attribute name="hasPendingForApproval" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isPolluted" type="Boolean" default="false" access="private" />
+	<aura:attribute name="hasSeveralCheckedSheets" type="Boolean" default="false" access="private" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:method name="closeModal" action="{!c.closeCreateModal}"></aura:method>
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.handleRefresh}" />
+
+	<lightning:navigation aura:id="navService" />
+	<aura:handler name="navagationHelper" event="c:THOR_navigateTo" action="{!c.navigateHelper}" />
+
+	<aura:attribute name="relatedEQCCCheckSheets" type="List" default="[]" />
+
+	<c:THOR_navigateBack aura:id="navback" backToTabIndex="2" />
+
+	<div class="slds-p-around_medium" style="background-color: white; margin: 1em; box-shadow: 0 2px 2px 0 #cccccc">
+		<aura:if isTrue="{!v.isLoading}">
+			<lightning:spinner alternativeText="Loading" size="medium" />
+		</aura:if>
+
+		<div class="header-title-container">
+			<div class="slds-m-top_x-small">
+				<div class="slds-text-heading_small">EQCC Header</div>
+			</div>
+			<div class="slds-p-bottom_x-small">
+				<lightning:button variant="brand" label="Edit" title="Edit" onclick="{! c.editHeader }" />
+				<lightning:button
+					variant="destructive"
+					disabled="{!or(
+						not(v.ownerOrAdmin),
+						or(
+							v.hasSeveralCheckedSheets,
+							or(
+								v.hasPendingForApproval,
+								v.isPolluted
+							)
+						)
+					)}"
+					label="Delete"
+					title="Delete"
+					onclick="{! c.showConfirm }"
+				/>
+			</div>
+		</div>
+
+		<aura:if isTrue="{!v.recordId}">
+			<lightning:recordViewForm density="comfy" recordId="{! v.recordId }" objectApiName="EQCC_Header__c">
+				<lightning:layout multipleRows="true" verticalAlign="stretch">
+					<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+						<c:THOR_customRedirectTo
+							fieldLabel="Notification"
+							fromRecord="EQCC_Header__c"
+							relatedObject="Notification__c"
+							relatedField="Notification__r.Notification_Number__c"
+							toThisComponent="c__THOR_NotificationRecordDisplay"
+							recordId="{!v.recordId}"
+						/>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+						<c:THOR_customRedirectTo
+							fieldLabel="Order"
+							fromRecord="EQCC_Header__c"
+							relatedObject="Order__c"
+							relatedField="Order__r.Order_Number__c"
+							toThisComponent="c__THOR_OrderRecordDisplay"
+							recordId="{!v.recordId}"
+							aura:id="reInit"
+						/>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+						<c:THOR_customRedirectTo
+							fieldLabel="Functional Location"
+							fromRecord="EQCC_Header__c"
+							relatedObject="FunctionalLocation__r"
+							relatedField="FunctionalLocation__r.Name"
+							toThisComponent="c__THOR_FunctionalLocationHistoryListDisplayer"
+							recordId="{!v.recordId}"
+							aura:id="reInit"
+						/>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+						<lightning:outputField onclick="{!c.preventMe}" class="disable-field" fieldName="Equipment__c" />
+						<div id="disable-cover" class="disable-cover"></div>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+						<label class="slds-form-element__label">Order Operation</label>
+						<lightning:outputField class="disable-field" fieldName="Short_Text__c" variant="label-hidden" />
+						<div id="disable-cover" class="disable-cover"></div>
+					</lightning:layoutItem>
+
+					<!-- <aura:if isTrue="{! v.readOnly == 'false' }">
+                    <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box slds-align_absolute-center">
+                        <lightning:icon iconName="utility:edit_form" alternativeText="Approved" title="Approved" />
+                    </lightning:layoutItem>
+                </aura:if> -->
+
+					<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+						<div class="slds-text-heading_small">Check Sheet</div>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" class="custom-box">
+						<aura:if isTrue="{!not(empty(v.relatedEQCCCheckSheets))}">
+							<lightning:layout verticalAlign="center" multipleRows="true">
+								<aura:iteration items="{! v.relatedEQCCCheckSheets }" var="headerSheet">
+									<aura:iteration items="{!headerSheet.sheets}" var="item">
+										<lightning:layoutItem size="11" class="slds-p-around_x-small">
+											<c:THOR_EQCCCheckedSheetHyperlink
+												headerId="{!v.recordId}"
+												headerSheetId="{!item.headerSheetId}"
+												checkedSheetCode="{!item.sheet.Sheet_Code__c}"
+												checkedSheetGroup="{!item.sheet.Group__c}"
+												checkedSheetStatus="{!item.status}"
+												checkedSheetRequester="{!item.requester}"
+												checkedSheetCreatedDate="{!item.createdDate}"
+											/>
+										</lightning:layoutItem>
+									</aura:iteration>
+								</aura:iteration>
+							</lightning:layout>
+							<aura:set attribute="else">
+								<p>There are no related EQCC Check Sheets</p>
+							</aura:set>
+						</aura:if>
+					</lightning:layoutItem>
+				</lightning:layout>
+			</lightning:recordViewForm>
+		</aura:if>
+	</div>
+
+	<aura:if isTrue="{! v.showCreateModal }">
+		<aura:if isTrue="{!v.recordId}">
+			<section
+				role="dialog"
+				tabindex="-1"
+				class="slds-modal slds-fade-in-open"
+				aria-labelledby="modal-heading-01"
+				aria-modal="true"
+				aria-describedby="modal-content-id-1"
+			>
+				<div class="slds-modal__container">
+					<c:Thor_EQCCHeaderForm
+						parent="{! this }"
+						notificationId="{!v.notificationId}"
+						recordId="{! v.recordId }"
+						orderId="{! v.orderId }"
+						orderOperationId="{!v.orderOperationId}"
+						isModal="true"
+						incomingSheets="{! v.sheetsToSend }"
+					/>
+				</div>
+			</section>
+			<div class="slds-backdrop slds-backdrop_open"></div>
+		</aura:if>
+	</aura:if>
+
+	<aura:if isTrue="{!v.showConfirmModal}">
+		<section
+			role="dialog"
+			tabindex="-1"
+			class="slds-modal slds-fade-in-open slds-modal_small"
+			aria-labelledby="modal-heading-01"
+			aria-modal="true"
+			aria-describedby="modal-content-id-1"
+		>
+			<div class="slds-modal__container">
+				<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+					<aura:if isTrue="{!v.hasPendingForApproval}">
+						<p class="slds-align_absolute-center slds-text-heading_medium">Cannot delete. There is related sheet pending for approval</p>
+						<aura:set attribute="else">
+							<p class="slds-align_absolute-center slds-text-heading_medium">Are you sure you want to delete this record?</p>
+						</aura:set>
+					</aura:if>
+				</div>
+				<footer class="slds-modal__footer">
+					<button onclick="{!c.cancelConfirm}" id="cancel" class="slds-button slds-button_neutral">Cancel</button>
+					<aura:if isTrue="{!not(v.hasPendingForApproval)}">
+						<button onclick="{!c.deleteHeader}" id="delete" class="slds-button slds-button_brand">Delete</button>
+					</aura:if>
+				</footer>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</aura:if>
+</aura:component>

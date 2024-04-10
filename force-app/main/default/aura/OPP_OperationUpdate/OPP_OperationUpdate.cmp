@@ -1,0 +1,64 @@
+<aura:component
+    implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+    access="global" controller="OPP_HomeController">
+
+    <aura:attribute name="size" type="String" />
+    <aura:attribute name="news" type="List" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <div class="card">
+        <div class="slds-card-body">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate header">
+                    <div class="slds-media__body">
+                        <h1 class="slds-card__header-title">
+                            <span>Operation News</span>
+                        </h1>
+                    </div>
+                    <div class="slds-no-flex">
+                        <!-- <a href="" onclick="{!c.goToNews}">
+                            See more
+                        </a> -->
+                    </div>
+                </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                <div class="slds-grid slds-wrap">
+                  <aura:iteration items="{!v.news}" var="new">
+                        <div class="slds-col slds-size_1-of-1 top-page">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <aura:if isTrue="{!not(empty(new.ContentDocumentLinks[0].ContentDocumentId))}">
+                                        <a href="" onclick="{!c.goToNewsPage}" id="{!new.Id}">
+                                            <img src="{!'/sfc/servlet.shepherd/document/download/' + new.ContentDocumentLinks[0].ContentDocumentId}"></img>
+                                        </a>
+                                        <aura:set attribute="else">
+                                            <a href="" onclick="{!c.goToNewsPage}" id="{!new.Id}">
+                                                <img src="https://brunet.one/placeholder.png"/>
+                                            </a>
+                                        </aura:set>
+                                    </aura:if>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <a href="" onclick="{!c.goToNewsPage}" id="{!new.Id}">
+                                        <div><b>{!new.Title__c}</b></div>
+                                    </a>
+                                    <div class="header-feed">
+                                        <aura:if isTrue="{!not(empty(new.Coin__c))}">
+                                            <img src="{!$Resource.OPPNews + '/assets/img/coin.png'}" class="news-coin-icon" />
+                                        </aura:if>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </aura:iteration>
+                </div>
+                <p class="text-right">
+                    <a href="" onclick="{!c.goToNews}">
+                        See more
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</aura:component>

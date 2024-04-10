@@ -1,0 +1,15 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes">
+    <!-- IMPORTED STYLES-->
+    <ltng:require styles="{!$Resource.noHeader}" />
+
+    <span class="slds-hide">
+        <c:THOR_navigateBack />
+    </span>
+
+    <!-- BODY-->
+    <c:THOR_Header title="Work Clearances" iconName="custom:custom32">
+		<aura:set attribute="actions">
+			<c:THOR_WorkClearanceCreation />
+		</aura:set>
+	</c:THOR_Header>
+</aura:component>

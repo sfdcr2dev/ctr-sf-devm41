@@ -1,0 +1,328 @@
+<aura:component controller="CTRDocumentChecklistController"
+    implements="force:lightningQuickAction,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName"
+    access="global">
+
+    <aura:attribute name="recordId" type="Id" default="" />
+    <aura:attribute name="disabled" type="boolean" default="false" />
+    <aura:attribute name="isEdit" type="Boolean" default="true" />
+    <aura:attribute name="isModalOpen" type="boolean" default="true" />
+    <aura:attribute name="isReqDoc" type="Boolean" default="false" />
+    <aura:attribute name="docChecklistObj" type="CTRRequestFormItem__c" default="{}" />
+    <aura:attribute name="emailInfo" type="sObject" default="{}" />
+    <aura:attribute name="templateType" type="String" default="" />
+    <aura:attribute name="selectedEmailCC" type="String" default="" />
+    <aura:attribute name="showSpinner" type="Boolean" default="true" />
+    <aura:attribute name="uploadedFile" type="String" default="" />
+    <!-- Profile & Record Type -->
+    <aura:attribute name="recordType" type="String" default="" />
+    <aura:attribute name="profile" type="String" default="TOP" />
+    <!-- Alert Message -->
+    <aura:attribute name="showAlert" type="Boolean" default="false" />
+    <aura:attribute name="alertMessage" type="String" />
+    <!-- Picklist Variable -->
+    <aura:attribute name="picklistOptions" type="String[]" default="['Pass','Waive','Not Pass']" />
+    <!-- <aura:attribute name="selectedHasCOI" type="String" default="" />
+    <aura:attribute name="selectedHasMDA" type="String" default="" />
+    <aura:attribute name="selectedHasAuditFnc" type="String" default="" />
+    <aura:attribute name="selectedHasShrHolder" type="String" default="" />
+    <aura:attribute name="selectedHasCertVat" type="String" default="" />
+    <aura:attribute name="selectedHasRegIssue" type="String" default="" />
+    <aura:attribute name="selectedHasPowerAtn" type="String" default="" />
+    <aura:attribute name="selectedHasDoc" type="String" default="" /> -->
+    <aura:attribute name="metaDocList" type="CTRDocumentMaster__mdt[]" default="[]" />
+    <aura:attribute name="requiredDocList" type="List" default="[]" />
+    <aura:attribute name="selectedDocObj" type="Map" default="{}" />
+
+    <aura:attribute name="TRCRHead" type="String" default="" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:html tag="style">
+        .backgroundSpinner{
+        background: rgba(0, 0, 0, 0) !important;
+        }
+        .modal-body {
+        <!-- background: rgba(0, 0, 0, 0) !important; -->
+        box-shadow: none !important;
+        }
+        .closeIcon {
+        display:none !important;
+        }
+        .desktop {
+        overflow: visible !important;
+        }
+        .slds-modal__content {
+        overflow-y: auto !important;
+        height: unset !important;
+        max-height: 80% !important;
+        }
+        .slds-modal__container {
+        width: 100% !important;
+        max-width: 60% !important;
+        height: 100% !important;
+        overflow: hidden !important;
+        }
+        .cuf-content {
+        padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+        padding: 0rem !important;
+        }
+        .slds-modal {
+        padding-top: 3% !important;
+        max-width: 100% !important;
+        }
+    </aura:html>
+
+    <aura:if isTrue="{!v.isModalOpen}">
+
+        <lightning:recordEditForm recordId="{!v.recordId}" objectApiName="CTRRequestFormItem__c"
+            onsubmit="{!c.onClickSave}">
+
+            <div>
+                <section role="dialog" aria-labelledby="modal-heading-01" aria-modal="true"
+                    class="slds-modal slds-fade-in-open slds-modal_small" style="overflow:hidden;">
+
+                    <!-- Modal Header -->
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Document Checklist
+                        </h2>
+                    </header>
+
+                    <!-- Modal Body -->
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <aura:if isTrue="{!v.showSpinner}">
+                            <lightning:spinner size="large" variant="brand" />
+                        </aura:if>
+                        <div class="slds-var-m-top_medium slds-var-m-bottom_x-large" style="background-color: white;">
+                            <div class="slds-grid slds-wrap">
+
+                                <aura:if isTrue="{!v.showAlert}">
+                                    <div class="slds-modal slds-fade-in-open">
+                                        <div class="slds-modal__container">
+                                            <div class="slds-modal__header">
+                                                <h2 class="slds-text-heading_medium">Save Success</h2>
+                                            </div>
+                                            <div class="slds-modal__content slds-p-around_medium">
+                                                <div class="slds-align_absolute-center">
+                                                    <h2>{!v.alertMessage}</h2>
+                                                </div>
+                                            </div>
+                                            <div class="slds-modal__footer">
+                                                <div class="slds-grid slds-grid_align-center">
+                                                    <button type="button" class="slds-button slds-button_neutral"
+                                                        onclick="{!c.onClickBack}">Done</button>
+                                                    <button type="button" class="slds-button slds-button_brand"
+                                                        onclick="{!c.onClickReqDoc}">Request More Document</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-backdrop slds-backdrop_open"></div>
+                                </aura:if>
+
+                                <!-- Conterparty Information -->
+                                <div class="slds-section slds-is-open" aura:id="requestDocumentSection">
+                                    <h3 class="slds-section__title">
+                                        <button type="button" aria-controls="requestDocumentDetail" aria-expanded="true"
+                                            class="slds-button slds-section__title-action"
+                                            data-auraid="requestDocumentSection" onclick="{!c.handleToggleSection}">
+                                            <lightning:icon iconName="utility:switch" alternativeText="switch" title=""
+                                                size="x-small"
+                                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                            <span class="slds-truncate">Require Document Checklist</span>
+                                        </button>
+                                    </h3>
+                                    <div class="slds-section__content" id="requestDocumentDetail">
+                                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+
+                                            <aura:iteration items="{!v.metaDocList}" var="doc" indexVar="idx">
+                                                <div
+                                                    class="{!(idx % 2 == 0 ? 'slds-p-right_medium' : 'slds-p-left_medium') + ' slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-bottom_x-small'}">
+                                                    <!-- <lightning:select aura:id="{!'doc_idx_'+idx}" name="{!'doc_idx_'+idx}"
+                                                        label="{!doc.Question__c}" value="{!doc.DefaultResult}" onchange="{!c.handleOnChangeDoc}" required="{!doc.IsRequired__c}">
+                                                        <option value="">None</option>
+                                                        <aura:iteration items="{!v.picklistOptions}" var="hasDocOption">
+                                                            <option value="{!hasDocOption}">{!hasDocOption}</option>
+                                                        </aura:iteration>
+                                                    </lightning:select> -->
+                                                    <div class="slds-form-element">
+                                                        <label class="slds-form-element__label" for="{!'doc_idx_'+idx}">
+                                                            <aura:if isTrue="{!doc.IsRequired__c}"><abbr
+                                                                    class="slds-required" title="required">*</abbr>
+                                                            </aura:if>
+                                                            {!doc.Question__c}
+                                                        </label>
+                                                        <div class="slds-form-element__control">
+                                                            <div class="slds-select_container">
+                                                                <select class="slds-select" aura:id="{!'doc_idx_'+idx}"
+                                                                    name="{!'doc_idx_'+idx}"
+                                                                    value="{!doc.DefaultResult}"
+                                                                    onchange="{!c.handleOnChangeDoc}">
+                                                                    <option value="">--None--</option>
+                                                                    <aura:iteration items="{!v.picklistOptions}"
+                                                                        var="hasDocOption">
+                                                                        <option value="{!hasDocOption}">{!hasDocOption}
+                                                                        </option>
+                                                                    </aura:iteration>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </aura:iteration>
+                                            <aura:if isTrue="{!v.metaDocList.length % 2 == 1}">
+                                                <div
+                                                    class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-bottom_x-small slds-p-left_medium">
+                                                </div>
+                                            </aura:if>
+                                            <!-- 
+                                            <div
+                                                class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-bottom_x-small slds-p-right_medium">
+                                                <label>Has Certificate of Incorporation (COI)</label>
+                                                <lightning:inputField aura:id="HasCOI__c" fieldName="HasCOI__c" variant="label-hidden" onchange="{! c.handleOnChange }"/>
+                                            </div>
+                                            <div
+                                                class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-bottom_x-small slds-p-left_medium">
+                                                <label>Has Memorandum of Association (MOA)</label>
+                                                <lightning:inputField aura:id="HasMOA__c" fieldName="HasMOA__c" variant="label-hidden" onchange="{! c.handleOnChange }"/>
+                                            </div>
+                                            <div
+                                                class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-bottom_x-small slds-p-right_medium">
+                                                <label>Has Audited Financial Statement for the last 3 years</label>
+                                                <lightning:inputField aura:id="hasAuditedFinalcial__c" fieldName="hasAuditedFinalcial__c"
+                                                    variant="label-hidden" onchange="{! c.handleOnChange }"/>
+                                            </div>
+                                            <div
+                                                class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-bottom_x-small slds-p-left_medium">
+                                                <label>Has List of the Shareholders (บจอ.5)</label>
+                                                <lightning:inputField aura:id="HasShareHolders__c" fieldName="HasShareHolders__c"
+                                                    variant="label-hidden" onchange="{! c.handleOnChange }"/>
+                                            </div>
+                                            <div
+                                                class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-bottom_x-small slds-p-right_medium">
+                                                <label>Has Certification of VAT Registration (ภพ.20 or ภพ.01 or
+                                                    ภพ.09)</label>
+                                                <lightning:inputField aura:id="HasCertofVATRegistration__c" fieldName="HasCertofVATRegistration__c"
+                                                    variant="label-hidden" onchange="{! c.handleOnChange }"/>
+                                            </div>
+                                            <div
+                                                class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-bottom_x-small slds-p-left_medium">
+                                                <aura:if
+                                                    isTrue="{!OR(or(v.profile == 'TOP',v.profile == 'LABIX'), v.profile == 'System Administrator')}">
+                                                    <label>Has Registration Issue by Ministry of Energy (นพ.104, นพ.105,
+                                                        นพ.106)</label>
+                                                    <lightning:inputField aura:id="HasRegistrationIssue__c" fieldName="HasRegistrationIssue__c"
+                                                        variant="label-hidden" onchange="{! c.handleOnChange }"/>
+                                                </aura:if>
+                                                <aura:if isTrue="{!v.profile == 'TX'}">
+                                                    <label>Has Power of Attorney (หนังสือมอบอำนาจ)</label>
+                                                    <lightning:inputField aura:id="HasPowerofAttorney__cTX" fieldName="HasPowerofAttorney__c"
+                                                        variant="label-hidden" onchange="{! c.handleOnChange }"/>
+                                                </aura:if>
+                                            </div>
+                                            <aura:if
+                                                isTrue="{!OR(or(v.profile == 'TOP',v.profile == 'LABIX'), v.profile == 'System Administrator')}">
+                                                <div
+                                                    class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-bottom_x-small slds-p-right_medium">
+                                                    <label>Has Power of Attorney (หนังสือมอบอำนาจ)</label>
+                                                    <lightning:inputField aura:id="HasPowerofAttorney__cTOP" fieldName="HasPowerofAttorney__c"
+                                                        variant="label-hidden" onchange="{! c.handleOnChange }"/>
+                                                </div>
+                                                <div
+                                                    class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-bottom_x-small slds-p-left_medium">
+                                                </div>
+                                            </aura:if> -->
+                                            <div
+                                                class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-bottom_x-small slds-p-right_medium">
+                                                <label>Has Other Document</label>
+                                                <lightning:inputField aura:id="HasOtherDocument__c"
+                                                    fieldName="HasOtherDocument__c" variant="label-hidden"
+                                                    onchange="{!c.handleOnChangeOther }" />
+                                            </div>
+                                            <div
+                                                class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-bottom_x-small slds-p-left_medium">
+                                                <label>List of Other Document</label>
+                                                <lightning:inputField aura:id="ListOtherDocument__c"
+                                                    fieldName="ListOtherDocument__c" variant="label-hidden" />
+                                            </div>
+                                            <!-- ============================= -->
+                                            <div
+                                                class="slds-col slds-size_1-of-3 slds-p-top_large slds-p-bottom_x-small">
+                                            </div>
+                                            <div
+                                                class="slds-col slds-size_1-of-3 slds-p-top_large slds-p-bottom_x-small">
+                                                <label>Require Document Completion</label>
+                                                <lightning:inputField fieldName="RequiredDocCompletion__c"
+                                                    variant="label-hidden" disabled="true"
+                                                    aura:id="RequiredDocCompletion__c" />
+                                            </div>
+                                            <div
+                                                class="slds-col slds-size_1-of-3 slds-p-top_large slds-p-bottom_x-small">
+                                            </div>
+                                            <!-- ============================= -->
+                                            <div
+                                                class="slds-col slds-size_1-of-3 slds-p-top_x-small slds-p-bottom_x-small">
+                                            </div>
+                                            <div
+                                                class="slds-col slds-size_1-of-3 slds-p-top_x-small slds-p-bottom_x-small">
+                                                <label>Checklist By</label>
+                                                <lightning:inputField fieldName="ChecklistBy__c" variant="label-hidden"
+                                                    disabled="true" aura:id="ChecklistBy__c" />
+                                            </div>
+                                            <div
+                                                class="slds-col slds-size_1-of-3 slds-p-top_x-small slds-p-bottom_x-small">
+
+                                            </div>
+                                            <!-- ============================= -->
+                                            <div
+                                                class="slds-col slds-size_1-of-3 slds-p-top_x-small slds-p-bottom_x-small">
+                                            </div>
+                                            <div
+                                                class="slds-col slds-size_1-of-3 slds-p-top_x-small slds-p-bottom_x-small">
+                                                <label>Checklist Date/Time</label>
+                                                <lightning:inputField fieldName="ChecklistDateTime__c"
+                                                    variant="label-hidden" disabled="true"
+                                                    aura:id="ChecklistDateTime__c" />
+
+                                            </div>
+                                            <div
+                                                class="slds-col slds-size_1-of-3 slds-p-top_x-small slds-p-bottom_x-small">
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- Modal Footer -->
+                    <footer class="slds-modal__footer">
+                        <div class="slds-grid slds-grid_align-center">
+                            <button type="cancel" class="slds-button slds-button_neutral"
+                                onclick="{!c.closeModal}">Cancel</button>
+
+                            <button type="submit" class="slds-button slds-button_brand">Save</button>
+
+                            <button type="button" class="slds-button slds-button_brand"
+                                onclick="{!c.onClickReqDoc}">Request
+                                More Document</button>
+                        </div>
+                    </footer>
+                </section>
+            </div>
+        </lightning:recordEditForm>
+    </aura:if>
+
+    <aura:if isTrue="{!v.isReqDoc}">
+        <c:CTRRequestDocument recordId="{!v.recordId}" isReqDoc="{!v.isReqDoc}" emailInfo="{!v.emailInfo}"
+            selectedEmailCC="{!v.selectedEmailCC}" showSpinner="{!v.showSpinner}" uploadedFile="{!v.uploadedFile}" />
+    </aura:if>
+
+</aura:component>

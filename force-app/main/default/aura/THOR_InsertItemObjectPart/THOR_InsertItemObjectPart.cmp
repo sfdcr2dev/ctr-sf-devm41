@@ -1,0 +1,348 @@
+<aura:component controller="THOR_ItemController" implements="force:appHostable,flexipage:availableForAllPageTypes,lightning:isUrlAddressable">
+    
+    <aura:attribute name="notificationId" type="String" access="global"/>
+    <aura:attribute name="itemId" type="String" access="global"/>
+
+    <aura:attribute name="buttonValue" type="String" access="global"/>
+
+    <aura:attribute name="objectPartOptions" type="List" default="[]"/>
+    <aura:attribute name="objectPartsFilteredAndSearched" type="List" default="[]"/>
+    <aura:attribute name="objectPartValue" type="String" default="" access="global"/>
+    <aura:attribute name="objectPartTextValue" type="String" default="" access="global"/>
+    <aura:attribute name="objectPartCodeGroupModal" type="Boolean" default="false" access="global"/>
+
+    <aura:attribute name="objectPartCodeOptions" type="List" default="[]"/>
+    <aura:attribute name="objectPartCodesFilteredAndSearched" type="List" default="[]"/>
+    <aura:attribute name="objectPartCodeValue" type="String" default="" access="global"/>
+    <aura:attribute name="objectPartCodeModal" type="Boolean" default="false" access="global"/>
+
+    <aura:attribute name="objectPartCodeTextValue" type="String" default="" access="global"/>
+
+    <aura:attribute name="damageCodeGroupOptions" type="List" default="[]"/>
+    <aura:attribute name="damageCodeGroupsFilteredAndSearched" type="List" default="[]"/>
+    <aura:attribute name="damageCodeGroupValue" type="String" default="" access="global"/>
+    <aura:attribute name="damageCodeGroupTextValue" type="String" default="" access="global"/>
+    <aura:attribute name="damageCodeGroupModal" type="Boolean" default="false" access="global"/>
+
+    <aura:attribute name="damageCodeOptions" type="List" default="[]"/>
+    <aura:attribute name="damageCodesFilteredAndSearched" type="List" default="[]"/>
+    <aura:attribute name="damageCodeValue" type="String" default="" access="global"/>
+    <aura:attribute name="damageCodeModal" type="Boolean" default="false" access="global"/>
+
+    <aura:attribute name="damageCodeTextValue" type="String" default="" access="global"/>
+    
+    <lightning:notificationsLibrary aura:id="notifLib"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <lightning:navigation aura:id="navLink"/>
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.handleRefresh}" />
+
+    <div class="slds-p-around_medium custom-box" style="background-color: white; margin: 1em; box-shadow: 0 2px 2px 0 #cccccc;">
+      <!--
+      <button class="back-button" onclick="{!c.navigateBack}">
+        <span>&#8249;</span>
+      </button>
+      -->
+      <!--
+        <lightning:buttonIcon
+					class="slds-p-horizontal_large"
+					size="large"
+					variant="border-filled"
+					iconName="utility:chevronleft"
+					onclick="{!c.navigateBack}"
+				/>
+      -->
+        <!--Path start-->
+        <div class="slds-path">
+            <div class="slds-grid slds-path__track">
+              <div class="slds-grid slds-path__scroller-container">
+                <div class="slds-path__scroller" role="application">
+                  <div class="slds-path__scroller_inner">
+                    <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                      <li class="slds-path__item slds-is-current slds-is-active" role="presentation">
+                        <a aria-selected="true" class="slds-path__link" href="javascript:void(0);" id="path-1" role="option" tabindex="0">
+                          <span class="slds-path__stage">
+                            <span class="slds-assistive-text">Current Stage:</span>
+                          </span>
+                          <span>Object Part</span>
+                        </a>
+                      </li>
+                      <li class="slds-path__item slds-is-incomplete" role="presentation">
+                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-2" role="option" tabindex="-1">
+                          <span>Cause</span>
+                        </a>
+                      </li>
+                      <li class="slds-path__item slds-is-incomplete" role="presentation">
+                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-3" role="option" tabindex="-1">
+                          <span>Activity</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!--Path ends-->
+        <div class="slds-p-around_medium">
+          <!--
+            <h2>INSERT ITEM</h2>
+          -->
+        </div>
+        <lightning:recordEditForm aura:id="itemForm" density="comfy" objectApiName="Item__c" onsuccess="{!c.handleSuccess}">
+            <lightning:layout multipleRows="true" verticalAlign="stretch">
+                <lightning:inputField class="hideElement" fieldName="Notification__c" value="{!v.notificationId}" disabled="true"/>
+                <lightning:inputField class="hideElement" fieldName="Integration_Flag__c" value="Created" disabled="true"/>
+                <lightning:layoutItem size="3" flexibility="auto" padding="around-small" class="custom-box-left">
+                  <aura:if isTrue="{!v.objectPartValue}">
+                    <lightning:inputField value="{!v.objectPartValue}" onchange="{!c.clearObjectPartValue}" fieldName="Object_Part_Code_Group__c" required="true" />
+                    <aura:set attribute="else">
+                      <lightning:input aura:id="lightningInputObjectPartCodeGroup" onfocus="{!c.openObjectPartCodeGroupModal}" label="Object Part Code Group" required="true"/>
+                    </aura:set>
+                  </aura:if>
+                </lightning:layoutItem >
+                <lightning:layoutItem size="9" flexibility="auto" padding="around-small" class="custom-box-right">
+                    <label class="slds-form-element__label slds-no-flex">Object Part Code Group Text</label>
+                    <lightning:input disabled="true" label="" variant="label-hidden" value="{!v.objectPartTextValue}"/>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="3" flexibility="auto" padding="around-small" class="custom-box-left">
+                  <aura:if isTrue="{!v.objectPartCodeValue}">
+                    <lightning:inputField value="{!v.objectPartCodeValue}" onchange="{!c.clearObjectPartCodeValue}" fieldName="Object_Part__c" />
+                    <aura:set attribute="else">
+                  <lightning:input aura:id="lightningInputObjectPartCode" onfocus="{!c.openObjectPartCodeModal}" label="Object Part Code"/>
+                    </aura:set>
+                  </aura:if>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="9" flexibility="auto" padding="around-small" class="custom-box-right">
+                    <lightning:inputField disabled="true" value="{!v.objectPartCodeTextValue}" fieldName="Object_Part_Code_Text__c"/>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="3" flexibility="auto" padding="around-small" class="custom-box-left">
+                  <aura:if isTrue="{!v.damageCodeGroupValue}">
+                    <lightning:inputField value="{!v.damageCodeGroupValue}" onchange="{!c.clearDamageValue}" fieldName="Damage_Code_Group__c" />
+                    <aura:set attribute="else">
+                  <lightning:input aura:id="lightningInputDamageCodeGroup" onfocus="{!c.openDamageCodeGroupModal}" label="Damage Code Group"/>
+                    </aura:set>
+                  </aura:if>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="9" flexibility="auto" padding="around-small" class="custom-box-right">
+                    <label class="slds-form-element__label slds-no-flex">Damage Code Group Text</label>
+                    <lightning:input disabled="true" label="" variant="label-hidden" value="{!v.damageCodeGroupTextValue}"/>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="3" flexibility="auto" padding="around-small" class="custom-box-left">
+                  <aura:if isTrue="{!v.damageCodeValue}">
+                    <lightning:inputField value="{!v.damageCodeValue}" onchange="{!c.clearDamageCodeValue}" fieldName="Damage__c" />
+                    <aura:set attribute="else">
+                  <lightning:input aura:id="lightningInputDamageCode" onfocus="{!c.openDamageCodeModal}" label="Damage Code"/>
+                    </aura:set>
+                  </aura:if>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="9" flexibility="auto" padding="around-small" class="custom-box-right">
+                  <label class="slds-form-element__label" for="form-element-01">Damage Code Text</label>
+                    <lightning:inputField disabled="true" value="{!v.damageCodeTextValue}" fieldName="DamageText__c" variant="label-hidden"/>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                    <lightning:inputField fieldName="Text__c"/>
+                </lightning:layoutItem>
+             </lightning:layout>
+             <lightning:layout multipleRows="true" verticalAlign="stretch">
+              <lightning:layoutItem size="12" flexibility="auto">
+                <lightning:button class="slds-m-top_medium slds-float_left" label="Back" onclick="{!c.navigateBack}" />
+                <lightning:button
+                    class="slds-m-top_medium slds-float_right"
+                    label="Next"
+                    value="Next"
+                    onclick="{!c.handleSubmit}"
+                />
+                <lightning:button
+                    class="slds-m-top_medium slds-float_right"
+                    label="Save"
+                    value="Save"
+                    onclick="{!c.handleSubmit}"
+                />
+                <c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+            </lightning:layoutItem>
+        </lightning:layout>
+        </lightning:recordEditForm>
+    </div>
+
+    <!-- Object Part Code Group Modal -->
+    <aura:if isTrue="{!v.objectPartCodeGroupModal}">
+            
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModel }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Object Part Code Group</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                      <!--Search Bar Start-->
+                      
+                        <lightning:layout verticalAlign="center">
+                          <lightning:layoutitem size="10" flexibility="auto" class="slds-p-bottom_small">
+                            <div onkeyup="{! c.handleOnKeyUpObjectPartCodeGroup }">
+                              <lightning:input
+                                  aura:id="enter-search-objectPartCodeGroup"
+                                  name="enter-search-objectPartCodeGroup"
+                                  label="Search for Object Part Code Group"
+                                  type="search"          
+                              />  
+                            </div>
+                          </lightning:layoutitem>
+                        <lightning:layoutitem size="2" flexibility="auto">           
+                          <lightning:button class="slds-p-left_x-large slds-p-top_small" variant="bare" title="Search" label="Search" onclick="{!c.handleObjectPartCodeGroupSearch}"/>         
+                        </lightning:layoutitem>
+                      </lightning:layout>
+
+                     <!--Search Bar End-->         
+                        <aura:iteration items="{!v.objectPartsFilteredAndSearched}" var="item" >
+                          <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                            <lightning:button variant="base" name="{!item.Description__c}" value="{!item.Id}" label="{!item.Name + ' ' + item.Description__c}" onclick="{! c.selectObjectPartCodeGroup }"/>
+                          </lightning:layoutItem>
+                        </aura:iteration>              
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+
+        <!-- Object Part Code Modal -->
+    <aura:if isTrue="{!v.objectPartCodeModal}">
+            
+      <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+          <div class="slds-modal__container">
+              
+              <header class="slds-modal__header">
+                  <lightning:buttonIcon iconName="utility:close"
+                                        onclick="{! c.closeModel }"
+                                        alternativeText="close"
+                                        variant="bare-inverse"
+                                        class="slds-modal__close"/>
+
+                  <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Object Part Code</h2>   
+              </header>
+              
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <!--Search Bar Start-->
+                <lightning:layout verticalAlign="center">
+                          <lightning:layoutitem size="10" flexibility="auto" class="slds-p-bottom_small">
+                            <div onkeyup="{! c.handleOnKeyUpObjectPartCode}">
+                              <lightning:input
+                                aura:id="enter-search-objectPartCode"
+                                name="enter-search-objectPartCode"
+                                label="Search for Object Part Code"
+                                type="search"         
+                              />  
+                            </div>
+                          </lightning:layoutitem>
+                        <lightning:layoutitem size="2" flexibility="auto">           
+                          <lightning:button class="slds-p-left_x-large slds-p-top_small" variant="bare" title="Search" label="Search" onclick="{!c.handleObjectPartCodeSearch}"/>         
+                        </lightning:layoutitem>
+                  </lightning:layout>
+                 <!--Search Bar End-->
+                 <aura:iteration items="{!v.objectPartCodesFilteredAndSearched}" var="item" >
+                      <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                        <lightning:button variant="base" name="{!item.Description__c}" value="{!item.RelatedMasterMap2__c}" label="{!item.RelatedMasterMap2__r.Name + ' ' + item.Description__c}" onclick="{! c.selectObjectPartCode }"/>
+                      </lightning:layoutItem>
+                  </aura:iteration> 
+              </div>
+          </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open"></div>
+  </aura:if>
+
+  <!-- Damage Code Group Modal -->
+  <aura:if isTrue="{!v.damageCodeGroupModal}">
+            
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            
+            <header class="slds-modal__header">
+                <lightning:buttonIcon iconName="utility:close"
+                                      onclick="{! c.closeModel }"
+                                      alternativeText="close"
+                                      variant="bare-inverse"
+                                      class="slds-modal__close"/>
+
+            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Damage Code Group</h2>
+
+            </header>
+            
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <!--Cause Search Bar Start-->
+                        <lightning:layout verticalAlign="center">
+                          <lightning:layoutitem size="10" flexibility="auto" class="slds-p-bottom_small">
+                            <div onkeyup="{! c.handleOnKeyUpDamageCodeGroup }">
+                              <lightning:input
+                                aura:id="enter-search-damageCodeGroup"
+                                name="enter-search-damageCodeGroup"
+                                label="Search for Damage Code Group"
+                                type="search"         
+                              />  
+                            </div>
+                          </lightning:layoutitem>
+                        <lightning:layoutitem size="2" flexibility="auto">           
+                          <lightning:button class="slds-p-left_x-large slds-p-top_small" variant="bare" title="Search" label="Search" onclick="{!c.handleDamageCodeGroupSearch}"/>         
+                        </lightning:layoutitem>
+                      </lightning:layout>
+                        <!--Cause Search Bar End-->
+              <aura:iteration items="{!v.damageCodeGroupsFilteredAndSearched}" var="item" >
+                  <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                    <lightning:button variant="base" name="{!item.Description__c}" value="{!item.Id}" label="{!item.Name + ' ' + item.Description__c}" onclick="{! c.selectDamageCodeGroup }"/>
+                  </lightning:layoutItem>
+              </aura:iteration>  
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</aura:if>
+
+  <!-- Damage Code Modal -->
+  <aura:if isTrue="{!v.damageCodeModal}">
+            
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            
+            <header class="slds-modal__header">
+                <lightning:buttonIcon iconName="utility:close"
+                                      onclick="{! c.closeModel }"
+                                      alternativeText="close"
+                                      variant="bare-inverse"
+                                      class="slds-modal__close"/>
+                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Damage Code</h2>
+            </header>
+            
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+              <!--Cause Search Bar Start-->
+              <lightning:layout verticalAlign="center">
+                          <lightning:layoutitem size="10" flexibility="auto" class="slds-p-bottom_small">
+                            <div onkeyup="{! c.handleOnKeyUpDamageCode }">
+                              <lightning:input
+                                aura:id="enter-search-damagePartCode"
+                                name="enter-search-damagePartCode"
+                                label="Search for Damage Code"
+                                type="search"
+                              />  
+                            </div>
+                          </lightning:layoutitem>
+                        <lightning:layoutitem size="2" flexibility="auto">           
+                          <lightning:button class="slds-p-left_x-large slds-p-top_small" variant="bare" title="Search" label="Search" onclick="{!c.handleDamageCodeSearch}"/>         
+                        </lightning:layoutitem>
+                </lightning:layout>
+
+              <!--Cause Search Bar End-->
+              <aura:iteration items="{!v.damageCodesFilteredAndSearched}" var="item" >
+                  <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                    <lightning:button variant="base" name="{!item.Description__c}" value="{!item.RelatedMasterMap2__c}" label="{!item.RelatedMasterMap2__r.Name + ' ' + item.Description__c}" onclick="{! c.selectDamageCode }"/>
+                  </lightning:layoutItem>
+              </aura:iteration>  
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</aura:if>
+</aura:component>

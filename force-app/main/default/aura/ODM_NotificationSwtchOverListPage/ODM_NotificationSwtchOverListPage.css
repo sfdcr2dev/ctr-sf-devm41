@@ -1,0 +1,122 @@
+.THIS {
+	padding: 6px;
+}
+
+.THIS .page-header {
+	background: linear-gradient(0.25turn, #ff8484, #f75c55);
+	box-shadow: 0px 0px 2px #f75c55;
+	color: white;
+	font-weight: bold;
+	padding: 15px;
+	border-radius: 12px
+}
+
+.THIS .page-header > div:nth-child(2) {
+	text-align: right;
+	font-size: 2.5rem;
+}
+
+.THIS .slds-box {
+	background-color: #ffffff;
+}
+
+.THIS .icon-type {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #dde5ff;
+    border-radius: 20px;
+    background: #dde5ff;
+    color: black;
+    font-size: 18px;
+    padding: 6px;
+    text-align: center;
+}
+
+@media (max-width: 602px) {
+	.THIS {
+		padding: 6px;
+	}
+
+	.THIS .pagination button {
+		padding-left: 8px;
+		padding-right: 8px;
+	}
+}
+
+/*
+.THIS.header_container .thaioil_logo {
+	width: 12rem !important;
+	height: 100% !important;
+}
+
+.THIS.container.slds-card {
+	border-radius: 10px
+}
+
+.THIS.container.slds-card .slds-card__header-title .slds-text-heading_small {
+	font-size: var(--lwc-fontSize5, 1rem);
+	font-weight: normal !important;
+}
+
+.THIS.container .header__label {
+	background-color: #dddbda;
+	font-weight: 700;
+}
+
+.THIS.container.slds-card .slds-card__body {
+	background-color: #e8f2f4;
+	margin-bottom: 0;
+}
+
+.THIS.container.slds-card .slds-card__footer {
+	background-color: #ffffff;
+	margin-top: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.THIS.container .slds-box {
+	background-color: #fff !important;
+}
+
+.THIS.container .slds-box:hover {
+	background-color: #f7f7f7 !important;
+}
+
+@media (max-width: 602px) {
+    .THIS .thaioil_logo {
+    	display: none;    
+    }
+
+	.THIS.container .header__label p {
+		padding-top: 5px !important;
+		padding-bottom: 5px !important;
+		font-size: 0.875rem;
+	}
+
+    .THIS.container .slds-button {
+        --slds-c-button-line-height: 2rem;
+        font-size: 0.875rem;
+    }
+
+	.THIS.container .box-detail,
+	.THIS.container .header__label p {
+		font-size: 0.75rem;
+	}
+	
+	.THIS.container.slds-card .slds-card__header-title .slds-text-heading_small {
+		font-size: 0.875rem;
+	}
+
+	.THIS.container.slds-card__body .slds-box {
+		font-size: var(--lwc-fontSize4, 0.875rem);
+		padding-top: 0.5em !important;
+		padding-bottom: 0.5em !important;
+	}
+
+	.THIS.container.slds-card .slds-card__footer button {
+		font-size: var(--lwc-fontSize5, 1rem);
+		font-weight: bold !important;
+	}
+}
+*/

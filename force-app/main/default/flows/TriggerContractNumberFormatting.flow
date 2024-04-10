@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <formulas>
+        <name>contractNumberFormat</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.SalesOrganization__c}) &amp;&quot;-&quot;&amp; UPPER(TEXT({!$Record.ContractType__c})) &amp;&quot;-&quot;&amp; {!$Record.SoldTo__r.AccountNumber__c} &amp;&quot;-&quot;&amp; TRIM(right({!$Record.Name}, (LEN({!$Record.Name}) - 4)))</expression>
+    </formulas>
+    <interviewLabel>Trigger: Contract Number Formatting {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Trigger: Contract Number Formatting</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>updateContractNumber</name>
+        <label>updateContractNumber</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>ContractNumber__c</field>
+            <value>
+                <elementReference>contractNumberFormat</elementReference>
+            </value>
+        </inputAssignments>
+        <object>C360_Contract__c</object>
+    </recordUpdates>
+    <startElementReference>updateContractNumber</startElementReference>
+    <status>Active</status>
+</Flow>

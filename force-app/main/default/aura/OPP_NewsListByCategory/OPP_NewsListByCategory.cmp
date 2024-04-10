@@ -1,0 +1,37 @@
+<!--c:OPP_NewsListByCategory-->
+<aura:component controller="OPP_NewsController"
+                implements="flexipage:availableForAllPageTypes"
+                access="global">
+
+    <aura:attribute name="category" type="String" default="Highlight" />
+    <aura:attribute name="news" type="OPP_News__c[]" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:handler event="c:OPP_NewsCategoryChangedEvent" action="{!c.handleNewsCategoryChangedEvent}" />
+
+    <lightning:navigation aura:id="navigation"/>
+
+    <lightning:card>
+        <p class="slds-p-horizontal_small">{!v.category}</p>
+        <aura:iteration items="{!v.news}" var="item">
+            <div class="{!item.OPP_News_Coin__r ? 'slds-p-horizontal_small slds-p-top_small news-isread': 'slds-p-horizontal_small slds-p-top_small'}" data-record-id="{!item.Id}">
+                <a onclick="{!c.readNews}" data-record-id="{!item.Id}" class="slds-box slds-box_link slds-box_x-small slds-media">
+                    <div class="news-thumbnail-wrapper slds-media__figure slds-media__figure_fixed-width slds-align_absolute-center slds-m-left_xx-small" data-record-id="{! item.Id }">
+                        <span class="slds-icon_container slds-icon-utility-knowledge_base">
+                            <img src="{!item.Thumbnail__c}" data-record-id="{!item.Id}"></img>
+                        </span>
+                    </div>
+                    <div class="slds-media__body slds-border_left slds-p-around_small" data-record-id="{!item.Id}">
+                        <lightning:badge label="{!item.Category__c}"/>
+                        <lightning:icon class="slds-p-left_x-small" iconName="utility:moneybag" size="small" alternative-text="Coin" title="Coin" variant="warning"></lightning:icon>
+                        <h3 class="slds-text-heading_small slds-p-top_x-small slds-line-clamp_small" title="{!item.Title__c}" data-record-id="{!item.Id}">{!item.Title__c}</h3>
+                        <p class="slds-m-top_small">
+                            <lightning:formattedDateTime value="{!item.Publish_Date__c}" year="numeric" month="numeric" day="numeric" />
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </aura:iteration>
+    </lightning:card>
+
+</aura:component>

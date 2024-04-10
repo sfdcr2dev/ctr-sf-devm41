@@ -1,0 +1,122 @@
+.THIS .activeDiv {
+    width:100%;
+    height:42px;
+    background-color:white;
+    color:green;
+    font-size:18px;
+    font-weight:900;
+    font-family:inherit;
+    margin: auto;
+  	padding-top: 5px;
+    border-radius: 5px;
+}
+
+.THIS .activeButton {
+    background-color: red ;
+    color: white; /* #1B5200; */
+    width:30%;
+    border-color: red ; 
+    margin-left:30px;
+    font-weight:400;
+    font-size:13px;
+}
+
+.THIS .activeDisableButton {
+    background-color: #ecebea ;
+    color: #919191; /* #1B5200; */
+    width:30%;
+    border-color: #ecebea ; 
+    margin-left:30px;
+    font-weight:400;
+    font-size:13px;
+}
+
+.THIS .expiredDiv {
+    width:100%;
+    height:42px;
+    background-color:white;
+    color:red;
+    font-size:18px;
+    font-weight:900;
+    font-family:inherit;
+    margin: auto;
+  	padding-top: 5px;
+    border-radius: 5px;
+}
+
+.THIS .expiredButton {
+    background-color: #ecebea ;
+    color: #919191 ; /* #1B5200; */
+    width:30%;
+    font-size:13px;
+    border-color: #ecebea ; 
+    margin-left:40px;
+    font-weight:400;
+}
+
+/* .THIS .activeButton::after {
+    content: "Expire";
+}
+
+.THIS .activeButton:hover {
+    background-color: red ;
+    color: white;
+    width:100%;
+    border-color: red ;  
+}
+
+.THIS .activeButton:hover::after {
+    content:"Expired Committee";
+} */
+
+.THIS .askToReviewButton {
+    background-color: #4094f9 ;
+    color: white; /* #1B5200; */
+    width:100%;
+    border-color: #4094f9 ; 
+}
+
+.THIS .askToReviewButton:hover {
+    background-color: #082f57 ;
+    color: white; /* #1B5200; */
+    width:100%;
+    border-color: #082f57 ;  
+}
+
+.THIS .disappointButton {
+    background-color: red;
+    color: white; /* #1B5200; */
+    width:49%;
+    border-color: red;
+}
+.THIS .disappointButton:hover {
+    background-color: #f78383; 
+    border-color: #f78383;
+    color: white;
+}
+
+.THIS .disableButton {
+    background-color: #ecebea; 
+    border-color: #ecebea;
+    color:#919191;
+    width:49%;
+}
+
+.THIS .cancelButton {
+    background-color: red; /* #DF1083 */
+    color: white; /* #1B5200; */
+    width:49%;
+    border-color: red;
+}
+.THIS .cancelButton:hover {
+    background-color: #f78383; 
+    border-color: #f78383;
+    color: white;
+}
+.THIS .customDiv {
+    background: var(--lwc-cardColorBackground,rgb(255, 255, 255));
+    padding: var(--lwc-varSpacingVerticalSmall,0.75rem) var(--lwc-varSpacingHorizontalMedium,1rem);
+    box-shadow: var(--lwc-cardShadow,0 2px 2px 0 rgba(0, 0, 0, 0.10));
+    border: var(--lwc-borderWidthThin,1px) solid var(--lwc-cardColorBorder,rgb(221, 219, 218));
+    border-radius: var(--lwc-borderRadiusMedium,0.25rem);
+}

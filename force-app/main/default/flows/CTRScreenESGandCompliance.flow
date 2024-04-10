@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Screen Flow to display ESG and Compliance Fields on Account</description>
+    <formulas>
+        <name>fxEnvironment</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK(TEXT({!getAccountRec.EnvironmentPolicy__c})), &quot;-&quot;, TEXT({!getAccountRec.EnvironmentPolicy__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>fxFailedtoSupply</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK(TEXT({!getAccountRec.HasFailedSupplyInLast3Years__c})), &quot;-&quot;, TEXT({!getAccountRec.HasFailedSupplyInLast3Years__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>fxGovernance</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK(TEXT({!getAccountRec.CorporateGovernancePolicy__c})), &quot;-&quot;, TEXT({!getAccountRec.CorporateGovernancePolicy__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>fxHasIssues</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK(TEXT({!getAccountRec.HasIssuesDuringThePast5Years__c})), &quot;-&quot;, TEXT({!getAccountRec.HasIssuesDuringThePast5Years__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>fxHumanRights</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK(TEXT({!getAccountRec.HumanRightsPolicy__c})), &quot;-&quot;, TEXT({!getAccountRec.HumanRightsPolicy__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>fxPayment</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK(TEXT({!getAccountRec.PaymentOverTheAmountOfUSD__c})), &quot;-&quot;, TEXT({!getAccountRec.PaymentOverTheAmountOfUSD__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>fxSafety</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK(TEXT({!getAccountRec.OccupationalHealthAndSafetyPolicy__c})), &quot;-&quot;, TEXT({!getAccountRec.OccupationalHealthAndSafetyPolicy__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>fxSanctionTarget</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK(TEXT({!getAccountRec.HasSanctionedTarget__c})), &quot;-&quot;, TEXT({!getAccountRec.HasSanctionedTarget__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>fxSocialResponsibility</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK(TEXT({!getAccountRec.SocialResponsibilityPolicy__c})), &quot;-&quot;, TEXT({!getAccountRec.SocialResponsibilityPolicy__c}))</expression>
+    </formulas>
+    <interviewLabel>CTRScreenESGandCompliance {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CTRScreenESGandCompliance</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>getAccountRec</name>
+        <label>getAccountRec</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>screenESGandCompliance</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>Account</object>
+    </recordLookups>
+    <screens>
+        <name>screenESGandCompliance</name>
+        <label>screenESGandCompliance</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>ESG_and_Compliance</name>
+            <fieldText>ESG and Compliance</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <startElementReference>getAccountRec</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

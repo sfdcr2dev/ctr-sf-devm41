@@ -1,0 +1,206 @@
+<aura:component controller="ODM_FilterController">
+	<aura:registerEvent name="fitlerEnhanceEvent" type="c:ODM_FilterEnhanceEvent" />
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<!-- <aura:attribute name="excludedFilter" type="String" default="" access="global" /> -->
+	<aura:attribute name="filterPage" type="String" default="" />
+	<aura:attribute
+		name="filterType"
+		type="Map"
+		default="{
+			'THOR_FilterHomeNotificationFrom': 'HomeNotification',
+			'THOR_FilterNotificationListFrom': 'Notification',
+			'THOR_FilterHomeOrderFrom': 'HomeOrder',
+			'THOR_FilterOrderListFrom': 'Order',
+			'THOR_FilterEQCCInprogressFrom': 'EQCC',
+			'THOR_FilterMyApprovalFrom': 'My Approval',
+			'THOR_FilterWorkClearanceListFrom': 'Work Clearance',
+			'ODM_NotificationFilter': 'ODM Notification',
+			'ODM_NotificationHomeFilter': 'ODM HomeNotification',
+			'ODM_NotificationSwitchOverFilter': 'ODM NotificationSwitchOver',
+			'ODM_WorkClearanceFilter': 'ODM WorkClearance',
+			'ODM_WorkClearanceInspectionFilter': 'ODM WorkClearance Inspection',
+			'ODM_WorkClearanceVerificationFilter': 'ODM WorkClearance Verification',
+
+		}"
+		access="private"
+	/>
+	<aura:attribute
+		name="titleType"
+		type="Map"
+		default="{
+			'THOR_FilterHomeNotificationFrom': 'Notification',
+			'THOR_FilterNotificationListFrom': 'Notification',
+			'THOR_FilterHomeOrderFrom': 'Order',
+			'THOR_FilterOrderListFrom': 'Order',
+			'THOR_FilterEQCCInprogressFrom': 'EQCC In Progress',
+			'THOR_FilterMyApprovalFrom': 'My Approval',
+			'THOR_FilterWorkClearanceListFrom': 'Work Clearance',
+			'ODM_NotificationFilter': 'Notification',
+			'ODM_NotificationHomeFilter': 'Notification',
+			'ODM_NotificationSwitchOverFilter': 'Notification',
+			'ODM_WorkClearanceFilter': 'Work Clearance',
+			'ODM_WorkClearanceInspectionFilter': 'PTW Inspection',
+			'ODM_WorkClearanceVerificationFilter': 'PTW Verification',
+
+		}"
+		access="private"
+	/>
+	<aura:method name="getFilterList" action="{!c.getFilterList}" />
+	<aura:method name="setFilterList" action="{!c.setFilterList}" />
+	<aura:method name="updateFilterList" action="{!c.updateFilterList}" />
+
+	<aura:attribute name="recordId" type="Id" access="private" />
+	<aura:attribute name="userId" type="Id" default="{!$SObjectType.CurrentUser.Id}" access="private" />
+	<aura:attribute name="filterMap" type="Map" default="{}" access="private" />
+	<aura:attribute name="formBody" type="Aura.Component[]" access="private" />
+	<aura:attribute name="filterDefault" type="Map" access="global" />
+
+	<aura:attribute name="title" type="String" default="" access="public" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isActive" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isShowModal" type="Boolean" default="false" access="private" />
+	<aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" access="private" />
+
+	<!-- <div class="container__filter"> -->
+		<div>
+		<lightning:button variant="brand" class="{!v.isActive ? 'btn-radius-1 active' : 'btn-radius-1'}" onclick="{!c.toggleModalFilter}">
+			Filter <lightning:icon class="{!v.isActive ? 'active' : ''}" iconName="utility:filterList" size="small" alternativeText="alternativeText" />
+		</lightning:button>
+	</div>
+
+	<aura:if isTrue="{! and(v.isShowModal, v.filterPage) }">
+		<aura:html tag="style">
+			div.windowViewMode-normal.oneContent {
+				{! and(v.isShowModal, or(v.formFactor == 'PHONE', v.formFactor == 'TABLET')) ? 'overflow: hidden !important;':''}
+			}
+		</aura:html>
+
+		<section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium">
+			<div class="slds-modal__container">
+				<header class="slds-modal__header">
+					<!-- slds-modal__header_empty -->
+					<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="{!c.toggleModalFilter}">
+						<lightning:icon variant="inverse" iconName="utility:close" alternativeText="Utility close" title="close" />
+					</button>
+					<h2 class="slds-modal__title slds-hyphenate">{!v.title}</h2>
+				</header>
+				<div class="slds-modal__content slds-p-around_medium slds-is-relative">
+					<aura:if isTrue="{!v.isLoading}">
+						<lightning:spinner alternativeText="Loading" size="medium" />
+					</aura:if>
+
+					<lightning:recordEditForm
+						density="comfy"
+						objectApiName="THOR_Filter__c"
+						recordId="{!v.recordId}"
+						onload="{!c.handleLoad}"
+						onsubmit="{!c.handleSubmit}"
+						onsuccess="{!c.handleSuccess}"
+						onerror="{!c.handleError}"
+					>
+						<lightning:inputField class="slds-hide" fieldName="User__c" value="{!v.userId}" />
+
+						<aura:if isTrue="{!v.formBody}">{!v.formBody}</aura:if>
+
+						<!-- Notification -->
+						<!-- <aura:if isTrue="{!v.filterPage == 'THOR_FilterHomeNotificationFrom'}">
+							<lightning:inputField
+								aura:id="Filter_type__c"
+								class="slds-hide"
+								fieldName="Filter_type__c"
+								value="{!v.filterType.THOR_FilterHomeNotificationFrom}"
+							/>
+							<c:THOR_FilterHomeNotificationFrom aura:id="filterForm" />
+						</aura:if>
+						<aura:if isTrue="{!v.filterPage == 'THOR_FilterNotificationListFrom'}">
+							<lightning:inputField
+								aura:id="Filter_type__c"
+								class="slds-hide"
+								fieldName="Filter_type__c"
+								value="{!v.filterType.THOR_FilterNotificationListFrom}"
+							/>
+							<c:THOR_FilterNotificationListFrom aura:id="filterForm" />
+						</aura:if>
+						<aura:if isTrue="{!v.filterPage == 'ODM_NotificationFilter'}">
+							<lightning:inputField
+								aura:id="Filter_type__c"
+								class="slds-hide"
+								fieldName="Filter_type__c"
+								value="{!v.filterType.ODM_NotificationFilter}"
+							/>
+							<c:ODM_NotificationFilter aura:id="filterForm" />
+						</aura:if> -->
+
+						<!-- Order -->
+						<!-- <aura:if isTrue="{!v.filterPage == 'THOR_FilterHomeOrderFrom'}">
+							<lightning:inputField
+								aura:id="Filter_type__c"
+								class="slds-hide"
+								fieldName="Filter_type__c"
+								value="{!v.filterType.THOR_FilterHomeOrderFrom}"
+							/>
+							<c:THOR_FilterHomeOrderFrom aura:id="filterForm" />
+						</aura:if>
+						<aura:if isTrue="{!v.filterPage == 'THOR_FilterOrderListFrom'}">
+							<lightning:inputField
+								aura:id="Filter_type__c"
+								class="slds-hide"
+								fieldName="Filter_type__c"
+								value="{!v.filterType.THOR_FilterOrderListFrom}"
+							/>
+							<c:THOR_FilterOrderListFrom aura:id="filterForm" />
+						</aura:if>
+						<aura:if isTrue="{!v.filterPage == 'THOR_FilterEQCCInprogressFrom'}">
+							<lightning:inputField
+								aura:id="Filter_type__c"
+								class="slds-hide"
+								fieldName="Filter_type__c"
+								value="{!v.filterType.THOR_FilterEQCCInprogressFrom}"
+							/>
+							<c:THOR_FilterEQCCInprogressFrom aura:id="filterForm" />
+						</aura:if>
+						<aura:if isTrue="{!v.filterPage == 'THOR_FilterMyApprovalFrom'}">
+							<lightning:inputField
+								aura:id="Filter_type__c"
+								class="slds-hide"
+								fieldName="Filter_type__c"
+								value="{!v.filterType.THOR_FilterMyApprovalFrom}"
+							/>
+							<c:THOR_FilterMyApprovalFrom aura:id="filterForm" />
+						</aura:if> -->
+
+						<!-- Work Clearance -->
+						<!-- <aura:if isTrue="{!v.filterPage == 'THOR_FilterWorkClearanceListFrom'}">
+							<lightning:inputField
+								aura:id="Filter_type__c"
+								class="slds-hide"
+								fieldName="Filter_type__c"
+								value="{!v.filterType.THOR_FilterWorkClearanceListFrom}"
+							/>
+							<c:THOR_FilterWorkClearanceListFrom aura:id="filterForm" />
+						</aura:if>
+						<aura:if isTrue="{!v.filterPage == 'ODM_WorkClearanceFilter'}">
+							<lightning:inputField
+								aura:id="Filter_type__c"
+								class="slds-hide"
+								fieldName="Filter_type__c"
+								value="{!v.filterType.ODM_WorkClearanceFilter}"
+							/>
+							<c:ODM_WorkClearanceFilter aura:id="filterForm" />
+						</aura:if> -->
+
+						<c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+						<!-- <c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButtonReset" type="reset" /> -->
+					</lightning:recordEditForm>
+				</div>
+				<!-- slds-modal__footer_directional -->
+				<footer class="slds-modal__footer">
+					<lightning:button label="Search" variant="brand" title="Neutral action" onclick="{!c.onSubmitFooter}" />
+					<lightning:button label="Clear" title="Neutral action" onclick="{!c.onClearFooter}" />
+				</footer>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</aura:if>
+</aura:component>

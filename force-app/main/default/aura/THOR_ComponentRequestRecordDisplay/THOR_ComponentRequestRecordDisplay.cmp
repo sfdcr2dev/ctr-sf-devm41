@@ -1,0 +1,79 @@
+<aura:component
+	implements="flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable"
+	access="global"
+	controller="THOR_CmpReqRecordDisplayController"
+>
+	<!-- ATTRIBUTES -->
+	<aura:attribute name="recordId" type="String" />
+	<aura:attribute name="componentRequest" type="Object" />
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.handleRefresh}" />
+
+	<!-- EVENTS -->
+	<aura:handler name="init" value="{!this}" action="{!c.doneRendering}" />
+	<!-- <aura:handler event="aura:doneRendering" action="{!c.doneRendering}" /> -->
+
+	<!-- BODY -->
+
+	<c:THOR_navigateBack />
+
+	<div class="slds-p-around_medium detail-page">
+		<div class="slds-p-around_small custom-box">COMPONENT REQUEST DETAIL</div>
+
+		<lightning:layout multipleRows="true" verticalAlign="stretch">
+			<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+				<label class="slds-form-element__label" for="of-MaterialNumber">Material Number</label>
+				<div class="slds-text-body_regular">{!v.componentRequest.Spare_Part__r.Material_Number__c}</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+				<label class="slds-form-element__label" for="of-Order">Order</label>
+				<div class="slds-text-body_regular">{!v.componentRequest.Order__r.Order_Number__c}</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+				<label class="slds-form-element__label" for="of-Description">Description</label>
+				<div class="slds-text-body_regular">{!v.componentRequest.Spare_Part__r.Material_Description__c}</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+				<label class="slds-form-element__label" for="of-Plant">Operation</label>
+				<div class="slds-text-body_regular">{!v.componentRequest.Order_Operation__r.Operation_Text__c}</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+				<label class="slds-form-element__label" for="of-Plant">Operation Short Text</label>
+				<div class="slds-text-body_regular">{!v.componentRequest.Order_Operation__r.Operation_Shot_Text__c}</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+				<label class="slds-form-element__label" for="of-Qty">Request Material Qty</label>
+				<div class="slds-text-body_regular">{!v.componentRequest.Request_Material_Quantity__c}</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+				<label class="slds-form-element__label" for="of-AvQty">Available Qty</label>
+				<div class="slds-text-body_regular">{!v.componentRequest.Spare_Part_Stock__r.Available_Quantity__c}</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+				<label class="slds-form-element__label" for="of-IC">IC</label>
+				<div class="slds-text-body_regular">{!v.componentRequest.IC__c}</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+				<label class="slds-form-element__label" for="of-BaseUnit">UM</label>
+				<div class="slds-text-body_regular">{!v.componentRequest.Spare_Part__r.Base_Unit__c}</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+				<label class="slds-form-element__label" for="of-Status">Status</label>
+				<div class="slds-text-body_regular">{!v.componentRequest.Request_Status__c}</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+				<label class="slds-form-element__label" for="of-Plant">Plant</label>
+				<div class="slds-text-body_regular">{!v.componentRequest.Plant__r.Code__c}</div>
+			</lightning:layoutItem>
+		</lightning:layout>
+	</div>
+</aura:component>

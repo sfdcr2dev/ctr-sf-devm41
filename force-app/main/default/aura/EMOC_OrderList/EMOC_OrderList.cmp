@@ -1,0 +1,37 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" controller="EMOC_OrderListController" access="global">
+	<lightning:navigation aura:id="navService" />
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="orders" type="Map" default="{}" access="private" />
+	<aura:attribute name="orders_length" type="Integer" default="0" access="private" />
+
+	<div class="order__container">
+		<lightning:layout multipleRows="true">
+			<lightning:layoutItem class="slds-p-vertical_small slds-p-bottom_small" padding="horizontal-small" size="12">
+				<div class="d-flex d-justify-space-between">
+					<h5 style="display: flex; align-items: center">Order List ({!v.orders_length})</h5>
+                    <!--({!v.orders_length})-->
+				</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem class="slds-p-bottom_small" padding="horizontal-small" size="12">
+				<lightning:card>
+					<div class="slds-p-around_x-small">
+						<aura:iteration items="{!v.orders}" var="o" indexVar="index">
+                            <div class="slds-box slds-box_small">
+                                <a data-record-id="{!o.Id}" href="javascript:void(0);" class="slds-text-link_reset" onclick="{!c.navigateToDisplay}">
+                                    <aura:if isTrue="{!o.Name}">
+                                        <p class="slds-text-link">{!o.Name}</p>
+                                    </aura:if>
+                                    <p>{! o.info }</p>
+                                    <aura:if isTrue="{!o.Description__c}">
+                                        <p class="slds-hyphenate">{! o.Description__c }</p>
+                                    </aura:if>
+                                </a>
+                            </div>
+						</aura:iteration>
+					</div>
+				</lightning:card>
+			</lightning:layoutItem>
+		</lightning:layout>
+	</div>
+</aura:component>

@@ -1,0 +1,86 @@
+/* .THIS .slds-button_brand {
+	background: #5c77cc;
+} */
+
+
+.THIS .btn-border-0 {
+	height: 36px;
+	padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.THIS lightning-input.ortl-lightning-input-checkbox {
+	width: 35px;
+}
+
+.THIS .btn-border-1 {
+	height: 36px;
+	padding-right: 10px;
+    padding-left: 10px;
+
+	border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    /* border-color: #5c77cc;
+
+    background: #5c77cc;
+    color: white; */
+    /* font-weight: 700; */
+    border-radius: 5px;
+}
+
+.THIS .btn-save {
+	margin-right: 0px;
+}
+
+.THIS .slds-card__header-title {
+	justify-content: center;
+	border-bottom: 1px solid rgb(201, 201, 201);
+}
+
+/* .THIS .slds-card__footer {
+	text-align: right;
+} */
+.THIS .slds-card__footer{
+	background-color: #f3f3f3
+}
+
+@media (max-width: 602px) {
+	.THIS {
+		height: 100%;
+	}
+	.THIS .slds-form-element__label,
+	.THIS .slds-card__footer button.slds-button {
+		font-size: 0.875rem !important;
+	}
+
+    .THIS .slds-button {
+        font-size: 0.9rem;
+    }
+
+	.THIS .slds-faux-input {
+		height: 2rem;
+	}
+
+	.THIS .slds-form-element__control,
+	.THIS .slds-form-element__static,
+	.THIS .slds-form-element__label {
+		font-size: 0.75rem;
+	}
+
+	.THIS .slds-input,
+    .THIS .slds-combobox__input,
+    .THIS .slds-listbox__option_plain {
+		font-size: 0.75rem;
+		line-height: 1.5rem;
+	}
+
+	.THIS .slds-input[type=date],
+	.THIS .slds-input[type=datetime-local],
+	.THIS .slds-input[type=month],
+	.THIS .slds-input[type=time] {
+		height: 1.5rem;
+	}
+}

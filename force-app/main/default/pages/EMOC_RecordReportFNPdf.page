@@ -1,0 +1,333 @@
+<apex:page renderAs="pdf" applyBodyTag="false" controller="EMOC_RecordReportFNPdf" standardStylesheets="false" applyHtmlTag="false" showHeader="false" docType="html-5.0">
+    <head>
+        <style>
+            @page{
+            size: A4 portrait;
+            width: 210mm;
+            height: 297mm;
+            //margin-top:395px;
+            margin-top:40px;
+            margin-bottom:40px; 
+            margin-left:15px;
+            margin-right:15px;
+            }  
+            
+            @page {
+            @top-center {
+            content: element(header);
+            vertical-align: top;
+            padding-left: 0px;
+            }
+            @bottom-center {
+            content: element(footer);
+            /*background-color: yellow;*/
+            vertical-align: top;
+            padding-left: 0px;
+            }
+            }
+            <!-->ฟ้อนที่สามารถใช้งานได้ monospace
+            Courier
+            Monospaced
+            DialogInput
+            serif
+            Times
+            sans-serif
+            SansSerif
+            Dialog
+            Arial Unicode MS<-->
+            body { 
+            font-family: 'Arial Unicode MS'; 
+            position: relative;
+            font-size: 10px;
+            }
+            
+            table {
+            border-collapse: collapse;
+            width: 100%;
+            }
+            div.header {
+            
+            padding: 5mm 0px 0px 0px;
+            position: running(header);
+            margin: center;
+            
+            }
+            div.footer {
+            position: running(footer);
+            } 
+            
+            .fontHeader {
+                font-family: 'SansSerif'; 
+                font-weight: bold;
+                font-size: 12px;
+                text-align: center;
+            }
+            
+            .fontSubHeader {
+            font-size: 12px;
+            }
+
+            .fontSecondHeader {
+            font-size:13px;
+            }
+            
+            .fontNoteSecond{
+            font-size:12px;
+            }
+            
+            .fontTitle {
+                font-family: 'SansSerif'; 
+                font-weight: bold;
+            }
+            
+            table {
+            border-collapse: collapse;
+            width: 100%;
+            }
+            
+            table, th, td {
+              border: 1px solid;
+            }
+            table .borderc tr,.borderc td, .borderc th{
+            border: 1px solid black; 
+            }
+            .fontTitle2 {
+                font-family: 'SansSerif'; 
+                font-weight: bold;
+                border-bottom: 0px;
+            }
+            
+            .fontDetail {
+                text-align:left;
+                padding-left : 20px;
+                white-space: pre-wrap;
+                border-top: 0px;
+            }
+            
+            .bgColor {
+            color: white;
+            background-color:  #ED1C24;
+            }
+
+            .underline{
+            text-decoration: underline;
+            }
+
+            .Arial{
+            font-family: 'Arial';
+            }
+            .whiteText{
+                color: white;
+            }
+            .boldText{
+                font-weight: bold;
+            }
+
+            .sub-table-head{
+                font-family: 'SansSerif'; 
+                font-weight: bold;
+                background-color:#bfdaf1;
+                text-align: center;
+            }
+            .numbers{
+                text-align: right;
+                padding-right: 2px;
+            }
+            .avoidPageBreak{
+                page-break-inside: avoid;
+            }
+            .margin-t20 {
+                margin-top:20px;
+            }
+            .sub-body {
+                white-space: pre-wrap;
+            }
+            .tableSub {
+            
+                border-top: 0px;
+                padding : 5px;
+            }
+
+        </style>
+    </head>
+    <body style="padding: 20px; margin: 20px;">
+        <div class="content"> 
+            <p class="fontHeader"><u>E-Functional Override Record Report</u></p>
+            <div>
+                <table  width="100%">
+                    <tr>
+                        <td width="20%" class="fontTitle"> E-FN No. </td>
+                        <td width="30%"> {!emocApp.Name} </td>
+                        <td width="20%" class="fontTitle"> Override Category </td>
+                        <td width="30%"> {!emocApp.FN_Category_Type__c} </td>
+                    </tr>
+                    <tr>
+                        <td width="20%" class="fontTitle"> Functional Location </td>
+                        <td width="30%"> {!emocApp.Functional_Location__r.Name} </td>
+                        <td width="20%" class="fontTitle"> FL Description </td>
+                        <td width="30%"> {!emocApp.Functional_Location_Description__c} </td>
+                    </tr>
+                    <tr>
+                        <td width="20%" class="fontTitle"> Main Work Center </td>
+                        <td width="30%"> {!emocApp.Main_Work_Center__c} </td>
+                        <td width="20%" class="fontTitle"> Requestor name </td>
+                        <td width="30%"> {!emocApp.Requestor_Name__r.Name} </td>
+                    </tr>
+                    <tr>
+                        <td width="20%" class="fontTitle"> Create Date </td>
+                        <td width="30%"> 
+                            <apex:outputText value="{0, date, dd/MM/yyyy}">
+                                <apex:param value="{!emocApp.CreatedDate}" /> 
+                            </apex:outputText>
+                        </td>
+                        <td width="20%" class="fontTitle"> Notification No. </td>
+                        <td width="30%"> {!emocApp.Notification_Number__c} </td>
+                    </tr>
+                    <tr>
+                        <td width="20%" class="fontTitle"> Require Start Date </td>
+                        <td width="30%"> 
+                            <apex:outputText value="{0, date, dd/MM/yyyy}">
+                                <apex:param value="{!emocApp.Start_date__c}" /> 
+                            </apex:outputText>
+                        </td>
+                        <td width="20%" class="fontTitle"> Require End Date </td>
+                        <td width="30%"> 
+                            <apex:outputText value="{0, date, dd/MM/yyyy}">
+                                <apex:param value="{!emocApp.End_date__c}" /> 
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="20%" class="fontTitle"> Initial RAM </td>
+                        <td width="30%"> {!emocApp.RAM_Total__c} </td>
+                        <td width="20%" class="fontTitle"> Final RAM </td>
+                        <td width="30%"> {!emocApp.RAM_Total_Final__c} </td>
+                    </tr>
+                    <tr>
+                        <td width="20%" class="fontTitle"> Workflow Status </td>
+                        <td width="30%"> {!emocApp.Status_Functional_Override__c} </td>
+                        <td width="20%" class="fontTitle"> Notification Status </td>
+                        <td width="30%"> {!emocApp.Notification_Status__c} </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="margin-t20">
+                 <table class="borderTable"  width="100%">
+                    <tr>
+                        <td width="100%" class="fontTitle2"> Reason of Work</td>
+                    </tr>
+                    <tr>
+                        <td width="100%" class="fontDetail" >
+                            <apex:outputText >
+                                <apex:outputPanel rendered="{!emocApp.Reason_of_Work__c != null}">{!emocApp.Reason_of_Work__c}</apex:outputPanel>
+                                <apex:outputPanel rendered="{!emocApp.Reason_of_Work__c == null}"> &nbsp;</apex:outputPanel>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="100%" class="fontTitle2"> Prelim Risk Assessment </td>
+                    </tr>
+                    <tr>
+                        <td width="100%" class="fontTitle2"> Potential Risk </td>
+                    </tr>
+                    <tr>
+                        <td width="100%" class="fontDetail" >
+                            <apex:outputText >
+                                <apex:outputPanel rendered="{!emocApp.Potential_Risk_c__c != null}">{!emocApp.Potential_Risk_c__c}</apex:outputPanel>
+                                <apex:outputPanel rendered="{!emocApp.Potential_Risk_c__c == null}"> &nbsp;</apex:outputPanel>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="100%" class="fontTitle2"> Additional Description of Potential risk </td>
+                    </tr>
+                    <tr>
+                        <td width="100%" class="fontDetail" >
+                            <apex:outputText >
+                                <apex:outputPanel rendered="{!emocApp.Other__c != null}">{!emocApp.Other__c}</apex:outputPanel>
+                                <apex:outputPanel rendered="{!emocApp.Other__c == null}"> &nbsp;</apex:outputPanel>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                     <tr>
+                         <td width="100%" class="fontTitle2"> Potential Consequence </td>
+                     </tr>
+                     <tr>
+                         <td width="100%" class="fontDetail" >
+                             <apex:repeat var="potential" value="{!PotentialConsequenceList}"> 
+                                 <apex:outputText >{!potential.Topic}</apex:outputText>
+                             </apex:repeat>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td width="100%" class="fontTitle2"> Additional Description of Potential consequence </td>
+                     </tr>
+                     <tr>
+                         <td width="100%" class="fontDetail" >
+                             <apex:repeat var="potential2" value="{!PotentialConsequenceList}"> 
+                                 <apex:outputText >{!potential2.Other}</apex:outputText>
+                             </apex:repeat>
+                         </td>
+                     </tr>
+                    
+                     <tr>
+                         <td width="100%" class="fontTitle2"> Mitigation/Precaution </td>
+                     </tr>
+                     <tr>
+                         <td width="100%" class="fontDetail" >
+                             <apex:repeat var="mitigation" value="{!MitigationPrecautionList}"> 
+                                 <apex:outputText >{!mitigation.Topic}</apex:outputText>
+                             </apex:repeat>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td width="100%" class="fontTitle2"> Additional Description of Mitigation/Precaution </td>
+                     </tr>
+                     <tr>
+                         <td width="100%" class="fontDetail" >
+                             <apex:repeat var="mitigation2" value="{!MitigationPrecautionList}"> 
+                                 <apex:outputText >{!mitigation2.Other}</apex:outputText>
+                             </apex:repeat>
+                         </td>
+                     </tr>
+                    <tr>
+                        <td width="100%" class="fontTitle2"> Approval History </td>
+                    </tr>
+                    <tr>
+                        
+                        <td width="100%" class="tableSub" >
+                            <apex:outputText >
+                                <table width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="sub-table-head" width="23%"> Step Name </th>
+                                            <th class="sub-table-head" width="15%"> Approver </th>
+                                            <th class="sub-table-head" width="22%"> Comments</th>
+                                            <th class="sub-table-head" width="10%"> Status </th>
+                                            <th class="sub-table-head" width="15%"> Date </th>
+                                            <th class="sub-table-head" width="15%"> Actual Approver </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat var="tableItem" value="{!tableApprovalHistory}"> 
+                                            <tr>
+                                                <td class="sub-body" width="23%"><span>{!tableItem.StepName}</span></td>
+                                                <td class="sub-body" width="15%" ><span>{!tableItem.Approver}</span></td>
+                                                <td class="sub-body" width="22%"><span>{!tableItem.Comments}</span></td>
+                                                
+                                                <td class="sub-body" width="10%"><span>{!tableItem.Status}</span></td>
+                                                <td class="sub-body" width="15%"><span>{!tableItem.CreatedDate}</span></td>
+                                                <td class="sub-body" width="15%" ><span>{!tableItem.ActualApprover}</span></td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</apex:page>

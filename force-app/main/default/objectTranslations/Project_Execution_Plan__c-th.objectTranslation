@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Step 4:Project Execution Plan and Permit</value>
+    </caseValues>
+    <fields>
+        <label><!-- Assigned User --></label>
+        <name>Assigned_User__c</name>
+        <relationshipLabel><!-- Step 4:Project Execution Plan and Permit --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- BE Plan Permit Created --></label>
+        <name>BE_Plan_Permit_Created__c</name>
+    </fields>
+    <fields>
+        <help><!-- Required --></help>
+        <label><!-- Execution Plan File --></label>
+        <name>Execution_Plan__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsWaitingForPreviousStep --></label>
+        <name>IsWaitingForPreviousStep__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Process --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- No --></label>
+        <name>No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project --></label>
+        <name>Project__c</name>
+        <relationshipLabel><!-- Step 4:Project Execution Plan and Permit --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Remark --></label>
+        <name>Remark__c</name>
+    </fields>
+    <fields>
+        <label><!-- SME --></label>
+        <lookupFilter>
+            <errorMessage><!-- Selected User is not SME. Please select SME user. --></errorMessage>
+            <informationalMessage><!-- Please select SME user. --></informationalMessage>
+        </lookupFilter>
+        <name>SME__c</name>
+        <relationshipLabel><!-- Step 4:Project Execution Plan and Permit --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Service Requisition --></label>
+        <name>Service_Requisition__c</name>
+        <picklistValues>
+            <masterLabel>E ( Engineering )</masterLabel>
+            <translation><!-- E ( Engineering ) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EP ( Engineering and Procurement )</masterLabel>
+            <translation><!-- EP ( Engineering and Procurement ) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EPC ( Engineering, Procurement and Construction )</masterLabel>
+            <translation><!-- EPC ( Engineering, Procurement and Construction ) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EPCm ( Engineering, Procurement and Construction Management )</masterLabel>
+            <translation><!-- EPCm ( Engineering, Procurement and Construction Management ) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Engineering and Procurement by Owner</masterLabel>
+            <translation><!-- Engineering and Procurement by Owner --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Submit Status --></label>
+        <name>Submit_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Waiting for Approve --></label>
+        <name>Waiting_for_Approve__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Process Status --></label>
+        <name>Work_Process_Status__c</name>
+    </fields>
+    <layouts>
+        <layout>Project Execution Plan Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว)</section>
+        </sections>
+        <sections>
+            <label><!-- Remark --></label>
+            <section>Remark</section>
+        </sections>
+        <sections>
+            <label><!-- Service Requisition --></label>
+            <section>Service Requisition</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Project Execution Plan Submit Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว)</section>
+        </sections>
+        <sections>
+            <label><!-- Remark --></label>
+            <section>Remark</section>
+        </sections>
+        <sections>
+            <label><!-- Service Requisition --></label>
+            <section>Service Requisition</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Step 4 : After Submit --></label>
+        <name>Step_4_After_Submit</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Step 4 : Before Submit --></label>
+        <name>Step_4_Before_Submit</name>
+    </recordTypes>
+</CustomObjectTranslation>

@@ -1,0 +1,73 @@
+<apex:page standardController="CG_Setting__c" extensions="CG_UploadFileController" lightningStylesheets="true">
+
+    <apex:form id="WholeForm" >
+        <apex:outputPanel id="UploadPanel">   
+            <apex:outputPanel rendered="{!isUploadEnable == true}">
+        
+                <apex:pageBlock title="Upload Multiple Attachment to Object">
+            
+                    <apex:pageBlockButtons location="bottom" >
+                        <apex:commandButton value="Upload" action="{!SaveAttachments}"/>
+                    </apex:pageBlockButtons>
+                    
+                    <apex:pageMessages id="MSG"/>
+                    <apex:actionFunction name="ChangeCount" action="{!ChangeCount}"/>
+                    
+                    <apex:pageblocksection >
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="How many files you want to upload?"/>
+                            <apex:selectList onchange="ChangeCount() ;" multiselect="false" size="1" value="{!FileCount}">
+                                <apex:selectOption itemLabel="--None--" itemValue="0"/>
+                                <apex:selectOptions value="{!filesCountList}"/>
+                            </apex:selectList>
+                        </apex:pageBlockSectionItem>  
+                    </apex:pageblocksection>
+                    
+                    <apex:outputPanel rendered="{!isShowGuide}" style="margin-left:45px;font-size:10px;color:red;">
+                        ** หมายเหตุ <br/>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!isShowGuide}" style="margin-left:45px;font-size:10px;color:red;">
+                        1.การแนบเอกสารคู่มือภาษาไทยเวอร์ชันใหม่โดยใช้รูปแบบชื่อไฟล์ XXXX_TH <br/>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!isShowGuide}" style="margin-left:45px;font-size:10px;color:red;">
+                        2.การแนบเอกสารคู่มือภาษาอังกฤษเวอร์ชันใหม่โดยใช้รูปแบบชื่อไฟล์ XXXX_EN 
+                    </apex:outputPanel>
+                    
+                    <apex:pageBlockSection title="Select Files" rendered="{!IF(FileCount != null && FileCount != '' && FileCount != '0', true , false)}">
+                        <apex:repeat value="{!allFileList}" var="AFL">
+                            <apex:inputfile value="{!AFL.body}" filename="{!AFL.Name}" />
+                        </apex:repeat>
+                    </apex:pageBlockSection>
+                
+                </apex:pageBlock>
+            </apex:outputPanel>
+            
+            <apex:outputPanel rendered="{!UploadedSize > 0}">
+                <apex:pageBlock title="Existing File">
+                    <apex:pageblocksection collapsible="false" columns="1">
+                        <apex:pageBlockSectionItem dataStyle="max-width:100%;" >
+                            <apex:repeat value="{!AWs}" var="attachment">
+                                <div style="width:100%">
+                                    <div style="width:3%;float:left;">
+                                        <image style="width:40px;" src="{!URLFOR($Resource.salesforce_icon, '/doctype/attachment_120.png')}"/>
+                                    </div>
+                                    <div style="width:47%;float:left;padding-left:20px;">
+                                        <a href="{!attachment.link}" target="_blank"><apex:outputText style="padding-left:10px;" value="{!attachment.name}" /> </a> <br/>
+                                        <apex:outputText style="padding-left:10px;color:grey;font-size:12px;" value="Uploaded Date : " /><apex:outputText value="{!attachment.createddate}"/>
+                                        <apex:commandbutton style="margin-bottom:10px;margin-left:10px;width:25px;padding:0px;border:solid transparent 1px;" image="{!URLFOR($Resource.salesforce_icon, '/utility/delete_120.png')}" id="SaveChanges" action="{!DeleteFile}" reRender="WholeForm">
+                                            <apex:param assignTo="{!fileId}" name="fileId" value="{!attachment.Id}"/>
+                                        </apex:commandButton>
+                                    </div>
+                                </div>
+                            </apex:repeat>
+                        </apex:pageBlockSectionItem>
+                    </apex:pageblocksection>
+                </apex:pageBlock>
+            </apex:outputPanel>
+        </apex:outputPanel>
+    </apex:form>
+
+
+</apex:page>

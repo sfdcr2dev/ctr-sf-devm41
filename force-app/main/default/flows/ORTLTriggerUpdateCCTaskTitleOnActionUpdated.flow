@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>AddCCToUpdate</name>
+        <label>Add Relevant User to Update</label>
+        <locationX>264</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>RelevantUsersToUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>ForEachRelevantUsers</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>ForEachRelevantUsers</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignCCTaskTitle</name>
+        <label>Assign Relevant User Task Title</label>
+        <locationX>264</locationX>
+        <locationY>575</locationY>
+        <assignmentItems>
+            <assignToReference>ForEachRelevantUsers.TaskTitle__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.TaskTitle__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>AddCCToUpdate</targetReference>
+        </connector>
+    </assignments>
+    <interviewLabel>ORTL Update Relevant User Task Title On Action Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ORTL Update Relevant User Task Title On Action Update</label>
+    <loops>
+        <name>ForEachRelevantUsers</name>
+        <label>For Each Relevant Users</label>
+        <locationX>176</locationX>
+        <locationY>455</locationY>
+        <collectionReference>RelevantUsers</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>AssignCCTaskTitle</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>UpdateCCTaskTitle</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>RelevantUsers</name>
+        <label>Get Relevant Users</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>ForEachRelevantUsers</targetReference>
+        </connector>
+        <filters>
+            <field>ActionNumber__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <object>ORTLRelevantUser__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>TaskTitle__c</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <name>UpdateCCTaskTitle</name>
+        <label>Update Relevant User Task Titles</label>
+        <locationX>176</locationX>
+        <locationY>911</locationY>
+        <inputReference>RelevantUsersToUpdate</inputReference>
+    </recordUpdates>
+    <startElementReference>RelevantUsers</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>RelevantUsersToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>ORTLRelevantUser__c</objectType>
+    </variables>
+</Flow>

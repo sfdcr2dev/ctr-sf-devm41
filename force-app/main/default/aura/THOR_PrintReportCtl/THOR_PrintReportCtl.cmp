@@ -1,0 +1,17 @@
+<aura:component  implements="flexipage:availableForAllPageTypes,force:appHostable" controller="THOR_PrintReportController" access="global" >
+      <!-- ATTRIBUTES -->
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="formCode" type="String" />
+    <aura:attribute name="headerSheetName" type="String" /> 
+    <aura:attribute name="IdFromMyApproval" type="String" />
+    
+    <lightning:buttonIcon iconName="utility:print" variant="bare" size="large" onclick="{! c.handleClick }" alternativeText="Print EQCC Report" title="Print EQCC Report" />
+    <!-- <lightning:icon iconName="utility:print" size="large" alternativeText="Print EQCC Report " title="Print EQCC Report " /> -->
+    <!-- <lightning:button variant="brand" label="Print EQCC Report" iconName="utility:print" iconPosition="left" onclick="{! c.handleClick }" /> -->
+    
+        <!--Open URL in New Browser Tab-->
+        <!-- <lightning:button label="Open in New Window" variant="brand" onclick="{!c.handleOpenInNewWindow}"/> -->
+        <!--Open URL in New Browser Tab With Record Id-->
+        <!-- <lightning:button label="Open in New Window With RecordId" variant="brand" onclick="{!c.handleOpenNewWindowWithRecordId}"/> -->
+    
+</aura:component>

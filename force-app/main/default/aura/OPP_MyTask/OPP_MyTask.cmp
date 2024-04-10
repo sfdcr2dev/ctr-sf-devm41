@@ -1,0 +1,52 @@
+<aura:component
+    implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+    access="global" controller="OPP_MyTaskController">
+
+    <aura:attribute name="applications" type="List" />
+    <aura:attribute name="notifications" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:html tag="style">
+        @font-face {
+            font-family: 'FC Iconic';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('FC Iconic'), local('FC Iconic-Regular'), url({!$Resource.OPPNews + '/assets/font/FC_Iconic_Regular.otf'}) format('opentype');;
+        }
+    </aura:html>
+    
+	<c:OPP_Counter page="My Tasks" />
+    <div class="card card-custom">
+        <div class="slds-card-body">
+            <div class="slds-card__header">
+                <div class="header box-center slds-grid justify">
+                    <h1 class="slds-card__header-title">My Tasks</h1>
+                    <div class="tooltip">
+                        ?
+                        <span class="tooltiptext">
+                            <p class="p-tooltip">ตัวเลขแสดงจำนวนงานที่แต่ละคนต้อง Action โดย Application ที่เชื่อมต่อใน My Task มีดังนี้</p>
+                            <ul>
+                                <aura:iteration items="{!v.applications}" var="application" indexVar="index">
+                                    <li class="name">{!index+1}&nbsp;{!application}</li>
+                                </aura:iteration>
+                            </ul>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-card__body slds-card__body_inner bottom-container">
+                <div class="box-center">
+                    <p class="noti"><span><b>{!v.notifications}</b></span></p>
+                    <p class="noti-detail add">
+                        <a href="" onclick="{!c.goToMyTasksPage}">
+                            <lightning:icon iconName="utility:new" alternativeText="Add" title="Add" size="small" /> See
+                            more details
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</aura:component>

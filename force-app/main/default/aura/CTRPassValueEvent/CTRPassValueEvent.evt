@@ -1,0 +1,6 @@
+<aura:event type="COMPONENT" description="Event to pass a value from child to parent">
+    <aura:attribute name="mailToCommitteeObj" type="sObject" />
+    <aura:attribute name="ownerId" type="String" />
+    <aura:attribute name="multiLookupVal" type="sObject" />
+    <aura:attribute name="selectedValuesString" type="String" />
+</aura:event>

@@ -1,0 +1,81 @@
+<aura:component
+	controller="THOR_OrderRecordDisplayController"
+	implements="force:appHostable,lightning:isUrlAddressable"
+>
+	<lightning:navigation aura:id="navLink" />
+	<lightning:overlayLibrary aura:id="overlayLib" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.reInitRetriever}" />
+	<force:recordData
+		aura:id="force_recordData"
+		recordId="{!$SObjectType.CurrentUser.Id}"
+		fields="Name"
+		targetFields="{!v.userObj}"
+	/>
+	<aura:attribute name="orderId" type="String" />
+
+	<aura:attribute name="userObj" type="Map" default="{}" access="private" />
+	<aura:attribute
+		name="config"
+		type="Map"
+		default="{
+      'newLimit': 3,
+    }"
+		access="private"
+	/>
+
+	<c:THOR_Header title="{! 'Related Operations' }" iconName="standard:related_list">
+		<aura:set attribute="actions"> </aura:set>
+	</c:THOR_Header>
+	<div class="slds-grid slds-m-vertical_small slds-m-right_small">
+		<div class="slds-col">
+			<c:THOR_navigateBack backToTabIndex="4" />
+		</div>
+	</div>
+
+	<div class="container">
+		<lightning:layout multipleRows="true">
+			<lightning:layoutItem class="slds-p-bottom_small" padding="horizontal-small" size="12">
+				<lightning:card>
+					<aura:set attribute="title">
+						<div>{!v.config.newTitle}</div>
+					</aura:set>
+					<aura:set attribute="footer">
+						<aura:if isTrue="{! v.config.newList.length gt v.config.newLimit }">
+							<lightning:button variant="base" label="Show more" title="Show more" name="New" onclick="{!c.showmore}" />
+						</aura:if>
+						<aura:if isTrue="{! and(v.config.newList.length eq v.config.newLimit, not(v.config.newList.length eq 3)) }">
+							<lightning:button variant="base" label="Show less" title="Show less" name="New" onclick="{!c.showless}" />
+						</aura:if>
+					</aura:set>
+
+					<aura:if isTrue="{!empty(v.config.newIsLoading)}">
+						<lightning:spinner alternativeText="Loading" size="small" />
+					</aura:if>
+					<p class="slds-var-p-around_medium bg-gray">{!v.config.newLabel}</p>
+
+					<div class="slds-p-around_x-small">
+						<aura:iteration items="{!v.config.newList}" var="item" indexVar="index">
+							<aura:if isTrue="{! index lt v.config.newLimit}">
+								<div class="slds-box slds-box_small">
+									<a
+										data-record-id="{!item.Id}"
+										href="javascript:void(0);"
+										class="slds-text-link_reset"
+										onclick="{!c.navigateToDisplay}"
+									>
+										<aura:if isTrue="{!item.Name}">
+											<p class="slds-text-link">{!item.Name}</p>
+										</aura:if>
+										<p>{! item.info }</p>
+									</a>
+								</div>
+							</aura:if>
+						</aura:iteration>
+					</div>
+				</lightning:card>
+			</lightning:layoutItem>
+		</lightning:layout>
+	</div>
+</aura:component>

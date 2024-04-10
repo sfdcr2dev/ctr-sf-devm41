@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Excise Quota</value>
+    </caseValues>
+    <fields>
+        <label><!-- Unit --></label>
+        <name>AlreadyPurchasedVolumeUnit__c</name>
+    </fields>
+    <fields>
+        <help><!-- Volume ที่ซื้อไปแล้ว --></help>
+        <label><!-- Already Purchased Volume --></label>
+        <name>AlreadyPurchasedVolume__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approved Date --></label>
+        <name>ApprovedDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>CompanyName__c</name>
+        <relationshipLabel><!-- Excise Quota --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Date --></label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distribution Channel --></label>
+        <name>DistributionChannel__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document URL --></label>
+        <name>DocumentURL__c</name>
+    </fields>
+    <fields>
+        <help><!-- สค.02 --></help>
+        <label><!-- Excise Document Number --></label>
+        <name>ExciseDocumentNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expiry Date --></label>
+        <name>ExpiryDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Group --></label>
+        <name>MaterialGroupText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Group --></label>
+        <name>MaterialGroup__c</name>
+        <relationshipLabel><!-- Excise Quota --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Period From --></label>
+        <name>PeriodFrom__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Group --></label>
+        <name>ProductGroup__c</name>
+        <picklistValues>
+            <masterLabel>RB9320 = SERVICE, COURIER&amp;MAIL ROOM SERVICE</masterLabel>
+            <translation><!-- RB9320 = SERVICE, COURIER&amp;MAIL ROOM SERVICE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RB9330 = SERVICE , OFFICE SUPPLY</masterLabel>
+            <translation><!-- RB9330 = SERVICE , OFFICE SUPPLY --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Remaining Days --></label>
+        <name>RemainingDays__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>SalesOrganization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ship-to party --></label>
+        <name>Shiptoparty__c</name>
+        <relationshipLabel><!-- Excise Quota (Ship-to party) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Usage Indicator --></label>
+        <name>UsageIndicator__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unit --></label>
+        <name>VolumeinExciseDocumentUnit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Volume in Excise Document --></label>
+        <name>VolumeinExciseDocument__c</name>
+    </fields>
+    <layouts>
+        <layout>Excise Quota Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Cannot change value of Excise Tax Number --></errorMessage>
+        <name>CheckIsChangeExciseTaxNumber</name>
+    </validationRules>
+</CustomObjectTranslation>

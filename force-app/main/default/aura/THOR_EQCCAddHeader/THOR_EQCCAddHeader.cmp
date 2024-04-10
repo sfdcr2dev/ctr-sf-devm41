@@ -1,0 +1,69 @@
+<aura:component>
+
+    <!-- ATTRIBUTES -->
+    <aura:attribute name="notificationId" type="String" default="" />
+    <aura:attribute name="orderId" type="String" default="" />
+    <aura:attribute name="isOrderRelated" type="Boolean" default="false" />
+    <aura:attribute name="isNotificationRelated" type="Boolean" default="false" />
+
+    <aura:attribute name="operationId" type="String" default="" access="private" />
+    <aura:attribute name="orderRecord" type="Object" default="" access="private" />
+    <aura:attribute name="notificationRecord" type="Object" default="" access="private" />
+    <aura:attribute name="recordOrderError" type="String" default="" access="private" />
+    <aura:attribute name="recordNotificationError" type="String" default="" access="private" />
+
+    <aura:attribute name="type" type="String" default="" access="private" />
+    <aura:attribute name="equipmentId" type="String" default="" access="private" />
+    <aura:attribute name="functionalLocationName" type="String" default="" access="private" />
+    <aura:attribute name="orderIdForFL" type="String" default="" access="private" />
+
+    <!-- EVENTS -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="selectedEvent" event="c:THOR_Event" action="{!c.handleSelectedEvent}" />
+
+    <aura:registerEvent name="eqccCreationEvent" type="c:THOR_EQCCCreationEvent" />
+
+    <!-- BODY -->
+    <force:recordData aura:id="orderLoader" recordId="{!v.orderId}"
+        fields="Order_Type__c, Functional_Location__r.Name, Equipment__c" targetFields="{!v.orderRecord}"
+        targetError="{!v.recordOrderError}" recordUpdated="{!c.handleRecordUpdated}" />
+
+    <force:recordData aura:id="notificationLoader" recordId="{!v.notificationId}"
+        fields="Type__c, Order__c, Functional_Location__r.Name, Equipment__c" targetFields="{!v.notificationRecord}"
+        targetError="{!v.recordNotificationError}" recordUpdated="{!c.handleRecordUpdated}" />
+
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+        aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <lightning:buttonIcon iconName="utility:close" onclick="{! c.handleClose }" alternativeText="close"
+                    variant="bare-inverse" class="slds-modal__close" />
+                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create New EQCC</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_large" id="modal-content-id-1">
+                <lightning:recordEditForm aura:id="headerCreateForm" objectApiName="EQCC_Header__c"
+                    onsubmit="{!c.handleSubmit}" onsuccess="{!c.handleSuccess}">
+                    <lightning:inputField fieldName="Name" value="" />
+                    <lightning:inputField fieldName="Notification__c" value="{!v.notificationId}"
+                        disabled="{!or(v.isNotificationRelated, v.isOrderRelated)}" />
+                    <lightning:inputField fieldName="Order__c" value="{!v.orderId}" disabled="{!or(v.isOrderRelated, v.isNotificationRelated)}"
+                        onchange="{!c.orderSelected}" />
+                    <lightning:inputField fieldName="Equipment__c" value="{! v.type == 'PM' ? v.equipmentId : ''}" disabled="{! and(v.type == 'PM', not(empty(v.equipmentId)))}" />
+
+                    <c:THOR_EQCCAddHeaderFL functionalLocationName="{!v.functionalLocationName}"
+                        orderIdForFL="{!v.orderIdForFL}" />
+
+                    <lightning:inputField fieldName="Operation__c" value="{!v.operationId}" class="custom-hide" />
+                    <div class="custom-padding">
+                        <c:THOR_CustomLookup objectName="Operation__c" fieldName="Name" label="Operation"
+                            iconName="custom:custom69" placeholder="Search Operations..." />
+                    </div>
+                    <lightning:button class="slds-m-top_small" type="submit" label="Create new" />
+                    <lightning:button class="slds-m-top_small" variant="neutral" label="Cancel" title="Cancel"
+                        onclick="{! c.handleClose }" />
+                </lightning:recordEditForm>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</aura:component>

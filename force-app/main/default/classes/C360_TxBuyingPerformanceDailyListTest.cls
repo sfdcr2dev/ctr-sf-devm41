@@ -1,0 +1,49 @@
+@isTest
+public class C360_TxBuyingPerformanceDailyListTest 
+{
+	static Id RecordTypeId = Schema.SObjectType.C360_BuyingPerformanceDailyTOP__c.getRecordTypeInfosByDeveloperName().get('TXDailyPerformance').getRecordTypeId();
+
+    @testSetup
+    public static void setupDate()
+    {
+        Account acc = new Account();
+        acc.Name = 'Test Acc';
+        insert acc;
+        
+        C360_Product__c cproduct = new C360_Product__c();
+        cproduct.MaterialCode__c = 'P001';
+        insert cproduct;
+        
+        List<C360_BuyingPerformanceDailyTOP__c>buyingList = new List<C360_BuyingPerformanceDailyTOP__c>();
+        for(Integer i = 0 ; i < 15 ; i++)
+        {
+            C360_BuyingPerformanceDailyTOP__c buying = new C360_BuyingPerformanceDailyTOP__c();
+            buying.BillingDate__c =  system.today();
+            buying.SalesOrganization__c =  '1100';
+            buying.DistributionChannel__c =  '16';
+            buying.Product__c =  cproduct.id;
+            buying.CurrencyLocal__c =  'ADP';
+            buying.DeliveryQuantity__c =  1000;
+            buying.NetValueLocal__c =  2000;
+            buying.NetProfitLocal__c =  3000;
+            buying.Key__c = String.valueOf(i);
+            buying.RecordTypeId = RecordTypeId;
+            buying.Customer__c = acc.id;
+            buyingList.add(buying);
+        }
+        
+        insert buyingList;                                                      
+                                                        
+    }
+    
+    @isTest
+    public static void testGetTableDetails()
+    {
+        String customerId = [select id from account limit 1].id;
+        Test.startTest();
+        List<C360_TxBuyingPerformanceDailyList.BuyingPerformanceDailyWrapper>wrapperList = C360_TxBuyingPerformanceDailyList.getTableDetails(customerId, 'Loading');
+        Test.stopTest();
+        
+        System.assert(wrapperList.size() > 0);
+    }
+}

@@ -1,0 +1,70 @@
+<aura:component implements="force:lightningQuickAction,force:hasRecordId" controller="ORTLActionCtrl">
+
+    <aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" />
+    <aura:attribute name="canEditOwner" type="Boolean" default="false" />
+    <aura:attribute name="canCancel" type="Boolean" default="true" />
+    <aura:attribute name="actionName" type="String" default=""/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+        
+    <!-- <aura:if isTrue="{!v.canCancel}">
+        <lightning:overlayLibrary aura:id="overlayLib" />
+        <lightning:notificationsLibrary aura:id="notifLib"/>
+        <c:ORTLActionCancel recordId="{!v.recordId}" />
+        
+        <aura:set attribute="else">
+            <p style="text-align:center; line-height:3em;"></p>
+            <p style="text-align:center; line-height:2em;">You do not have authorized to Cancel this Action Number:</p>
+            <p style="text-align:center; line-height:2em;"><strong>{!v.actionName}</strong></p>
+            <p style="text-align:center; line-height:2em;">Please contact Action's owner or ORTL Admin to Cancel this Action.</p>
+            <p style="text-align:center; line-height:2em;">Note: You can click on the cross sign (X) on the top right corner to quit</p>            
+        </aura:set>
+    </aura:if> -->
+    
+    <aura:if isTrue="{!v.formFactor == 'DESKTOP'}">
+        <lightning:overlayLibrary aura:id="overlayLib" />
+        <lightning:notificationsLibrary aura:id="notifLib"/>
+       
+        <aura:set attribute="else">
+            <c:ORTLActionCancel recordId="{!v.recordId}" />
+        </aura:set>
+    </aura:if>
+    
+    <!-- <aura:if isTrue="{!v.formFactor == 'DESKTOP'}">
+
+        <aura:if isTrue="{!v.canCancel}">
+            <lightning:overlayLibrary aura:id="overlayLib" />
+            <lightning:notificationsLibrary aura:id="notifLib"/>
+            <c:ORTLActionCancel recordId="{!v.recordId}" />
+            
+            <aura:set attribute="else">
+                <p style="line-height:3.5em;"><strong>You do not have authorized to Cancel this Action Number:</strong></p>
+                <p style="line-height:3.5em;"><strong>{!v.recordId}</strong></p>
+                <p style="line-height:3.5em;"><strong>Please contact Action's owner or ORTL Admin to Cancel this Action.</strong></p>
+                <p style="line-height:3.5em;"><strong>Note: You can click on the cross sign (X) on the top right corner to quit</strong></p>            
+            </aura:set>
+        </aura:if>
+    
+    </aura:if> -->
+
+    <!-- <aura:if isTrue="{!not(v.canCancel)}">
+        <p style="line-height:3.5em;"><strong>You do not have authorized to Cancel this Action Number:</strong></p>
+        <p style="line-height:3.5em;"><strong>{!v.recordId}</strong></p>
+        <p style="line-height:3.5em;"><strong>Please contact Action's owner or ORTL Admin to Cancel this Action.</strong></p>
+        <p style="line-height:3.5em;"><strong>Note: You can click on the cross sign (X) on the top right corner to quit</strong></p>
+        <aura:set attribute="else">
+            <aura:if isTrue="{!v.formFactor == 'DESKTOP'}">
+                <lightning:overlayLibrary aura:id="overlayLib" />
+                <lightning:notificationsLibrary aura:id="notifLib"/>
+                
+                <aura:set attribute="else">
+                    <c:ORTLActionCancel recordId="{!v.recordId}" />
+                </aura:set>
+            </aura:if>
+        </aura:set>
+
+    </aura:if> -->
+
+
+</aura:component>

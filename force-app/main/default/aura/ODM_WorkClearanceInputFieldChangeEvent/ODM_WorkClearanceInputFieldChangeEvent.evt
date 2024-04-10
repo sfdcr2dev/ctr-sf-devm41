@@ -1,0 +1,6 @@
+<aura:event type="COMPONENT" description="On Input Field Value Changed">
+    <aura:attribute name="fieldName" type="String" />
+    <aura:attribute name="value" type="String" />
+    <aura:attribute name="oldValue" type="String" />
+    <aura:attribute name="questionId" type="String" />
+</aura:event>

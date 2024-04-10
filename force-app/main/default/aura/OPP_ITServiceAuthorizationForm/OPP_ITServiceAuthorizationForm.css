@@ -1,0 +1,53 @@
+.THIS .scrollerWrapper {
+	height: 100%;
+	overflow: scroll;
+}
+
+.THIS .pink {
+	width: 100%;
+	font-weight: bold;
+	margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #f9e8f5;
+}
+
+.THIS .blue {
+	width: 100%;
+	font-weight: bold;
+	margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #e1f4ff;
+}
+
+.THIS .header {
+	font-size: 1.728rem;
+	margin: 0rem 0 0.5rem;
+	color: #16325c;
+}
+
+.THIS lightning-messages {
+	z-index: 1;
+}
+
+.THIS .slds-card {
+	width: 100%;
+}
+
+.THIS .label-hidden .slds-form-element__control {
+	padding-left: 0 !important;
+}
+.THIS .label-hidden .slds-form-element__help {
+	margin-left: 0 !important;
+}
+
+.THIS .label-hidden > label {
+	display: none !important;
+}
+
+@media only screen and (min-width: 48em) {
+	.THIS .slds-form-element__control .slds-radio {
+		display: inline-block;
+	}
+}

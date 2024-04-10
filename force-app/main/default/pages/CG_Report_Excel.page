@@ -1,0 +1,130 @@
+<apex:page controller="CG_ExcelController" 
+  language="th"
+  cache="true" showHeader="false" action="{!OnloadExcel}"
+  contentType="application/vnd.ms-excel#{!reportName} Report - {!TodayDate}.xls">
+  
+  <!-- action="{!DeleteExcel}"
+  contentType="application/vnd.ms-excel#COI Report - {!TodayDate}.xls" -->
+  
+  <html lang="en">
+      <head>
+          <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+          <style>
+                table, td, th {
+                  border: 1px solid;
+                }
+                
+                table {
+                  width: 100%;
+                  border-collapse: collapse;
+                }
+            </style>
+      </head>
+      <body>
+      
+          <apex:outputPanel rendered="{!AND(TWSize = 0,SWSize = 0)}">
+              <b><apex:outputText style="font-size:20px;"> No CG Report found. </apex:outputText></b>
+          </apex:outputPanel>
+      
+          <apex:outputPanel rendered="{!TWSize > 0}">
+              <h3>{!reportName} Report</h3>
+              <table>
+                  <tr>
+                      <th>No.</th>
+                      <th>Type</th>
+                      <th>Name</th>
+                      <th>Function</th>
+                      <th>Status</th>
+                      <th>Submitted Date</th>
+                  </tr>
+                  <apex:repeat value="{!TWs}" var="CG">
+                      <tr>
+                          <td>{!CG.No}</td>
+                          <td>{!CG.Type}</td>
+                          <td>{!CG.Name}</td>
+                          <td>{!CG.Function}</td>
+                          <td>{!CG.Status}</td>
+                          <td>{!CG.SubmittedDate}</td>
+                      </tr>
+                  </apex:repeat>
+              </table>
+          </apex:outputPanel>
+          
+          <apex:outputPanel rendered="{!SWSize > 0}">
+          
+              <br/>
+              
+              <h3>Statistic</h3>
+              <!-- COI -->
+              <apex:outputPanel rendered="{!reportName == 'COI'}">
+                  <table>
+                      <tr>
+                          <th>{!statisticName}</th>
+                          <th>All</th>
+                          <th>WaitingForSubmit</th>
+                          <th>WaitingSupervisor</th>
+                          <th>WaitingGLVP</th>
+                          <th>Success</th>
+                      </tr>
+                      <apex:repeat value="{!SWs}" var="SW">
+                          <tr>
+                              <td>{!SW.Function}</td>
+                              <td>{!SW.All}</td>
+                              <td>{!SW.WaitingForSubmit}</td>
+                              <td>{!SW.WaitingSupervisor}</td>
+                              <td>{!SW.WaitingGLVP}</td>
+                              <td>{!SW.Success}</td>
+                          </tr>
+                      </apex:repeat>
+                  </table>
+              </apex:outputPanel>
+              
+              <!-- CG -->
+              <apex:outputPanel rendered="{!reportName == 'CG'}">
+                  <table>
+                      <tr>
+                          <th>{!statisticName}</th>
+                          <th>All</th>
+                          <th>WaitingForSubmit</th>
+                          <th>Success</th>
+                      </tr>
+                      <apex:repeat value="{!SWs}" var="SW">
+                          <tr>
+                              <td>{!SW.Function}</td>
+                              <td>{!SW.All}</td>
+                              <td>{!SW.WaitingForSubmit}</td>
+                              <td>{!SW.Success}</td>
+                          </tr>
+                      </apex:repeat>
+                  </table>
+              </apex:outputPanel>
+              
+              <!-- Gift -->
+              <apex:outputPanel rendered="{!reportName == 'Gift'}">
+                  <table>
+                      <tr>
+                          <th>{!statisticName}</th>
+                          <th>All</th>
+                          <th>WaitingForSubmit</th>
+                          <th>WaitingSupervisor</th>
+                          <th>WaitingGLVP</th>
+                          <th>Success</th>
+                      </tr>
+                      <apex:repeat value="{!SWs}" var="SW">
+                          <tr>
+                              <td>{!SW.Function}</td>
+                              <td>{!SW.All}</td>
+                              <td>{!SW.WaitingForSubmit}</td>
+                              <td>{!SW.WaitingSupervisor}</td>
+                              <td>{!SW.WaitingGLVP}</td>
+                              <td>{!SW.Success}</td>
+                          </tr>
+                      </apex:repeat>
+                  </table>
+              </apex:outputPanel>
+              
+          </apex:outputPanel>
+          
+      </body>
+  </html>
+</apex:page>

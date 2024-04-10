@@ -1,0 +1,16 @@
+<aura:component>
+
+  <aura:attribute name="iconName" type="String" default="utility:steps" access="global" />
+  <aura:attribute name="selected" type="String" default="" access="global" />
+  <aura:attribute name="input" type="list" default="" access="global" />
+
+  <aura:handler name="change" value="{!v.selected}" action="{!c.itemsChange}" />
+  <aura:handler name="render" value="{!this}" action="{!c.itemsChange}" />
+
+  <lightning:buttonMenu alternativeText="" variant="container" iconName="{!v.iconName}" onselect="{! c.handleSelect }">
+    <lightning:menuItem value="{!v.input.values[0]}" label="{!v.input.values[0]}" iconName="utility:steps" />
+    <lightning:menuItem value="{!v.input.values[1]}" label="{!v.input.values[1]}" iconName="utility:success" />
+    <lightning:menuItem value="{!v.input.values[2]}" label="{!v.input.values[2]}" iconName="utility:clear" />
+    <lightning:menuItem value="{!v.input.values[3]}" label="{!v.input.values[3]}" iconName="utility:dash" />
+  </lightning:buttonMenu>
+</aura:component>

@@ -1,0 +1,48 @@
+<apex:page controller="ESS_Retirement" standardStylesheets="false" lightningStylesheets="false" sidebar="false"
+  showHeader="false" applyHtmlTag="true" applyBodyTag="false" docType="html-5.0" language="th">
+
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <link rel="stylesheet" href="{!URLFOR($Resource.ESS_Frontend,'/css/data-table.css')}?d=1689330250469"></link>
+    <link rel="stylesheet" href="{!URLFOR($Resource.ESS_Frontend,'/css/icomoon.css')}?d=1689330250469"></link>
+    <link rel="stylesheet" href="{!URLFOR($Resource.ESS_Frontend,'/css/fonts.css')}?d=1689330250469"></link>
+    <title>ESSMSS(Personal Information)</title>
+    <script>
+      window.assetsPath = "{!URLFOR($Resource.ESS_Frontend)}";
+      window.homePath = "{!$Page.ESS_Home}";
+    </script>
+    <script type="module" crossorigin="anonymous" src="{!URLFOR($Resource.ESS_Frontend,'/assets/retirementDetail.js')}?d=1689330250469"></script>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/MainLayout.js')}?d=1689330250469"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/ESS_Retirement.service.js')}?d=1689330250469"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/formatter.js')}?d=1689330250469"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/Button.js')}?d=1689330250469"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/Card.js')}?d=1689330250469"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/Label.js')}?d=1689330250469"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/Radio.js')}?d=1689330250469"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/Modal.js')}?d=1689330250469"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/_commonjsHelpers.js')}?d=1689330250469"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/html.js')}?d=1689330250469"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/Table.js')}?d=1689330250469"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/ApprovalHistoryModal.js')}?d=1689330250469"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/TextArea.js')}?d=1689330250469"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/array.js')}?d=1689330250469"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/sharedValidate.js')}?d=1689330250469"></link>
+    <link rel="stylesheet" href="{!URLFOR($Resource.ESS_Frontend,'/assets/style.css')}?d=1689330250469"></link>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script type="text/javascript">
+      var __sfdcSessionId = '{!GETSESSIONID()}';
+    </script>
+    <script type="text/javascript" src="/soap/ajax/56.0/connection.js?d=1689330250469"></script>
+    
+  </body>
+
+  </html>
+
+</apex:page>

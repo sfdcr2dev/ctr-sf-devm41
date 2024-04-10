@@ -1,0 +1,41 @@
+<aura:component controller="CTRInitialCustomerTOP">
+
+    <aura:attribute name="shippingList" type="List" default="[]" />
+    <aura:attribute name="country" type="String[]" />
+    <aura:attribute name="location" type="String[]" />
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    <!-- <aura:handler name="CTRAddNewRowDestinationEvt" event="c:CTRAddNewRowDestinationEvt" action="{!c.addNewRowDestinationCountry}" /> -->
+    <aura:handler name="CTRDeleteRowDestinationEvt" event="c:CTRDeleteRowDestinationEvt" action="{!c.removeDeletedRowDestinationCountry}" />
+
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Destination Country">Destination Country</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Location Type">Location Type</div>
+                </th>
+                <th class="slds-var-p-around_medium slds-text-align_center w-50-px" scope="col">
+                    <a onclick="{!c.addNewRowDestinationCountry}">
+                        <lightning:icon iconName="utility:add" class="slds-icon slds-icon_small" size="small" alternativeText="add" />
+                        <span class="slds-assistive-text">Add Icon</span>
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:if isTrue="{!v.shippingList.length > 0}">
+                <aura:iteration items="{!v.shippingList}" var="item" indexVar="index">
+                    <c:CTRDynamicRowDestinationTable rowIndex="{!index}" Shipping="{!item}" country="{!v.country}" location="{!v.location}" rowcolumn="false" />
+                </aura:iteration>
+                <aura:set attribute="else">
+                    <tr>
+                        <td colspan="3">Click <a onclick="{!c.addNewRowDestinationCountry}"><lightning:icon iconName="utility:add" class="slds-icon slds-icon_small" size="small" alternativeText="add" /></a> button to add an item</td>
+                    </tr>
+                </aura:set>
+            </aura:if>
+        </tbody>
+    </table> 
+</aura:component>

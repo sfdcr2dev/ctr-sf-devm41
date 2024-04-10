@@ -1,0 +1,46 @@
+<aura:component>
+
+    <!-- ATTRIBUTES -->
+    <aura:attribute name="defaultItems" type="Integer" default="2" access="global" />
+    <aura:attribute name="title" type="String" default="" access="global" />
+    <aura:attribute name="labelSequence" type="String" default="" access="global" />
+    <aura:attribute name="items" type="List" access="global" />
+    <aura:attribute name="viewAll" type="Boolean" default="false" access="global" />
+    <aura:attribute name="navigateToComponent" type="String" default="" />
+    <aura:attribute name="isNavigable" type="boolean" default="true" />
+    <!-- EVENTS -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <lightning:layout>
+        <lightning:layoutItem size="12">
+            
+            <aura:if isTrue="{!not(empty(v.title))}">
+                <p class="title">You have {! v.title}</p>
+            </aura:if>
+            <aura:if isTrue="{!not(empty(v.labelSequence))}">
+                <aura:if isTrue="{! greaterthan(v.items.length,0)}">
+                    <p class="labelSequence">{! v.labelSequence}</p>
+                </aura:if>
+            </aura:if>
+            <div class="cardContainer">
+                <aura:if isTrue="{!v.viewAll}">
+                    <aura:iteration items="{!v.items}" var="item">
+                        <c:THOR_ObjectCard isNew='{! !greaterthan(v.items.length,30)}' titleLabel='{! item.titleLabel}'
+                            title='{! item.title}' dropableBody='{! item.dropableBody}' navigateToComponent="{!v.navigateToComponent}"
+                            isDeletable='{! item.isDeletable}' isNavigable="{! v.isNavigable}" recordId="{! item.recordId}" />
+                    </aura:iteration>
+                    <aura:set attribute="else">
+                        <aura:iteration items="{!v.items}" var="item" indexVar="index">
+                            <aura:if isTrue="{! !greaterthan(index,v.defaultItems)}">
+                                <c:THOR_ObjectCard isNew='{! !greaterthan(v.items.length,30)}' titleLabel='{! item.titleLabel}'
+                                    title='{! item.title}' dropableBody='{! item.dropableBody}' navigateToComponent="{!v.navigateToComponent}"
+                                    isDeletable='{! item.isDeletable}' isNavigable="{! v.isNavigable}"
+                                    recordId="{! item.recordId}" />
+                            </aura:if>
+                        </aura:iteration>
+                    </aura:set>
+                </aura:if>
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

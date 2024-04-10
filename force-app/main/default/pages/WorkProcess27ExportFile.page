@@ -1,0 +1,101 @@
+<apex:page controller="ImportExportCSVFile" showheader="false" contentType="application/vnd.ms-excel#Handover - {!ProjectName} - {!TodayDate}.xls" cache="true" > <!-- contentType="application/vnd.ms-excel#Handover.xlsx" -->
+    
+    <html>
+        <head>
+        </head>
+        <body>
+        
+            <table style="border:solid black 1px;">
+                <tr>
+                    <th  style="border:solid black 1px;">Project No</th>
+                    <th  style="border:solid black 1px;">Item</th>
+                    <th  style="border:solid black 1px;">Sub System Numbering</th>
+                    <th  style="border:solid black 1px;">Contractor</th>
+                    <th  style="border:solid black 1px;">P ID</th>
+                    <th  style="border:solid black 1px;">Tag and Datasheet</th>
+                    <th  style="border:solid black 1px;">SAP Data</th>
+                    <th  style="border:solid black 1px;">Operatign Manual</th>
+                    <th  style="border:solid black 1px;">Spare Parts List</th>
+                    <th  style="border:solid black 1px;">Concerned Equipment Installation</th>
+                    <th  style="border:solid black 1px;">Red Mark</th>
+                    <th  style="border:solid black 1px;">Test Pack</th>
+                    <th  style="border:solid black 1px;">Piping Reinstatement</th>
+                    <th  style="border:solid black 1px;">E and I Work Election</th>
+                    <th  style="border:solid black 1px;">MC P</th>
+                    <th  style="border:solid black 1px;">MC</th>
+                    <th  style="border:solid black 1px;">Punch B</th>
+                    <th  style="border:solid black 1px;">Loop Testing</th>
+                    <th  style="border:solid black 1px;">Function Testing</th>
+                    <th  style="border:solid black 1px;">MCC</th>
+                    <th  style="border:solid black 1px;"><apex:outputText value="As Built P&ID"/></th>
+                    <th  style="border:solid black 1px;">PSSR</th>
+                    <th  style="border:solid black 1px;">HOC</th>
+                    <th  style="border:solid black 1px;">RSFU P</th>
+                    <th  style="border:solid black 1px;">RSFU</th>
+                    <th  style="border:solid black 1px;">As Built</th>
+                    <th  style="border:solid black 1px;">COD</th>
+                    <th  style="border:solid black 1px;">Punch C</th>
+                </tr>
+                <apex:repeat value="{!HandoversExport}" var="handover">
+                    <tr>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!ProjectNo}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.Name}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.Contractor__c}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.P_ID__c}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.Tag_and_Datasheet__c}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.SAP_Data__c}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.Operating_Manal__c}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.Spare_Parts_List__c}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.Concerned_Equipment_Installation__c}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.Punch_A_Complete__c}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.Red_Mark__c}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.Test_Pack__c}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.Piping_ReInstatement__c}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.E_and_I_Work_Election__c}"/></td>
+                        <td style="border:solid black 1px;">
+                            <apex:outputText value="{0,date,yyyy'-'MM'-'dd}" >  
+                                <apex:param value="{!handover.MC_P__c}"/>  
+                            </apex:outputText>
+                        </td>
+                        <td style="border:solid black 1px;">
+                            <apex:outputText value="{0,date,yyyy'-'MM'-'dd}" >  
+                                <apex:param value="{!handover.MC__c}"/>  
+                            </apex:outputText>
+                        </td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.Punch_B__c}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.Loop_Testing__c}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.Function_Testing__c}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.MCC__c}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.As_Built_P_ID__c}"/></td>
+                        <td style="border:solid black 1px;">
+                            <apex:outputText value="{0,date,yyyy'-'MM'-'dd}" >  
+                                <apex:param value="{!handover.PSSR__c}"/>  
+                            </apex:outputText>
+                        </td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.HOC__c}"/></td>
+                        <td style="border:solid black 1px;">
+                            <apex:outputText value="{0,date,yyyy'-'MM'-'dd}" >  
+                                <apex:param value="{!handover.RSFU_P__c}"/>  
+                            </apex:outputText>
+                        </td>
+                        <td style="border:solid black 1px;">
+                            <apex:outputText value="{0,date,yyyy'-'MM'-'dd}" >  
+                                <apex:param value="{!handover.RSFU__c}"/>  
+                            </apex:outputText>
+                        </td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.As_Built__c}"/></td>
+                        <td style="border:solid black 1px;">
+                            <apex:outputText value="{0,date,yyyy'-'MM'-'dd}" >  
+                                <apex:param value="{!handover.COD__c}"/>  
+                            </apex:outputText>
+                        </td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!handover.Punch_C__c}"/></td>
+                    </tr>
+                </apex:repeat>
+            </table>
+            
+        </body>
+    </html>
+    
+
+</apex:page>

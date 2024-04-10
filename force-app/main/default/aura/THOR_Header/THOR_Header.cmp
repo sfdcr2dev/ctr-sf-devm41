@@ -1,0 +1,26 @@
+<aura:component>
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" access="private" />
+	<aura:attribute name="isShowTitle" type="Boolean" default="false" access="private" />
+
+	<aura:attribute name="title" type="String" default="" access="global" />
+	<aura:attribute name="iconName" type="String" default="" access="global" />
+	<aura:attribute name="actions" type="Aura.Component[]" default="" access="global" />
+
+	<!-- style="margin-bottom: 0 !important; padding-bottom: 1em; border-bottom: solid 1px #b3b3b3" -->
+	<lightning:layout verticalAlign="end" class="slds-border_bottom border-under-bottom slds-p-around_small">
+		<!-- <aura:if isTrue="{!v.formFactor != 'DESKTOP'}"></aura:if> -->
+		<aura:if isTrue="{!v.isShowTitle}">
+			<lightning:layoutItem class="slds-var-p-around_xx-small">
+				<lightning:icon iconName="{!v.iconName}" alternativeText="" class="thaiColor" />
+			</lightning:layoutItem>
+			<lightning:layoutItem class="slds-var-p-around_x-small">
+				<div class="slds-text-heading_medium">{!v.title}</div>
+			</lightning:layoutItem>
+		</aura:if>
+		<lightning:layoutItem alignmentBump="left">
+			<!-- <div class="right-align slds-p-right_small">{!v.actions}</div> -->
+			{!v.actions}
+		</lightning:layoutItem>
+	</lightning:layout>
+</aura:component>

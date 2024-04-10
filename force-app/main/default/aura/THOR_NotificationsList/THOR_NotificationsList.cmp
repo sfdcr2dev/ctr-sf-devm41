@@ -1,0 +1,19 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes">
+	<lightning:navigation aura:id="navService" />
+	<!-- IMPORTED STYLES-->
+	<ltng:require styles="{!$Resource.noHeader}" />
+
+	<span class="slds-hide">
+		<c:THOR_navigateBack />
+	</span>
+
+	<c:THOR_Header title="Notifications" iconName="custom:custom53">
+		<aura:set attribute="actions">
+			<!-- <c:THOR_NotificationCreation /> -->
+			<lightning:button variant="brand" label="Create Notification" title="Create Notification" onclick="{!c.redirectCreateNotification}" />
+			<!-- onclick="{!c.toggleModal}" -->
+		</aura:set>
+	</c:THOR_Header>
+
+	<!-- BODY-->
+</aura:component>

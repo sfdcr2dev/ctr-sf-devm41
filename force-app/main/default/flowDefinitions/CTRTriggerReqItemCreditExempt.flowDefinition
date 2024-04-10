@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionNumber>40</activeVersionNumber>
+    <description>18/03/2024
+- Enhanced text template &quot;emailCustomerDisagreesToFinance&quot;, &quot;emailCustomerNotWaiveBody&quot;.
+- Edit dynamic &quot;fmlExemptType_Subject&quot; in &quot;emailNotWaiveSubject&quot; to fixed text &quot;credit evaluation&quot;.
+- Edit dynamic &quot;fmlExemptType_Body&quot; in &quot;emailNotWaiveBody&quot; to fixed text &quot;credit evaluation&quot;.
+- Edit dynamic &quot;fmlExemptType_Subject&quot; in &quot;notifyNotWaiveTitle&quot; to fixed text &quot;credit evaluation&quot;
+- Edit text in fmlDisagreedActor.
+- Add decision for performance bond.
+- Add emailWaiveBody_PerformanceBond.</description>
+    <masterLabel>CTRTriggerReqItemCreditExempt</masterLabel>
+</FlowDefinition>

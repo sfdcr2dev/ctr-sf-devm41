@@ -1,0 +1,106 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" controller="ORTLRiskAssmntCtrl">
+
+    <aura:attribute name="setting" type="Map" default="{
+        enableSelectConsequence: false,
+        bgColor: {
+            levelH: 'rgb(255, 0, 0, 0.7)',
+            levelM: 'rgb(255, 255, 0, 0.7)',
+            levelL: 'rgb(0, 255, 0, 0.7)',
+            levelLN: 'rgb(0, 0, 255, 0.5)'
+        }
+    }"/>
+
+    <aura:attribute name="initialEstimatedValueInUSD" type="String"/>
+    <aura:attribute name="initialEstimatedValueInTHB" type="String"/>
+    <aura:attribute name="finalEstimatedValueInUSD" type="String"/>
+    <aura:attribute name="finalEstimatedValueInTHB" type="String"/>
+    <aura:attribute name="metadata" type="Map" />
+
+    <aura:attribute name="risk" type="Object" />
+    <aura:attribute name="riskUi" type="Object" />
+    <aura:attribute name="recordLoadError" type="Object" />
+
+    <force:recordData
+        aura:id="recordLoader"
+        recordId="{!v.recordId}"
+        fields="Name, IntRiskCons__c, InitialSeverity__c, IntlLikelihood__c, InitialRisk__c, IntConsEffect__c, IntRiskCons__c, InitialValueUSD__c, FinalSeverity__c, FinalLikelihood__c, FinalRisk__c, FinConsEffect__c, FinRiskCons__c, FinalValueUSD__c"
+        targetFields="{!v.risk}"
+        targetRecord="{!v.riskUi}"
+        targetError="{!v.recordLoadError}"
+        recordUpdated="{!c.handleRecordUpdated}"
+    />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:html tag="style">
+        .level-h {
+            background-color: {!v.setting.bgColor.levelH}
+        }
+
+        .level-m {
+            background-color: {!v.setting.bgColor.levelM};
+        }
+
+        .level-l {
+            background-color: {!v.setting.bgColor.levelL};
+        }
+
+        .level-ln {
+            background-color: {!v.setting.bgColor.levelLN};
+        }
+
+        .bg-orange {
+            background-color: {!$Label.c.ORTLBgOrange};
+        }
+
+        .bg-gray {
+            background-color: {!$Label.c.ORTLBgGray};
+        }
+    </aura:html>
+
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <div class="slds-card__header-link slds-truncate" title="Final Risk Assessment">
+                            <span>Final Risk Assessment</span>
+                        </div>
+                    </h2>
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="risk">
+                <div>
+                    <div class="risk-level">
+                        <div class="bg-gray">{!v.risk.FinalLikelihood__c ? v.risk.FinalLikelihood__c : 'N/A'}</div>
+                        <div class="bg-orange">{!v.risk.FinalSeverity__c ? v.risk.FinalSeverity__c : 'N/A'}</div>
+                        <div class="{!v.risk.FinalRisk__c == 'H' ? 'level-h' : v.risk.FinalRisk__c == 'M' ? 'level-m' : v.risk.FinalRisk__c == 'L' ? 'level-l' : v.risk.FinalRisk__c == 'L/N' ? 'level-ln' : ''}">{!v.risk.FinalRisk__c ? v.risk.FinalRisk__c : 'N/A'}</div>
+                        <div class="bg-gray">Final Value (USD)</div>
+                        <div>{!v.finalEstimatedValueInUSD ? v.finalEstimatedValueInUSD : 'N/A'}</div>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-form-element slds-form-element_stacked">
+                            <label class="slds-form-element__label">Consequence</label>
+                            <div class="slds-form-element__static">
+                                {!v.risk.FinRiskCons__c}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-form-element slds-form-element_stacked">
+                            <label class="slds-form-element__label">Consequence Effect</label>
+                            <div class="slds-form-element__static">
+                                {!v.risk.FinConsEffect__c}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+</aura:component>

@@ -1,0 +1,69 @@
+.THIS .container {
+    position: relative;
+}
+
+.THIS .totalRequests {
+    padding-bottom: 10px;
+}
+
+.THIS .iconContainer {
+    display: inline-flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.THIS .fadeIn {
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+.THIS .fadeOut {
+    transition: opacity 0.5s ease;
+    opacity: 0;
+}
+
+.THIS .title {
+    /*border: 0.1em solid #a6a6a6;*/
+    margin-top: 1em;
+    padding: 0.5em;
+    background-color: #f7f7f7;
+}
+
+.THIS .labelSequence {
+    border-top: 0;
+    padding: .5em;
+    background-color: #dddbda;
+}
+
+.THIS .cardContainer {
+    padding: .5em;
+    background-color: #fff;
+}
+
+.THIS .cardContainer .slds-box {
+    padding: .5em;
+}
+
+.THIS .cardContainer .wc-box {
+    padding:.5em;
+    border-bottom: 1px solid #dddbda;
+}
+
+.THIS .cardContainer .wc-box .wc-box-chevron {
+    padding:.5em;
+    display:inline-block;
+    vertical-align:top;
+}
+
+.THIS .cardContainer .wc-box .wc-box-title {
+    padding-bottom:.5em;
+    display:inline-block;
+    margin-bottom:.5em;
+}
+
+.THIS .cardContainer .wc-box .wc-box-hist {
+    margin-bottom:.5em;
+    padding-bottom:.5em;
+    border-bottom:1px solid #dddbda;
+}

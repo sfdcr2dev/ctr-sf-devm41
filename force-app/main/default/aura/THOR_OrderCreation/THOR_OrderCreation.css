@@ -1,0 +1,50 @@
+/* .THIS .slds-input {
+    border: none !important;
+    border-bottom: 1px solid rgb(221, 219, 218) !important;
+    border-radius: 0 !important;
+}
+
+.THIS .slds-textarea {
+    border: none !important;
+    border-bottom: 1px solid rgb(221, 219, 218) !important;
+    border-radius: 0 !important;
+}
+
+.THIS .slds-col {
+    border: 1px solid rgb(221, 219, 218);
+} */
+
+.THIS .edit-modal-container {
+	width: 85% !important;
+	max-width: 100% !important;
+	padding: 0 !important;
+	margin: 0 auto;
+}
+
+.THIS .custom-box {
+	border: 1px solid #d8dde6;
+}
+
+.THIS .hidden {
+	display: none;
+}
+
+/* .THIS .edit-modal-container {
+    width: 85% !important;
+    margin: 0 auto;
+    background-color: white;
+} */
+.THIS .slds-card__header-title {
+	justify-content: center;
+}
+
+.THIS .slds-card__footer {
+	text-align: right;
+}
+
+@media (max-width: 602px) {
+	.THIS .slds-form-element__label,
+	.THIS .slds-card__footer button.slds-button {
+		font-size: 0.875rem !important;
+	}
+}

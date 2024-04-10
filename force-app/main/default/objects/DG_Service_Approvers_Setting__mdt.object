@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>DGVP__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>DGVP</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Requester_Manager__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Requester Manager</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Requester_Type__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Requester Type</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Staff</fullName>
+                    <default>true</default>
+                    <label>Staff</label>
+                </value>
+                <value>
+                    <fullName>Section Head</fullName>
+                    <default>false</default>
+                    <label>Section Head</label>
+                </value>
+                <value>
+                    <fullName>VP</fullName>
+                    <default>false</default>
+                    <label>VP</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Requester_VP__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Requester VP</label>
+        <type>Checkbox</type>
+    </fields>
+    <label>DG Service Approvers</label>
+    <visibility>Public</visibility>
+</CustomObject>

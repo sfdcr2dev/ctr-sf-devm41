@@ -1,0 +1,53 @@
+<aura:component implements="force:lightningQuickAction,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName" controller="CTRCheckDueDiligenceController" access="global">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="actionButton" type="String" />
+    <aura:attribute name="dueDiligenceComment" type="String" default="" />
+    <aura:attribute name="actionBy" type="String" />
+    <aura:attribute name="userId" type="String" />
+    <aura:attribute name="isLoaded" type="Boolean" default="false" />
+    <aura:attribute name="isSubmitted" type="Boolean" default="false" />
+    <aura:attribute name="canSubmit" type="Boolean" default="true" />
+    <aura:attribute name="isCancelled" type="Boolean" default="false" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <div class="slds-modal__content slds-p-around_medium" style="border-top-right-radius: var(--slds-c-modal-radius-border, var(--sds-c-modal-radius-border, var(--lwc-borderRadiusMedium,0.25rem)));border-top-left-radius: var(--slds-c-modal-radius-border, var(--sds-c-modal-radius-border, var(--lwc-borderRadiusMedium,0.25rem)));">
+                <aura:renderIf isTrue="{!v.canSubmit}">
+                    <aura:renderIf isTrue="{!and(!v.isSubmitted, !v.isCancelled)}">
+                        <div class="slds-form">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label">
+                                    Enhanced Due Diligence Comment:
+                                </label>
+                                <div class="slds-form-element__control">
+                                    <lightning:textarea aura:id="inputCustom" name="inputCustom" value="{!v.dueDiligenceComment}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-align_absolute-center slds-var-p-top_large">
+                            <lightning:button variant="brand-outline" label="Cancel" title="Cancel" onclick="{!c.handleCancel}" />
+                            <div class="slds-var-p-right_small" />
+                            <lightning:button variant="brand" label="Save" title="Save" onclick="{!c.handleSubmit}" disabled="{!!v.isLoaded}" />
+                        </div>
+                    </aura:renderIf>
+                </aura:renderIf>
+                
+                <aura:renderIf isTrue="{!v.isSubmitted}">
+                    {!v.actionButton} successfully.
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!!v.canSubmit}">
+                    Already submitted.
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.isCancelled}">
+                    Cancelled.
+                </aura:renderIf>
+            </div>
+        </div>
+        <aura:if isTrue="{!!v.isLoaded}">
+            <lightning:spinner variant="brand" style="z-index:2" />
+        </aura:if>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</aura:component>

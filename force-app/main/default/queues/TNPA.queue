@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>TNPA</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>TNPA</publicGroup>
+        </publicGroups>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>E_MOC_Application__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>E_MOC_Question__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>E_MOC_TA_Checklist_Require__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>E_MOC_TA_Mapping_Checklist__c</sobjectType>
+    </queueSobject>
+</Queue>

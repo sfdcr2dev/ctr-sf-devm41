@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Capacity Historical</value>
+    </caseValues>
+    <fields>
+        <label><!-- Capacity --></label>
+        <name>Capacity__c</name>
+        <relationshipLabel><!-- Capacity Historical --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Date --></label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Period --></label>
+        <name>Period__c</name>
+        <picklistValues>
+            <masterLabel>Per month</masterLabel>
+            <translation><!-- Per month --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Per year</masterLabel>
+            <translation><!-- Per year --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Total Requirement --></label>
+        <name>TotalRequirement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unit Conversion --></label>
+        <name>UnitConversion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unit --></label>
+        <name>Unit__c</name>
+    </fields>
+    <layouts>
+        <layout>Capacity Historical Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

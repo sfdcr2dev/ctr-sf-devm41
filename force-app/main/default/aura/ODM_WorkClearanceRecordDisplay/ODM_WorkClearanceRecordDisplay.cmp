@@ -1,0 +1,1032 @@
+<aura:component
+                controller="THOR_WorkClearanceController"
+                implements="flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable"
+                access="global"
+                >
+    <aura:handler name="sampleComponentEvent" event="c:compEvent"
+                  action="{!c.changetoRed}"/>
+    <aura:handler event="c:ODM_WorkClearanceVerificationSubmit" action="{!c.handleEvent}" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="recordError" type="String" access="private" />
+    <aura:attribute name="workClearanceRecord" type="Map" default="{}" access="private" />
+    <aura:attribute name="workClearanceRecordUi" type="Object" access="public" />
+    <aura:attribute name="form" type="Map" default="{}" access="private" />
+    <aura:attribute name="rejectReason" type="String" default="" access="private" />
+    <aura:attribute name="showViewMore" type="Boolean" default="false" access="private" />
+    <aura:attribute name="showViewLess" type="Boolean" default="false" access="private" />
+    <aura:attribute name="truncatedText" type="String" default="" access="private" />
+    <aura:attribute name="allText" type="String" default="" access="private" />
+    <aura:attribute name="workDetail" type="String" default="" access="private" />
+    
+    <aura:attribute name="canApproveOrReject" type="Boolean" default="false" access="global" />
+    <aura:attribute name="hasWriteAccess" type="Boolean" default="false" access="global" />
+    <aura:attribute name="hasPendingApproval" type="Boolean" default="true" access="global" />
+    <aura:attribute name="isLoadingRecord" type="Boolean" default="true" access="private" />
+    <aura:attribute name="isLoadingRecordUi" type="Boolean" default="true" access="private" />
+    <aura:attribute name="isAlertIntegration" type="Boolean" default="false" access="private" />
+    <aura:attribute name="isModalAction" type="Map" default="{ discard: false, resend: false, close: false }" access="private" />
+    
+    
+    <aura:attribute name="disableVerify" type="Boolean" default="false" access="global" />
+    <aura:attribute name="disableInspec" type="Boolean" default="true" access="global" />
+    <aura:attribute name="openDisgreeModal" type="Boolean" default="false" access="global" />
+    <aura:attribute name="disagreeRed" type="Boolean" default="false" access="global" />
+    <aura:attribute name="isGreen" type="Boolean" default="false" access="global" />
+    <aura:attribute name="isYellow" type="Boolean" default="false" access="global" />
+    <aura:attribute name="color" type="String" default="" access="global" />
+    
+    
+    <aura:attribute name="isVerified" type="Boolean" default="false" access="global" />
+    <aura:attribute name="isNotVerified" type="Boolean" default="false" access="global" />
+    
+    <aura:attribute name="whichPage" type="String" default="detail" access="global" />
+    <aura:attribute name="ptwInspectionId" type="String" />
+    
+    <aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" access="private" />
+    <aura:attribute name="timeout" type="Object" access="private" />
+    <aura:attribute name="interval" type="Object" access="private" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="aura:doneRendering" action="{!c.doneRendering}" />
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.reInit}" />
+    
+    <aura:attribute name="checkColorInspecBtn" type="String" access="global" />
+
+    <aura:attribute name="isClosed" type="Boolean" default="false" access="private" />
+    
+    <lightning:navigation aura:id="navService" />
+    
+    <force:recordData
+                      aura:id="recordData"
+                      recordId="{!v.recordId ? v.recordId : v.pageReference.state.c__recordId}"
+                      fields="Id, OwnerId, IsDeleted, Name, CreatedDate, CreatedById, LastModifiedDate, LastModifiedById, SystemModstamp, LastActivityDate, LastViewedDate, LastReferencedDate, Integration_Message__c, Description__c, Functional_Location__c,Latitude__c,Longitude__c, Main_Work_Center__c, Notification__c, Notification__r.Name, Order__c, Order__r.Name, Planning_Plant__c, Priority__c, Integration_Status__c, System_Status__c, User_Status__c, Work_Clearance__c, Main_Work_Center_Text__c, LINK__c, Spade_off__c, Ventilation__c, Stop_machine__c, PPE_Flag__c, PPE1__c, PPE2__c, PPE3__c, Tag_Out__c, Isolate_Elec__c, Isolate_Breaker__c, Lock_off_RCU__c, Permit_flag__c, Operation_Stand_by__c, Fire_Watch_Stand_By__c, Flamable_gas__c, Flamable_amt__c, Oxygen__c, Oxygen_amt__c, Toxic__c, Toxic_Type__c, Toxic_PPM__c, AGT__c, Priority_Map__c, Check_Date__c, Extend_No__c, Requester__c, Area__c, Maintenance_Unit__c, Problem__c, Work_Detail__c, WBS__c, Thaioil_Supervisor_Indicator__c, TOP_Supervisor_Telephone__c, Applicant_or_Bearer__c, Applicant_or_Bearer_Telephone__c, Bearer1__c, Bearer2__c, Bearer3__c, Bearer4__c, Can_go_wrong1__c, Can_go_wrong2__c, Can_go_wrong3__c, Can_go_wrong4__c, Can_go_wrong5__c, Can_go_wrong6__c, Cause1__c, Cause2__c, Cause3__c, Cause4__c, Cause5__c, Cause6__c, Prevent1__c, Prevent2__c, Prevent3__c, Prevent4__c, Prevent5__c, Prevent6__c, Authorized_Signature__c, Authorized_Indicator__c, Authorized_Signatory__c, Authorized_Time__c, Extend_Time_Flag__c, Extend_Time_To__c, Extend_Applicant_or_Bearer__c, Extend_Authorized_Sign__c, Sign_off_Flag__c, Close_Applicant_or_Bearer__c, Close_Authorized_Sign_off__c, Close_Authorized_Sign_Indc__c, Safety_Permit1__c, Safety_Permit2__c, Safety_Permit3__c, Extend_Authorized_Sign_Indc__c, Reduce_Pressure__c, Block_gas__c, Block_Valv__c, Telephone_No__c, Telephone_No_2__c, Check_Time__c, Tag_No__c, Applicant_or_Bearer_UI__c, Sign_off_Flag_Formula__c, Extend_Time_Flag_Formula__c, Start_Date__c, Authorized_Date__c, Bearer1_UI__c, Bearer2_UI__c, Bearer3_UI__c, Bearer4_UI__c, Authorized_Date_UI__c, Authorized_Time_UI__c, Check_Date_UI__c, Extend_Time_To_UI__c, FunctionalLocation__c, Request_Extend_Date__c, isIRPA__c, Last_User_Action_Status__c, Location__c, Maintenance_Plant__c, Plant_Section__c, Safety_Permit1_UI__c, Safety_Permit2_UI__c, Safety_Permit3_UI__c, Safety_Permit1_UI__r.Name, Safety_Permit2_UI__r.Name, Safety_Permit3_UI__r.Name, Thaioil_Supervisor_Indicator_UI__c, Thaioil_Supervisor_Indicator_UI__r.EN_Fullname__c, Work_Clearance_Historical__c, Work_Clearance_Status__c, Extend_Date__c, Extend_Time__c, Requester_UI__c, Work_Clearance_Description__c, Extend_Applicant_or_Bearer_UI__c, Close_Applicant_or_Bearer_UI__c, Last_User_Action__c, Authorized_Signatory_UI__c, CloseApplicantorBearer_PISUser_Text__c, Extend_Authorized_Sign_UI__c, ExtendApplicantOrBearer_PISUser_Text__c, TOPGroupApplicantorBearer_PISUser_Text__c, Close_Authorized_Sign_off_UI__c, Authorized_Signature_UI__c, Authorized_Indicator_UI__c, Request_Extend_Time__c, Check_Time_UI__c, IsCheckingGas__c, Month__c, number_of_month__c, Reject_Reason__c, AGT_UI__c, High_Risk_Work__c, Rejected_By__c, Block_Valv_Remark__c, Authorized_Date_Month__c, Verification_Status__c"
+                      targetFields="{!v.workClearanceRecord}"
+                      targetRecord="{!v.workClearanceRecordUi}"
+                      targetError="{!v.recordError}"
+                      recordUpdated="{!c.handleRecordUpdated}"
+                      />
+
+    <force:recordData
+                      aura:id="recordDataPinMap"
+                      mode="EDIT"
+                      recordId="{!v.recordId ? v.recordId : v.pageReference.state.c__recordId}"
+                      fields="Id, Description__c"
+                      />
+    
+    <aura:if isTrue="{!v.isModalAction.pinMap}">
+		<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+			class="slds-modal slds-fade-in-open">
+			<div class="slds-modal__container">
+				<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+					<lightning:buttonIcon
+							class="slds-modal__close"
+							iconName="utility:close"
+							variant="bare-inverse"
+							title="Close"
+							onclick="{!c.pinMap}"
+						/>
+				</button>
+				<div class="slds-modal__header">
+					<h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Pin Map</h1>
+				</div>
+				<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+					<c:leafletMapFSC popupTextValue='testtest' currentLocationButtonLabel='get current location' draggable='true' 
+                		latitude = '{!v.lat}' longitude = '{!v.lng}'/>
+				</div>
+				<div class="slds-modal__footer">
+					<button class="slds-button slds-button_neutral" onclick="{!c.pinMap}" aria-label="Cancel and close">Cancel</button>
+					<button class="slds-button slds-button_brand" onclick="{!c.saveMap}">Save</button>
+				</div>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+	</aura:if>
+
+    <div class="{!if(v.formFactor == 'PHONE', 'phone slds-p-around_x-small', 'slds-p-around_x-small')}">
+        <div class="slds-grid slds-grid_vertical-align-end slds-m-bottom_small">
+            <div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+                <lightning:icon iconName="utility:edit_form" alternativeText="Work Clearance" title="Work Clearance" />
+                <h1 class="header-title">Work Clearance</h1>
+            </div>
+        </div>
+        
+        <div class="slds-grid slds-grid_vertical-align-end slds-m-bottom_small">
+            <div class="slds-col">
+                <!-- <lightning:button class='tab-button' variant="brand" label="Detail" onclick="{!c.openDetail}"></lightning:button> -->
+                <lightning:button class="{!(v.whichPage == 'detail')?'tab-button focusBtnOnCurrentPage':'tab-button'}" aura:id="detailButton" variant="brand" label="Detail" onclick="{!c.openDetail}"></lightning:button>
+                <!-- <lightning:button class="tab-button-inactive" aura:id="verificationButton" variant="brand" label="Verification" onclick="{!c.openVerification}" disabled="{!v.disableVerify}"></lightning:button> -->
+                <lightning:button class="tab-button-inactive" aura:id="verificationButton" variant="brand" label="Verification" onclick="{!c.openVerification}" disabled="{!v.disableVerify}"></lightning:button>
+                <lightning:button class='tab-button-inactive' aura:id="inspectionButton" variant="brand" label="Inspection" disabled="{!v.disableInspec}" onclick="{!c.openInspection}" > </lightning:button>
+                <!-- <lightning:button class="{!(v.whichPage == 'Inspection')?'tab-button-inactive tabInspection':'tab-button-inactive'}" aura:id="inspectionButton" variant="brand" label="Inspection" disabled="{!v.disableInspec}" onclick="{!c.openInspection}" > </lightning:button> -->
+                
+                
+                <!-- <aura:if isTrue="{!v.checkColorInspecBtn == 'gray'}">
+                    <lightning:button class="{!(v.whichPage == 'Inspection')?'tab-button-inactive tabInspection':'tab-button-inactive'}" aura:id="inspectionButton" variant="brand" label="Inspection" onclick="{!c.openInspection}" > </lightning:button>
+                </aura:if>
+                <aura:if isTrue="{!v.checkColorInspecBtn == 'green'}">
+                    <lightning:button class="{!(v.whichPage == 'Inspection')?'tab-button-inactive tabInspection':'tab-button'}" aura:id="inspectionButton" variant="brand" label="Inspection" onclick="{!c.openInspection}" > </lightning:button>
+                </aura:if> -->
+            </div>
+        </div>
+    </div>
+    <!--Detail actions button -->
+    <aura:if isTrue="{!v.whichPage == 'detail'}"> 
+        <div class="slds-col slds-col_bump-left">
+            <!-- <div class="slds-grid slds-grid_align-end slds-p-vertical_x-small" style="margin-left: auto"> -->
+            <div class="slds-grid slds-grid_align-end slds-p-vertical_x-small" style="margin-right: 8px">
+                <lightning:buttonMenu menuAlignment="right" alternativeText="Show menu" label="Actions" onselect="{!c.handleSelectButtonMenu}">
+                    <lightning:menuItem
+                                        label="Approve"
+                                        title="Approve"
+                                        value="c.showApproveModal"
+                                        disabled="{!not(v.hasWriteAccess) || not(v.canApproveOrReject) || v.workClearanceRecord.Integration_Status__c == 'Failed' || v.workClearanceRecord.Work_Clearance_Status__c == 'Closed' || not(v.hasPendingApproval)}"
+                                        />
+                    <lightning:menuItem
+                                        label="Reject"
+                                        title="Reject"
+                                        value="c.toggleRejectModal"
+                                        disabled="{!not(v.hasWriteAccess) || not(v.canApproveOrReject) || v.workClearanceRecord.Integration_Status__c == 'Failed' || v.workClearanceRecord.Work_Clearance_Status__c == 'Closed' || v.workClearanceRecord.Work_Clearance_Status__c == 'Rejected'}"
+                                        />
+                    <lightning:menuItem
+                                        label="Resend"
+                                        title="Resend"
+                                        value="c.resendNotification"
+                                        disabled="{!not(v.hasWriteAccess) || not(v.canApproveOrReject) || not(v.workClearanceRecord.Integration_Status__c == 'Failed') || v.workClearanceRecord.Work_Clearance_Status__c == 'Closed'}"
+                                        />
+                    <lightning:menuItem
+                                        label="Pin Map"
+                                        title="Pin Map"
+                                        value="c.pinMap"
+                                        disabled="{! not(v.hasWriteAccess) || v.isClosed}"
+                                        />
+                </lightning:buttonMenu>
+            </div>
+            <!-- detail section -->
+            <aura:if isTrue="{!v.recordId}">
+                <c:ODM_ModalSelected size="empty" isToggle="{!v.workClearanceRecord.Integration_Status__c == 'In Progress'}" isHideCloseButton="true">
+                    <aura:set attribute="body">
+                        <div class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center">
+                            <div class="slds-col">
+                                <div class="slds-is-relative" style="height: 8em">
+                                    <lightning:spinner alternativeText="Loading" size="large" />
+                                </div>
+                            </div>
+                            <div class="slds-col">
+                                <h2 class="slds-text-heading_large slds-text-align_center slds-p-horizontal_medium slds-p-bottom_medium">
+                                    Please wait...
+                                </h2>
+                            </div>
+                        </div>
+                    </aura:set>
+                </c:ODM_ModalSelected>
+                
+                <c:ODM_ModalSelected size="empty" title="Confirm to Reject" isToggle="{!v.isModalAction.reject}" isHideCloseButton="true">
+                    <aura:set attribute="body">
+                        <div class="slds-text-align_center slds-p-bottom_xx-small">Are you sure you want to reject this Work Clearance?</div>
+                        <lightning:layout multipleRows="true" verticalAlign="stretch">
+                            
+                            <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <label class="slds-form-element__label" for="Name">Reject Reason</label>
+                                    <lightning:textarea variant="label-hidden" maxlength="70" value="{!v.rejectReason}" />
+                                </div>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <label class="slds-form-element__label">
+                                        <abbr class="slds-required">*</abbr>
+                                        Rejected By
+                                    </label>
+                                    <div class="slds-form-element__control input-required hide-label">
+                                        <c:thorFilterSuggestLookup
+                                                                   aura:id="thorFilterSuggestLookup"
+                                                                   required="true"
+                                                                   sObjectName="Work_Clearance__c"
+                                                                   fieldName="Rejected_By__c"
+                                                                   value="{!v.form.Rejected_By__c}"
+                                                                   onchangeValue="{!c.handleChange}"
+                                                                   fetchSObjectName="PISUsers__c"
+                                                                   nameDisplayFormat="{EN_Fullname__c}"
+                                                                   descriptionDisplayFormat="{Home Id: HOME_ID__c, Host Id: HOST_ID__c}"
+                                                                   />
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+                        </lightning:layout>
+                    </aura:set>
+                    <aura:set attribute="footer">
+                        <div class="slds-grid slds-grid_align-end">
+                            <div class="slds-col slds-p-left_x-small">
+                                <lightning:button name="reject" variant="destructive" label="Reject" onclick="{!c.rejectWorkClearance}" />
+                            </div>
+                            <div class="slds-col slds-p-left_x-small">
+                                <lightning:button variant="neutral" label="Cancel" onclick="{!c.toggleRejectModal}" />
+                            </div>
+                        </div>
+                    </aura:set>
+                </c:ODM_ModalSelected>
+                
+                <aura:if isTrue="{!v.workClearanceRecord.Integration_Status__c == 'Failed'}">
+                    <lightning:recordEditForm
+                                              class="slds-hide"
+                                              aura:id="recordResendForm"
+                                              recordId="{!v.recordId}"
+                                              objectApiName="Work_Clearance__c"
+                                              onerror="{!c.handleResendFormError}"
+                                              >
+                        <lightning:inputField fieldName="Integration_Status__c" value="" />
+                        <lightning:inputField fieldName="Integration_Message__c" value="" />
+                        <lightning:inputField fieldName="isIRPA__c" value="{!true}" />
+                    </lightning:recordEditForm>
+                </aura:if>
+                
+                <aura:if isTrue="{!true}">
+                    <lightning:recordEditForm
+                                              class="slds-hide"
+                                              aura:id="recordRejectForm"
+                                              recordId="{!v.recordId}"
+                                              objectApiName="Work_Clearance__c"
+                                              onerror="{!c.handleRejectFormError}"
+                                              >
+                        <lightning:inputField fieldName="Integration_Status__c" value="" />
+                        <lightning:inputField fieldName="Integration_Message__c" value="" />
+                        <lightning:inputField fieldName="isIRPA__c" value="{!true}" />
+                        <lightning:inputField fieldName="Last_User_Action__c" value="OPREJ" />
+                        <lightning:inputField fieldName="Rejected_By__c" value="{!v.form.Rejected_By__c}" aura:id="inputField" />
+                        <lightning:inputField fieldName="Reject_Reason__c" value="{!v.rejectReason}" />
+                    </lightning:recordEditForm>
+                </aura:if>
+                
+                <aura:if isTrue="{!v.workClearanceRecord.Integration_Status__c == 'In Progress'}">
+                    <lightning:recordEditForm
+                                              class="slds-hide"
+                                              aura:id="recordTimeoutForm"
+                                              recordId="{!v.recordId}"
+                                              objectApiName="Work_Clearance__c"
+                                              onerror="{!c.handleTimeoutFormError}"
+                                              >
+                        <lightning:inputField fieldName="Integration_Status__c" value="Failed" />
+                        <lightning:inputField fieldName="Integration_Message__c" value="" />
+                    </lightning:recordEditForm>
+                </aura:if>
+                
+                <aura:if isTrue="{! v.isAlertIntegration }">
+                    <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                        <lightning:icon iconName="utility:error" variant="inverse" alternativeText="Error" title="error"
+                                        size="{!v.formFactor == 'DESKTOP' ? 'x-small' : 'medium'}" />
+                        <h2 class="slds-p-horizontal_xx-small">
+                            Integration Failed:
+                            <aura:if isTrue="{!v.workClearanceRecord.Integration_Message__c}">
+                                {!v.workClearanceRecord.Integration_Message__c}
+                                <aura:set attribute="else">
+                                    <span>Your network could not connect to Server. Please contact System Administer.</span>
+                                </aura:set>
+                            </aura:if>
+                        </h2>
+                        
+                        <div class="slds-notify__close">
+                            <lightning:buttonIcon iconName="utility:close" variant="bare-inverse" title="Close" onclick="{!c.closeAlertIntegration}" />
+                        </div>
+                    </div>
+                </aura:if>
+                
+                <lightning:card>
+                    <aura:if isTrue="{!or(v.isLoadingRecord, v.isLoadingRecordUi)}">
+                        <lightning:spinner alternativeText="Loadings" size="medium" />
+                    </aura:if>
+                    
+                    <lightning:layout multipleRows="true" verticalAlign="stretch">
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label" for="Name">Clearance No.</label>
+                                <div class="slds-form-element__static">
+                                    <div class="slds-hide">
+                                        <lightning:outputField variant="label-hidden" fieldName="Name" />
+                                        <lightning:outputField variant="label-hidden" fieldName="Extend_No__c" />
+                                    </div>
+                                    <aura:if isTrue="{!v.workClearanceRecord.Extend_No__c}">
+                                        {!v.workClearanceRecord.Name}/{!v.workClearanceRecord.Extend_No__c}
+                                        <aura:set attribute="else">
+                                            {!v.workClearanceRecord.Name}
+                                        </aura:set>
+                                    </aura:if>
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <img src="{!'https://www.webarcode.com/barcode/image.php?code=' + v.workClearanceRecord.Name + '&amp;type=C128B&amp;xres=3&amp;font=5&amp;output=jpeg&amp;style=68'}"/>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">User Status</label>
+                                <div class="slds-form-element__static">
+                                    {!v.workClearanceRecord.User_Status__c}
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Integration Status</label>
+                                <div class="slds-form-element__static">
+                                    {!v.workClearanceRecord.Integration_Status__c}
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Notification No.</label>
+                                <div class="slds-form-element__static">
+                                    <a onclick="{!c.goToNotification}" data-record-id="{!v.workClearanceRecord.Notification__c}">{!v.workClearanceRecord.Notification__r.Name}</a>
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Order No.</label>
+                                <div class="slds-form-element__static">
+                                    {!v.workClearanceRecord.Order__r.Name}
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Clearance Status</label>
+                                <div class="slds-form-element__static">
+                                    {!v.workClearanceRecord.Work_Clearance_Status__c}
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Priority</label>
+                                <div class="slds-form-element__static">
+                                    {!v.workClearanceRecordUi.fields.Priority__c.displayValue}
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <label class="slds-form-element__label">Latitude</label>
+                            <!-- <p>{!v.workClearanceRecord.Latitude__c}</p> -->
+                            <div class="slds-form-element__static">
+                                {!v.workClearanceRecord.Latitude__c}
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <label class="slds-form-element__label">Longitude</label>
+                            <!-- <p>{!v.workClearanceRecord.Longitude__c}</p> -->
+                            <div class="slds-form-element__static">
+                                {!v.workClearanceRecord.Longitude__c}
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Functional Location</label>
+                                <div class="slds-form-element__static">
+                                    {!v.workClearanceRecord.Functional_Location__c}
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        <!-- <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                            </div>
+                        </lightning:layoutItem> -->
+                        
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Requester (Staff ID)</label>
+                                <div class="slds-form-element__static">
+                                    {!v.workClearanceRecordUi.fields.Requester_UI__c.displayValue}
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">High Risk Work Type</label>
+                                <div class="slds-form-element__static">
+                                    {!v.workClearanceRecordUi.fields.High_Risk_Work__c.displayValue}
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Description</label>
+                                <div class="slds-form-element__static">
+                                    {!v.workClearanceRecord.Description__c}
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Area<br/>(พื้นที่ปฏิบัติงาน)</label>
+                                <div class="slds-form-element__static">
+                                    {!v.workClearanceRecord.Area__c}
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Maintenance unit<br/>(หน่วยที่ปฏิบัติงาน)</label>
+                                <div class="slds-form-element__static">
+                                    {!v.workClearanceRecord.Main_Work_Center_Text__c}
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Problem (ปัญหาเบื้องต้น)</label>
+                                <div class="slds-form-element__static">
+                                    {!v.workClearanceRecord.Problem__c}
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Work detail (รายละเอียดการปฏิบัติงาน)</label>
+                                <div class="slds-form-element__static">
+                                    {!v.workClearanceRecord.Work_Detail__c}
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Reject Reason</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Reject_Reason__c" />
+                                <div class="wc-rejected-by"><span class="slds-form-element__label">Rejected By:</span> {!v.workClearanceRecordUi.fields.Rejected_By__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">TOP Group Applicant or Bearer<br/>(ผู้ควบคุมงาน)</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Thaioil_Supervisor_Indicator_UI__c" class="hidden" />
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Thaioil_Supervisor_Indicator_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Telephone No.<br/>&nbsp;</label>
+                                <div class="slds-form-element__static">
+                                    {!v.workClearanceRecord.TOP_Supervisor_Telephone__c}
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Contractor Applicant or Bearer<br/>(ผู้ขออนุญาต)</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Applicant_or_Bearer_UI__c" class="hidden" />
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Applicant_or_Bearer_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Telephone No.<br/>&nbsp;</label>
+                                <div class="slds-form-element__static">
+                                    {!v.workClearanceRecord.Applicant_or_Bearer_Telephone__c}
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Bearer: 1<br/>(ผู้ถือใบอนุญาต 1)</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Bearer1_UI__c" class="hidden" />
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Bearer1_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Bearer: 2<br/>(ผู้ถือใบอนุญาต 2)</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Bearer2_UI__c" class="hidden" />
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Bearer2_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Bearer: 3<br/>(ผู้ถือใบอนุญาต 3)</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Bearer3_UI__c" class="hidden" />
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Bearer3_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Bearer: 4<br/>(ผู้ถือใบอนุญาต 4)</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Bearer4_UI__c" class="hidden" />
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Bearer4_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box border-top border-bottom bg-lightgray text-center">
+                            <label class="slds-form-element__label">3 What's</label>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom bg-whitesmoke text-center">
+                            <label class="slds-form-element__label">What can go wrong?</label>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom border-left border-right bg-whitesmoke text-center">
+                            <label class="slds-form-element__label">What can cause it to go wrong?</label>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom bg-whitesmoke text-center">
+                            <label class="slds-form-element__label">What can you do to prevent it from going wrong?</label>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Can_go_wrong1__c}</div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom border-left border-right">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Cause1__c}</div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Prevent1__c}</div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Can_go_wrong2__c}</div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom border-left border-right">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Cause2__c}</div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Prevent2__c}</div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Can_go_wrong3__c}</div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom border-left border-right">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Cause3__c}</div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Prevent3__c}</div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Can_go_wrong4__c}</div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom border-left border-right">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Cause4__c}</div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Prevent4__c}</div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Can_go_wrong5__c}</div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom border-left border-right">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Cause5__c}</div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Prevent5__c}</div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Can_go_wrong6__c}</div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom border-left border-right">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Cause6__c}</div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box border-bottom">
+                            <div class="slds-form-element__static">{!v.workClearanceRecord.Prevent6__c}</div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Authorized Signature / Indicator<br/>(ลงชื่อผู้ประเมินอันตราย)</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Authorized_Signature_UI__c" class="hidden" />
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Authorized_Signature_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Applicant or Bearer<br/>(ผู้ขออนุญาต)</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Applicant_or_Bearer_UI__c" class="hidden" />
+                                <aura:if isTrue="{!v.workClearanceRecordUi.fields.Applicant_or_Bearer_UI__c.displayValue}">
+                                    <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Applicant_or_Bearer_UI__c.displayValue}</div>
+                                    <aura:set attribute="else">
+                                        <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Thaioil_Supervisor_Indicator_UI__c.displayValue}</div>
+                                    </aura:set>
+                                </aura:if>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Safety Permit: 1</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Safety_Permit1_UI__c" class="hidden" />
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Safety_Permit1_UI__r.value.fields.Name.value}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Safety Permit: 2</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Safety_Permit2_UI__c" class="hidden" />
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Safety_Permit2_UI__r.value.fields.Name.value}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Safety Permit: 3</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Safety_Permit3_UI__c" class="hidden" />
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Safety_Permit3_UI__r.value.fields.Name.value}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box border-top border-bottom bg-lightgray text-center">
+                            <label class="slds-form-element__label">เพื่อความปลอดภัยในการทำงาน ฝ่ายผลิตได้ดำเนินการ ดังต่อไปนี้แล้ว</label>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="12" largeDeviceSize="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <table class="slds-table">
+                                <tbody>
+                                    <tr>
+                                        <td scope="row">
+                                            <lightning:input fieldName="Reduce_Pressure__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Reduce_Pressure__c.value}" />
+                                        </td>
+                                        <td scope="row" colspan="2">
+                                            <div class="slds-form-element__label">
+                                                ทำการลดความดันในอุปกรณ์ถึงระดับความปลอดภัย
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">
+                                            <lightning:input fieldName="Block_gas__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Block_gas__c.value}" />
+                                        </td>
+                                        <td scope="row" colspan="2">
+                                            <div class="slds-form-element__label">
+                                                ทำการปิดกั้น หรือระบายทิ้งก๊าซ / ของเหลวภายในระบบ
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row"></td>
+                                        <td scope="row" style="width:3rem;">
+                                            <lightning:input fieldName="Block_Valv__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Block_Valv__c.value}" />
+                                        </td>
+                                        <td scope="row">
+                                            <div class="slds-form-element__label">
+                                                ปิดกั้นระบบโดยการปิดวาล์ว
+                                                <aura:if isTrue="{!v.workClearanceRecordUi.fields.Block_Valv__c.value}">
+                                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;{!v.workClearanceRecordUi.fields.Block_Valv_Remark__c.value}
+                                                </aura:if>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row"></td>
+                                        <td scope="row" style="width:3rem;">
+                                            <lightning:input fieldName="Spade_off__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Spade_off__c.value}" />
+                                        </td>
+                                        <td scope="row">
+                                            <div class="slds-form-element__label">
+                                                ปิดกั้นระบบโดยการ SPADE OFF / BLIND
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">
+                                            <lightning:input fieldName="Ventilation__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Ventilation__c.value}" />
+                                        </td>
+                                        <td scope="row" colspan="2">
+                                            <div class="slds-form-element__label">
+                                                ทำการระบายอากาศ
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">
+                                            <lightning:input fieldName="Stop_machine__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Stop_machine__c.value}" />
+                                        </td>
+                                        <td scope="row" colspan="2">
+                                            <div class="slds-form-element__label">
+                                                ต้องหยุดเดินเครื่องจักร
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">
+                                            <lightning:input fieldName="PPE_Flag__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.PPE_Flag__c.value}" />
+                                        </td>
+                                        <td scope="row" colspan="2">
+                                            <div class="slds-form-element__label">
+                                                อุปกรณ์ป้องกันส่วนบุคคลเพิ่มเติม (พิเศษ) จากที่กำหนด
+                                                <aura:if isTrue="{!v.workClearanceRecordUi.fields.PPE_Flag__c.value}">
+                                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;1. {!v.workClearanceRecordUi.fields.PPE1__c.value}
+                                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;2. {!v.workClearanceRecordUi.fields.PPE2__c.value}
+                                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;3. {!v.workClearanceRecordUi.fields.PPE3__c.value}
+                                                </aura:if>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="12" largeDeviceSize="6" flexibility="auto" padding="around-small" class="custom-box">
+                            <table class="slds-table">
+                                <tbody>
+                                    <tr>
+                                        <td scope="row">
+                                            <lightning:input fieldName="Tag_Out__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Tag_Out__c.value}" />
+                                        </td>
+                                        <td scope="row" colspan="2">
+                                            <div class="slds-form-element__label">
+                                                กั้นเชือก / ติดป้ายเตือนเพื่อความปลอดภัย
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">
+                                            <lightning:input fieldName="Isolate_Elec__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Isolate_Elec__c.value}" />
+                                        </td>
+                                        <td scope="row" colspan="2">
+                                            <div class="slds-form-element__label">
+                                                การ ISOLATED ระบบไฟฟ้า
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row"></td>
+                                        <td scope="row" style="width:3rem;">
+                                            <lightning:input fieldName="Isolate_Breaker__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Isolate_Breaker__c.value}" />
+                                        </td>
+                                        <td scope="row">
+                                            <div class="slds-form-element__label">
+                                                ISOLATED BRAKER / MOTOR STARTER
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row"></td>
+                                        <td scope="row" style="width:3rem;">
+                                            <lightning:input fieldName="Lock_off_RCU__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Lock_off_RCU__c.value}" />
+                                        </td>
+                                        <td scope="row">
+                                            <div class="slds-form-element__label">
+                                                LOCK OFF RCU.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">
+                                            <lightning:input fieldName="Permit_flag__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Permit_flag__c.value}" />
+                                        </td>
+                                        <td scope="row" colspan="2">
+                                            <div class="slds-form-element__label">
+                                                ใบรับรองความปลอดภัย (SAFETY PERMIT)
+                                                <aura:if isTrue="{!v.workClearanceRecordUi.fields.Permit_flag__c.value}">
+                                                    <br/>&nbsp;&nbsp;&nbsp;{!v.workClearanceRecordUi.fields.Safety_Permit1_UI__r.displayValue}
+                                                    <br/>&nbsp;&nbsp;&nbsp;{!v.workClearanceRecordUi.fields.Safety_Permit2_UI__r.displayValue}
+                                                    <br/>&nbsp;&nbsp;&nbsp;{!v.workClearanceRecordUi.fields.Safety_Permit3_UI__r.displayValue}
+                                                </aura:if>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">
+                                            <lightning:input fieldName="Operation_Stand_by__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Operation_Stand_by__c.value}" />
+                                        </td>
+                                        <td scope="row" colspan="2">
+                                            <div class="slds-form-element__label">
+                                                จัดให้มี Operation Stand by
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">
+                                            <lightning:input fieldName="Fire_Watch_Stand_By__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Fire_Watch_Stand_By__c.value}" />
+                                        </td>
+                                        <td scope="row" colspan="2">
+                                            <div class="slds-form-element__label">
+                                                จัดให้มี Fire Watch Stand by
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box border-top border-bottom bg-lightgray text-center">
+                            <label class="slds-form-element__label">ผลการตรวจวัดก๊าซ (ทำการตรวจวัดก๊าซก่อนปฏิบัติงานทุกครั้งเพื่อความปลอดภัย)</label>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                            <table class="slds-table">
+                                <tbody>
+                                    <tr>
+                                        <td scope="row">
+                                            <lightning:input fieldName="IsCheckingGas__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.IsCheckingGas__c.value}" />
+                                        </td>
+                                        <td scope="row">
+                                            <div class="slds-form-element__label">
+                                                ไม่ต้องตรวจวัดก๊าซ
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">
+                                            <lightning:input fieldName="Flamable_gas__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Flamable_gas__c.value}" />
+                                        </td>
+                                        <td scope="row">
+                                            <div class="slds-form-element__label">
+                                                สารไวไฟ ( Flammable Gas ): <span class="text-output">{!v.workClearanceRecordUi.fields.Flamable_amt__c.value}</span> %LEL.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">
+                                            <lightning:input fieldName="Oxygen__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Oxygen__c.value}" />
+                                        </td>
+                                        <td scope="row">
+                                            <div class="slds-form-element__label">
+                                                อ๊อกซิเจน (Oxygen): <span class="text-output">{!v.workClearanceRecordUi.fields.Oxygen_amt__c.value}</span> %VOL.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">
+                                            <lightning:input fieldName="Toxic__c" aura:id="inputField" type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecordUi.fields.Toxic__c.value}" />
+                                        </td>
+                                        <td scope="row">
+                                            <div class="slds-form-element__label">
+                                                สารพิษ (Toxic gas) ระบุชนิด: <span class="text-output">{!v.workClearanceRecordUi.fields.Toxic_Type__c.value}</span>&nbsp;:&nbsp;<span class="text-output">{!v.workClearanceRecordUi.fields.Toxic_PPM__c.value}</span>ppm.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">AGT. Indicator<br/>(ผู้ทำการตรวจวัดก๊าซ)</label>
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.AGT_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Date<br/>(วันที่)</label>
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Check_Date_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Time<br/>(เวลา)</label>
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Check_Time_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box border-top border-bottom bg-lightgray text-center">
+                            <label class="slds-form-element__label">Authorized Signatory / Indicator (ผู้อนุญาตให้ปฏิบัติงาน)</label>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Authorized Signatory / Indicator<br/>(ผู้อนุญาตให้ปฏิบัติงาน)</label>
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Authorized_Signatory_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Date<br/>(วันที่)</label>
+                                <div class="slds-form-element__static">
+                                    <!-- <aura:if isTrue="{!v.workClearanceRecordUi.fields.Authorized_Signatory_UI__c.value}"> -->
+                                        {!v.workClearanceRecordUi.fields.Authorized_Date_UI__c.displayValue}
+                                    <!-- </aura:if> -->
+                                    <!--
+                                    <aura:if isTrue="{!v.workClearanceRecordUi.fields.Extend_Date__c.value}">
+                                        {!v.workClearanceRecordUi.fields.Extend_Date__c.displayValue}
+                                        <aura:set attribute="else">
+                                            {!v.workClearanceRecordUi.fields.Authorized_Date_UI__c.displayValue}
+                                        </aura:set>
+                                    </aura:if>
+									-->
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Time<br/>(เวลา)</label>
+                                <div class="slds-form-element__static">
+                                    <!-- <aura:if isTrue="{!v.workClearanceRecordUi.fields.Authorized_Signatory_UI__c.value}"> -->
+                                        {!v.workClearanceRecordUi.fields.Authorized_Time_UI__c.displayValue}
+                                    <!-- </aura:if> -->
+                                    <!--
+                                    <aura:if isTrue="{!v.workClearanceRecordUi.fields.Extend_Date__c.value}">
+                                        {!v.workClearanceRecordUi.fields.Extend_Time__c.displayValue}
+                                        <aura:set attribute="else">
+                                            {!v.workClearanceRecordUi.fields.Authorized_Time_UI__c.displayValue}
+                                        </aura:set>
+                                    </aura:if>
+									-->
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        
+                        <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box border-top border-bottom bg-lightgray text-center">
+                            <label class="slds-form-element__label">การขยายเวลาทำงานต่อเนื่องเกิน 16:30 น. (Extending Time)</label>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="6" largeDeviceSize="2" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">ขอขยายเวลา<br/>&nbsp;</label>
+                                <lightning:input type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecord.Extend_Time_Flag_Formula__c}" />
+                            </div>
+                        </lightning:layoutItem>
+                        <!--
+      <lightning:layoutItem size="2" flexibility="auto" padding="around-small" class="custom-box">
+       <div class="slds-form-element slds-form-element_stacked">
+        <label class="slds-form-element__label">Date<br/>(วันที่)</label>
+        <lightning:outputField variant="label-hidden" fieldName="Extend_Date__c" />
+       </div>
+      </lightning:layoutItem>
+      <lightning:layoutItem size="2" flexibility="auto" padding="around-small" class="custom-box">
+       <div class="slds-form-element slds-form-element_stacked">
+        <label class="slds-form-element__label">Time<br/>(เวลา)</label>
+        <lightning:outputField variant="label-hidden" fieldName="Extend_Time__c" />
+       </div>
+      </lightning:layoutItem>
+      <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+       <div class="slds-form-element slds-form-element_stacked">
+        <label class="slds-form-element__label">Authorized Signatory<br/>(ผู้อนุญาตให้ทำงาน)</label>
+        <lightning:outputField variant="label-hidden" fieldName="Authorized_Signatory_UI__c" class="hidden" />
+        <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Authorized_Signatory_UI__c.displayValue}</div>
+       </div>
+      </lightning:layoutItem>
+      -->
+                        
+                        <lightning:layoutItem size="6" largeDeviceSize="2" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Extending Time<br/>(ขอขยายเวลาถึง)</label>
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Extend_Time_To_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="6" largeDeviceSize="4" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Applicant or Bearer<br/>(ผู้ขอขยายเวลา)</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Extend_Applicant_or_Bearer_UI__c" class="hidden" />
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Extend_Applicant_or_Bearer_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="6" largeDeviceSize="4" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Extend Authorized Sign<br/>(ผู้อนุญาตให้ขยายเวลา)</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Extend_Authorized_Sign_UI__c" class="hidden" />
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Extend_Authorized_Sign_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box border-top border-bottom bg-lightgray text-center">
+                            <label class="slds-form-element__label">การปิดงาน (Sign Off)</label>
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Sign Off<br/>&nbsp;</label>
+                                <lightning:input type="checkbox" disabled="{!true}" checked="{!v.workClearanceRecord.Sign_off_Flag_Formula__c}" />
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Applicant or Bearer<br/>(ผู้ขอปิดงาน)</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Close_Applicant_or_Bearer_UI__c" class="hidden" />
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Close_Applicant_or_Bearer_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">Authorized Sign off<br/>(ผู้อนุญาตให้ปิดงาน)</label>
+                                <lightning:outputField variant="label-hidden" fieldName="Close_Authorized_Sign_off_UI__c" class="hidden" />
+                                <div class="slds-form-element__static">{!v.workClearanceRecordUi.fields.Close_Authorized_Sign_off_UI__c.displayValue}</div>
+                            </div>
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                </lightning:card>
+            </aura:if>
+        </div>
+    </aura:if>
+    
+    <!-- verification section -->
+    <aura:if isTrue="{!v.whichPage == 'verification'}" >
+        <c:ODM_WorkClearanceRecordDisplayVerification aura:id="ODM_WorkClearanceRecordDisplayVerification" recordId="{!v.recordId}" isGreen ="{!v.isGreen}" isDisagreeModalOpen ="{!v.openDisgreeModal}" />
+    </aura:if>
+    
+    <!-- Inspection section-->
+    <aura:if isTrue="{!v.whichPage == 'Inspection'}"> 
+        <c:ODM_WorkClearanceRecordDisplayInspection aura:id="ODM_WorkClearanceRecordDisplayInspection" recordId="{!v.recordId}" ptwInspectionId="{!v.ptwInspectionId}" />
+    </aura:if>
+    
+</aura:component>

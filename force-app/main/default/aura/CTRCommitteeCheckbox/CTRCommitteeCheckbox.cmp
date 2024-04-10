@@ -1,0 +1,53 @@
+<aura:component>
+	<aura:attribute name="committees" type="List" default="[]" />
+	<aura:attribute name="includedCommittees" type="List" default="[]" />
+	<aura:attribute name="selectedCommittees" type="List" default="[]" />
+	<aura:attribute name="selectedEmailCommittees" type="List" default="[]" />
+	<aura:attribute name="disabled" type="Boolean" default="false" />
+	
+	<aura:attribute name="_groupedCommittees" type="List" default="[]" access="private" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="change" value="{!v.committees}" action="{!c.doInit}" />
+
+	<div>
+		<aura:iteration items="{!v._groupedCommittees}" var="group" indexVar="index">
+			<ul class="slds-accordion">
+				<li class="slds-accordion__list-item">
+					<section id="{!'section_' + group.parent}" class="slds-accordion__section slds-is-open parent-group">
+						<div class="slds-accordion__summary">
+							<h2 class="slds-accordion__summary-heading">
+								<button type="button" class="slds-button">
+									<button type="button" class="slds-button" data-id="{!'section_' + group.parent}" onclick="{!c.handleToggleSection}">
+										<lightning:icon iconName="utility:switch" alternativeText="switch" title="" size="x-small" />
+									</button>
+									<span class="slds-accordion__summary-content slds-var-m-left_small">
+										<input id="{!'committeeCheckbox_' + group.parent}" data-parent="{!group.parent}" type="checkbox" class="slds-truncate" checked="{!group.checked}" disabled="{!OR(group.disabled, v.disabled)}" onchange="{!c.handleChangeParentCheckbox}" />
+										<label for="{!'committeeCheckbox_' + group.parent}" class="slds-var-m-left_x-small">
+											{!'Committee - ' + group.parent}
+										</label>
+									</span>
+								</button>
+							</h2>
+						</div>
+						<div class="slds-accordion__content">
+							<div class="slds-grid slds-wrap">
+								<aura:iteration items="{!group.committees}" var="committee">
+									<div class="slds-col slds-size_1-of-1 slds-var-p-left_xx-large slds-var-p-bottom_medium" style="display: flex;">
+										<lightning:icon iconName="utility:level_down" alternativeText="level_down" title="" size="x-small" class="slds-button__icon slds-button__icon_left" />
+										<input id="{!'committeeCheckbox_' + committee.DeveloperName}" data-parent="{!group.parent}" data-committee="{!committee.DeveloperName}" type="checkbox" class="slds-truncate" checked="{!committee.checked}" disabled="{!OR(committee.disabled, v.disabled)}" onchange="{!c.handleChangeCheckbox}" />
+										<label for="{!'committeeCheckbox_' + committee.DeveloperName}" class="slds-var-m-left_x-small">
+											<span class="slds-var-p-left_x-small">{!committee.Parent__c}</span>
+											<span class="slds-var-p-left_medium">{!committee.Name__c}</span>
+											<span class="slds-var-p-left_medium">{!committee.Email__c}</span>
+										</label>
+									</div>
+								</aura:iteration>
+							</div>
+						</div>
+					</section>
+				</li>
+			</ul>
+		</aura:iteration>
+	</div>
+</aura:component>

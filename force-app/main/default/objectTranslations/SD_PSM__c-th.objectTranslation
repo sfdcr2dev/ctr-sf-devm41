@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>PSM</value>
+    </caseValues>
+    <fields>
+        <label><!-- HOX PSM Name --></label>
+        <name>HOX_PSM_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- PSM Name --></label>
+        <name>PSM_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- PSM Running No --></label>
+        <name>PSM_Running_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Running No --></label>
+        <name>Running_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- HOX Element --></label>
+        <name>SD_HOX_Element__c</name>
+        <relationshipLabel><!-- PSM --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>PSM Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

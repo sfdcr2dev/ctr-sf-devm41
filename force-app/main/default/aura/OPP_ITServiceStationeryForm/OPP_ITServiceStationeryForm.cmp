@@ -1,0 +1,213 @@
+<aura:component controller="OPP_CaseController" implements="lightning:isUrlAddressable">
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<!-- <aura:registerEvent name="oppEvent" type="c:OPP_CaseEvent" /> -->
+	<lightning:navigation aura:id="navService" />
+
+	<aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" />
+
+
+	<aura:attribute name="case" type="Case" default="{
+        'sobjectType': 'Case'
+    }" />
+	<aura:attribute name="records" type="OPP_Case_Line_Items__c[]" default="[{}]" />
+	<aura:attribute name="recordsOther" type="OPP_Case_Line_Items__c" default="[{}]" />
+
+
+	<aura:attribute name="recordTypeIdsMap" type="Map" default="{}" />
+	<aura:attribute name="describeFields" type="Map" default="{}" />
+	<aura:attribute name="picklistMap" type="Map" default="{}" />
+
+	<aura:attribute name="isEmployee" type="Boolean" default="true" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" />
+	<aura:attribute name="autoApproval" type="Boolean" default="false" />
+
+	<div class="slds-var-m-bottom_x-large slds-is-relative">
+		<!-- <section style="height: 100vh;" role="dialog" tabindex="-1"
+            class="{! 'slds-modal slds-fade-in-open ' + (v.formFactor == 'PHONE' ? 'slds-modal_large' : 'slds-modal_medium')}"
+            aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1"> -->
+		<ui:scrollerWrapper class="scrollerWrapper">
+			<lightning:recordEditForm recordTypeId="{!v.case.RecordTypeId}"
+				density="{!v.formFactor == 'PHONE' ? 'comfy' : 'compact'}" objectApiName="Case"
+				onsubmit="{!c.handleSubmit}" onsuccess="{!c.handleSuccess}" onerror="{!c.handleError}"
+				aura:id="recordEditForm">
+				<lightning:card>
+					<!-- 
+                    <div class="slds-modal__container">
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1"> -->
+
+					<aura:if isTrue="{!v.isLoading}">
+						<lightning:spinner alternativeText="Loading" size="medium" />
+					</aura:if>
+
+					<aura:set attribute="title">
+						<div class="header">New case : IT Accessory Service Request</div>
+					</aura:set>
+					<div class="slds-form_horizontal slds-form slds-grid slds-wrap slds-var-m-horizontal_small">
+						<lightning:messages aura:id="messages" />
+
+						<div class="slds-scoped-notification slds-scoped-notification_light pink">
+							<div class="slds-media">
+								<div class="slds-media__body">
+									<p>Owner Information | ข้อมูลผู้ครอบครองเครื่อง
+									</p>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="slds-m-top_medium"></div> -->
+						<lightning:inputField fieldName="OwnerId" class="slds-size_1-of-1" disabled="true" />
+						<aura:if isTrue="{!!v.isEmployee}">
+							<lightning:input type="email" label="{!v.describeFields.Case.Creator_Email__c.label}" required="true"
+								value="{!v.case.Creator_Email__c}" />
+							<lightning:inputField class="slds-hide" fieldName="Creator_Email__c"
+								value="{!v.case.Creator_Email__c}" />
+						</aura:if>
+
+						<lightning:inputField fieldName="Requester__c" value="{!v.case.Requester__c}" onchange="{!c.handleRequester}"
+							class="slds-size_1-of-1" required="true" />
+
+						<!-- <div class="slds-form-element">
+              <label class="slds-form-element__label"></label>
+              <div class="slds-form-element__control">
+              </div>
+            </div> -->
+						<div class="slds-scoped-notification slds-scoped-notification_light blue">
+							<div class="slds-media">
+								<div class="slds-media__body">
+									<p>Request Information | รายละเอียดการขอเบิก
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<lightning:inputField fieldName="Objective__c" class="slds-size_1-of-1" required="true" />
+                        
+                        <lightning:inputField fieldName="Phone__c" class="slds-size_1-of-1" required="true" type="tel" />
+
+                        <lightning:inputField fieldName="Location__c" class="slds-size_1-of-1" required="true"/>
+                        
+						<lightning:radioGroup name="Stationery_Type__c"
+							label="{!v.describeFields.Case.Stationery_Type__c.label}" required="true"
+							options="{!v.picklistMap.Stationery_Type__c}" value="{!v.case.Stationery_Type__c}"
+							variant="label-inline" onchange="{!c.handleStationeryType}" />
+						<lightning:inputField fieldName="Stationery_Type__c" class="slds-hide"
+							value="{!v.case.Stationery_Type__c}" />
+
+
+						<aura:if isTrue="{!v.case.Stationery_Type__c == 'Standard Items'}">
+							<lightning:button variant="brand" label="Add Row" title="Add Row" onclick="{! c.handleAdd }"
+								class="slds-var-m-vertical_x-small" />
+							<lightning:card>
+								<table
+									class="{! 'slds-table slds-table_bordered slds-table_cell-buffer' + (v.formFactor == 'PHONE' ? ' slds-max-medium-table_stacked' : '') }">
+									<thead>
+										<tr class="slds-text-title_caps">
+											<th scope="col">
+												<div class="slds-truncate">No.</div>
+											</th>
+											<th scope="col">
+												<div class="slds-truncate slds-text-align_center">
+													{!v.describeFields.OPP_Case_Line_Items__c.Stationery_Item__c.label}
+												</div>
+											</th>
+											<th scope="col">
+												<div class="slds-truncate slds-text-align_center">
+													{!v.describeFields.OPP_Case_Line_Items__c.Quantity__c.label}
+												</div>
+											</th>
+											<th scope="col"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<aura:iteration items="{!v.records}" var="record" indexVar="index">
+											<tr class="slds-hint-parent">
+												<td data-label="No.">
+													<div class="slds-truncate">{!index + 1}.</div>
+												</td>
+												<td data-label="{!v.describeFields.OPP_Case_Line_Items__c.Stationery_Item__c.label}"
+													class="slds-size_6-of-12">
+													<lightning:select aura:id="statation_item" class="label-hidden"
+														variant="label-hidden" required="true"
+														value="{!record.Stationery_Item__c}">
+														<option value="">--None--</option>
+														<aura:iteration items="{!v.picklistMap.Stationery_Item__c}"
+															var="item" indexVar="key">
+															<option text="{!item.label}" value="{!item.value}" />
+														</aura:iteration>
+													</lightning:select>
+												</td>
+												<td data-label="{!v.describeFields.OPP_Case_Line_Items__c.Quantity__c.label}"
+													class="slds-size_2-of-12">
+													<lightning:input aura:id="statation_item" type="number"
+														class="label-hidden" variant="label-hidden" required="true"
+														value="{!record.Quantity__c}" />
+												</td>
+												<td class="slds-text-align_center">
+													<a name="{!index}" onclick="{!c.handleRemove}">
+														<lightning:icon iconName="utility:delete"
+															alternativeText="delete" variant="error"
+															class="slds-icon slds-icon_small" size="small" />
+													</a>
+												</td>
+											</tr>
+										</aura:iteration>
+									</tbody>
+								</table>
+							</lightning:card>
+						</aura:if>
+						<aura:if isTrue="{!v.case.Stationery_Type__c == 'Other Items'}">
+							<lightning:input aura:id="statation_item" type="text" variant="label-inline"
+								label="Please specify" placeholder="โปรดระบุ" required="true"
+								value="{!v.recordsOther[0].Stationery_Other__c}" />
+
+						</aura:if>
+
+						<lightning:inputField fieldName="More_Details__c" class="slds-size_1-of-1" />
+
+						<aura:if isTrue="{!v.formFactor == 'PHONE'}">
+							<div class="slds-form-element">
+								<label class="slds-form-element__label"></label>
+								<div class="slds-form-element__control">
+									<lightning:formattedText value="{!$Label.c.DG_Service_Help_text_on_forms}" />
+								</div>
+							</div>
+						</aura:if>
+
+					</div>
+
+
+					<!-- </div>
+                        <footer class="slds-modal__footer"></footer>
+                        </div> -->
+					<aura:set attribute="actions">
+						<aura:if isTrue="{!v.formFactor == 'DESKTOP'}">
+							<lightning:button class="slds-var-m-left_small" variant="neutral" label="Cancel"
+								onclick="{!c.closeModal}" />
+							<lightning:button class="slds-var-m-left_small" variant="neutral" label="Save Draft"
+								type="submit" />
+							<lightning:button class="slds-var-m-left_small" variant="neutral"
+								label="Submit for Approval" type="button" onclick="{!c.handleAutoApproval}" />
+							<c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+						</aura:if>
+					</aura:set>
+
+					<aura:set attribute="footer">
+						<aura:if isTrue="{!v.formFactor == 'PHONE'}">
+							<lightning:buttonGroup>
+								<lightning:button variant="neutral" label="Cancel" onclick="{!c.closeModal}" />
+								<lightning:button variant="neutral" label="Save Draft" type="submit" />
+								<lightning:button variant="neutral" label="Submit for Approval" type="button"
+									onclick="{!c.handleAutoApproval}" />
+							</lightning:buttonGroup>
+							<c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+						</aura:if>
+					</aura:set>
+
+
+				</lightning:card>
+			</lightning:recordEditForm>
+		</ui:scrollerWrapper>
+		<!-- </section>
+        <div class="slds-backdrop slds-backdrop_open"></div> -->
+	</div>
+
+</aura:component>

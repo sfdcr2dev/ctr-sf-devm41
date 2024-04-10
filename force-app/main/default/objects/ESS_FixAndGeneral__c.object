@@ -1,0 +1,1778 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Accepted_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Accepted Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Areas__c</fullName>
+        <externalId>false</externalId>
+        <label>Areas</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>TSR</fullName>
+                    <default>false</default>
+                    <label>TSR</label>
+                </value>
+                <value>
+                    <fullName>TBK</fullName>
+                    <default>false</default>
+                    <label>TBK</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Attachment_Files__c</fullName>
+        <externalId>false</externalId>
+        <label>Attachment Files</label>
+        <length>2000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Attentiveness_Rating_2__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Attentiveness Rating 2</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Attentiveness_Rating__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Attentiveness Rating</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Buildings__c</fullName>
+        <externalId>false</externalId>
+        <label>Buildings</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Areas__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Area-A</fullName>
+                    <default>false</default>
+                    <label>Area-A</label>
+                </value>
+                <value>
+                    <fullName>Area-B</fullName>
+                    <default>false</default>
+                    <label>Area-B</label>
+                </value>
+                <value>
+                    <fullName>Area-C</fullName>
+                    <default>false</default>
+                    <label>Area-C</label>
+                </value>
+                <value>
+                    <fullName>Area-D</fullName>
+                    <default>false</default>
+                    <label>Area-D</label>
+                </value>
+                <value>
+                    <fullName>Area-E (TLB)</fullName>
+                    <default>false</default>
+                    <label>Area-E (TLB)</label>
+                </value>
+                <value>
+                    <fullName>Area-F (TPX)</fullName>
+                    <default>false</default>
+                    <label>Area-F (TPX)</label>
+                </value>
+                <value>
+                    <fullName>Jetty</fullName>
+                    <default>false</default>
+                    <label>Jetty</label>
+                </value>
+                <value>
+                    <fullName>Lorry Loading</fullName>
+                    <default>false</default>
+                    <label>Lorry Loading</label>
+                </value>
+                <value>
+                    <fullName>Marine Office</fullName>
+                    <default>false</default>
+                    <label>Marine Office</label>
+                </value>
+                <value>
+                    <fullName>Mech W/S EBC</fullName>
+                    <default>false</default>
+                    <label>Mech W/S EBC</label>
+                </value>
+                <value>
+                    <fullName>Elec W/S EBC</fullName>
+                    <default>false</default>
+                    <label>Elec W/S EBC</label>
+                </value>
+                <value>
+                    <fullName>Instr W/S EBC</fullName>
+                    <default>false</default>
+                    <label>Instr W/S EBC</label>
+                </value>
+                <value>
+                    <fullName>Fabrication W/S EBC</fullName>
+                    <default>false</default>
+                    <label>Fabrication W/S EBC</label>
+                </value>
+                <value>
+                    <fullName>Civil W/S EBC</fullName>
+                    <default>false</default>
+                    <label>Civil W/S EBC</label>
+                </value>
+                <value>
+                    <fullName>Utility Building / Test Building</fullName>
+                    <default>false</default>
+                    <label>Utility Building / Test Building</label>
+                </value>
+                <value>
+                    <fullName>Warehouse EBC</fullName>
+                    <default>false</default>
+                    <label>Warehouse EBC</label>
+                </value>
+                <value>
+                    <fullName>Fire Station</fullName>
+                    <default>false</default>
+                    <label>Fire Station</label>
+                </value>
+                <value>
+                    <fullName>Phubai Office</fullName>
+                    <default>false</default>
+                    <label>Phubai Office</label>
+                </value>
+                <value>
+                    <fullName>Training Center</fullName>
+                    <default>false</default>
+                    <label>Training Center</label>
+                </value>
+                <value>
+                    <fullName>Function Center</fullName>
+                    <default>false</default>
+                    <label>Function Center</label>
+                </value>
+                <value>
+                    <fullName>Medical Center</fullName>
+                    <default>false</default>
+                    <label>Medical Center</label>
+                </value>
+                <value>
+                    <fullName>Excise Office</fullName>
+                    <default>false</default>
+                    <label>Excise Office</label>
+                </value>
+                <value>
+                    <fullName>LLK Terminal</fullName>
+                    <default>false</default>
+                    <label>LLK Terminal</label>
+                </value>
+                <value>
+                    <fullName>SRB Terminal</fullName>
+                    <default>false</default>
+                    <label>SRB Terminal</label>
+                </value>
+                <value>
+                    <fullName>TSB Building</fullName>
+                    <default>false</default>
+                    <label>TSB Building</label>
+                </value>
+                <value>
+                    <fullName>TBK Office</fullName>
+                    <default>false</default>
+                    <label>TBK Office</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Area-A</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Area-B</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Area-C</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Area-D</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Area-E (TLB)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Area-F (TPX)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Jetty</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Lorry Loading</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Marine Office</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Mech W/S EBC</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Elec W/S EBC</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Instr W/S EBC</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Fabrication W/S EBC</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Civil W/S EBC</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Utility Building / Test Building</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Warehouse EBC</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Fire Station</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Phubai Office</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Training Center</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Function Center</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Medical Center</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>Excise Office</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>LLK Terminal</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>SRB Terminal</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <valueName>TSB Building</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSR</controllingFieldValue>
+                <controllingFieldValue>TBK</controllingFieldValue>
+                <valueName>Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TBK</controllingFieldValue>
+                <valueName>TBK Office</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Cancel_Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Cancel Comment</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cancelled_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Cancelled By</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cancelled_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Cancelled Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Completed_Attachment_Files__c</fullName>
+        <externalId>false</externalId>
+        <label>Completed Attachment Files</label>
+        <length>2000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Completed_By_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Completed By Email</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Completed_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Completed By</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Completed_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Completed Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>Detail</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Document_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Document No</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Expected_Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Expected Due Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Expertise_Rating_2__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Expertise Rating 2</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Expertise_Rating__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Expertise Rating</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Fast_Rating_2__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Fast Rating 2</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Fast_Rating__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Fast Rating</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Floors__c</fullName>
+        <externalId>false</externalId>
+        <label>Floors</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Buildings__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Floor 1: Lobby&amp;Eatery</fullName>
+                    <default>false</default>
+                    <label>Floor 1: Lobby&amp;Eatery</label>
+                </value>
+                <value>
+                    <fullName>Floor 2: Service&amp;Common Space</fullName>
+                    <default>false</default>
+                    <label>Floor 2: Service&amp;Common Space</label>
+                </value>
+                <value>
+                    <fullName>Floor 3: Business Center</fullName>
+                    <default>false</default>
+                    <label>Floor 3: Business Center</label>
+                </value>
+                <value>
+                    <fullName>Floor 4: Area Production Unit</fullName>
+                    <default>false</default>
+                    <label>Floor 4: Area Production Unit</label>
+                </value>
+                <value>
+                    <fullName>Floor 5: Project&amp;Refinery Support</fullName>
+                    <default>false</default>
+                    <label>Floor 5: Project&amp;Refinery Support</label>
+                </value>
+                <value>
+                    <fullName>Floor 6: Organization Effectiveness</fullName>
+                    <default>false</default>
+                    <label>Floor 6: Organization Effectiveness</label>
+                </value>
+                <value>
+                    <fullName>Floor 7: Executive</fullName>
+                    <default>false</default>
+                    <label>Floor 7: Executive</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>TSB Building</controllingFieldValue>
+                <valueName>Floor 1: Lobby&amp;Eatery</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSB Building</controllingFieldValue>
+                <valueName>Floor 2: Service&amp;Common Space</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSB Building</controllingFieldValue>
+                <valueName>Floor 3: Business Center</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSB Building</controllingFieldValue>
+                <valueName>Floor 4: Area Production Unit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSB Building</controllingFieldValue>
+                <valueName>Floor 5: Project&amp;Refinery Support</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSB Building</controllingFieldValue>
+                <valueName>Floor 6: Organization Effectiveness</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TSB Building</controllingFieldValue>
+                <valueName>Floor 7: Executive</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>General_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>General Cost</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>General_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>General Detail</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>General_Internal_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>General Internal Detail</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>General_Type_Of_Service_Other__c</fullName>
+        <externalId>false</externalId>
+        <label>General Type Of Service Other</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>General_Type_Of_Service__c</fullName>
+        <externalId>false</externalId>
+        <label>General Type Of Service</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>MovingService</fullName>
+                    <default>false</default>
+                    <label>งานขนย้าย</label>
+                </value>
+                <value>
+                    <fullName>EventAndConferencePlanning</fullName>
+                    <default>false</default>
+                    <label>งานจัดสถานที่/ห้องประชุม</label>
+                </value>
+                <value>
+                    <fullName>FurnitureAndOfficeEquipmentArrangement</fullName>
+                    <default>false</default>
+                    <label>งานจัดเฟอร์นิเจอร์และอุปกรณ์สำนักงาน</label>
+                </value>
+                <value>
+                    <fullName>ElectricalAppliancesArrangement</fullName>
+                    <default>false</default>
+                    <label>งานจัดเครื่องใช้ไฟฟ้า</label>
+                </value>
+                <value>
+                    <fullName>Landscaping</fullName>
+                    <default>false</default>
+                    <label>งานภูมิทัศน์</label>
+                </value>
+                <value>
+                    <fullName>CleaningService</fullName>
+                    <default>false</default>
+                    <label>งานทำความสะอาด</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>อื่นๆ</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>House_No__c</fullName>
+        <externalId>false</externalId>
+        <label>House No</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>House_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>House Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>SiteHouse</fullName>
+                    <default>false</default>
+                    <label>SiteHouse</label>
+                </value>
+                <value>
+                    <fullName>AHouse</fullName>
+                    <default>false</default>
+                    <label>AHouse</label>
+                </value>
+                <value>
+                    <fullName>BUpgrade</fullName>
+                    <default>false</default>
+                    <label>BUpgrade</label>
+                </value>
+                <value>
+                    <fullName>BHouse</fullName>
+                    <default>false</default>
+                    <label>BHouse</label>
+                </value>
+                <value>
+                    <fullName>CUpgrade</fullName>
+                    <default>false</default>
+                    <label>CUpgrade</label>
+                </value>
+                <value>
+                    <fullName>CHouse</fullName>
+                    <default>false</default>
+                    <label>CHouse</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Housing_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Housing Cost</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Housing_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>Housing Detail</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Housing_Internal_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>Housing Internal Detail</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Housing_Type_Of_Service_Other__c</fullName>
+        <externalId>false</externalId>
+        <label>Housing Type Of Service Other</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Housing_Type_of_Service__c</fullName>
+        <externalId>false</externalId>
+        <label>Housing Type of Service</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ElectricalAndLightingSystem</fullName>
+                    <default>false</default>
+                    <label>ระบบไฟฟ้าและแสงสว่าง</label>
+                </value>
+                <value>
+                    <fullName>PlumbingSystem</fullName>
+                    <default>false</default>
+                    <label>ระบบน้ำประปา</label>
+                </value>
+                <value>
+                    <fullName>SewageSystem</fullName>
+                    <default>false</default>
+                    <label>ระบบน้ำทิ้ง</label>
+                </value>
+                <value>
+                    <fullName>HvacSystem</fullName>
+                    <default>false</default>
+                    <label>ระบบเครื่องปรับอากาศ</label>
+                </value>
+                <value>
+                    <fullName>GasSystem</fullName>
+                    <default>false</default>
+                    <label>ระบบแก๊ส</label>
+                </value>
+                <value>
+                    <fullName>CctvSystem</fullName>
+                    <default>false</default>
+                    <label>ระบบ CCTV</label>
+                </value>
+                <value>
+                    <fullName>ElectricalAppliances</fullName>
+                    <default>false</default>
+                    <label>เครื่องใช้ไฟฟ้า</label>
+                </value>
+                <value>
+                    <fullName>BathroomFixturesAndEquipment</fullName>
+                    <default>false</default>
+                    <label>อุปกรณ์สุขภัณฑ์</label>
+                </value>
+                <value>
+                    <fullName>FurnitureAndOfficeEquipment</fullName>
+                    <default>false</default>
+                    <label>เฟอร์นิเจอร์และอุปกรณ์สำนักงาน</label>
+                </value>
+                <value>
+                    <fullName>BuildingStructure</fullName>
+                    <default>false</default>
+                    <label>โครงสร้างอาคาร</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>อื่นๆ</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Is_On_Behalf__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is On Behalf</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_PRTR_Admin__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is PRTR Admin</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_PRTR_Requester__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is PRTR Requester</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mobile_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Mobile No</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Month_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(MONTH(DATEVALUE(CreatedDate)),
+1, &quot;January&quot;,
+2, &quot;February&quot;,
+3, &quot;March&quot;, 
+4, &quot;April&quot;, 
+5, &quot;May&quot;, 
+6, &quot;June&quot;,
+7, &quot;July&quot;,
+8, &quot;August&quot;,
+9, &quot;September&quot;,
+10, &quot;October&quot;,
+11, &quot;November&quot;,
+12, &quot;December&quot;,
+&quot;None&quot;)</formula>
+        <label>Month Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Month__c</fullName>
+        <externalId>false</externalId>
+        <formula>MONTH(DATEVALUE(CreatedDate))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Month</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Office_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Office Cost</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Office_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>Office Detail</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Office_Internal_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>Office Internal Detail</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Office_Type_Of_Service_Other__c</fullName>
+        <externalId>false</externalId>
+        <label>Office Type Of Service Other</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Office_Type_Of_Service__c</fullName>
+        <externalId>false</externalId>
+        <label>Office Type Of Service</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ElectricalAndLightingSystem</fullName>
+                    <default>false</default>
+                    <label>ElectricalAndLightingSystem</label>
+                </value>
+                <value>
+                    <fullName>PlumbingSystem</fullName>
+                    <default>false</default>
+                    <label>PlumbingSystem</label>
+                </value>
+                <value>
+                    <fullName>SewageSystem</fullName>
+                    <default>false</default>
+                    <label>SewageSystem</label>
+                </value>
+                <value>
+                    <fullName>HvacSystem</fullName>
+                    <default>false</default>
+                    <label>HvacSystem</label>
+                </value>
+                <value>
+                    <fullName>LiftSystem</fullName>
+                    <default>false</default>
+                    <label>LiftSystem</label>
+                </value>
+                <value>
+                    <fullName>GasSystem</fullName>
+                    <default>false</default>
+                    <label>GasSystem</label>
+                </value>
+                <value>
+                    <fullName>FireAlarmSystem</fullName>
+                    <default>false</default>
+                    <label>FireAlarmSystem</label>
+                </value>
+                <value>
+                    <fullName>CctvSystem</fullName>
+                    <default>false</default>
+                    <label>CctvSystem</label>
+                </value>
+                <value>
+                    <fullName>ElectricalAppliances</fullName>
+                    <default>false</default>
+                    <label>ElectricalAppliances</label>
+                </value>
+                <value>
+                    <fullName>BathroomFixturesAndEquipment</fullName>
+                    <default>false</default>
+                    <label>BathroomFixturesAndEquipment</label>
+                </value>
+                <value>
+                    <fullName>FurnitureAndOfficeEquipment</fullName>
+                    <default>false</default>
+                    <label>FurnitureAndOfficeEquipment</label>
+                </value>
+                <value>
+                    <fullName>BuildingStructure</fullName>
+                    <default>false</default>
+                    <label>BuildingStructure</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>On_Behalf_Flow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>On Behalf Flow</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>On_Behalf_Of_Department__c</fullName>
+        <externalId>false</externalId>
+        <label>On Behalf Of Department</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>On_Behalf_Of_EN__c</fullName>
+        <externalId>false</externalId>
+        <label>On Behalf Of EN</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>On_Behalf_Of_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>On Behalf Of Email</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>On_Behalf_Of_Employee_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>On Behalf Of Employee Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>On_Behalf_Of_Function__c</fullName>
+        <externalId>false</externalId>
+        <label>On Behalf Of Function</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>On_Behalf_Of_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>On Behalf Of Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>On_Behalf_Of_Position__c</fullName>
+        <externalId>false</externalId>
+        <label>On Behalf Of Position</label>
+        <length>150</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>On_Behalf_Of_Section__c</fullName>
+        <externalId>false</externalId>
+        <label>On Behalf Of Section</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>On_Behalf_Of_Unit__c</fullName>
+        <externalId>false</externalId>
+        <label>On Behalf Of Unit</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>On_Behalf_Of__c</fullName>
+        <externalId>false</externalId>
+        <label>On Behalf Of</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PMSV_Department__c</fullName>
+        <externalId>false</externalId>
+        <label>PMSV Department</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PMSV_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>PMSV Email</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PMSV_Employee_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>PMSV Employee Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PMSV_Function__c</fullName>
+        <externalId>false</externalId>
+        <label>PMSV Function</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PMSV_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>PMSV Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PMSV_Position__c</fullName>
+        <externalId>false</externalId>
+        <label>PMSV Position</label>
+        <length>150</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PMSV_Section__c</fullName>
+        <externalId>false</externalId>
+        <label>PMSV Section</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PMSV_Unit__c</fullName>
+        <externalId>false</externalId>
+        <label>PMSV Unit</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PMSV__c</fullName>
+        <externalId>false</externalId>
+        <label>PMSV</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Period__c</fullName>
+        <externalId>false</externalId>
+        <label>Period</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>A</fullName>
+                    <default>false</default>
+                    <label>A</label>
+                </value>
+                <value>
+                    <fullName>B</fullName>
+                    <default>false</default>
+                    <label>B</label>
+                </value>
+                <value>
+                    <fullName>C</fullName>
+                    <default>false</default>
+                    <label>C</label>
+                </value>
+                <value>
+                    <fullName>D</fullName>
+                    <default>false</default>
+                    <label>D</label>
+                </value>
+                <value>
+                    <fullName>Daywork</fullName>
+                    <default>false</default>
+                    <label>Day Work</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Punctuality_Rating_2__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Punctuality Rating 2</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Punctuality_Rating__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Punctuality Rating</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Rating_Date_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Rating Date 2</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Rating_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Rating Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Rating_Score_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Rating Score 2</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rating_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>Rating Score</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reject_Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Reject Comment</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rejected_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Rejected By</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rejected_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Rejected Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Repair_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Repair Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Requester_Department__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester Department</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requester_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester Email</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requester_Employee_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester Employee Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requester_Function__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester Function</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requester_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requester_Name_EN__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester Name EN</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requester_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requester_Position__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester Position</label>
+        <length>150</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requester_Section__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester Section</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requester_Tel_Mobile__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester Tel Mobile</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requester_Tel_Office__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester Tel Office</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requester_Unit__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester Unit</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>Verifying</fullName>
+                    <default>false</default>
+                    <label>Verifying</label>
+                </value>
+                <value>
+                    <fullName>Waiting</fullName>
+                    <default>false</default>
+                    <label>Waiting</label>
+                </value>
+                <value>
+                    <fullName>OnProcess</fullName>
+                    <default>false</default>
+                    <label>OnProcess</label>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                    <label>Cancelled</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Submitted_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Submitted Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Tel_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Tel No</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Topic__c</fullName>
+        <externalId>false</externalId>
+        <label>Topic</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Transportation_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Transportation Cost</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Transportation_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>Transportation Detail</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Transportation_Internal_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>Transportation Internal Detail</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Transportation_Items__c</fullName>
+        <externalId>false</externalId>
+        <label>Transportation Items</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Transportation_Type_Of_Service_Other__c</fullName>
+        <externalId>false</externalId>
+        <label>Transportation Type Of Service Other</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Transportation_Type_Of_Service__c</fullName>
+        <externalId>false</externalId>
+        <label>Transportation Type Of Service</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ChangeTire</fullName>
+                    <default>false</default>
+                    <label>เปลี่ยนยาง</label>
+                </value>
+                <value>
+                    <fullName>ChangeChain</fullName>
+                    <default>false</default>
+                    <label>เปลี่ยนโซ่</label>
+                </value>
+                <value>
+                    <fullName>ChangeSeat</fullName>
+                    <default>false</default>
+                    <label>เปลี่ยนเบาะ</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>อื่นๆ</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Type_of_Service__c</fullName>
+        <externalId>false</externalId>
+        <label>Type of Service</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>OfficeEquipment</fullName>
+                    <default>false</default>
+                    <label>งานซ่อมอุปกรณ์สำนักงาน/ส่วนอาคาร</label>
+                </value>
+                <value>
+                    <fullName>Housing</fullName>
+                    <default>false</default>
+                    <label>งานแจ้งซ่อมบ้านพัก</label>
+                </value>
+                <value>
+                    <fullName>Transportation</fullName>
+                    <default>false</default>
+                    <label>งานซ่อมยานพาหนะ</label>
+                </value>
+                <value>
+                    <fullName>GeneralService</fullName>
+                    <default>false</default>
+                    <label>อื่นๆ</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Verified_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Verified Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <label>ESS FixAndGeneral</label>
+    <nameField>
+        <displayFormat>FAG-{00000}</displayFormat>
+        <label>Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

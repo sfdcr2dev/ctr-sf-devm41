@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CTR Purchasing View</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- CTR Purchasing View --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Acctg Clerk. --></label>
+        <name>AcctgClerk__c</name>
+    </fields>
+    <fields>
+        <label><!-- Automatic purchase order --></label>
+        <name>AutomaticPurchaseOrder__c</name>
+    </fields>
+    <fields>
+        <label><!-- Block Status --></label>
+        <name>BlockStatus__c</name>
+        <picklistValues>
+            <masterLabel>FALSE</masterLabel>
+            <translation><!-- FALSE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TRUE</masterLabel>
+            <translation><!-- TRUE --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Chk double inv. --></label>
+        <name>Chkdoubleinv__c</name>
+    </fields>
+    <fields>
+        <label><!-- Currency --></label>
+        <name>Currency__c</name>
+    </fields>
+    <fields>
+        <label><!-- GR-Based Inv.Verif --></label>
+        <name>GRBasedInvVerif__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group Key (Account Key of Bank) --></label>
+        <name>GroupKey__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incoterms2 --></label>
+        <name>Incoterms2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incoterms --></label>
+        <name>Incoterms__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Purchasing Doc Day --></label>
+        <name>LastPurDocDay__c</name>
+    </fields>
+    <fields>
+        <label><!-- Latest Blocking Date --></label>
+        <name>LatestBlockingDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Latest Re-Evaluation Date --></label>
+        <name>LatestReEvaluationDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Next Re-Evaluation Date --></label>
+        <name>NextReEvaluationDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Days --></label>
+        <name>NumDays__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Method --></label>
+        <name>PaymentMethod__c</name>
+    </fields>
+    <fields>
+        <label><!-- Purchasing Doc Date --></label>
+        <name>PurchasingDocDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Purchasing Doc Type --></label>
+        <name>PurchasingDocType__c</name>
+        <picklistValues>
+            <masterLabel>ZA0M TX Standard PO</masterLabel>
+            <translation><!-- ZA0M TX Standard PO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZA0P PR from MRP (TX)/TX PO from MRP</masterLabel>
+            <translation><!-- ZA0P PR from MRP (TX)/TX PO from MRP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZH1M TSV Standard PO</masterLabel>
+            <translation><!-- ZH1M TSV Standard PO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZH1S TSV Sale Order PO</masterLabel>
+            <translation><!-- ZH1S TSV Sale Order PO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZSSC PO Shipment Cost</masterLabel>
+            <translation><!-- ZSSC PO Shipment Cost --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Purchasing Doc --></label>
+        <name>PurchasingDoc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Purchasing Org --></label>
+        <name>PurchasingOrg__c</name>
+        <picklistValues>
+            <masterLabel>SS: Hydrocarbon</masterLabel>
+            <translation><!-- SS: Hydrocarbon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TSV: Purch. Org.</masterLabel>
+            <translation><!-- TSV: Purch. Org. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TX: Purch. Org.</masterLabel>
+            <translation><!-- TX: Purch. Org. --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Purchasing Organization (TOP) --></label>
+        <name>PurchasingOrganizationTOP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Purchasing Organization (TX) --></label>
+        <name>PurchasingOrganizationTX__c</name>
+    </fields>
+    <fields>
+        <label><!-- Purchasing Organization --></label>
+        <name>PurchasingOrganization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping Conditions --></label>
+        <name>ShippingCond__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Shipping Conditions --></label>
+        <name>ShippingConditions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- TermofPayment --></label>
+        <name>TermofPayment__c</name>
+        <relationshipLabel><!-- CTR Purchasing View --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- VAT Reg no. --></label>
+        <name>VATRegno__c</name>
+    </fields>
+</CustomObjectTranslation>

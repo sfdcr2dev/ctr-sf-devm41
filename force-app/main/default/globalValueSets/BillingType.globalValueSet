@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>B1</fullName>
+        <default>false</default>
+        <label>Rebate Credit Memo</label>
+    </customValue>
+    <customValue>
+        <fullName>B1E</fullName>
+        <default>false</default>
+        <label>Exp.RebateCreditMemo</label>
+    </customValue>
+    <customValue>
+        <fullName>B2</fullName>
+        <default>false</default>
+        <label>Rebate Correction</label>
+    </customValue>
+    <customValue>
+        <fullName>B2E</fullName>
+        <default>false</default>
+        <label>Exp. Rebate Correcn</label>
+    </customValue>
+    <customValue>
+        <fullName>B3</fullName>
+        <default>false</default>
+        <label>Rebate Part Settlmnt</label>
+    </customValue>
+    <customValue>
+        <fullName>B3E</fullName>
+        <default>false</default>
+        <label>Exp.RebatePartSettlm</label>
+    </customValue>
+    <customValue>
+        <fullName>B4</fullName>
+        <default>false</default>
+        <label>Rebate Manual Accrls</label>
+    </customValue>
+    <customValue>
+        <fullName>BIND</fullName>
+        <default>false</default>
+        <label>Indir. Invoice Reb.</label>
+    </customValue>
+    <customValue>
+        <fullName>BINP</fullName>
+        <default>false</default>
+        <label>Ind.Plan.SettlmntReb</label>
+    </customValue>
+    <customValue>
+        <fullName>BK1</fullName>
+        <default>false</default>
+        <label>Debit Memo Agreemnt (BK1)</label>
+    </customValue>
+    <customValue>
+        <fullName>BK3</fullName>
+        <default>false</default>
+        <label>Debit Memo Agreemnt (BK3)</label>
+    </customValue>
+    <customValue>
+        <fullName>BM1</fullName>
+        <default>false</default>
+        <label>Debit Memo Agreemnt (BM1)</label>
+    </customValue>
+    <customValue>
+        <fullName>BM3</fullName>
+        <default>false</default>
+        <label>Debit Memo Agreemnt (BM3)</label>
+    </customValue>
+    <customValue>
+        <fullName>BV</fullName>
+        <default>false</default>
+        <label>Cash Sales</label>
+    </customValue>
+    <customValue>
+        <fullName>CHFK</fullName>
+        <default>false</default>
+        <label>Bill.Ext.CH Trans. D</label>
+    </customValue>
+    <customValue>
+        <fullName>CHFX</fullName>
+        <default>false</default>
+        <label>Bill.Ext.CH Trans. C</label>
+    </customValue>
+    <customValue>
+        <fullName>F1</fullName>
+        <default>false</default>
+        <label>Invoice (F1)</label>
+    </customValue>
+    <customValue>
+        <fullName>F2</fullName>
+        <default>false</default>
+        <label>Invoice (F2)</label>
+    </customValue>
+    <customValue>
+        <fullName>F5</fullName>
+        <default>false</default>
+        <label>Pro Forma for Order</label>
+    </customValue>
+    <customValue>
+        <fullName>F8</fullName>
+        <default>false</default>
+        <label>Pro Forma Inv f Dlv</label>
+    </customValue>
+    <customValue>
+        <fullName>FADP</fullName>
+        <default>false</default>
+        <label>Down payment request (FADP)</label>
+    </customValue>
+    <customValue>
+        <fullName>FAS</fullName>
+        <default>false</default>
+        <label>Canc.down pymnt req.</label>
+    </customValue>
+    <customValue>
+        <fullName>FAZ</fullName>
+        <default>false</default>
+        <label>Down payment request (FAZ)</label>
+    </customValue>
+    <customValue>
+        <fullName>FL</fullName>
+        <default>false</default>
+        <label>Proforma for LB</label>
+    </customValue>
+    <customValue>
+        <fullName>FP</fullName>
+        <default>false</default>
+        <label>Billing POS-Interfce</label>
+    </customValue>
+    <customValue>
+        <fullName>FR</fullName>
+        <default>false</default>
+        <label>Invoice Repair</label>
+    </customValue>
+    <customValue>
+        <fullName>FV</fullName>
+        <default>false</default>
+        <label>Invoice Contract</label>
+    </customValue>
+    <customValue>
+        <fullName>FX</fullName>
+        <default>false</default>
+        <label>Billing Ext Transact</label>
+    </customValue>
+    <customValue>
+        <fullName>FXG</fullName>
+        <default>false</default>
+        <label>Credit memo S-b w.i.</label>
+    </customValue>
+    <customValue>
+        <fullName>FXL</fullName>
+        <default>false</default>
+        <label>Debit memo S-b w.i.</label>
+    </customValue>
+    <customValue>
+        <fullName>FXS</fullName>
+        <default>false</default>
+        <label>Invoice S-b w.i.</label>
+    </customValue>
+    <customValue>
+        <fullName>G2</fullName>
+        <default>false</default>
+        <label>Credit Memo</label>
+    </customValue>
+    <customValue>
+        <fullName>G2S</fullName>
+        <default>false</default>
+        <label>Cred. memo 3rd party</label>
+    </customValue>
+    <customValue>
+        <fullName>HR</fullName>
+        <default>false</default>
+        <label>Billing Training Adm</label>
+    </customValue>
+    <customValue>
+        <fullName>IG</fullName>
+        <default>false</default>
+        <label>Internal Credit Memo</label>
+    </customValue>
+    <customValue>
+        <fullName>IGA</fullName>
+        <default>false</default>
+        <label>ICM order-related</label>
+    </customValue>
+    <customValue>
+        <fullName>IGS</fullName>
+        <default>false</default>
+        <label>Cancel ICM</label>
+    </customValue>
+    <customValue>
+        <fullName>IV</fullName>
+        <default>false</default>
+        <label>Intercompany Billing</label>
+    </customValue>
+    <customValue>
+        <fullName>IVA</fullName>
+        <default>false</default>
+        <label>IB order-related</label>
+    </customValue>
+    <customValue>
+        <fullName>IVS</fullName>
+        <default>false</default>
+        <label>Cancel IB</label>
+    </customValue>
+    <customValue>
+        <fullName>JEX</fullName>
+        <default>false</default>
+        <label>Excise invoice India</label>
+    </customValue>
+    <customValue>
+        <fullName>L2</fullName>
+        <default>false</default>
+        <label>Debit Memo</label>
+    </customValue>
+    <customValue>
+        <fullName>LG</fullName>
+        <default>false</default>
+        <label>Credit Memo List</label>
+    </customValue>
+    <customValue>
+        <fullName>LGS</fullName>
+        <default>false</default>
+        <label>Cancel Cred.Mem.List</label>
+    </customValue>
+    <customValue>
+        <fullName>LR</fullName>
+        <default>false</default>
+        <label>Invoice List</label>
+    </customValue>
+    <customValue>
+        <fullName>LRS</fullName>
+        <default>false</default>
+        <label>Cancel Invoice List</label>
+    </customValue>
+    <customValue>
+        <fullName>RE</fullName>
+        <default>false</default>
+        <label>Credit for Returns</label>
+    </customValue>
+    <customValue>
+        <fullName>S1</fullName>
+        <default>false</default>
+        <label>Cancel. Invoice (S1)</label>
+    </customValue>
+    <customValue>
+        <fullName>S2</fullName>
+        <default>false</default>
+        <label>Cancel of Cred Memo</label>
+    </customValue>
+    <customValue>
+        <fullName>S3</fullName>
+        <default>false</default>
+        <label>Cancel. Invoice (S3)</label>
+    </customValue>
+    <customValue>
+        <fullName>SHR</fullName>
+        <default>false</default>
+        <label>Cancel Training Adm</label>
+    </customValue>
+    <customValue>
+        <fullName>SV</fullName>
+        <default>false</default>
+        <label>Cancel Cash Sale</label>
+    </customValue>
+    <customValue>
+        <fullName>WIA</fullName>
+        <default>false</default>
+        <label>Plants Abroad</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1AP</fullName>
+        <default>false</default>
+        <label>Canc.down pymnt req. (Y1AP)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1C1</fullName>
+        <default>false</default>
+        <label>Cancel CNDN ป132 (Y1C1)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1C2</fullName>
+        <default>false</default>
+        <label>Cancel CNDN ROE</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1C3</fullName>
+        <default>false</default>
+        <label>Cancel CNDN ป132 (Y1C3)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1C4</fullName>
+        <default>false</default>
+        <label>Cancel CNDN ROE (Y1C4)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1C5</fullName>
+        <default>false</default>
+        <label>Cancel CNDN Service (Y1C5)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1C6</fullName>
+        <default>false</default>
+        <label>Cancel CNDN Service (Y1C6)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1C7</fullName>
+        <default>false</default>
+        <label>Cancel CNDN Service (Y1C7)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1CD</fullName>
+        <default>false</default>
+        <label>Crude Invoice Cancel</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1D1</fullName>
+        <default>false</default>
+        <label>Cancel CN/DN QTY (Y1D1)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1D2</fullName>
+        <default>false</default>
+        <label>Cancel CN/DN QTY (Y1D2)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1DP</fullName>
+        <default>false</default>
+        <label>Deposit Inv. Cancel.</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1IV</fullName>
+        <default>false</default>
+        <label>Invoice Cancellation</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1OT</fullName>
+        <default>false</default>
+        <label>Other Invoice Cancel</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1S2</fullName>
+        <default>false</default>
+        <label>N SV Inv Pro Cancel</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1S3</fullName>
+        <default>false</default>
+        <label>N SV Inv Oth Cancel</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1SV</fullName>
+        <default>false</default>
+        <label>Service Invoice Canc</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1WD</fullName>
+        <default>false</default>
+        <label>Withdraw Inv. Cancel</label>
+    </customValue>
+    <customValue>
+        <fullName>Y2C1</fullName>
+        <default>false</default>
+        <label>Cancel CNDN ป132 TPX</label>
+    </customValue>
+    <customValue>
+        <fullName>Y2C6</fullName>
+        <default>false</default>
+        <label>Cancel CNDN Serv TPX (Y2C6)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y2C7</fullName>
+        <default>false</default>
+        <label>Cancel CNDN Serv TPX (Y2C7)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y2OT</fullName>
+        <default>false</default>
+        <label>Other Inv. Canc. TPX</label>
+    </customValue>
+    <customValue>
+        <fullName>Y2S1</fullName>
+        <default>false</default>
+        <label>Invoice Canc. TPX</label>
+    </customValue>
+    <customValue>
+        <fullName>Y2S2</fullName>
+        <default>false</default>
+        <label>N SV Inv Pro Can TPX</label>
+    </customValue>
+    <customValue>
+        <fullName>Y2S3</fullName>
+        <default>false</default>
+        <label>N SV Inv Oth Can TPX</label>
+    </customValue>
+    <customValue>
+        <fullName>Y2SV</fullName>
+        <default>false</default>
+        <label>Service Invoice Canc (Y2SV)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y3AP</fullName>
+        <default>false</default>
+        <label>Canc.down pymnt req. (Y3AP)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y3C1</fullName>
+        <default>false</default>
+        <label>Cancel CNDN ป132 TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Y3C3</fullName>
+        <default>false</default>
+        <label>Cancel CNDN ป132</label>
+    </customValue>
+    <customValue>
+        <fullName>Y3C6</fullName>
+        <default>false</default>
+        <label>Cancel CNDN Serv TLB (Y3C6)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y3C7</fullName>
+        <default>false</default>
+        <label>Cancel CNDN Serv TLB (Y3C7)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y3CD</fullName>
+        <default>false</default>
+        <label>Crude Inv. Canc. TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Y3D2</fullName>
+        <default>false</default>
+        <label>Cancel CN/DN QTY (Y3D2)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y3DP</fullName>
+        <default>false</default>
+        <label>Deposit Inv. Can TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Y3OT</fullName>
+        <default>false</default>
+        <label>Other Inv. Canc. TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Y3S1</fullName>
+        <default>false</default>
+        <label>Invoice Canc. TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Y3S2</fullName>
+        <default>false</default>
+        <label>N SV Inv Pro Can TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Y3S3</fullName>
+        <default>false</default>
+        <label>N SV Inv Oth Can TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Y3V1</fullName>
+        <default>false</default>
+        <label>Service Inv.Canc TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Y3WD</fullName>
+        <default>false</default>
+        <label>Withdraw Inv.Can TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Y4S1</fullName>
+        <default>false</default>
+        <label>TS Invoice/DN Cancel</label>
+    </customValue>
+    <customValue>
+        <fullName>Y4S2</fullName>
+        <default>false</default>
+        <label>TS Cancel CN</label>
+    </customValue>
+    <customValue>
+        <fullName>Y5S1</fullName>
+        <default>false</default>
+        <label>TSV Inv./DN Cancel</label>
+    </customValue>
+    <customValue>
+        <fullName>Y5S2</fullName>
+        <default>false</default>
+        <label>TSV Cancel CN</label>
+    </customValue>
+    <customValue>
+        <fullName>Y6AP</fullName>
+        <default>false</default>
+        <label>Canc.down pymnt req. (Y6AP)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y6C1</fullName>
+        <default>false</default>
+        <label>Cancel CNDN ป132 LAB</label>
+    </customValue>
+    <customValue>
+        <fullName>Y6C6</fullName>
+        <default>false</default>
+        <label>Cancel CNDN Serv LAB (Y6C6)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y6C7</fullName>
+        <default>false</default>
+        <label>Cancel CNDN Serv LAB (Y6C7)</label>
+    </customValue>
+    <customValue>
+        <fullName>Y6D1</fullName>
+        <default>false</default>
+        <label>Cancel CN/DN Qty LAB</label>
+    </customValue>
+    <customValue>
+        <fullName>Y6OT</fullName>
+        <default>false</default>
+        <label>Other Inv. Canc. LAB</label>
+    </customValue>
+    <customValue>
+        <fullName>Y6S1</fullName>
+        <default>false</default>
+        <label>Invoice Canc. LAB</label>
+    </customValue>
+    <customValue>
+        <fullName>Y6S2</fullName>
+        <default>false</default>
+        <label>N SV Inv Pro Can LAB</label>
+    </customValue>
+    <customValue>
+        <fullName>Y6S3</fullName>
+        <default>false</default>
+        <label>N SV Inv Oth Can LAB</label>
+    </customValue>
+    <customValue>
+        <fullName>YIVS</fullName>
+        <default>false</default>
+        <label>Cancel Intercompany</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1AP</fullName>
+        <default>false</default>
+        <label>Down payment request (Z1AP)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1C1</fullName>
+        <default>false</default>
+        <label>Prod.CNDN Price req</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1C2</fullName>
+        <default>false</default>
+        <label>Prod.CNDN ROE req</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1C3</fullName>
+        <default>false</default>
+        <label>Crude CNDN Price req</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1C4</fullName>
+        <default>false</default>
+        <label>Crude CNDN ROE req</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1C5</fullName>
+        <default>false</default>
+        <label>CNDN Serv Comm. (Z1C5)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1C6</fullName>
+        <default>false</default>
+        <label>CNDN Serv Comm. (Z1C6)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1C7</fullName>
+        <default>false</default>
+        <label>CNDN Serv Comm. (Z1C7)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1CD</fullName>
+        <default>false</default>
+        <label>Crude Inv./Tax Inv.</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1D1</fullName>
+        <default>false</default>
+        <label>Prod. DN Adjust QTY</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1D2</fullName>
+        <default>false</default>
+        <label>Crude DN Adjust QTY</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1DP</fullName>
+        <default>false</default>
+        <label>Deposit Invoice</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1IF</fullName>
+        <default>false</default>
+        <label>Final Invoice</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1IV</fullName>
+        <default>false</default>
+        <label>Invoice/Tax Invoice</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1OT</fullName>
+        <default>false</default>
+        <label>Other Invoice</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1S2</fullName>
+        <default>false</default>
+        <label>Non-Hydro Serv Proj</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1S3</fullName>
+        <default>false</default>
+        <label>Non-Hydro Serv Oth</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1SV</fullName>
+        <default>false</default>
+        <label>Commercial Service</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1WD</fullName>
+        <default>false</default>
+        <label>Withdraw Invoice</label>
+    </customValue>
+    <customValue>
+        <fullName>Z2C1</fullName>
+        <default>false</default>
+        <label>Prod.CNDN Price TPX</label>
+    </customValue>
+    <customValue>
+        <fullName>Z2C6</fullName>
+        <default>false</default>
+        <label>CNDN Serv Comm. TPX (Z2C6)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z2C7</fullName>
+        <default>false</default>
+        <label>CNDN Serv Comm. TPX (Z2C7)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z2F2</fullName>
+        <default>false</default>
+        <label>Invoice/Tax Inv. TPX</label>
+    </customValue>
+    <customValue>
+        <fullName>Z2OT</fullName>
+        <default>false</default>
+        <label>Other Invoice TPX</label>
+    </customValue>
+    <customValue>
+        <fullName>Z2S2</fullName>
+        <default>false</default>
+        <label>Non-HD Serv Proj TPX (Z2S2)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z2S3</fullName>
+        <default>false</default>
+        <label>Non-HD Serv Oth TPX (Z2S3)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z2V1</fullName>
+        <default>false</default>
+        <label>Commercial Serv. TPX</label>
+    </customValue>
+    <customValue>
+        <fullName>Z3AP</fullName>
+        <default>false</default>
+        <label>Down payment request (Z3AP)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z3C1</fullName>
+        <default>false</default>
+        <label>Prod.CNDN Price TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Z3C3</fullName>
+        <default>false</default>
+        <label>Crude CNDN Price req (Z3C3)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z3C6</fullName>
+        <default>false</default>
+        <label>CNDN Serv Comm. TLB (Z3C6)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z3C7</fullName>
+        <default>false</default>
+        <label>CNDN Serv Comm. TLB (Z3C7)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z3CD</fullName>
+        <default>false</default>
+        <label>Crude Inv/TaxInv TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Z3D2</fullName>
+        <default>false</default>
+        <label>Crude DN Adjust QTY (Z3D2)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z3DP</fullName>
+        <default>false</default>
+        <label>Deposit Invoice TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Z3F2</fullName>
+        <default>false</default>
+        <label>Invoice/Tax Inv. TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Z3IF</fullName>
+        <default>false</default>
+        <label>Final Invoice TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Z3OT</fullName>
+        <default>false</default>
+        <label>Other Invoice TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Z3S2</fullName>
+        <default>false</default>
+        <label>Non-HD Serv. Pro TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Z3S3</fullName>
+        <default>false</default>
+        <label>Non-HD Serv. Oth TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Z3V1</fullName>
+        <default>false</default>
+        <label>Commercial Serv. TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Z3WD</fullName>
+        <default>false</default>
+        <label>Withdraw TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Z4CN</fullName>
+        <default>false</default>
+        <label>TS Credit Memo</label>
+    </customValue>
+    <customValue>
+        <fullName>Z4DN</fullName>
+        <default>false</default>
+        <label>TS Debit Memo</label>
+    </customValue>
+    <customValue>
+        <fullName>Z4EX</fullName>
+        <default>false</default>
+        <label>TS Export Invoice</label>
+    </customValue>
+    <customValue>
+        <fullName>Z4IN</fullName>
+        <default>false</default>
+        <label>TS Domestic Invoice</label>
+    </customValue>
+    <customValue>
+        <fullName>Z4RE</fullName>
+        <default>false</default>
+        <label>TS Credit for return</label>
+    </customValue>
+    <customValue>
+        <fullName>Z5CN</fullName>
+        <default>false</default>
+        <label>TSV Credit Memo</label>
+    </customValue>
+    <customValue>
+        <fullName>Z5DN</fullName>
+        <default>false</default>
+        <label>TSV Debit Memo</label>
+    </customValue>
+    <customValue>
+        <fullName>Z5IN</fullName>
+        <default>false</default>
+        <label>TSV Tax Invoice</label>
+    </customValue>
+    <customValue>
+        <fullName>Z5RE</fullName>
+        <default>false</default>
+        <label>TSV CreditForReturn</label>
+    </customValue>
+    <customValue>
+        <fullName>Z6AP</fullName>
+        <default>false</default>
+        <label>Down payment request (Z6AP)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z6C1</fullName>
+        <default>false</default>
+        <label>Prod.CNDN Price LAB</label>
+    </customValue>
+    <customValue>
+        <fullName>Z6C6</fullName>
+        <default>false</default>
+        <label>CNDN Serv Comm. LAB (Z6C6)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z6C7</fullName>
+        <default>false</default>
+        <label>CNDN Serv Comm. LAB (Z6C7)</label>
+    </customValue>
+    <customValue>
+        <fullName>Z6D1</fullName>
+        <default>false</default>
+        <label>Prod.CNDN Qty LAB</label>
+    </customValue>
+    <customValue>
+        <fullName>Z6F2</fullName>
+        <default>false</default>
+        <label>Invoice/Tax Inv. LAB</label>
+    </customValue>
+    <customValue>
+        <fullName>Z6IF</fullName>
+        <default>false</default>
+        <label>Final Invoice LAB</label>
+    </customValue>
+    <customValue>
+        <fullName>Z6OT</fullName>
+        <default>false</default>
+        <label>Other Invoice LAB</label>
+    </customValue>
+    <masterLabel>Billing Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

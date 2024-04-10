@@ -1,0 +1,121 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,flexipage:availableForRecordHome,force:hasRecordId,flexipage:availableForAllPageTypes" controller="EMOC_ProdocConsolidateController" access="global">
+    <aura:attribute name="recordId" type="String" default="" />
+    <aura:attribute name="options" type="List" />
+    <aura:attribute name="selectedOption" type="String" default="" />
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="selectedRows" type="List" />
+    <aura:attribute name="errorData" type="Object" />
+    <aura:attribute name="errorColumns" type="List" />
+    <aura:attribute name="statusMsg" type="String" default="" />
+    
+    <aura:attribute name="isLoaded" type="Boolean" default="false" />
+    <aura:attribute name="isRetrieving" type="Boolean" default="false" />
+    <aura:attribute name="showTable" type="Boolean" default="false" />
+    <aura:attribute name="showErrorTable" type="Boolean" default="false" />
+    <aura:attribute name="allowToConsolidate" type="Boolean" default="false" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:html tag="style">
+    	.slds-modal__container {
+        	// height: auto;
+        	width: 80%;
+        	max-width: 80rem;
+        }
+        .slds-modal__content {
+        	overflow: unset !important;
+        	height: unset !important;
+        	max-height: unset !important;
+        }
+        .slds-p-around--medium {
+        	padding: 0rem !important;
+        }
+        .cuf-content {
+        	padding: 0rem !important;
+        }
+    </aura:html>
+    
+    <aura:if isTrue="{!v.isLoaded}">
+        <aura:if isTrue="{!v.isRetrieving}">
+            <lightning:spinner variant="brand" alternativeText="loading" aura:id="cspinner" style="z-index: 2" />
+        </aura:if>
+        <div class="slds-modal--large">
+        	<div class="modal-header slds-modal__header slds-size_1-of-1">
+                <h1 class="slds-modal__title slds-hyphenate">Consolidate</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around--medium slds-size_1-of-1 slds-is-relative">
+            	<div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_x-small">
+                        <aura:iteration items="{!v.options}" var="option">
+                            <div class="slds-p-around_xx-small">
+                            	<div class="slds-page-header slds-p-around_x-small">
+                                    <div class="slds-page-header__row">
+                                        <div class="slds-page-header__col-title">
+                                            <div class="slds-media slds-grid_vertical-align-center">
+                                                <div class="slds-media__figure">
+                                                    <lightning:icon iconName="{!option.iconName}" alternativeText="{!option.iconTitle}" title="{!option.iconTitle}" />
+                                                </div>
+                                                <div class="slds-media__body slds-p-top_xx-small">
+                                                    <div class="slds-page-header__name">
+                                                        <div class="slds-page-header__name-title">
+                                                            <h1>
+                                                                <span class="slds-text-heading_small slds-truncate">{!option.label}</span>
+                                                            </h1>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-page-header__col-actions">
+                                            <div class="slds-page-header__controls">
+                                                <div class="slds-page-header__control">
+                                                    <aura:if isTrue="{!option.isSelected}">
+                                                        <lightning:buttonIcon iconName="utility:close" title="Select" onclick="{!c.onDocTypeClick}" name="{!option.value}" size="large" />
+                                                        <aura:set attribute="else">
+                                                        	<lightning:buttonIcon iconName="utility:stop" title="Select" onclick="{!c.onDocTypeClick}" name="{!option.value}" size="large" />
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aura:iteration>
+                    </div>
+                    <div class="slds-col slds-size_2-of-3 slds-p-around_x-small">
+                        <aura:if isTrue="{!v.showTable}">
+                            <lightning:datatable
+                                columns="{!v.columns}"
+                                data="{!v.data}"
+                                keyField="Id"
+                                showRowNumberColumn="true"
+                                onrowselection="{!c.onRowSelected}"/>
+                        </aura:if>
+                    </div>
+                </div>
+                <!-- display error -->
+                <div class="slds-p-around_x-small">
+                    <aura:if isTrue="{!v.showErrorTable}">
+                        <ui:message title="Error" severity="error" closable="false">
+                            {!v.statusMsg}
+                        </ui:message>
+                        <lightning:datatable
+                        	columns="{!v.errorColumns}"
+                            data="{!v.errorData}"
+                            keyField="Id"
+                            showRowNumberColumn="true"
+                            hideCheckboxColumn="true" />
+                    </aura:if>
+                </div>
+            </div>
+            <div class="modal-footer slds-modal__footer slds-size_1-of-1 slds-align_absolute-center">
+                <lightning:button variant="neutral" label="Cancel" onclick="{!c.onCancelClick}" />
+                <lightning:button variant="brand" label="Consolidate" onclick="{!c.onConsolidateClick}" disabled="{!!v.allowToConsolidate}" />
+            </div>
+        </div>
+        <aura:set attribute="else">
+        	<lightning:spinner variant="brand" alternativeText="loading" aura:id="spinner" />
+        </aura:set>
+    </aura:if>
+</aura:component>

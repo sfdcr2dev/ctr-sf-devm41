@@ -1,0 +1,369 @@
+<aura:component
+    implements="flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable"
+    controller="THOR_NotificationsController"
+    access="global"
+>
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="recordError" type="String" access="private" />
+    <aura:attribute name="notificationRecord" type="Map" default="{}" access="private" />
+    <aura:attribute name="notificationRecordUi" type="Map" default="{}" access="private" />
+    <aura:attribute name="showViewMore" type="Boolean" default="false" access="private" />
+    <aura:attribute name="showViewLess" type="Boolean" default="false" access="private" />
+    <aura:attribute name="truncatedText" type="String" default="" access="private" />
+    <aura:attribute name="allText" type="String" default="" access="private" />
+    <aura:attribute name="historyDetail" type="String" default="" access="private" />
+
+    <aura:attribute name="hasWriteAccess" type="Boolean" default="false" access="global" />
+    <aura:attribute name="isLoadingRecord" type="Boolean" default="true" access="private" />
+    <aura:attribute name="isLoadingRecordUi" type="Boolean" default="true" access="private" />
+    <aura:attribute name="isAlertIntegration" type="Boolean" default="false" access="private" />
+    <aura:attribute name="isModalAction" type="Map" default="{ discard: false, resend: false, close: false }" access="private" />
+    <aura:attribute name="activeTabName" type="String" default="detail" />
+
+    <aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" access="private" />
+    <aura:attribute name="timeout" type="Object" access="private" />
+    <aura:attribute name="interval" type="Object" access="private" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="aura:doneRendering" action="{!c.doneRendering}" />
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.reInit}" />
+
+    <lightning:navigation aura:id="navService" />
+
+    <force:recordData
+        aura:id="recordData"
+        recordId="{!v.recordId ? v.recordId : v.pageReference.state.c__recordId}"
+        fields="Integration_Status__c, Integration_Message__c, Notification_Number__c, Fault_Code__c, Notification_Status__c, History_Detail__c, User_Status__c, Type__c, System_Status_Text__c, Order__c"
+        targetFields="{!v.notificationRecord}"
+        targetError="{!v.recordError}"
+        recordUpdated="{!c.handleRecordUpdated}"
+    />
+
+    <div class="{!if(v.formFactor == 'PHONE', 'phone slds-var-p-around_x-small', 'slds-var-p-around_x-small')}">
+        <div class="slds-grid slds-grid_vertical-align-end slds-var-m-bottom_small">
+            <div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-var-m-right_small">
+                <lightning:icon iconName="utility:notification" alternativeText="Notification" title="Notification" />
+                <h1 class="header-title">Notification</h1>
+            </div>
+        </div>
+
+        <div class="slds-grid slds-grid_vertical-align-end slds-var-m-bottom_small">
+            <div class="slds-col">
+                <lightning:button class="tab-button" variant="{!(v.activeTabName == 'detail') ? 'brand' : 'brand-outline'}" label="Detail" value="detail" onclick="{!c.handleTabSelected}"></lightning:button>
+                <lightning:button class="tab-button" variant="{!(v.activeTabName == 'files') ? 'brand' : 'brand-outline'}" label="Files" value="files" onclick="{!c.handleTabSelected}"></lightning:button>
+            </div>
+            <div class="slds-col slds-col_bump-left">
+                <div class="{!(and(v.notificationRecord.Notification_Status__c == 'Closed', v.notificationRecord.Integration_Status__c != 'Failed')) ? 'slds-grid slds-grid_align-end slds-hide' : 'slds-grid slds-grid_align-end'}" style="margin-left: auto">
+                    <lightning:buttonMenu menuAlignment="right" alternativeText="Show menu" label="Actions" onselect="{!c.handleSelectButtonMenu}">
+                        <lightning:menuItem
+                            label="Edit"
+                            title="Edit"
+                            value="c.showEditModal"
+                            disabled="{!
+                                or(v.notificationRecord.Notification_Status__c == 'Closed', not(v.hasWriteAccess)) ||
+                                and(v.notificationRecord.Integration_Status__c == 'In Progress', not(empty(v.notificationRecord.Integration_Status__c))) ||
+                                v.notificationRecord.System_Status_Text__c == 'NOCO'
+                            }"
+                        />
+                        <lightning:menuItem
+                            label="Close"
+                            title="Close"
+                            value="c.toggleCloseModal"
+                            disabled="{!
+                                or(v.notificationRecord.Notification_Status__c == 'Closed', not(v.hasWriteAccess)) ||
+                                v.notificationRecord.Integration_Status__c != 'Success' ||
+                                v.notificationRecord.Type__c != 'OP'
+                            }"
+                        />
+                        <lightning:menuItem
+                            label="Discard"
+                            title="Discard"
+                            value="c.toggleDiscardModal"
+                            disabled="{!
+                                or(v.notificationRecord.Notification_Status__c == 'Closed', not(v.hasWriteAccess)) ||
+                                or(v.notificationRecord.Integration_Status__c == 'Success', not(empty(v.notificationRecord.Notification_Number__c))) ||
+                                and(not(equals(v.notificationRecord.Notification_Number__c.length, 15)) || not(equals(v.notificationRecord.Notification_Number__c.length, 18)), not(empty(v.notificationRecord.Notification_Number__c)))
+                            }"
+                        />
+                        <lightning:menuItem
+                            label="Resend"
+                            title="Resend"
+                            value="c.resendNotification"
+                            disabled="{!
+                                or(v.notificationRecord.Notification_Status__c == 'Closed', not(v.hasWriteAccess)) ||
+                                v.notificationRecord.Integration_Status__c == 'Success'
+                            }"
+                        />
+                    </lightning:buttonMenu>
+                </div>
+            </div>
+        </div>
+
+        <aura:if isTrue="{!v.recordId}">
+            <c:ODM_ModalSelected size="empty" isToggle="{!v.notificationRecord.Integration_Status__c == 'In Progress'}" isHideCloseButton="true">
+                <aura:set attribute="body">
+                    <div class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center">
+                        <div class="slds-col">
+                            <div class="slds-is-relative" style="height: 8em">
+                                <lightning:spinner alternativeText="Loading" size="large" />
+                            </div>
+                        </div>
+                        <div class="slds-col">
+                            <h2 class="slds-text-heading_large slds-text-align_center slds-var-p-horizontal_medium slds-var-p-bottom_medium">
+                                Please wait...
+                            </h2>
+                        </div>
+                    </div>
+                </aura:set>
+            </c:ODM_ModalSelected>
+
+            <c:ODM_ModalSelected size="empty" title="Discard Notification" isToggle="{!v.isModalAction.discard}" isHideCloseButton="true">
+                <aura:set attribute="body">
+                    <div class="slds-text-align_center slds-var-p-bottom_large">Are you sure you want to discard this Notification?
+                    </div>
+                </aura:set>
+                <aura:set attribute="footer">
+                    <div class="slds-grid slds-grid_align-end">
+                        <div class="slds-col slds-var-p-left_x-small">
+                            <lightning:button name="discard" variant="brand" label="Discard" onclick="{!c.discardNotification}" />
+                        </div>
+                        <div class="slds-col slds-var-p-left_x-small">
+                            <lightning:button variant="neutral" label="Cancel" onclick="{!c.toggleDiscardModal}" />
+                        </div>
+                    </div>
+                </aura:set>
+            </c:ODM_ModalSelected>
+
+            <c:ODM_ModalSelected size="empty" title="Close Notification" isToggle="{!v.isModalAction.close}" isHideCloseButton="true">
+                <aura:set attribute="body">
+                    <div class="slds-text-align_center slds-var-p-bottom_large">Are you sure you want to close this Notification?</div>
+                </aura:set>
+                <aura:set attribute="footer">
+                    <div class="slds-grid slds-grid_align-end">
+                        <div class="slds-col slds-var-p-left_x-small">
+                            <lightning:button name="close" variant="brand" label="Close" onclick="{!c.closeNotification}" />
+                        </div>
+                        <div class="slds-col slds-var-p-left_x-small">
+                            <lightning:button variant="neutral" label="Cancel" onclick="{!c.toggleCloseModal}" />
+                        </div>
+                    </div>
+                </aura:set>
+            </c:ODM_ModalSelected>
+
+            <aura:if isTrue="{!v.notificationRecord.Integration_Status__c == 'Failed'}">
+                <lightning:recordEditForm
+                    class="slds-hide"
+                    aura:id="recordResendForm"
+                    recordId="{!v.recordId}"
+                    objectApiName="Notification__c"
+                    onerror="{!c.handleResendFormError}"
+                >
+                    <lightning:inputField fieldName="Integration_Status__c" value="In Progress" />
+                </lightning:recordEditForm>
+            </aura:if>
+
+            <aura:if isTrue="{!v.notificationRecord.Integration_Status__c == 'In Progress'}">
+                <lightning:recordEditForm
+                    class="slds-hide"
+                    aura:id="recordTimeoutForm"
+                    recordId="{!v.recordId}"
+                    objectApiName="Notification__c"
+                    onerror="{!c.handleTimeoutFormError}"
+                >
+                    <lightning:inputField fieldName="Integration_Status__c" value="Failed" />
+                    <lightning:inputField fieldName="Integration_Message__c" value="" />
+                </lightning:recordEditForm>
+            </aura:if>
+
+            <aura:if isTrue="{! v.isAlertIntegration }">
+                <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                    <lightning:icon iconName="utility:error" variant="inverse" alternativeText="Error" title="error"
+                        size="{!v.formFactor == 'DESKTOP' ? 'x-small' : 'medium'}" />
+                    <h2 class="slds-var-p-horizontal_xx-small">
+                        Integration Failed:
+                        <aura:if isTrue="{!v.notificationRecord.Integration_Message__c}">
+                            {!v.notificationRecord.Integration_Message__c}
+                            <aura:set attribute="else">
+                                <span>Your network could not connect to Server. Please contact System Administrator.</span>
+                            </aura:set>
+                        </aura:if>
+                    </h2>
+
+                    <div class="slds-notify__close">
+                        <lightning:buttonIcon iconName="utility:close" variant="bare-inverse" title="Close" onclick="{!c.closeAlertIntegration}" />
+                    </div>
+                </div>
+            </aura:if>
+
+            <aura:if isTrue="{!v.activeTabName == 'detail'}">
+                <lightning:card>
+                    <aura:if isTrue="{!or(v.isLoadingRecord, v.isLoadingRecordUi)}">
+                        <lightning:spinner alternativeText="Loadings" size="medium" />
+                    </aura:if>
+                    <lightning:recordEditForm density="comfy" recordId="{! v.recordId }" onload="{!c.handleLoadRecordEdit}" objectApiName="Notification__c">
+                        <lightning:layout multipleRows="true" verticalAlign="stretch">
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <label class="slds-form-element__label" for="of-Name">Notification</label>
+                                    <lightning:outputField aura:id="of-Name" variant="label-hidden" fieldName="Name" />
+                                </div>
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <lightning:outputField fieldName="Integration_Status__c" />
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <label class="slds-form-element__label" for="of-Type">Notification Type</label>
+                                    <div class="slds-form-element__control">
+                                        <lightning:outputField aura:id="of-Type" variant="label-hidden" fieldName="Type__c" />
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <label class="slds-form-element__label">Notification Assigned</label>
+                                    <div class="slds-form-element__control">
+                                        <lightning:outputField aura:id="of-assignedTo" variant="label-hidden" fieldName="AssignedToText__c" />
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <label class="slds-form-element__label">Functional Location</label>
+                                    <div class="slds-form-element__control">
+                                        <lightning:outputField variant="label-hidden" fieldName="Functional_Location_Text__c" class="hidden" />
+                                        {!v.notificationRecordUi.record.fields.Functional_Location_Text__c.value}&nbsp;{!v.notificationRecordUi.record.fields.Functional_Location__c.displayValue}
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+
+                            <!--
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <lightning:outputField fieldName="Equipment_Text__c" />
+                            </lightning:layoutItem>
+                            -->
+
+                            <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                                <lightning:outputField fieldName="Description__c" />
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <lightning:outputField fieldName="MainWorkCenterText__c" />
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <lightning:outputField fieldName="User_Status__c" />
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <label class="slds-form-element__label">Plant of Main Work Center</label>
+                                    <div class="slds-form-element__control">
+                                        <lightning:outputField fieldName="mainWorkCenterPlantText__c" variant="label-hidden" />
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+                                <lightning:outputField fieldName="Notification_Status__c" />
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box custom-box-gray">
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <label class="slds-form-element__label">Planning Plant</label>
+                                    <div class="slds-form-element__control">
+                                        <lightning:outputField fieldName="Planning_Plant_Text__c" variant="label-hidden" />
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+        
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box  custom-box-gray">
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <label class="slds-form-element__label">Planner Group</label>
+                                    <div class="slds-form-element__control">
+                                        <lightning:outputField fieldName="Planner_Group_Text__c" variant="label-hidden" />
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box custom-box-gray">
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <label class="slds-form-element__label">Requestor (Staff ID)</label>
+                                    <div class="slds-form-element__control">
+                                        <lightning:outputField fieldName="Requester_PISUser__c" variant="label-hidden"  class="hidden"/>
+                                        {!v.notificationRecordUi.record.fields.Requester_PISUser__c.displayValue}
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box custom-box-gray">
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <label class="slds-form-element__label">Department Resp. (ORG ID)</label>
+                                    <div class="slds-form-element__control">
+                                        <lightning:outputField fieldName="Department_Resp__c" variant="label-hidden" />
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box custom-box-gray">
+                                <lightning:outputField fieldName="Priority__c" />
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box custom-box-gray">
+                                <label class="slds-form-element__label">Notification Date</label>
+                                <div class="slds-form-element__control">
+                                    <lightning:outputField fieldName="Requested_Date__c" variant="label-hidden" />
+                                </div>
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box custom-box-gray">
+                                <lightning:outputField fieldName="Required_Start__c" />
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box custom-box-gray">
+                                <lightning:outputField fieldName="Required_End__c" />
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box custom-box-gray slds-hide">
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <span class="slds-form-element__label">History Detail</span>
+                                    <div class="slds-form-element__control">
+                                        <aura:if isTrue="{!v.showViewMore}">
+                                            <div class="slds-text-body_regular slds-hyphenate">
+                                                <lightning:formattedRichText value="{!v.truncatedText}" />
+                                                <a onclick="{!c.viewMore}"> view more</a>
+                                            </div>
+                                            <aura:set attribute="else">
+                                                <aura:if isTrue="{!v.showViewLess}">
+                                                    <div class="slds-text-body_regular slds-hyphenate">
+                                                        <lightning:formattedRichText value="{!v.allText}" />
+                                                        <a onclick="{!c.viewLess}"> view less</a>
+                                                    </div>
+                                                    <aura:set attribute="else">
+                                                        <div class="slds-text-body_regular slds-hyphenate">
+                                                            <lightning:formattedRichText
+                                                                value="{!v.allText ? v.allText : '&nbsp;'}" />
+                                                        </div>
+                                                    </aura:set>
+                                                </aura:if>
+                                            </aura:set>
+                                        </aura:if>
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+                        </lightning:layout>
+                    </lightning:recordEditForm>
+                </lightning:card>
+            </aura:if>
+
+            <aura:if isTrue="{!v.activeTabName == 'files'}">
+                <c:ODM_NotificationRelatedFiles notificationId="{!v.recordId}" />
+            </aura:if>
+
+        </aura:if>
+    </div>
+</aura:component>

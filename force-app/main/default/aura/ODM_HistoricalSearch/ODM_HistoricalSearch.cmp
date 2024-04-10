@@ -1,0 +1,82 @@
+<aura:component implements="lightning:isUrlAddressable,force:appHostable">
+	
+	<ltng:require
+		styles="{! $Resource.select2 + '/select2-4.0.3/dist/css/select2.min.css'}"
+		scripts="{!join(',',
+        $Resource.jQuery224 ,
+        $Resource.select2 + '/select2-4.0.3/dist/js/select2.js')
+      }"
+		afterScriptsLoaded="{!c.scriptsLoaded}"
+	/>
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<aura:attribute name="recordId" type="Id" access="private" />
+	<aura:attribute name="userId" type="Id" default="{!$SObjectType.CurrentUser.Id}" access="private" />
+	<aura:attribute name="title" type="String" default="" access="private" />
+	<!-- <aura:attribute name="activeButton" type="String" default="WorkClearance" access="private" /> -->
+
+	<aura:attribute name="whichState" type="String" default="Notification" />
+
+	<div class="slds-card__header slds-grid box1">
+		<header class="slds-media slds-media_center slds-has-flexi-truncate">
+			<lightning:icon iconName="utility:search" alternativeText="Historical Search" title="Historical Search" />
+			<div class="slds-media__body slds-grid icn">
+				<h1 class="slds-card__header-title">
+					<p>Historical Search</p>
+				</h1>
+			</div>
+		</header>
+	</div>
+	<div>
+		<!-- <div class="slds-card__body slds-card__body_inner"> -->
+			<div class="slds-grid">
+				<!-- Notification Historical Icon Button -->
+				<div class="slds-col slds-size_1-of-2 slds-text-align_center slds-p-around_x-small">
+						<lightning:button variant="{!v.whichState == 'Notification' ? 'brand' : 'base'}" class="page-header" name="Notification" onclick="{!c.setState}">
+							<div class="slds-media__figure">
+								<img class="slds-m-right_xxx-small imgWidth" src="{!$Resource.HistoricalSearchImg+'/HistoricalSearchImgButton/NotificationHistoricalIcon.png'}" />
+							</div>
+							<div class="slds-media__body">
+								<p class="slds-text-align_left lineHieght">
+									Notification<br/>
+									Historical
+								</p>
+							</div>
+						</lightning:button>
+				</div>
+				<!-- Work Clearance Historical Icon Button -->
+				<div class="slds-col slds-size_1-of-2 slds-text-align_center slds-p-around_x-small">
+							<lightning:button variant="{!v.whichState == 'WorkClearance' ? 'brand' : 'base'}" class="page-header" name="WorkClearance" onclick="{!c.setState}">
+							<div class="slds-media__figure">
+								<img class="slds-m-right_xxx-small imgWidth" src="{!$Resource.HistoricalSearchImg+'/HistoricalSearchImgButton/WorkClearanceHistoricalIcon.png'}" />
+							</div>
+							<div class="slds-media__body">
+								<p class="slds-text-align_left lineHieght">
+									Work Clearance<br/>
+									Historical
+								</p>
+							</div>
+						</lightning:button>
+				</div>
+			</div>
+		<!-- </div> -->
+	</div>
+
+	<div class="slds-card slds-p-top_medium">
+		<aura:if isTrue="{!v.whichState == 'Notification'}">
+			<c:ODM_HistoricalSearchNotiForm />
+		</aura:if> 
+		<aura:if isTrue="{!v.whichState == 'WorkClearance'}">
+			<c:ODM_HistoricalSearchWcForm />
+		</aura:if>
+		<!-- 
+		<aura:if isTrue="{!v.whichState == 'WorkClearance'}">
+			<c:THOR_WorkClearanceHistoricalForm />
+		</aura:if>
+		<aura:if isTrue="{!v.whichState == 'EQCC'}">
+			<c:THOR_EQCCHistoricalForm />
+		</aura:if> -->
+	</div> 
+	<div class="slds-p-vertical_small"></div>
+</aura:component>

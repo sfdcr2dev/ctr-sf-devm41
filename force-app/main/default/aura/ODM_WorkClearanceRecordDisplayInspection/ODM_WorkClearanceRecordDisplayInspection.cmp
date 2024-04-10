@@ -1,0 +1,829 @@
+<aura:component controller="ODM_PermitToWorkInspection" access="global">
+
+	<aura:registerEvent name="sampleComponentEvent" type="c:compEvent"/>
+
+	<aura:attribute name="recordId" type="String" access="global" />
+	<aura:attribute name="redirectToTabName" type="String" access="global" />
+	<aura:attribute name="ptwInspectionId" type="String" access="global" />
+	<aura:attribute name="hasChanged" type="Boolean" default="false" />
+	<aura:attribute name="hasWriteAccess" type="Boolean" default="false" />
+	<aura:attribute name="canSaveDraft" type="Boolean" default="false" />
+	<aura:attribute name="canAllowWork" type="Boolean" default="false" />
+	<aura:attribute name="canHoldWork" type="Boolean" default="false" />
+	<aura:attribute name="canStopWork" type="Boolean" default="false" />
+	<aura:attribute name="versions" type="List" />
+	<aura:attribute name="sections" type="List" />
+	<aura:attribute name="dataTypes" type="List" />
+	<aura:attribute name="workClearance" type="Object" />
+	<aura:attribute name="formQuestions" type="Object" />
+	<aura:attribute name="formAnswers" type="List" />
+	<aura:attribute name="filesRelated" type="List" />
+	<aura:attribute name="displayedFormQuestions" type="List" />
+	<aura:attribute name="displayedFormQuestionComments" type="List" />
+	<aura:attribute name="deletedFormQuestionComments" type="List" />
+	<aura:attribute name="selectedFormQuestions" type="String" default="" />
+	<aura:attribute name="version" type="String" default="" />
+	<aura:attribute name="status" type="String" default="Draft" />
+	<aura:attribute name="formName" type="String" default="Inspection" />
+	<aura:attribute name="constants" type="Object" default="" />
+	<aura:attribute name="isLoadingRecord" type="Boolean" default="true" />
+	<aura:attribute name="isLoadingList" type="Boolean" default="true" />
+	<aura:attribute name="isPTWTypeColdWork" type="Boolean" default="false" />
+	<aura:attribute name="isPTWTypeConfinedSpace" type="Boolean" default="false" />
+	<aura:attribute name="isWorkTypeLifting" type="Boolean" default="false" />
+	<aura:attribute name="isWorkTypeGeneral" type="Boolean" default="false" />
+	<aura:attribute name="isConfirmStopWorkModalOpen" type="boolean" default="false"/>
+	<aura:attribute name="isConfirmSavePTWModalOpen" type="boolean" default="false"/>
+	<aura:attribute name="PISUser" type="Object" access="global" default=""/>
+	<aura:attribute name="PTWHeaderId" type="String" default=""/>
+
+	<aura:attribute name="hideCreatePermitToWorkBtn" type="Boolean" default="false" />
+
+	<aura:method name="isRecordChanged" action="{!c.getRecordChangeStatus}" />
+	<aura:method name="openConfirmSavePTWModal" action="{!c.handleOpenConfirmSavePTWModal}" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="valueChangeEvent" action="{!c.handleInputFieldChanged}" event="c:ODM_WorkClearanceInputFieldChangeEvent" />
+
+	<lightning:navigation aura:id="navService" />
+
+	<div>
+		<h1 class="header-title">PTW Inspection</h1>
+
+		<aura:if isTrue="{!empty(v.selectedFormQuestions)}">
+			<lightning:card>
+				<aura:if isTrue="{!or(v.isLoadingList, v.isLoadingRecord)}">
+					<lightning:spinner alternativeText="Loadings" size="medium" />
+				</aura:if>
+				<div class="slds-grid">
+					<div class="slds-col slds-col_bump-left">
+						Permit to Work Inspection ({!v.formAnswers.length})
+					</div>
+					<!-- hide buttonIcon -->
+					<aura:if isTrue="{!not(v.hideCreatePermitToWorkBtn)}">
+						<div class="slds-col slds-col_bump-right">
+							<lightning:buttonIcon iconName="utility:add" variant="bare" size="large" onclick="{! c.handleNew }" alternativeText="Create Permit to Work" title="Create Permit to Work" />
+						</div>
+					</aura:if>
+
+					<!-- <div class="slds-col slds-col_bump-right">
+						<lightning:buttonIcon iconName="utility:add" variant="bare" size="large" onclick="{! c.handleNew }" alternativeText="Create Permit to Work" title="Create Permit to Work" />
+					</div> -->
+				</div>
+
+				<div class="ptw-list-header">
+					PTW Number, Date, PTW Type, Work Type, Status, (Auditor) Name
+				</div>
+
+				<aura:iteration items="{!v.formAnswers}" var="header">
+					<div class="ptw-list-detail" onclick="{!c.handleSelectPermitToWork}" data-record-id="{!header.Id}">
+						{!header.Name},&nbsp;{!header.InspectionDateFormat},&nbsp;{!header.Type},&nbsp;{!header.WorkType},&nbsp;{!header.Status__c},&nbsp;{!header.AuditorNameText}
+					</div>
+				</aura:iteration>
+			</lightning:card>
+
+			<aura:set attribute="else">
+				<div class="slds-grid slds-grid--align-spread slds-var-m-bottom_medium header-action-button">
+					<div class="slds-col">
+						<aura:if isTrue="{!v.PTWHeaderId}">
+							<lightning:fileUpload
+								class="muh-class slds-col slds-grow-none"
+								label=""
+								name="fileUploader"
+								recordId="{!v.PTWHeaderId}"
+								onuploadfinished="{!c.handleUploadFinished}"
+							/>
+						</aura:if>
+					</div>
+					<div class="slds-col">
+						<lightning:buttonMenu menuAlignment="right" alternativeText="Show menu" label="Actions" onselect="{!c.handleSelectButtonMenu}">
+							<lightning:menuItem
+								label="Save Draft"
+								title="Save Draft"
+								value="c.saveDraft"
+								disabled="{!not(v.canSaveDraft)}"
+							/>
+							<lightning:menuItem
+								label="ดำเนินการได้"
+								title="In Process"
+								value="c.allowWork"
+								disabled="{!not(v.canAllowWork)}"
+							/>
+							<lightning:menuItem
+								label="หยุดชั่วคราว"
+								title="On Hold"
+								value="c.holdWork"
+								disabled="{!not(v.canHoldWork)}"
+							/>
+							<lightning:menuItem
+								label="หยุดถาวร"
+								title="Stop"
+								value="c.stopWork"
+								disabled="{!not(v.canStopWork)}"
+							/>
+						</lightning:buttonMenu>
+					</div>
+				</div>
+				<lightning:card>
+					<aura:if isTrue="{!v.isLoadingRecord}">
+						<lightning:spinner alternativeText="Loadings" size="medium" />
+					</aura:if>
+					<aura:iteration items="{!v.sections}" var="section">
+						<aura:if isTrue="{!section == v.constants.SECTION.PERMIT_TO_WORK_INSPECTION_HEADER}">
+							<div class="slds-grid slds-wrap ptw-header">
+								<aura:iteration items="{!v.displayedFormQuestions}" var="question">
+									<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.DATE_OF_INSPECTION}">
+										<div class="slds-col slds-size_6-of-12">
+											<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" disabled="{!question.Disabled}" picklist="{!question.Picklist}" questionId="{!question.Id}" />
+										</div>
+										<div class="slds-col slds-size_6-of-12"></div>
+									</aura:if>
+									<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.PTW_TYPE}">
+										<div class="slds-col slds-size_6-of-12">
+											<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" disabled="{!question.Disabled}" picklist="{!question.Picklist}" questionId="{!question.Id}" />
+										</div>
+									</aura:if>
+									<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.PTW_SUB_TYPE}">
+										<div class="slds-col slds-size_6-of-12">
+											<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" disabled="{!question.Disabled}" picklist="{!question.Picklist}" questionId="{!question.Id}" />
+										</div>
+									</aura:if>
+									<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.WORK_TYPE}">
+										<div class="slds-col slds-size_6-of-12">
+											<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" disabled="{!question.Disabled}" picklist="{!question.Picklist}" questionId="{!question.Id}" multiple="true"/>
+										</div>
+									</aura:if>
+									<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.STATUS}">
+										<div class="slds-col slds-size_6-of-12">
+											<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" picklist="{!question.Picklist}" questionId="{!question.Id}" disabled="{!true}" />
+										</div>
+									</aura:if>
+									<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.SAFETY_PERMIT_NO}">
+										<div class="slds-col slds-size_6-of-12">
+											<label class="label-horizontal">{!question.Question__c}</label>
+										</div>
+										<div class="slds-col slds-size_6-of-12 label-hidden">
+											<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" disabled="{!question.Disabled}" picklist="{!question.Picklist}" questionId="{!question.Id}" />
+										</div>
+									</aura:if>
+									<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.CLEARANCE_CERTIFICATE_NO}">
+										<div class="slds-col slds-size_6-of-12">
+											<label class="label-horizontal">{!question.Question__c}</label>
+										</div>
+										<div class="slds-col slds-size_6-of-12 label-hidden">
+											<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" disabled="{!question.Disabled}" picklist="{!question.Picklist}" questionId="{!question.Id}" />
+										</div>
+									</aura:if>
+									<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.WORK_LOCATION}">
+										<div class="slds-col slds-size_6-of-12">
+											<label class="label-horizontal">{!question.Question__c}</label>
+										</div>
+										<div class="slds-col slds-size_6-of-12 label-hidden">
+											<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" disabled="{!question.Disabled}" picklist="{!question.Picklist}" questionId="{!question.Id}" />
+										</div>
+									</aura:if>
+									<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.PERFORMING_AUTHORITY}">
+										<div class="slds-col slds-size_6-of-12">
+											<label class="label-horizontal">{!question.Question__c}</label>
+										</div>
+										<div class="slds-col slds-size_6-of-12 label-hidden">
+											<c:ODM_WorkClearanceInputField
+												alignment="bottom"
+												type="{!question.Answer_type__c}"
+												label="{!question.Question__c}"
+												fieldName="{!question.Question_API__c}"
+												value="{!question.Answer__c}"
+												disabled="{!question.Disabled}"
+												picklist="{!question.Picklist}"
+												questionId="{!question.Id}"
+												fetchSObjectName="{!question.fetchSObjectName}"
+												nameDisplayFormat="{!question.nameDisplayFormat}"
+												descriptionDisplayFormat="{!question.descriptionDisplayFormat}" />
+										</div>
+									</aura:if>
+									<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.DEPARTMENT}">
+										<div class="slds-col slds-size_6-of-12">
+											<label class="label-horizontal">{!question.Question__c}</label>
+										</div>
+										<div class="slds-col slds-size_6-of-12 label-hidden">
+											<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" disabled="{!question.Disabled}" picklist="{!question.Picklist}" questionId="{!question.Id}" />
+										</div>
+									</aura:if>
+									<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.CONTRACTOR_COMPANY}">
+										<div class="slds-col slds-size_6-of-12">
+											<label class="label-horizontal">{!question.Question__c}</label>
+										</div>
+										<div class="slds-col slds-size_6-of-12 label-hidden">
+											<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" disabled="{!question.Disabled}" picklist="{!question.Picklist}" questionId="{!question.Id}" />
+										</div>
+									</aura:if>
+									<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.WORK_TASK_DESCRIPTION}">
+										<div class="slds-col slds-size_12-of-12">
+											<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" disabled="{!question.Disabled}" picklist="{!question.Picklist}" questionId="{!question.Id}" />
+										</div>
+									</aura:if>
+								</aura:iteration>
+								<div class="slds-col slds-size_12-of-12">
+									<p><strong>Remark:</strong> หากพบการกระทำ / สภาวะที่ไม่ปลอดภัยใดๆ ให้หยุดการทำงานและแจ้งให้หน่วยงานที่มีอำนาจทราบ เพื่อจัดทำมาตรการบรรเทาและการดำเนินการต่อไป</p>
+								</div>
+							</div>
+						</aura:if>
+					</aura:iteration>
+
+					<!-- <h1 class="header-title slds-var-p-top_xx-large">Inspection Items</h1> -->
+					<h1 class="header-title slds-var-p-top_large">Inspection Items</h1>
+
+					<aura:iteration items="{!v.sections}" var="section">
+						<aura:if isTrue="{!section == v.constants.SECTION.PERMIT_TO_WORK_PREPARATION_APPROVAL}">
+							<div class="slds-var-p-top_large slds-var-p-bottom_medium">
+								<label class="ptw-section-header">{!section}</label>
+							</div>
+							<table class="slds-table ptw-section-question">
+								<tbody>
+									<aura:iteration items="{!v.displayedFormQuestions}" var="question">
+										<aura:if isTrue="{!question.Section__c == section}">
+											<tr>
+												<td>{!question.Question__c}</td>
+												<td>
+													<c:ODM_WorkClearanceInputField
+														type="{!question.Answer_type__c}"
+														label="{!question.Question__c}" fieldName="{!question.Question_API__c}"
+														value="{!question.Answer__c}"
+														disabled="{!question.Disabled}"
+														picklist="{!question.Picklist}"
+														questionId="{!question.Id}" />
+												</td>
+											</tr>
+										</aura:if>
+									</aura:iteration>
+								</tbody>
+							</table>
+						</aura:if>
+					</aura:iteration>
+
+					<aura:iteration items="{!v.sections}" var="section">
+						<aura:if isTrue="{!section == v.constants.SECTION.HAZARDS_IDENTIFICATION_MITIGATIONS_MEASURES}">
+							<div class="slds-var-p-top_xx-large slds-var-p-bottom_medium">
+								<label class="ptw-section-header">{!section}</label>
+							</div>
+							<table class="slds-table ptw-section-question">
+								<tbody>
+									<aura:iteration items="{!v.displayedFormQuestions}" var="question">
+										<aura:if isTrue="{!question.Section__c == section}">
+											<tr>
+												<td>{!question.Question__c}</td>
+												<td>
+													<c:ODM_WorkClearanceInputField
+														type="{!question.Answer_type__c}"
+														label="{!question.Question__c}" fieldName="{!question.Question_API__c}"
+														value="{!question.Answer__c}"
+														disabled="{!question.Disabled}"
+														picklist="{!question.Picklist}"
+														questionId="{!question.Id}" />
+												</td>
+											</tr>
+										</aura:if>
+									</aura:iteration>
+								</tbody>
+							</table>
+						</aura:if>
+					</aura:iteration>
+
+					<aura:iteration items="{!v.sections}" var="section">
+						<aura:if isTrue="{!section == v.constants.SECTION.PRECAUTIONS}">
+							<div class="slds-var-p-top_xx-large slds-var-p-bottom_medium">
+								<label class="ptw-section-header">{!section}</label>
+							</div>
+							<table class="slds-table ptw-section-question">
+								<tbody>
+									<aura:iteration items="{!v.displayedFormQuestions}" var="question">
+										<aura:if isTrue="{!question.Section__c == section}">
+											<tr>
+												<td>{!question.Question__c}</td>
+												<td>
+													<c:ODM_WorkClearanceInputField
+														type="{!question.Answer_type__c}"
+														label="{!question.Question__c}" fieldName="{!question.Question_API__c}"
+														value="{!question.Answer__c}"
+														disabled="{!question.Disabled}"
+														picklist="{!question.Picklist}"
+														questionId="{!question.Id}" />
+												</td>
+											</tr>
+										</aura:if>
+									</aura:iteration>
+								</tbody>
+							</table>
+						</aura:if>
+					</aura:iteration>
+
+					<aura:if isTrue="{!not(v.isPTWTypeColdWork)}">
+						<aura:iteration items="{!v.sections}" var="section">
+							<aura:if isTrue="{!section == v.constants.SECTION.GAS_TESTS}">
+								<div class="slds-var-p-top_xx-large slds-var-p-bottom_medium">
+									<label class="ptw-section-header">{!section}</label>
+								</div>
+								<table class="slds-table ptw-section-question">
+									<tbody>
+										<aura:iteration items="{!v.displayedFormQuestions}" var="question">
+											<aura:if isTrue="{!question.Section__c == section}">
+												<tr>
+													<td>{!question.Question__c}</td>
+													<td>
+														<c:ODM_WorkClearanceInputField
+															type="{!question.Answer_type__c}"
+															label="{!question.Question__c}" fieldName="{!question.Question_API__c}"
+															value="{!question.Answer__c}"
+															disabled="{!question.Disabled}"
+															picklist="{!question.Picklist}"
+															questionId="{!question.Id}" />
+													</td>
+												</tr>
+											</aura:if>
+										</aura:iteration>
+									</tbody>
+								</table>
+							</aura:if>
+						</aura:iteration>
+					</aura:if>
+
+					<aura:iteration items="{!v.sections}" var="section">
+						<aura:if isTrue="{!section == v.constants.SECTION.ISOLATION_AND_INHIBIT_OVERRIDE}">
+							<div class="slds-var-p-top_xx-large slds-var-p-bottom_medium">
+								<label class="ptw-section-header">{!section}</label>
+							</div>
+							<table class="slds-table ptw-section-question">
+								<tbody>
+									<aura:iteration items="{!v.displayedFormQuestions}" var="question">
+										<aura:if isTrue="{!question.Section__c == section}">
+											<tr>
+												<td>{!question.Question__c}</td>
+												<td>
+													<c:ODM_WorkClearanceInputField
+														type="{!question.Answer_type__c}"
+														label="{!question.Question__c}" fieldName="{!question.Question_API__c}"
+														value="{!question.Answer__c}"
+														disabled="{!question.Disabled}"
+														questionId="{!question.Id}"
+														picklist="{!question.Picklist}" />
+												</td>
+											</tr>
+										</aura:if>
+									</aura:iteration>
+								</tbody>
+							</table>
+						</aura:if>
+					</aura:iteration>
+
+					<aura:if isTrue="{!v.isPTWTypeConfinedSpace}">
+						<aura:iteration items="{!v.sections}" var="section">
+							<aura:if isTrue="{!section == v.constants.SECTION.WORKING_IN_CONFINED_SPACE}">
+								<div class="slds-var-p-top_xx-large slds-var-p-bottom_medium">
+									<label class="ptw-section-header">{!section}</label>
+								</div>
+								<table class="slds-table ptw-section-question">
+									<tbody>
+										<aura:iteration items="{!v.displayedFormQuestions}" var="question">
+											<aura:if isTrue="{!question.Section__c == section}">
+												<tr>
+													<td>{!question.Question__c}</td>
+													<td>
+														<c:ODM_WorkClearanceInputField
+															type="{!question.Answer_type__c}"
+															label="{!question.Question__c}" fieldName="{!question.Question_API__c}"
+															value="{!question.Answer__c}"
+															disabled="{!question.Disabled}"
+															picklist="{!question.Picklist}"
+															questionId="{!question.Id}" />
+													</td>
+												</tr>
+											</aura:if>
+										</aura:iteration>
+									</tbody>
+								</table>
+							</aura:if>
+						</aura:iteration>
+					</aura:if>
+
+					<aura:if isTrue="{!v.isWorkTypeLifting}">
+						<aura:iteration items="{!v.sections}" var="section">
+							<aura:if isTrue="{!section == v.constants.SECTION.LIFTING}">
+								<div class="slds-var-p-top_xx-large slds-var-p-bottom_medium">
+									<label class="ptw-section-header">{!section}</label>
+								</div>
+								<table class="slds-table ptw-section-question">
+									<tbody>
+										<aura:iteration items="{!v.displayedFormQuestions}" var="question">
+											<aura:if isTrue="{!question.Section__c == section}">
+												<tr>
+													<td>{!question.Question__c}</td>
+													<td>
+														<c:ODM_WorkClearanceInputField
+															type="{!question.Answer_type__c}"
+															label="{!question.Question__c}" fieldName="{!question.Question_API__c}"
+															value="{!question.Answer__c}"
+															disabled="{!question.Disabled}"
+															picklist="{!question.Picklist}"
+															questionId="{!question.Id}" />
+													</td>
+												</tr>
+											</aura:if>
+										</aura:iteration>
+									</tbody>
+								</table>
+							</aura:if>
+						</aura:iteration>
+					</aura:if>
+
+					<aura:iteration items="{!v.sections}" var="section">
+						<aura:if isTrue="{!section == v.constants.SECTION.PERMIT_TO_WORK_OPENING_REVALIDATION_AND_EXECUTION}">
+							<div class="slds-var-p-top_xx-large slds-var-p-bottom_medium">
+								<label class="ptw-section-header">{!section}</label>
+							</div>
+							<table class="slds-table ptw-section-question">
+								<tbody>
+									<aura:iteration items="{!v.displayedFormQuestions}" var="question">
+										<aura:if isTrue="{!question.Section__c == section}">
+											<tr>
+												<td>{!question.Question__c}</td>
+												<td>
+													<c:ODM_WorkClearanceInputField
+														type="{!question.Answer_type__c}"
+														label="{!question.Question__c}" fieldName="{!question.Question_API__c}"
+														value="{!question.Answer__c}"
+														disabled="{!question.Disabled}"
+														picklist="{!question.Picklist}"
+														questionId="{!question.Id}" />
+												</td>
+											</tr>
+										</aura:if>
+									</aura:iteration>
+								</tbody>
+							</table>
+						</aura:if>
+					</aura:iteration>
+
+					<aura:iteration items="{!v.sections}" var="section">
+						<aura:if isTrue="{!section == v.constants.SECTION.COMMENTS_RECOMMENDATIONS}">
+							<div class="slds-var-p-top_xx-large slds-var-p-bottom_medium">
+								<label class="ptw-section-header">{!section}</label>
+							</div>
+							<div>
+								<table class="slds-table slds-table_bordered slds-table_col-bordered slds-table_striped slds-var-m-vertical_xx-large ptw-section-comment">
+									<thead>
+										<tr>
+											<th>Item</th>
+											<th>Comments / Recommendations</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<aura:iteration items="{!v.displayedFormQuestionComments}" var="comment">
+											<tr>
+												<td>{!comment.QuestionNo}</td>
+												<td>
+													<lightning:textarea label="{!comment.Question_Text__c}" value="{!comment.Answer__c}" disabled="{!comment.Disabled}" />
+													
+													<aura:if isTrue="{!and(comment.Parent_Answer__c, not(comment.Disabled))}">
+														<lightning:fileupload
+															aura:id="{!comment.Id}"
+															class="label-hidden-file-upload slds-hide_medium"
+															label="Attach Files"
+															variant="label-hidden"
+															name="{!comment.Id}"
+															recordId="{!comment.Id}"
+															onuploadfinished="{!c.handleFileUploadFinished}"
+														/>
+														<aura:set attribute="else">
+															<p class="slds-text-color_error">Please save before attach files</p>
+														</aura:set>
+													</aura:if>
+													<aura:if isTrue="{!comment.Files.length > 0}">
+														<ul class="ptw-section-comment-attach-file">
+															<aura:iteration items="{!comment.Files}" var="file">
+																<li>
+																	<div
+																		data-filetype="{! file.ContentDocument.FileType}"
+																		id="{!file.ContentDocumentId}"
+																		onclick="{!c.previewFile}"
+																		class="slds-col slds-var-p-around_xx-small"
+																	>
+																		<aura:if isTrue="{! equals(file.ContentDocument.FileType, 'UNKNOWN') }">
+																			<lightning:icon iconName="doctype:unknown" alternativeText="FILE" title="FILE" />
+																		</aura:if>
+																		<aura:if isTrue="{! equals(file.ContentDocument.FileType, 'CSV') }">
+																			<lightning:icon iconName="doctype:csv" alternativeText="CSV" title="CSV" />
+																		</aura:if>
+																		<aura:if isTrue="{! equals(file.ContentDocument.FileType, 'EXCEL_X') }">
+																			<lightning:icon iconName="doctype:excel" alternativeText="EXCEL" title="EXCEL" />
+																		</aura:if>
+																		<aura:if isTrue="{! equals(file.ContentDocument.FileType, 'WORD_X') }">
+																			<lightning:icon iconName="doctype:word" alternativeText="WORD" title="WORD" />
+																		</aura:if>
+																		<aura:if isTrue="{! equals(file.ContentDocument.FileType, 'POWER_POINT_X') }">
+																			<lightning:icon iconName="doctype:slide" alternativeText="PPT" title="PPT" />
+																		</aura:if>
+																		<aura:if isTrue="{! equals(file.ContentDocument.FileType, 'PDF') }">
+																			<lightning:icon iconName="doctype:pdf" alternativeText="PDF" title="PDF" />
+																		</aura:if>
+																		<aura:if
+																			isTrue="{!
+																				equals(file.ContentDocument.FileType, 'JPEG') ||
+																				equals(file.ContentDocument.FileType, 'JPG') ||
+																				equals(file.ContentDocument.FileType, 'PNG')
+																			}"
+																		>
+																			<lightning:icon iconName="doctype:image" alternativeText="Image" title="Image" size="small" />
+																		</aura:if>
+																		{!file.ContentDocument.Title}.{!file.ContentDocument.FileExtension}
+																	</div>
+																	<div class="slds-col">
+																		<aura:if isTrue="{!not(comment.Disabled)}">
+																			<lightning:buttonIcon
+																				name="{!file.ContentDocumentId}"
+																				class="slds-col slds-var-p-horizontal_small"
+																				size="large"
+																				variant="bare"
+																				iconName="utility:delete"
+																				tooltip="Delete"
+																				onclick="{!c.deleteMe}"
+																			/>
+																		</aura:if>
+																	</div>
+																</li>
+															</aura:iteration>
+														</ul>
+													</aura:if>
+												</td>
+												<td class="slds-show_medium">
+													<aura:if isTrue="{!and(comment.Parent_Answer__c, not(comment.Disabled))}">
+														<lightning:fileupload
+															aura:id="{!comment.Id}"
+															class="label-hidden-file-upload"
+															label="Attach Files"
+															variant="label-hidden"
+															name="{!comment.Id}"
+															recordId="{!comment.Id}"
+															onuploadfinished="{!c.handleFileUploadFinished}"
+														/>
+														<aura:set attribute="else">
+															<p class="slds-text-color_error">Please save before attach files</p>
+														</aura:set>
+													</aura:if>
+												</td>
+											</tr>
+										</aura:iteration>
+									</tbody>
+								</table>
+							</div>
+							<div class="slds-grid slds-wrap ptw-header ptw-compliance-score-container">
+								<div class="ptw-compliance-score-container">
+									<aura:iteration items="{!v.displayedFormQuestions}" var="question">
+										<aura:if isTrue="{!question.Section__c == section}">
+											<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.AUDITOR_NAME}">
+												<div class="slds-col slds-size_12-of-12">
+													<label class="slds-form-element__label">
+														<span>{!question.Question__c}</span>
+													</label>
+													<!-- <lightning:input  value="{!question.Answer__c}"/>
+													<aura:set attribute="else">
+														<div class="label-hidden">
+															<c:ODM_WorkClearanceInputField
+															alignment="bottom"
+															type="{!question.Answer_type__c}"
+															label="{!question.Question__c}"
+															fieldName="{!question.Question_API__c}"
+															value="{!question.Answer__c}"
+															disabled="{!question.Disabled}"
+															picklist="{!question.Picklist}"
+															questionId="{!question.Id}"
+															fetchSObjectName="{!question.fetchSObjectName}"
+															nameDisplayFormat="{!question.nameDisplayFormat}"
+															descriptionDisplayFormat="{!question.descriptionDisplayFormat}" />
+														</div>
+													</aura:set> -->
+
+													<div  class="label-hidden">
+														<c:ODM_WorkClearanceInputField 
+															alignment="bottom"
+															type="{!question.Answer_type__c}"
+															label="{!question.Question__c}"
+															fieldName="{!question.Question_API__c}"
+															value="{!question.Answer__c}"
+															disabled="{!question.Disabled}"
+															picklist="{!question.Picklist}"
+															questionId="{!question.Id}"
+															fetchSObjectName="{!question.fetchSObjectName}"
+															nameDisplayFormat="{!question.nameDisplayFormat}"
+															descriptionDisplayFormat="{!question.descriptionDisplayFormat}" />
+													</div>
+												</div>
+											</aura:if>
+											<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.NO_COMPLIANCE}">
+												<div class="slds-col slds-size_4-of-12">
+													<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" disabled="{!true}" picklist="{!question.Picklist}" questionId="{!question.Id}" />
+												</div>
+											</aura:if>
+											<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.NO_NON_COMPLIANCE}">
+												<div class="slds-col slds-size_4-of-12">
+													<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" disabled="{!true}" picklist="{!question.Picklist}" questionId="{!question.Id}" />
+												</div>
+											</aura:if>
+											<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.PERCENT_COMPLIANCE}">
+												<div class="slds-col slds-size_4-of-12">
+													<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" disabled="{!true}" picklist="{!question.Picklist}" questionId="{!question.Id}" />
+												</div>
+											</aura:if>
+											<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.REASON_FOR_TERMINATION}">
+												<div class="slds-col slds-size_12-of-12">
+													<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" disabled="{!true}" picklist="{!question.Picklist}" questionId="{!question.Id}" />
+												</div>
+											</aura:if>
+										</aura:if>
+									</aura:iteration>
+								</div>
+							</div>
+						</aura:if>
+					</aura:iteration>
+					<aura:if isTrue="{!v.PTWHeaderId}">
+						<div class="slds-grid slds-wrap ptw-header">
+							<div class="slds-col">
+								<c:ODM_WorkClearanceInspectionFileAttachment aura:id="inspectionRelatedFiles" recordId="{!v.PTWHeaderId}"/>
+							</div>
+						</div>
+					</aura:if>
+				</lightning:card>
+				<div class="slds-grid slds-grid_align-end slds-var-m-vertical_medium header-action-button">
+					<div class="slds-col">
+						<lightning:buttonMenu menuAlignment="right" alternativeText="Show menu" label="Actions" onselect="{!c.handleSelectButtonMenu}" class="action-dropup">
+							<lightning:menuItem
+								label="Save Draft"
+								title="Save Draft"
+								value="c.saveDraft"
+								disabled="{!not(v.canSaveDraft)}"
+							/>
+							<lightning:menuItem
+								label="ดำเนินการได้"
+								title="In Process"
+								value="c.allowWork"
+								disabled="{!not(v.canAllowWork)}"
+							/>
+							<lightning:menuItem
+								label="หยุดชั่วคราว"
+								title="On Hold"
+								value="c.holdWork"
+								disabled="{!not(v.canHoldWork)}"
+							/>
+							<lightning:menuItem
+								label="หยุดถาวร"
+								title="Stop"
+								value="c.stopWork"
+								disabled="{!not(v.canStopWork)}"
+							/>
+						</lightning:buttonMenu>
+					</div>
+				</div>
+			</aura:set>
+		</aura:if>
+
+		<aura:if isTrue="{!v.isConfirmStopWorkModalOpen}">
+			<section
+				role="dialog"
+				tabindex="-1" 
+				aria-labelledby="modal-heading-01" 
+				aria-modal="true"
+				aria-describedby="modal-content-id-1" 
+				class="slds-modal slds-fade-in-open"
+			>
+				<div class="slds-modal__container">
+					<header class="slds-modal__header">
+						<lightning:buttonIcon
+							iconName="utility:close" 
+							onclick="{! c.handleCloseConfirmStopWorkModal }"
+							alternativeText="close" 
+							variant="bare-inverse" 
+							class="slds-modal__close" />
+						<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+							Please input the reason
+						</h2>
+					</header>
+					<div class="slds-form-element">
+						<div class="slds-form-element__control">
+							<div class="slds-var-p-around_medium bg-white">
+								<aura:iteration items="{!v.displayedFormQuestions}" var="question">
+									<aura:if isTrue="{!question.Question_API__c == v.constants.FIELD.REASON_FOR_TERMINATION}">
+										<c:ODM_WorkClearanceInputField type="{!question.Answer_type__c}" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" picklist="{!question.Picklist}" questionId="{!question.Id}" />
+									</aura:if>
+								</aura:iteration>
+							</div>
+						</div>
+					</div>
+					<footer class="slds-modal__footer">
+						<lightning:button
+							variant="destructive" 
+							label="หยุดงานถาวร"
+							title="Disagree"
+							onclick="{!c.handleConfirmStopWork}" />
+						<lightning:button
+							variant="neutral"
+							label="Cancel"
+							title="Cancel"
+							onclick="{!c.handleCloseConfirmStopWorkModal}" />
+					</footer>
+				</div>
+			</section>
+			<div class="slds-backdrop slds-backdrop_open"></div>
+		</aura:if>
+		<aura:if isTrue="{!v.isConfirmSavePTWModalOpen}">
+			<section
+				role="dialog"
+				tabindex="-1" 
+				aria-labelledby="modal-heading-01" 
+				aria-modal="true"
+				aria-describedby="modal-content-id-1" 
+				class="slds-modal slds-fade-in-open"
+			>
+				<div class="slds-modal__container">
+					<header class="slds-modal__header">
+						<lightning:buttonIcon
+							iconName="utility:close" 
+							onclick="{! c.handleCloseConfirmStopWorkModal }"
+							alternativeText="close" 
+							variant="bare-inverse" 
+							class="slds-modal__close" />
+						<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+							ต้องการจะ Save Draft ก่อนออกจากหน้านี้หรือไม่
+						</h2>
+					</header>
+					<footer class="slds-modal__footer">
+						<lightning:button
+							variant="brand" 
+							label="Save"
+							title="Save"
+							onclick="{!c.handleConfirmSavePTW}" />
+						<lightning:button
+							variant="neutral"
+							label="Cancel"
+							title="Cancel"
+							onclick="{!c.handleCloseConfirmSavePTWModal}" />
+					</footer>
+				</div>
+			</section>
+			<div class="slds-backdrop slds-backdrop_open"></div>
+		</aura:if>
+		<!--
+		<lightning:button variant="brand" label="Save Draft" title="Save Permit to Work" onclick="{!c.handleSave}" />
+		<lightning:button variant="brand" label="New" title="New Permit to Work" onclick="{!c.handleNew}" />
+		<lightning:select label="" value="{!v.version}" variant="label-hidden">
+			<aura:iteration items="{!v.versions}" var="version">
+				<option value="{!version}">{!version}</option>
+			</aura:iteration>
+		</lightning:select>
+
+		<ul>
+			<aura:iteration items="{!v.formAnswers}" var="header">
+				<li>
+					<a onclick="{!c.handleSelectPermitToWork}" data-record-id="{!header.Id}">{!header.FormName__c}&nbsp;{!header.Version__c}&nbsp;{!header.Status__c}&nbsp;{!header.Key__c}</a>
+				</li>
+			</aura:iteration>
+		</ul>
+
+		<aura:iteration items="{!v.sections}" var="section">
+			<div class="slds-var-p-vertical_medium">
+				<label style="font-size:2rem;font-weight:700;">{!section}</label>
+			</div>
+			<aura:iteration items="{!v.displayedFormQuestions}" var="question">
+				<aura:if isTrue="{!question.Section__c == section}">
+					<aura:if isTrue="{!empty(question.Answer_type__c)}">
+						Blank Field
+					</aura:if>
+					<aura:if isTrue="{!question.Answer_type__c == v.constants.DATA_TYPE.DATE}">
+						<lightning:input type="date" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" />
+					</aura:if>
+					<aura:if isTrue="{!question.Answer_type__c == v.constants.DATA_TYPE.TEXT}">
+						<lightning:input type="text" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" />
+					</aura:if>
+					<aura:if isTrue="{!question.Answer_type__c == v.constants.DATA_TYPE.NUMBER}">
+						<lightning:input type="number" label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" />
+					</aura:if>
+					<aura:if isTrue="{!question.Answer_type__c == v.constants.DATA_TYPE.PERCENT}">
+						<lightning:input type="number" formatter="percent" label="{!question.Question__c}" fieldName="{!question.Question_API__c}"
+							value="{!question.Answer__c}" />
+					</aura:if>
+					<aura:if isTrue="{!question.Answer_type__c == v.constants.DATA_TYPE.TEXT_AREA}">
+						<lightning:textarea label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}" />
+					</aura:if>
+					<aura:if isTrue="{!question.Answer_type__c == v.constants.DATA_TYPE.PICKLIST}">
+						<lightning:select label="{!question.Question__c}" fieldName="{!question.Question_API__c}" value="{!question.Answer__c}">
+							<aura:iteration items="{!question.Picklist}" var="picklist">
+								<option value="{!picklist}">{!picklist}</option>
+							</aura:iteration>
+						</lightning:select>
+					</aura:if>
+				</aura:if>
+			</aura:iteration>
+		</aura:iteration>
+		-->
+	</div>
+
+</aura:component>

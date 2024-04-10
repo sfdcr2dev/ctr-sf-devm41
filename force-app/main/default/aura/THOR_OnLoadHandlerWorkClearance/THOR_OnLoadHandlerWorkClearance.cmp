@@ -1,0 +1,4 @@
+<aura:component controller="THOR_OnLoadController" implements="forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes,force:appHostable,force:lightningQuickAction,flexipage:availableForRecordHome,force:hasRecordId,lightning:isUrlAddressable" access="global">
+    <aura:attribute name="recordId" type="string" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+</aura:component>

@@ -1,0 +1,1642 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName,force:lightningQuickActionWithoutHeader" controller="CTRInitialCustomerTOP" access="global">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="headerId" type="String" />
+    <aura:attribute name="ObjectType" type="String" default="Account"/>
+    <aura:attribute name="isEdit" type="Boolean" default="false"/>
+    <aura:attribute name="isLoaded" type="Boolean" default="false" />
+    <aura:attribute name="isAccount" type="Boolean" default="true"/>
+    <aura:attribute name="isCustomerType" type="Boolean" default="true"/>
+    <aura:attribute name="isSupplierType" type="Boolean" default="true"/>
+    <aura:attribute name="isTOP" type="Boolean" default="true"/>
+    <aura:attribute name="isTX" type="Boolean" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <section>
+        <lightning:spinner aura:id="spinner" variant="brand" />
+
+            <div class="card">
+                <lightning:layoutItem padding="around-small">
+                    <lightning:recordEditForm recordId="{!v.recordId}" objectApiName="{!v.ObjectType}" onload="{!c.handleLoad}">
+                        
+                        <div class="slds-section slds-is-open animate " aura:id="CounterpartyInformation">
+                            <!--section header-->
+                            <h3 class="slds-section__title">
+                                <button aria-controls="CounterpartyInformationList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="CounterpartyInformation">
+                                    <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                                    <span class="slds-truncate" title="Counterparty Information">Intital Information</span>
+                                </button>
+                            </h3>
+                            <!--section body-->
+                            <div class="slds-section__content" id="CounterpartyInformationList">
+                                <lightning:layoutItem padding="around-small">
+                                    <div class="slds-grid slds-wrap" >
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Name (Customer/Supplier Contact)</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="LeadName__c" fieldName="LeadName__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+
+                                        <div class="slds-col slds-size_1-of-12"></div>
+
+                                        <div class="slds-col slds-size_5-of-12 ">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Lead Owner (Trader Representative)</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="LeadOwner__c" fieldName="LeadOwner__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Lead Source</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    &nbsp;
+                                                    <aura:renderIf isTrue="{!v.isAccount}">
+                                                        <lightning:outputField aura:id="AccountSource" fieldName="AccountSource" variant="label-hidden"/>
+
+                                                    </aura:renderIf>
+                                                    <aura:renderIf isTrue="{!!v.isAccount}">
+                                                        <lightning:outputField aura:id="CustomerSource__c" fieldName="CustomerSource__c" variant="label-hidden"/>
+                                                    </aura:renderIf>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+
+                                        <div class="slds-col slds-size_1-of-12"></div>
+
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Referal By</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    &nbsp;
+                                                    <lightning:outputField aura:id="ReferalBy__c" fieldName="ReferalBy__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <!-- End Row -->
+
+                                        
+                                    </div>
+                                </lightning:layoutItem>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-section slds-is-open animate " aura:id="CompanyInformation">
+                            <!--section header-->
+                            <h3 class="slds-section__title">
+                                <button aria-controls="CompanyInformationList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="CompanyInformation">
+                                    <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                                    <span class="slds-truncate" title="Company Information">Company Information</span>
+                                </button>
+                            </h3>
+                            <!--section body-->
+                            <div class="slds-section__content" id="CompanyInformationList">
+                                <lightning:layoutItem padding="around-small">
+                                    <div class="slds-grid slds-wrap" >
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Company Name (English)</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="CompanyNameENF__c" fieldName="CompanyNameENF__c" variant="label-hidden"/>
+                                                </p> 
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_6-of-12"></div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Company Name (Other Languages)</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="CompanyNameLocal__c" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+
+                                        <div class="slds-col slds-size_1-of-12"></div>
+
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Specify Languages of Company Name</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                        <lightning:outputField aura:id="SpecifyLanguagesOfCompanyName__c" fieldName="SpecifyLanguagesOfCompanyName__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Former Name of Company (if any)</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="FormerNameofCompany__c" fieldName="FormerNameofCompany__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Country</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="Country__c" fieldName="Country__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Type of Bussiness</span>
+                                                <lightning:helptext content="For Commercial Evaluation" />
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="TypeOfBusinessCommercialEvaluation__c" fieldName="TypeOfBusinessCommercialEvaluation__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+
+                                        <div class="slds-col slds-size_1-of-12"></div>
+
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Other Type of Bussiness (Please Specify)</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="TypeOfBusinessOthers__c" fieldName="TypeOfBusinessOthers__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Legal Entity</span>
+                                                <lightning:helptext content="For Commercial Evaluation" />
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="LegalEntity__c" fieldName="LegalEntity__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+
+                                        <div class="slds-col slds-size_1-of-12"></div>
+
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Other Legal Entity (Please Specify)</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="LegalEntityOthers__c" fieldName="LegalEntityOthers__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Incoperation Date</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="IncoperationDate__c" fieldName="IncoperationDate__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+
+                                        <div class="slds-col slds-size_1-of-12"></div>
+
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Years of Experience in business?</span>
+                                                <lightning:helptext content="For Commercial Evaluation" />
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="Yearofexperience__c" fieldName="Yearofexperience__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Tax Number</span>
+                                                <lightning:helptext content="N = number / A = letter / X = A, B, C, F, G, H, L, J, P, T or K / Y = letter or number / Z = Z / Thailand: NNNNNNNNNNNNN / India: NNAXXXANNNNAYZY /  Vietnam: NNNNNNNNNN / Indonesia: NNNNNNNNNNNNNNN / Singapore: NNNNNNNNNA"/>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="TaxCode1__c" fieldName="TaxCode1__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        
+                                        <div class="slds-col slds-size_1-of-12"></div>
+
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Company Website</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <aura:renderIf isTrue="{!v.isAccount}">
+                                                        <lightning:outputField aura:id="Website" fieldName="Website" variant="label-hidden"/>
+                                                    </aura:renderIf>
+                                                    <aura:renderIf isTrue="{!!v.isAccount}">
+                                                        <lightning:outputField aura:id="CompanyWebsite__c" fieldName="CompanyWebsite__c" variant="label-hidden"/>
+                                                    </aura:renderIf>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+                                        
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_11-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Got Energy Ministry's oil trader letter?</span>
+                                                <lightning:helptext content="ใบทะเบียนเป็นผู้ค้าน้ำมันตามมาตราต่างๆ ที่ออกโดยกรมธุรกิจพลังงาน (N.P. 104 or N.P.105 or N.P.106)" />
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="NoOfRegistrationMinistryEnergy__c" fieldName="NoOfRegistrationMinistryEnergy__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <br/>
+                                        <!-- End Row -->
+                                        
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_1-of-2">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">CEO/President/MD First Name</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="CEOFirstName__c" fieldName="CEOFirstName__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">CEO/President/MD Last Name</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="CEOLastName__c" fieldName="CEOLastName__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                         <!-- End Row -->
+                                        <!-- Start Row -->                   
+                                        <div class="slds-col slds-size_1-of-1">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Parent Company:(If any) (Please give full legal/official company name)</span>
+                                            </label>
+                                        </div>
+                                         <!-- End Row -->
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Immediate Parent Company</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="ImmidiateParentCompany__c" fieldName="ImmidiateParentCompany__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                            Ultimate Parent Company
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="UltimateParentCompany__c" fieldName="UltimateParentCompany__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                            </div>
+                                     <!-- End Row -->
+                                      <!-- Start Row -->
+                                      <div class="slds-col slds-size_5-of-12">
+                                        <aura:renderIf isTrue="{!v.isCustomerType}">
+                                            <label class="slds-form-element__label">
+                                                <span>Customer Search Term (EN)</span> 
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="CustomerSearchTermEN__c" fieldName="CustomerSearchTermEN__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </aura:renderIf>
+                                    </div>
+
+                                    <div class="slds-col slds-size_1-of-12"></div>
+
+                                    <div class="slds-col slds-size_5-of-12">
+                                        <aura:renderIf isTrue="{!v.isSupplierType}">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Supplier Search Term (EN)</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="SupplierSearchTermEN__c" fieldName="SupplierSearchTermEN__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </aura:renderIf>
+                                    </div>
+                                    <br/>
+                                    <!-- End Row -->
+
+                                    <!-- Start Row -->
+                                    
+                                    <div class="slds-col slds-size_5-of-12">
+                                        <aura:renderIf isTrue="{!v.isCustomerType}">
+                                            <label class="slds-form-element__label">
+                                                <span>Customer Search Term (Other Languages)</span> 
+                                                <lightning:helptext content="Thai, Bahasa, or English launguage"/>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="CustomerSearchTermLocal__c" fieldName="CustomerSearchTermLocal__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </aura:renderIf>
+                                    </div>
+
+                                    <div class="slds-col slds-size_1-of-12"></div>
+
+                                    <div class="slds-col slds-size_5-of-12">
+                                        <aura:renderIf isTrue="{!v.isSupplierType}">
+                                            <label class="slds-form-element__label">
+                                                <span>Supplier Search Term (Other Languages)</span> 
+                                                <lightning:helptext content="Thai, Bahasa, or English launguage"/>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="SupplierSearchTermLocal__c" fieldName="SupplierSearchTermLocal__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </aura:renderIf>
+                                    </div>
+                                    <br/>
+                                    <!-- End Row -->
+                                    </div>
+                                </lightning:layoutItem>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-section slds-is-open animate" aura:id="RegisteredAddress">
+                            <!--section header-->
+                            <h3 class="slds-section__title">
+                                <button aria-controls="RegisteredAddressList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="RegisteredAddress">
+                                    <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                                    <span class="slds-truncate" title="Counterparty Information">Registered Address</span>
+                                </button>
+                            </h3>
+                            <!--section body-->
+                            <div class="slds-section__content" id="RegisteredAddressList">
+                                <lightning:layoutItem padding="around-small">
+                                    <div class="slds-grid slds-wrap">
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">House no.</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="HousenoLocal__c" fieldName="HousenoLocal__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Building Code</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="BuildingCodeLocal__c" fieldName="BuildingCodeLocal__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Room</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="RoomLocal__c" fieldName="RoomLocal__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Floor</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="FloorLocal__c" fieldName="FloorLocal__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Street</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="StreetLocal__c" fieldName="StreetLocal__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_6-of-12"></div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Sub District</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="SubDistrictLocalText__c" fieldName="SubDistrictLocalText__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">District</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="DistrictLocalText__c" fieldName="DistrictLocalText__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">City/State</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="CityStateLocal__c" fieldName="CityStateLocal__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Postal Code</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="PostalCodeLocalText__c" fieldName="PostalCodeLocalText__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Location in Google Maps (Link)</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="LocationInGoogleMapsLinks__c" fieldName="LocationInGoogleMapsLinks__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_6-of-12"></div>
+                                        <br/>
+                                        
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Location in Google Maps (Latitude, Longtitude)</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <aura:renderIf isTrue="{!v.isAccount}">
+                                                        <lightning:outputField aura:id="Location" fieldName="Location" variant="label-hidden"/>
+                                                    </aura:renderIf>
+                                                    <aura:renderIf isTrue="{!!v.isAccount}">
+                                                        <lightning:outputField aura:id="LocationInGoogleMapsGeolocation__c" fieldName="LocationInGoogleMapsGeolocation__c" variant="label-hidden"/>
+                                                    </aura:renderIf>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_6-of-12"></div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <br/><br/>
+                                    </div>
+                                </lightning:layoutItem>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-section slds-is-open animate" aura:id="MailingAddress">
+                            <!--section header-->
+                            <h3 class="slds-section__title">
+                                <button aria-controls="MailingAddressList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="MailingAddress">
+                                    <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                                    <span class="slds-truncate" title="Counterparty Information">Mailing Address</span>
+                                </button>
+                            </h3>
+                            <!--section body-->
+                            <div class="slds-section__content" id="MailingAddressList">
+                                <lightning:layoutItem padding="around-small">
+                                    <div class="slds-grid slds-wrap">
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Same Registered Address</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="SameRegisteredAddress__c" fieldName="SameRegisteredAddress__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_6-of-12"></div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">House no.</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="MailingHousenoLocal__c" fieldName="MailingHousenoLocal__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Building Code</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="MailingBuildingCode__c" fieldName="MailingBuildingCode__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Room</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="MailingRoom__c" fieldName="MailingRoom__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Floor</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="MailingFloor__c" fieldName="MailingFloor__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Street</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="MailingStreet__c" fieldName="MailingStreet__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_6-of-12"></div>
+                                        <br/>   
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Sub District</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="MailingSubDistrict__c" fieldName="MailingSubDistrict__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">District</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="MailingDistrict__c" fieldName="MailingDistrict__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">City/State</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="MailingCity__c" fieldName="MailingCity__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Postal Code</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="MailingPostalCode__c" fieldName="MailingPostalCode__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <br/><br/>
+                                    </div>
+                                </lightning:layoutItem>
+                            </div>
+                        </div>
+
+                        <!--ONLY ACCOUNT-->
+                        <div class="slds-section slds-is-open animate" aura:id="ContactPerson">
+                            <!--section header-->
+                            <h3 class="slds-section__title">
+                                <button aria-controls="ContactPersonList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="ContactPerson">
+                                    <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                                    <span class="slds-truncate" title="Counterparty Information">Contact Person Information</span>
+                                </button>
+                            </h3>
+                            <!--section body-->
+                            <div class="slds-section__content" id="ContactPersonList">
+                                <lightning:layoutItem padding="around-small">
+                                    <div class="slds-grid slds-wrap">
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Title (Mr./Mrs./Miss/etc.)</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="ContactSalutation__c" fieldName="ContactSalutation__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Nick Name</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="Nickname__c" fieldName="Nickname__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">First Name</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="FirstName__c" fieldName="FirstName__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Last Name</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="LastName__c" fieldName="LastName__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Position</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="Position__c" fieldName="Position__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Email</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="Email__c" fieldName="Email__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Country Code (Mobile)</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="MobileCountryCode__c" fieldName="MobileCountryCode__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Mobile</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="MobilePhone__c" fieldName="MobilePhone__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Country Code (Phone)</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="PhoneCountryCode__c" fieldName="PhoneCountryCode__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Phone</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <aura:renderIf isTrue="{!v.isAccount}">
+                                                        <lightning:outputField aura:id="Phone" fieldName="Phone" variant="label-hidden"/>
+                                                    </aura:renderIf>
+                                                    <aura:renderIf isTrue="{!!v.isAccount}">
+                                                        <lightning:outputField aura:id="Phone__c" fieldName="Phone__c" variant="label-hidden"/>
+                                                    </aura:renderIf>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Country Code (Fax)</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    
+                                                    <lightning:outputField aura:id="FaxCountryCode__c" fieldName="FaxCountryCode__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Fax</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <aura:renderIf isTrue="{!v.isAccount}">
+                                                        <lightning:outputField aura:id="Fax" fieldName="Fax" variant="label-hidden"/>
+                                                    </aura:renderIf>
+                                                    <aura:renderIf isTrue="{!!v.isAccount}">
+                                                        <lightning:outputField aura:id="Fax__c" fieldName="Fax__c" variant="label-hidden"/>
+                                                    </aura:renderIf>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+                                        <br/><br/>
+                                    </div>
+                                </lightning:layoutItem>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-section slds-is-open animate" aura:id="ProductTypeOfInterested">
+                            <!--section header-->
+                            <h3 class="slds-section__title">
+                                <button aria-controls="ProductTypeOfInterestList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="ProductTypeOfInterested">
+                                    <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                                    <span class="slds-truncate" title="Counterparty Information">Product Type as Interested</span>
+                                </button>
+                            </h3>
+                            <!--section body-->
+                            <div class="slds-section__content" id="ProductTypeOfInterestList">
+                                <lightning:layoutItem padding="around-small">
+                                    <div class="slds-grid slds-wrap">
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isCustomerType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Interested Product Type Customer</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        
+                                                        <lightning:outputField aura:id="InterestedProductTypeAsCustomerTOP__c" fieldName="InterestedProductTypeAsCustomerTOP__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isSupplierType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Interested Product Type Supplier</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        <lightning:outputField aura:id="InterestedProductTypeAsSupplierTOP__c" fieldName="InterestedProductTypeAsSupplierTOP__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <!-- <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isCustomerType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Lube Base product</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        <lightning:outputField aura:id="LubeBaseProduct__c" fieldName="LubeBaseProduct__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isSupplierType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Petroleum and Components Products</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        <lightning:outputField aura:id="PetroleumAndComponentsProducts__c" fieldName="PetroleumAndComponentsProducts__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <br/> -->
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <!-- <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isCustomerType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">LABIX Product</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        <lightning:outputField aura:id="LABIXProduct__c" fieldName="LABIXProduct__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isSupplierType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Other Product (Supplier)</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        <lightning:outputField aura:id="SupplierOtherProducts__c" fieldName="SupplierOtherProducts__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+
+                                        </div>
+                                        <br/> -->
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <!-- <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isCustomerType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Other Product (Customer)</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        <lightning:outputField aura:id="CustomerOtherProducts__c" fieldName="CustomerOtherProducts__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <div class="slds-col slds-size_6-of-12"></div>
+                                        <br/> -->
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <!-- <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isCustomerType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Sales Organization</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        <lightning:outputField aura:id="SalesOrganization__c" fieldName="SalesOrganization__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isSupplierType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Purchasing Organization</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        <lightning:outputField aura:id="PurchasingOrganization__c" fieldName="PurchasingOrganization__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <br/> -->
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isCustomerType}">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">Customer Type</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="CustomerType__c" fieldName="CustomerType__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+
+                                        <div class="slds-col slds-size_1-of-12"></div>
+
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isSupplierType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Supplier Type</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        <lightning:outputField aura:id="SupplierType__c" fieldName="SupplierType__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isCustomerType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Estimate monthly purchase per grade</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        <lightning:outputField aura:id="CompanyPurchasingVolumnperGrade__c" fieldName="CompanyPurchasingVolumnperGrade__c" variant="label-hidden"/>
+                                                        <lightning:outputField aura:id="EstimatedMonthlyPurchaseUnit__c" fieldName="EstimatedMonthlyPurchaseUnit__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <div class="slds-col slds-size_6-of-12"></div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_1-of-1">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Tentative Starting Trading Date?</span>
+                                                </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="StartTradingDate__c" fieldName="StartTradingDate__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isCustomerType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Where do customers buy this product?</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        
+                                                        <lightning:outputField aura:id="CustomerPurchaseProductFrom__c" fieldName="CustomerPurchaseProductFrom__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isSupplierType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Supplying this product to which company?</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        <lightning:outputField aura:id="SupplierSupplyProductTo__c" fieldName="SupplierSupplyProductTo__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isCustomerType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Customer's Facility (Tank and Storage)</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        
+                                                        <lightning:outputField aura:id="CustomersFacilityTankAndStorage__c" fieldName="CustomersFacilityTankAndStorage__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isSupplierType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Supplier's Facility (Tank and Storage)</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        <lightning:outputField aura:id="SuppliersFacilityTankAndStorage__c" fieldName="SuppliersFacilityTankAndStorage__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isCustomerType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Customer's Facility (Transportation)</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        
+                                                        <lightning:outputField aura:id="CustomersFacilityTransportation__c" fieldName="CustomersFacilityTransportation__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_5-of-12">
+                                            <aura:renderIf isTrue="{!v.isSupplierType}">
+                                                <label class="slds-form-element__label">
+                                                    <span class="slds-m-right_x-small">Supplier's Facility (Transportation)</span>
+                                                </label>
+                                                <lightning:card footer=" " title="">
+                                                    <p class="slds-p-horizontal_small">
+                                                        <lightning:outputField aura:id="SuppliersFacilityTransportation__c" fieldName="SuppliersFacilityTransportation__c" variant="label-hidden"/>
+                                                    </p>
+                                                </lightning:card>
+                                            </aura:renderIf>
+                                        </div>
+                                        <br/>
+                                        <!-- End Row -->
+
+                                        <!--<div class="slds-col slds-size_1-of-1">
+                                            <p>Has the company ever had any default payment over the amount of USD 50,000 in the last 3 years?</p>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="PaymentOverTheAmountOfUSD__c" fieldName="PaymentOverTheAmountOfUSD__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        
+                                        <div class="slds-col slds-size_1-of-1">
+                                            <p>For customer of fuel oil in the country, please specify the tradder's license number</p>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="TradderLicenseNumber__c" fieldName="TradderLicenseNumber__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        
+                                        <div class="slds-col slds-size_1-of-1"> 
+                                            <p>Are any of your company, company's directors, shareholders, beneficial owners violating anti-money laundering laws?</p>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="ViolatingAntiMoneyLaunderingLaws__c" fieldName="ViolatingAntiMoneyLaunderingLaws__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div> 
+                                        
+                                        
+                                        <div class="slds-col slds-size_1-of-1">
+                                            <p>Year of experience in selling the products you intend to purchase</p>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="Yearofexperience__c" fieldName="Yearofexperience__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        
+                                        <div class="slds-col slds-size_1-of-1"> 
+                                            <p>Environment: Does your company have Envirnment policy?</p>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    &nbsp;
+                                                    <lightning:outputField aura:id="EnvironmentPolicy__c" fieldName="EnvironmentPolicy__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div> 
+                                        
+                                        <div class="slds-col slds-size_1-of-1"> 
+                                            <p>Society: Does your company have Occupational Health and Safety policy?</p>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="OccupationalHealthAndSafetyPolicy__c" fieldName="OccupationalHealthAndSafetyPolicy__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>
+                                        
+                                        <div class="slds-col slds-size_1-of-1"> 
+                                            <p>Governance: Does your company have Corporate Governance policy?</p>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="CorporateGovernancePolicy__c" fieldName="CorporateGovernancePolicy__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </div>-->
+                                        <br/><br/>
+                                    </div>
+                                </lightning:layoutItem>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-section slds-is-open animate" aura:id="EGSandCompliance">
+                            <!--section header-->
+                            <h3 class="slds-section__title">
+                                <button aria-controls="EGSandCompliance" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="EGSandCompliance">
+                                    <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                                    <span class="slds-truncate" title="Counterparty Information">EGS and Compliance</span>
+                                </button>
+                            </h3>
+                            <!--section body-->
+                            <div class="slds-section__content" id="EGSandCompliance">
+                                <lightning:layoutItem padding="around-small">
+                                <div class="slds-grid slds-wrap">
+                                        <!-- Start Row -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <label class="slds-form-element__label">
+                                            <span class="slds-m-right_x-small">Environment: Does your company have Environment policy?</span>
+                                        </label>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="EnvironmentPolicy__c" fieldName="EnvironmentPolicy__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    <br/>
+                                    <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <label class="slds-form-element__label">
+                                            <span class="slds-m-right_x-small">Society Responsibility: Does your company have Social Responsibility policy?</span>
+                                        </label>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="SocialResponsibilityPolicy__c" fieldName="SocialResponsibilityPolicy__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    <br/>
+                                    <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <label class="slds-form-element__label">
+                                            <span class="slds-m-right_x-small">Governance: Does your company have Corporate Governance policy?</span>
+                                        </label>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="CorporateGovernancePolicy__c" fieldName="CorporateGovernancePolicy__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    <br/>
+                                    <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <label class="slds-form-element__label">
+                                            <span class="slds-m-right_x-small">Occupational Health and Safety: Does your company have Occupational Health and Safety policy?</span>
+                                        </label>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="OccupationalHealthAndSafetyPolicy__c" fieldName="OccupationalHealthAndSafetyPolicy__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    <br/>
+                                    <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <label class="slds-form-element__label">
+                                            <span class="slds-m-right_x-small">Human Rights: Does your company have Human Rights policy?</span>
+                                        </label>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="HumanRightsPolicy__c" fieldName="HumanRightsPolicy__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    <br/>
+                                    <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <label class="slds-form-element__label">
+                                            <span class="slds-m-right_x-small">Has your company or any of its affiliates, or any current director, officer, or key employee ever been charged with, or investigated for fraud, misrepresentation, corruption, bribery, money laundering, forced labour, environmental issues or other related activities during the past five years?</span>
+                                        </label>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="HasIssuesDuringThePast5Years__c" fieldName="HasIssuesDuringThePast5Years__c" variant="label-hidden"/>
+                                                <lightning:outputField aura:id="SpecifyIssuesDuringThePast5Years__c" fieldName="SpecifyIssuesDuringThePast5Years__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    <br/>
+                                    <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <aura:renderIf isTrue="{!v.isCustomerType}">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">(For Customer) Has your company ever had any default payment over the amount of USD 50,000 in the last 3 years?</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="PaymentOverTheAmountOfUSD__c" fieldName="PaymentOverTheAmountOfUSD__c" variant="label-hidden"/>
+                                                    <lightning:outputField aura:id="ReasonOfTheDefault__c" fieldName="ReasonOfTheDefault__c" variant="label-hidden"/>
+                                                </p>
+                                            </lightning:card>
+                                        </aura:renderIf>
+                                    </div>
+                                    <br/>
+                                    <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <aura:renderIf isTrue="{!v.isSupplierType}">
+                                            <label class="slds-form-element__label">
+                                                <span class="slds-m-right_x-small">(For Supplier) Has your company ever failed to supply under any agreement in the last 3 years?</span>
+                                            </label>
+                                            <lightning:card footer=" " title="">
+                                                <p class="slds-p-horizontal_small">
+                                                    <lightning:outputField aura:id="HasFailedSupplyInLast3Years__c" fieldName="HasFailedSupplyInLast3Years__c" variant="label-hidden"/>
+                                                    <lightning:outputField aura:id="SpecifyFailedSupplyInLast3Years__c" fieldName="SpecifyFailedSupplyInLast3Years__c" variant="label-hidden"/>
+
+                                                </p>
+                                            </lightning:card>
+                                        </aura:renderIf>
+                                    </div>
+                                    <br/>
+                                    <!-- End Row -->
+
+                                        <!-- Start Row -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <label class="slds-form-element__label">
+                                            <span class="slds-m-right_x-small">Does your company have any offices, transactions, investments, activities or planned activities in sanctioned targets or any transactions, investments, activities or planned activities with (or in) any person or entity located in sanctioned targets with (or in) any entity owned controlled by any entity located in sanctioned targets*?</span>
+                                        </label>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="HasSanctionedTarget__c" fieldName="HasSanctionedTarget__c" variant="label-hidden"/>
+                                                <lightning:outputField aura:id="SpecifySanctionedTarget__c" fieldName="SpecifySanctionedTarget__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    <br/>
+                                    <!-- End Row -->
+
+                                    <!--<div class="slds-col slds-size_1-of-1">
+                                        <br/><p>Name of CEO/President/Managing Director</p><br/>
+                                    </div>
+                                    
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <p>First Name</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="CEOFirstName__c" fieldName="CEOFirstName__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <p>Last Name</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="CEOLastName__c" fieldName="CEOLastName__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                                                    
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <p>Parent Company:(If any) (Please give full legal/official company name)</p>
+                                    </div>
+                                    
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <p>Immidiate Parent Company</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="ImmidiateParentCompany__c" fieldName="ImmidiateParentCompany__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <p>Ultimate Parent Company</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="UltimateParentCompany__c" fieldName="UltimateParentCompany__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <p>Type of Business</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="TypeOfBusinessCommercialEvaluation__c" fieldName="TypeOfBusinessCommercialEvaluation__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <p>Other Type of Business</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="TypeOfBusinessOthers__c" fieldName="TypeOfBusinessOthers__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <p>Main Service</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="MainService__c" fieldName="MainService__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <p>Other Main Service</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="OtherMainService__c" fieldName="OtherMainService__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <p>Main Product</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="MainProduct__c" fieldName="MainProduct__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <p>Other Main Product</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="OtherMainProduct__c" fieldName="OtherMainProduct__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <p>Company's latest credit rating by international agencies: (Please specify if any e.g.BBB,Baa2)</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="CompanyLatestCreditRating__c" fieldName="CompanyLatestCreditRating__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>-->
+
+                                </div>
+                                </lightning:layoutItem>
+                            </div>
+                        </div>
+                        <div class="slds-section slds-is-open animate" aura:id="AddiInfo">
+                            <!--section header-->
+                            <h3 class="slds-section__title">
+                                <button aria-controls="AddiInfo" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="AddiInfo">
+                                    <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                                    <span class="slds-truncate" title="Counterparty Information">Additional Infomation</span>
+                                </button>
+                            </h3>
+                            <!--section body-->
+                            <div class="slds-section__content" id="AddiInfo">
+                                <lightning:layoutItem padding="around-small">
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-size_5-of-12">
+                                        <p>Main Service</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="MainService__c" fieldName="MainService__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-12"></div>
+                                    <div class="slds-col slds-size_5-of-12">
+                                        <p>Other Main Service</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="OtherMainService__c" fieldName="OtherMainService__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-12"></div>
+                                    <br/>
+                                    <div class="slds-col slds-size_5-of-12">
+                                        <p>Main Product</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="MainProduct__c" fieldName="MainProduct__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-12"></div>
+                                    <div class="slds-col slds-size_5-of-12">
+                                        <p>Other Main Product</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="OtherMainProduct__c" fieldName="OtherMainProduct__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                    
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <p>Company's latest credit rating by international agencies: (Please specify if any e.g.BBB,Baa2)</p>
+                                        <lightning:card footer=" " title="">
+                                            <p class="slds-p-horizontal_small">
+                                                <lightning:outputField aura:id="CompanyLatestCreditRating__c" fieldName="CompanyLatestCreditRating__c" variant="label-hidden"/>
+                                            </p>
+                                        </lightning:card>
+                                    </div>
+                                </div>
+                                </lightning:layoutItem>
+                            </div>
+                        </div>
+
+                    </lightning:recordEditForm>
+                </lightning:layoutItem>
+            </div>
+        <aura:if isTrue="{!!v.isLoaded}">
+            <lightning:spinner variant="brand" style="z-index:2" />
+        </aura:if>
+    </section>
+</aura:component>

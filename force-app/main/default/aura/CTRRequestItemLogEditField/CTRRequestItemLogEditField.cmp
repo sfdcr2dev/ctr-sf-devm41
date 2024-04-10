@@ -1,0 +1,227 @@
+<aura:component controller="CTRRequestEditLogFieldController" implements="lightning:hasPageReference,lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="ItemFieldChanged" type="List" default="[]" />
+    <aura:attribute name="ItemChangedFound" type="Boolean" default="false" />
+    <aura:attribute name="historyType" type="String" default="" />
+    <aura:attribute name="HeaderFieldChanged" type="List" default="[]" />
+    <aura:attribute name="HeaderChangedFound" type="Boolean" default="false" />
+    <aura:attribute name="HeaderFieldHeaderList" type="List" default="[]" />
+
+    <aura:attribute name="FieldChanged" type="List" default="[]" />
+    <aura:attribute name="ChangedFound" type="Boolean" default="false" />
+
+    <aura:attribute name="showLoading" type="Boolean" default="false" />
+    <aura:attribute name="HeaderCard" type="String" default="Edit Request Form" />
+    <aura:attribute name="HeaderOriginal" type="String" default="Original Value" />
+    <aura:attribute name="HeaderLatest" type="String" default="Latest Value" />
+    <aura:attribute name="RelatedObj" type="Boolean" default="false" />
+    <aura:attribute name="isEditRecordType" type="Boolean" default="false" />
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+
+    <aura:html tag="style">
+    
+            .slds-modal__container {
+    
+                 width : 80% !important;
+    
+                 max-width : 80% !important;
+    
+             }
+    
+        </aura:html>
+
+    
+    <aura:if isTrue="{!v.showLoading}">
+                <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+    <aura:if isTrue="{!!v.showLoading}">
+        <!-- <lightning:card footer="Card Footer" title="Request Form Header">
+            <aura:set attribute="actions">
+
+            </aura:set>
+            <p class="slds-p-horizontal_small">
+                <aura:If isTrue="{!v.HeaderChangedFound}">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" aria-label="Example table of Opportunities with vertical borders">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Field Name">Field Name</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Previous value">Previous value</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Latest value">Latest value</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.HeaderFieldChanged}" var="Item" indexVar="index">
+                                <tr class="slds-hint-parent">
+                                    <th data-label="Field Name" scope="row">
+                                        <div class="slds-truncate" title="Label">
+                                            {!Item.mLabel}
+                                        </div>
+                                    </th>
+                                    <td data-label="Previous value">
+                                        <div class="slds-truncate" title="Original Value">{!Item.mOldValue}</div>
+                                    </td>
+                                    <td data-label="Latest value">
+                                        <div class="slds-truncate" title="Latest Value">{!Item.mLatestValue}</div>
+                                    </td>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                </aura:If>
+
+            </p>
+        </lightning:card>
+        <br/>
+
+        <lightning:card footer="Card Footer" title="Request Form Item">
+            <aura:set attribute="actions">
+
+            </aura:set>
+            <p class="slds-p-horizontal_small">
+                <aura:If isTrue="{!v.ItemChangedFound}">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" aria-label="Example table of Opportunities with vertical borders">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Field Name">Field Name</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Previous value">Previous value</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Latest value">Latest value</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.ItemFieldChanged}" var="Item" indexVar="index">
+                                <tr class="slds-hint-parent">
+                                    <th data-label="Field Name" scope="row">
+                                        <div class="slds-truncate" title="Label">
+                                            {!Item.mLabel}
+                                        </div>
+                                    </th>
+                                    <td data-label="Previous value">
+                                        <div class="slds-truncate" title="Original Value">{!Item.mOldValue}</div>
+                                    </td>
+                                    <td data-label="Latest value">
+                                        <div class="slds-truncate" title="Latest Value">{!Item.mLatestValue}</div>
+                                    </td>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                </aura:If>
+
+            </p>
+        </lightning:card> -->
+        <aura:If isTrue="{!v.ChangedFound}">
+            <div class="slds-tabs_card">
+        <lightning:card footer="" title="{!v.HeaderCard}">
+            <aura:set attribute="actions">
+
+            </aura:set>
+
+            <p class="slds-p-horizontal_small">
+                
+                    <!-- <div style="overflow-x:auto;">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" aria-label="History Change values" style="width:100%">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <aura:if isTrue="{!!v.RelatedObj}">
+                                        <aura:if isTrue="{!v.isEditRecordType}">
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Source change">Source change</div>
+                                            </th>
+                                        </aura:if>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Field Name">Field Name</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="{!v.HeaderOriginal}">{!v.HeaderOriginal}</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="{!v.HeaderLatest}">{!v.HeaderLatest}</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Last Modified by">Last Modified by</div>
+                                        </th>
+                                    </aura:if>
+                                    
+                                    <aura:if isTrue="{!v.RelatedObj}">
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="{!v.HeaderOriginal}">{!v.HeaderOriginal}</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="{!v.HeaderLatest}">{!v.HeaderLatest}</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Status">Status</div>
+                                        </th>
+                                    </aura:if>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <aura:iteration items="{!v.FieldChanged}" var="Item" indexVar="index">
+                                    <tr class="slds-hint-parent">
+                                        <aura:if isTrue="{!!v.RelatedObj}">
+                                            <aura:if isTrue="{!v.isEditRecordType}">
+                                            <td data-label="Source Name" scope="row" style="word-break:break-all;">
+                                                <div class="slds-truncate" style="max-width: 100px; word-wrap: break-word" title="Source">{!Item.mSource}</div>
+                                            </td>
+                                            </aura:if>
+                                            <td data-label="Field Name" scope="row" style="word-break:break-all;">
+                                                <div class="slds-truncate" style="max-width: 350px; word-wrap: break-word" title="{!Item.mLabel}">{!Item.mLabel}</div>
+                                            </td>
+                                        
+                                        <td data-label="{!v.HeaderOriginal}" style="word-break:break-all;">
+                                            <div class="slds-truncate" style="max-width: 150px; word-wrap: break-word" title="{!Item.mOldValue}">{!Item.mOldValue}</div>
+                                        </td>
+                                        <td data-label="{!v.HeaderLatest}">
+                                            <div class="slds-truncate" style="max-width: 150px; word-wrap: break-word" title="{!Item.mLatestValue}">{!Item.mLatestValue}</div>
+                                        </td>
+                                        <td data-label="User Name" scope="row" style="word-break:break-all;">
+                                            <div class="slds-truncate" style="max-width: 200px; word-wrap: break-word" title="{!Item.mUser}">{!Item.mUser}</div>
+                                        </td>
+                                    </aura:if>
+                                        <aura:if isTrue="{!v.RelatedObj}">
+                                            <td class="" scope="col">
+                                                <div class="slds-truncate" title="{!Item.mCol1}">{!Item.mCol1}</div>
+                                            </td>
+                                            <td class="" scope="col">
+                                                <div class="slds-truncate" title="{!Item.mCol2}">{!Item.mCol2}</div>
+                                            </td>
+                                            <td class="" scope="col">
+                                                <div class="slds-truncate" title="{!Item.mStatus}">{!Item.mStatus}</div>
+                                            </td>
+                                        </aura:if>
+                                    </tr>
+                                </aura:iteration>
+                                
+                            </tbody>
+                        </table>
+                    </div> -->
+                    <div style="height: 300px">
+                        <lightning:datatable
+                                keyField="id"
+                                data="{! v.FieldChanged }"
+                                columns="{! v.HeaderFieldHeaderList }"
+                                hideCheckboxColumn="true"/>
+                    </div>
+                
+
+            </p>
+        </lightning:card>
+    </div>
+    </aura:If>
+    </aura:if>          
+    
+</aura:component>

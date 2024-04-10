@@ -1,0 +1,201 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" controller="ODM_HistoricalSearchController" access="global">
+	<lightning:navigation aura:id="navService" />
+	<aura:attribute name="filterMap" type="Map" default="{}" access="private" />
+	<aura:attribute name="filterId" type="String" default="" />
+  	<aura:attribute name="userId" type="Id" default="{!$SObjectType.CurrentUser.Id}" />
+    <aura:attribute name="redirect" type="Boolean" default="true" />
+	
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<aura:attribute name="picklistPriority" type="String[]" />
+	<aura:attribute name="picklistNotiType" type="String[]" />
+	<aura:attribute name="picklistNotiStatus" type="String[]" />
+
+	<aura:attribute name="form" type="Map" default="{}" />
+	<aura:method name="reset" action="{!c.reset}" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+
+	<div class="slds-align_absolute-center"> <h1>Notification Historical</h1> </div>
+	<div>
+		<lightning:recordEditForm
+			density="comfy"
+			objectApiName="THOR_Filter__c"
+			recordId="{!v.filterId}"
+			onload="{!c.handleLoad}"
+			onsubmit="{!c.handleSubmit}"
+			onsuccess="{!c.handleSuccess}"
+			onerror="{!c.handleError}"
+			aura:id="filterForm"
+		>
+			<lightning:inputField class="slds-hide" fieldName="User__c" value="{! v.userId }" />
+
+			<lightning:layout multipleRows="true">
+				<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				</lightning:layoutItem>
+				<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="StatusMulti__c" />
+					<div class="slds-form-element slds-form-element_stacked">
+						<label class="slds-form-element__label">Notification Status</label>
+						<div class="slds-form-element__control">
+							<select style="width: 100%" id="picklistNotiStatus_NotiForm" class="select2Class" multiple="multiple">
+								<aura:iteration items="{!v.picklistNotiStatus}" var="opts">
+									<option value="{!opts.key}">{!opts.value}</option>
+								</aura:iteration>
+							</select>
+						</div>
+					</div>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField aura:id="inputField" fieldName="Notification_Number__c" />
+				</lightning:layoutItem>
+
+				<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="NotificationTypeMulti__c" />
+					<div class="slds-form-element slds-form-element_stacked">
+						<label class="slds-form-element__label">Notification Type</label>
+						<div class="slds-form-element__control">
+							<select style="width: 100%" id="picklistNotiType_NotiForm" class="select2Class" multiple="multiple">
+								<aura:iteration items="{!v.picklistNotiType}" var="opts">
+									<option value="{!opts}">{!opts}</option>
+								</aura:iteration>
+							</select>
+						</div>
+					</div>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem size="12"  smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField aura:id="inputField" fieldName="Functional_Location__c" />
+				</lightning:layoutItem>
+
+				<!--
+				<lightning:layoutItem size="12"  smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField aura:id="inputField" fieldName="Main_Work_Center__c" />
+				</lightning:layoutItem> -->
+				<lightning:layoutItem size="12"  smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="Main_Work_Center__c" value="{!v.form.Main_Work_Center__c}" />
+					<c:thorFilterSuggest
+						fieldName="Main_Work_Center__c"
+						value="{!v.form.Main_Work_Center__c}"
+						onchangeValue="{!c.handleChange}"
+						masterMapType="Main Work Center"
+					/>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem size="12"  smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="Maintenance_Plant__c" value="{!v.form.Maintenance_Plant__c}" />
+					<c:thorFilterSuggest
+						fieldName="Maintenance_Plant__c"
+						value="{!v.form.Maintenance_Plant__c}"
+						onchangeValue="{!c.handleChange}"
+						masterMapType="Plant"
+					/>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem size="12"  smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="Plant_Section__c" value="{!v.form.Plant_Section__c}" />
+					<c:thorFilterSuggest
+						fieldName="Plant_Section__c"
+						value="{!v.form.Plant_Section__c}"
+						onchangeValue="{!c.handleChange}"
+						masterMapType="Plant Section"
+					/>
+				</lightning:layoutItem>
+				
+				<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto"
+				padding="horizontal-medium">
+				<div class="slds-form-element slds-form-element_stacked">
+					<label class="slds-form-element__label">Notification Date From</label>
+					<div class="slds-form-element__control">
+						<lightning:inputField aura:id="inputField" fieldName="Create_Date_From__c"
+							variant="label-hidden" />
+						</div>
+					</div>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto"
+					padding="horizontal-medium">
+					<div class="slds-form-element slds-form-element_stacked">
+						<label class="slds-form-element__label">Notification Date To</label>
+						<div class="slds-form-element__control">
+							<lightning:inputField aura:id="inputField" fieldName="Create_Date_To__c"
+								variant="label-hidden" />
+						</div>
+					</div>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<div class="slds-form-element slds-form-element_stacked">
+					<label class="slds-form-element__label">Required Start From</label>
+					<div class="slds-form-element__control">
+						<lightning:inputField aura:id="inputField" fieldName="Submission_Date_From__c" variant="label-hidden" />
+					</div>
+					</div>
+				</lightning:layoutItem>
+				<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<div class="slds-form-element slds-form-element_stacked">
+						<label class="slds-form-element__label">Required Start To</label>
+						<div class="slds-form-element__control">
+							<lightning:inputField aura:id="inputField" fieldName="Submission_Date_To__c" variant="label-hidden" />
+						</div>
+					</div>
+				</lightning:layoutItem>
+				<!-- <lightning:layoutItem size="12"  smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField aura:id="inputField" fieldName="Notification_Date__c" />
+				</lightning:layoutItem> -->
+
+				<!-- <lightning:layoutItem size="12"  smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField aura:id="inputField" fieldName="Requester__c" />
+				</lightning:layoutItem> -->
+				<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField aura:id="inputField" fieldName="Description__c" />
+				</lightning:layoutItem>
+
+				<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="Requester__c" value="{!v.form.Requester__c}" />
+					<c:thorFilterSuggestLookup
+						sObjectName="Thor_Filter__c"
+						fieldName="Requester__c"
+						labelName="Requestor (Staff ID)"
+						value="{!v.form.Requester__c}"
+						onchangeValue="{!c.handleChange}"
+						fetchSObjectName="PISUsers__c"
+						fetchFieldName="EN_Fullname__c"
+						nameDisplayFormat="{EN_Fullname__c}"
+						descriptionDisplayFormat="{Home Id: HOME_ID__c, Host Id: HOST_ID__c}"
+					/>
+				</lightning:layoutItem>
+
+
+			</lightning:layout>
+			<c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+		</lightning:recordEditForm>
+	</div>
+
+	<!-- <footer class="container slds-modal__footer">
+		<lightning:button class="btn-radius-1" label="Search" variant="brand" onclick="{!c.onSubmitFooter}" />
+		<lightning:button class="btn-radius-0" label="Clear" title="Neutral action" onclick="{!c.onClearFooter}" />
+	</footer> -->
+
+	<!-- <footer class="container slds-modal__footer">
+		<div class="mybtn slds-grid">
+			<lightning:button class="slds-col slds-button slds-button_neutral btnCustomStyle" label="Search" variant="brand" onclick="{!c.onSubmitFooter}" />
+		</div>
+		<div class="mybtn slds-grid">
+			<lightning:button class="slds-col slds-button slds-button_neutral btnCustomStyle" label="Clear" title="Neutral action" onclick="{!c.onClearFooter}" />
+		</div>
+	</footer> -->
+
+	<footer class="container slds-modal__footer">
+		<div class=" slds-grid slds-var-m-top_small ">
+			<lightning:button class="btn-radius-1 slds-col slds-button textCustomStyle" label="Search" variant="brand" onclick="{!c.onSubmitFooter}" />
+		</div>
+		<!-- <div class="mybtn slds-grid slds-var-m-top_small">
+			<lightning:button class="btn-radius-0 slds-col slds-button slds-button_neutral btnCustomStyle " label="Clear" title="Neutral action" onclick="{!c.onClearFooter}" />
+		</div> -->
+		<div class="slds-grid slds-var-m-top_small ">
+			<lightning:button class="btn-radius-0 slds-col slds-button slds-button_neutral textCustomStyle textClearColor" label="Clear" title="Neutral action" onclick="{!c.onClearFooter}" />
+		</div>
+	</footer>
+
+</aura:component>

@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>E_MOC_Question_Record_Page1</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>E_MOC_Question_Record_Page1</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Document__c</fullName>
+        <externalId>false</externalId>
+        <label>Document</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Document Require Checklist</fullName>
+                    <default>false</default>
+                    <label>Document Require Checklist</label>
+                </value>
+                <value>
+                    <fullName>Hazard Screen Checklist</fullName>
+                    <default>false</default>
+                    <label>Hazard Screen Checklist</label>
+                </value>
+                <value>
+                    <fullName>TA Checklist</fullName>
+                    <default>false</default>
+                    <label>TA Checklist</label>
+                </value>
+                <value>
+                    <fullName>QA/QC checklist</fullName>
+                    <default>false</default>
+                    <label>QA/QC checklist</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Help_text__c</fullName>
+        <externalId>false</externalId>
+        <label>Help text</label>
+        <length>5000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Question_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Question No</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Question__c</fullName>
+        <externalId>false</externalId>
+        <label>Question</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>30</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Common</fullName>
+                    <default>false</default>
+                    <label>Common</label>
+                </value>
+                <value>
+                    <fullName>Operation Document</fullName>
+                    <default>false</default>
+                    <label>Operation Document</label>
+                </value>
+                <value>
+                    <fullName>Technologist Document</fullName>
+                    <default>false</default>
+                    <label>Technologist Document</label>
+                </value>
+                <value>
+                    <fullName>Operations Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Operations Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Hazard screen checklist</fullName>
+                    <default>false</default>
+                    <label>Hazard screen checklist</label>
+                </value>
+                <value>
+                    <fullName>QA/QC checklist</fullName>
+                    <default>false</default>
+                    <label>QA/QC checklist</label>
+                </value>
+                <value>
+                    <fullName>HSE document</fullName>
+                    <default>false</default>
+                    <label>HSE document</label>
+                </value>
+                <value>
+                    <fullName>Process Safety and Fire Safety document</fullName>
+                    <default>false</default>
+                    <label>Process Safety and Fire Safety document</label>
+                </value>
+                <value>
+                    <fullName>Environment document</fullName>
+                    <default>false</default>
+                    <label>Environment document</label>
+                </value>
+                <value>
+                    <fullName>Combustion Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Combustion Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Technologist Discipline Checklist (Any impact on the following?)</fullName>
+                    <default>false</default>
+                    <label>Technologist Discipline Checklist (Any impact on the following?)</label>
+                </value>
+                <value>
+                    <fullName>Technologist Discipline Checklist (Technologist Safeguarding Discipline Checklist)</fullName>
+                    <default>false</default>
+                    <label>Technologist Discipline Checklist (Technologist Safeguarding Discipline Checklist)</label>
+                </value>
+                <value>
+                    <fullName>Technologist Discipline Checklist (Consider the following specific hazards relevant to impact other disciplines)</fullName>
+                    <default>false</default>
+                    <label>Technologist Discipline Checklist (Consider the following specific hazards relevant to impact other disciplines)</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Discipline Checklist (Common questions)</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Discipline Checklist (Common questions)</label>
+                </value>
+                <value>
+                    <fullName>Process Control Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Process Control Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Maintenance Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Maintenance Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Stationary Equipment and Piping Document</fullName>
+                    <default>false</default>
+                    <label>Stationary Equipment and Piping Document</label>
+                </value>
+                <value>
+                    <fullName>Combustion document</fullName>
+                    <default>false</default>
+                    <label>Combustion document</label>
+                </value>
+                <value>
+                    <fullName>Civil and Structure document</fullName>
+                    <default>false</default>
+                    <label>Civil and Structure document</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Document Comunication (e.g. talk-back, CCTV, radio, public announce and telecomunication network)</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Document Comunication (e.g. talk-back, CCTV, radio, public announce and telecomunication network)</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Discipline Checklist ( Electrical equipment/system )</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Discipline Checklist ( Electrical equipment/system )</label>
+                </value>
+                <value>
+                    <fullName>Rotating Document</fullName>
+                    <default>false</default>
+                    <label>Rotating Document</label>
+                </value>
+                <value>
+                    <fullName>Process Safety and Fire Safety Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Process Safety and Fire Safety Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Document Driver/Actuator (process) at Valve (e.g. Motor, MOV)</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Document Driver/Actuator (process) at Valve (e.g. Motor, MOV)</label>
+                </value>
+                <value>
+                    <fullName>HSE Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>HSE Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Environment Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Environment Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Stationary Equipment and Piping Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Stationary Equipment and Piping Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Rotating Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Rotating Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Instrument Engineering Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Instrument Engineering Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Civil and Structure Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Civil and Structure Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Discipline Checklist  ( Driver/Actuator (process) at Valve (e.g. Motor, MOV))</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Discipline Checklist  ( Driver/Actuator (process) at Valve (e.g. Motor, MOV))</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Discipline Checklist (Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Discipline Checklist (Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Discipline Checklist ( Comunication (e.g. talk-back, CCTV, radio, public announce and telecomunication network))</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Discipline Checklist ( Comunication (e.g. talk-back, CCTV, radio, public announce and telecomunication network))</label>
+                </value>
+                <value>
+                    <fullName>Operation (AP&amp;MFOP)</fullName>
+                    <default>false</default>
+                    <label>Operation (AP&amp;MFOP)</label>
+                </value>
+                <value>
+                    <fullName>Technologist (TNPx)</fullName>
+                    <default>false</default>
+                    <label>Technologist (TNPx)</label>
+                </value>
+                <value>
+                    <fullName>Stationary Eq &amp; Piping (ENTS)</fullName>
+                    <default>false</default>
+                    <label>Stationary Eq &amp; Piping (ENTS)</label>
+                </value>
+                <value>
+                    <fullName>Common document</fullName>
+                    <default>false</default>
+                    <label>Common document</label>
+                </value>
+                <value>
+                    <fullName>Process Control Document</fullName>
+                    <default>false</default>
+                    <label>Process Control Document</label>
+                </value>
+                <value>
+                    <fullName>Instrument Engineering Document</fullName>
+                    <default>false</default>
+                    <label>Instrument Document</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Document Common</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Document Common</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Document Electrical equipment/system</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Document Electrical equipment/system</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Document Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Document Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</label>
+                </value>
+                <value>
+                    <fullName>Maintenance document</fullName>
+                    <default>false</default>
+                    <label>Maintenance document</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>E-MOC Question</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Type__c</columns>
+        <columns>Document__c</columns>
+        <columns>Question_No__c</columns>
+        <columns>Question__c</columns>
+        <columns>Sequence__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Document__c</field>
+            <operation>equals</operation>
+            <value>TA Checklist</value>
+        </filters>
+        <filters>
+            <field>Type__c</field>
+            <operation>equals</operation>
+            <value>Process Safety and Fire Safety Discipline Checklist</value>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>MNO-{00000000}</displayFormat>
+        <label>E-MOC Question No.</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <searchLayouts>
+        <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
+        <excludedStandardButtons>NewFromDocument</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Import</excludedStandardButtons>
+        <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>PrintableListView</excludedStandardButtons>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

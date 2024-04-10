@@ -1,0 +1,443 @@
+<aura:component
+    controller="THOR_ItemController"
+    implements="force:appHostable,flexipage:availableForAllPageTypes,lightning:isUrlAddressable"
+>
+    <aura:attribute name="notificationId" type="String" access="global" />
+    <aura:attribute name="itemId" type="String" access="global" />
+    <aura:attribute name="codeGroupId" type="String" access="global" />
+    <aura:attribute name="codeText" type="String" access="global" />
+    <aura:attribute name="codeId" type="String" access="global" />
+    <aura:attribute name="activityId" type="String" access="global" />
+    <aura:attribute name="labelSequence" type="String" default="[]" />
+    <aura:attribute name="codeGroupsFiltered" type="List" default="[]" />
+    <aura:attribute name="codeGroupsFilteredAndSearched" type="List" default="[]" />
+    <aura:attribute name="activitiesFiltered" type="List" default="[]" />
+    <aura:attribute name="activitiesFilteredAndSearched" type="List" default="[]" />
+    <aura:attribute name="activitiesRelatedToItem" type="List" default="[]" />
+    <aura:attribute name="isDescriptionModalOpen" type="Boolean" default="false" />
+    <aura:attribute name="isactivityGroupsModalOpen" type="Boolean" default="false" />
+    <aura:attribute name="isActivityModalOpen" type="Boolean" default="false" />
+    <aura:attribute name="isTextModalOpen" type="Boolean" default="false" />
+    <aura:attribute name="isCodeGroupsModalOpen" type="Boolean" default="false" />
+    <aura:attribute name="hasWriteAccess" type="Boolean" default="false"/>
+    <aura:attribute name="integrationFlagValue" type="String" default=""/>
+    <aura:attribute name="integrationStatusValue" type="String" default=""/>
+    <lightning:notificationsLibrary aura:id="notifLib" />
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.doInit}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <lightning:navigation aura:id="navLink" />
+    <!--Code Group Modal Star-->
+    <aura:if isTrue="{!v.isCodeGroupsModalOpen}">
+        <div class="slds-m-around_xx-large">
+            <section
+                role="dialog"
+                tabindex="-1"
+                aria-labelledby="modal-heading-01"
+                aria-modal="true"
+                aria-describedby="modal-content-id-1"
+                class="slds-modal slds-fade-in-open"
+            >
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon
+                            iconName="utility:close"
+                            onclick="{! c.closeModalCodeGroups }"
+                            alternativeText="close"
+                            variant="bare-inverse"
+                            class="slds-modal__close"
+                        />
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Activity Code Group
+                        </h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <!--Code Search Bar Start-->
+                        <lightning:layout verticalAlign="center">
+                          <lightning:layoutitem size="10" flexibility="auto" class="slds-p-bottom_small">
+                            <div onkeyup="{! c.handleCodeSearch }">
+                                <lightning:input
+                                aura:id="enter-search"
+                                name="enter-search"
+                                label="Search for Code Group"
+                                type="search"
+                            />
+                            </div>
+                          </lightning:layoutitem>
+                        <lightning:layoutitem size="2" flexibility="auto">           
+                          <lightning:button class="slds-p-left_small slds-p-top_small" value="codeSearchButton" variant="bare" title="Search" label="Search" onclick="{! c.handleCodeSearch }"/>
+                        </lightning:layoutitem>
+                      </lightning:layout>
+
+                        <!--Code Search Bar End-->
+                        <aura:iteration items="{! v.codeGroupsFilteredAndSearched }" var="codeGroup">
+                            <div class="custom-box">
+                                <lightning:button
+                                    class="slds-p-around_x-small"
+                                    variant="base"
+                                    value="{!codeGroup.Id}"
+                                    label="{!codeGroup.Code__c + ' ' + codeGroup.Description__c}"
+                                    onclick="{!c.showActivityModal}"
+                                />
+                              
+                            </div>
+                        </aura:iteration>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+    <!--Code Group Modal Ends-->
+    <!--Activity Modal Star-->
+    <aura:if isTrue="{!v.isActivityModalOpen}">
+        <div class="slds-m-around_xx-large">
+            <section
+                role="dialog"
+                tabindex="-1"
+                aria-labelledby="modal-heading-01"
+                aria-modal="true"
+                aria-describedby="modal-content-id-1"
+                class="slds-modal slds-fade-in-open"
+            >
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon
+                            iconName="utility:close"
+                            onclick="{! c.closeModalActivity }"
+                            alternativeText="close"
+                            variant="bare-inverse"
+                            class="slds-modal__close"
+                        />
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Please Select an Activity
+                        </h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <!--Activity Search Bar Start-->
+                        <lightning:layout verticalAlign="center">
+                          <lightning:layoutitem size="10" flexibility="auto" class="slds-p-bottom_small">
+                            <div onkeyup="{! c.handleActivitySearch }">
+                                <lightning:input
+                                aura:id="enter-search-activities"
+                                name="enter-search-activities"
+                                label="Search for Activity"
+                                type="search"
+                            />
+                            </div>
+                          </lightning:layoutitem>
+                        <lightning:layoutitem size="2" flexibility="auto">           
+                          <lightning:button class="slds-p-left_small slds-p-top_small" value="activitySearchButton" variant="bare" title="Search" label="Search" onclick="{! c.handleActivitySearch }"/>
+                        </lightning:layoutitem>
+                      </lightning:layout>
+                        <!--Activity Search Bar Stop-->
+                        <aura:iteration items="{! v.activitiesFilteredAndSearched }" var="activity">
+                            <div class="custom-box">
+                                <lightning:recordEditForm
+                                    density="comfy"
+                                    objectApiName="Activity__c"
+                                    onsuccess="{!c.showTextModal}"
+                                >
+                                    <lightning:inputField
+                                        class="hideElement"
+                                        fieldName="Integration_Flag__c"
+                                        value="Created"
+                                        disabled="true"
+                                    />
+                                    <lightning:inputField
+                                        class="hideElement"
+                                        fieldName="Code_Group__c"
+                                        value="{!v.codeGroupId}"
+                                        disabled="true"
+                                    />
+                                    <lightning:inputField
+                                        class="hideElement"
+                                        fieldName="Notification__c"
+                                        value="{!v.notificationId}"
+                                        disabled="true"
+                                    />
+                                    <lightning:inputField
+                                        class="hideElement"
+                                        fieldName="Code__c"
+                                        value="{!activity.RelatedMasterMap2__r.Id}"
+                                        disabled="true"
+                                    /> 
+                                    <lightning:inputField
+                                        class="hideElement"
+                                        fieldName="Item__c"
+                                        value="{!v.itemId}"
+                                        disabled="true"
+                                    />
+                                    <lightning:inputField
+                                        class="hideElement"
+                                        fieldName="Code_in_Text_Form__c"
+                                        value="{!activity.RelatedMasterMap2__r.Name}"
+                                        disabled="true"
+                                    />
+                                    <lightning:inputField
+                                        class="hideElement"
+                                        fieldName="Text_of_Code__c"
+                                        value="{!activity.Description__c}"
+                                        disabled="true"
+                                    />
+
+                                    <lightning:button
+                                        class="slds-p-around_x-small"
+                                        variant="base"
+                                        type="submit"
+                                        value="{!activity.Id}"
+                                        label="{!activity.RelatedMasterMap2__r.Name + ' ' + activity.Description__c}"
+                                    />
+                                    
+                                </lightning:recordEditForm>
+                            </div>
+                        </aura:iteration>
+                    </div>
+                </div>
+            </section>
+        </div> 
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+    <!--Activity Modal Ends-->
+    <!--Text Modal Starts-->
+    <aura:if isTrue="{!v.isTextModalOpen}">
+        <div class="slds-m-around_xx-large">
+            <section
+                role="dialog"
+                tabindex="-1"
+                aria-labelledby="modal-heading-01"
+                aria-modal="true"
+                aria-describedby="modal-content-id-1"
+                class="slds-modal slds-fade-in-open"
+            >
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon
+                            iconName="utility:close"
+                            onclick="{! c.closeModalText }"
+                            alternativeText="close"
+                            variant="bare-inverse"
+                            class="slds-modal__close"
+                        />
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Please Enter a Description for the Activity
+                        </h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <div class="custom-box">
+                            <lightning:recordEditForm
+                                recordId="{!v.activityId}"
+                                density="comfy"
+                                objectApiName="Activity__c"
+                                onsuccess="{!c.handleDescriptionSuccess}"
+                            >
+                                <lightning:inputField fieldName="Text__c" />
+
+                                <lightning:button
+                                    class="slds-p-around_x-small slds-float_right"
+                                    variant="Neutral"
+                                    type="submit"
+                                    label="Confirm"
+                                />
+                            </lightning:recordEditForm>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+    <!--Text Modal Ends-->
+    <div
+        class="slds-p-around_medium custom-box"
+        style="background-color: white; margin: 1em; box-shadow: 0 2px 2px 0 #cccccc"
+    >
+        <!--
+            <c:THOR_navigateBack />
+        -->
+        <!--Path start-->
+        <div class="slds-path">
+            <div class="slds-grid slds-path__track">
+                <div class="slds-grid slds-path__scroller-container">
+                    <div class="slds-path__scroller" role="application">
+                        <div class="slds-path__scroller_inner">
+                            <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                                <li class="slds-path__item slds-is-complete" role="presentation">
+                                    <a
+                                        aria-selected="true"
+                                        class="slds-path__link"
+                                        href="javascript:void(0);"
+                                        id="path-1"
+                                        role="option"
+                                        tabindex="0"
+                                    >
+                                        <span>Object Part</span>
+                                    </a>
+                                </li>
+                                <li class="slds-path__item slds-is-complete" role="presentation">
+                                    <a
+                                        aria-selected="true"
+                                        class="slds-path__link"
+                                        href="javascript:void(0);"
+                                        id="path-2"
+                                        role="option"
+                                        tabindex="-1"
+                                    >
+                                        <span>Cause</span>
+                                    </a>
+                                </li>
+                                <li class="slds-path__item slds-is-current slds-is-active" role="presentation">
+                                    <a
+                                        aria-selected="false"
+                                        class="slds-path__link"
+                                        href="javascript:void(0);"
+                                        id="path-3"
+                                        role="option"
+                                        tabindex="-1"
+                                    >
+                                        <span>Activity</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Path ends-->
+        <div class="slds-p-around_medium">
+            <!--
+                <h2>INSERT ITEM</h2>
+            -->
+        </div>
+        <lightning:recordEditForm recordId="{!v.itemId}" objectApiName="Item__c">
+            <lightning:layout multipleRows="true" verticalAlign="stretch">
+                <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                    <lightning:outputField fieldName="Object_Part_Code_and_Text__c" />
+                </lightning:layoutItem>
+                <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                    <lightning:outputField fieldName="Damage_Code_Group_and_Text__c" />
+                </lightning:layoutItem>
+            </lightning:layout>
+        </lightning:recordEditForm>
+        <lightning:layout multipleRows="true" verticalAlign="stretch">
+            <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                <div hidden="{!not(v.hasWriteAccess)}">
+                    <lightning:icon
+                                    class="slds-float_right slds-p-right_medium hovered"
+                                    iconName="utility:add"
+                                    size="small"
+                                    alternativeText="Add Activity"
+                                    title="Image"
+                                    onclick="{!c.showCodeGroupModal}"
+                                    />
+                    <label class="slds-float_right slds-p-top_xx-small slds-p-right_small" for="form-element-01"
+                           ><b>Add Activity</b></label
+                        >
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+        <lightning:layout multipleRows="true" verticalAlign="stretch">
+            <lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+                <label style="font-weight: bold" class="slds-form-element__label" for="form-element-01"
+                    >Activity for Damage</label
+                >
+            </lightning:layoutItem>
+            <lightning:layoutItem size="12">
+                <p class="labelSequence">{!v.labelSequence}</p>
+                <aura:iteration items="{!v.activitiesRelatedToItem}" var="activity">
+                    <lightning:layout class="custom-box">
+                        <lightning:layoutItem padding="around-small" size="9" smallDeviceSize="9" mediumDeviceSize="9" largeDeviceSize="10">
+                            <label class="slds-form-element__label breakit" for="form-element-01"
+                                   >{!activity.Code_Group__r.Name}, {!activity.Code_in_Text_Form__c},
+                                {!activity.Text_of_Code__c},
+                            </label>
+                            <label class="slds-form-element__label breakit">
+                                {!activity.Text__c}
+                            </label>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="3" smallDeviceSize="3" mediumDeviceSize="3" largeDeviceSize="2">
+                            <lightning:buttonIcon name="{!activity.Id}"
+                                                  disabled="{!not(v.hasWriteAccess)}"
+                                                  iconName="utility:delete"
+                                                  onclick="{!c.handleDeleteActivity}"
+                                                  variant="bare"
+                                                  tooltip="Delete Activity"
+                                                  class="slds-float_right slds-p-left_small slds-p-top_xx-small"
+                                                  size="medium"
+                                                  />
+                            <lightning:buttonIcon name="{!activity.Id}"
+                                                  disabled="{!not(v.hasWriteAccess)}"
+                                                  iconName="utility:edit"
+                                                  onclick="{!c.openDescriptionModal}"
+                                                  variant="bare"
+                                                  tooltip="Edit Text"
+                                                  class="slds-float_right slds-p-left_small slds-p-top_xx-small"
+                                                  size="medium"
+                                                  />
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                </aura:iteration>
+            </lightning:layoutItem>
+        </lightning:layout>
+
+        <aura:if isTrue="{!v.isDescriptionModalOpen}">
+            <div class="slds-m-around_xx-large">
+                <section
+                    role="dialog"
+                    tabindex="-1"
+                    aria-labelledby="modal-heading-01"
+                    aria-modal="true"
+                    aria-describedby="modal-content-id-1"
+                    class="slds-modal slds-fade-in-open"
+                >
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <lightning:buttonIcon
+                                iconName="utility:close"
+                                onclick="{! c.closeDescriptionModal }"
+                                alternativeText="close"
+                                variant="bare-inverse"
+                                class="slds-modal__close"
+                            />
+                            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                                Please Enter a Description for the Activity
+                            </h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            <lightning:recordEditForm
+                                recordId="{!v.activityId}"
+                                density="comfy"
+                                objectApiName="Activity__c"
+                                onsuccess="{!c.handleDescriptionSuccess}"
+                            >
+                                <lightning:inputField fieldName="Text__c" />
+                                <lightning:inputField class="hideElement" fieldName="Integration_Flag__c" value="{!if(and(v.integrationFlagValue == 'Created', or(empty(v.integrationStatusValue), v.integrationStatusValue == 'Failed')), v.integrationFlagValue, 'Updated')}" disabled="true" />
+                                <lightning:inputField class="hideElement" fieldName="Integration_Status__c" value="" disabled="true" />
+
+                                <lightning:button
+                                    class="slds-p-around_x-small slds-float_right"
+                                    variant="Neutral"
+                                    type="submit"
+                                    label="Confirm"
+                                />
+                            </lightning:recordEditForm>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+
+        <lightning:layout multipleRows="true" verticalAlign="stretch">
+            <lightning:layoutItem size="12" flexibility="auto">
+                <lightning:button class="slds-m-top_medium slds-float_left" label="Back" onclick="{!c.navigateBack}" />
+
+                <lightning:button
+                    class="slds-m-top_medium slds-float_right"
+                    label="Save"
+                    onclick="{!c.navigateToItemList}"
+                />
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+</aura:component>

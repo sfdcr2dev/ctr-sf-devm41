@@ -1,0 +1,162 @@
+.THIS {
+    /* height: 100% !important; */
+    /* position: relative; */
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.THIS td {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.THIS td:nth-child(1) {
+    width: 2rem;
+}
+
+.THIS .header-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding-left: 0.5rem;
+    color: #222;
+}
+
+.THIS .tab-button {
+    border-radius: 0.875rem;
+    /*
+    background-color: #a0b76e;
+    border-color: #a0b76e;
+    */
+    background-color: #01c6b7;
+    border-color: #01c6b7;
+    /* box-shadow: 1px 1px 2px #000000; */
+}
+
+.THIS .tab-button-inactive{
+    border-radius: 0.875rem;
+    background-color: #a5a6a3;
+    border-color: #a5a6a3;
+}
+.THIS .tab-button-active{
+    border-radius: 0.875rem;
+    background-color: #f6b26b;
+    border-color: #f6b26b;
+}
+
+.THIS .tab-button-disagree{
+    border-radius: 0.875rem;
+    background-color: #d54f4e;
+    border-color: #d54f4e;
+}
+
+.THIS .wc-rejected-by {
+    font-size: 0.75rem;
+}
+	
+.THIS .slds-form-element__label {
+    white-space: normal;
+}
+
+.THIS label,
+.THIS .slds-form-element__label {
+    font-weight: 700;
+}
+
+.THIS .custom-box {
+    border-bottom: 1px solid #d8dde6;
+}
+
+.THIS .border-top {
+    border-top: 1px solid #d8dde6;
+}
+
+.THIS .border-right {
+    border-right: 1px solid #d8dde6;
+}
+
+.THIS .border-bottom {
+    border-bottom: 1px solid #d8dde6;
+}
+
+.THIS .border-left {
+    border-left: 1px solid #d8dde6;
+}
+
+.THIS .bg-lightgray {
+    background-color: lightgray;
+}
+
+.THIS .bg-whitesmoke {
+    background-color: whitesmoke;
+}
+
+.THIS .text-center {
+    text-align: center;
+}
+
+.THIS .slds-notify_alert {
+    border-radius: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.THIS .slds-button {
+    border-radius: 0.875rem;
+}
+
+.THIS .slds-card {
+    border-radius: 0;
+}
+
+/* Special */
+.THIS .hide-label c-thor-filter-suggest-lookup .slds-form-element__label {
+	display: none !important;
+}
+
+.THIS .hidden {
+    display: none;
+}
+
+.THIS .text-output {
+    font-size: 1rem;
+    font-weight: normal;
+    display: inline-block;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-bottom: 1px solid #000000;
+}
+
+
+@media (max-width: 602px) {
+
+    .THIS {
+        /* height: 100% */
+    }
+
+    .THIS .slds-button {
+        --slds-c-button-line-height: 2rem;
+        font-size: 0.85rem;
+    }
+
+    .THIS .slds-dropdown {
+        font-size: 0.75rem;
+    }
+
+    .THIS .slds-form-element__control,
+    .THIS .slds-form-element__static,
+    .THIS .slds-form-element__label {
+        font-size: 0.75rem;
+    }
+
+}
+
+/* this style happened when mouse hover  */
+/* .THIS .slds-button_brand:hover {
+    outline-color: transparent;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(0, 0, 0, 0.3);
+} */
+
+/* this style happened when clicked or slected */
+.THIS .slds-button_brand:focus, .THIS .tabInspection, .THIS .focusBtnOnCurrentPage {
+    outline-color: transparent ;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(0, 0, 0, 0.3);
+}

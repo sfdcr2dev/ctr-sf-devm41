@@ -1,0 +1,1993 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>false</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>false</enableSharing>
+    <enableStreamingApi>false</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>FormNameLWC__c</fullName>
+        <externalId>false</externalId>
+        <formula>Header_Sheet__r.Sheet__r.formNameLWC__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FormNameLWC</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Form_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Form Code</label>
+        <length>80</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Form_Group__c</fullName>
+        <externalId>false</externalId>
+        <formula>Header_Sheet__r.Sheet__r.Group__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Form Group</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Header_Sheet__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Header Sheet</label>
+        <referenceTo>Header_Sheet__c</referenceTo>
+        <relationshipLabel>EQCC Steps</relationshipLabel>
+        <relationshipName>EQCC_Steps</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IsDeleted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Deleted</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Current__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Current</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Percentage__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Stores percentage for Step</description>
+        <externalId>false</externalId>
+        <label>Percentage</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>Pending for Approval</fullName>
+                    <default>false</default>
+                    <label>Pending for Approval</label>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+                <value>
+                    <fullName>Needs Revision</fullName>
+                    <default>false</default>
+                    <label>Needs Revision</label>
+                </value>
+                <value>
+                    <fullName>Recalled</fullName>
+                    <default>false</default>
+                    <label>Recalled</label>
+                </value>
+                <value>
+                    <fullName>In progress</fullName>
+                    <default>false</default>
+                    <label>In progress</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Step_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Step Number</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>jsonString__c</fullName>
+        <externalId>false</externalId>
+        <label>jsonString</label>
+        <length>100000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <label>EQCC Step</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Header_Sheet__c</columns>
+        <columns>Form_Code__c</columns>
+        <columns>IsDeleted__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Header_Sheet__c</field>
+            <operation>equals</operation>
+            <value>HS-13875</value>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>ENEM_Co_Or_ENEM_Communi_Thai_oil_group_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENEM Co-Or-ENEM-Communi/Thai oil group</label>
+        <queue>ENEM_Co_Or_ENEM_Communi_Thai_oil_group</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENEM_Co_Or_ENEM_Distru_Thai_oil_group_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENEM Co-Or-ENEM-Distru/Thai oil group</label>
+        <queue>ENEM_Co_Or_ENEM_Distru_Thai_oil_group</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENEM_Co_Or_ENEM_T_SPP_TP_Thai_oil_group_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENEM Co-Or-ENEM-T/SPP&amp;TP/Thai oil group</label>
+        <queue>ENEM_Co_Or_ENEM_T_SPP_TP_Thai_oil_group</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENEM_Co_Or_ENEM_Workshop_Thai_oil_group_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENEM Co-Or-ENEM-Workshop/Thai oil group</label>
+        <queue>ENEM_Co_Or_ENEM_Workshop_Thai_oil_group</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENEM_Op_ENEM_Communi_Thai_oil_group_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENEM Op-ENEM-Communi/Thai oil group</label>
+        <queue>ENEM_Op_ENEM_Communi_Thai_oil_group</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENEM_Op_ENEM_Distrution_Thai_oil_group_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENEM Op-ENEM-Distrution/Thai oil group</label>
+        <queue>ENEM_Op_ENEM_Distrution_Thai_oil_group</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENEM_Op_ENEM_T_SPP_TP_Thai_oil_group_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENEM Op-ENEM-T/SPP&amp;TP/Thai oil group</label>
+        <queue>ENEM_Op_ENEM_T_SPP_TP_Thai_oil_group</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENEM_Op_ENEM_Workshop_Thai_oil_group_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENEM Op-ENEM-Workshop/Thai oil group</label>
+        <queue>ENEM_Op_ENEM_Workshop_Thai_oil_group</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENEM_TL_ENEM_Communi_Thai_oil_group_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENEM TL-ENEM-Communi/Thai oil group</label>
+        <queue>ENEM_TL_ENEM_Communi_Thai_oil_group</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENEM_TL_ENEM_Distrution_Thai_oil_group_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENEM TL-ENEM-Distrution/Thai oil group</label>
+        <queue>ENEM_TL_ENEM_Distrution_Thai_oil_group</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENEM_TL_ENEM_T_SPP_TP_Thai_oil_group_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENEM TL-ENEM-T/SPP&amp;TP/Thai oil group</label>
+        <queue>ENEM_TL_ENEM_T_SPP_TP_Thai_oil_group</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENEM_TL_ENEM_Workshop_Thai_oil_group_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENEM TL-ENEM-Workshop/Thai oil group</label>
+        <queue>ENEM_TL_ENEM_Workshop_Thai_oil_group</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Co_Or_ENIM_IC_PLC_General_PLC_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Co-Or-ENIM-IC PLC/General PLC</label>
+        <queue>ENIM_Co_Or_ENIM_IC_PLC_General_PLC</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Co_Or_ENIM_IS_Instr_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Co-Or-ENIM-IS Instr</label>
+        <queue>ENIM_Co_Or_ENIM_IS_Instr</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Co_Or_ENIM_QMI_Lab_Analyzer_All_Lab_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Co-Or-ENIM-QMI Lab Analyzer/All Lab</label>
+        <queue>ENIM_Co_Or_ENIM_QMI_Lab_Analyzer_All_Lab</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Co_Or_ENIM_W_S_Workshop_Instrument_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Co-Or-ENIM-W/S/Workshop Instrument</label>
+        <queue>ENIM_Co_Or_ENIM_W_S_Workshop_Instrument</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Co_Or_QMI_Ana_APU_B_APU_C_APU_D_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Co-Or-QMI Ana/APU-B&amp;APU-C&amp;APU-D</label>
+        <queue>ENIM_Co_Or_QMI_Ana_APU_B_APU_C_APU_D</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Co_Or_QMI_Online_Analyzer_APU_A_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Co-Or-QMI Online Analyzer/APU-A</label>
+        <queue>ENIM_Co_Or_QMI_Online_Analyzer_APU_A</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Co_Ordinator_ENIM_IC_DCS_Foxboro_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Co-Ordinator-ENIM-IC DCS/Foxboro</label>
+        <queue>ENIM_Co_Ordinator_ENIM_IC_DCS_Foxboro</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Co_Ordinator_ENIM_IC_DCS_Honeywell_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Co-Ordinator-ENIM-IC DCS/Honeywell</label>
+        <queue>ENIM_Co_Ordinator_ENIM_IC_DCS_Honeywell</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Co_Ordinator_ENIM_IC_PLC_IPS_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Co-Ordinator-ENIM-IC PLC/IPS</label>
+        <queue>ENIM_Co_Ordinator_ENIM_IC_PLC_IPS</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Co_Ordinator_ENIM_QMI_F_G_All_Area_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Co-Ordinator-ENIM-QMI(F&amp;G)/All Area</label>
+        <queue>ENIM_Co_Ordinator_ENIM_QMI_F_G_All_Area</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Co_Ordinator_QMI_Online_APU_E_APU_F_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Co-Ordinator-QMI Online/APU-E&amp;APU-F</label>
+        <queue>ENIM_Co_Ordinator_QMI_Online_APU_E_APU_F</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Op_ENIM_IS_Instrumen_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Op-ENIM-IS Instrumen</label>
+        <queue>ENIM_Op_ENIM_IS_Instrumen</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Op_ENIM_QMI_Lab_Analyzer_All_Lab_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Op-ENIM-QMI Lab Analyzer/All Lab</label>
+        <queue>ENIM_Op_ENIM_QMI_Lab_Analyzer_All_Lab</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Op_ENIM_W_S_Workshop_Instrument_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Op-ENIM-W/S/Workshop Instrument</label>
+        <queue>ENIM_Op_ENIM_W_S_Workshop_Instrument</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_TL_ENIM_IS_Instrume_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM TL-ENIM-IS Instrume</label>
+        <queue>ENIM_TL_ENIM_IS_Instrume</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_TL_ENIM_QMI_Lab_Analyzer_All_Lab_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM TL-ENIM-QMI Lab Analyzer/All Lab</label>
+        <queue>ENIM_TL_ENIM_QMI_Lab_Analyzer_All_Lab</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_TL_ENIM_W_S_Workshop_Instrument_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM TL-ENIM-W/S/Workshop Instrument</label>
+        <queue>ENIM_TL_ENIM_W_S_Workshop_Instrument</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Team_Lead_ENIM_IC_DCS_Foxboro_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Team Lead-ENIM-IC DCS/Foxboro</label>
+        <queue>ENIM_Team_Lead_ENIM_IC_DCS_Foxboro</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Team_Lead_ENIM_IC_DCS_Honeywell_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Team Lead-ENIM-IC DCS/Honeywell</label>
+        <queue>ENIM_Team_Lead_ENIM_IC_DCS_Honeywell</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Team_Lead_ENIM_IC_PLC_General_PLC_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Team Lead-ENIM-IC PLC/General PLC</label>
+        <queue>ENIM_Team_Lead_ENIM_IC_PLC_General_PLC</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Team_Lead_ENIM_QMI_F_G_All_Area_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Team Lead-ENIM-QMI(F&amp;G)/All Area</label>
+        <queue>ENIM_Team_Lead_ENIM_QMI_F_G_All_Area</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Team_Lead_QMI_Online_Analyzer_APU_A_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Team Lead-QMI Online Analyzer/APU-A</label>
+        <queue>ENIM_Team_Lead_QMI_Online_Analyzer_APU_A</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Team_Lead_QMI_Online_Analyzer_APU_B_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Team Lead-QMI Online Analyzer/APU-B</label>
+        <queue>ENIM_Team_Lead_QMI_Online_Analyzer_APU_B</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Team_Lead_QMI_Online_Analyzer_APU_C_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Team Lead-QMI Online Analyzer/APU-C</label>
+        <queue>ENIM_Team_Lead_QMI_Online_Analyzer_APU_C</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Team_Lead_QMI_Online_Analyzer_APU_D_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Team Lead-QMI Online Analyzer/APU-D</label>
+        <queue>ENIM_Team_Lead_QMI_Online_Analyzer_APU_D</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Team_Lead_QMI_Online_Analyzer_APU_E_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Team Lead-QMI Online Analyzer/APU-E</label>
+        <queue>ENIM_Team_Lead_QMI_Online_Analyzer_APU_E</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENIM_Team_Lead_QMI_Online_Analyzer_APU_F_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENIM Team Lead-QMI Online Analyzer/APU-F</label>
+        <queue>ENIM_Team_Lead_QMI_Online_Analyzer_APU_F</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_Co_Or_ENMM_MW_Workshop_Mechanical_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM Co-Or-ENMM-MW/Workshop Mechanical</label>
+        <queue>ENMM_Co_Or_ENMM_MW_Workshop_Mechanical</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_Co_Or_ENMM_PW_APU_F_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM Co-Or-ENMM-PW/APU-F</label>
+        <queue>ENMM_Co_Or_ENMM_PW_APU_F</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_Co_Or_ENMM_TM_Overall_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM Co-Or-ENMM-TM/Overall</label>
+        <queue>ENMM_Co_Or_ENMM_TM_Overall</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_Co_Or_ENMM_TM_Steam_Trap_Tank_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM Co-Or-ENMM-TM/Steam Trap&amp;Tank</label>
+        <queue>ENMM_Co_Or_ENMM_TM_Steam_Trap_Tank</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_Co_Ordinator_ENMM_PM_APU_C_E_F_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM Co-Ordinator-ENMM-PM/APU-C/E/F</label>
+        <queue>ENMM_Co_Ordinator_ENMM_PM_APU_C_E_F</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_Co_Ordinator_ENMM_PW_APU_D_E_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM Co-Ordinator-ENMM-PW/APU-D/E</label>
+        <queue>ENMM_Co_Ordinator_ENMM_PW_APU_D_E</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_Co_Ordinator_ENMM_PW_APU_F_Fabshop_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM Co-Ordinator-ENMM-PW/APU-F/Fabshop</label>
+        <queue>ENMM_Co_Ordinator_ENMM_PW_APU_F_Fabshop</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_Op_ENMM_MW_Workshop_Mechanical_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM Op-ENMM-MW/Workshop Mechanical</label>
+        <queue>ENMM_Op_ENMM_MW_Workshop_Mechanical</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_Op_ENMM_PW_APU_F_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM Op-ENMM-PW/APU-F</label>
+        <queue>ENMM_Op_ENMM_PW_APU_F</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_Op_ENMM_TM_Overall_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM Op-ENMM-TM/Overall</label>
+        <queue>ENMM_Op_ENMM_TM_Overall</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_TL_ENMM_MW_Workshop_Mechanical_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM TL-ENMM-MW/Workshop Mechanical</label>
+        <queue>ENMM_TL_ENMM_MW_Workshop_Mechanical</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_TL_ENMM_PW_APU_F_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM TL-ENMM-PW/APU-F</label>
+        <queue>ENMM_TL_ENMM_PW_APU_F</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_Team_Lead_ENMM_PM_APU_C_E_F_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM Team Lead-ENMM-PM/APU-C/E/F</label>
+        <queue>ENMM_Team_Lead_ENMM_PM_APU_C_E_F</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_Team_Lead_ENMM_PW_APU_F_Fabshop_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM Team Lead-ENMM-PW/APU-F/Fabshop</label>
+        <queue>ENMM_Team_Lead_ENMM_PW_APU_F_Fabshop</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_Team_Lead_ENMM_TM_Overall_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM Team Lead-ENMM-TM/Overall</label>
+        <queue>ENMM_Team_Lead_ENMM_TM_Overall</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENMM_Team_Lead_ENMM_TM_Steam_Trap_Tank_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENMM Team Lead-ENMM-TM/Steam Trap&amp;Tank</label>
+        <queue>ENMM_Team_Lead_ENMM_TM_Steam_Trap_Tank</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENSA_Co_Or_ENSA_Benchmark_Plan_All_APU_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENSA Co-Or-ENSA Benchmark&amp;Plan/All APU</label>
+        <queue>ENSA_Co_Or_ENSA_Benchmark_Plan_All_APU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENSA_Op_ENSA_Benchmark_Plan_All_APU_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENSA Op-ENSA Benchmark&amp;Plan/All APU</label>
+        <queue>ENSA_Op_ENSA_Benchmark_Plan_All_APU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENSA_TL_ENSA_Benchmarking_All_APU_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENSA TL-ENSA Benchmarking/All APU</label>
+        <queue>ENSA_TL_ENSA_Benchmarking_All_APU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENSA_TL_ENSA_Planning_All_APU_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENSA TL-ENSA Planning/All APU</label>
+        <queue>ENSA_TL_ENSA_Planning_All_APU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENSD_Co_Or_Project_Maintenance_All_APU_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENSD Co-Or-Project Maintenance/All APU</label>
+        <queue>ENSD_Co_Or_Project_Maintenance_All_APU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENSD_Co_Or_Shutdown_planning_All_APU_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENSD Co-Or-Shutdown planning/All APU</label>
+        <queue>ENSD_Co_Or_Shutdown_planning_All_APU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENSD_Op_Project_Maintenance_All_APU_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENSD Op-Project Maintenance/All APU</label>
+        <queue>ENSD_Op_Project_Maintenance_All_APU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENSD_TL_Project_Maintenance_All_APU_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENSD TL-Project Maintenance/All APU</label>
+        <queue>ENSD_TL_Project_Maintenance_All_APU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENSD_TL_Shutdown_planning_All_APU_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENSD TL-Shutdown planning/All APU</label>
+        <queue>ENSD_TL_Shutdown_planning_All_APU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_Co_Or_ENTS_Corrosion_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS Co-Or-ENTS Corrosion Engineer</label>
+        <queue>ENTS_Co_Or_ENTS_Corrosion_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_Co_Or_ENTS_PLANT_INSPECTOR_All_APU_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS Co-Or-ENTS PLANT INSPECTOR/All APU</label>
+        <queue>ENTS_Co_Or_ENTS_PLANT_INSPECTOR_All_APU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_Op_ENTS_Corrosion_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS Op-ENTS Corrosion Engineer</label>
+        <queue>ENTS_Op_ENTS_Corrosion_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_Op_ENTS_Integrity_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS Op-ENTS Integrity Engineer</label>
+        <queue>ENTS_Op_ENTS_Integrity_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_Op_ENTS_PLANT_INSPECTOR_APU_A_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS Op-ENTS PLANT INSPECTOR/APU-A</label>
+        <queue>ENTS_Op_ENTS_PLANT_INSPECTOR_APU_A</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_Op_ENTS_PLANT_INSPECTOR_APU_B_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS Op-ENTS PLANT INSPECTOR/APU-B</label>
+        <queue>ENTS_Op_ENTS_PLANT_INSPECTOR_APU_B</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_Op_ENTS_PLANT_INSPECTOR_APU_C_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS Op-ENTS PLANT INSPECTOR/APU-C</label>
+        <queue>ENTS_Op_ENTS_PLANT_INSPECTOR_APU_C</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_Op_ENTS_PLANT_INSPECTOR_APU_D_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS Op-ENTS PLANT INSPECTOR/APU-D</label>
+        <queue>ENTS_Op_ENTS_PLANT_INSPECTOR_APU_D</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_Op_ENTS_PLANT_INSPECTOR_APU_E_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS Op-ENTS PLANT INSPECTOR/APU-E</label>
+        <queue>ENTS_Op_ENTS_PLANT_INSPECTOR_APU_E</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_Op_ENTS_PLANT_INSPECTOR_APU_F_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS Op-ENTS PLANT INSPECTOR/APU-F</label>
+        <queue>ENTS_Op_ENTS_PLANT_INSPECTOR_APU_F</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_Op_ENTS_QA_Engineer_Project_Welding_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS Op-ENTS QA Engineer Project&amp;Welding</label>
+        <queue>ENTS_Op_ENTS_QA_Engineer_Project_Welding</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_TL_ENTS_Corrosion_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS TL-ENTS Corrosion Engineer</label>
+        <queue>ENTS_TL_ENTS_Corrosion_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_TL_ENTS_Integrity_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS TL-ENTS Integrity Engineer</label>
+        <queue>ENTS_TL_ENTS_Integrity_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_TL_ENTS_PLANT_INSPECTOR_APU_A_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS TL-ENTS PLANT INSPECTOR/APU-A</label>
+        <queue>ENTS_TL_ENTS_PLANT_INSPECTOR_APU_A</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_TL_ENTS_PLANT_INSPECTOR_APU_B_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS TL-ENTS PLANT INSPECTOR/APU-B</label>
+        <queue>ENTS_TL_ENTS_PLANT_INSPECTOR_APU_B</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_TL_ENTS_PLANT_INSPECTOR_APU_C_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS TL-ENTS PLANT INSPECTOR/APU-C</label>
+        <queue>ENTS_TL_ENTS_PLANT_INSPECTOR_APU_C</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_TL_ENTS_PLANT_INSPECTOR_APU_D_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS TL-ENTS PLANT INSPECTOR/APU-D</label>
+        <queue>ENTS_TL_ENTS_PLANT_INSPECTOR_APU_D</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_TL_ENTS_PLANT_INSPECTOR_APU_E_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS TL-ENTS PLANT INSPECTOR/APU-E</label>
+        <queue>ENTS_TL_ENTS_PLANT_INSPECTOR_APU_E</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_TL_ENTS_PLANT_INSPECTOR_APU_F_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS TL-ENTS PLANT INSPECTOR/APU-F</label>
+        <queue>ENTS_TL_ENTS_PLANT_INSPECTOR_APU_F</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ENTS_TL_ENTS_QA_Engineer_Project_Welding_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENTS TL-ENTS QA Engineer Project&amp;Welding</label>
+        <queue>ENTS_TL_ENTS_QA_Engineer_Project_Welding</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_A_APU_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-A APU Manager</label>
+        <queue>TOP_THOR_APU_A_APU_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_A_Co_Ordinator_ENMA_E_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-A Co-Ordinator-ENMA-E</label>
+        <queue>TOP_THOR_APU_A_Co_Ordinator_ENMA_E</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_A_Co_Ordinator_ENMA_I_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-A Co-Ordinator-ENMA-I</label>
+        <queue>TOP_THOR_APU_A_Co_Ordinator_ENMA_I</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_A_Co_Ordinator_ENMA_M_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-A Co-Ordinator-ENMA-M</label>
+        <queue>TOP_THOR_APU_A_Co_Ordinator_ENMA_M</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_A_ENRM_IP_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-A ENRM IP Engineer</label>
+        <queue>TOP_THOR_APU_A_ENRM_IP_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_A_Team_Lead_ENMA_E_TOC_1_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-A Team Lead-ENMA-E/TOC-1</label>
+        <queue>TOP_THOR_APU_A_Team_Lead_ENMA_E_TOC_1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_A_Team_Lead_ENMA_E_TOC_2_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-A Team Lead-ENMA-E/TOC-2</label>
+        <queue>TOP_THOR_APU_A_Team_Lead_ENMA_E_TOC_2</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_A_Team_Lead_ENMA_I_TOC_1_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-A Team Lead-ENMA-I/TOC-1</label>
+        <queue>TOP_THOR_APU_A_Team_Lead_ENMA_I_TOC_1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_A_Team_Lead_ENMA_I_TOC_2_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-A Team Lead-ENMA-I/TOC-2</label>
+        <queue>TOP_THOR_APU_A_Team_Lead_ENMA_I_TOC_2</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_A_Team_Lead_ENMA_M_TOC_1_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-A Team Lead-ENMA-M/TOC-1</label>
+        <queue>TOP_THOR_APU_A_Team_Lead_ENMA_M_TOC_1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_A_Team_Lead_ENMA_M_TOC_2_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-A Team Lead-ENMA-M/TOC-2</label>
+        <queue>TOP_THOR_APU_A_Team_Lead_ENMA_M_TOC_2</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_B_APU_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-B APU Manager</label>
+        <queue>TOP_THOR_APU_B_APU_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_B_Co_Ordinator_ENMB_E_SPP_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-B Co-Ordinator-ENMB-E/SPP</label>
+        <queue>TOP_THOR_APU_B_Co_Ordinator_ENMB_E_SPP</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_B_Co_Ordinator_ENMB_E_TOC_4_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-B Co-Ordinator-ENMB-E/TOC-4</label>
+        <queue>TOP_THOR_APU_B_Co_Ordinator_ENMB_E_TOC_4</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_B_Co_Ordinator_ENMB_I_SPP_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-B Co-Ordinator-ENMB-I/SPP</label>
+        <queue>TOP_THOR_APU_B_Co_Ordinator_ENMB_I_SPP</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_B_Co_Ordinator_ENMB_I_TOC_4_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-B Co-Ordinator-ENMB-I/TOC-4</label>
+        <queue>TOP_THOR_APU_B_Co_Ordinator_ENMB_I_TOC_4</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_B_Co_Ordinator_ENMB_M_SPP_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-B Co-Ordinator-ENMB-M/SPP</label>
+        <queue>TOP_THOR_APU_B_Co_Ordinator_ENMB_M_SPP</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_B_Co_Ordinator_ENMB_M_TOC_4_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-B Co-Ordinator-ENMB-M/TOC-4</label>
+        <queue>TOP_THOR_APU_B_Co_Ordinator_ENMB_M_TOC_4</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_B_ENRM_IP_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-B ENRM IP Engineer</label>
+        <queue>TOP_THOR_APU_B_ENRM_IP_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_B_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-B APU Manager</label>
+        <queue>TOP_THOR_APU_B_APU_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_B_Team_Lead_ENMB_E_SPP_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-B Team Lead-ENMB-E/SPP</label>
+        <queue>TOP_THOR_APU_B_Team_Lead_ENMB_E_SPP</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_B_Team_Lead_ENMB_E_TOC_4_UT_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-B Team Lead-ENMB-E/TOC-4&amp;UT</label>
+        <queue>TOP_THOR_APU_B_Team_Lead_ENMB_E_TOC_4_UT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_B_Team_Lead_ENMB_I_SPP_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-B Team Lead-ENMB-I/SPP</label>
+        <queue>TOP_THOR_APU_B_Team_Lead_ENMB_I_SPP</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_B_Team_Lead_ENMB_I_TOC_4_UT_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-B Team Lead-ENMB-I/TOC-4&amp;UT</label>
+        <queue>TOP_THOR_APU_B_Team_Lead_ENMB_I_TOC_4_UT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_B_Team_Lead_ENMB_M_SPP_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-B Team Lead-ENMB-M/SPP</label>
+        <queue>TOP_THOR_APU_B_Team_Lead_ENMB_M_SPP</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_B_Team_Lead_ENMB_M_TOC_4_UT_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-B Team Lead-ENMB-M/TOC-4&amp;UT</label>
+        <queue>TOP_THOR_APU_B_Team_Lead_ENMB_M_TOC_4_UT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_C_APU_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-C APU Manager</label>
+        <queue>TOP_THOR_APU_C_APU_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_C_Co_Ordinator_ENMC_E_TOC_3_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-C Co-Ordinator-ENMC-E/TOC-3</label>
+        <queue>TOP_THOR_APU_C_Co_Ordinator_ENMC_E_TOC_3</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_C_Co_Ordinator_ENMC_I_TOC_3_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-C Co-Ordinator-ENMC-I/TOC-3</label>
+        <queue>TOP_THOR_APU_C_Co_Ordinator_ENMC_I_TOC_3</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_C_Co_Ordinator_ENMC_M_TOC_3_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-C Co-Ordinator-ENMC-M/TOC-3</label>
+        <queue>TOP_THOR_APU_C_Co_Ordinator_ENMC_M_TOC_3</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_C_ENRM_IP_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-C ENRM IP Engineer</label>
+        <queue>TOP_THOR_APU_C_ENRM_IP_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_C_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-C APU Manager</label>
+        <queue>TOP_THOR_APU_C_APU_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_C_Team_Lead_ENMC_E_TOC_3_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-C Team Lead-ENMC-E/TOC-3</label>
+        <queue>TOP_THOR_APU_C_Team_Lead_ENMC_E_TOC_3</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_C_Team_Lead_ENMC_E_TOC_5_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-C Team Lead-ENMC-E/TOC-5</label>
+        <queue>TOP_THOR_APU_C_Team_Lead_ENMC_E_TOC_5</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_C_Team_Lead_ENMC_I_TOC_3_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-C Team Lead-ENMC-I/TOC-3</label>
+        <queue>TOP_THOR_APU_C_Team_Lead_ENMC_I_TOC_3</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_C_Team_Lead_ENMC_I_TOC_5_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-C Team Lead-ENMC-I/TOC-5</label>
+        <queue>TOP_THOR_APU_C_Team_Lead_ENMC_I_TOC_5</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_C_Team_Lead_ENMC_M_TOC_3_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-C Team Lead-ENMC-M/TOC-3</label>
+        <queue>TOP_THOR_APU_C_Team_Lead_ENMC_M_TOC_3</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_C_Team_Lead_ENMC_M_TOC_5_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-C Team Lead-ENMC-M/TOC-5</label>
+        <queue>TOP_THOR_APU_C_Team_Lead_ENMC_M_TOC_5</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_D_APU_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-D APU Manager</label>
+        <queue>TOP_THOR_APU_D_APU_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_D_Co_Ordinator_ENMD_E_OF_MO_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-D Co-Ordinator-ENMD-E/OF&amp;MO</label>
+        <queue>TOP_THOR_APU_D_Co_Ordinator_ENMD_E_OF_MO</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_D_Co_Ordinator_ENMD_I_OF_MO_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-D Co-Ordinator-ENMD-I/OF&amp;MO</label>
+        <queue>TOP_THOR_APU_D_Co_Ordinator_ENMD_I_OF_MO</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_D_Co_Ordinator_ENMD_M_OF_MO_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-D Co-Ordinator-ENMD-M/OF&amp;MO</label>
+        <queue>TOP_THOR_APU_D_Co_Ordinator_ENMD_M_OF_MO</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_D_ENRM_IP_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-D ENRM IP Engineer</label>
+        <queue>TOP_THOR_APU_D_ENRM_IP_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_D_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-D APU Manager</label>
+        <queue>TOP_THOR_APU_D_APU_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_D_Team_Lead_ENMD_E_OF_MO_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-D Team Lead-ENMD-E/OF&amp;MO</label>
+        <queue>TOP_THOR_APU_D_Team_Lead_ENMD_E_OF_MO</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_D_Team_Lead_ENMD_I_OF_MO_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-D Team Lead-ENMD-I/OF&amp;MO</label>
+        <queue>TOP_THOR_APU_D_Team_Lead_ENMD_I_OF_MO</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_D_Team_Lead_ENMD_M_OF_MO_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-D Team Lead-ENMD-M/OF&amp;MO</label>
+        <queue>TOP_THOR_APU_D_Team_Lead_ENMD_M_OF_MO</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_E_APU_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-E APU Manager</label>
+        <queue>TOP_THOR_APU_E_APU_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_E_Co_Ordinator_ENME_E_TLB_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-E Co-Ordinator-ENME-E/TLB</label>
+        <queue>TOP_THOR_APU_E_Co_Ordinator_ENME_E_TLB</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_E_Co_Ordinator_ENME_I_TLB_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-E Co-Ordinator-ENME-I/TLB</label>
+        <queue>TOP_THOR_APU_E_Co_Ordinator_ENME_I_TLB</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_E_Co_Ordinator_ENME_M_TLB_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-E Co-Ordinator-ENME-M/TLB</label>
+        <queue>TOP_THOR_APU_E_Co_Ordinator_ENME_M_TLB</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_E_ENRM_IP_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-E ENRM IP Engineer</label>
+        <queue>TOP_THOR_APU_E_ENRM_IP_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_E_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-E APU Manager</label>
+        <queue>TOP_THOR_APU_E_APU_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_E_Team_Lead_ENME_E_TLB_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-E Team Lead-ENME-E/TLB</label>
+        <queue>TOP_THOR_APU_E_Team_Lead_ENME_E_TLB</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_E_Team_Lead_ENME_I_TLB_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-E Team Lead-ENME-I/TLB</label>
+        <queue>TOP_THOR_APU_E_Team_Lead_ENME_I_TLB</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_E_Team_Lead_ENME_M_TLB_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-E Team Lead-ENME-M/TLB</label>
+        <queue>TOP_THOR_APU_E_Team_Lead_ENME_M_TLB</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_F_APU_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-F APU Manager</label>
+        <queue>TOP_THOR_APU_F_APU_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_F_Co_Ordinator_ENMF_E_TPX_L_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-F Co-Ordinator-ENMF-E/TPX&amp;L</label>
+        <queue>TOP_THOR_APU_F_Co_Ordinator_ENMF_E_TPX_L</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_F_Co_Ordinator_ENMF_I_TPX_L_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-F Co-Ordinator-ENMF-I/TPX&amp;L</label>
+        <queue>TOP_THOR_APU_F_Co_Ordinator_ENMF_I_TPX_L</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_F_Co_Ordinator_ENMF_M_TPX_L_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-F Co-Ordinator-ENMF-M/TPX&amp;L</label>
+        <queue>TOP_THOR_APU_F_Co_Ordinator_ENMF_M_TPX_L</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_F_ENRM_IP_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-F ENRM IP Engineer</label>
+        <queue>TOP_THOR_APU_F_ENRM_IP_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_F_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-F APU Manager</label>
+        <queue>TOP_THOR_APU_F_APU_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_F_Team_Lead_ENMF_E_LABIX_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-F Team Lead-ENMF-E/LABIX</label>
+        <queue>TOP_THOR_APU_F_Team_Lead_ENMF_E_LABIX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_F_Team_Lead_ENMF_E_TPX_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-F Team Lead-ENMF-E/TPX</label>
+        <queue>TOP_THOR_APU_F_Team_Lead_ENMF_E_TPX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_F_Team_Lead_ENMF_I_LABIX_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-F Team Lead-ENMF-I/LABIX</label>
+        <queue>TOP_THOR_APU_F_Team_Lead_ENMF_I_LABIX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_F_Team_Lead_ENMF_I_TPX_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-F Team Lead-ENMF-I/TPX</label>
+        <queue>TOP_THOR_APU_F_Team_Lead_ENMF_I_TPX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_F_Team_Lead_ENMF_M_LABIX_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-F Team Lead-ENMF-M/LABIX</label>
+        <queue>TOP_THOR_APU_F_Team_Lead_ENMF_M_LABIX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_APU_F_Team_Lead_ENMF_M_TPX_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR APU-F Team Lead-ENMF-M/TPX</label>
+        <queue>TOP_THOR_APU_F_Team_Lead_ENMF_M_TPX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENCM_Co_Ordinator_Civil_All_APU_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENCM Co-Ordinator-Civil/All APU</label>
+        <queue>TOP_THOR_ENCM_Co_Ordinator_Civil_All_APU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENCM_ENRM_IP_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENCM ENRM IP Engineer</label>
+        <queue>TOP_THOR_ENCM_ENRM_IP_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENCM_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENCM Manager</label>
+        <queue>TOP_THOR_ENCM_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENCM_Team_Lead_Civil_All_APU_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENCM Team Lead-Civil/All APU</label>
+        <queue>TOP_THOR_ENCM_Team_Lead_Civil_All_APU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENEM_ENRM_IP_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENEM ENRM IP Engineer</label>
+        <queue>TOP_THOR_ENEM_ENRM_IP_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENEM_Engineer_Group_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENEM Engineer Group</label>
+        <queue>TOP_THOR_ENEM_Engineer_Group</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENEM_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENEM Manager</label>
+        <queue>TOP_THOR_ENEM_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENIM_ENRM_IP_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENIM ENRM IP Engineer</label>
+        <queue>TOP_THOR_ENIM_ENRM_IP_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENIM_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENIM Manager</label>
+        <queue>TOP_THOR_ENIM_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENIM_Team_Lead_ENIM_IC_PLC_IPS_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENIM Team Lead-ENIM-IC PLC/IPS</label>
+        <queue>TOP_THOR_ENIM_Team_Lead_ENIM_IC_PLC_IPS</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_Co_Ordinator_ENMM_PM_APU_A_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM Co-Ordinator-ENMM-PM/APU-A</label>
+        <queue>TOP_THOR_ENMM_Co_Ordinator_ENMM_PM_APU_A</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_Co_Ordinator_ENMM_PM_APU_B_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM Co-Ordinator-ENMM-PM/APU-B</label>
+        <queue>TOP_THOR_ENMM_Co_Ordinator_ENMM_PM_APU_B</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_Co_Ordinator_ENMM_PM_APU_D_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM Co-Ordinator-ENMM-PM/APU-D</label>
+        <queue>TOP_THOR_ENMM_Co_Ordinator_ENMM_PM_APU_D</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_Co_Ordinator_ENMM_PW_APU_A_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM Co-Ordinator-ENMM-PW/APU-A</label>
+        <queue>TOP_THOR_ENMM_Co_Ordinator_ENMM_PW_APU_A</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_Co_Ordinator_ENMM_PW_APU_B_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM Co-Ordinator-ENMM-PW/APU-B</label>
+        <queue>TOP_THOR_ENMM_Co_Ordinator_ENMM_PW_APU_B</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_Co_Ordinator_ENMM_PW_APU_C_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM Co-Ordinator-ENMM-PW/APU-C</label>
+        <queue>TOP_THOR_ENMM_Co_Ordinator_ENMM_PW_APU_C</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_ENRM_IP_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM ENRM IP Engineer</label>
+        <queue>TOP_THOR_ENMM_ENRM_IP_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM Manager</label>
+        <queue>TOP_THOR_ENMM_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_Operator_ENMM_PW_APU_A_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM Operator-ENMM-PW/APU-A</label>
+        <queue>TOP_THOR_ENMM_Operator_ENMM_PW_APU_A</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_Team_Lead_ENMM_PM_APU_A_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM Team Lead-ENMM-PM/APU-A</label>
+        <queue>TOP_THOR_ENMM_Team_Lead_ENMM_PM_APU_A</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_Team_Lead_ENMM_PM_APU_B_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM Team Lead-ENMM-PM/APU-B</label>
+        <queue>TOP_THOR_ENMM_Team_Lead_ENMM_PM_APU_B</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_Team_Lead_ENMM_PM_APU_D_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM Team Lead-ENMM-PM/APU-D</label>
+        <queue>TOP_THOR_ENMM_Team_Lead_ENMM_PM_APU_D</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_Team_Lead_ENMM_PW_APU_A_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM Team Lead-ENMM-PW/APU-A</label>
+        <queue>TOP_THOR_ENMM_Team_Lead_ENMM_PW_APU_A</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_Team_Lead_ENMM_PW_APU_B_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM Team Lead-ENMM-PW/APU-B</label>
+        <queue>TOP_THOR_ENMM_Team_Lead_ENMM_PW_APU_B</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_Team_Lead_ENMM_PW_APU_C_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM Team Lead-ENMM-PW/APU-C</label>
+        <queue>TOP_THOR_ENMM_Team_Lead_ENMM_PW_APU_C</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENMM_Team_Lead_ENMM_PW_APU_D_E_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENMM Team Lead-ENMM-PW/APU-D/E</label>
+        <queue>TOP_THOR_ENMM_Team_Lead_ENMM_PW_APU_D_E</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENRM_Co_Ordinator_ENRM_APU_A_AP_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENRM Co-Ordinator-ENRM/APU-A&amp;AP</label>
+        <queue>TOP_THOR_ENRM_Co_Ordinator_ENRM_APU_A_AP</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENRM_Co_Ordinator_ENRM_All_APU_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENRM Co-Ordinator-ENRM/All APU</label>
+        <queue>TOP_THOR_ENRM_Co_Ordinator_ENRM_All_APU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENRM_ENRM_IP_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENRM ENRM IP Engineer</label>
+        <queue>TOP_THOR_ENRM_ENRM_IP_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENRM_ENRM_QA_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENRM ENRM QA Engineer</label>
+        <queue>TOP_THOR_ENRM_ENRM_QA_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENRM_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENRM Manager</label>
+        <queue>TOP_THOR_ENRM_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENRM_Team_Lead_ENRM_APU_A_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENRM Team Lead-ENRM/APU-A</label>
+        <queue>TOP_THOR_ENRM_Team_Lead_ENRM_APU_A</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENRM_Team_Lead_ENRM_APU_B_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENRM Team Lead-ENRM/APU-B</label>
+        <queue>TOP_THOR_ENRM_Team_Lead_ENRM_APU_B</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENRM_Team_Lead_ENRM_APU_C_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENRM Team Lead-ENRM/APU-C</label>
+        <queue>TOP_THOR_ENRM_Team_Lead_ENRM_APU_C</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENRM_Team_Lead_ENRM_APU_D_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENRM Team Lead-ENRM/APU-D</label>
+        <queue>TOP_THOR_ENRM_Team_Lead_ENRM_APU_D</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENRM_Team_Lead_ENRM_APU_E_F_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENRM Team Lead-ENRM/APU-E&amp;F</label>
+        <queue>TOP_THOR_ENRM_Team_Lead_ENRM_APU_E_F</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENRM_Team_Lead_ENRM_APU_F_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENRM Team Lead-ENRM/APU-F</label>
+        <queue>TOP_THOR_ENRM_Team_Lead_ENRM_APU_F</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENRM_Team_Lead_ENRM_Reliability_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENRM Team Lead-ENRM Reliability</label>
+        <queue>TOP_THOR_ENRM_Team_Lead_ENRM_Reliability</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENSA_ENRM_IP_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENSA ENRM IP Engineer</label>
+        <queue>TOP_THOR_ENSA_ENRM_IP_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENSA_Engineer_Group_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENSA Engineer Group</label>
+        <queue>TOP_THOR_ENSA_Engineer_Group</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENSA_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENSA Manager</label>
+        <queue>TOP_THOR_ENSA_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENSD_ENRM_IP_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENSD ENRM IP Engineer</label>
+        <queue>TOP_THOR_ENSD_ENRM_IP_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENSD_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENSD Manager</label>
+        <queue>TOP_THOR_ENSD_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENTS_ENRM_IP_Engineer_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENTS ENRM IP Engineer</label>
+        <queue>TOP_THOR_ENTS_ENRM_IP_Engineer</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TOP_THOR_ENTS_Manager_EQCC_Step</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TOP THOR ENTS Manager</label>
+        <queue>TOP_THOR_ENTS_Manager</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <label>Step Name</label>
+        <type>Text</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Relevant User (CC to)</value>
+    </caseValues>
+    <fields>
+        <label><!-- Action Number --></label>
+        <name>ActionNumber__c</name>
+        <relationshipLabel><!-- Relevant User (CC to) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Current User --></label>
+        <name>CurrentUser__c</name>
+    </fields>
+    <fields>
+        <label><!-- Relevant User --></label>
+        <name>RelevantUser__c</name>
+        <relationshipLabel><!-- Relevant User (CC to) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Tag No. --></label>
+        <name>TagNo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Task Objective --></label>
+        <name>TaskObjective__c</name>
+    </fields>
+    <fields>
+        <label><!-- Task Title --></label>
+        <name>TaskTitle__c</name>
+    </fields>
+    <fields>
+        <label><!-- Task Type --></label>
+        <name>TaskType__c</name>
+    </fields>
+    <fields>
+        <label><!-- Relevant User --></label>
+        <name>txtRelevantUser__c</name>
+    </fields>
+    <layouts>
+        <layout>ORTLRelevantUserLayout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Not allow to add relevant user as same as action owner. --></errorMessage>
+        <name>ORTLRelevantUserCheckName</name>
+    </validationRules>
+</CustomObjectTranslation>

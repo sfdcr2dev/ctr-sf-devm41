@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Sales Area</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account Assignment Group --></label>
+        <name>AccountAssignmentGroup__c</name>
+        <picklistValues>
+            <masterLabel>Affiliat Comp Revenu</masterLabel>
+            <translation><!-- Affiliat Comp Revenu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business Area Revenu</masterLabel>
+            <translation><!-- Business Area Revenu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Domestic Revenues</masterLabel>
+            <translation><!-- Domestic Revenues --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foreign Revenues</masterLabel>
+            <translation><!-- Foreign Revenues --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>AccountNumber__c</name>
+        <relationshipLabel><!-- Sales Area --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Application Code --></label>
+        <name>ApplicationCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Desc --></label>
+        <name>ApplicationDesc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Applications --></label>
+        <name>Applications__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Date --></label>
+        <name>BillingDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Number --></label>
+        <name>BillingNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Type --></label>
+        <name>BillingType__c</name>
+        <picklistValues>
+            <masterLabel>Commercial Serv. LAB</masterLabel>
+            <translation><!-- Commercial Serv. LAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commercial Serv. TLB</masterLabel>
+            <translation><!-- Commercial Serv. TLB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Crude Inv./Tax Inv.</masterLabel>
+            <translation><!-- Crude Inv./Tax Inv. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Crude Inv/TaxInv TLB</masterLabel>
+            <translation><!-- Crude Inv/TaxInv TLB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deposit Invoice</masterLabel>
+            <translation><!-- Deposit Invoice --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deposit Invoice TLB</masterLabel>
+            <translation><!-- Deposit Invoice TLB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Final Invoice</masterLabel>
+            <translation><!-- Final Invoice --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Final Invoice LAB</masterLabel>
+            <translation><!-- Final Invoice LAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Final Invoice TLB</masterLabel>
+            <translation><!-- Final Invoice TLB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invoice/Tax Inv. LAB</masterLabel>
+            <translation><!-- Invoice/Tax Inv. LAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invoice/Tax Inv. TLB</masterLabel>
+            <translation><!-- Invoice/Tax Inv. TLB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invoice/Tax Inv. TPX</masterLabel>
+            <translation><!-- Invoice/Tax Inv. TPX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invoice/Tax Invoice</masterLabel>
+            <translation><!-- Invoice/Tax Invoice --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Invoice</masterLabel>
+            <translation><!-- Other Invoice --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Invoice LAB</masterLabel>
+            <translation><!-- Other Invoice LAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Invoice TLB</masterLabel>
+            <translation><!-- Other Invoice TLB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Invoice TPX</masterLabel>
+            <translation><!-- Other Invoice TPX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TSV Tax Invoice</masterLabel>
+            <translation><!-- TSV Tax Invoice --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TX Domestic Invoice</masterLabel>
+            <translation><!-- TX Domestic Invoice --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TX Export Invoice</masterLabel>
+            <translation><!-- TX Export Invoice --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Block Status --></label>
+        <name>BlockStatus__c</name>
+        <picklistValues>
+            <masterLabel>All free of charge</masterLabel>
+            <translation><!-- All free of charge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer incompleted</masterLabel>
+            <translation><!-- Customer incompleted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overall block</masterLabel>
+            <translation><!-- Overall block --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Test block</masterLabel>
+            <translation><!-- Test block --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>test (e)</masterLabel>
+            <translation><!-- test (e) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- AccountNumber --></label>
+        <name>CompanyNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Control Area --></label>
+        <name>CreditControlArea__c</name>
+    </fields>
+    <fields>
+        <label><!-- Currency --></label>
+        <name>Currency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cust.pric.proc --></label>
+        <name>CustPriceProc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cust.Stat.Group --></label>
+        <name>CustStatGroup__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Group1 --></label>
+        <name>CustomerGroup1__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GR1=Customer Grp1</masterLabel>
+            <translation><!-- GR1=Customer Grp1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Y01=Excise 01-46</masterLabel>
+            <translation><!-- Y01=Excise 01-46 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z1=Uncontrolled excise</masterLabel>
+            <translation><!-- Z1=Uncontrolled excise --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Customer Group2 --></label>
+        <name>CustomerGroup2__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GR2=Customer Grp2</masterLabel>
+            <translation><!-- GR2=Customer Grp2 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Customer Group3 --></label>
+        <name>CustomerGroup3__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GR3	Customer Grp3</masterLabel>
+            <translation><!-- GR3	Customer Grp3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Customer Group4 --></label>
+        <name>CustomerGroup4__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GR4=Customer Grp4</masterLabel>
+            <translation><!-- GR4=Customer Grp4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Customer Group5 --></label>
+        <name>CustomerGroup5__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GR5=Customer Grp5</masterLabel>
+            <translation><!-- GR5=Customer Grp5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Customer Group --></label>
+        <name>CustomerGroup__c</name>
+        <picklistValues>
+            <masterLabel>01 High</masterLabel>
+            <translation><!-- 01 High --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>02 Normal Item</masterLabel>
+            <translation><!-- 02 Normal Item --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>03</masterLabel>
+            <translation><!-- 03 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>04</masterLabel>
+            <translation><!-- 04 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>05</masterLabel>
+            <translation><!-- 05 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>06 Other</masterLabel>
+            <translation><!-- 06 Other --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Customer Payment Guarantee Procedure --></label>
+        <name>CustomerPayment__c</name>
+        <picklistValues>
+            <masterLabel>(Don&apos;t Use) Letters of credit</masterLabel>
+            <translation><!-- (Don&apos;t Use) Letters of credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>(Don&apos;t Use) Payment cards</masterLabel>
+            <translation><!-- (Don&apos;t Use) Payment cards --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZA01- Low Risk (Open)</masterLabel>
+            <translation><!-- ZA01- Low Risk (Open) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZA02- Low Risk (Parent Guarantee)</masterLabel>
+            <translation><!-- ZA02- Low Risk (Parent Guarantee) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZB01-Medium Risk (Credit Limit)</masterLabel>
+            <translation><!-- ZB01-Medium Risk (Credit Limit) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZB02-Medium Risk (Credit Limit Group)</masterLabel>
+            <translation><!-- ZB02-Medium Risk (Credit Limit Group) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZC01-High Risk (Advance Payment)</masterLabel>
+            <translation><!-- ZC01-High Risk (Advance Payment) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZC02-High Risk (Collateral)</masterLabel>
+            <translation><!-- ZC02-High Risk (Collateral) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZC03-High Risk (Export Cash)</masterLabel>
+            <translation><!-- ZC03-High Risk (Export Cash) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZC04-High Risk (Export L/C)</masterLabel>
+            <translation><!-- ZC04-High Risk (Export L/C) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZC05-High Risk (Cash&amp;Credit)</masterLabel>
+            <translation><!-- ZC05-High Risk (Cash&amp;Credit) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZC06-High Risk (Credit Limit)</masterLabel>
+            <translation><!-- ZC06-High Risk (Credit Limit) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZC07-High Risk (Cash)</masterLabel>
+            <translation><!-- ZC07-High Risk (Cash) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZDUM</masterLabel>
+            <translation><!-- ZDUM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZI01-TOP Group</masterLabel>
+            <translation><!-- ZI01-TOP Group --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Customer Type Code --></label>
+        <name>CustomerTypeCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Type Desc --></label>
+        <name>CustomerTypeDesc__c</name>
+        <picklistValues>
+            <masterLabel>END CONSUMER</masterLabel>
+            <translation><!-- END CONSUMER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not assigned</masterLabel>
+            <translation><!-- Not assigned --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RETAIL</masterLabel>
+            <translation><!-- RETAIL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WHOLESALE</masterLabel>
+            <translation><!-- WHOLESALE --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Customer Type --></label>
+        <name>CustomerType__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery Plant --></label>
+        <name>DeliveryPlant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery Priority --></label>
+        <name>DeliveryPriority__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distribution Channel --></label>
+        <name>DistributionChannel__c</name>
+    </fields>
+    <fields>
+        <label><!-- Division --></label>
+        <name>Division__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exchange Rate Type --></label>
+        <name>ExchangeRateType__c</name>
+        <picklistValues>
+            <masterLabel>100* = Reference value = group value</masterLabel>
+            <translation><!-- 100* = Reference value = group value --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1001 = Current exchange rate</masterLabel>
+            <translation><!-- 1001 = Current exchange rate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1002 = Average exchange rate</masterLabel>
+            <translation><!-- 1002 = Average exchange rate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B</masterLabel>
+            <translation><!-- B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EURO = EMU reguration, fixed exchange rate</masterLabel>
+            <translation><!-- EURO = EMU reguration, fixed exchange rate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>G</masterLabel>
+            <translation><!-- G --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>M</masterLabel>
+            <translation><!-- M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z1 = Standard translation for Hard Curr. (VN)</masterLabel>
+            <translation><!-- Z1 = Standard translation for Hard Curr. (VN) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Incoterms 2 --></label>
+        <name>Incoterms2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incoterms --></label>
+        <name>Incoterms__c</name>
+    </fields>
+    <fields>
+        <label><!-- Industry Code --></label>
+        <name>IndustryCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Industry Desc --></label>
+        <name>IndustryDesc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Industry --></label>
+        <name>Industry__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inter Group --></label>
+        <name>InterGroup__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price determin --></label>
+        <name>IsPriceDetermin__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Latest Blocking Date --></label>
+        <name>LatestBlockingDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Latest Re-Evaluation Date --></label>
+        <name>LatestReEvaluationDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Max Partial Deliveries --></label>
+        <name>MaxPartialDeliveries__c</name>
+    </fields>
+    <fields>
+        <label><!-- Next Re-Evaluation Date --></label>
+        <name>NextReEvaluationDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Days --></label>
+        <name>NumDays__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order Combination --></label>
+        <name>OrderCombination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order Probability --></label>
+        <name>OrderProbability__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overdelivery Tolerance --></label>
+        <name>OverdeliveryTolerance__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO Date --></label>
+        <name>PODate__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO Number --></label>
+        <name>PONumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Partial Deliveries per item --></label>
+        <name>PartialDeliveriesperitem__c</name>
+    </fields>
+    <fields>
+        <label><!-- Partial Delivery/item --></label>
+        <name>PartialDeliveryitem__c</name>
+        <picklistValues>
+            <masterLabel>Create a delivery with qty greater than zero</masterLabel>
+            <translation><!-- Create a delivery with qty greater than zero --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Create only one delivery (also with quantity = 0)</masterLabel>
+            <translation><!-- Create only one delivery (also with quantity = 0) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No limit to subsequent deliveries</masterLabel>
+            <translation><!-- No limit to subsequent deliveries --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Only complete delivery allowed</masterLabel>
+            <translation><!-- Only complete delivery allowed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partial delivery allowed</masterLabel>
+            <translation><!-- Partial delivery allowed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Payment Guarantee Procedure --></label>
+        <name>PaymentGuaranteeProcedure__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price Group --></label>
+        <name>PriceGroup__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z1 = Major Oil</masterLabel>
+            <translation><!-- Z1 = Major Oil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z2 = 3rd Party</masterLabel>
+            <translation><!-- Z2 = 3rd Party --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z3 = Related</masterLabel>
+            <translation><!-- Z3 = Related --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z4</masterLabel>
+            <translation><!-- Z4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z5</masterLabel>
+            <translation><!-- Z5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Price list --></label>
+        <name>Pricelist__c</name>
+        <picklistValues>
+            <masterLabel>01 = Combine Invoice</masterLabel>
+            <translation><!-- 01 = Combine Invoice --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>02 = Split invoice</masterLabel>
+            <translation><!-- 02 = Split invoice --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Pricing Procedure --></label>
+        <name>PricingProcedure__c</name>
+        <picklistValues>
+            <masterLabel>1 = Standard</masterLabel>
+            <translation><!-- 1 = Standard --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 = Stand Incl Sales Tax</masterLabel>
+            <translation><!-- 2 = Stand Incl Sales Tax --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3 = Refund</masterLabel>
+            <translation><!-- 3 = Refund --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4 = Bunker</masterLabel>
+            <translation><!-- 4 = Bunker --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5 = GTM Standard</masterLabel>
+            <translation><!-- 5 = GTM Standard --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- RawDataBI --></label>
+        <name>RawDataBI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rebate --></label>
+        <name>Rebate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales District --></label>
+        <name>SalesDistrict__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Group --></label>
+        <name>SalesGroup__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Office --></label>
+        <name>SalesOffice__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>SalesOrganization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping Condition --></label>
+        <name>ShippingCondition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping Conditions --></label>
+        <name>ShippingConditions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- SubIndustry --></label>
+        <name>SubIndustryCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- SubIndustry Desc --></label>
+        <name>SubIndustryDesc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Industry --></label>
+        <name>SubIndustry__c</name>
+    </fields>
+    <fields>
+        <label><!-- TOP Customer Group --></label>
+        <name>TOPCustomerGroup__c</name>
+        <picklistValues>
+            <masterLabel>ALCAN GROUP</masterLabel>
+            <translation><!-- ALCAN GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BASF GROUP</masterLabel>
+            <translation><!-- BASF GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BRIDGESTONE GROUP</masterLabel>
+            <translation><!-- BRIDGESTONE GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAP</masterLabel>
+            <translation><!-- CAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHEVRON-EX</masterLabel>
+            <translation><!-- CHEVRON-EX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHEVRON-FZ</masterLabel>
+            <translation><!-- CHEVRON-FZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CUSTOMER</masterLabel>
+            <translation><!-- CUSTOMER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IRPC</masterLabel>
+            <translation><!-- IRPC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MING DHI GROUP</masterLabel>
+            <translation><!-- MING DHI GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NANPAO GROUP</masterLabel>
+            <translation><!-- NANPAO GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NIPPON GROUP</masterLabel>
+            <translation><!-- NIPPON GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PT-GROUP</masterLabel>
+            <translation><!-- PT-GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PTT GROUP</masterLabel>
+            <translation><!-- PTT GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PTTEP GROUP</masterLabel>
+            <translation><!-- PTTEP GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PTTGC GROUP</masterLabel>
+            <translation><!-- PTTGC GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PTTOR</masterLabel>
+            <translation><!-- PTTOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PTTOR-EX</masterLabel>
+            <translation><!-- PTTOR-EX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PTTOR-FZ</masterLabel>
+            <translation><!-- PTTOR-FZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAKC</masterLabel>
+            <translation><!-- SAKC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCG GROUP</masterLabel>
+            <translation><!-- SCG GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SHELL GROUP</masterLabel>
+            <translation><!-- SHELL GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SHELL-EX</masterLabel>
+            <translation><!-- SHELL-EX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SHELL-FZ</masterLabel>
+            <translation><!-- SHELL-FZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TOA GROUP</masterLabel>
+            <translation><!-- TOA GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TOP GROUP</masterLabel>
+            <translation><!-- TOP GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TS GROUP</masterLabel>
+            <translation><!-- TS GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UBONBIO</masterLabel>
+            <translation><!-- UBONBIO --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Term of Payment --></label>
+        <name>TermofPayment__c</name>
+        <relationshipLabel><!-- Sales Area --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Underdelivery Tolerance --></label>
+        <name>UnderdeliveryTolerance__c</name>
+    </fields>
+    <layouts>
+        <layout>TOP Sales Area Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Pricing Information --></label>
+            <section>Pricing Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TOP Solvent Sales Area Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Pricing Information --></label>
+            <section>Pricing Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

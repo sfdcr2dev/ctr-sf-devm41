@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>OPP IT Asset</value>
+    </caseValues>
+    <fields>
+        <label><!-- Asset Category --></label>
+        <name>Asset_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Status --></label>
+        <name>Asset_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Type --></label>
+        <name>Asset_Type__c</name>
+        <picklistValues>
+            <masterLabel>Adapter</masterLabel>
+            <translation><!-- Adapter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Camera</masterLabel>
+            <translation><!-- Camera --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Computer</masterLabel>
+            <translation><!-- Computer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Keyboard</masterLabel>
+            <translation><!-- Keyboard --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monitor</masterLabel>
+            <translation><!-- Monitor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Notebook</masterLabel>
+            <translation><!-- Notebook --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Printer</masterLabel>
+            <translation><!-- Printer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Server</masterLabel>
+            <translation><!-- Server --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Smart Keyboard</masterLabel>
+            <translation><!-- Smart Keyboard --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SmartPhone</masterLabel>
+            <translation><!-- SmartPhone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stylus Pen</masterLabel>
+            <translation><!-- Stylus Pen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tablet</masterLabel>
+            <translation><!-- Tablet --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsDelete (By PM Asset) --></label>
+        <name>IsDelete_By_PM_Asset__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsPoolUser --></label>
+        <name>IsPoolUser__c</name>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <name>User__c</name>
+        <relationshipLabel><!-- OPP IT Asset --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- WinNo (Reference key) --></label>
+        <name>WinNo_Reference_key__c</name>
+    </fields>
+    <layouts>
+        <layout>OPP IT Asset Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

@@ -1,0 +1,40 @@
+<aura:component controller="CTRCustomLookupController"
+    implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName" access="global">
+
+    <ltng:require styles="{! $Resource.select2 + '/select2-4.0.3/dist/css/select2.min.css'}" scripts="{!join(',',
+        $Resource.jQuery224 ,
+        $Resource.select2 + '/select2-4.0.3/dist/js/select2.js')
+      }" afterScriptsLoaded="{!c.scriptsLoaded}" />
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="multiPicklist" type="String[]" />
+    <aura:attribute name="disabled" type="Boolean" default="false" />
+    <aura:attribute name="fieldName" type="String" default="" />
+    <aura:attribute name="selectedValuesString" type="String" default="" />
+    <aura:attribute name="selectedValuesList" type="String[]" default="[]" />
+
+    <aura:handler name="change" value="{!v.disabled}" action="{!c.isDisable}" />
+    <aura:handler name="change" value="{!v.multiPicklist}" action="{!c.scriptsLoaded}" />
+    <aura:handler name="change" value="{!v.selectedValuesString}" action="{!c.getSelectedValue}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:html tag="style">
+        .select2-dropdown {
+        z-index: 10000 !important;
+        }
+        .select2-container {
+        width:100% !important;
+        }
+    </aura:html>
+    <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto"
+        padding="horizontal-medium">
+        <lightning:layout class="slds-form-element slds-form-element_horizontal slds-grid slds-wrap">
+
+            <select id="" class="select2Class" multiple="multiple">
+                <aura:iteration items="{!v.multiPicklist}" var="opts">
+                    <option value="{!opts.value}">{!opts.label}</option>
+                </aura:iteration>
+            </select>
+        </lightning:layout>
+    </lightning:layoutItem>
+
+</aura:component>

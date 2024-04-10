@@ -1,0 +1,193 @@
+<aura:component
+    implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+    access="global" controller="OPP_MyProfileController">
+
+    <aura:attribute name="operation" type="Boolean" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.reInit}" />
+
+    <aura:html tag="style">
+        @font-face {
+            font-family: 'FC Iconic';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('FC Iconic'), local('FC Iconic-Regular'), url({!$Resource.OPPNews + '/assets/font/FC_Iconic_Regular.otf'}) format('opentype');;
+        }
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('Poppins'), local('Poppins-Regular'), url({!$Resource.OPPNews + '/assets/font/Poppins-Regular.otf'}) format('opentype');;
+        }
+    </aura:html>
+	<c:OPP_Counter page="Home" />
+    <c:OPP_AribaNotification />
+    <!--<c:OPP_UpdateCoin />-->
+    
+    <!-- <aura:if isTrue="{!$Browser.isIPad}">
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 ">
+                <div class="top-page">
+                    <c:OPP_Header />
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_2-of-12">
+                <div class="top-page">
+                    <c:OPP_MyTask />
+                </div>
+                <div class="top-page">
+                    <c:OPP_PinnedApp />
+                </div>
+                <div>
+                    <c:OPP_Calendar />
+                </div>
+            </div>
+            
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_7-of-12">
+                <div class="top-page">
+                    <c:OPP_Tabset operation="{!v.operation}" />
+                </div>
+                
+                <div class="top-page">
+                    <c:OPP_Feed />
+                </div>
+                <button onclick="{!c.top}" id="myBtn"><lightning:icon iconName="utility:chevronup" alternativeText="Top" title="Top" size="medium" /></button>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_3-of-12">
+                <aura:if isTrue="{!v.operation}">
+                    <div class="top-page">
+                        <c:OPP_OperationUpdate size="3"/>
+                    </div>
+                </aura:if>
+                <div class="top-page">
+                    <c:OPP_NewsFeed size="3" showAll="false"/>
+                </div>                      
+                <aura:set attribute="else">
+                    <c:OPP_NewsFeed size="6" showAll="true"/>
+                </aura:set>
+               
+            </div>
+        </div>
+        
+    </aura:if> -->
+    <aura:if isTrue="{!$Browser.formFactor == 'DESKTOP'}">
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_2-of-12">
+                <div class="top-page">
+                    <c:OPP_MyTask />
+                </div>
+                <div class="top-page">
+                    <c:OPP_PinnedApp />
+                </div>
+                <div>
+                    <c:OPP_Calendar />
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_7-of-12">
+                <div class="top-page">
+                    <c:OPP_Header />
+                </div>
+                <div class="top-page">
+                    <c:OPP_Tabset operation="{!v.operation}" />
+                </div>
+                <div class="top-page">
+                    <c:OPP_Feed />
+                </div>
+                <button onclick="{!c.top}" id="myBtn"><lightning:icon iconName="utility:chevronup" alternativeText="Top" title="Top" size="medium" /></button>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_3-of-12">
+                <aura:if isTrue="{!v.operation}">
+                    <div class="top-page">
+                        <c:OPP_OperationUpdate size="3"/>
+                    </div>
+                    <div class="top-page">
+                        <c:OPP_NewsFeed size="3" showAll="false"/>
+                    </div>                      
+                    <aura:set attribute="else">
+                        <c:OPP_NewsFeed size="6" showAll="true"/>
+                    </aura:set>
+                </aura:if>
+                <!-- <div class="top-page">
+                    <c:OPP_OperationUpdate />
+                </div>
+                <div class="top-page">
+                    <c:OPP_NewsFeed />
+                </div> -->
+            </div>
+        </div>
+        
+    </aura:if>
+    <aura:if isTrue="{!$Browser.isIPhone || $Browser.isAndroid}">
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-col slds-size_1-of-1">
+                <div class="top-page">
+                    <c:OPP_Header />
+                </div>
+                <div class="top-page">
+                    <c:OPP_MyTask />
+                </div>
+                <div class="top-page">
+                    <c:OPP_PinnedApp />
+                </div>
+                <div class="top-page">
+                    <c:OPP_Tabset operation="{!v.operation}" />
+                </div>
+                <div class="top-page">
+                    <c:OPP_Calendar />
+                </div>
+                <aura:if isTrue="{!v.operation}">
+                    <div class="top-page">
+                        <c:OPP_OperationUpdate size="3"/>
+                    </div>
+                    <div class="top-page">
+                        <c:OPP_NewsFeed size="3" showAll="false"/>
+                    </div>                      
+                    <aura:set attribute="else">
+                        <c:OPP_NewsFeed size="6" showAll="true"/>
+                    </aura:set>
+                </aura:if>
+                <div class="top-page">
+                    <c:OPP_Feed />
+                </div>
+            </div>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!$Browser.isIPad }">
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-col slds-size_1-of-1">
+                <div class="top-page">
+                    <c:OPP_Header />
+                </div>
+                <div class="top-page">
+                    <c:OPP_MyTask />
+                </div>
+                <div class="top-page">
+                    <c:OPP_PinnedApp />
+                </div>
+                <div class="top-page">
+                    <c:OPP_Tabset operation="{!v.operation}" />
+                </div>
+                <div class="top-page">
+                    <c:OPP_Calendar />
+                </div>
+                <aura:if isTrue="{!v.operation}">
+                    <div class="top-page">
+                        <c:OPP_OperationUpdate size="3"/>
+                    </div>
+                    <div class="top-page">
+                        <c:OPP_NewsFeed size="3" showAll="false"/>
+                    </div>                      
+                    <aura:set attribute="else">
+                        <c:OPP_NewsFeed size="6" showAll="true"/>
+                    </aura:set>
+                </aura:if>
+                <div class="top-page">
+                    <c:OPP_Feed />
+                </div>
+            </div>
+        </div>
+    </aura:if>
+    
+</aura:component>

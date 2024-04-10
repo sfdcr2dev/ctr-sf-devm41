@@ -1,0 +1,93 @@
+<aura:component implements="lightning:isUrlAddressable" controller="THOR_NotificationsListRelatedController">
+	<!-- Attributes -->
+	<aura:attribute name="notificationId" type="String" />
+	<aura:attribute name="itemsRelated" type="List" default="[]" />
+	<aura:attribute name="finishedLoading" type="Boolean" default="false" />
+
+	<aura:attribute name="notificationObj" type="Map" />
+	<aura:attribute name="hasEditAccess" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+	<aura:attribute name="interval" type="Integer" access="private" />
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.handleRefresh}" />
+	<aura:handler name="refreshFileList" event="c:THOR_Event_notificationAttachmentUploadFinished" action="{!c.handleRefresh}" />
+
+	<lightning:navigation aura:id="navLink" />
+
+	<!-- Handlers -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<!-- Quick Actions -->
+	<aura:if isTrue="{!v.notificationId}">
+		<lightning:layout>
+			<lightning:layoutItem>
+				<lightning:buttonIcon
+					class="slds-p-horizontal_large"
+					size="large"
+					variant="border-filled"
+					iconName="utility:chevronleft"
+					onclick="{!c.redirectBack}"
+				/>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem alignmentBump="left" class="slds-grid slds-grid_vertical-align-center">
+				<!-- <aura:if isTrue="{!v.body}">
+					<aura:iteration items="{!v.body}" var="cmp">
+						<div class="slds-col slds-grow-none slds-m-horizontal_xx-small">{!cmp}</div>
+					</aura:iteration>
+				</aura:if> -->
+
+				<lightning:button
+					name="insertItem"
+					label="Insert Item"
+					onclick="{!c.insertNewItem}"
+					disabled="{! not(v.hasEditAccess) || v.notificationObj.Notification_Status__c == 'Closed'  }"
+					class="Test"
+				/>
+			</lightning:layoutItem>
+		</lightning:layout>
+	</aura:if>
+
+	<!-- BODY -->
+	<div class="slds-box slds-theme_default slds-is-relative">
+		<aura:if isTrue="{! and(v.isLoading, not(v.finishedLoading)) }">
+			<lightning:spinner alternativeText="Loading" size="medium" />
+		</aura:if>
+		<aura:if isTrue="{!not(empty(v.itemsRelated))}">
+			<p class="labelSequence">Object Part Code group, Object Part Code text, Items Create on</p>
+
+			<lightning:layout multipleRows="true">
+				<aura:iteration items="{! v.itemsRelated }" var="item">
+					<lightning:layoutItem size="12">
+						<div class="slds-box slds-box_xx-small" id="{!item.recordId}" onclick="{!c.navigateToItemDetail}">
+							<lightning:layout verticalAlign="center">
+								<lightning:layoutItem flexibility="auto" padding="horizontal-small" class="slds-grid slds-grid_vertical-align-center">
+									<div class="slds-col slds-grow-none slds-p-right_x-small">
+										<lightning:helptext
+											class="{! item.Integration_Status__c == 'Success' ? 'icon-color_default' : ''}"
+											iconVariant="{! item.Integration_Status__c == 'In Progress' ? 'warning' : (empty(item.Integration_Status__c) ? '' : 'error') }"
+											content="{! 'Integration Status: ' + (item.Integration_Status__c == 'In Progress' ? 'In Progress' : (empty(item.Integration_Status__c) ? 'Draft' : 'Failed')) }"
+											iconName="utility:record"
+										/>
+									</div>
+									<div class="slds-col slds-grow-none">
+										{!item.Object_Part_Code_Group_Text__c} . {!item.Object_Part_Code_Text__c} . {!item.CreatedDate} .
+										<lightning:formattedDateTime value="{!item.document.ContentDocument.CreatedDate}" year="numeric" month="numeric" day="numeric" />
+									</div>
+									<aura:if isTrue="{! item.isLoading }">
+										<div class="slds-col slds-grow-none slds-m-left_large slds-is-relative" style="display: inline-block">
+											<lightning:spinner alternativeText="Loading" size="small" />
+										</div>
+									</aura:if>
+								</lightning:layoutItem>
+							</lightning:layout>
+						</div>
+					</lightning:layoutItem>
+				</aura:iteration>
+			</lightning:layout>
+			<aura:set attribute="else">
+				<p>There are no related Items</p>
+			</aura:set>
+		</aura:if>
+	</div>
+	<!-- /BODY -->
+</aura:component>

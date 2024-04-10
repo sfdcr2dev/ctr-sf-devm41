@@ -1,0 +1,718 @@
+<aura:component controller="CTRApprovalDetailController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    
+    <!-- variable -->
+    <aura:attribute name="TemplateLink" type="String" />
+    <aura:attribute name="SharePointLink" type="String" />
+    <!--aura:attribute name="TypeOfBusiness" type="String" /-->
+    <aura:attribute name="CompanyName" type="String" />
+    <aura:attribute name="BUInfo" type="CTRBuProfile__mdt" />
+    <aura:attribute name="RecordTypeName" type="String" />
+    <aura:attribute name="CreditOwnerId" type="Id"/>
+    <aura:attribute name="LogInUserId" type="String"/>
+    <aura:attribute name="EmailStr" type="String" />
+    <aura:attribute name="ContactStr" type="String" />
+    <aura:attribute name="TelephoneStr" type="String" />
+    <aura:attribute name="ButtonLabel" type="String" />
+    
+    <!-- Disable -->
+    <aura:attribute name="IsPageDisable" type="Boolean" default="true"/>
+    <aura:attribute name="IsButtonDisable" type="Boolean" default="true"/>
+    <aura:attribute name="showLoading" type="Boolean" default="false" />
+    <aura:attribute name="IsAmountDisable" type="Boolean" default="true"/>
+    <aura:attribute name="IsSubTypeConditionDisable" type="Boolean" default="true"/>
+    <aura:attribute name="IsSubTypeCondition2Disable" type="Boolean" default="true"/>
+    <aura:attribute name="IsCreditLimitDisable" type="Boolean" default="true"/>
+    <aura:attribute name="IsTradeCreditInsuranceDisable" type="Boolean" default="true"/>
+    <aura:attribute name="IsChangeCreditCreditConditionDisable" type="Boolean" default="true"/>
+    <aura:attribute name="IsInternalCreditRatingDisable" type="Boolean" default="true"/>
+    <aura:attribute name="IsEffectiveDateDisable" type="Boolean" default="true"/>
+    <aura:attribute name="IsDescriptionDisable" type="Boolean" default="false"/>
+    <aura:attribute name="CurrentStepUserId" type="String"/>
+    <!--TX-->
+    <aura:attribute name="Ispass_CashOnDelivery" type="Boolean" default="true"/>
+    <aura:attribute name="Ispass_Excelsummary" type="Boolean" default="true"/>
+    <aura:attribute name="HavingCollateralIsDisable" type="Boolean" default="true"/>       <!--radio2IsDisable-->
+    <aura:attribute name="BuyTradeEndorsementIsDisable" type="Boolean" default="true"/>    <!--radio3IsDisable-->
+    <aura:attribute name="BuyTradeDCLConditionIsDisable" type="Boolean" default="true"/>   <!--radio4IsDisable-->
+    <aura:attribute name="HavingOpenedCreditIsDisable" type="Boolean" default="true"/>     <!--radio5IsDisable-->
+    <aura:attribute name="AmountBankGuaranteeIsDisable" type="Boolean" default="true"/>    <!--Yes2IsDisable-->
+    <aura:attribute name="AmountBuyTradeIsDisable" type="Boolean" default="true"/>         <!--Yes3IsDisable-->
+    <aura:attribute name="AmountDCLConditionIsDisable" type="Boolean" default="true"/>     <!--Yes4IsDisable-->
+    <aura:attribute name="AmountOpenedCreditIsDisable" type="Boolean" default="true"/>     <!--Yes5IsDisable-->
+    <aura:attribute name="isAmount2Required" type="Boolean" default="false"/> 
+    <aura:attribute name="isAmount3Required" type="Boolean" default="false"/> 
+    <aura:attribute name="isAmount4Required" type="Boolean" default="false"/> 
+    <aura:attribute name="isAmount5Required" type="Boolean" default="false"/>
+    <aura:attribute name="CurrencyDisable" type="Boolean" default="true"/>
+    <aura:attribute name="IsDisable" type="Boolean" default="true"/>
+    <aura:attribute name="IsShowRequiredMsg" type="Boolean" default="false" />
+    
+    <!-- Existing Credit Condtion -->
+    <aura:attribute name="CreditCondition" type="String" default=""/>
+    <aura:attribute name="CreditLimit" type="String" default=""/>
+    <aura:attribute name="InternalCreditRating" type="String" default=""/>
+    <aura:attribute name="PaymentCondition" type="String" default=""/>
+    <aura:attribute name="BankGuarantee" type="String" default=""/>
+    
+        <aura:If isTrue="{!v.CurrentStepUserId == v.LogInUserId}">
+            <div class="slds-float_right">
+                <lightning:button variant="brand-outline" label="Change Credit Condition" title="Change Credit Condition" onclick="{!c.handleEditClick }" />
+            </div><br/> <br/> 
+        </aura:If>
+                    <lightning:button variant="brand-outline" label="Change Credit Condition" title="Change Credit Condition" onclick="{!c.handleEditClick }" />
+
+    <lightning:recordEditForm aura:id="recordEditForm" objectApiName="CTRRequestFormItem__c" recordId="{!v.recordId}" onsubmit="{!c.handleSubmit}" onsuccess="{!c.handleSuccess}" >
+        <aura:if isTrue="{!v.showLoading}">
+            <lightning:spinner alternativeText="Loading" size="medium" />
+        </aura:if>
+        
+        <div class="slds-section slds-is-open animate" aura:id="CounterpartySection">
+            <!--section header-->
+            <h3 class="slds-section__title">
+                <button aria-controls="CounterpartyItemList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="CounterpartySection">
+                    <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                    <span class="slds-truncate" title="Counterparty Information">Counterparty Information</span>
+                </button>
+            </h3>
+            <!--section body-->
+            <div class="slds-section__content" id="CounterpartyItemList">
+                <lightning:layoutItem padding="around-small">
+                            <div class="slds-grid slds-wrap flexibility:auto">
+                                <div class="slds-size_1-of-7">
+                                	<p>Company Name:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    <lightning:outputField aura:id="CompanyName"  fieldName="Customer__c" 
+                                                           readonly="True" variant="label-hidden"/> <br/>
+                                </div>
+                                <div class="slds-size_1-of-7" />
+                                <div class="slds-size_1-of-7">
+                                	<p>Contact Person:</p>
+                                </div>
+                                <div class="slds-size_2-of-7">
+                                    {!v.ContactStr}
+                                    <br/>
+                                </div>
+                             </div>
+                            <div class="slds-grid slds-wrap flexibility:auto">
+                                        <div class="slds-size_1-of-7">
+                                            <p>Email:</p>
+                                            <br/>
+                                        </div>
+                                        <div class="slds-size_2-of-7">
+                                            {!v.EmailStr}
+                                            <br/>
+                                        </div>
+                                        <div class="slds-size_1-of-7" />
+                                        <div class="slds-size_1-of-7">
+                                            <p>Telephone:</p>
+                                        </div>
+                                        <div class="slds-size_2-of-7">
+                                            {!v.TelephoneStr}
+                                            <br/>
+                                        </div>
+                             </div>
+                    		 <div class="slds-grid slds-wrap flexibility:auto">
+                                        <div class="slds-size_2-of-7">
+                                            <p>Interested Product Type {!v.RecordTypeName}:</p>
+                                        </div>
+                                        <div class="slds-size_2-of-7">
+                                            <aura:renderIf isTrue="{!v.RecordTypeName == 'Customer'}">
+                                                <aura:renderIf isTrue="{!OR(v.BUInfo.BusinessUnit__c == 'TOP',v.BUInfo.BusinessUnit__c == 'LABIX')}">
+                                                    <lightning:outputField aura:id="Interested"  variant="label-hidden"
+                                                                              fieldName="InterestedProductTypeAsCustomerTOP__c" 
+                                                                              readonly="True"/>
+                                                </aura:renderIf>
+                                                <aura:renderIf isTrue="{!v.BUInfo.BusinessUnit__c == 'TX'}">
+                                                        <lightning:outputField aura:id="Interested"  variant="label-hidden"
+                                                                              fieldName="InterestedProductTypeAsCustomerTX__c" 
+                                                                              readonly="True"/>
+                                                </aura:renderIf>
+                                            </aura:renderIf>
+                                            <aura:renderIf isTrue="{!v.RecordTypeName == 'Supplier'}">
+                                                <aura:renderIf isTrue="{!OR(v.BUInfo.BusinessUnit__c == 'TOP',v.BUInfo.BusinessUnit__c == 'LABIX')}">
+                                                    
+                                                        <lightning:outputField aura:id="Interested" variant="label-hidden"
+                                                                              fieldName="InterestedProductTypeAsSupplierTOP__c" 
+                                                                              readonly="True"/>
+                                                </aura:renderIf>
+                                                <aura:renderIf isTrue="{!v.BUInfo.BusinessUnit__c == 'TX'}">
+                                                        <lightning:outputField aura:id="Interested" variant="label-hidden"
+                                                                              fieldName="InterestedProductTypeAsSupplierTX__c" 
+                                                                              readonly="True"/>
+                                                </aura:renderIf>
+                                            </aura:renderIf>
+                                             <br/>
+                                        </div>
+                             </div>
+                        </lightning:layoutItem>
+            </div>
+        </div>
+        
+        <div class="slds-section slds-is-open animate" aura:id="ExistingCreditConSection">
+                    <!--section header BUInfo.VPSectionName__c-->
+                    <h3 class="slds-section__title">
+                        <button aria-controls="ExistingCreditConItemList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="ExistingCreditConSection">
+                            <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                            <span class="slds-truncate" title="ExistingCreditCon">Existing Credit Condition</span> 
+                        </button>
+                    </h3>
+                    
+                    <!--section body-->
+                    <div class="slds-section__content" id="ExistingCreditConItemList">
+                        <lightning:layoutItem padding="around-small">
+                            <div>
+                                <br/>
+                                <div class="slds-grid slds-wrap">
+                                	<div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                    	<p>Credit Condition: </p>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                        {!v.CreditCondition}
+                                    </div>
+                                </div><br/>
+                                
+                                <div class="slds-grid slds-wrap">
+                                	<div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                    	<p>Credit Limit: </p>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                    	{!v.CreditLimit}
+                                    </div>
+                                </div><br/>
+                                
+                                <aura:renderIf isTrue="{!v.BUInfo.BusinessUnit__c == 'TX'}">
+                                    <div class="slds-grid slds-wrap">
+                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                            <p>Bank Guarantee: </p>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                            {!v.BankGuarantee}
+                                        </div>
+                                    </div><br/>
+                                </aura:renderIf>
+                                
+                                <div class="slds-grid slds-wrap">
+                                	<div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                     	<p>Internal Credit Rating: <span class="slds-p-left_medium"></span></p>
+                                     </div>
+                                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                    	{!v.InternalCreditRating}
+                                     </div>
+                                </div><br/>      
+                                <!--div class="slds-grid slds-wrap">
+                                	<div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                    	<p>Payment Term: </p>
+                                	</div>
+                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                    	<lightning:outputField aura:id="PaymentTerm" 
+                                                              fieldName="PaymentTerm__c" 
+                                                              variant="label-hidden"
+                                                              readonly="True"/>
+                                    </div>
+                                </div><br/-->
+                                <div class="slds-grid slds-wrap">
+                                	<div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                    	<p>Payment Condition: </p>
+                                    </div>
+                                   	<div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                     	{!v.PaymentCondition}
+                                    </div>
+                            	</div><br/>
+                                            
+                            </div>
+                        </lightning:layoutItem>
+           	 		</div>
+        </div>
+        
+        <div class="slds-section slds-is-open animate" aura:id="ChangeCreditConSection">
+                    <!--section header BUInfo.VPSectionName__c-->
+                    <h3 class="slds-section__title">
+                        <button aria-controls="ChangeCreditConItemList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="ChangeCreditConSection">
+                            <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                            <span class="slds-truncate" title="ChangeCreditCon">Change Credit Condition</span> 
+                        </button>
+                    </h3>
+                    
+                    <!--section body-->
+                    <div class="slds-section__content" id="ChangeCreditConItemList">
+                        <!--TX-->
+                         <lightning:layoutItem padding="around-small">
+                            <div class="slds-grid slds-wrap flexibility:auto">
+                                <br/>
+                                <aura:renderIf isTrue="{!v.BUInfo.BusinessUnit__c == 'TX'}">
+                                        <!--Row1-->
+                                        <div class="slds-size_2-of-7">
+                                            <p>
+                                                <span style="color:red; font-style: italic;" >* </span>
+                                                Cash on Delivery or Payment in Advance:
+                                            </p>
+                                            <aura:renderIf isTrue="{!!v.Ispass_CashOnDelivery}">
+                                                <p style="color:red; font-style: italic;" >* Please complete this field.</p>
+                                            </aura:renderIf>
+                                        </div>
+                                        <div class="slds-size_2-of-7" style="padding-left: 10%">
+                                            <lightning:inputField aura:id="CashOnDelivery" fieldName="CashOnDelivery__c" id="CashOnDelivery"
+                                                              variant="label-hidden" disabled="{!v.IsPageDisable}" required="true"
+                                                              onchange="{!c.handleCashOnDelivery}" />
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-7"></div>
+                                        <div class="slds-form_horizontal slds-col slds-size_2-of-7" ></div>
+                                        
+                                        <!--Space-->
+                                        <div class="slds-size_2-of-7"> </div>
+                                        <div class="slds-size_4-of-7" style="padding-left: 10%"></div>
+                                        <div class="slds-col slds-size_1-of-7"></div>
+    
+                                        
+                                        <!--Row2-->
+                                        <br/><br/>
+                                        <div class="slds-col  slds-size_2-of-7 ">
+                                            <p>
+                                                <span style="color:red; font-style: italic;" >* </span>
+                                                Having collateral (Bank Guarantee)?
+                                            </p>    
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-7" style="padding-left: 10%">
+                                            <lightning:inputField aura:id="HavingCollateral" fieldName="HavingCollateral__c" id="HavingCollateral"
+                                                              variant="label-hidden" disabled="{!v.HavingCollateralIsDisable}"
+                                                              onchange="{!c.handleRenderPicklist}" required="{!v.IsRequired}"/>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-7">
+                                            <p style="text-align: right;">
+                                                <aura:renderIf isTrue="{!v.isAmount2Required}">
+                                                    <span style="color:red; font-style: italic;" >* </span>
+                                                </aura:renderIf>
+                                                Amount:<span class="slds-p-left_medium"></span></p>
+                                        </div>
+                                        <div class="slds-form_horizontal slds-col slds-size_2-of-7 " >
+                                            <lightning:inputField aura:id="Amount2" 
+                                                                  fieldName="AmountBankGuarantee__c" 
+                                                                  id="Amount2"
+                                                                  variant="label-hidden"
+                                                                  disabled="{!v.AmountBankGuaranteeIsDisable}"
+                                                                  onchange="{!c.calTotalAmont}"/>
+                                        </div>
+                                        
+                                        <aura:renderIf isTrue="{!v.RecordTypeName == 'Supplier'}">
+                                            <br/><br/>
+                                            <div class="slds-col  slds-size_2-of-7 ">
+                                                <p>
+                                                        <span style="color:red; font-style: italic;" >* </span>
+                                                        Having Credit Term or Letter of Credit?
+                                                </p>    
+                                            </div>
+                                            <div class="slds-col slds-size_2-of-7" style="padding-left: 10%">
+                                                <lightning:inputField aura:id="HavingCreditTermorLetter" fieldName="HavingCreditTermOrLetter__c" id="HavingCreditTermorLetter"
+                                                              variant="label-hidden" disabled="{!v.radioCreditTermIsDisable}" required="{!v.IsRequired}"
+                                                              onchange="{!c.handleRenderPicklist}" />
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-7">
+                                                    <p style="text-align: right;">
+                                                        <aura:renderIf isTrue="{!v.isAmountCreditTermRequired}">
+                                                            <span style="color:red; font-style: italic;" >* </span>
+                                                        </aura:renderIf>
+                                                        Amount:<span class="slds-p-left_medium"></span>
+                                                    </p>
+                                            </div>
+                                            <div class="slds-form_horizontal slds-col slds-size_2-of-7" >
+                                                    <lightning:inputField aura:id="AmountCreditTerm" 
+                                                                          fieldName="AmountCreditTerm__c" 
+                                                                          id="AmountCreditTerm"
+                                                                          variant="label-hidden"
+                                                                          disabled="{!v.YesCreditTermIsDisable}"
+                                                                          onchange="{!c.calTotalAmont}"
+                                                                          required="{!v.isAmountCreditTermRequired}"/>
+                                            </div>
+                                        </aura:renderIf>
+                                        
+                                        <aura:renderIf isTrue="{!v.RecordTypeName == 'Customer'}">
+                                        <!--Row3-->
+                                        <br/><br/>
+                                        <div class="slds-col  slds-size_2-of-7 ">
+                                            <p>
+                                                <span style="color:red; font-style: italic;" >* </span>
+                                                Buy Trader Credit Insurance - Endorsement?
+                                            </p>    
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-7" style="padding-left: 10%">
+                                            <lightning:inputField aura:id="BuyTradeEndorsement" fieldName="BuyTradeEndorsement__c" id="BuyTradeEndorsement"
+                                                              variant="label-hidden" disabled="{!v.BuyTradeEndorsementIsDisable}" required="{!v.IsRequired}"
+                                                              onchange="{!c.handleRenderPicklist}"/>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-7">
+                                            <p style="text-align: right;">
+                                                <aura:renderIf isTrue="{!v.isAmount3Required}">
+                                                            <span style="color:red; font-style: italic;" >* </span>
+                                                </aura:renderIf>
+                                                Amount:<span class="slds-p-left_medium"></span>
+                                            </p>
+                                        </div>
+                                        <div class="slds-form_horizontal slds-col slds-size_2-of-7" >
+                                            <lightning:inputField aura:id="Amount3" 
+                                                                  fieldName="AmountBuyTrade__c" 
+                                                                  id="Amount3"
+                                                                  variant="label-hidden"
+                                                                  disabled="{!v.AmountBuyTradeIsDisable}"
+                                                                  onchange="{!c.calTotalAmont}"
+                                                                  required="{!v.isAmount3Required}"/>
+                                        </div>
+                                        
+                                        <!--Row4-->
+                                        <br/><br/>
+                                        <div class="slds-col  slds-size_2-of-7 ">
+                                            <p>
+                                                <span style="color:red; font-style: italic;" >* </span>
+                                                Buy Trader Credit Insurance - DCL Condition?
+                                            </p>     
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-7" style="padding-left: 10%">
+                                            <lightning:inputField aura:id="BuyTradeDCLCondition" fieldName="BuyTradeDCLCondition__c" id="BuyTradeDCLCondition"
+                                                              variant="label-hidden" disabled="{!v.BuyTradeDCLConditionIsDisable}" required="{!v.IsRequired}"
+                                                              onchange="{!c.handleRenderPicklist}"/>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-7">
+                                            <p style="text-align: right;">
+                                                <aura:renderIf isTrue="{!v.isAmount4Required}">
+                                                            <span style="color:red; font-style: italic;" >* </span>
+                                                </aura:renderIf>
+                                                Amount:<span class="slds-p-left_medium"></span>
+                                            </p>
+                                        </div>
+                                        <div class="slds-form_horizontal slds-col slds-size_2-of-7" >
+                                            <lightning:inputField aura:id="Amount4" 
+                                                                  fieldName="AmountDCLCondition__c" 
+                                                                  id="Amount4"
+                                                                  variant="label-hidden"
+                                                                  disabled="{!v.AmountDCLConditionIsDisable}"
+                                                                  onchange="{!c.calTotalAmont}"
+                                                                  required="{!v.isAmount4Required}"/>
+                                        </div>
+                                        
+                                        <!--Row5-->
+                                        <br/><br/>
+                                        <div class="slds-col  slds-size_2-of-7 ">
+                                            <p>
+                                                <span style="color:red; font-style: italic;" >* </span>
+                                                Having Open Credit?
+                                            </p>
+                                            <aura:renderIf isTrue="{!!v.Ispass_Excelsummary}">
+                                                <p style="color:red; font-style: italic;" >* Please complete at least one field.</p>
+                                            </aura:renderIf>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-7" style="padding-left: 10%">
+                                            <lightning:inputField aura:id="HavingOpenedCredit" fieldName="HavingOpenedCredit__c" id="HavingOpenedCredit"
+                                                              variant="label-hidden" disabled="{!v.HavingOpenedCreditIsDisable}" required="{!v.IsRequired}"
+                                                              onchange="{!c.handleRenderPicklist}"/>
+                                            
+                                            <fieldset id="fieldset5" class="slds-form-element">  </fieldset>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-7">
+                                            <p style="text-align: right;">
+                                                <aura:renderIf isTrue="{!v.isAmount5Required}">
+                                                            <span style="color:red; font-style: italic;" >* </span>
+                                                </aura:renderIf>
+                                                Amount:<span class="slds-p-left_medium"></span></p>
+                                        </div>
+                                        <div class="slds-form_horizontal slds-col slds-size_2-of-7" >
+                                            <lightning:inputField aura:id="Amount5" 
+                                                                  fieldName="AmountOpenedCredit__c" 
+                                                                  id="Amount5"
+                                                                  variant="label-hidden"
+                                                                  disabled="{!v.AmountOpenedCreditIsDisable}"
+                                                                  onchange="{!c.calTotalAmont}"
+                                                                  required="{!v.isAmount5Required}"/>
+                                        </div>
+                                     </aura:renderIf>   
+                                        
+                                        <!--Required message-->
+                                        <aura:renderIf isTrue="{!v.IsShowRequiredMsg}">
+                                            <br/>
+                                            <div class="slds-col  slds-size_2-of-7 ">
+                                                <p>
+                                                    <span style="color:red; font-style: italic;" >Please select ‘Yes’ at least one.</span>
+                                                </p>
+                                            </div>
+                                            <div class="slds-col slds-size_2-of-7" style="padding-left: 10%"></div>
+                                            <div class="slds-col slds-size_1-of-7"></div>
+                                            <div class="slds-form_horizontal slds-col slds-size_2-of-7" ></div>
+                                        </aura:renderIf>
+                                        
+                                        
+                                        <!--Row5.2-->
+                                        <br/><br/>
+                                        <div class="slds-col slds-size_4-of-7"></div>
+                                        <div class="slds-col slds-size_1-of-7">
+                                            <p style="text-align: right;"> Currency:<span class="slds-p-left_medium"></span></p>
+                                        </div>
+                                        <div class="slds-form_horizontal slds-col slds-size_2-of-7" >
+                                            <lightning:inputField aura:id="Total_Secured_Currency__c" 
+                                                                  fieldName="TotalSecuredCurrency__c" 
+                                                                  variant="label-hidden"
+                                                                  disabled="{!v.CurrencyDisable}"/>
+                                        </div>
+                                        
+                                        <!--Row6-->
+                                        <br/><br/>
+                                        <div class="slds-col slds-size_4-of-7"></div>
+                                        <div class="slds-col slds-size_1-of-7">
+                                            <p style="text-align: right;"> Total Secured Amount:<span class="slds-p-left_medium"></span></p>
+                                        </div>
+                                        <div class="slds-form_horizontal slds-col slds-size_2-of-7" >
+                                            <lightning:input type="text" id="Amount6" aura:id="Amount6" value="{!v.TotalAmount}" disabled="{!v.IsDisable}" ></lightning:input>
+                                        </div>
+                                        
+                                        <!--Row7-->
+                                        <br/><br/><br/>
+                                        <p  style="color:gray; font-style: italic;" >Remark: These are required information</p>
+                                        <br/>
+                                        <div class="slds-col slds-size_3-of-3">
+                                            <div style="color:gray;">_______________________________________________________________________________________________________________________________</div>
+                                        </div>
+                                        <br/><br/>
+                                    </aura:renderIf>
+                             </div>
+                        </lightning:layoutItem>
+                        
+                        
+                        
+                        
+                        <lightning:layoutItem padding="around-small">
+                            <div class="slds-grid slds-wrap flexibility:auto">
+                                <br/>
+                                <div class="slds-col slds-size_1-of-1">
+                                        <p>Excel Template: <span class="slds-p-left_medium"></span> 
+                                            <a onclick="{!c.TemplateLink}" target="_blank"> <u>[Template]</u></a>
+                                        </p><br/>
+                                        <p>Import Excel Summary: <span class="slds-p-left_medium"></span>
+                                            <a href="#" onclick="{!c.SharePointLink}" target="_blank"> <u>SharePoint Link</u></a>
+                                        </p><br/>
+                               </div>
+                            </div>
+                            <div class="slds-grid slds-wrap">
+                                	<div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                    	<p>
+                                            <span style="color:red; font-style: italic;" >* </span>
+                                            Request to Change Credit: </p>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                        <div class="slds-size_3-of-6" >
+                                        	<lightning:inputField aura:id="RequestToChangeCredit" 
+                                                              fieldName="RequestToChangeCredit__c" 
+                                                              variant="label-hidden"
+                                                              disabled="{!v.IsPageDisable}"
+                                                              onchange="{!c.handleRenderCreditConditionFields}"
+                                                              required = "true"/>
+                                        </div>
+                                    </div>
+                            </div><br/>
+                            <aura:renderIf isTrue="{!!v.IsSubTypeConditionDisable}">
+                            	<div class="slds-grid slds-wrap">
+                                	<div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                    	<p> 
+                                            <span style="color:red; font-style: italic;" >* </span>
+                                            Sub-type Condition: </p>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                        <div class="slds-size_3-of-6" >
+                                        	<lightning:inputField aura:id="SubTypeCondition" 
+                                                              fieldName="SubTypeCondition__c" 
+                                                              variant="label-hidden"
+                                                              disabled="{!v.IsPageDisable}"
+                                                              onchange="{!c.handleRenderCreditConditionFields}"
+                                                              required = "true"/>
+                                        </div>
+                                    </div>
+                            	</div><br/>
+                            </aura:renderIf>
+                            <aura:renderIf isTrue="{!!v.IsSubTypeCondition2Disable}">
+                            	<div class="slds-grid slds-wrap">
+                                	<div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                        <p> 
+                                            <span style="color:red; font-style: italic;" >* </span>
+                                            Sub-type Condition 2: </p>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                        <div class="slds-size_3-of-6" >
+                                        	<lightning:inputField aura:id="SubTypeCondition2" 
+                                                              fieldName="SubTypeCondition2__c" 
+                                                              variant="label-hidden"
+                                                              disabled="{!v.IsPageDisable}"
+                                                              onchange="{!c.handleRenderCreditConditionFields}"
+                                                              required = "true"/>
+                                        </div>
+                                    </div>
+                            	</div><br/>
+                            </aura:renderIf>
+                            <aura:renderIf isTrue="{!!v.IsAmountDisable}">
+                            	<div class="slds-grid slds-wrap">
+                                	<div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                    	<p> 
+                                            <span style="color:red; font-style: italic;" >* </span>
+                                            Amount(THB): </p>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                        <div class="slds-size_3-of-6" >
+                                        	<lightning:inputField aura:id="ChangeCreditAmount" 
+                                                              fieldName="ChangeCreditAmount__c" 
+                                                              variant="label-hidden"
+                                                              disabled="{!v.IsPageDisable}"
+                                                              required = "true"/>
+                                        </div>
+                                    </div>
+                            	</div><br/>
+                            </aura:renderIf>
+                            <aura:renderIf isTrue="{!!v.IsChangeCreditCreditConditionDisable}">
+                                <div class="slds-grid slds-wrap">
+                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                            <p> 
+                                                <span style="color:red; font-style: italic;" >* </span>
+                                                Credit Condition: </p>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                            <div class="slds-size_3-of-6" >
+                                                <lightning:inputField aura:id="ChangeCreditCreditCondition" 
+                                                                  fieldName="ChangeCreditCreditCondition__c" 
+                                                                  variant="label-hidden"
+                                                                  disabled="{!v.IsPageDisable}" 
+                                                                  onchange="{!c.handleRenderCreditConditionFields}"
+                                                                  required = "true"/>
+                                            </div>
+                                        </div>
+                                </div><br/>
+                            </aura:renderIf>
+                            <aura:renderIf isTrue="{!!v.IsCreditLimitDisable}">
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                        <p>
+                                            <span style="color:red; font-style: italic;" >* </span>
+                                            Credit Limit: </p>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                        <div class="slds-grid slds-wrap slds-size_1-of-1" >
+                                            <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_3-of-6" >   
+                                                 <lightning:inputField aura:id="ChangeCreditCreditLimit" 
+                                                                       fieldName="ChangeCreditCreditLimit__c" 
+                                                                       variant="label-hidden"
+                                                                       disabled="{!v.IsPageDisable}"
+                                                                       required = "true"/> 
+                                            </div> &nbsp;&nbsp;&nbsp;
+                                            <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_1-of-6">
+                                                 <lightning:inputField aura:id="ChangeCreditCreditLimitCurrency" 
+                                                                       fieldName="ChangeCreditCreditLimitCurrency__c" 
+                                                                       variant="label-hidden"
+                                                                       disabled="{!v.IsPageDisable}"
+                                                                       required = "true"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><br/>
+                            </aura:renderIf>
+                            <aura:renderIf isTrue="{!!v.IsTradeCreditInsuranceDisable}">
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                        <p>
+                                            <span style="color:red; font-style: italic;" >* </span>
+                                            Trade Credit Insurance: </p>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                        <div class="slds-grid slds-wrap slds-size_1-of-1" >
+                                            <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_3-of-6" >   
+                                                 <lightning:inputField aura:id="ChangeCreditTradeCreditInsurance" 
+                                                                                  fieldName="ChangeCreditTradeCreditInsurance__c" 
+                                                                                  variant="label-hidden"
+                                                                                  disabled="{!v.IsPageDisable}"
+                                                                       			  required = "true"/> 
+                                            </div> &nbsp;&nbsp;&nbsp;
+                                            <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_1-of-6">
+                                                  <lightning:inputField aura:id="ChangeCreditTradeCreditInsuranceCurrency" 
+                                                                                  fieldName="ChangeCreditTradeCreditInsuranceCurrency__c" 
+                                                                                  variant="label-hidden"
+                                                                                  disabled="{!v.IsPageDisable}"
+                                                                        		  required = "true"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><br/>
+                            </aura:renderIf>
+                            
+                            <aura:renderIf isTrue="{!!v.IsInternalCreditRatingDisable}">
+                                <div class="slds-grid slds-wrap">
+                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                            <p> 
+                                                <span style="color:red; font-style: italic;" >* </span>
+                                                Internal Credit Rating: </p>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                            <div class="slds-size_3-of-6" >
+                                                <lightning:inputField aura:id="ChangeCreditInternalCreditRating" 
+                                                                              fieldName="ChangeCreditInternalCreditRating__c" 
+                                                                              variant="label-hidden"
+                                                                              disabled="{!v.IsPageDisable}"
+                                                                      		  required = "true"/>
+                                            </div>
+                                        </div>
+                                </div><br/>
+                            </aura:renderIf>
+                            <aura:renderIf isTrue="{!v.IsDescriptionDisable}">
+                                <div class="slds-grid slds-wrap">
+                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                            <p> 
+                                                <span style="color:red; font-style: italic;" >* </span>
+                                                Description: </p>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                            <div class="slds-size_1-of-1" >
+                                                <lightning:inputField class="textAreaClass" aura:id="ChangeCreditDescription" 
+                                                                              fieldName="Description__c" 
+                                                                              variant="label-hidden"
+                                                                              disabled="{!v.IsPageDisable}"
+                                                                      		  required = "true"/>
+                                            </div>
+                                        </div>
+                                </div><br/>
+                            </aura:renderIf>
+                            <aura:renderIf isTrue="{!!v.IsEffectiveDateDisable}">
+                            	<div class="slds-grid slds-wrap">
+                                	<div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                                    	<p>
+                                            <span style="color:red; font-style: italic;" >* </span>
+                                            Effective Date Form: </p>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12" >
+                                        <div class="slds-grid slds-wrap">
+                                            <div class="slds-size_2-of-6" >
+                                                <lightning:inputField aura:id="EffectiveDateForm" 
+                                                                  fieldName="EffectiveDateForm__c" 
+                                                                  variant="label-hidden"
+                                                                  disabled="{!v.IsPageDisable}"
+                                                                  required="true"/>
+                                            </div>
+                                            <div class="slds-align_absolute-center" >
+                                                <p>  To: </p>
+                                            </div>
+                                            <div class="slds-size_2-of-6" >
+                                                <lightning:inputField aura:id="EffectiveDateTo" 
+                                                                  fieldName="EffectiveDateTo__c" 
+                                                                  variant="label-hidden"
+                                                                  disabled="{!v.IsPageDisable}"
+                                                                  required="true"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                            	</div><br/>
+                            </aura:renderIf>
+                        </lightning:layoutItem>
+            		</div>
+        </div>
+        <aura:renderIf isTrue="{!!v.IsButtonDisable}">
+                        <div class="slds-align_absolute-center" style="height:5rem">
+                            <lightning:button variant="brand-outline" label="Cancel" onclick="{! c.handleCancel }"/>
+                            <lightning:button variant="brand" label="Save" type="submit" name="save" onclick="{!c.handleSaveFunction }"/>
+                            <lightning:button variant="brand" label="Submit" type="submit" name="submit" onclick="{!c.handleSubmitFunction }"/>
+                            
+                        </div>
+        </aura:renderIf>
+    </lightning:recordEditForm>
+</aura:component>

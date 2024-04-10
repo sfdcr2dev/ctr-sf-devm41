@@ -1,0 +1,67 @@
+.THIS .submit-cancel-buttons {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-end;
+}
+
+.THIS .custom-box {
+	border: 1px solid #d8dde6;
+}
+
+/* @media (min-width: 48em){
+    .THIS#edit-modal {
+        margin: 0 auto;
+        width: 50%;
+        max-width: 40rem;
+        min-width: 20rem;
+        margin-top: var(--lwc-squareIconLargeBoundary,3rem);
+        margin-bottom: var(--lwc-squareIconLargeBoundary,3rem);
+        border-radius: var(--lwc-borderRadiusMedium,0.25rem);
+    }
+} */
+
+.THIS .edit-modal-container {
+	width: 85% !important;
+	margin: 0 auto;
+	background-color: white;
+}
+.THIS#edit-modal {
+	overflow: scroll !important;
+}
+@media (max-width: 48em) {
+	.THIS#edit-modal {
+		margin: 0 auto;
+		width: 100%;
+		border-radius: var(--lwc-borderRadiusMedium, 0.25rem);
+	}
+}
+
+@media (max-width: 950px) {
+	.THIS .slds-modal {
+		width: 100% !important;
+		max-width: 100% !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+}
+
+.THIS .hideElement {
+	display: none !important;
+}
+
+.THIS .slds-card__header-title {
+	justify-content: center;
+}
+
+.THIS .slds-card__footer {
+	text-align: right;
+}
+
+@media (max-width: 602px) {
+	.THIS .slds-form-element__label,
+	.THIS .slds-card__footer button.slds-button {
+		font-size: 0.875rem !important;
+	}
+}

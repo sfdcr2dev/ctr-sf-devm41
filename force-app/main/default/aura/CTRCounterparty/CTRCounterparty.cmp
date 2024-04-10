@@ -1,0 +1,75 @@
+<aura:component controller="CTRInitialCustomerTOP" implements="lightning:hasPageReference,lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="IsPageDisable" type="Boolean" default="true"/>
+    <aura:attribute name="options" type="List" default="[
+                                                        {'label': 'National Oil Company', 'value': 'National Oil Company'},
+                                                        {'label': 'End User', 'value': 'End User'},
+                                                        {'label': 'Trader &amp; Distributor', 'value': 'Trader &amp; Distributor'},
+                                                        {'label': 'Other (Please specify)', 'value': 'Other (Please specify)'}
+                                                        ]"/>
+    <aura:attribute name="value" type="String" default="option1"/>
+    <aura:attribute name="itemList" type="String[]"/> 
+    <aura:attribute name="headerId" type="String"/>
+    <aura:attribute name="onPageRecordID" type="String"/>
+    <aura:attribute name="isTX" type="Boolean" default="false" />
+    <aura:attribute name="isTOP" type="Boolean" default="false" />
+    <aura:attribute name="DisplayEditButton" type="Boolean" default="false" />
+
+
+    <aura:attribute name="isLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="isCustomerType" type="Boolean" default="false"/>
+    <aura:attribute name="isSupplierType" type="Boolean" default="false"/>
+    <aura:attribute name="isTRCR" type="Boolean" default="false" />
+    <aura:attribute name="currentUserName" type="String" />
+    <aura:attribute name="currentUserProfileName" type="String" />
+
+    <aura:attribute name="recordId" type="String" />
+
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.onPageReferenceChanged}" />
+    <aura:handler name="CTRAddNewRowEvt" event="c:CTRAddNewRowEvt" action="{!c.addNewRow}"/>
+    <aura:handler name="CTRDeleteRowEvt" event="c:CTRDeleteRowEvt" action="{!c.removeDeletedRow}"/>
+    <aura:handler name="change" value="{!v.IsPageDisable}" action="{!c.onLoadAnotherPage}" />
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    
+    <aura:renderIf isTrue="{!v.IsPageDisable}">
+        <aura:renderIf isTrue="{!v.DisplayEditButton}">
+            <div class="slds-float_right">
+                <lightning:button variant="brand-outline" label="Edit Counterparty" title="Edit Counterparty" onclick="{! c.handleClick }" />
+            </div><br/> <br/> 
+        </aura:renderIf>
+    </aura:renderIf>
+
+    <aura:if isTrue="{!v.isLoaded}">
+    <aura:renderIf isTrue="{!v.isTX}">
+        <aura:renderIf isTrue="{!v.IsPageDisable}">
+            <!--<c:CTRCounterpartyTX recordId="{!v.recordId}" headerId="{!v.headerId}" isEdit="{!!v.IsPageDisable}" />-->
+            <c:CTRCounterpartyTX recordId="{!v.headerId}" headerId="{!v.headerId}" isEdit="{!!v.IsPageDisable}" ObjectType = "CTRRequestFormHeader__c"
+                                    isCustomerType = "{!v.isCustomerType}" isSupplierType = "{!v.isSupplierType}" isAccount = "false" isTX = "{!v.isTX}"/>
+        </aura:renderIf>
+        <aura:if isTrue="{!!v.IsPageDisable}">
+            <c:CTRInitialCustomerTX isInitial="false" ObjectType="CTRRequestFormHeader__c" onPageRecordID = "{!v.headerId}" IsPageDisable = "{!v.IsPageDisable}" isAccount = "false" IsCounterParty = "true"
+            recordId = "{!v.headerId}" reqitemId="{!v.recordId}" isCustomerType = "{!v.isCustomerType}" isSupplierType = "{!v.isSupplierType}" isTRCR = "{!v.isTRCR}" currentUserName = "{!v.currentUserName}"/>
+            </aura:if>
+    </aura:renderIf>
+
+    <aura:renderIf isTrue="{!!v.isTX}">
+        <!-- View Mode -->
+        <aura:renderIf isTrue="{!v.IsPageDisable}">
+            <c:CTRCounterPartyTOP recordId="{!v.headerId}" headerId="{!v.headerId}" isEdit="{!!v.IsPageDisable}" ObjectType = "CTRRequestFormHeader__c"
+                                    isCustomerType = "{!v.isCustomerType}" isSupplierType = "{!v.isSupplierType}" isAccount = "false" isTX = "{!v.isTX}"/>
+        </aura:renderIf>
+
+        <!-- Edit Mode -->
+        <aura:if isTrue="{!!v.IsPageDisable}">
+    
+        <c:CTRInitialCustomerTOP isInitial="false" ObjectType="CTRRequestFormHeader__c" onPageRecordID = "{!v.headerId}" IsPageDisable = "{!v.IsPageDisable}" isAccount = "false" IsCounterParty = "true"
+        recordId = "{!v.headerId}" reqitemId="{!v.recordId}" isCustomerType = "{!v.isCustomerType}" isSupplierType = "{!v.isSupplierType}" isTRCR = "{!v.isTRCR}" currentUserName = "{!v.currentUserName}"/>
+        </aura:if>
+
+    </aura:renderIf> 
+    </aura:if>
+    <aura:if isTrue="{!!v.isLoaded}">
+        <lightning:spinner variant="brand" style="z-index:2" />
+    </aura:if>
+</aura:component>

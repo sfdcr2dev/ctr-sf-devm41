@@ -1,0 +1,340 @@
+<aura:component
+    controller="ODM_PermitToWorkVerification"
+    implements="flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable"
+    access="global"
+>
+    <aura:registerEvent name="appEvent" type="c:ODM_WorkClearanceVerificationSubmit"/>
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="modalAnswer" type="String" default="" />
+
+    <aura:attribute name="versions" type="List" />
+    <aura:attribute name="sections" type="List" />
+    <aura:attribute name="dataTypes" type="List" />
+    <aura:attribute name="formQuestions" type="Object" />
+    <aura:attribute name="formAnswers" type="List" />
+    <aura:attribute name="wcDetail" type="List" />
+    <aura:attribute name="displayedFormQuestions" type="List" />
+    <aura:attribute name="selectedFormQuestions" type="String" default="" />
+    <aura:attribute name="version" type="String" default="" />
+    <aura:attribute name="status" type="String" default="" />
+    <aura:attribute name="formName" type="String" default="Verification" />
+    <aura:attribute name="constants" type="Object" default="" />
+    <aura:attribute name="highRiskWorkType" type="String" default="" />
+
+    <aura:attribute name="isModalAction" type="Map" default="{ savedraft: true, submit: true}" access="private" />
+    <aura:attribute name="isDraftModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="isSubmitModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="isDisagreeModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="isBlankReasonForDisagree" type="boolean" default="false"/>
+    <aura:attribute name="canEditOrSubmit" type="Boolean" default="false" access="global" />
+
+    <aura:attribute name="disableSaveDraft" type="boolean" default="false"/>
+
+    <aura:registerEvent name="sampleComponentEvent" type="c:compEvent"/>
+    <aura:attribute name="isGreen" type="Boolean" default="false" access="global" />
+    <aura:attribute name="isValidRequiredField" type="Boolean" default="false" />
+
+    <aura:attribute name="PISUser" type="String" access="global" default=""/>
+    <aura:attribute name="PTWHeaderId" type="String" default=""/>
+
+    <!-- Upload Fles -->
+    <aura:attribute name="FilesRelated" type="List" default="[]" />
+    <lightning:navigation aura:id="navLink" />
+
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <lightning:navigation aura:id="navService" />
+    <!-- <ul>
+        <aura:iteration items="{!v.formAnswers}" var="header">
+            <li><a onclick="{!c.handleSelectPermitToWork}" data-record-id="{!header.Id}">{!header.FormName__c}&nbsp;{!header.Version__c}&nbsp;{!header.Status__c}&nbsp;{!header.Key__c}</a></li>
+        </aura:iteration>
+    </ul> -->
+
+    <!-- <div>
+        <h1 class="header-title">PTW Verification</h1> -->
+
+        <div class="slds-col slds-col_bump-left">
+
+            <h1 class="header-title">PTW Verification</h1>
+
+            <!-- <div class="slds-grid slds-grid_align-end" style="margin-left: auto"> -->
+            
+            <div class="slds-grid slds-grid--align-spread slds-var-m-bottom_medium" style="margin-right: 8px">
+                <div class="slds-col">
+                    <aura:if isTrue="{!v.PTWHeaderId}">
+                        <lightning:fileUpload
+                            class="muh-class slds-col slds-grow-none"
+                            label=""
+                            name="fileUploader"
+                            recordId="{!v.PTWHeaderId}"
+                            onuploadfinished="{!c.handleUploadFinished}"
+                        />
+                    </aura:if>
+                </div>
+                <div class="slds-col">
+                    <lightning:buttonMenu
+                            menuAlignment="right"
+                            alternativeText="Show menu"
+                            label="Actions"
+                            onselect="{!c.handleSelectButtonMenu}"
+                            >
+
+                    <lightning:menuItem
+                            label="Save draft"
+                            title="Save draft"
+                            value="c.toggleSaveDraftModal"
+                            disabled="{!v.disableSaveDraft || not(v.canEditOrSubmit)}"
+                        />
+                        <lightning:menuItem
+                            label="Submit"
+                            title="Submit"
+                            value="c.handleSubmit"
+                            disabled="{!or(v.disableSaveDraft, not(v.isValidRequiredField))}"
+                        />
+
+                    </lightning:buttonMenu>
+
+                </div>
+            </div>
+
+            <aura:if isTrue="{!v.isGreen}">
+                <lightning:card>
+                    <aura:iteration items="{!v.sections}" var="section">
+                        <aura:iteration items="{!v.displayedFormQuestions}" var="question">
+                            <aura:if isTrue="{!question.Section__c == section}">
+                                <aura:if isTrue="{!question.Answer_type__c == 'Text'}">
+                                    <lightning:input type="text" label="{!question.Question__c}" value="{!question.Answer__c}" disabled="true" />
+                                </aura:if>
+                                <aura:if isTrue="{!question.Answer_type__c == 'Text Area'}">
+                                    <lightning:textarea label="{!question.Question__c}" value="{!question.Answer__c}" disabled="true" />
+                                </aura:if>
+                                <aura:if isTrue="{!question.Answer_type__c == 'Picklist'}">
+                                    <lightning:select label="{!question.Question__c}" value="{!question.Answer__c}" disabled="true">
+                                        <aura:iteration items="{!question.Picklist}" var="picklist">
+                                            <option value="{!picklist}">{!picklist}</option>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </aura:if>
+                                <aura:if isTrue="{!question.Answer_type__c == 'Lookup'}">
+                                    <div>
+                                        <label class="label-horizontal">{!question.Question__c}</label>
+                                    </div>
+                                    <div class="label-hidden">
+                                        <lightning:input type="text" label="{!question.Question__c}" value="{!question.Answer__c}" disabled="true" />
+                                    </div>
+                                </aura:if>
+                            </aura:if>
+                        </aura:iteration>
+                    </aura:iteration>
+                    <aura:if isTrue="{!v.PTWHeaderId}">
+                        <c:ODM_WorkClearanceVerificationFileAttachment aura:id="verificationRelatedFiles" recordId="{!v.recordId}"/>
+                    </aura:if>
+                </lightning:card>
+
+                <aura:set attribute="else">
+                    <lightning:card>
+                        <aura:iteration items="{!v.sections}" var="section">
+                            <!-- <div class="slds-p-vertical_medium">
+                                <label  class="ptw-section-header">{!section}</label>
+                            </div> -->
+                            <aura:iteration items="{!v.displayedFormQuestions}" var="question">
+                                <aura:if isTrue="{!question.Section__c == section}">
+
+                                    <aura:if isTrue="{!question.Answer_type__c == 'Text'}">
+                                        <aura:if isTrue="{!or(or(question.Order_Question__c == 1,question.Order_Question__c == 2),question.Order_Question__c == 4 )}">
+                                            <lightning:input type="text" label="{!question.Question__c}" value="{!question.Answer__c}" disabled="true" />
+                                            <aura:set attribute="else">
+                                                <lightning:input type="text" label="{!question.Question__c}" value="{!question.Answer__c}" />
+                                            </aura:set>
+                                        </aura:if>
+                                    </aura:if>
+                                    <aura:if isTrue="{!question.Answer_type__c == 'Text Area'}">
+                                        <aura:if isTrue="{!or (question.Order_Question__c == 11,question.Order_Question__c == 3)}">
+                                            <lightning:textarea label="{!question.Question__c}" value="{!question.Answer__c}" disabled="true" />
+                                            <aura:set attribute="else">
+                                                <lightning:textarea label="{!question.Question__c}" value="{!question.Answer__c}" />
+                                            </aura:set>
+                                        </aura:if>
+                                    </aura:if>
+                                    <aura:if isTrue="{!question.Answer_type__c == 'Picklist'}">
+                                        <aura:if isTrue="{!or (question.Order_Question__c == 10,question.Order_Question__c == 5)}">
+                                            <lightning:select label="{!question.Question__c}" value="{!question.Answer__c}" disabled="true">
+                                                <!-- <lightning:select label="{!question.Question__c}" value="{!question.Answer__c}" disabled="{not(v.canEditOrSubmit)}"> -->
+                                                <aura:iteration items="{!question.Picklist}" var="picklist">
+                                                    <option value="{!picklist}">{!picklist}</option>
+                                                </aura:iteration>
+                                            </lightning:select>
+                                            <aura:set attribute="else">
+                                                <aura:if isTrue="{!v.highRiskWorkType == 'งานทั่วไป'}">
+                                                    <aura:if isTrue="{!question.Question_API__c == 'WORKING_AREA_VERIFICATION'}">
+                                                        <div>
+                                                            <label class="slds-form-element__label">{!question.Question__c}<span style="color:red;">* (กรณี งานทั่วไป Verification เฉพาะ Working Area)</span></label>
+                                                            <lightning:select class="label-hidden" variant="label-hidden" value="{!question.Answer__c}" disabled="{!v.disableSaveDraft || not(v.canEditOrSubmit)}" onchange="{!c.handleVerificationChanged}">
+                                                                <aura:iteration items="{!question.Picklist}" var="picklist">
+                                                                    <option value="{!picklist}">{!picklist}</option>
+                                                                </aura:iteration>
+                                                            </lightning:select>
+                                                        </div>
+                                                        <aura:set attribute="else">
+                                                            <lightning:select label="{!question.Question__c}" value="{!question.Answer__c}" disabled="true" onchange="{!c.handleVerificationChanged}">
+                                                                <aura:iteration items="{!question.Picklist}" var="picklist">
+                                                                    <option value="{!picklist}">{!picklist}</option>
+                                                                </aura:iteration>
+                                                            </lightning:select>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                    <aura:set attribute="else">
+                                                        <lightning:select label="{!question.Question__c}" value="{!question.Answer__c}" disabled="{!v.disableSaveDraft || not(v.canEditOrSubmit)}" onchange="{!c.handleVerificationChanged}">
+                                                            <aura:iteration items="{!question.Picklist}" var="picklist">
+                                                                <option value="{!picklist}">{!picklist}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:set>
+                                                </aura:if>
+                                            </aura:set>
+                                        </aura:if>
+                                    </aura:if>
+
+                                    <aura:if isTrue="{!question.Answer_type__c == 'Lookup'}">
+                                        <aura:if isTrue="{!v.disableSaveDraft || not(v.canEditOrSubmit)}">
+                                            <lightning:input type="text" label="{!question.Question__c}" value="{!question.Answer__c}" disabled="true" />
+                                            <aura:set attribute="else" >
+                                                <div >
+                                                    <label class="label-horizontal">{!question.Question__c}</label>
+
+                                                </div>
+                                                <div class="label-hidden" >
+                                                    <c:thorFilterSuggestLookup
+                                                        alignment="bottom"
+                                                        sObjectName="PTW_Answer__c"
+                                                        fieldName="Answer__c"
+                                                        value="{!question.Answer__c}"
+                                                        onchangeValue="{!c.handleSuggestLookupChanged}"
+                                                        fetchSObjectName="PISUsers__c"
+                                                        nameDisplayFormat="{EN_Fullname__c}"
+                                                        descriptionDisplayFormat="{Home Id: HOME_ID__c, Host Id: HOST_ID__c}"
+
+                                                        />
+                                                </div>
+                                            </aura:set>
+                                        </aura:if>
+                                    </aura:if>
+                                </aura:if>
+                            </aura:iteration>
+
+                            <!-- Upload File When Status is Disagree -->
+                            <!-- <aura:if isTrue="{!v.status == 'Disagree' }">
+                                <c:ODM_WorkClearanceVerificationFileAttachment recordId="{!v.recordId}"/>
+                            </aura:if> -->
+                        </aura:iteration>
+                        <aura:if isTrue="{!v.PTWHeaderId}">
+                            <c:ODM_WorkClearanceVerificationFileAttachment aura:id="verificationRelatedFiles" recordId="{!v.recordId}"/>
+                        </aura:if>
+
+                    </lightning:card>
+                </aura:set>
+            </aura:if>
+
+            <div class="slds-grid slds-grid_align-end slds-var-m-top_medium" style="margin-right: 8px">
+                <lightning:buttonMenu
+                    menuAlignment="right"
+                    alternativeText="Show menu"
+                    label="Actions"
+                    onselect="{!c.handleSelectButtonMenu}"
+                    class="action-dropup">
+
+                    <lightning:menuItem
+                        label="Save draft"
+                        title="Save draft"
+                        value="c.toggleSaveDraftModal"
+                        disabled="{!v.disableSaveDraft || not(v.canEditOrSubmit)}"
+                    />
+                    <!-- disabled="{!v.disableSaveDraft || not(v.canEditOrSubmit)}" -->
+                    <lightning:menuItem
+                        label="Submit"
+                        title="Submit"
+                        value="c.handleSubmit"
+                        disabled="{!or(v.disableSaveDraft, not(v.isValidRequiredField))}"
+                    />
+
+                </lightning:buttonMenu>
+            </div>
+        </div>
+
+            <div class="slds-m-around_xx-large">
+                <aura:if isTrue="{!v.isDraftModalOpen}">
+                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container">
+                            <header class="slds-modal__header">
+                                <lightning:buttonIcon iconName="utility:close"
+                                                    onclick="{! c.closeSaveDraftModel }"
+                                                    alternativeText="close"
+                                                    variant="bare-inverse"
+                                                    class="slds-modal__close"/>
+                                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Save Draft</h2>
+                            </header>
+                            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                <p><b>ต้องการ Save Draft หรือไม่</b></p>
+                            </div>
+                            <footer class="slds-modal__footer">
+                                <lightning:button variant="brand"
+                                                label="Save Draft"
+                                                title="Save Draft"
+                                                onclick="{!c.handleSaveDraft}"/>
+                                <lightning:button variant="neutral"
+                                                label="Cancel"
+                                                title="Cancel"
+                                                onclick="{! c.closeSaveDraftModel }"/>
+
+                            </footer>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+
+                </aura:if>
+            </div>
+
+            <div class="slds-m-around_xx-large">
+                <aura:if isTrue="{!v.isDisagreeModalOpen}">
+                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container">
+                            <header class="slds-modal__header">
+                                <lightning:buttonIcon iconName="utility:close"
+                                                    onclick="{! c.closeDisagreeModel }"
+                                                    alternativeText="close"
+                                                    variant="bare-inverse"
+                                                    class="slds-modal__close"/>
+                                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Please input the reason</h2>
+                            </header>
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <lightning:textarea id="text-input-id-51" value="{!v.modalAnswer}" onchange="{!c.handleReasonForDisagreeChange}" class="slds-input border-none" />
+                                    <aura:if isTrue="{!v.isBlankReasonForDisagree}">
+                                        <div style="background:white;color:red;padding-left:1em;">
+                                            Please input disagree reason.
+                                        </div>
+                                    </aura:if>
+                                </div>
+                            </div>
+                            <footer class="slds-modal__footer">
+                                <lightning:button   class="slds-modal__button"
+                                                    variant="brand"
+                                                    label="Disagree"
+                                                    title="Disagree"
+                                                    onclick="{!c.handleSubmitDisagree}"/>
+                                <lightning:button variant="neutral"
+                                                label="Cancel"
+                                                title="Cancel"
+                                                onclick="{! c.closeDisagreeModel }"/>
+
+                            </footer>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+
+                </aura:if>
+            </div>
+
+    <!-- </div> -->
+</aura:component>

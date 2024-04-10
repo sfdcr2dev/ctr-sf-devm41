@@ -1,0 +1,1117 @@
+<aura:component
+    implements="force:lightningQuickAction,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName"
+    access="global">
+
+
+    <div class="slds-var-m-top_medium slds-var-m-bottom_x-large" style="background-color: white;">
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <lightning:tabset selectedTabId="generalView">
+                <!-- Tab General View  -->
+                <lightning:tab label="General View" id="generalView">
+                    <div class="slds-grid slds-wrap">
+                        <!-- Name Section -->
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-section slds-is-open" aura:id="nameSection">
+                                <h3 class="slds-section__title">
+                                    <button aria-controls="nameDetail" aria-expanded="true"
+                                        class="slds-button slds-section__title-action" data-auraid="nameSection"
+                                        onclick="{!c.handleToggleSection}">
+                                        <lightning:icon iconName="utility:switch" alternativeText="switch" title=""
+                                            size="x-small"
+                                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                        <span class="slds-truncate" title="Counterparty Information">Name</span>
+                                    </button>
+                                </h3>
+                                <div class="slds-section__content" id="nameDetail">
+                                    <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                        <!-- Name * -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Name *
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="name" value="{!v.requestFormObj.Name}" />
+                                        </div>
+                                        <!-- Radio Data not correct -->
+                                        <div class="slds-col slds-size_1-of-6">
+                                            <fieldset class="slds-form-element">
+                                                <div class="slds-form-element__control">
+                                                    <span class="slds-radio">
+                                                        <input type="radio" id="radioName" value="radioName"
+                                                            name="radioName" checked="" />
+                                                        <label class="slds-radio__label" for="radioName">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label">Data not
+                                                                correct</span>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <!--  Name input 2  -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;"></p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="nameInput2" />
+                                        </div>
+                                        <!-- Name(Eng) * -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Name(Eng) *
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="nameEng" value="{!v.requestFormObj.NameEng__c}" />
+                                        </div>
+                                        <!-- Radio Data not correct NameENG-->
+                                        <div class="slds-col slds-size_1-of-6">
+                                            <fieldset class="slds-form-element">
+                                                <div class="slds-form-element__control">
+                                                    <span class="slds-radio">
+                                                        <input type="radio" id="radioNameENG" value="radioNameENG"
+                                                            name="radioNameENG" checked="" />
+                                                        <label class="slds-radio__label" for="radioNameENG">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label">Data not
+                                                                correct</span>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <!--  name(Eng) input 2 -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;"></p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="nameEngInput2" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Search Terms Section -->
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-section slds-is-open" aura:id="searchTermsSection">
+                                <h3 class="slds-section__title">
+                                    <button aria-controls="searchTermsDetail" aria-expanded="true"
+                                        class="slds-button slds-section__title-action" data-auraid="searchTermsSection"
+                                        onclick="{!c.handleToggleSection}">
+                                        <lightning:icon iconName="utility:switch" alternativeText="switch" title=""
+                                            size="x-small"
+                                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                        <span class="slds-truncate" title="Counterparty Information">Search
+                                            Terms</span>
+                                    </button>
+                                </h3>
+                                <div class="slds-section__content" id="searchTermsDetail">
+                                    <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                        <!-- Search Term 1* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Search Term 1*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="searchTerm1"
+                                                value="{!v.requestFormObj.SearchTerm1__c}" />
+                                        </div>
+                                        <!-- Search Term 2(Eng) -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Search Term 2(Eng)
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="searchTerm1Eng"
+                                                value="{!v.requestFormObj.SearchTerm1Eng__c}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Address Section -->
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-section slds-is-open" aura:id="addressSection">
+                                <h3 class="slds-section__title">
+                                    <button aria-controls="addressDetail" aria-expanded="true"
+                                        class="slds-button slds-section__title-action" data-auraid="addressSection"
+                                        onclick="{!c.handleToggleSection}">
+                                        <lightning:icon iconName="utility:switch" alternativeText="switch" title=""
+                                            size="x-small"
+                                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                        <span class="slds-truncate" title="Counterparty Information">Address</span>
+                                    </button>
+                                </h3>
+                                <div class="slds-section__content" id="addressDetail">
+                                    <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                        <!-- Street/House number* -->
+                                        <div
+                                            class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Street/House number*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_4-of-12">
+                                            <lightning:input name="streetHouseNumber1"
+                                                value="{!v.requestFormObj.StreetHousenumber__c}" />
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-12" style="padding-left: 10px;">
+                                            <lightning:input name="streetHouseNumber2" />
+                                        </div>
+                                        <!-- row* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;"></p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="row1" value="Rama 9" />
+                                        </div>
+                                        <!-- row* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;"></p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="row2" />
+                                        </div>
+                                        <!-- row* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;"></p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="row3" />
+                                        </div>
+                                        <!-- District* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                District
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="district" value="{!v.requestFormObj.District__c}" />
+                                        </div>
+                                        <!-- Postal Code/City* -->
+                                        <div
+                                            class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Postal Code/City*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-12" style="padding-right: 10px;">
+                                            <lightning:input name="postalCode"
+                                                value="{!v.requestFormObj.PostalCodeCity__c}" />
+                                        </div>
+                                        <div class="slds-col slds-size_4-of-12">
+                                            <lightning:input name="postalCode" />
+                                        </div>
+                                        <!-- Street/House number(Eng) -->
+                                        <div
+                                            class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Street/House number(Eng)*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_4-of-12">
+                                            <lightning:input name="streetHouseNumberEng1"
+                                                value="{!v.requestFormObj.StreetHousenumberEng__c}" />
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-12" style="padding-left: 10px;">
+                                            <lightning:input name="streetHouseNumberEng2" />
+                                        </div>
+                                        <!-- row* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;"></p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="rowEng1" value="Rama 9" />
+                                        </div>
+                                        <!-- row* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;"></p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="rowEng2" />
+                                        </div>
+                                        <!-- row* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;"></p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="rowEng3" />
+                                        </div>
+                                        <!-- row* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;"></p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="rowEng4" />
+                                        </div>
+                                        <!-- District (Eng) -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                District (Eng)
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="districtEng"
+                                                value="{!v.requestFormObj.DistrictEng__c}" />
+                                        </div>
+                                        <!-- City (Eng) -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                City (Eng)
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="cityEng" value="{!v.requestFormObj.CityEng__c}" />
+                                        </div>
+                                        <!-- Radio Data not correct City-->
+                                        <div class="slds-col slds-size_1-of-6">
+                                            <fieldset class="slds-form-element">
+                                                <div class="slds-form-element__control">
+                                                    <span class="slds-radio">
+                                                        <input type="radio" id="radioCity" value="radioCity"
+                                                            name="radioCity" checked="" />
+                                                        <label class="slds-radio__label" for="radioCity">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label">Data not
+                                                                correct</span>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <!-- Country* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Country*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="country" value="{!v.requestFormObj.Country__c}" />
+                                        </div>
+                                        <!-- Radio Data not correct Country-->
+                                        <div class="slds-col slds-size_1-of-6">
+                                            <fieldset class="slds-form-element">
+                                                <div class="slds-form-element__control">
+                                                    <span class="slds-radio">
+                                                        <input type="radio" id="radioCountry" value="radioCountry"
+                                                            name="radioCountry" checked="" />
+                                                        <label class="slds-radio__label" for="radioCountry">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label">Data not
+                                                                correct</span>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Communication Section -->
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-section slds-is-open" aura:id="communicationSection">
+                                <h3 class="slds-section__title">
+                                    <button aria-controls="communicationDetail" aria-expanded="true"
+                                        class="slds-button slds-section__title-action"
+                                        data-auraid="communicationSection" onclick="{!c.handleToggleSection}">
+                                        <lightning:icon iconName="utility:switch" alternativeText="switch" title=""
+                                            size="x-small"
+                                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                        <span class="slds-truncate"
+                                            title="Counterparty Information">Communication</span>
+                                    </button>
+                                </h3>
+                                <div class="slds-section__content" id="communicationDetail">
+                                    <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                        <!-- Phone -->
+                                        <div
+                                            class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Phone
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-12" style="padding-right: 10px;">
+                                            <lightning:select name="telephone" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <div class="slds-col slds-size_4-of-12">
+                                            <lightning:input name="telephone" value="{!v.requestFormObj.Phone}" />
+                                        </div>
+                                        <!-- Mobile -->
+                                        <div
+                                            class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Mobile
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-12" style="padding-right: 10px;">
+                                            <lightning:select name="telephone" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <div class="slds-col slds-size_4-of-12">
+                                            <lightning:input name="telephone" value="{!v.requestFormObj.Mobile}" />
+                                        </div>
+                                        <!-- Fax -->
+                                        <div
+                                            class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Fax
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-12" style="padding-right: 10px;">
+                                            <lightning:select name="fax" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <div class="slds-col slds-size_4-of-12">
+                                            <lightning:input name="fax" value="{!v.requestFormObj.Fax__c}" />
+                                        </div>
+                                        <!-- E-mail -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Email
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="email" value="{!v.requestFormObj.Email__c}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Information Section -->
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-section slds-is-open" aura:id="informationSection">
+                                <h3 class="slds-section__title">
+                                    <button aria-controls="informationDetail" aria-expanded="true"
+                                        class="slds-button slds-section__title-action" data-auraid="informationSection"
+                                        onclick="{!c.handleToggleSection}">
+                                        <lightning:icon iconName="utility:switch" alternativeText="switch" title=""
+                                            size="x-small"
+                                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                        <span class="slds-truncate" title="Counterparty Information">Information</span>
+                                    </button>
+                                </h3>
+                                <div class="slds-section__content" id="informationDetail">
+                                    <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                        <!-- Sales Organization -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Sales Organization
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Account Group -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Account Group
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Region -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Region
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Distribution Channel -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Distribution Channel
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Division -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Division
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Industry -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Industry
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Sub-Industry -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Sub-Industry
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Customer Type -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Customer Type
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Customer Group -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Customer Group
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Type of Bussiness (Branch) -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Type of Bussiness (Branch)
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- TAX Number -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                TAX Number
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Additional Informartion Section -->
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-section slds-is-open" aura:id="additionalInformartionSection">
+                                <h3 class="slds-section__title">
+                                    <button aria-controls="additionalInformartionDetail" aria-expanded="true"
+                                        class="slds-button slds-section__title-action"
+                                        data-auraid="additionalInformartionSection" onclick="{!c.handleToggleSection}">
+                                        <lightning:icon iconName="utility:switch" alternativeText="switch" title=""
+                                            size="x-small"
+                                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                        <span class="slds-truncate" title="Counterparty Information">Additional
+                                            Informartion</span>
+                                    </button>
+                                </h3>
+                                <div class="slds-section__content" id="additionalInformartionDetail">
+                                    <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                        <!-- Search Term 1* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Search Term 1*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="searchTerm1"
+                                                value="{!v.requestFormObj.SearchTerm1__c}" />
+                                        </div>
+                                        <!-- Search Term 2(Eng) -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Search Term 2(Eng)
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="searchTerm1Eng"
+                                                value="{!v.requestFormObj.SearchTerm1Eng__c}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </lightning:tab>
+                <!-- Tab Sales View -->
+                <lightning:tab label="Sales View" id="salesView">
+                    <div class="slds-grid slds-wrap">
+                        <!-- Sales Section -->
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-section slds-is-open" aura:id="salseSection">
+                                <h3 class="slds-section__title">
+                                    <button aria-controls="xDetail" aria-expanded="true"
+                                        class="slds-button slds-section__title-action" data-auraid="salseSection"
+                                        onclick="{!c.handleToggleSection}">
+                                        <lightning:icon iconName="utility:switch" alternativeText="switch" title=""
+                                            size="x-small"
+                                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                        <span class="slds-truncate" title="Counterparty Information">Salse</span>
+                                    </button>
+                                </h3>
+                                <div class="slds-section__content" id="salesDetail">
+                                    <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                        <!-- Sales District* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Sales District*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Sales Office* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Sales Office*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Sales Group* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Sales Group*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Currency* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Currency*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Radio Data not correct -->
+                                        <div class="slds-col slds-size_1-of-6">
+                                            <fieldset class="slds-form-element">
+                                                <div class="slds-form-element__control">
+                                                    <span class="slds-radio">
+                                                        <input type="radio" id="radioCurrency" value="radioCurrency"
+                                                            name="radioCurrency" checked="" />
+                                                        <label class="slds-radio__label" for="radioCurrency">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label">Data not
+                                                                correct</span>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <!-- Order probab* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Order probab*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="name" value="" />
+                                        </div>
+                                        <!-- Exch. Rate type* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Exch. Rate type*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="name" value="" />
+                                        </div>
+                                        <!-- Cust pice.proc.* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Cust pice.proc.*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="name" value="" />
+                                        </div>
+                                        <!-- Cust Stats.Grp.* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Cust Stats.Grp*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="name" value="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Shipping Section -->
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-section slds-is-open" aura:id="shippingSection">
+                                <h3 class="slds-section__title">
+                                    <button aria-controls="shippingDetail" aria-expanded="true"
+                                        class="slds-button slds-section__title-action" data-auraid="shippingSection"
+                                        onclick="{!c.handleToggleSection}">
+                                        <lightning:icon iconName="utility:switch" alternativeText="switch" title=""
+                                            size="x-small"
+                                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                        <span class="slds-truncate" title="Counterparty Information">Shipping</span>
+                                    </button>
+                                </h3>
+                                <div class="slds-section__content" id="shippingDetail">
+                                    <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                        <!-- Order Combination* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Order Combination*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <div class="slds-checkbox">
+                                                <input type="checkbox" name="options" id="checkbox-unique-id-81" value="checkbox-unique-id-81" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-unique-id-81">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                        </div>
+                                        <!-- Delivery Priority* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Delivery Priority*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Shipping Cordition* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Shipping Cordition*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Delivery Plant* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Delivery Plant*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="name" value="" />
+                                        </div>
+                                        <!-- Transportation Zone* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Transportation Zone*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="name" value="" />
+                                        </div>
+                                        <!-- Partail delivery per item* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Partail delivery per item*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="salesOrganization" label="">
+                                                <option value="+66 Thailand">+66 Thailand</option>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Underdol tolerance* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Underdol tolerance*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="name" value="" />
+                                        </div>
+                                        <!-- Overdeliv tolerance* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Overdeliv tolerance*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="name" value="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Billing Documents Section -->
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-section slds-is-open" aura:id="billingDocumentSection">
+                                <h3 class="slds-section__title">
+                                    <button aria-controls="billingDocumentDetail" aria-expanded="true"
+                                        class="slds-button slds-section__title-action" data-auraid="billingDocumentSection"
+                                        onclick="{!c.handleToggleSection}">
+                                        <lightning:icon iconName="utility:switch" alternativeText="switch" title=""
+                                            size="x-small"
+                                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                        <span class="slds-truncate" title="Counterparty Information">Billing Documents</span>
+                                    </button>
+                                </h3>
+                                <div class="slds-section__content" id="billingDocumentDetail">
+                                    <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                        <!-- Rebate* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Rebate*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <div class="slds-checkbox">
+                                                <input type="checkbox" name="options" id="checkbox-unique-id-81" value="checkbox-unique-id-81" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-unique-id-81">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                        </div>
+                                        <!-- Price determin* -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Price determin*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <div class="slds-checkbox">
+                                                <input type="checkbox" name="options" id="checkbox-unique-id-81" value="checkbox-unique-id-81" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-unique-id-81">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                        </div>
+                                        <!-- Incoterms -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Incoterms
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="incoterms" label=""
+                                                value="{!v.requestFormObj.Incoterms__c}">
+                                                <aura:iteration items="{!v.incotermsList}" var="incotermsListVar">
+                                                    <option value="{!incotermsListVar.value}">{!incotermsListVar.label}
+                                                    </option>
+                                                </aura:iteration>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Incoterms 2 -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Incoterms 2
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="incoterms" label=""
+                                                value="{!v.requestFormObj.Incoterms__c}">
+                                                <aura:iteration items="{!v.incotermsList}" var="incotermsListVar">
+                                                    <option value="{!incotermsListVar.value}">{!incotermsListVar.label}
+                                                    </option>
+                                                </aura:iteration>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Credit Control Area -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Credit Control Area*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="" label=""
+                                                value="">
+                                                <aura:iteration items="" var="">
+                                                    <option value="">
+                                                    </option>
+                                                </aura:iteration>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Payment Term -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Payment Term*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="" label=""
+                                                value="">
+                                                <aura:iteration items="" var="">
+                                                    <option value="">
+                                                    </option>
+                                                </aura:iteration>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Payment Guarantee Procedure -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Payment Guarantee Procedure*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="" label=""
+                                                value="">
+                                                <aura:iteration items="" var="">
+                                                    <option value="">
+                                                    </option>
+                                                </aura:iteration>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Account Assignment Group -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Account Assignment Group*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="" label=""
+                                                value="">
+                                                <aura:iteration items="" var="">
+                                                    <option value="">
+                                                    </option>
+                                                </aura:iteration>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Risk Category -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Risk Category*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="" label=""
+                                                value="">
+                                                <aura:iteration items="" var="">
+                                                    <option value="">
+                                                    </option>
+                                                </aura:iteration>
+                                            </lightning:select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </lightning:tab>
+                <!-- Tab Financial View -->
+                <lightning:tab label="Financial View" id="financialView">
+                    <div class="slds-grid slds-wrap">
+                        <!-- Accounting Management -->
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-section slds-is-open" aura:id="accountingManagementSection">
+                                <h3 class="slds-section__title">
+                                    <button aria-controls="accountingManagementDetail" aria-expanded="true"
+                                        class="slds-button slds-section__title-action" data-auraid="accountingManagementSection"
+                                        onclick="{!c.handleToggleSection}">
+                                        <lightning:icon iconName="utility:switch" alternativeText="switch" title=""
+                                            size="x-small"
+                                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                        <span class="slds-truncate" title="Counterparty Information">Accounting Management</span>
+                                    </button>
+                                </h3>
+                                <div class="slds-section__content" id="accountingManagementDetail">
+                                    <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                        <!-- Recon Account -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Recon Account*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="" label=""
+                                                value="">
+                                                <aura:iteration items="" var="">
+                                                    <option value="">
+                                                    </option>
+                                                </aura:iteration>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Sort Key -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Sort Key*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="" label=""
+                                                value="">
+                                                <aura:iteration items="" var="">
+                                                    <option value="">
+                                                    </option>
+                                                </aura:iteration>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Cash Mgmnt Group -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Cash Mgmnt Group*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="" label=""
+                                                value="">
+                                                <aura:iteration items="" var="">
+                                                    <option value="">
+                                                    </option>
+                                                </aura:iteration>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Payment Term -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Payment Term*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:select name="" label=""
+                                                value="">
+                                                <aura:iteration items="" var="">
+                                                    <option value="">
+                                                    </option>
+                                                </aura:iteration>
+                                            </lightning:select>
+                                        </div>
+                                        <!-- Authorization -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Authorization*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <lightning:input name="name" value="" />
+                                        </div>
+                                        <!-- Payment History Record -->
+                                        <div
+                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                            <p style="text-align: left; padding-left: 50px;">
+                                                Payment History Record*
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-6">
+                                            <div class="slds-checkbox">
+                                                <input type="checkbox" name="options" id="checkbox-unique-id-81" value="checkbox-unique-id-81" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-unique-id-81">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </lightning:tab>
+            </lightning:tabset>
+
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,41 @@
+<aura:component  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,force:hasSObjectName" access="global" 
+controller="CTRSharePointLinkController"> 
+	<aura:attribute name="recordId" type="String" />
+	<aura:attribute name="spFolder" type="String" default="CTR;" />
+    <aura:attribute name="account" type="String" />
+    <aura:attribute name="connected" type="boolean" />
+    <aura:attribute name="SharePointList" type="List" />
+    <aura:attribute name="loaded" type="Boolean" default="true"/>
+    <aura:attribute name="loadedButtonURL" type="Boolean" default="false"/>
+
+    <aura:attribute name="url" type="String" />
+    <aura:attribute name="spPath" type="String" default="11"/>
+    
+    <aura:attribute name="items" type="Object" access="PRIVATE"/>
+    <aura:handler name="init" value="{! this }" action="{!c.initialize }"/>
+
+
+
+    <lightning:card >
+        <aura:if isTrue="{! v.loaded }">
+            <aura:set attribute="else">
+                <lightning:spinner alternativeText="Loading" />
+            </aura:set>
+        </aura:if>
+        <lightning:tabset>
+            <lightning:tab label="SharePoint Link">
+                <aura:if isTrue="{! v.loadedButtonURL }">
+                    <aura:iteration items="{!v.SharePointList}" var="SharePoint" indexVar="index">
+                        <lightning:button label="{!SharePoint.mLabel}" iconName="utility:open_folder" value ="{!SharePoint.mLink}" iconPosition="left" onclick="{!c.linkUrl}" />
+                    </aura:iteration>
+                </aura:if>
+                <aura:if isTrue="{!! v.loadedButtonURL }">
+                        <div style="padding-left: 50px">
+                            Please Contact Your Administrator to Setup Path Directory for this object.
+                        </div>
+                </aura:if>
+            </lightning:tab>
+        </lightning:tabset>
+    </lightning:card>
+
+</aura:component>

@@ -1,0 +1,252 @@
+<apex:page controller="ESS_HotelBookingExcelController"
+  language="th"
+  cache="true" showHeader="false" action="{!OnloadExcel}"
+  contentType="application/vnd.ms-excel#Hotel Booking Report - {!todayDate}.xls">
+  
+  <html lang="en">
+      <head>
+          <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+          <style>
+                table, td, th {
+                  border: 1px solid;
+                }
+                
+                table {
+                  width: 100%;
+                  border-collapse: collapse;
+                }
+                .text { mso-number-format:\@; }
+            </style>
+      </head>
+      <body>
+      
+          <apex:outputPanel rendered="{!hotelBookingSize > 0}">
+              <h3>Hotel Booking Report</h3>
+              <b>Data as of : {!todayDate} Time : {!todayTime}</b> <br/>
+              <b>Year : {!year}, Month : {!monthName}</b> <br/><br/>
+              <table>
+                  <tr>
+                      <th>Document No</th>
+                      <th>Document Type</th>
+                      <th>Hotel Name</th>
+                      <th>Guest Name</th>
+                      <th>Check In</th>
+                      <th>Check Out</th>
+                      <th>Guest(Room 1)</th>
+                      <th>Room Type(Room 1)</th>
+                      <th>Special Request(Room 1)</th>
+                      <th>Total Contract Rate (THB)(Room 1)</th>
+                      <th>Total Charge Company (THB)(Room 1)</th>
+                      <th>Total Charge Employee (THB)(Room 1)</th>
+                      <th>Guest(Room 2)</th>
+                      <th>Room Type(Room 2)</th>
+                      <th>Special Request(Room 2)</th>
+                      <th>Total Contract Rate (THB)(Room 2)</th>
+                      <th>Total Charge Company (THB)(Room 2)</th>
+                      <th>Total Charge Employee (THB)(Room 2)</th>
+                      <th>Total (THB)</th>
+                      <th>Total Charge Company (THB)</th>
+                      <th>Total Chrage Employee (THB)</th>
+                      <th>Number of Night</th>
+                      <th>Number of Room</th>
+                      <th>Number of Guest</th>
+                      <th>Remark</th>
+                      <th>Employee Name (Requester)</th>
+                      <th>Employee ID (Requester)</th>
+                      <th>Email (Requester)</th>
+                      <th>Position (Requester)</th>
+                      <th>Function (Requester)</th>
+                      <th>Department (Requester)</th>
+                      <th>Section (Requester)</th>
+                      <th>Unit (Requester)</th>
+                      <th>Created Date</th>
+                      <th>Submitted Date</th>
+                      <th>Employee Name (On Behalf Of)</th>
+                      <th>Employee ID (On Behalf Of)</th>
+                      <th>Email (On Behalf Of)</th>
+                      <th>Position (On Behalf Of)</th>
+                      <th>Function (On Behalf Of)</th>
+                      <th>Department (On Behalf Of)</th>
+                      <th>Section (On Behalf Of)</th>
+                      <th>Unit (On Behalf Of)</th>
+                      <th>Verified Date</th>
+                      <th>Rejected Date</th>
+                      <th>Rejected By</th>
+                      <th>Rejected Reason</th>
+                      <th>Completed Date</th>
+                      <th>Completed By</th>
+                      <th>Cancelled Date</th>
+                      <th>Cancelled By</th>
+                      <th>Cancelled Reason</th>
+                      <th>Current Status</th>
+                      <th>Rating (Requester)</th>
+                      <th>มือความเอาใจใส่ (Requester)</th>
+                      <th>ทำงานรวดเร็ว (Requester)</th>
+                      <th>ตรงต่อเวลา (Requester)</th>
+                      <th>มีความเชี่ยวชาญ (Requester)</th>
+                      <th>Rating (On Behalf of)</th>
+                      <th>มือความเอาใจใส่ (On Behalf of)</th>
+                      <th>ทำงานรวดเร็ว (On Behalf of)</th>
+                      <th>ตรงต่อเวลา (On Behalf of)</th>
+                      <th>มีความเชี่ยวชาญ (On Behalf of)</th>
+                  </tr>
+                  <apex:repeat value="{!hotelBookingTables}" var="Data">
+                      <tr>
+                          <td>{!Data.documentNo}</td>
+                          <td>{!Data.documentType}</td>
+                          <td>{!Data.hotelName}</td>
+                          <td>{!Data.guestName}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.checkInDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.checkOutDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.room1GuestNo}</td>
+                          <td>{!Data.room1RoomType}</td>
+                          <td>{!Data.room1SpecialRequest}</td>
+                          <td>
+                              <apex:outputText value="{0, number, ###,###,###.##}" >  
+                                <apex:param value="{!Data.room1TotalContractRate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0, number, ###,###,###.##}" >  
+                                <apex:param value="{!Data.room1TotalChargeCompany}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0, number, ###,###,###.##}" >  
+                                <apex:param value="{!Data.room1TotalChargeEmployee}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.room2GuestNo}</td>
+                          <td>{!Data.room2RoomType}</td>
+                          <td>{!Data.room2SpecialRequest}</td>
+                          <td>
+                              <apex:outputText value="{0, number, ###,###,###.##}" >  
+                                <apex:param value="{!Data.room2TotalContractRate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0, number, ###,###,###.##}" >  
+                                <apex:param value="{!Data.room2TotalChargeCompany}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0, number, ###,###,###.##}" >  
+                                <apex:param value="{!Data.room2TotalChargeEmployee}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0, number, ###,###,###.##}" >  
+                                <apex:param value="{!Data.total}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0, number, ###,###,###.##}" >  
+                                <apex:param value="{!Data.totalChargeCompany}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0, number, ###,###,###.##}" >  
+                                <apex:param value="{!Data.totalChargeEmployee}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.totalNight}</td>
+                          <td>{!Data.totalRoom}</td>
+                          <td>{!Data.totalGuest}</td>
+                          <td>{!Data.remark}</td>
+                          <td>{!Data.requesterName}</td>
+                          <td class="text">{!Data.requesterEmployeeId}</td>
+                          <td>{!Data.requesterEmail}</td>
+                          <td>{!Data.requesterPosition}</td>
+                          <td>{!Data.requesterFunction}</td>
+                          <td>{!Data.requesterDepartment}</td>
+                          <td>{!Data.requesterSection}</td>
+                          <td>{!Data.requesterUnit}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.createdDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.submittedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.obhName}</td>
+                          <td class="text">{!Data.obhEmployeeId}</td>
+                          <td>{!Data.obhEmail}</td>
+                          <td>{!Data.obhPosition}</td>
+                          <td>{!Data.obhFunction}</td>
+                          <td>{!Data.obhDepartment}</td>
+                          <td>{!Data.obhSection}</td>
+                          <td>{!Data.obhUnit}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.verifiedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.rejectedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.rejectedBy}</td>
+                          <td>{!Data.rejectedReason}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.completedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.completedBy}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.cancelledDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.cancelledBy}</td>
+                          <td>{!Data.cancelledReason}</td>
+                          <td>{!Data.currentStatus}</td>
+                          <apex:outputPanel rendered="{!Data.requesterRatingCompleted == true}">
+                              <td>{!Data.requesterRating}</td>
+                              <td>{!Data.requesterAttentiveness}</td>
+                              <td>{!Data.requesterFast}</td>
+                              <td>{!Data.requesterPunctuality}</td>
+                              <td>{!Data.requesterExpertise}</td>
+                          </apex:outputPanel>
+                          <apex:outputPanel rendered="{!Data.requesterRatingCompleted == false}">
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                          </apex:outputPanel>
+                          <apex:outputPanel rendered="{!Data.obhRatingCompleted == true}">
+                              <td>{!Data.obhRating}</td>
+                              <td>{!Data.obhAttentiveness}</td>
+                              <td>{!Data.obhFast}</td>
+                              <td>{!Data.obhPunctuality}</td>
+                              <td>{!Data.obhExpertise}</td>
+                          </apex:outputPanel>
+                          <apex:outputPanel rendered="{!Data.obhRatingCompleted == false}">
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                          </apex:outputPanel>
+                      </tr>
+                  </apex:repeat>
+              </table>
+          </apex:outputPanel>
+          
+      </body>
+  </html>
+  
+</apex:page>

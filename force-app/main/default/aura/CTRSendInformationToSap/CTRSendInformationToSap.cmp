@@ -1,0 +1,94 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName"
+    access="global" controller="CTRCommitteeSendToSap">
+
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="mToken" type="String" />
+    <aura:attribute name="mainComponentName" type="String" />
+    <aura:attribute name="mDataValidateMessage" type="String" />
+    <aura:attribute name="mValidateMessageList" type="String[]" />
+    <aura:attribute name="mDataReady" type="boolean" default="false" />
+    <aura:attribute name="mRequestHeader" type="sObject" />
+    <aura:attribute name="mRequestItem" type="sObject" />
+    <aura:attribute name="submitSendtoSap" type="boolean" default="false" />
+    <aura:attribute name="isModalOpen" type="boolean" default="true" />
+    <aura:attribute name="isGeneralSent" type="boolean" default="false" />
+
+    <aura:attribute name="isSyncing" type="boolean" default="false" />
+    <aura:attribute name="LatestIntegrationName" type="String" />
+    <aura:attribute name="LatestIntegrationStatus" type="String" />
+    <aura:attribute name="CurrentPageStatus" type="String" />
+
+    <aura:attribute name="isInitial" type="boolean" default="false" />
+    <aura:attribute name="isExtend" type="boolean" default="false" />
+    <aura:attribute name="isShipTo" type="boolean" default="false" />
+    <aura:attribute name="isEdit" type="boolean" default="false" />
+    <aura:attribute name="isBlock" type="boolean" default="false" />
+    <aura:attribute name="isChange" type="boolean" default="false" />
+
+    <aura:attribute name="AllowSend" type="boolean" default="false" />
+    <aura:attribute name="DynamicText" type="String" />
+    <aura:attribute name="ConfirmButtonName" type="String" default = "Confirm"/>
+
+
+
+
+    <aura:attribute name="mRecordTypeName" type="String" />
+
+    <aura:attribute name="loaded" type="Boolean" default="false"/>
+
+    <aura:handler name='init' value='{!this}' action='{!c.doInit}' />
+
+
+
+    <div class=" modal-header slds-modal__header slds-size_1-of-1" style = "top: 0; position: sticky; z-index: 5;">
+        <h4 class="title slds-text-heading–medium"><b>Send Information to SAP</b></h4>
+    </div>
+    <div style = "padding :20px;">
+
+        <div class="slds-grid" style = "height: 220px;">
+            <aura:if isTrue="{! v.loaded }">
+                <aura:set attribute="else">
+                    <lightning:spinner alternativeText="Loading" /> 
+                </aura:set>
+            </aura:if>
+
+
+            <div class="slds-container--center" style = "margin-bottom: auto; margin-top: auto;">
+                <aura:if isTrue="{! v.isInitial }">
+                        <aura:if isTrue="{!! v.isGeneralSent }">
+                            <aura:if isTrue="{! v.mDataReady }">
+                                    Are you sure you want to send this counterpaty information to SAP? <br/>
+                                    After the submission, you will not be able to edit this information.
+                            </aura:if>
+                            <aura:if isTrue="{!!v.mDataReady }">
+                                <b>Data is not ready.</b> <br/> 
+                                <aura:iteration items="{!v.mValidateMessageList}" var="mValidateMessage" indexVar="index">
+        
+                                <br/>- {!mValidateMessage }
+                                </aura:iteration>
+                            </aura:if>
+                        </aura:if>
+
+                        <aura:if isTrue="{!v.isGeneralSent }">
+                            <b>{!v.DynamicText}</b> <br/>
+                        </aura:if>
+                </aura:if>
+                <aura:if isTrue="{!! v.isInitial }">
+                    <b>{!v.DynamicText}</b> <br/>
+                </aura:if>
+
+            </div>
+        </div>
+        
+    </div>
+    <div class="modal-footer slds-modal__footer slds-size_1-of-1" style = "Bottom: 0; position: sticky; z-index: 5;">
+        <div>
+            <aura:if isTrue="{! v.AllowSend }">
+                        <lightning:button variant="Brand" class="slds-button" label="{!v.ConfirmButtonName}" onclick="{!c.submit}"/>
+            </aura:if>
+            
+            <lightning:button variant="Neutral" class="slds-button" label="Cancel" onclick="{!c.closeModal}"/>
+        </div>
+    </div>
+
+</aura:component>

@@ -1,0 +1,29 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,lightning:isUrlAddressable" access="global" controller="THOR_CalendarJSController">
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    <aura:attribute name="isMobile" type="Boolean"/>
+
+    <aura:registerEvent name="navagationHelper" type="c:THOR_navigateTo"/>
+
+    <ltng:require
+        scripts="{!join(',',
+            $Resource.fullcalendar4 + '/packages/core/main.js',
+            $Resource.fullcalendar4 + '/packages/daygrid/main.js',
+            $Resource.fullcalendar4 + '/packages/timegrid/main.js',
+            $Resource.fullcalendar4 + '/packages/list/main.js',
+            $Resource.fullcalendar4 + '/packages/interaction/main.js')}"
+
+        styles="{!join(',',
+            $Resource.fullcalendar4 + '/packages/daygrid/main.min.css',
+            $Resource.fullcalendar4 + '/packages/list/main.min.css',
+            $Resource.fullcalendar4 + '/packages/timegrid/main.min.css',
+            $Resource.fullcalendar4 + '/packages/core/main.min.css')}"
+
+        afterScriptsLoaded="{!c.scriptsLoaded}"
+    />
+
+    <c:THOR_navigateBack />
+
+    <div aura:id='calendar-id' id='calendar-id' ondragstart="return false;" ondrop="return false;"></div>
+
+
+</aura:component>

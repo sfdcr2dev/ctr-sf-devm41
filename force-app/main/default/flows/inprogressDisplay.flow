@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <interviewLabel>inprogressDisplay {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>inprogressDisplay</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>getRecord</name>
+        <label>getRecord</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>screenInProgress</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>Case</object>
+    </recordLookups>
+    <screens>
+        <name>screenInProgress</name>
+        <label>screenInProgress</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>textInProgress</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 16px; color: rgb(7, 47, 87);&quot;&gt;ขณะนี้คำขอของคุณอยู่ในระหว่างดำเนินการ (In Progress)&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>queueName</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 16px; color: rgb(7, 47, 87);&quot;&gt;ผู้รับผิดชอบคำขอของคุณคือ &lt;/span&gt;&lt;b style=&quot;font-size: 16px; color: rgb(7, 47, 87);&quot;&gt;{!getRecord.Owner:Group.Name}&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>supportBy</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 16px; background-color: rgb(255, 255, 255); color: rgb(7, 47, 87);&quot;&gt;ผู้รับผิดชอบคำขอของคุณคือ &lt;/span&gt;&lt;b style=&quot;font-size: 16px; background-color: rgb(255, 255, 255); color: rgb(7, 47, 87);&quot;&gt;{!getRecord.Support_By__c}&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <startElementReference>getRecord</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

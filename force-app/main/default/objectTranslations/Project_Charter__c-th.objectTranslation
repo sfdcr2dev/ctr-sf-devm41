@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Step 1 : Project Charter</value>
+    </caseValues>
+    <fields>
+        <label><!-- Actual End Date --></label>
+        <name>Actual_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Actual Start Date --></label>
+        <name>Actual_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assigned User --></label>
+        <name>Assigned_User__c</name>
+        <relationshipLabel><!-- Step 1: Project Charter --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- End Plan Date --></label>
+        <name>End_Plan__c</name>
+    </fields>
+    <fields>
+        <label><!-- Hashtag --></label>
+        <name>Hashtag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Process --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- No --></label>
+        <name>No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Charter Approved File --></label>
+        <name>Project_Charter_Approved_File__c</name>
+    </fields>
+    <fields>
+        <help><!-- Required --></help>
+        <label><!-- Project Charter File --></label>
+        <name>Project_Charter_File__c</name>
+    </fields>
+    <fields>
+        <help><!-- Required --></help>
+        <label><!-- Project Description --></label>
+        <name>Project_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Required --></help>
+        <label><!-- Project Justification --></label>
+        <name>Project_Justification__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Manager --></label>
+        <name>Project_Manager__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Name --></label>
+        <name>Project_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Number --></label>
+        <name>Project_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project --></label>
+        <name>Project__c</name>
+        <relationshipLabel><!-- Step 1 : Project Charter --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Remark --></label>
+        <name>Remark__c</name>
+    </fields>
+    <fields>
+        <label><!-- SME --></label>
+        <lookupFilter>
+            <errorMessage><!-- Selected User is not SME. Please select SME user. --></errorMessage>
+            <informationalMessage><!-- Please select SME user. --></informationalMessage>
+        </lookupFilter>
+        <name>SME__c</name>
+        <relationshipLabel><!-- Step 1 : Project Charter --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Start Plan Date --></label>
+        <name>Start_Plan__c</name>
+    </fields>
+    <fields>
+        <label><!-- Submit Status --></label>
+        <name>Submit_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Waiting for Approve --></label>
+        <name>Waiting_for_Approve__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Process Status --></label>
+        <name>Work_Process_Status__c</name>
+    </fields>
+    <layouts>
+        <layout>Project Charter Layout</layout>
+        <sections>
+            <label><!-- Actual Date --></label>
+            <section>Actual Date</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว)</section>
+        </sections>
+        <sections>
+            <label><!-- Plan Date --></label>
+            <section>Plan Date</section>
+        </sections>
+        <sections>
+            <label><!-- Project --></label>
+            <section>Project</section>
+        </sections>
+        <sections>
+            <label><!-- Remark --></label>
+            <section>Remark</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Project Charter Submit Layout</layout>
+        <sections>
+            <label><!-- Actual Date --></label>
+            <section>Actual Date</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว)</section>
+        </sections>
+        <sections>
+            <label><!-- Plan Date --></label>
+            <section>Plan Date</section>
+        </sections>
+        <sections>
+            <label><!-- Project --></label>
+            <section>Project</section>
+        </sections>
+        <sections>
+            <label><!-- Remark --></label>
+            <section>Remark</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Step 1 : After Submit --></label>
+        <name>Step_1_After_Submit</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Step 1 : Before Submit --></label>
+        <name>Step_1_Before_Submit</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- You don&apos;t have privilege to change &apos;Work Process Name&apos; --></errorMessage>
+        <name>Validate_Work_Process_Name_For_Not_Edit</name>
+    </validationRules>
+</CustomObjectTranslation>

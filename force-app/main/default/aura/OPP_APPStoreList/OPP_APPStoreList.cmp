@@ -1,0 +1,442 @@
+<aura:component controller="OPP_ApplicationController" 
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" 
+                access="global" >
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <aura:attribute name="categories" type="Object" />
+    <aura:attribute name="notifications" type="Object" />
+    <aura:attribute name="applications" type="Object" />
+    <aura:attribute name="alerts" type="Object" />
+    <aura:attribute name="applicationNotifications" type="Object" />
+    
+    <aura:attribute name="selectedDocumentId" type="string"/>
+    <aura:attribute name="lstContentDoc" type="List"/>
+    <aura:attribute name="hasModalOpen" type="boolean" default="false"/>
+    
+    <aura:attribute name="Appp" type="OPP_Application__c[]"/> 
+    <aura:attribute name="Notis" type="OPP_Notification__c[]"/> 
+    
+    <aura:attribute name="appName" type="string"/>
+    <aura:attribute name="appUrl" type="string"/>
+    
+    <aura:attribute name="tabId" type="String" default="People Connect"/>
+    <!--<c:OPP_CoinSync ></c:OPP_CoinSync>-->
+
+    <aura:html tag="style">
+        @font-face {
+            font-family: 'DB Heavent';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('DB Heavent'), local('DB Heavent-Regular'), url({!$Resource.OPPNews + '/assets/font/DB_Heavent_v3.2.ttf'}) format('truetype');
+        }
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('Poppins'), local('Poppins-Regular'), url({!$Resource.OPPNews + '/assets/font/Poppins-Regular.otf'}) format('opentype');;
+        }
+        @font-face {
+            font-family: 'FC Iconic';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('FC Iconic'), local('FC Iconic-Regular'), url({!$Resource.OPPNews + '/assets/font/FC_Iconic_Regular.otf'}) format('opentype');;
+        }
+    </aura:html>
+    <c:OPP_Counter page="App Store" />
+    <div class="slds-p-horizontal_medium">
+        <aura:if isTrue="{!$Browser.isIPad}">
+            <lightning:card title="">
+                <p class="slds-p-horizontal_small">
+                    <div class="padding">
+                        App Store
+                    </div>
+                    <div class="OPP_AppStore" >
+                        
+                        <lightning:tabset variant="vertical" selectedTabId="{!v.tabId}">
+                            <aura:iteration items="{!v.categories}" var="category">
+                                <lightning:tab label="{!category}" id="{!category}">
+                                    <ul class="slds-grid slds-grid_pull-padded slds-wrap">
+                                        <aura:iteration items="{!v.applications}" var="application">
+                                            <aura:if isTrue="{!application.Category__c == category}">
+                                                <aura:if isTrue="{!application.URL_Web__c}">
+                                                    <li class="slds-p-horizontal_small slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-6">
+                                                        <div class="polaroid">
+                                                            <div class="notification">
+                                                                <!--<a onclick="{!c.getSelected}" data-name="{!application.Name}" data-url="{!application.URL_Web__c}" data-id="{!application.Id}">-->
+                                                                <a href="{!application.URL_Web__c}" Target="blank" >
+                                                                    <aura:if isTrue="{!application.ContentDocumentLinks[0].ContentDocumentId}">
+                                                                        <img class="apps" src="{!'/sfc/servlet.shepherd/document/download/' + application.ContentDocumentLinks[0].ContentDocumentId}"></img>
+                                                                        <aura:set attribute="else">
+                                                                            <img class="apps" src="https://theprachakorn.com/imgDetail/noImg.jpg" /> 
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </a>
+                                                                <!--</a>-->
+                                                                <!--<aura:iteration items="{!v.applicationNotifications}" var="applicationNotification">
+                                                <aura:if isTrue="{!application.Id == applicationNotification.Application__c}">
+                                                    <span class="badge slds-avatar slds-avatar_circle">
+                                                        <abbr class="slds-avatar__initials " title="Notification">
+                {!applicationNotification.Count__c}
+                                                        </abbr>
+                                                    </span>
+                                                </aura:if>
+                                            </aura:iteration>-->
+                                                                <div class="container">
+                                                                    <p>
+                                                                        <aura:if isTrue="{!application.Name == 'อยู่ไหน' || application.Name == 'ไปด้วย' || application.Name == 'ระบบปิดถนน' || application.Name == 'สหกรณ์ ออมทรัพย์' || application.Name == 'คุณริเริ่ม เราเติมเต็ม'}">
+                                                                            <a href="{!application.URL_Web__c}" class="slds-a2" Target="blank" >{!application.Name}</a>
+                                                                        <aura:set attribute="else">
+                                                                            <a href="{!application.URL_Web__c}" class="slds-a" Target="blank" >{!application.Name}</a>
+                                                                        </aura:set>
+                                                                        </aura:if> 
+                                                                        <!--<a onclick="{!c.getSelected}" data-name="{!application.Name}" data-url="{!application.URL_Web__c}" data-id="{!application.Id}">{!application.Name}</a>-->
+                                                                        
+                                                                        
+                                                                        
+                                                                        <br/>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </aura:if>
+                                            </aura:if>
+                                        </aura:iteration>
+                                    </ul>
+                                </lightning:tab>
+                            </aura:iteration>
+                            <!--
+                    <lightning:tab label="Other">
+                        <ul class="slds-grid slds-grid_pull-padded slds-wrap">
+                            <aura:iteration items="{!v.notifications}" var="application">
+                                <li class="slds-p-horizontal_small slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-6">
+                                    <div class="polaroid">
+                                        <div class="notification">
+                                            <a onclick="{!c.getSelected}" data-name="{!application.Name}" data-url="{!application.URL_Web__c}" data-id="{!application.Id}">
+                                            
+                                                <aura:if isTrue="{!application.Icon__c}">
+                                                    <img class="apps" src="{!application.Icon__c}" />
+                                                    <aura:set attribute="else">
+                                                        <img class="apps" src="https://theprachakorn.com/imgDetail/noImg.jpg" /> 
+                                                    </aura:set>
+                                                </aura:if>
+                                            </a>
+                                            <aura:iteration items="{!v.applicationNotifications}" var="applicationNotification">
+                                                <aura:if isTrue="{!application.Id == applicationNotification.Application__c}">
+                                                    <span class="badge slds-avatar slds-avatar_circle">
+                                                        <abbr class="slds-avatar__initials " title="Notification">
+                {!applicationNotification.Count__c}
+                                                        </abbr>
+                                                    </span>
+                                                </aura:if>
+                                            </aura:iteration>
+                                            <div class="container">
+                                                <p><a onclick="{!c.getSelected}" data-name="{!application.Name}" data-url="{!application.URL_Web__c}" data-id="{!application.Id}">{!application.Name}</a>
+                                                    <br/>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </aura:iteration>
+                        </ul>
+                    </lightning:tab>
+         -->
+                            
+                            
+                            
+                        </lightning:tabset>
+                        
+                    </div>
+                </p>
+            </lightning:card>
+        </aura:if>
+        <aura:if isTrue="{!$Browser.formFactor == 'DESKTOP'}">
+            <lightning:card title="">
+                <p class="slds-p-horizontal_small">
+                    <div class="padding">
+                        App Store
+                    </div>
+                    <div class="OPP_AppStore" >
+                        
+                        <lightning:tabset variant="vertical" selectedTabId="{!v.tabId}">
+                            <aura:iteration items="{!v.categories}" var="category">
+                                <lightning:tab label="{!category}" id="{!category}">
+                                    <ul class="slds-grid slds-grid_pull-padded slds-wrap">
+                                        <aura:iteration items="{!v.applications}" var="application">
+                                            <aura:if isTrue="{!application.Category__c == category}">
+                                                <aura:if isTrue="{!application.URL_Web__c}">
+                                                    <li class="slds-p-horizontal_small slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-6">
+                                                        <div class="polaroid">
+                                                            <div class="notification">
+                                                                <!--<a onclick="{!c.getSelected}" data-name="{!application.Name}" data-url="{!application.URL_Web__c}" data-id="{!application.Id}">-->
+                                                                <a href="{!application.URL_Web__c}" Target="blank" >
+                                                                    <aura:if isTrue="{!application.ContentDocumentLinks[0].ContentDocumentId}">
+                                                                        <img class="apps" src="{!'/sfc/servlet.shepherd/document/download/' + application.ContentDocumentLinks[0].ContentDocumentId}"></img>
+                                                                        <aura:set attribute="else">
+                                                                            <img class="apps" src="https://theprachakorn.com/imgDetail/noImg.jpg" /> 
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </a>
+                                                                <!--</a>-->
+                                                                <!--<aura:iteration items="{!v.applicationNotifications}" var="applicationNotification">
+                                                <aura:if isTrue="{!application.Id == applicationNotification.Application__c}">
+                                                    <span class="badge slds-avatar slds-avatar_circle">
+                                                        <abbr class="slds-avatar__initials " title="Notification">
+                {!applicationNotification.Count__c}
+                                                        </abbr>
+                                                    </span>
+                                                </aura:if>
+                                            </aura:iteration>-->
+                                                                <div class="container">
+                                                                    <p>
+                                                                        <aura:if isTrue="{!application.Name == 'อยู่ไหน' || application.Name == 'ไปด้วย' || application.Name == 'ระบบปิดถนน' || application.Name == 'สหกรณ์ ออมทรัพย์' || application.Name == 'คุณริเริ่ม เราเติมเต็ม'}">
+                                                                            <a href="{!application.URL_Web__c}" class="slds-a2" Target="blank" >{!application.Name}</a>
+                                                                        <aura:set attribute="else">
+                                                                            <a href="{!application.URL_Web__c}" class="slds-a" Target="blank" >{!application.Name}</a>
+                                                                        </aura:set>
+                                                                        </aura:if> 
+                                                                        <!--<a onclick="{!c.getSelected}" data-name="{!application.Name}" data-url="{!application.URL_Web__c}" data-id="{!application.Id}">{!application.Name}</a>-->
+                                                                        
+                                                                        
+                                                                        
+                                                                        <br/>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </aura:if>
+                                            </aura:if>
+                                        </aura:iteration>
+                                    </ul>
+                                </lightning:tab>
+                            </aura:iteration>
+                            <!--
+                    <lightning:tab label="Other">
+                        <ul class="slds-grid slds-grid_pull-padded slds-wrap">
+                            <aura:iteration items="{!v.notifications}" var="application">
+                                <li class="slds-p-horizontal_small slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-6">
+                                    <div class="polaroid">
+                                        <div class="notification">
+                                            <a onclick="{!c.getSelected}" data-name="{!application.Name}" data-url="{!application.URL_Web__c}" data-id="{!application.Id}">
+                                            
+                                                <aura:if isTrue="{!application.Icon__c}">
+                                                    <img class="apps" src="{!application.Icon__c}" />
+                                                    <aura:set attribute="else">
+                                                        <img class="apps" src="https://theprachakorn.com/imgDetail/noImg.jpg" /> 
+                                                    </aura:set>
+                                                </aura:if>
+                                            </a>
+                                            <aura:iteration items="{!v.applicationNotifications}" var="applicationNotification">
+                                                <aura:if isTrue="{!application.Id == applicationNotification.Application__c}">
+                                                    <span class="badge slds-avatar slds-avatar_circle">
+                                                        <abbr class="slds-avatar__initials " title="Notification">
+                {!applicationNotification.Count__c}
+                                                        </abbr>
+                                                    </span>
+                                                </aura:if>
+                                            </aura:iteration>
+                                            <div class="container">
+                                                <p><a onclick="{!c.getSelected}" data-name="{!application.Name}" data-url="{!application.URL_Web__c}" data-id="{!application.Id}">{!application.Name}</a>
+                                                    <br/>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </aura:iteration>
+                        </ul>
+                    </lightning:tab>
+         -->
+                            
+                            
+                            
+                        </lightning:tabset>
+                        
+                    </div>
+                </p>
+            </lightning:card>
+        </aura:if>
+        <aura:if isTrue="{!$Browser.isAndroid}">
+            <!-- <a href="fb://">Facebook</a><br/> -->
+            <!-- <a href="fb://mygroup">My Facebook Group</a><br/>
+            <a href="fb://page/dogdagapp">My Facebook Group2</a> -->
+            <lightning:card title="">
+                <p class="slds-p-horizontal_small">
+                    <div class="padding-mobile">
+                        App Store
+                    </div>
+                    <lightning:tabset variant="vertical" selectedTabId="{!v.tabId}">
+                        <aura:iteration items="{!v.categories}" var="category">
+                            <lightning:tab label="{!category}" id="{!category}">
+                                <ul class="slds-grid slds-grid_pull-padded slds-wrap">
+                                    <aura:iteration items="{!v.applications}" var="application">
+                                        <aura:if isTrue="{!application.Category__c == category}">
+                                            <aura:if isTrue="{!application.URL_Android__c}">
+                                                <li class="slds-p-horizontal_small slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-6">
+                                                    <div class="polaroid2">
+                                                        <div class="notification">
+                                                            <!--<a onclick="{!c.getSelected}" data-name="{!application.Name}" data-url="{!application.URL_Web__c}" data-id="{!application.Id}">-->
+                                                            <a href="{!application.URL_Android__c}" Target="blank" >
+                                                                <aura:if isTrue="{!application.ContentDocumentLinks[0].ContentDocumentId}">
+                                                                    <img class="apps" src="{!'/sfc/servlet.shepherd/document/download/' + application.ContentDocumentLinks[0].ContentDocumentId}"></img>
+                                                                    <aura:set attribute="else">
+                                                                        <img class="apps" src="https://theprachakorn.com/imgDetail/noImg.jpg" /> 
+                                                                    </aura:set>
+                                                                </aura:if>
+                                                            </a>
+                                                            <div class="container">
+                                                                <p>
+                                                                    <aura:if isTrue="{!application.Name == 'อยู่ไหน' || application.Name == 'ไปด้วย' || application.Name == 'ระบบปิดถนน' || application.Name == 'สหกรณ์ ออมทรัพย์' || application.Name == 'คุณริเริ่ม เราเติมเต็ม'}">
+                                                                        <a href="{!application.URL_Android__c}" class="slds-a2" Target="blank" >{!application.Name}</a>
+                                                                    <aura:set attribute="else">
+                                                                        <a href="{!application.URL_Android__c}" class="slds-a" Target="blank" >{!application.Name}</a>
+                                                                    </aura:set>
+                                                                    </aura:if> 
+                                                                    
+                                                                    <br/>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </aura:if>
+                                        </aura:if>
+                                    </aura:iteration>
+                                </ul>
+                            </lightning:tab>
+                        </aura:iteration>
+                    </lightning:tabset>
+                </p>
+            </lightning:card>
+        </aura:if>
+        
+        <aura:if isTrue="{!$Browser.isIPhone}">
+            <lightning:card title="">
+                <p class="slds-p-horizontal_small">
+                    <div class="padding-mobile">
+                        App Store
+                    </div>
+                    <lightning:tabset variant="vertical" selectedTabId="{!v.tabId}">
+                        <aura:iteration items="{!v.categories}" var="category">
+                            <lightning:tab label="{!category}" id="{!category}">
+                                <ul class="slds-grid slds-grid_pull-padded slds-wrap">
+                                    <aura:iteration items="{!v.applications}" var="application">
+                                        <aura:if isTrue="{!application.Category__c == category}">
+                                            <aura:if isTrue="{!application.URL_IOS__c}">
+                                                <li class="slds-p-horizontal_small slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-6">
+                                                    <div class="polaroid2">
+                                                        <div class="notification">
+                                                            <!--<a onclick="{!c.getSelected}" data-name="{!application.Name}" data-url="{!application.URL_Web__c}" data-id="{!application.Id}">-->
+                                                            <a href="{!application.URL_IOS__c}" Target="blank" >
+                                                                <aura:if isTrue="{!application.ContentDocumentLinks[0].ContentDocumentId}">
+                                                                    <img class="apps" src="{!'/sfc/servlet.shepherd/document/download/' + application.ContentDocumentLinks[0].ContentDocumentId}"></img>
+                                                                    <aura:set attribute="else">
+                                                                        <img class="apps" src="https://theprachakorn.com/imgDetail/noImg.jpg" /> 
+                                                                    </aura:set>
+                                                                </aura:if>
+                                                            </a>
+                                                            <div class="container">
+                                                                <p>
+                                                                    <aura:if isTrue="{!application.Name == 'อยู่ไหน' || application.Name == 'ไปด้วย' || application.Name == 'ระบบปิดถนน' || application.Name == 'สหกรณ์ ออมทรัพย์' || application.Name == 'คุณริเริ่ม เราเติมเต็ม'}">
+                                                                        <a href="{!application.URL_IOS__c}" class="slds-a2" Target="blank" >{!application.Name}</a>
+                                                                    <aura:set attribute="else">
+                                                                        <a href="{!application.URL_IOS__c}" class="slds-a" Target="blank" >{!application.Name}</a>
+                                                                    </aura:set>
+                                                                    </aura:if> 
+                                                                    <br/>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </aura:if>
+                                        </aura:if>
+                                    </aura:iteration>
+                                </ul>
+                            </lightning:tab>
+                        </aura:iteration>
+                    </lightning:tabset>
+                </p>
+            </lightning:card>
+        </aura:if>
+        
+        
+        <aura:if isTrue="{!v.hasModalOpen}">
+            <!-- {!c.closeModel} -->
+            <section onclick=""
+                     role="dialog"
+                     aria-modal="true"
+                     class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__content slds-p-around_medium slds-text-align_center"
+                         style="background: transparent;">
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Notification <b>{!v.appName} </b></h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <div style="width: 100%; margin: 0 auto; text-align: left">
+                                <!--<lightning:fileCard> to preview file using content document Id -->
+                                <!-- <lightning:fileCard fileId="{!v.selectedDocumentId}"/> -->
+                                <!-- aaaaaa {!v.selectedDocumentId} bbb {!v.selectedDocumentId} ccc -->
+                                
+                                <c:OPP_NotficationModalList notis="{!v.Notis}"/> 
+                            </div>
+                            
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <!-- <button class="slds-button slds-button_neutral">View All</button> -->
+                            <aura:if isTrue="{!v.appUrl}">
+                                <a href="{!v.appUrl}" class="slds-button slds-button_neutral" target="_blank" >Go to original Applications</a>
+                            </aura:if>
+                            <button class="slds-button slds-button_neutral" onclick="{!c.closeModel}">Close</button> 
+                        </footer>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+        
+    </div>
+        <div class="test">
+            
+            <aura:if isTrue="{!$Browser.isAndroid}">
+            <div class="test">Android สำหรับทดสอบ Deeplink</div>
+            <a href="fb://" class="test">Facebook</a><br/><br/><br/>
+            <a href="play://play/" class="test">Play</a><br/><br/><br/>
+            <a href="wellbeing://wellbeing/" class="test">Well Being</a><br/><br/><br/>
+            <a href="tracking://tracking/" class="test">Tracking/อยู่ไหน </a><br/><br/><br/>
+            <a href="shopcoin://shopcoin/" class="test">Shop</a><br/><br/><br/>
+            <a href="leave://leave/" class="test">Leave</a><br/><br/><br/>
+            <a href="ot://ot/" class="test">OT</a><br/><br/><br/>
+            <a href="donate://donate/" class="test">60ปี ไทยออยล์ คุณริเริ่ม...เราเติมเต็ม</a><br/><br/><br/>
+            <a href="grab://grab/" class="test">ไปด้วย</a><br/><br/><br/>
+            <a href="rhinobot://rhinobot/" class="test">Rhino Bot</a><br/><br/><br/>
+            <a href="topenergy://topenergy/" class="test">TOP Energy</a><br/><br/><br/>
+            </aura:if>
+                
+            <aura:if isTrue="{!$Browser.isIPhone}">
+                <div class="test">IOS สำหรับทดสอบ Deeplink</div>
+                <a href="fb://" class="test">Facebook</a><br/><br/><br/>
+                <a href="play://" class="test">Play</a><br/><br/><br/>
+                <a href="wellbeing://" class="test">Well Being</a><br/><br/><br/>
+                <a href="tracking://" class="test">Tracking/อยู่ไหน </a><br/><br/><br/>
+                <a href="shopcoin://" class="test">Shop</a><br/><br/><br/>
+                <a href="leave://" class="test">Leave</a><br/><br/><br/>
+                <a href="ot://" class="test">OT</a><br/><br/><br/>
+                <a href="donate://" class="test">60ปี ไทยออยล์ คุณริเริ่ม...เราเติมเต็ม</a><br/><br/><br/>
+                <a href="grab://" class="test">ไปด้วย</a><br/><br/><br/>
+                <a href="rhinobot://" class="test">Rhino Bot</a><br/><br/><br/>
+                <a href="topenergy://" class="test">TOP Energy</a><br/><br/><br/>
+            </aura:if>
+        </div>
+</aura:component>

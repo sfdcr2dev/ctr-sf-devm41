@@ -1,0 +1,160 @@
+<aura:component>
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<!--
+	<aura:attribute
+		name="form"
+		type="Map"
+		default="{
+			Notification_Type__c: 'OP'
+		}"
+	/>
+	-->
+	<aura:attribute name="form" type="Map" default="{}" />
+	<aura:method name="getFields" action="{!c.getFields}" access="public" />
+	<aura:method name="reset" action="{!c.reset}" />
+
+	<div class="container_filter">
+		<lightning:layout multipleRows="true">
+			<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<div class="slds-form-element slds-form-element_stacked">
+					<label class="slds-form-element__label">Notification Number</label>
+					<div class="slds-form-element__control">
+						<lightning:inputField aura:id="inputField" fieldName="Notification_Number__c" variant="label-hidden" />
+					</div>
+				</div>
+			</lightning:layoutItem>
+			<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<div class="slds-form-element slds-form-element_stacked">
+					<label class="slds-form-element__label">Notification Type</label>
+					<div class="slds-form-element__control">
+						<lightning:inputField aura:id="inputField" fieldName="Notification_Type__c" variant="label-hidden" />
+					</div>
+				</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField aura:id="inputField" fieldName="Functional_Location__c" />
+			</lightning:layoutItem>
+			<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField
+					class="slds-hide"
+					aura:id="inputField"
+					fieldName="Main_Work_Center__c"
+					value="{!v.form.Main_Work_Center__c}"
+				/>
+				<c:thorFilterSuggest
+					alignment="bottom"
+					fieldName="Main_Work_Center__c"
+					value="{!v.form.Main_Work_Center__c}"
+					onchangeValue="{!c.handleChange}"
+					masterMapType="Main Work Center"
+				/>
+			</lightning:layoutItem>
+			<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField
+					class="slds-hide"
+					aura:id="inputField"
+					fieldName="Maintenance_Plant__c"
+					value="{!v.form.Maintenance_Plant__c}"
+					variant="label-hidden"
+				/>
+				<c:thorFilterSuggest
+					alignment="bottom"
+					fieldName="Maintenance_Plant__c"
+					value="{!v.form.Maintenance_Plant__c}"
+					onchangeValue="{!c.handleChange}"
+					masterMapType="Plant"
+				/>
+			</lightning:layoutItem>
+			<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField
+					class="slds-hide"
+					aura:id="inputField"
+					fieldName="Plant_Section__c"
+					value="{!v.form.Plant_Section__c}"
+					variant="label-hidden"
+				/>
+				<c:thorFilterSuggest
+					alignment="bottom"
+					fieldName="Plant_Section__c"
+					value="{!v.form.Plant_Section__c}"
+					onchangeValue="{!c.handleChange}"
+					masterMapType="Plant Section"
+				/>
+				<!--
+				<div class="slds-form-element slds-form-element_stacked">
+					<label class="slds-form-element__label">Plant Section</label>
+					<div class="slds-form-element__control">
+						<lightning:inputField aura:id="inputField" fieldName="Plant_Section__c" variant="label-hidden" />
+					</div>
+				</div>
+				-->
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<div class="slds-form-element slds-form-element_stacked">
+					<label class="slds-form-element__label">Notification Date From</label>
+					<div class="slds-form-element__control">
+						<lightning:inputField aura:id="inputField" fieldName="Create_Date_From__c" variant="label-hidden" />
+					</div>
+				</div>
+			</lightning:layoutItem>
+			<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<div class="slds-form-element slds-form-element_stacked">
+					<label class="slds-form-element__label">Notification Date To</label>
+					<div class="slds-form-element__control">
+						<lightning:inputField aura:id="inputField" fieldName="Create_Date_To__c" variant="label-hidden" />
+					</div>
+				</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<div class="slds-form-element slds-form-element_stacked">
+					<label class="slds-form-element__label">Required Start From</label>
+					<div class="slds-form-element__control">
+						<lightning:inputField aura:id="inputField" fieldName="Submission_Date_From__c" variant="label-hidden" />
+					</div>
+				</div>
+			</lightning:layoutItem>
+			<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<div class="slds-form-element slds-form-element_stacked">
+					<label class="slds-form-element__label">Required Start To</label>
+					<div class="slds-form-element__control">
+						<lightning:inputField aura:id="inputField" fieldName="Submission_Date_To__c" variant="label-hidden" />
+					</div>
+				</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField aura:id="inputField" fieldName="Description__c" />
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="Requester__c" value="{!v.form.Requester__c}" />
+				<c:thorFilterSuggestLookup
+					sObjectName="Thor_Filter__c"
+					fieldName="Requester__c"
+					labelName="Requestor (Staff ID)"
+					value="{!v.form.Requester__c}"
+					onchangeValue="{!c.handleChange}"
+					fetchSObjectName="PISUsers__c"
+					fetchFieldName="EN_Fullname__c"
+					nameDisplayFormat="{EN_Fullname__c}"
+					descriptionDisplayFormat="{Home Id: HOME_ID__c, Host Id: HOST_ID__c}"
+				/>
+
+				<!--
+				<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<div class="slds-form-element slds-form-element_stacked">
+						<label class="slds-form-element__label">Requestor (Staff ID)</label>
+						<div class="slds-form-element__control">
+							<lightning:inputField aura:id="inputField" fieldName="Requester__c" variant="label-hidden" />
+						</div>
+					</div>
+				</lightning:layoutItem>
+				-->
+			</lightning:layoutItem>
+		</lightning:layout>
+	</div>
+</aura:component>

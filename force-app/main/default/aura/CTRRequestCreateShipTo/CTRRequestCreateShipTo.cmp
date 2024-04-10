@@ -1,0 +1,140 @@
+<aura:component controller="CTRRequestCreateShipToController" access="global">
+    <!-- SENT FROM CTRCreateRequestLandingPage -->
+    <aura:attribute name="customerId" type="Id" />
+    <aura:attribute name="recordTypeId" type="Id" />
+    <aura:attribute name="bu" type="String" />
+    <aura:attribute name="requestType" type="String" />
+    <!--  -->
+
+    <aura:attribute name="requestList" type="List" default="[]" />
+    <aura:attribute name="showSpinner" type="Boolean" default="true" />
+    <aura:attribute name="isModalOpen" type="Boolean" default="true" />
+    <aura:attribute name="isFormModalOpen" type="Boolean" default="false" />
+    <aura:attribute name="counterPartyType" type="String" />
+
+    <aura:attribute name="selectedRequest" type="Map" />
+
+    <aura:attribute name="targetRecord" type="Object" />
+    <aura:attribute name="targetRecordError" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <force:recordData aura:id="accountRecord" recordId="{!v.customerId}" fields="Name" targetFields="{!v.targetRecord}"
+        targetError="{!v.targetRecordError}" recordUpdated="{!c.handleRecordUpdated}" />
+
+
+
+    <aura:html tag="style">
+        .slds-modal__container {
+        width: 90% !important;
+        max-width: 80% !important;
+        height: 100% !important;
+        }
+        .cuf-content {
+        padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+        padding: 0rem !important;
+        }
+        .slds-modal__content {
+        overflow-y: auto !important;
+        height: unset !important;
+        max-height: unset !important;
+        }
+        .closeIcon {
+        display: none !important;
+        }
+    </aura:html>
+
+
+    <aura:if isTrue="{!v.showSpinner}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+    <aura:if isTrue="{!v.isModalOpen}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            class="slds-modal slds-fade-in-open"> <!-- style="padding-top:10%; width:200%; margin-left:-50%;" -->
+            <div class="slds-modal__container custom_modal_container">
+                <!-- HEADER -->
+                <div class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                        New Request Form: Create Ship-to
+
+                    </h2>
+                </div>
+                <!-- BODY -->
+                <div class="slds-modal__content slds-p-around_medium">
+
+
+                    <div style="display:inline-block; padding: 5px 0 10px 0;">
+                        <div>Account Name: <span style="font-weight: bold">{!v.targetRecord.Name}</span></div>
+                    </div>
+                    <div class="slds-var-m-top_medium slds-var-m-bottom_x-large"
+                        style="background-color: white; overflow: auto;">
+                        <div class="slds-grid slds-wrap">
+
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
+                                aria-label="History Change values"
+                                style="width:100%; border: var(--lwc-borderWidthThin,1px) solid var(--slds-g-color-border-base-1, var(--lwc-colorBorder,rgb(229, 229, 229)))">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Select">#</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Sales Organization">Sales Organization
+                                            </div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Division">Division</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Distribution Channel">Distribution Channel
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <aura:iteration items="{!v.requestList}" var="item" indexVar="idx">
+                                        <tr class="slds-hint-parent">
+                                            <td data-label="Select Record" scope="row">
+                                                <div class="slds-truncate">
+                                                    <lightning:input type="checkbox" name="{!'checkbox_'+item.mIndex}"
+                                                        onchange="{!c.handleSelect}" value="{!item.mSelected}"
+                                                        checked="{!item.mSelected}" />
+                                                </div>
+                                            </td>
+                                            <td data-label="Source Name" scope="row" style="word-break:break-all;">
+                                                <div class="slds-truncate" style="word-wrap: break-word">
+                                                    {!item.mLabelSalesOrg}</div>
+                                            </td>
+                                            <td data-label="Source Name" scope="row" style="word-break:break-all;">
+                                                <div class="slds-truncate" style="word-wrap: break-word">
+                                                    {!item.mLabelDivision}</div>
+                                            </td>
+                                            <td data-label="Source Name" scope="row" style="word-break:break-all;">
+                                                <div class="slds-truncate" style="word-wrap: break-word">
+                                                    {!item.mLabelDistributionChannel}</div>
+                                            </td>
+                                        </tr>
+                                    </aura:iteration>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- FOOTER -->
+                <footer class="slds-modal__footer slds-text-align_center">
+                    <lightning:button type="cancel" variant="brand-outline" label="Cancel" title="Cancel"
+                        onclick="{!c.closeModal}" />
+                    <lightning:button type="submit" variant="brand" label="Next" title="Next"
+                        disabled="{!!v.selectedRequest}" onclick="{!c.handleNext}" />
+                </footer>
+            </div>
+
+        </section>
+    </aura:if>
+
+    <aura:if isTrue="{!v.isFormModalOpen}">
+        <c:CTRRequestCreateShipToForm customerId="{!v.customerId}"
+        recordTypeId="{!v.recordTypeId}" selectedRequest="{!v.selectedRequest}" />
+    </aura:if>
+</aura:component>

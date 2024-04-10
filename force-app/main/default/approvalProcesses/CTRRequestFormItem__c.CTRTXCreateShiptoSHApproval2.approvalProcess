@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Customer__c</field>
+        <field>ShipToNameEng__c</field>
+        <field>ShipToNameLocl__c</field>
+        <field>RecordType</field>
+        <field>Owner</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>OwnersSectionHead__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <label>Step 1</label>
+        <name>Step_1</name>
+    </approvalStep>
+    <description>CTR TX Create Ship-to S/H Approval</description>
+    <emailTemplate>CTREmailTemplate/CTRTXCreateShipToRequestSHforApproval</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <criteriaItems>
+            <field>CTRRequestFormItem__c.Status__c</field>
+            <operation>equals</operation>
+            <value>In Review</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CTRRequestFormItem__c.Approval_Step__c</field>
+            <operation>equals</operation>
+            <value>Waiting for Approval</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CTRRequestFormItem__c.RecordType</field>
+            <operation>equals</operation>
+            <value>Create Ship-to</value>
+        </criteriaItems>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>TXCreateShipToInformMDCAfterSHApproved1</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>UpdateFieldApprovalStep1</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>UpdateFieldStatus1</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>TXCreateShipToInformTraderAfterSHRejected1</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>UpdateFieldApprovalStep2_1</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>UpdateFieldStatus2_2</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>CTR TX Create Ship-to: SH Approval</label>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>E-MOC Monitoring Activity</value>
+    </caseValues>
+    <fields>
+        <label><!-- Attachment --></label>
+        <name>Attachment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date_Monitoring --></label>
+        <name>Date_Monitoring__c</name>
+    </fields>
+    <fields>
+        <label><!-- E-MOC Activity --></label>
+        <name>E_MOC_Activity__c</name>
+        <relationshipLabel><!-- E-MOC Monitoring Activity --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- E-MOC Application No. --></label>
+        <name>E_MOC_Application_No__c</name>
+        <relationshipLabel><!-- E-MOC Monitoring Activity --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Not Pass --></label>
+        <name>Monitoring_result_Not_Pass__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pass --></label>
+        <name>Monitoring_result_Pass__c</name>
+    </fields>
+    <fields>
+        <label><!-- Monitoring result  description --></label>
+        <name>Monitoring_result_description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Remark --></label>
+        <name>Remark__c</name>
+    </fields>
+    <layouts>
+        <layout>E-MOC Monitoring Activity Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <choices>
+        <name>valTOP</name>
+        <choiceText>TOP</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>TOP</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>valTX</name>
+        <choiceText>TOP NEXT</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>TOP NEXT</stringValue>
+        </value>
+    </choices>
+    <dynamicChoiceSets>
+        <name>valInterestedCustomerTOP</name>
+        <dataType>Multipicklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>InterestedProductTypeCustomer__c</picklistField>
+        <picklistObject>Account</picklistObject>
+    </dynamicChoiceSets>
+    <interviewLabel>CTRScreenInterestedProduct {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CTRScreenInterestedProduct</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>getAccountRec</name>
+        <label>getAccountRec</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>screenProductType</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>Account</object>
+    </recordLookups>
+    <screens>
+        <name>screenProductType</name>
+        <label>screenProductType</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>pkBusinessGroup</name>
+            <choiceReferences>valTOP</choiceReferences>
+            <choiceReferences>valTX</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Business Group</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>ProductTypesasInterested</name>
+            <fieldText>Product Types as Interested</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <startElementReference>getAccountRec</startElementReference>
+    <status>Draft</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,9 @@
+<aura:event type="COMPONENT" description="View all cards of a container">
+    <aura:attribute name="viewAll" type="Boolean" />
+    <aura:attribute name="target" type="String" />
+    <aura:attribute name="reload" type="Boolean" />
+    <aura:attribute name="key" type="String" />
+    <aura:attribute name="userFilterActive" type="Boolean" />
+    <aura:attribute name="fromDateFilter" type="Date" />
+    <aura:attribute name="toDateFilter" type="Date" />
+</aura:event>

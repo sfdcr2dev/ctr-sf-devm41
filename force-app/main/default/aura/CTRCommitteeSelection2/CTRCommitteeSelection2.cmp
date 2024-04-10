@@ -1,0 +1,1514 @@
+<aura:component
+    access="global"
+    controller="CTRCommitteeSelection2Controller"
+    implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName">
+
+    <!-- <aura:attribute name="recordId" type="String" /> -->
+    <aura:attribute name="isReload" type="Boolean" default="false" />
+    <aura:attribute name="isModalOpen" type="Boolean" default="false" />
+    <aura:attribute name="isEdit" type="Boolean" default="false" />
+    <aura:attribute name="requestFormObj" type="CTRRequestFormItem__c" default="{}" />
+    <aura:attribute name="committeeInfo" type="CTRRequestFormItem__c" default="{}" />
+    <aura:attribute name="previewMailObj" type="Object" default="{}" />
+    <!-- <aura:attribute name="finalPerformanceBond" type="String" />
+    <aura:attribute name="finalCreditCondition" type="String" />
+    <aura:attribute name="finalCreditConditionUnit" type="String" /> -->
+    <!-- <aura:attribute name="finalPaymentTerm" type="String" /> -->
+    <aura:attribute name="isSubmit" type="Boolean" default="false" />
+    <aura:attribute name="radioOptions" type="List" default="[ {'label': 'Yes', 'value': 'Yes'}, {'label': 'No', 'value': 'No'},]" />
+    <aura:attribute name="isTradeCreditDisable" type="Boolean" default="false"/>
+    <aura:attribute name="isCreditLimitDisable" type="Boolean" default="true"/>
+    <aura:attribute name="isOtherRequired" type="Boolean" default="false"/>
+    <aura:attribute name="isShowRequiredMsg" type="Boolean" default="false"/>
+
+    <aura:attribute name="status" type="String"/>
+    <aura:attribute name="approvalStep" type="String"/>
+    <aura:attribute name="committeeOwner" type="String"/>
+    <aura:attribute name="committeeOwnerSH" type="String"/>
+    <aura:attribute name="committeeStatus" type="String"/>
+    <aura:attribute name="currentUser" type="String"/>
+    <aura:attribute name="cmvpOwner" type="String"/>
+    <aura:attribute name="cmvpPreScreenDecision" type="String"/>
+    <aura:attribute name="canSelectCommittee" type="Boolean" default="false"/>
+    <aura:attribute name="TRCROwnerWhereCondition" type="String" default=""/>
+
+    <!-- Profile & Record Type -->
+    <aura:attribute name="buProfile" type="String" default="TOP" />
+    <aura:attribute name="subBU" type="String" default="TOP" />
+    <aura:attribute name="counterpartyType" type="String" default="" />
+    <aura:attribute name="interestedProduct" type="String" default="" />
+    <aura:attribute name="hasCrudeProduct" type="String" default="" />
+    <!-- Disable -->
+    <!-- <aura:attribute name="isYes1" type="Boolean" default="false" />
+    <aura:attribute name="isYes2" type="Boolean" default="false" />
+    <aura:attribute name="isYes3" type="Boolean" default="false" /> -->
+    <!-- <aura:attribute name="isYes4" type="Boolean" default="false" /> -->
+    <!-- Amount -->
+    <!-- <aura:attribute name="amount1" type="Decimal" /> -->
+    <!-- <aura:attribute name="amount2" type="Decimal" /> -->
+    <!-- <aura:attribute name="amount3" type="Decimal" /> -->
+    <!-- <aura:attribute name="amount4" type="Decimal" /> -->
+    <aura:attribute name="totalAmount" type="Decimal" />
+    <!-- Lookup -->
+    <!-- <aura:attribute name="userQueryCond" type="String" default="(NOT Email LIKE \'%.invalid%\') AND isActive = true" />
+    <aura:attribute name="userLookupField" type="String" default="Name" /> -->
+    <aura:attribute name="creditOwnerOld" type="String" default="" />
+    <aura:attribute name="creditOwner" type="String" default="" />
+    <aura:attribute name="creditOwnerSectionHead" type="String" default="" />
+    <!-- Committee Section -->
+    <!-- <aura:attribute name="selectedCommittees" type="String[]" /> -->
+    <aura:attribute name="groupedCommittees" type="List" />
+    <aura:attribute name="lstCommittees" type="List" />
+    <aura:attribute name="committeeEmail" type="String" default="" />
+    <aura:attribute name="committeeName" type="String" default="" />
+    <aura:attribute name="selectedCommittees" type="List" default="[]" />
+    <aura:attribute name="includedCommittees" type="List" default="[]" />
+    <aura:attribute name="selectedEmailCommittees" type="List" default="[]" />
+    <!-- Email Section -->
+    <aura:attribute name="templateType" type="String" default="Committee TX" />
+    <aura:attribute name="emailUrgentOptions" type="List" default="[{ label: 'Yes', value: 'Yes' }, { label: 'No', value: 'No' }]" />
+    <aura:attribute name="emailUrgent" type="String" default="No" />
+    <aura:attribute name="emailTo" type="String" default="" />
+    <aura:attribute name="selectedEmailCC" type="String" default="" />
+    <aura:attribute name="emailInfo" type="sObject" default="{}" />
+    <aura:attribute name="emailSubject" type="String" default="" />
+    <aura:attribute name="isCommittee" type="Boolean" default="true" />
+
+    <!--Showing spinner while uploading -->
+    <aura:attribute name="showLoadingSpinner" type="boolean" default="false" />
+    <aura:attribute name="showSpinner" type="Boolean" default="true" />
+    <!--List of file which are uploaded -->
+    <aura:attribute name="fileName" type="String" default="No File Selected.." />
+    <aura:attribute name="attachments" type="List" default="[]" />
+    <aura:attribute name="fileList" type="List" default="[]" />
+    <aura:attribute name="jsonFileList" type="List" default="[]" />
+    <aura:attribute name="isUpload" type="Boolean" default="false" />
+    <aura:attribute name="fileToDelList" type="List" default="[]" />
+    <aura:attribute name="isDelFile" type="Boolean" default="flase" />
+    <aura:attribute name="isFetchAttachments" type="Boolean" default="false" />
+    <aura:attribute name="uploadedFile" type="String" default="" />
+    <aura:attribute name="isUploadSuccess" type="Boolean" default="false" />
+
+    <!-- new add -->
+    <!-- <aura:attribute name="isClickSubmit" type="Boolean" default="false" /> -->
+
+    <!-- <aura:handler name="change" value="{!v.isUploadSuccess}" action="{!c.updateFileList}" /> -->
+    <!-- <aura:handler name="CTRPassValueEvent" event="c:CTRPassValueEvent" action="{!c.handlePassValueEvent}" /> -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <!-- <aura:handler name="render" value="{!this}" action="{!c.onRender}"/> -->
+    <aura:handler name="change" value="{!v.selectedCommittees}" action="{!c.handleSelectedCommittees}"/>
+    <aura:handler name="change" value="{!v.selectedEmailCommittees}" action="{!c.handleSelectedEmailCommittees}"/>
+    <aura:handler name="change" value="{!v.jsonFileList}" action="{!c.handleFileListChange}" />
+    <!-- <aura:handler name="change" value="{!v.fileToDelList}" action="{!c.handleFileToDeleteChange}" /> -->
+    <aura:handler name="change" value="{!v.requestFormObj.FinCrLimitCur__c}" action="{!c.handleChangeCurrency}" />
+
+    <aura:html tag="style">
+        .slds-radio_button-group {
+            border: hidden !important;
+        }
+    </aura:html>
+
+    <aura:attribute name="requestItemRecord" type="Object"/>
+    <aura:attribute name="requestItemLoadError" type="String"/>
+    <force:recordData
+        aura:id="requestItemLoader"
+        recordId="{!v.recordId}"
+        mode="EDIT"
+        fields="CommitteeAttachment__c"
+        targetFields="{!v.requestItemRecord}"
+        targetError="{!v.requestItemLoadError}"
+        />
+
+    <section>
+        <aura:renderIf isTrue="{!!v.isEdit}">
+            <div class="slds-text-align_right slds-var-p-vertical_medium">
+                <lightning:button
+                    variant="brand-outline"
+                    label="Select Committee (Without Condition)"
+                    title="Select Committee (Without Condition)"
+                    onclick="{!c.handleSelectCommittee}" />
+                <aura:if isTrue="{!v.canSelectCommittee}">
+                    <lightning:button
+                        variant="brand-outline"
+                        label="Select Committee"
+                        title="Select Committee"
+                        onclick="{!c.handleSelectCommittee}" />
+                </aura:if>
+            </div>
+        </aura:renderIf>
+
+        <lightning:recordEditForm
+            recordId="{!v.recordId}"
+            objectApiName="CTRRequestFormItem__c"
+            onload="{!c.handleLoad}"
+            onsubmit="{!c.handleSave}">
+
+            <aura:renderIf isTrue="{!v.showSpinner}">
+                <lightning:spinner size="large" variant="brand" />
+            </aura:renderIf>
+
+            <div class="slds-section slds-is-open" aura:id="counterpartyInformationSection">
+                <h3 class="slds-section__title">
+                    <button
+                        type="button"
+                        aria-controls="counterpartyInformationDetail"
+                        aria-expanded="true"
+                        class="slds-button slds-section__title-action"
+                        data-auraid="counterpartyInformationSection"
+                        onclick="{!c.handleToggleSection}">
+                        <lightning:icon
+                            iconName="utility:switch"
+                            alternativeText="switch"
+                            title=""
+                            size="x-small"
+                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                        <span class="slds-truncate" title="Counterparty Information">
+                            Counterparty Information
+                        </span>
+                    </button>
+                </h3>
+                <!-- <c:CTRCounterpartyInfo fromReqItem="{!true}" ReqItemRecordId="{!v.recordId}"></c:CTRCounterpartyInfo> -->
+                <div class="slds-section__content" id="CounterpartyItemList">
+                    <lightning:layoutItem padding="around-small">
+                        <div class="slds-grid slds-wrap flexibility:auto">
+                            <div class="slds-size_1-of-7">
+                                <p>Company Name:</p>
+                            </div>
+                            <div class="slds-size_2-of-7">
+                                <lightning:outputField fieldName="Customer__c" readonly="True" variant="label-hidden" /> <br />
+                            </div>
+                            <div class="slds-size_1-of-7" />
+                            <div class="slds-size_1-of-7">
+                                <p>Contact Person:</p>
+                            </div>
+                            <div class="slds-size_2-of-7">
+                                {!v.committeeInfo.CTRRequestFormHeader__r.FirstName__c + ' ' + v.committeeInfo.CTRRequestFormHeader__r.LastName__c}
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-wrap flexibility:auto">
+                            <div class="slds-size_1-of-7">
+                                <p>Email:</p>
+                            </div>
+                            <div class="slds-size_2-of-7">
+                                {!v.committeeInfo.CTRRequestFormHeader__r.Email__c}
+                            </div>
+                            <div class="slds-size_1-of-7" />
+                            <div class="slds-size_1-of-7">
+                                <p>Telephone:</p>
+                            </div>
+                            <div class="slds-size_2-of-7">
+                                {!v.committeeInfo.CTRRequestFormHeader__r.MobilePhone__c}
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-wrap flexibility:auto">
+                            <div class="slds-size_2-of-7">
+                                <p>Interested Product Type {!v.counterpartyType}:</p>
+                            </div>
+                            <div class="slds-size_2-of-7">
+                                <aura:renderIf isTrue="{!v.counterpartyType == 'Customer'}">
+                                    <aura:renderIf
+                                        isTrue="{!OR(v.buProfile == 'TOP',v.buProfile == 'LABIX')}">
+                                        <lightning:outputField aura:id="Interested" variant="label-hidden"
+                                            fieldName="InterestedProductTypeAsCustomerTOP__c" readonly="True" />
+                                    </aura:renderIf>
+                                    <aura:renderIf isTrue="{!v.buProfile == 'TX'}">
+                                        <lightning:outputField aura:id="Interested" variant="label-hidden"
+                                            fieldName="InterestedProductTypeAsCustomerTX__c" readonly="True" />
+                                    </aura:renderIf>
+                                </aura:renderIf>
+                                <aura:renderIf isTrue="{!v.counterpartyType == 'Supplier'}">
+                                    <aura:renderIf
+                                        isTrue="{!OR(v.buProfile == 'TOP',v.buProfile == 'LABIX')}">
+
+                                        <lightning:outputField aura:id="Interested" variant="label-hidden"
+                                            fieldName="InterestedProductTypeAsSupplierTOP__c" readonly="True" />
+                                    </aura:renderIf>
+                                    <aura:renderIf isTrue="{!v.buProfile == 'TX'}">
+                                        <lightning:outputField aura:id="Interested" variant="label-hidden"
+                                            fieldName="InterestedProductTypeAsSupplierTX__c" readonly="True" />
+                                    </aura:renderIf>
+                                </aura:renderIf>
+                                <br />
+                            </div>
+                        </div>
+                    </lightning:layoutItem>
+                </div>
+            </div>
+
+            <div class="slds-section slds-is-open animate" aura:id="BusinessSection">
+                <!--section header-->
+                <h3 class="slds-section__title">
+                    <button aria-controls="BusinessItemList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="BusinessSection">
+                        <lightning:icon iconName="utility:switch" size="x-small"
+                            class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon" />
+                        <span class="slds-truncate" title="Type of Business">Type of Business</span>
+                    </button>
+                </h3>
+                <!--section body-->
+                <div class="slds-section__content" id="BusinessItemList">
+                    <lightning:layoutItem padding="around-small">
+                        <div class="slds-grid slds-wrap flexibility:auto">
+                            <div class="slds-size_1-of-7">
+                                <p><span style="color:red; font-style: italic;">* </span>Type of Business:</p>
+                            </div>
+                            <div class="slds-size_2-of-7">
+                                <lightning:inputField aura:id="TypeOfBusiness" fieldName="TypeOfBusiness__c" variant="label-hidden" disabled="{!!v.isEdit}" required="true" onchange="{!c.handleTypeOfBusiness}" value="{!v.requestFormObj.TypeOfBusiness__c}" />
+                            </div>
+                            <div class="slds-size_1-of-7" />
+                            <div class="slds-size_1-of-7">
+                                <p>
+                                    <aura:renderIf isTrue="{!v.isOtherRequired}">
+                                        <span style="color:red; font-style: italic;">* </span>
+                                    </aura:renderIf>
+                                    Other (Please Specify):
+                                </p>
+                            </div>
+                            <div class="slds-size_2-of-7">
+                                <lightning:inputField aura:id="TypeOfBusinessOther" fieldName="TypeOfBusinessOther__c" id="TypeOfBusinessOther" variant="label-hidden" disabled="{!!v.isOtherRequired}" required="{!v.isOtherRequired}" value="{!v.requestFormObj.TypeOfBusinessOther__c}" />
+                            </div>
+                        </div>
+                    </lightning:layoutItem>
+                </div>
+            </div>
+
+            <div class="slds-section slds-is-open" aura:id="finalConditionSection">
+                <h3 class="slds-section__title">
+                    <button
+                        type="button"
+                        aria-controls="finalConditionDetail"
+                        aria-expanded="true"
+                        class="slds-button slds-section__title-action"
+                        data-auraid="finalConditionSection"
+                        onclick="{!c.handleToggleSection}">
+                        <lightning:icon
+                            iconName="utility:switch"
+                            alternativeText="switch"
+                            title=""
+                            size="x-small"
+                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                        <span class="slds-truncate" title="Final Condition">
+                            Final Condition
+                        </span>
+                    </button>
+                </h3>
+                <div class="slds-section__content" id="finalConditionDetail">
+                    <div class="slds-grid slds-wrap  slds-var-p-around_large">
+                        <aura:renderIf isTrue="{!OR(v.buProfile == 'TOP', v.buProfile == 'LABIX')}">
+                            <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                <div class="slds-col slds-size_1-of-7">
+                                    <p>
+                                        <abbr class="slds-required">*</abbr>
+                                        Credit Condition:
+                                    </p>
+                                </div>
+                                <div class="slds-col slds-size_3-of-6 slds-form_horizontal">
+                                    <lightning:inputField
+                                        aura:id="FinCrCond"
+                                        fieldName="FinCrCond__c"
+                                        variant="label-hidden"
+                                        disabled="{!!v.isEdit}"
+                                        required="true"
+                                        value="{!v.requestFormObj.FinCrCond__c}"
+                                        onchange="{!c.handleCreditConditionChange }" />
+                                </div>
+                                <div class="slds-hide">
+                                    <lightning:inputField fieldName="Credit_Condition__c" />
+                                    <lightning:inputField fieldName="ApprovalTrader_CreditCondition__c" />
+                                </div>
+                            </div>
+
+                            <aura:renderIf isTrue="{!v.isCreditLimitDisable}">
+                                <!-- <div class="{!v.isCreditLimitDisable ? 'slds-grid slds-wrap slds-size_1-of-1' : 'slds-hide'}"> -->
+                                <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                    <div class="slds-col slds-size_1-of-7">
+                                        <p>
+                                            <abbr class="slds-required">*</abbr>
+                                            Credit Limit:
+                                        </p>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-6 slds-form_horizontal">
+                                        <lightning:inputField
+                                            aura:id="FinCrLimit"
+                                            fieldName="FinCrLimit__c"
+                                            variant="label-hidden"
+                                            value="{!v.requestFormObj.FinCrLimit__c}"
+                                            disabled="{!!v.isEdit}"
+                                            required="true" />
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-6 slds-form_horizontal">
+                                        <lightning:inputField
+                                            aura:id="FinCrLimitCur"
+                                            fieldName="FinCrLimitCur__c"
+                                            variant="label-hidden"
+                                            value="{!v.requestFormObj.FinCrLimitCur__c}"
+                                            disabled="{!!v.isEdit}"
+                                            required="true" />
+                                    </div>
+                                    <div class="slds-hide">
+                                        <lightning:inputField fieldName="CreditLimit__c" />
+                                        <lightning:inputField fieldName="CreditLimitCurrency__c" />
+                                        <lightning:inputField fieldName="ApprovalTrader_CreditLimit__c" />
+                                        <lightning:inputField fieldName="ApprovalTraderCreditLimitCurrency__c" />
+                                    </div>
+                                </div>
+                            </aura:renderIf>
+
+                            <aura:renderIf isTrue="{!v.isTradeCreditDisable}">
+                                <!-- <div class="{!v.isTradeCreditDisable ? 'slds-grid slds-wrap slds-size_1-of-1' : 'slds-hide'}"> -->
+                                <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                    <div class="slds-col slds-size_1-of-7">
+                                        <p>
+                                            <abbr class="slds-required">*</abbr>
+                                            Trade Credit Insurance:
+                                        </p>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-6 slds-form_horizontal">
+                                        <lightning:inputField
+                                            aura:id="FinTradeCrIns"
+                                            fieldName="FinTradeCrIns__c"
+                                            variant="label-hidden"
+                                            value="{!v.requestFormObj.FinTradeCrIns__c}"
+                                            disabled="{!!v.isEdit}"
+                                            required="true" />
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-6 slds-form_horizontal">
+                                        <lightning:inputField
+                                            aura:id="FinTradeCrInsCu"
+                                            fieldName="FinTradeCrInsCu__c"
+                                            variant="label-hidden"
+                                            value="{!v.requestFormObj.FinTradeCrInsCu__c}"
+                                            disabled="{!!v.isEdit}"
+                                            required="true" />
+                                    </div>
+                                    <div class="slds-hide">
+                                        <lightning:inputField fieldName="Trade_Credit_Insurance__c" />
+                                        <lightning:inputField fieldName="TradeCreditInsuranceCurrency__c" />
+                                        <lightning:inputField fieldName="ApprovalTrader_TradeCreditInsurance__c" />
+                                        <lightning:inputField fieldName="ApprovalTraderTradeCreditCurrency__c" />
+                                    </div>
+                                </div>
+                                <br />
+                            </aura:renderIf>
+
+                            <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                <div class="slds-col slds-size_1-of-7">
+                                    <p>
+                                        <abbr class="slds-required">*</abbr>
+                                        Internal Credit Rating:
+                                    </p>
+                                </div>
+                                <div class="slds-hide">
+                                    <!-- <lightning:inputField fieldName="FinIntCrRating__c" aura:id="FinIntCrRating" value="{!v.requestFormObj.FinIntCrRating__c}" /> -->
+                                    <lightning:inputField fieldName="InternalCreditRating__c" />
+                                    <lightning:inputField fieldName="ApprovalTrader_CreditRating__c" />
+                                </div>
+
+                                <!-- Radio -->
+                                <div class="slds-col slds-size_3-of-6 slds-form_horizontal">
+                                    <lightning:inputField fieldName="FinIntCrRating__c" aura:id="FinIntCrRating" variant="label-hidden" value="{!v.requestFormObj.FinIntCrRating__c}" disabled="{!OR(true, !v.isEdit)}" />
+                                    <!-- <lightning:layoutItem>
+                                        <div class="slds-grid slds-wrap">
+                                            <aura:renderIf isTrue="{!v.buProfile == 'TX'}">
+                                                <div class="slds-col slds-size_1-of-7">
+                                                    <span class="slds-radio">
+                                                        <input
+                                                            type="radio"
+                                                            aura:id="GS"
+                                                            id="GS"
+                                                            value="G/S"
+                                                            name="Internal Credit Rating"
+                                                            onclick="{!c.handleFinalCreditRatingChange}"
+                                                            disabled="{!OR(true, !v.isEdit)}" />
+                                                        <label class="slds-radio__label" for="GS">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label">G/S</span>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                            </aura:renderIf>
+                                            <div class="slds-col slds-size_1-of-7">
+                                                <span class="slds-radio">
+                                                    <input
+                                                        type="radio"
+                                                        aura:id="A"
+                                                        id="A"
+                                                        value="A"
+                                                        name="Internal Credit Rating"
+                                                        onclick="{!c.handleFinalCreditRatingChange}"
+                                                        disabled="{!OR(true, !v.isEdit)}" />
+                                                    <label class="slds-radio__label" for="A">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label">A</span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-7">
+                                                <span class="slds-radio">
+                                                    <input
+                                                        type="radio"
+                                                        aura:id="B"
+                                                        id="B"
+                                                        value="B"
+                                                        name="Internal Credit Rating"
+                                                        onclick="{!c.handleFinalCreditRatingChange}"
+                                                        disabled="{!OR(true, !v.isEdit)}" />
+                                                    <label class="slds-radio__label" for="B">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label">B</span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-7">
+                                                <span class="slds-radio">
+                                                    <input
+                                                        type="radio"
+                                                        aura:id="C"
+                                                        id="C"
+                                                        value="C"
+                                                        name="Internal Credit Rating"
+                                                        onclick="{!c.handleFinalCreditRatingChange}"
+                                                        disabled="{!OR(true, !v.isEdit)}" />
+                                                    <label class="slds-radio__label" for="C">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label">C</span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                            <aura:renderIf isTrue="{!v.buProfile == 'TX'}">
+                                                <div class="slds-col slds-size_1-of-7">
+                                                    <span class="slds-radio">
+                                                        <input
+                                                            type="radio"
+                                                            aura:id="CPlus"
+                                                            id="CPlus"
+                                                            value="C+"
+                                                            name="Internal Credit Rating"
+                                                            onclick="{!c.handleFinalCreditRatingChange}"
+                                                            disabled="{!OR(true, !v.isEdit)}" />
+                                                        <label class="slds-radio__label" for="CPlus">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label">C+</span>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                            </aura:renderIf>
+                                            <div class="slds-col slds-size_1-of-7">
+                                                <span class="slds-radio">
+                                                    <input
+                                                        type="radio"
+                                                        aura:id="D"
+                                                        id="D"
+                                                        value="D"
+                                                        name="Internal Credit Rating"
+                                                        onclick="{!c.handleFinalCreditRatingChange}"
+                                                        disabled="{!OR(true, !v.isEdit)}" />
+                                                    <label class="slds-radio__label" for="D">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label">D</span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-7">
+                                                <span class="slds-radio">
+                                                    <input
+                                                        type="radio"
+                                                        aura:id="NA"
+                                                        id="NA"
+                                                        value="N/A"
+                                                        name="Internal Credit Rating"
+                                                        onclick="{!c.handleFinalCreditRatingChange}"
+                                                        disabled="{!OR(true, !v.isEdit)}" />
+                                                    <label class="slds-radio__label" for="NA">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label">N/A</span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </lightning:layoutItem> -->
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                <div class="slds-col slds-size_1-of-7">
+                                    <p>
+                                        <abbr class="slds-required">*</abbr>
+                                        Payment Term:
+                                    </p>
+                                </div>
+                                <div class="slds-col slds-size_3-of-6 slds-form_horizontal">
+                                    <lightning:inputField
+                                        aura:id="TermOfPayment"
+                                        fieldName="TermOfPayment__c"
+                                        variant="label-hidden"
+                                        value="{!v.requestFormObj.TermOfPayment__c}"
+                                        disabled="{!!v.isEdit}"
+                                        required="true" />
+                                </div>
+                                <div class="slds-hide">
+                                    <lightning:inputField fieldName="PaymentTerm__c" />
+                                    <lightning:inputField fieldName="ApprovalTrader_PaymentTerm__c" />
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                <div class="slds-col slds-size_1-of-7">
+                                    <p>
+                                        <abbr class="slds-required">*</abbr>
+                                        Payment Condition:
+                                    </p>
+                                </div>
+                                <div class="slds-col slds-size_3-of-6 slds-form_horizontal">
+                                    <lightning:inputField
+                                        aura:id="FinPaymentCond"
+                                        fieldName="FinPaymentCond__c"
+                                        variant="label-hidden"
+                                        value="{!v.requestFormObj.FinPaymentCond__c}"
+                                        disabled="{!!v.isEdit}"
+                                        required="true" />
+                                </div>
+                                <div class="slds-hide">
+                                    <lightning:inputField fieldName="PaymentCondition__c" />
+                                    <lightning:inputField fieldName="ApprovalTrader_PaymentCondition__c" />
+                                </div>
+                            </div>
+
+                            <aura:renderIf isTrue="{!AND(v.counterpartyType == 'Supplier', v.hasCrudeProduct)}">
+                                <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                    <div class="slds-col slds-size_1-of-7">
+                                        <p>
+                                            <abbr class="slds-required">*</abbr>
+                                            Performance Bond: 
+                                        </p>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-6 slds-form_horizontal">
+                                        <lightning:inputField
+                                            aura:id="FinalPerformanceBond"
+                                            fieldName="FinalPerformanceBond__c"
+                                            variant="label-hidden"
+                                            value="{!v.requestFormObj.FinalPerformanceBond__c}"
+                                            disabled="{!!v.isEdit}"
+                                            required="true" />
+                                    </div>
+                                    <div class="slds-hide">
+                                        <lightning:inputField fieldName="PerformanceBond__c" />
+                                        <lightning:inputField fieldName="TDPerformanceBond__c" />
+                                    </div>
+                                </div>
+                                <!-- <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                    <div class="slds-col slds-size_1-of-7">
+                                        <p>Remark: </p>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-6 slds-form_horizontal" >
+                                        <lightning:inputField aura:id="RemarkPerformanceBond"
+                                                        fieldName="RemarkPerformanceBond__c"
+                                                        variant="label-hidden"
+                                                        disabled="{!!v.isEdit}"/>
+                                    </div>
+                                </div> -->
+                            </aura:renderIf>
+
+                            <!-- <aura:renderIf isTrue="{!v.buProfile == 'LABIX'}">
+                                <div class="slds-grid slds-wrap slds-size_1-of-1 slds-var-m-top_x-large">
+                                    <div class="slds-col slds-size_1-of-7">
+                                        <p>Trader Remark: </p>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-6">
+                                        <lightning:inputField aura:id="TraderRemark" fieldName="TraderRemark__c" variant="label-hidden"
+                                            disabled="{!!v.isEdit}" />
+                                    </div>
+                                </div>
+                            </aura:renderIf> -->
+                        </aura:renderIf>
+
+                        <!-- Profile TX -->
+                        <aura:renderIf isTrue="{!OR(v.buProfile == 'TX')}">
+
+                            <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                <div class="slds-col slds-size_2-of-7 slds-var-p-bottom_medium">
+                                    <label>
+                                        <abbr class="slds-required">*</abbr>
+                                        Cash Payment in Advance?:
+                                    </label>
+                                </div>
+                                <div class="slds-col slds-size_2-of-7 slds-var-p-bottom_medium" style="padding-left:10%">
+                                    <lightning:inputField aura:id="FinCashOnDelivery" fieldName="FinCashOnDelivery__c" value="{!v.requestFormObj.FinCashOnDelivery__c}" variant="label-hidden" disabled="{!!v.isEdit}" onchange="{!c.handleChangeTXCashOnDelivery}" required="true" />
+                                </div>
+                                <div class="slds-hide">
+                                    <lightning:inputField fieldName="CashOnDelivery__c" />
+                                </div>
+                                <div class="slds-col slds-size_1-of-1"></div>
+
+                                <div class="slds-col slds-size_2-of-7">
+                                    <label>
+                                        <abbr class="slds-required">*</abbr>
+                                        Having collateral (Bank Guarantee)?:
+                                    </label>
+                                </div>
+                                <div class="slds-col slds-size_2-of-7" style="padding-left:10%">
+                                    <lightning:inputField aura:id="FinHavingCollateral" fieldName="FinHavingCollateral__c" value="{!v.requestFormObj.FinHavingCollateral__c}" variant="label-hidden" disabled="{!OR(!v.isEdit, OR(v.requestFormObj.FinCashOnDelivery__c == 'Yes', empty(v.requestFormObj.FinCashOnDelivery__c)))}" onchange="{!c.handleChangeTXCreditInsurance}" required="true" />
+                                </div>
+                                <div class="slds-hide">
+                                    <lightning:inputField fieldName="HavingCollateral__c" />
+                                </div>
+                                <div class="slds-col slds-size_1-of-7" style="text-align:right">
+                                    <label>
+                                        <aura:renderIf isTrue="{!v.requestFormObj.FinHavingCollateral__c == 'Yes'}">
+                                            <abbr class="slds-required">*</abbr>
+                                        </aura:renderIf>
+                                        Amount:
+                                    </label>
+                                </div>
+                                <div class="slds-col slds-size_2-of-7 slds-form_horizontal ">
+                                    <lightning:inputField
+                                        aura:id="FinAmountBankGuarantee"
+                                        fieldName="FinAmountBankGuarantee__c"
+                                        disabled="{!OR(!v.isEdit, OR(v.requestFormObj.FinHavingCollateral__c != 'Yes', OR(v.requestFormObj.FinCashOnDelivery__c == 'Yes', empty(v.requestFormObj.FinCashOnDelivery__c))))}"
+                                        onchange="{!c.calTotalSecuredAmount}"
+                                        value="{!v.requestFormObj.FinAmountBankGuarantee__c}"
+                                        variant="label-hidden"
+                                        required="{!v.requestFormObj.HavingCollateral__c == 'Yes'}" />
+                                </div>
+                                <div class="slds-hide">
+                                    <lightning:inputField fieldName="AmountBankGuarantee__c" />
+                                </div>
+
+                                <aura:renderIf isTrue="{!v.counterpartyType == 'Supplier'}">
+                                    <div class="slds-col slds-size_2-of-7">
+                                        <label>
+                                            <abbr class="slds-required">*</abbr>
+                                            Having Credit Term or Letter of Credit?:
+                                        </label>
+                                    </div>
+                                    <div class="slds-col slds-size_2-of-7" style="padding-left:10%">
+                                        <lightning:inputField aura:id="FinHavingCreditTermOrLetter" fieldName="FinHavingCreditTermOrLetter__c" value="{!v.requestFormObj.FinHavingCreditTermOrLetter__c}" variant="label-hidden" disabled="{!OR(!v.isEdit, OR(v.requestFormObj.FinCashOnDelivery__c == 'Yes', empty(v.requestFormObj.FinCashOnDelivery__c)))}" onchange="{!c.handleChangeTXCreditInsurance}" required="true" />
+                                    </div>
+                                    <div class="slds-hide">
+                                        <lightning:inputField fieldName="HavingCreditTermOrLetter__c" />
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-7" style="text-align:right">
+                                        <label>
+                                            <aura:renderIf isTrue="{!v.requestFormObj.FinHavingCreditTermOrLetter__c == 'Yes'}">
+                                                <abbr class="slds-required">*</abbr>
+                                            </aura:renderIf>
+                                            Amount:
+                                        </label>
+                                    </div>
+                                    <div class="slds-col slds-size_2-of-7 slds-form_horizontal ">
+                                        <lightning:inputField
+                                            aura:id="FinAmountCreditTerm"
+                                            fieldName="FinAmountCreditTerm__c"
+                                            disabled="{!OR(!v.isEdit, OR(v.requestFormObj.FinHavingCreditTermOrLetter__c != 'Yes', OR(v.requestFormObj.FinCashOnDelivery__c == 'Yes', empty(v.requestFormObj.FinCashOnDelivery__c))))}"
+                                            onchange="{!c.calTotalSecuredAmount}"
+                                            value="{!v.requestFormObj.FinAmountCreditTerm__c}"
+                                            variant="label-hidden"
+                                            required="true" />
+                                    </div>
+                                    <div class="slds-hide">
+                                        <lightning:inputField fieldName="AmountCreditTerm__c" />
+                                    </div>
+                                    <aura:set attribute="else">
+                                        <div class="slds-col slds-size_2-of-7">
+                                            <label>
+                                                <abbr class="slds-required">*</abbr>
+                                                Buy Trade Credit Insurance - Edorsement?:
+                                            </label>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-7" style="padding-left:10%">
+                                            <lightning:inputField aura:id="FinBuyTradeEndorsement" fieldName="FinBuyTradeEndorsement__c" value="{!v.requestFormObj.FinBuyTradeEndorsement__c}" variant="label-hidden" disabled="{!OR(!v.isEdit, OR(v.requestFormObj.FinCashOnDelivery__c == 'Yes', empty(v.requestFormObj.FinCashOnDelivery__c)))}" onchange="{!c.handleChangeTXCreditInsurance}" required="true" />
+                                        </div>
+                                        <div class="slds-hide">
+                                            <lightning:inputField fieldName="BuyTradeEndorsement__c" />
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-7" style="text-align:right">
+                                            <label>
+                                                <aura:renderIf isTrue="{!v.requestFormObj.FinBuyTradeEndorsement__c == 'Yes'}">
+                                                    <abbr class="slds-required">*</abbr>
+                                                </aura:renderIf>
+                                                Amount:
+                                            </label>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-7 slds-form_horizontal ">
+                                            <lightning:inputField
+                                                aura:id="FinAmountBuyTrade"
+                                                fieldName="FinAmountBuyTrade__c"
+                                                disabled="{!OR(!v.isEdit, OR(v.requestFormObj.FinBuyTradeEndorsement__c != 'Yes', OR(v.requestFormObj.FinCashOnDelivery__c == 'Yes', empty(v.requestFormObj.FinCashOnDelivery__c))))}"
+                                                onchange="{!c.calTotalSecuredAmount}"
+                                                value="{!v.requestFormObj.FinAmountBuyTrade__c}"
+                                                variant="label-hidden"
+                                                required="{!v.requestFormObj.FinBuyTradeEndorsement__c == 'Yes'}" />
+                                        </div>
+                                        <div class="slds-hide">
+                                            <lightning:inputField fieldName="AmountBuyTrade__c" />
+                                        </div>
+
+                                        <div class="slds-col slds-size_2-of-7">
+                                            <label>
+                                                <abbr class="slds-required">*</abbr>
+                                                Buy Trade Credit Insurance - DCL Condition?:
+                                            </label>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-7" style="padding-left:10%">
+                                            <lightning:inputField aura:id="FinBuyTradeDCLCondition" fieldName="FinBuyTradeDCLCondition__c" value="{!v.requestFormObj.FinBuyTradeDCLCondition__c}" variant="label-hidden" disabled="{!OR(!v.isEdit, OR(v.requestFormObj.FinCashOnDelivery__c == 'Yes', empty(v.requestFormObj.FinCashOnDelivery__c)))}" onchange="{!c.handleChangeTXCreditInsurance}" required="true" />
+                                        </div>
+                                        <div class="slds-hide">
+                                            <lightning:inputField fieldName="BuyTradeDCLCondition__c" />
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-7" style="text-align:right">
+                                            <label>
+                                                <aura:renderIf isTrue="{!v.requestFormObj.FinBuyTradeDCLCondition__c == 'Yes'}">
+                                                    <abbr class="slds-required">*</abbr>
+                                                </aura:renderIf>
+                                                Amount:
+                                            </label>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-7 slds-form_horizontal ">
+                                            <lightning:inputField
+                                                aura:id="FinAmountDCLCondition"
+                                                fieldName="FinAmountDCLCondition__c"
+                                                disabled="{!OR(!v.isEdit, OR(v.requestFormObj.FinBuyTradeDCLCondition__c != 'Yes', OR(v.requestFormObj.FinCashOnDelivery__c == 'Yes', empty(v.requestFormObj.FinCashOnDelivery__c))))}"
+                                                onchange="{!c.calTotalSecuredAmount}"
+                                                value="{!v.requestFormObj.FinAmountDCLCondition__c}"
+                                                variant="label-hidden"
+                                                required="{!v.requestFormObj.FinBuyTradeDCLCondition__c == 'Yes'}" />
+                                        </div>
+                                        <div class="slds-hide">
+                                            <lightning:inputField fieldName="AmountDCLCondition__c" />
+                                        </div>
+
+                                        <div class="slds-col slds-size_2-of-7">
+                                            <label>
+                                                <abbr class="slds-required">*</abbr>
+                                                Having Opened Credit?:
+                                            </label>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-7" style="padding-left:10%">
+                                            <lightning:inputField aura:id="FinHavingOpenedCredit" fieldName="FinHavingOpenedCredit__c" value="{!v.requestFormObj.FinHavingOpenedCredit__c}" variant="label-hidden" disabled="{!OR(!v.isEdit, OR(v.requestFormObj.FinCashOnDelivery__c == 'Yes', empty(v.requestFormObj.FinCashOnDelivery__c)))}" onchange="{!c.handleChangeTXCreditInsurance}" required="true" />
+                                        </div>
+                                        <div class="slds-hide">
+                                            <lightning:inputField fieldName="HavingOpenedCredit__c" />
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-7" style="text-align:right">
+                                            <label>
+                                                <aura:renderIf isTrue="{!v.requestFormObj.FinHavingOpenedCredit__c == 'Yes'}">
+                                                    <abbr class="slds-required">*</abbr>
+                                                </aura:renderIf>
+                                                Amount:
+                                            </label>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-7 slds-form_horizontal ">
+                                            <lightning:inputField
+                                                aura:id="FinAmountOpenedCredit"
+                                                fieldName="FinAmountOpenedCredit__c"
+                                                disabled="{!OR(!v.isEdit, OR(v.requestFormObj.FinHavingOpenedCredit__c != 'Yes', OR(v.requestFormObj.FinCashOnDelivery__c == 'Yes', empty(v.requestFormObj.FinCashOnDelivery__c))))}"
+                                                onchange="{!c.calTotalSecuredAmount}"
+                                                value="{!v.requestFormObj.FinAmountOpenedCredit__c}"
+                                                variant="label-hidden"
+                                                required="{!v.requestFormObj.FinHavingOpenedCredit__c == 'Yes'}" />
+                                        </div>
+                                        <div class="slds-hide">
+                                            <lightning:inputField fieldName="AmountOpenedCredit__c" />
+                                        </div>
+                                    </aura:set>
+                                </aura:renderIf>
+
+                                <aura:renderIf isTrue="{!v.isShowRequiredMsg}">
+                                    <div class="slds-col slds-size_2-of-7 ">
+                                        <p>
+                                            <span style="color:red; font-style: italic;">Please select ‘Yes’ at least one.</span>
+                                        </p>
+                                    </div>
+                                    <div class="slds-col slds-size_2-of-7" style="padding-left: 10%"></div>
+                                    <div class="slds-col slds-size_1-of-7"></div>
+                                    <div class="slds-form_horizontal slds-col slds-size_2-of-7"></div>
+                                </aura:renderIf>
+
+                                <div class="slds-col slds-size_4-of-7"></div>
+                                <div class="slds-col slds-size_1-of-7" style="text-align:right">
+                                    <label>
+                                        Currency:
+                                    </label>
+                                </div>
+                                <div class="slds-col slds-size_2-of-7 slds-form_horizontal">
+                                    <lightning:inputField aura:id="FinTotalSecuredCurrency" fieldName="FinTotalSecuredCurrency__c" value="{!v.requestFormObj.FinTotalSecuredCurrency__c}" variant="label-hidden" disabled="{!true}" />
+                                </div>
+                                <div class="slds-hide">
+                                    <lightning:inputField fieldName="TotalSecuredCurrency__c" />
+                                </div>
+
+                                <div class="slds-col slds-size_4-of-7"></div>
+                                <div class="slds-col slds-size_1-of-7" style="text-align:right">
+                                    <label>
+                                        Total Secured Amount:
+                                    </label>
+                                </div>
+                                <div class="slds-col slds-size_2-of-7 slds-form_horizontal">
+                                    <lightning:input type="text" value="{!v.totalAmount}" disabled="{!true}" variant="label-hidden" ></lightning:input>
+                                </div>
+
+                                <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                    <div class="slds-col slds-size_1-of-7">
+                                        <p>
+                                            <abbr class="slds-required">*</abbr>
+                                            Credit Condition:
+                                        </p>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-6 slds-form_horizontal">
+                                        <lightning:inputField
+                                            aura:id="TXFinCrCond"
+                                            fieldName="FinCrCond__c"
+                                            variant="label-hidden"
+                                            value="{!v.requestFormObj.FinCrCond__c}"
+                                            onchange="{!c.handleCreditConditionChange}"
+                                            disabled="{!!v.isEdit}"
+                                            required="true" />
+                                    </div>
+                                    <div class="slds-hide">
+                                        <lightning:inputField fieldName="Credit_Condition__c" />
+                                        <lightning:inputField fieldName="ApprovalTrader_CreditCondition__c" />
+                                    </div>
+                                </div>
+
+                                <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                    <div class="slds-col slds-size_1-of-7">
+                                        <p>
+                                            <abbr class="slds-required">*</abbr>
+                                            Payment Term:
+                                        </p>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-6 slds-form_horizontal">
+                                        <lightning:inputField
+                                            aura:id="TXTermOfPayment"
+                                            fieldName="TermOfPayment__c"
+                                            variant="label-hidden"
+                                            value="{!v.requestFormObj.TermOfPayment__c}"
+                                            disabled="{!!v.isEdit}"
+                                            required="true" />
+                                    </div>
+                                    <div class="slds-hide">
+                                        <lightning:inputField fieldName="PaymentTerm__c" />
+                                        <lightning:inputField fieldName="ApprovalTrader_PaymentTerm__c" />
+                                    </div>
+                                </div>
+
+                                <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                    <div class="slds-col slds-size_1-of-7">
+                                        <p>
+                                            <abbr class="slds-required">*</abbr>
+                                            Risk Category:
+                                        </p>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-6 slds-form_horizontal">
+                                        <lightning:inputField
+                                            aura:id="TXFinRiskCategory"
+                                            fieldName="FinRiskCategory__c"
+                                            variant="label-hidden"
+                                            value="{!v.requestFormObj.FinRiskCategory__c}"
+                                            disabled="{!!v.isEdit}"
+                                            required="true" />
+                                    </div>
+                                    <div class="slds-hide">
+                                        <lightning:inputField fieldName="RiskCategory__c" />
+                                        <lightning:inputField fieldName="ApprovalTraderRiskCategory__c" />
+                                    </div>
+                                </div>
+
+                                <div class="slds-col slds-size_1-of-1 slds-var-m-vertical_x-large">
+                                    <p style="color:gray; font-style: italic;">
+                                        Remark: If L/C terms, please select Risk Category as C: High Risk
+                                    </p>
+                                </div>
+
+                                <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                    <div class="slds-col slds-size_1-of-7">
+                                        <p>
+                                            <abbr class="slds-required">*</abbr>
+                                            Credit Limit:
+                                        </p>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-6 slds-form_horizontal">
+                                        <lightning:inputField
+                                            aura:id="TXFinCrLimit"
+                                            fieldName="FinCrLimit__c"
+                                            variant="label-hidden"
+                                            value="{!v.requestFormObj.FinCrLimit__c}"
+                                            disabled="{!!v.isEdit}"
+                                            required="true" />
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-6 slds-form_horizontal">
+                                        <lightning:inputField
+                                            aura:id="TXFinCrLimitCur"
+                                            fieldName="FinCrLimitCur__c"
+                                            variant="label-hidden"
+                                            value="{!v.requestFormObj.FinCrLimitCur__c}"
+                                            disabled="{!!v.isEdit}"
+                                            required="true" />
+                                    </div>
+                                    <div class="slds-hide">
+                                        <lightning:inputField fieldName="CreditLimit__c" />
+                                        <lightning:inputField fieldName="CreditLimitCurrency__c" />
+                                        <lightning:inputField fieldName="ApprovalTrader_CreditLimit__c" />
+                                        <lightning:inputField fieldName="ApprovalTraderCreditLimitCurrency__c" />
+                                    </div>
+                                </div>
+
+                                <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                    <div class="slds-col slds-size_1-of-7">
+                                        <p>
+                                            <abbr class="slds-required">*</abbr>
+                                            Internal Credit Rating: <span class="slds-var-p-left_medium"></span>
+                                        </p>
+                                    </div>
+
+                                    <!-- Radio -->
+                                    <div class="slds-col slds-size_3-of-6 slds-form_horizontal">
+                                        <lightning:inputField fieldName="FinIntCrRating__c" aura:id="TXFinIntCrRating" variant="label-hidden" value="{!v.requestFormObj.FinIntCrRating__c}" disabled="{!OR(true, !v.isEdit)}" required="true" />
+                                        <!-- <lightning:layoutItem>
+                                            <div class="slds-grid slds-wrap">
+                                                <aura:renderIf isTrue="{!v.buProfile == 'TX'}">
+                                                    <div class="slds-col slds-size_1-of-7">
+                                                        <span class="slds-radio">
+                                                            <input
+                                                                type="radio"
+                                                                aura:id="TXGS"
+                                                                id="TXGS"
+                                                                value="G/S"
+                                                                name="Internal Credit Rating"
+                                                                onclick="{!c.handleFinalCreditRatingChange}"
+                                                                disabled="{!OR(true, !v.isEdit)}" />
+                                                            <label class="slds-radio__label" for="TXGS">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label">G/S</span>
+                                                            </label>
+                                                        </span>
+                                                    </div>
+                                                </aura:renderIf>
+                                                <div class="slds-col slds-size_1-of-7">
+                                                    <span class="slds-radio">
+                                                        <input
+                                                            type="radio"
+                                                            aura:id="TXA"
+                                                            id="TXA"
+                                                            value="A"
+                                                            name="Internal Credit Rating"
+                                                            onclick="{!c.handleFinalCreditRatingChange}"
+                                                            disabled="{!OR(true, !v.isEdit)}" />
+                                                        <label class="slds-radio__label" for="TXA">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label">A</span>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-7">
+                                                    <span class="slds-radio">
+                                                        <input
+                                                            type="radio"
+                                                            aura:id="TXB"
+                                                            id="TXB"
+                                                            value="B"
+                                                            name="Internal Credit Rating"
+                                                            onclick="{!c.handleFinalCreditRatingChange}"
+                                                            disabled="{!OR(true, !v.isEdit)}" />
+                                                        <label class="slds-radio__label" for="TXB">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label">B</span>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-7">
+                                                    <span class="slds-radio">
+                                                        <input
+                                                            type="radio"
+                                                            aura:id="TXC"
+                                                            id="TXC"
+                                                            value="C"
+                                                            name="Internal Credit Rating"
+                                                            onclick="{!c.handleFinalCreditRatingChange}"
+                                                            disabled="{!OR(true, !v.isEdit)}" />
+                                                        <label class="slds-radio__label" for="TXC">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label">C</span>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                                <aura:renderIf isTrue="{!v.buProfile == 'TX'}">
+                                                    <div class="slds-col slds-size_1-of-7">
+                                                        <span class="slds-radio">
+                                                            <input
+                                                                type="radio"
+                                                                aura:id="TXCPlus"
+                                                                id="TXCPlus"
+                                                                value="C+"
+                                                                name="Internal Credit Rating"
+                                                                onclick="{!c.handleFinalCreditRatingChange}"
+                                                                disabled="{!OR(true, !v.isEdit)}" />
+                                                            <label class="slds-radio__label" for="TXCPlus">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label">C+</span>
+                                                            </label>
+                                                        </span>
+                                                    </div>
+                                                </aura:renderIf>
+                                                <div class="slds-col slds-size_1-of-7">
+                                                    <span class="slds-radio">
+                                                        <input
+                                                            type="radio"
+                                                            aura:id="TXD"
+                                                            id="TXD"
+                                                            value="D"
+                                                            name="Internal Credit Rating"
+                                                            onclick="{!c.handleFinalCreditRatingChange}"
+                                                            disabled="{!OR(true, !v.isEdit)}" />
+                                                        <label class="slds-radio__label" for="TXD">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label">D</span>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-7">
+                                                    <span class="slds-radio">
+                                                        <input
+                                                            type="radio"
+                                                            aura:id="TXNA"
+                                                            id="TXNA"
+                                                            value="N/A"
+                                                            name="Internal Credit Rating"
+                                                            onclick="{!c.handleFinalCreditRatingChange}"
+                                                            disabled="{!OR(true, !v.isEdit)}" />
+                                                        <label class="slds-radio__label" for="TXNA">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label">N/A</span>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </lightning:layoutItem> -->
+                                    </div>
+                                </div>
+
+                                <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                    <div class="slds-col slds-size_1-of-7">
+                                        <p>
+                                            <abbr class="slds-required">*</abbr>
+                                            Other Condition:
+                                        </p>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-6 slds-form_horizontal">
+                                        <lightning:inputField aura:id="TXFinOtherCondition"
+                                                        fieldName="FinOtherCondition__c"
+                                                        variant="label-hidden"
+                                                        value="{!v.requestFormObj.FinOtherCondition__c}"
+                                                        disabled="{!!v.isEdit}"
+                                                        required="true"/>
+                                    </div>
+                                    <div class="slds-hide">
+                                        <lightning:inputField fieldName="OtherCondition__c" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </aura:renderIf>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-section slds-is-open" aura:id="selectCommitteeSection">
+                <h3 class="slds-section__title">
+                    <button
+                        type="button"
+                        aria-controls="selectCommitteeDetail"
+                        aria-expanded="true"
+                        class="slds-button slds-section__title-action"
+                        data-auraid="selectCommitteeSection"
+                        onclick="{!c.handleToggleSection}">
+                        <lightning:icon
+                            iconName="utility:switch"
+                            alternativeText="switch"
+                            title=""
+                            size="x-small"
+                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                        <span class="slds-truncate" title="Select Committee">
+                            Select Committee
+                        </span>
+                    </button>
+                </h3>
+                <div class="slds-section__content" id="selectCommitteeDetail">
+                    <c:CTRCommitteeCheckbox committees="{!v.lstCommittees}" selectedCommittees="{!v.selectedCommittees}" includedCommittees="{!v.includedCommittees}" selectedEmailCommittees="{!v.selectedEmailCommittees}" disabled="{!!v.isEdit}"/>
+                </div>
+            </div>
+
+            <div class="slds-section slds-is-open" aura:id="mailtoCommitteeSection">
+                <h3 class="slds-section__title">
+                    <button
+                        type="button"
+                        aria-controls="mailtoCommitteeDetail"
+                        aria-expanded="true"
+                        class="slds-button slds-section__title-action"
+                        data-auraid="mailtoCommitteeSection"
+                        onclick="{!c.handleToggleSection}">
+                        <lightning:icon
+                            iconName="utility:switch"
+                            alternativeText="switch"
+                            title=""
+                            size="x-small"
+                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                        <span class="slds-truncate">Mail to Committee</span>
+                    </button>
+                </h3>
+                <div class="slds-section__content" id="mailtoCommitteeDetail">
+                    <div class="slds-grid slds-wrap slds-var-p-around_large">
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-6" />
+                                <div class="slds-col slds-size_2-of-3 slds-var-p-bottom_medium slds-var-p-left_small">
+                                    <lightning:radioGroup
+                                        type="radio"
+                                        label="Email Urgent:"
+                                        variant="label-inline"
+                                        options="{!v.emailUrgentOptions}"
+                                        value="{!v.emailUrgent}"
+                                        disabled="{!!v.isEdit}"
+                                        class="display-flex email-urgent"
+                                        onchange="{!c.handleEmailUrgentChange}">
+                                    </lightning:radioGroup>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-form slds-form_horizontal">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" style="margin-left:1%;">
+                                        Email To:
+                                    </label>
+                                    <div style="max-width:99%; padding-left:1%;">
+                                        <lightning:input
+                                            type="text"
+                                            variant="label-inline"
+                                            disabled="true"
+                                            value="{!v.emailTo}">
+                                        </lightning:input>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="slds-col slds-size_1-of-1" style="margin-top: -1.5%;">
+                            <c:CTRMailToCommittee
+                                emailSubject="{!v.emailSubject}"
+                                isEdit="{!v.isEdit}"
+                                recordId="{!v.recordId}"
+                                isCommittee="{!v.isCommittee}"
+                                selectedEmailCC="{!v.selectedEmailCC}"
+                                emailInfo="{!v.emailInfo}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-section slds-is-open" aura:id="attachmentSection">
+                <h3 class="slds-section__title">
+                    <button type="button" aria-controls="attachmentDetail" aria-expanded="true"
+                        class="slds-button slds-section__title-action" data-auraid="attachmentSection"
+                        onclick="{!c.handleToggleSection}">
+                        <lightning:icon iconName="utility:switch" alternativeText="switch" title="" size="x-small"
+                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                        <span class="slds-truncate">Attachment</span>
+                    </button>
+                </h3>
+                <div class="slds-section__content" id="attachmentDetail">
+                    <div class="slds-grid slds-wrap slds-var-p-around_large">
+                        <div class="slds-col slds-size_1-of-1">
+                            <!-- <c:CTRFileUploader
+                                aura:id="CTRFileUploader"
+                                recordId="{!v.recordId}"
+                                attachments="{!v.attachments}"
+                                newFileList="{!v.fileList}"
+                                jsonFileList="{!v.jsonFileList}"
+                                showLoadingSpinner="{!v.showLoadingSpinner}"
+                                fileName="{!v.fileName}"
+                                isUpload="{!v.isUpload}"
+                                fileToDelList="{!v.fileToDelList}"
+                                isDelFile="{!v.isDelFile}"
+                                isFetchAttachments="{!v.isFetchAttachments}"
+                                isUploadSuccess="{!v.isUploadSuccess}"
+                                uploadedFile="{!v.uploadedFile}"
+                                callPage="CTRCommitteeSelection"
+                                committeeAttachment__c="{!v.requestFormObj.CommitteeAttachment__c}"
+                                disabled="{!!v.isEdit}" /> -->
+                            <c:CTRFileUpload
+                                aura:id="CTRFileUpload"
+                                recordId="{!v.recordId}"
+                                sObjectName="CTRRequestFormItem__c"
+                                fieldName="CommitteeAttachment__c"
+                                disabled="{!!v.isEdit}" />
+
+                                <!-- //new add -->
+                        </div>
+                        <div class="slds-hide">
+                            <lightning:input
+                                aura:id="attachments"
+                                value="{!v.requestItemRecord.CommitteeAttachment__c}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aura:renderIf isTrue="{!AND(v.isEdit, OR(empty(v.committeeStatus), OR(v.committeeStatus == 'Draft', v.committeeStatus == 'Reverted to Credit Team')))}">
+                <div class=" slds-section slds-is-open" aura:id="trcrReassignTaskSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="trcrReassignTaskDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="trcrReassignTaskSection"
+                            onclick="{!c.handleToggleSection}">
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">
+                                Credit Team Owner
+                            </span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="FAReassignTaskItemList">
+                        <lightning:layoutItem padding="around-small">
+                            <div class="slds-grid slds-wrap flexibility:auto">
+                                <div class="slds-grid slds-wrap slds-size_1-of-1">
+                                    <div class="slds-col slds-size_1-of-7">
+                                        <p>Owner: </p>
+                                    </div>
+                                    <div class="slds-form_horizontal slds-col slds-size_3-of-6">
+                                        <aura:if isTrue="{!!v.showSpinner}">
+                                            <c:CTRCustomLookupSearch
+                                            aura:id="CreditOwner"
+                                            objectAPIName="User"
+                                            IconName="standard:user"
+                                            whereCondition="{!v.TRCROwnerWhereCondition}"
+                                            selectedRecordId="{!v.creditOwner}"
+                                            label=""
+                                            disabled="{!!v.isEdit}" />
+                                        </aura:if>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                    </div>
+                </div>
+            </aura:renderIf>
+
+            <aura:renderIf isTrue="{!OR(v.buProfile == 'TOP', v.buProfile == 'LABIX')}">
+                <div class="slds-section slds-is-open" aura:id="commentSection">
+                    <h3 class="slds-section__title">
+                        <button
+                            type="button"
+                            aria-controls="commentDetail"
+                            aria-expanded="true"
+                            class="slds-button slds-section__title-action"
+                            data-auraid="commentSection"
+                            onclick="{!c.handleToggleSection}">
+                            <lightning:icon
+                                iconName="utility:switch"
+                                alternativeText="switch"
+                                title=""
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">Section Head Comment (if any)</span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="commentDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="slds-grid slds-wrap slds-var-p-around_x-small">
+                                    <div class="slds-col slds-size_4-of-12">
+                                        <label>Comment</label>
+                                    </div>
+                                    <div class="slds-col slds-size_8-of-12">
+                                        <lightning:inputField
+                                            fieldName="Comment__c"
+                                            variant="label-hidden"
+                                            value="{!v.requestFormObj.Comment__c}"
+                                            disabled="{!OR(!v.isEdit, v.committeeStatus != 'Waiting Section Head Review')}" />
+                                    </div>
+                                    <!-- <div class="slds-col slds-size_2-of-12" /> -->
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2" />
+                        </div>
+                    </div>
+                </div>
+            </aura:renderIf>
+
+            <div>
+                <aura:renderIf isTrue="{!v.isModalOpen}">
+                    <c:CTRCommitteePreviewEmail
+                        isModalOpen="{!v.isModalOpen}"
+                        email="{!v.previewMailObj}"
+                        attachments="{!v.fileList}" />
+                </aura:renderIf>
+            </div>
+
+            <aura:renderIf isTrue="{!v.isEdit}">
+                <aura:renderIf isTrue="{!OR(v.buProfile == 'TOP', v.buProfile == 'LABIX')}">
+                    <div class="slds-align_absolute-center">
+                        <lightning:button
+                            class="preview-button"
+                            variant="brand"
+                            label="Preview"
+                            title="Preview"
+                            onclick="{!c.handlePreview}" />
+                        <lightning:button
+                            variant="brand-outline"
+                            label="Cancel"
+                            title="Cancel"
+                            onclick="{!c.handleCancel}" />
+                        <aura:renderIf isTrue="{!AND(v.committeeStatus == 'Waiting Section Head Review', v.creditOwner == v.creditOwnerOld)}">
+                            <lightning:button
+                                variant="destructive"
+                                label="Revert"
+                                title="Revert"
+                                onclick="{!c.handleRevert}" />
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!v.committeeStatus != 'Submitted'}">
+                            <lightning:button
+                                aura:id="btnSave"
+                                type="submit"
+                                variant="brand"
+                                label="Save"
+                                title="Save" />
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!AND(empty(v.committeeStatus) || v.committeeStatus == 'Draft' || v.committeeStatus == 'Reverted to Credit Team', v.creditOwner == v.creditOwnerOld)}">
+                            <lightning:button
+                                variant="brand"
+                                label="Submit"
+                                title="Submit"
+                                onclick="{!c.handleSubmitToSH}"/>
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!AND(v.committeeStatus == 'Waiting Section Head Review', v.creditOwner == v.creditOwnerOld)}">
+                            <lightning:button
+                                variant="brand"
+                                label="Submit"
+                                title="Submit"
+                                onclick="{!c.handleSubmit}"/>
+                        </aura:renderIf>
+                    </div>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.buProfile == 'TX'}">
+                    <div class="slds-align_absolute-center">
+                        <lightning:button
+                            variant="brand"
+                            label="Preview"
+                            title="Preview"
+                            onclick="{!c.handlePreview}" />
+                        <lightning:button
+                            variant="brand-outline"
+                            label="Cancel"
+                            title="Cancel"
+                            onclick="{!c.handleCancel}" />
+                        <aura:renderIf isTrue="{!v.committeeStatus != 'Submitted'}">
+                            <lightning:button
+                                aura:id="btnSaveTX"
+                                type="submit"
+                                variant="brand"
+                                label="Save"
+                                title="Save" />
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!AND(OR(empty(v.committeeStatus), v.committeeStatus == 'Draft'), v.creditOwner == v.creditOwnerOld)}">
+                            <lightning:button
+                                type="submit"
+                                variant="brand"
+                                label="Submit"
+                                title="Submit"
+                                onclick="{!c.handleSubmit}"/>
+                        </aura:renderIf>
+                    </div>
+                </aura:renderIf>
+                <button id="buttonSave" class="slds-hide" type="submit"></button>
+            </aura:renderIf>
+
+            <div class="slds-hide">
+                <lightning:inputField aura:id="committeeOwner" fieldName="CommitteeOwner__c" />
+                <lightning:inputField aura:id="committeeOwnerSH" fieldName="CommitteeOwnerSH__c" />
+                <lightning:inputField aura:id="creditOwner" fieldName="CreditOwner__c" />
+                <lightning:inputField aura:id="creditOwnerSectionHead" fieldName="CreditOwnerSectionHead__c" />
+                <lightning:inputField aura:id="committeeStatus" fieldName="CommitteeStatus__c" />
+                <lightning:inputField aura:id="approvalStep" fieldName="Approval_Step__c" />
+                <lightning:inputField aura:id="status" fieldName="Status__c" />
+                <lightning:inputField aura:id="cmvpOwner" fieldName="OwnersCMVP__c" />
+                <lightning:inputField aura:id="cmvpPreScreenDecision" fieldName="CMVPPreScreenDecision__c" />
+                <lightning:inputField aura:id="country" fieldName="Country__c" />
+                <lightning:inputField fieldName="TraderWaive__c" />
+                <lightning:inputField fieldName="AgreeAsTraderCommentSH__c" />
+                <lightning:inputField fieldName="AgreeAsTraderCommentVP__c" />
+                <lightning:inputField fieldName="Approval_SHAgree__c" />
+                <lightning:inputField fieldName="Approval_VPAgree__c" />
+                
+                <lightning:inputField fieldName="TXFinCrLimitCur" />
+                <lightning:inputField fieldName="FinalPerformanceBond__c" />
+                <lightning:inputField fieldName="FinCrCond__c" />
+                <lightning:inputField fieldName="FinCrLimit__c" />
+                <lightning:inputField fieldName="FinCrLimitCur__c" />
+                <lightning:inputField fieldName="FinTradeCrIns__c" />
+                <lightning:inputField fieldName="FinTradeCrInsCu__c" />
+                <!-- <lightning:inputField fieldName="FinPaymentTerm__c" /> -->
+                <lightning:inputField fieldName="TermOfPayment__c" />
+                <lightning:inputField fieldName="FinPaymentCond__c" />
+                <lightning:inputField fieldName="FinRiskCategory__c" />
+                <lightning:inputField fieldName="FinIntCrRating__c" />
+                <lightning:inputField fieldName="PerformanceBond__c" />
+                <lightning:inputField fieldName="Credit_Condition__c" />
+                <lightning:inputField fieldName="CreditLimit__c" />
+                <lightning:inputField fieldName="CreditLimitCurrency__c" />
+                <lightning:inputField fieldName="Trade_Credit_Insurance__c" />
+                <lightning:inputField fieldName="TradeCreditInsuranceCurrency__c" />
+                <lightning:inputField fieldName="PaymentTerm__c" />
+                <lightning:inputField fieldName="PaymentCondition__c" />
+                <lightning:inputField fieldName="RiskCategory__c" />
+                <lightning:inputField fieldName="InternalCreditRating__c" />
+                <lightning:inputField fieldName="InternalCreditRatingTOP__c" />
+                <lightning:inputField fieldName="TDPerformanceBond__c" />
+                <lightning:inputField fieldName="ApprovalTrader_CreditCondition__c" />
+                <lightning:inputField fieldName="ApprovalTrader_CreditLimit__c" />
+                <lightning:inputField fieldName="ApprovalTraderCreditLimitCurrency__c" />
+                <lightning:inputField fieldName="ApprovalTrader_TradeCreditInsurance__c" />
+                <lightning:inputField fieldName="ApprovalTraderTradeCreditCurrency__c" />
+                <lightning:inputField fieldName="ApprovalTrader_PaymentTerm__c" />
+                <lightning:inputField fieldName="ApprovalTrader_PaymentCondition__c" />
+                <lightning:inputField fieldName="ApprovalTraderRiskCategory__c" />
+                <lightning:inputField fieldName="ApprovalTrader_CreditRating__c" />
+                <lightning:inputField fieldName="Comment__c" />
+                <lightning:inputField fieldName="TraderRemark__c" />
+                <lightning:inputField fieldName="OtherCondition__c" />
+                <lightning:inputField fieldName="FinOtherCondition__c" />
+                <lightning:inputField fieldName="CashOnDelivery__c" />
+                <lightning:inputField fieldName="HavingCollateral__c" />
+                <lightning:inputField fieldName="AmountBankGuarantee__c" />
+                <lightning:inputField fieldName="BuyTradeEndorsement__c" />
+                <lightning:inputField fieldName="AmountBuyTrade__c" />
+                <lightning:inputField fieldName="BuyTradeDCLCondition__c" />
+                <lightning:inputField fieldName="AmountDCLCondition__c" />
+                <lightning:inputField fieldName="HavingOpenedCredit__c" />
+                <lightning:inputField fieldName="AmountOpenedCredit__c" />
+                <lightning:inputField fieldName="HavingCreditTermOrLetter__c" />
+                <lightning:inputField fieldName="AmountCreditTerm__c" />
+                <lightning:inputField fieldName="Currency__c" />
+                <lightning:inputField fieldName="InterestedProductTypeCustomer__c" />
+                <lightning:inputField fieldName="InterestedProductTypeAsSupplier__c" />
+                <lightning:inputField fieldName="FinCashOnDelivery__c" />
+                <lightning:inputField fieldName="FinHavingCollateral__c" />
+                <lightning:inputField fieldName="FinHavingCreditTermOrLetter__c" />
+                <lightning:inputField fieldName="FinBuyTradeEndorsement__c" />
+                <lightning:inputField fieldName="FinBuyTradeDCLCondition__c" />
+                <lightning:inputField fieldName="FinHavingOpenedCredit__c" />
+                <lightning:inputField fieldName="FinAmountBankGuarantee__c" />
+                <lightning:inputField fieldName="FinAmountCreditTerm__c" />
+                <lightning:inputField fieldName="FinAmountBuyTrade__c" />
+                <lightning:inputField fieldName="FinAmountDCLCondition__c" />
+                <lightning:inputField fieldName="FinAmountOpenedCredit__c" />
+                <lightning:inputField fieldName="FinTotalSecuredCurrency__c" />
+            </div>
+        </lightning:recordEditForm>
+    </section>
+</aura:component>

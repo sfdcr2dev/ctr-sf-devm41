@@ -1,0 +1,78 @@
+<apex:page controller="WAP_SafetyPermitReportExcelController"
+  language="th" action="{!OnloadExcel}"
+  cache="true" showHeader="false"
+  contentType="application/vnd.ms-excel#Safety Permit Report - {!TodayDate}.xls">
+  <!-- contentType="application/vnd.ms-excel#Safety Permit Report - {!TodayDate}.xls" -->
+  
+  <html lang="en">
+      <head>
+          <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+          <style>
+                table, td, th {
+                  border: 1px solid;
+                }
+                
+                table {
+                  width: 100%;
+                  border-collapse: collapse;
+                }
+            </style>
+      </head>
+      <body>
+      
+          <h3>Safety Permit Report</h3>
+          <br/><br/>
+          <table>
+              <tr>
+                  <th>ใบรับรองความปลอดภัย (Safety Permit)</th>
+                  <th>รายละเอียด</th>
+                  <th>พื้นที่ปฏิบัติงาน (Working Area)</th>
+                  <th>ตั้งแต่วันที่ วัน/เดือน/ปี</th>
+                  <th>ถึงวันที่ วัน/เดือน/ปี</th>
+                  <th>การต่ออายุครั้งที่ 1 วัน/เดือน/ปี</th>
+                  <th>การต่ออายุครั้งที่ 2 วัน/เดือน/ปี</th>
+                  <th>การต่ออายุครั้งที่ 3 วัน/เดือน/ปี</th>
+              </tr>
+              <apex:repeat value="{!SafetyPermitDTOs}" var="SP">
+                  <tr>
+                      <td>{!SP.No}</td>
+                      <td>{!SP.detail}</td>
+                      <td>{!SP.workingArea}</td>
+                      <td><apex:outputText value="{0,date, dd/MM/yyyy}"> <apex:param value="{!SP.startDate}" /> </apex:outputText></td>
+                      <td><apex:outputText value="{0,date, dd/MM/yyyy}"> <apex:param value="{!SP.endDate}" /> </apex:outputText></td>
+                      <td>
+                          <apex:outputPanel rendered="{!SP.firstExtendDate != null}">
+                              <apex:outputText value="{0,date, dd/MM/yyyy}"> <apex:param value="{!SP.firstExtendDate}" /></apex:outputText> -
+                              <apex:outputText value="{0,date, dd/MM/yyyy}"> <apex:param value="{!SP.firstExpiredDate}" /></apex:outputText>
+                          </apex:outputPanel>
+                          <apex:outputPanel rendered="{!SP.firstExtendDate = null}">
+                              <apex:outputText value="{0,date, dd/MM/yyyy}"> <apex:param value="{!SP.secondExpiredDate}" /></apex:outputText>
+                          </apex:outputPanel>
+                          
+                      </td>
+                      <td>
+                          <apex:outputPanel rendered="{!SP.secondExtendDate != null}">
+                              <apex:outputText value="{0,date, dd/MM/yyyy}"> <apex:param value="{!SP.secondExtendDate}" /></apex:outputText> -
+                              <apex:outputText value="{0,date, dd/MM/yyyy}"> <apex:param value="{!SP.secondExpiredDate}" /></apex:outputText>
+                          </apex:outputPanel>
+                          <apex:outputPanel rendered="{!SP.secondExtendDate = null}">
+                              <apex:outputText value="{0,date, dd/MM/yyyy}"> <apex:param value="{!SP.secondExpiredDate}" /></apex:outputText>
+                          </apex:outputPanel>
+                      </td>
+                      <td>
+                          <apex:outputPanel rendered="{!SP.thirdExtendDate != null}">
+                              <apex:outputText value="{0,date, dd/MM/yyyy}"> <apex:param value="{!SP.thirdExtendDate}" /></apex:outputText> -
+                              <apex:outputText value="{0,date, dd/MM/yyyy}"> <apex:param value="{!SP.thirdExpiredDate}" /> </apex:outputText>
+                          </apex:outputPanel>
+                          <apex:outputPanel rendered="{!SP.thirdExtendDate = null}">
+                              <apex:outputText value="{0,date, dd/MM/yyyy}"> <apex:param value="{!SP.thirdExpiredDate}" /> </apex:outputText>
+                          </apex:outputPanel>
+                      </td>
+                  </tr>
+              </apex:repeat>
+          </table>
+          
+      </body>
+  </html>
+  
+</apex:page>

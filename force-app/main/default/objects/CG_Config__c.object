@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>CG_Annual_Running_No__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>CG-{yyyy}-02-{0000}</inlineHelpText>
+        <label>CG Annual Running No</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CG_Manual_Running_No__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>CG-{yyyy}-03-{0000}</inlineHelpText>
+        <label>CG Manual Running No</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CG_New_User_Running_No__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>CG-{yyyy}-01-{0000}</inlineHelpText>
+        <label>CG New User Running No</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>COI_Annual_Running_No__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>COI-{yyyy}-03-{0000}</inlineHelpText>
+        <label>COI Annual Running No</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>COI_Incident_Running_No__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Format COI-{yyyy}-01-{0000}</inlineHelpText>
+        <label>COI Incident Running No</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>COI_New_User_Running_No__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>COI-{yyyy}-02-{0000}</inlineHelpText>
+        <label>COI New User Running No</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Environment__c</fullName>
+        <externalId>false</externalId>
+        <label>Environment</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Gift_Running_No__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>GIFT-{yyyy}-{0000}</inlineHelpText>
+        <label>Gift Running No</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Year__c</fullName>
+        <externalId>false</externalId>
+        <label>Year</label>
+        <length>4</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>CG Config</label>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Product</value>
+    </caseValues>
+    <fields>
+        <label><!-- BaseUnit text --></label>
+        <name>BaseUnitText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Base Unit of Measure --></label>
+        <name>BaseUnit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Unit --></label>
+        <name>BusinessUnit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deletion Mark --></label>
+        <name>DeletionMark__c</name>
+    </fields>
+    <fields>
+        <label><!-- Division --></label>
+        <name>Division__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Code --></label>
+        <name>MaterialCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Group --></label>
+        <name>MaterialGroup__c</name>
+        <relationshipLabel><!-- Product --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Product Name Text --></label>
+        <name>ProductNameText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>SalesOrganization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Size/dimensions --></label>
+        <name>SizeDimensions__c</name>
+    </fields>
+    <layouts>
+        <layout>Products Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

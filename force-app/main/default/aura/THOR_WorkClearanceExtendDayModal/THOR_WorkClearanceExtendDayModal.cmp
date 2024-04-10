@@ -1,0 +1,146 @@
+<aura:component access="global"
+	implements="force:hasRecordId,flexipage:availableForAllPageTypes,lightning:isUrlAddressable">
+
+	<lightning:navigation aura:id="navService" />
+	<lightning:notificationsLibrary aura:id="notifLib" />
+
+	<aura:attribute name="form" type="Map" default="{}" access="private" />
+	<aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" access="private" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+	<aura:attribute name="recordId" type="Id" />
+	<aura:attribute name="showModal" type="Boolean" default="false" />
+	<aura:attribute name="showCancelConfirmModal" type="Boolean" default="false" />
+	<aura:attribute name="setUserStatus" type="Boolean" default="" />
+	<aura:attribute name="type" type="String" default="" />
+	<aura:attribute name="userStatus" type="String" default="" />
+	<aura:attribute name="userStatusTemp" type="String" default="" />
+	<aura:attribute name="userStatusSaved" type="String" default="" />
+	<aura:attribute name="options" type="List" default="[ {'label': '', 'value': 'x'} ]" />
+	<aura:attribute name="value" type="List" default="[ 'x' ]" />
+	<aura:attribute name="extendTimeUI" type="String" default="" />
+	<aura:attribute name="canSubmit" type="String" default="true" />
+
+	<aura:attribute name="extendDateTemp" type="String" />
+	<aura:attribute name="extendTimeTemp" type="String" />
+
+	<aura:handler event="c:THOR_openWorkClearanceEditModal" action="{!c.showModal}" />
+	<aura:handler name="closeModalEvent" event="c:THOR_Event" action="{!c.closeUserStatusModal}" />
+	<!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> -->
+	<aura:handler name="render" value="{!this}" action="{!c.doRender}" />
+
+	<aura:registerEvent name="recordSavedEvent" type="c:THOR_Event" />
+
+	<aura:html tag="style">
+		div.windowViewMode-normal.oneContent {
+			overflow: {! and(v.showModal, v.formFactor == 'PHONE') ? 'hidden !important;':''}
+		}
+	</aura:html>
+
+	<lightning:card class="slds-scrollable_y slds-m-horizontal_large">
+		<div class="slds-is-relative">
+			<aura:if isTrue="{!v.isLoading}">
+				<lightning:spinner alternativeText="Loading" size="medium" />
+			</aura:if>
+			<lightning:recordEditForm
+				density="comfy"
+				recordId="{! v.recordId }"
+				objectApiName="Work_Clearance__c"
+				onload="{!c.handleLoad}"
+				onsuccess="{!c.handleSuccess}"
+				onsubmit="{!c.handleSubmit}"
+				onerror="{!c.handleError}">
+				
+				<lightning:layout multipleRows="true" verticalAlign="stretch">
+					<lightning:layoutItem size="4" flexibility="auto" padding="horizontal-medium">
+						<label class="slds-form-element__label">User Status</label>
+						<lightning:input variant="label-hidden" aura:id="User_Status_Text__c" value="EXTD EXTH" disabled="true" />
+					</lightning:layoutItem>
+					<lightning:layoutItem size="4" flexibility="auto" padding="horizontal-medium">
+						<label class="slds-form-element__label">ขอต่ออายุ</label>
+						<lightning:checkboxGroup
+							aura:id="Extend_Time_Flag_UI__c"
+							variant="label-hidden"
+							options="{! v.options }"
+							value="{! v.value }"
+							onchange="{! c.handleExtendTimeFlagCheckBoxChange }" />
+						<!--
+						<div class="slds-hide">
+							<lightning:inputField aura:id="Extend_Time_Flag__c" fieldName="Extend_Time_Flag__c" />
+						</div>
+						-->
+					</lightning:layoutItem>
+					<lightning:layoutItem size="4" flexibility="auto" padding="horizontal-medium">
+						<lightning:inputField aura:id="Extend_No__c" fieldName="Extend_No__c" class="{! if(empty(v.value), 'slds-hide', '') }" disabled="true" />
+					</lightning:layoutItem>
+					<lightning:layoutItem size="6" flexibility="auto" padding="horizontal-medium">
+						<label class="slds-form-element__label">Date (วันที่)</label>
+						<lightning:inputField aura:id="Extend_Date__c" variant="label-hidden" fieldName="Extend_Date__c" onchange="{!c.handleExtendDateChanged}" disabled="false" />
+					</lightning:layoutItem>
+					<lightning:layoutItem size="6" flexibility="auto" padding="horizontal-medium">
+						<label class="slds-form-element__label">Time (เวลา)</label>
+						<div class="slds-form-element">
+							<div class="slds-form-element__control">
+								<input aura:id="Extend_Time_UI__c" class="slds-input" type="time" step="1" value="{!v.extendTimeUI}" onchange="{!c.handleExtendTimeChanged}" />
+							</div>
+						</div>
+						<lightning:inputField aura:id="Extend_Time__c" variant="label-hidden" fieldName="Extend_Time__c" class="hidden" />
+					</lightning:layoutItem>
+				</lightning:layout>
+				<div class="slds-hide">
+					<lightning:inputField aura:id="User_Status__c" fieldName="User_Status__c" value="{!v.form.User_Status__c}" disabled="true" />
+					<lightning:inputField aura:id="Last_User_Action__c" fieldName="Last_User_Action__c" value="{!v.form.Last_User_Action__c}" disabled="true" />
+					<lightning:inputField aura:id="Last_User_Action_Status__c" fieldName="Last_User_Action_Status__c" value="In Progress" disabled="true" />
+					<lightning:inputField aura:id="Integration_Status__c" fieldName="Integration_Status__c" value="" disabled="true" />
+					<lightning:inputField aura:id="isIRPA__c" fieldName="isIRPA__c" value="{!true}" disabled="true" />
+					<lightning:inputField aura:id="System_Status__c" fieldName="System_Status__c" value="PREP" disabled="true" />
+					<lightning:inputField aura:id="Request_Extend_Date__c" fieldName="Request_Extend_Date__c" />
+					<lightning:inputField aura:id="Request_Extend_Time__c" fieldName="Request_Extend_Time__c" />
+					<lightning:inputField aura:id="Extend_Time_Flag__c" fieldName="Extend_Time_Flag__c" value="" />
+					<lightning:inputField aura:id="Extend_Time_To_UI__c" fieldName="Extend_Time_To_UI__c" value="{!null}" />
+					<lightning:inputField aura:id="Extend_Time_To__c" fieldName="Extend_Time_To__c" value="" />
+					<lightning:inputField aura:id="Authorized_Signatory_UI__c" fieldName="Authorized_Signatory_UI__c" value="" />
+					<lightning:inputField aura:id="Authorized_Signatory__c" fieldName="Authorized_Signatory__c" value="" />
+					<lightning:inputField aura:id="Extend_Applicant_or_Bearer_UI__c" fieldName="Extend_Applicant_or_Bearer_UI__c" value="" />
+					<lightning:inputField aura:id="Extend_Applicant_or_Bearer__c" fieldName="Extend_Applicant_or_Bearer__c" value="" />
+					<lightning:inputField aura:id="Extend_Authorized_Sign_UI__c" fieldName="Extend_Authorized_Sign_UI__c" value="" />
+					<lightning:inputField aura:id="Extend_Authorized_Sign__c" fieldName="Extend_Authorized_Sign__c" value="" />
+					<lightning:inputField aura:id="Close_Applicant_or_Bearer_UI__c" fieldName="Close_Applicant_or_Bearer_UI__c" value="" />
+					<lightning:inputField aura:id="Close_Applicant_or_Bearer__c" fieldName="Close_Applicant_or_Bearer__c" value="" />
+					<lightning:inputField aura:id="Close_Authorized_Sign_off_UI__c" fieldName="Close_Authorized_Sign_off_UI__c" value="" />
+					<lightning:inputField aura:id="Close_Authorized_Sign_off__c" fieldName="Close_Authorized_Sign_off__c" value="" />
+				</div>
+
+				<c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+			</lightning:recordEditForm>
+		</div>
+		<aura:set attribute="title">
+			<div class="slds-text-heading_medium slds-p-vertical_small">Extend Other Day</div>
+		</aura:set>
+		<aura:set attribute="footer">
+			<lightning:button class="slds-m-top_small" label="Cancel" onclick="{!c.openConfimCancelModal}" />
+			<lightning:button class="slds-m-top_small" label="Submit" onclick="{!c.submitRecordEditFrom}"
+				disabled="{!not(v.canSubmit)}" />
+		</aura:set>
+	</lightning:card>
+
+	<aura:if isTrue="{!v.showCancelConfirmModal}">
+		<div role="dialog" class="slds-modal slds-fade-in-open" style="z-index: 600">
+			<div class="slds-modal__container">
+				<header class="slds-modal__header">
+					<h1 class="slds-text-heading--medium">Confirmation</h1>
+				</header>
+
+				<div class="slds-modal__content slds-p-around--medium">
+					<center><b>Are you sure you want cancel extending the Work Clearance?</b></center>
+				</div>
+
+				<footer class="slds-modal__footer">
+					<lightning:button name="No" label="No" onclick="{!c.noConfirmCancelEdit}" />
+					<lightning:button variant="brand" name="Yes" label="Yes" onclick="{!c.yesConfirmCancelEdit}" />
+				</footer>
+			</div>
+		</div>
+		<div class="slds-backdrop slds-backdrop_open" style="z-index: 550"></div>
+	</aura:if>
+
+</aura:component>

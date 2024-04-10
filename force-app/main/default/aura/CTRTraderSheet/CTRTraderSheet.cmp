@@ -1,0 +1,644 @@
+<aura:component controller="CTRRequestFormItemController" implements="lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    <aura:attribute name="IsPageDisable" type="Boolean" default="true"/>
+    <aura:attribute name="LinktoNews" type="String" />
+	<aura:attribute name="ShippingCountry" type="String" />
+    <aura:attribute name="TraderApproved" type="String" />
+    <aura:attribute name="CurrentUserName" type="String" />
+    <aura:attribute name="CurrentUserID" type="String" />
+    <aura:attribute name="CurrentApprover" type="String" default="Trader"/>
+    <aura:attribute name="ButtonLabel" type="String" />
+    <aura:attribute name="HeadName" type="String" />
+    <aura:attribute name="VPName" type="String" />
+    <aura:attribute name="TraderName" type="String" />
+    <aura:attribute name="CurrentApproverId" type="String" />
+    
+    <aura:attribute name="IsSectionHeadApproved" type="Boolean" default="false"/>
+    <aura:attribute name="IsCMVPApproved" type="Boolean" default="false"/>
+    <aura:attribute name="IsAllApproved" type="Boolean" default="false"/>
+    <aura:attribute name="IsEditButtonDisable" type="Boolean" default="false"/>
+    
+    
+    <aura:attribute name="IsSubmitted" type="Boolean" default="false"/>
+    <aura:attribute name="IsButtonDisable" type="Boolean" default="true"/>    
+    <aura:attribute name="IsSectionHeadDisable" type="Boolean" default="true"/>
+    <aura:attribute name="IsCMVPDisable" type="Boolean" default="true"/> 
+    
+    <aura:attribute name="CanSubmitted" type="Boolean" default="false"/>
+    <aura:attribute name="IsDeclareCheck" type="Boolean" default="false"/>
+    
+    <aura:attribute name="BUInfo" type="CTRBuProfile__mdt" />
+    
+    <aura:attribute name="RecordTypeName" type="String"/>
+    <aura:attribute name="openLinkToNewsModal" type="Boolean" default="false" />
+    
+    <aura:attribute name="TypeOfBusinessEva" type="String" />
+    <aura:attribute name="LegalEntity" type="String" />
+    <aura:attribute name="ReputationMarket" type="String" />
+    <aura:attribute name="CustomerPurchaseProductFrom" type="String" />
+    
+    <aura:attribute name="HasRiskNews" type="Boolean" default="false"/>
+    <aura:attribute name="IsDisagreement" type="Boolean" default="false"/>
+    <aura:attribute name="StatusPass" type="Boolean" default="false"/>
+    
+    <aura:attribute name="CTRUserId" type="String" />
+    <aura:attribute name="PositionNameOfVP" type="String" />
+    
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.onPageReferenceChanged}" />
+        <aura:If isTrue="{!and(v.CurrentApprover != 'Done',v.CurrentUserID == v.CurrentApproverId)}">
+            <div class="slds-float_right">
+                <aura:If isTrue="{!v.StatusPass}">
+                    <lightning:button variant="brand-outline" label="Fill in Trader Sheet" title="Fill in Trader Sheet" onclick="{!c.handleClick }" />
+                </aura:If>
+                <!--lightning:button variant="brand-outline" label="EDIT" title="Fill in Trader Sheet" onclick="{! c.handleClick }" /-->
+            </div><br/> <br/> 
+        </aura:If>
+    <!--lightning:button variant="brand-outline" label="Fill in Trader Sheet" title="Fill in Trader Sheet" onclick="{!c.handleClick }" /-->
+        <lightning:recordEditForm aura:id="recordEditForm" objectApiName="CTRRequestFormItem__c" recordId="{!v.recordId}" onsubmit="{!c.handleSubmit}" onsuccess="{!c.handleSuccess}">
+            
+            <div class="slds-section slds-is-open animate" aura:id="Summarized">
+                    <!--section header-->
+                    <h3 class="slds-section__title">
+                            <button aria-controls="SummarizedList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="Summarized">
+                                <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                                <span class="slds-truncate" title="Summarized">Summarized Information from {!v.RecordTypeName} Registration</span>
+                            </button>
+                    </h3>
+                    <!--section body-->
+                    <div class="slds-section__content" id="SummarizedList">
+                        <lightning:layoutItem padding="around-small">
+                            <div class="slds-grid slds-wrap flexibility:auto">
+                                <div class="slds-col slds-size_1-of-1 page-section">   <!-- ReputationInTheMarket__c -->
+                                    <p>1. <b>Reputation in the market</b>: Company Limited or Partnership Limited in related business including domestic trading  
+                                    <lightning:helptext content="Note: Reputation in the market will be defaulted by system based on information from 'Business Type' and 'Legal Entity' filled by customer."></lightning:helptext></p>
+                                </div>
+                                <div class="slds-col slds-size_2-of-7 page-section"> 
+                                	<p> &nbsp;&nbsp;&nbsp;&nbsp;Business Type: </p> 
+                                </div>
+                                <div class="slds-col slds-size_5-of-7 page-section"> 
+                                    {!v.TypeOfBusinessEva}
+                                    <!--
+                                     	<lightning:outputField aura:id="TypeOfBusiness__c" fieldName="TypeOfBusiness__c" variant="label-hidden" />-->
+                                </div>
+                                <div class="slds-col slds-size_2-of-7 page-section"> 
+                                    <p> &nbsp;&nbsp;&nbsp;&nbsp;Legal Entity: </p>
+                                </div>
+                                <div class="slds-col slds-size_5-of-7 page-section"> 
+                                    	<!--<lightning:outputField aura:id="LegalEntity__c" fieldName="CTRRequestFormHeader__r.LegalEntity__c" variant="label-hidden"/>-->
+                                    {!v.LegalEntity}
+                                </div>
+                                <div class="slds-col slds-size_2-of-7 page-section"> 
+                                    <p> &nbsp;&nbsp;&nbsp;&nbsp;Reputation in the market score: </p>
+                                </div>
+                                <div class="slds-col slds-size_5-of-7 page-section"> 
+                                    
+                                    {!v.ReputationMarket}
+                                        <br /><br />
+                                </div>
+                                
+                                <aura:if isTrue="{!v.RecordTypeName == 'Customer'}">
+                                    <div class="slds-col slds-size_3-of-8 page-section"> 
+                                        2. <b>Current Supplier of these products</b>:
+                                        <br /><br />
+                                    </div>
+                                    <div class="slds-col slds-size_5-of-8 page-section"> 
+                                        {!v.CustomerPurchaseProductFrom}
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1 page-section"> 
+                                        <p>3. <b>Destination country</b>: &nbsp;&nbsp;&nbsp;&nbsp; {!v.ShippingCountry}</p>
+                                    </div>
+                                </aura:if>
+                                
+                                <!--div class="slds-col slds-size_5-of-8 page-section"> 
+                                        <lightning:outputField aura:id="DestinationCountry__c" fieldName="DestinationCountry__c" variant="label-hidden"/>
+                                </div-->
+                            </div> 
+                            <br/>
+                        </lightning:layoutItem>
+                    </div>
+            </div>
+            
+            <div class="slds-section slds-is-open animate" aura:id="TraderCommentSection">
+                <!--section header-->
+                <h3 class="slds-section__title">
+                    <button aria-controls="TraderCommentItemList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="TraderCommentSection">
+                        <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                        <span class="slds-truncate" title="Trader Comment">Trader Comment</span>
+                    </button>
+                </h3>
+                <!--section body-->
+                <div class="slds-section__content" id="TraderCommentItemList">
+                <lightning:layoutItem padding="around-small">
+                    <div>
+                    <!--
+                    <div id="1" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                            <p>1. Reputation in the market:</p>
+                            <div class="slds-col slds-size_5-of-6"  >
+                             	<p> &nbsp;&nbsp; (Refers to how much the company well-known in the market in terms of commercial view)</p><br/>
+                            </div>
+						</div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <fieldset class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <span class="slds-radio" >
+                                         <input type="radio" aura:id="Well-known" id="Well-known" value="Well-known" name="ReputationInTheMarket__c" disabled="{!v.IsPageDisable}" />
+                                         <label class="slds-radio__label" for="Well-known">
+                                              <span class="slds-radio_faux"></span>
+                                              <span class="slds-form-element__label" >Well-known (5 Point)</span>
+                                         </label>
+                                    </span><br />
+                                    
+                                    <span class="slds-radio" >
+                                         <input type="radio" onclick="" aura:id="General" id="General" value="General" name="ReputationInTheMarket__c" disabled="{!v.IsPageDisable}" />
+                                         <label class="slds-radio__label" for="General">
+                                              <span class="slds-radio_faux"></span>
+                                              <span class="slds-form-element__label">General / Known (3 Point)</span>
+                                         </label>
+                                    </span><br />
+                                    
+                                    <span class="slds-radio" >
+                                         <input type="radio" onclick="" aura:id="Unknown" id="Unknown" value="Unknown" name="ReputationInTheMarket__c" disabled="{!v.IsPageDisable}" />
+                                         <label class="slds-radio__label" for="Unknown">
+                                              <span class="slds-radio_faux"></span>
+                                              <span class="slds-form-element__label">Unknown (1 Point)</span>
+                                         </label>
+                                    </span><br /><br />
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div id="2" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                             <p>2. Proposed Credit Condition (if any):</p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2"  >
+                            <lightning:inputField aura:id="ProposedCreditCondition__c" 
+                                                  fieldName="ProposedCreditCondition__c" 
+                                                  variant="label-hidden" 
+                                                  type="Textarea"
+                                                  disabled="{!v.IsPageDisable}" />
+                            <br /><br />
+                        </div>
+                    </div>
+                    <div id="3" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                             <p>3. Result from news screening:</p>&nbsp;&nbsp;&nbsp;
+                            <a href="#" onclick="{!c.navigateToLink}" target="_blank"> <u> Link to NEWS</u></a>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2"  >
+                            <fieldset class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <span class="slds-radio" >
+                                         <input type="radio" onclick="" aura:id="NoSignificant" id="NoSignificant" value="No" name="ResultFromNews" disabled="{!v.IsPageDisable}" />
+                                         <label class="slds-radio__label" for="NoSignificant">
+                                              <span class="slds-radio_faux"></span>
+                                              <span class="slds-form-element__label" >No significant compliance risk news</span>
+                                         </label>
+                                    </span><br />
+                                    
+                                    <span class="slds-radio" >
+                                         <input type="radio" onclick="" aura:id="NotSignificant" id="NotSignificant" value="Not" name="ResultFromNews" disabled="{!v.IsPageDisable}" />
+                                         <label class="slds-radio__label" for="NotSignificant">
+                                              <span class="slds-radio_faux"></span>
+                                              <span class="slds-form-element__label">Not significant compliance risk news (please specify)</span>
+                                         </label>
+                                    </span><br />
+                                    <lightning:inputField aura:id="ResultFromNewsSpecify__c" 
+                                                  fieldName="ResultFromNewsSpecify__c" 
+                                                  variant="label-hidden" 
+                                                  type="text" 
+                                                  disabled="{!v.IsPageDisable}" />
+                                    <br /><br />
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div id="4" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                             <p>4. Should I be a customer or not? (please specify):</p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2"  >
+                            <fieldset class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <span class="slds-radio" >
+                                         <input type="radio" onclick="" aura:id="AgreeToRegister" id="AgreeToRegister" value="Agree" name="ShouldIBeACustomer" disabled="{!v.IsPageDisable}" />
+                                         <label class="slds-radio__label" for="AgreeToRegister">
+                                              <span class="slds-radio_faux"></span>
+                                              <span class="slds-form-element__label" >Agree to register this Counterparty</span>
+                                         </label>
+                                    </span><br />
+                                    
+                                    <span class="slds-radio" >
+                                         <input type="radio" onclick="" aura:id="DisagreeToRegister" id="DisagreeToRegister" value="Disagree" name="ShouldIBeACustomer" disabled="{!v.IsPageDisable}" />
+                                         <label class="slds-radio__label" for="DisagreeToRegister">
+                                              <span class="slds-radio_faux"></span>
+                                              <span class="slds-form-element__label">Disagree to register this Counterparty</span>
+                                         </label>
+                                    </span><br />
+                                    <lightning:inputField aura:id="DisagreeToRegisterDetails__c" 
+                                                  fieldName="DisagreeToRegisterDetails__c" 
+                                                  variant="label-hidden" 
+                                                  type="text" 
+                                                  disabled="{!v.IsPageDisable}" />
+                                    <br /><br />
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div id="5" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                             <p>5. Is Customer's information (Counterparty) completed?:</p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2"  >
+                            <fieldset class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <span class="slds-radio" >
+                                         <input type="radio" onclick="" aura:id="Yes1" id="Yes1" value="Yes1" name="IsCustomer" disabled="{!v.IsPageDisable}" />
+                                         <label class="slds-radio__label" for="Yes1">
+                                              <span class="slds-radio_faux"></span>
+                                              <span class="slds-form-element__label" >Yes</span>
+                                         </label>
+                                    </span><br />
+                                    
+                                    <span class="slds-radio" >
+                                         <input type="radio" onclick="" aura:id="No1" id="No1" value="No1" name="IsCustomer" disabled="{!v.IsPageDisable}" />
+                                         <label class="slds-radio__label" for="No1">
+                                              <span class="slds-radio_faux"></span>
+                                              <span class="slds-form-element__label">No</span>
+                                         </label>
+                                    </span><br /><br />
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div id="6" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                             <div class="slds-col slds-size_5-of-6"  >
+                             	<p>6. In the case of domestic fuel oil customer, do they have a trading license for fuel oil?:</p>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2"  >
+                            <lightning:inputField aura:id="HaveTradingLicenseForFuelOil__c" 
+                                                  fieldName="HaveTradingLicenseForFuelOil__c" 
+                                                  variant="label-hidden" 
+                                                  type="text" 
+                                                  disabled="{!v.IsPageDisable}" />
+                            <br /><br /><br />
+                        </div>
+                    </div>
+                    <div id="7" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                             <p>7. The customer intends to export the products to which country?:</p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2"  >
+                            <lightning:inputField aura:id="ExportProductsToWhichCountry__c" 
+                                                  fieldName="ExportProductsToWhichCountry__c" 
+                                                  variant="label-hidden" 
+                                                  type="text" 
+                                                  disabled="{!v.IsPageDisable}" />
+                            <br /><br /><br />
+                        </div>
+                    </div>
+                    <div id="8" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                             <p>8. Is there a risk in becoming a customer of this company? (if any please specify):</p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2"  >
+                            <fieldset class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <span class="slds-radio" >
+                                         <input type="radio" onclick="" aura:id="Yes2" id="Yes2" value="Yes2" name="RiskBecomingCustomer" disabled="{!v.IsPageDisable}" />
+                                         <label class="slds-radio__label" for="Yes2">
+                                              <span class="slds-radio_faux"></span>
+                                              <span class="slds-form-element__label" >Yes</span>
+                                         </label>
+                                    </span><br />
+                                    
+                                    <span class="slds-radio" >
+                                         <input type="radio" onclick="" aura:id="No2" id="No2" value="No2" name="RiskBecomingCustomer" disabled="{!v.IsPageDisable}" />
+                                         <label class="slds-radio__label" for="No2">
+                                              <span class="slds-radio_faux"></span>
+                                              <span class="slds-form-element__label">No</span>
+                                         </label>
+                                    </span><br />
+                                    <lightning:inputField aura:id="NoReasonRiskInBecomingACustomer__c" 
+                                                  fieldName="NoReasonRiskInBecomingACustomer__c" 
+                                                  variant="label-hidden" 
+                                                  type="text" 
+                                                  disabled="{!v.IsPageDisable}" />
+                                    <br /><br />
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div id="9" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                             <div class="slds-col slds-size_5-of-6"  >
+                             	<p>9. Currently, where are you buying products or similar items from?:</p>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2"  >
+                            <lightning:inputField aura:id="WhereYouBuyingProductsFrom__c" 
+                                                  fieldName="WhereYouBuyingProductsFrom__c" 
+                                                  variant="label-hidden" 
+                                                  type="text" 
+                                                  disabled="{!v.IsPageDisable}" />
+                            <br /><br /><br />
+                        </div>
+                    </div>
+                    <div id="10" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                             <div class="slds-col slds-size_5-of-6"  >
+                             	<p>10. Other comment:</p>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2"  >
+                            <lightning:inputField aura:id="OtherComment__c" 
+                                                  fieldName="OtherComment__c" 
+                                                  variant="label-hidden" 
+                                                  type="text" 
+                                                  disabled="{!v.IsPageDisable}" />
+                            <br /><br /><br />
+                        </div>
+                    </div>
+                    -->
+                    </div>
+                    <div id="4" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                            <aura:if isTrue="{!v.RecordTypeName == 'Customer'}">
+                                <p><span style="color:red; font-style: italic;" >* </span> 4. Result from news screening:</p>&nbsp;&nbsp;&nbsp;
+                                <aura:set attribute="else">
+                                    <p><span style="color:red; font-style: italic;" >* </span> 2. Result from news screening:</p>&nbsp;&nbsp;&nbsp;
+                                </aura:set>
+                            </aura:if>
+                            <!--<a href="#" onclick="{!c.handleLinkToNewsClick}" target="_blank"> <u> Link to NEWS</u></a>-->
+                            <div class="slds-col slds-size_1-of-1 slds-var-p-left_large">
+                                <lightning:button variant="base" label="Link to NEWS" title="Link to NEWS" class="text-underline" onclick="{!c.handleLinkToNewsClick}" />
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2"  >
+                            <fieldset class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <lightning:inputField aura:id="ResultFromNewsScreening__c" 
+                                                  fieldName="ResultFromNewsScreening__c" 
+                                                  variant="label-hidden" 
+                                                  type="text" 
+                                                  onchange="{! c.handleHasRiskNews }"        
+                                                  disabled="{!v.IsPageDisable}" 
+                                                  required="true"/>
+                                    <br/> <br/>
+                                    <lightning:inputField aura:id="ResultFromNewsSpecify__c" 
+                                                  fieldName="ResultFromNewsSpecify__c" 
+                                                  variant="label-hidden" 
+                                                  type="text" 
+                                                  disabled="{!v.IsPageDisable}" required="{!v.HasRiskNews}" onchange="{! c.handleHasRiskNews }"/>
+                                    <br /><br />
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div id="5" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                            
+                            <aura:if isTrue="{!v.RecordTypeName == 'Customer'}">
+                                <p> <span style="color:red; font-style: italic;" >* </span>  5. Result from Commercial Evaluation:</p>
+                                <aura:set attribute="else">
+                                    <p> 3. Result from Commercial Evaluation:</p>
+                                </aura:set>
+                            </aura:if>
+                            <p><span style="color:gray; font-style: italic;" >(CTR Supplier for TOP NEXT Group not required)</span></p>
+                            <br />
+                            <p>Please specify commercial risks or observations from evaluation result</p>
+                            <br /><br />
+                        </div>
+                        <div class="slds-col slds-size_1-of-2"  >
+                            <lightning:outputField aura:id="CommercialScoringResult__c" fieldName="CommercialScoringResult__c" variant="label-hidden" />
+                            <br /><br />
+                            <lightning:inputField aura:id="CommercialRisks__c" fieldName="CommercialRisks__c" variant="label-hidden" disabled="{!v.IsPageDisable}"/>
+                            <br />
+                        </div>
+                    </div>
+                    <div id="6" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                            
+                            <aura:if isTrue="{!v.RecordTypeName == 'Customer'}">
+                                <p>6. Please specify any risks or observations :</p>
+                                <aura:set attribute="else">
+                                    <p>4. Please specify any risks or observations :</p>
+                                </aura:set>
+                            </aura:if>
+                            <br /><br />
+                        </div>
+                        <div class="slds-col slds-size_1-of-2"  >
+                            <lightning:inputField aura:id="RisksOrObservations__c" fieldName="RisksOrObservations__c" variant="label-hidden" disabled="{!v.IsPageDisable}"/>
+                        	<br /><br />
+                        </div>
+                        
+                    </div>
+                    <div id="7" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                            <aura:if isTrue="{!v.RecordTypeName == 'Customer'}">
+                                <p><span style="color:red; font-style: italic;" >* </span>  7. Do you agree to register this customer?</p> <!-- AgreeRegisterCustomer__c -->
+                                <aura:set attribute="else">
+                                    <p><span style="color:red; font-style: italic;" >* </span>  5. Do you agree to register this customer?</p> <!-- AgreeRegisterCustomer__c -->
+                                </aura:set>
+                            </aura:if>
+                            <p>(Please specify any disagreement):</p>
+                            <br /><br />
+                        </div>
+                        <div class="slds-col slds-size_1-of-2"  >
+                            <lightning:inputField aura:id="AgreeRegisterCustomer__c" fieldName="AgreeRegisterCustomer__c" variant="label-hidden" disabled="{!v.IsPageDisable}" onchange="{! c.handleIsDisagreement }" required="true"/>
+                            <br />
+                             <lightning:inputField aura:id="DisagreementCustomer__c" fieldName="DisagreementCustomer__c" variant="label-hidden" disabled="{!v.IsPageDisable}" required="{!v.IsDisagreement}" onchange="{! c.handleIsDisagreement }"/>
+                        	<br /><br />
+                        </div>
+                    </div>
+                    <div id="8" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                            
+                            <aura:if isTrue="{!v.RecordTypeName == 'Customer'}">
+                                <p>8. Proposed Credit Condition (optional):</p>
+                                <aura:set attribute="else">
+                                    <p>6. Proposed Credit Condition (optional):</p>
+                                </aura:set>
+                            </aura:if>
+                            <br /><br />
+                        </div>
+                        <div class="slds-col slds-size_1-of-2"  >
+                            <lightning:inputField aura:id="ProposedCreditCondition__c" fieldName="ProposedCreditCondition__c" variant="label-hidden" disabled="{!v.IsPageDisable}"/>
+                            <br/><br/>
+                        </div>
+                        <br /><br />
+                    </div>
+                    <div id="9" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-2 page-section page-right">
+                            
+                        	<aura:if isTrue="{!v.RecordTypeName == 'Customer'}">
+                                <p>9. Provide any additional opinions or recommendations for actions subsequent to the registration of this customer (If any):</p>
+                                <aura:set attribute="else">
+                                    <p>7. Provide any additional opinions or recommendations for actions subsequent to the registration of this customer (If any):</p>
+                                </aura:set>
+                            </aura:if>
+                            <br /><br />
+                        </div>
+                        <div class="slds-col slds-size_1-of-2"  >
+                             <lightning:inputField aura:id="AdditionalOpinions__c" fieldName="AdditionalOpinions__c" variant="label-hidden" disabled="{!v.IsPageDisable}"/>
+                        </div>
+                    </div>
+                    <div id="consent" class="slds-grid slds-wrap flexibility:auto">
+                        <div class="slds-col slds-size_1-of-1 slds-align_absolute-center">
+                            <lightning:inputField aura:id="DeclareTheInformation__c" 
+                                                      fieldName="DeclareTheInformation__c" 
+                                                      variant="label-hidden"
+                                                      disabled="{!v.IsPageDisable}" onchange="{! c.handleIsDeclareCheck }"/>
+                                  <span class="slds-checkbox_faux"></span>
+                                  <span class="slds-form-element__label"> &nbsp;&nbsp;  I hereby declare that the information provided is true and correct</span>
+                                  
+                        </div>
+                        <br /><br /><br /><br /><br /><br />
+                    </div>
+                    <div id="CompletedBy" class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-1 page-section slds-align_absolute-center">
+                            <div class="slds-col slds-size_1-of-4"  />
+                             <div class="slds-col slds-size_2-of-4"  >
+                             	<p><b>Trader sheet completed by</b></p>
+                                 <lightning:inputField aura:id="TraderSheetCompletedBy__c" 
+                                                      fieldName="TraderSheetCompletedBy__c" 
+                                                      variant="label-hidden"
+                                                      disabled="true"/>
+                                 <br /><br />
+                            </div>
+                            <div class="slds-col slds-size_1-of-4"  />
+                        </div>
+                    </div>
+                    <div id="DateTime" class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-1 page-section slds-align_absolute-center">
+                            <div class="slds-col slds-size_1-of-4"  />
+                             <div class="slds-col slds-size_2-of-4"  >
+                             	<p><b>Date and Time</b></p>
+                                <lightning:inputField aura:id="TraderDateTime__c" fieldName="TraderDateTime__c" variant="label-hidden" disabled="true"/>
+                                <br /><br />
+                            </div>
+                            <div class="slds-col slds-size_1-of-4"  />
+                        </div>
+                    </div>
+                </lightning:layoutItem>
+        	</div>
+            </div>
+            <aura:renderIf isTrue="{! v.CurrentApprover == 'Head' || v.CurrentApprover == 'VP' || v.CurrentApprover == 'Done'}">
+            <!--<aura:renderIf isTrue="{!v.IsSubmitted}">-->
+            	<div class="slds-section slds-is-open animate" aura:id="SectionHead" >
+                    <h3 class="slds-section__title">
+                            <button aria-controls="SummarizedList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="SectionHead">
+                                <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                                <span class="slds-truncate" title="SectionHead">Section Head Pre-Screen Result</span>
+                            </button>
+                    </h3>
+                	<div class="slds-section__content" id="SectionHeadList">
+                        <lightning:layoutItem padding="around-small" >
+                            <div class="slds-grid slds-wrap " >
+                                <div class="slds-col slds-size_1-of-2 ">
+                                    <span style="color:red; font-style: italic;" >* </span>
+                                    <label>Section Head Pre-screen Decision:</label>
+                                    
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 ">
+                                    <div class="slds-col slds-size_4-of-5 ">
+                                        <lightning:inputField aura:id="SHPrescreenDecision__c" fieldName="SHPrescreenDecision__c" variant="label-hidden" disabled="{!v.IsSectionHeadDisable}" required="true"/>
+                                        <br/><br/>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <span style="color:red; font-style: italic;" >* </span>
+                                    <label>Section Head Pre-screen Comment:</label>
+                                    <lightning:inputField class="textAreaClass" aura:id="SHPreScreenComment__c" fieldName="SHPreScreenComment__c" variant="label-hidden" disabled="{!v.IsSectionHeadDisable}" required="true"/>
+                                	<br/><br/>
+                                </div>
+                                
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label>Section Head Pre-screen By:</label>
+                                    <div class="slds-col slds-size_4-of-5 ">
+                                        <lightning:inputField aura:id="SHPreScreenBy__c" fieldName="SHPreScreenBy__c" variant="label-hidden" disabled="true"/>
+                                        <br/><br/>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label>Section Head Pre-screen Date/Time:</label>
+                                    <lightning:inputField aura:id="SHPreScreenDateTime__c" fieldName="SHPreScreenDateTime__c" variant="label-hidden" disabled="true"/>
+                                	<br/><br/>
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        <br /><br />
+                    </div>
+            </div>
+            </aura:renderIf>
+            <aura:renderIf isTrue="{!v.CurrentApprover == 'VP' || v.CurrentApprover == 'Done'}">
+            	<div class="slds-section slds-is-open animate" aura:id="CMVP/SA09" >
+                    <h3 class="slds-section__title">
+                            <button aria-controls="SummarizedList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="CMVP/SA09">
+                                <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                                <span class="slds-truncate" title="CMVP/SA09">{!v.PositionNameOfVP} Pre-Screen Result</span>
+                            </button>
+                    </h3>
+                    <div class="slds-section__content" id="CMVP/SA09List">
+                        <lightning:layoutItem padding="around-small">
+                            <div class="slds-grid slds-wrap ">
+                                <div class="slds-col slds-size_1-of-2 ">
+                                    <span style="color:red; font-style: italic;" >* </span>
+                                    <label>{!v.PositionNameOfVP} Pre-screen Decision:</label>
+                                    
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 ">
+                                    <div class="slds-col slds-size_4-of-5">
+                                    	<lightning:inputField aura:id="CMVPPreScreenDecision__c" fieldName="CMVPPreScreenDecision__c" variant="label-hidden" disabled="{!v.IsCMVPDisable}" required="true" />
+                                    	<br/><br/>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <span style="color:red; font-style: italic;" >* </span>
+                                    <label>{!v.PositionNameOfVP} Pre-screen Comment:</label>
+                                    <lightning:inputField class="textAreaClass" aura:id="CMVPPreScreenComment__c" fieldName="CMVPPreScreenComment__c" variant="label-hidden" disabled="{!v.IsCMVPDisable}" required="true"  style="height: 200px !important;"/>
+                                	<br/><br/>
+                                </div>
+                                
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label>{!v.PositionNameOfVP} Pre-screen By:</label>
+                                    <div class="slds-col slds-size_4-of-5 ">
+                                        <lightning:inputField aura:id="CMVPPreScreenBy__c" fieldName="CMVPPreScreenBy__c" variant="label-hidden" disabled="true"/>
+                                        <br/><br/>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label>{!v.PositionNameOfVP} Pre-screen Date/Time:</label>
+                                    <lightning:inputField aura:id="CMVPPreScreenDateTime__c" fieldName="CMVPPreScreenDateTime__c" variant="label-hidden" disabled="true"/>
+                                	<br/><br/>
+                                </div>
+                            </div>
+                            <br/>
+                        </lightning:layoutItem>
+                    </div>
+            </div>
+            </aura:renderIf>
+
+            <!--Button-->
+       		<aura:renderIf isTrue="{!!v.IsButtonDisable}">
+                  <div class="slds-align_absolute-center" style="height:5rem">
+                       <lightning:button class="slds-m-top_small" variant="brand" label="Cancel" onclick="{! c.handleCancel }"/>
+                       <lightning:button class="slds-m-top_small" variant="brand" label="Save"    type="submit" name="save" onclick="{! c.handleSaveFunction }" />
+                      <aura:renderIf isTrue="{!v.CanSubmitted}"> 
+                      	<lightning:button class="slds-m-top_small" variant="brand" label="Submit"  type="submit" name="Submit" onclick="{! c.handleSubmitFunction }"  />
+                      </aura:renderIf>
+                          <!--lightning:button class="slds-m-top_small" variant="brand" label="SectionHeadApproved" onclick="{! c.handleSectionHeadApproved}"  />
+                       <lightning:button class="slds-m-top_small" variant="brand" label="CMVPApproved" onclick="{! c.handleCMVPApproved }"  /-->
+                  </div>
+        	</aura:renderIf>
+            
+        </lightning:recordEditForm>    
+            
+    <aura:if isTrue="{!v.openLinkToNewsModal}">
+        <c:CTRScreenNews recordId="{!v.recordId}" isChildModal="true" openModal="{!v.openLinkToNewsModal}" sObjectName="CTRRequestFormItem__c"/>
+    </aura:if>
+</aura:component>

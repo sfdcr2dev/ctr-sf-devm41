@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Schedule with Subcontract*</value>
+    </caseValues>
+    <fields>
+        <label><!-- BE WBS Detail ID --></label>
+        <name>BE_WBS_Detail_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- ไฟล์ข้อมูล Schedule ของ WBS/CBS --></help>
+        <label><!-- Schedule File --></label>
+        <name>Schedule_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- Step 7: Schedule --></label>
+        <name>Schedule__c</name>
+        <relationshipLabel><!-- Schedule with Subcontract* --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- SubContractor Name --></label>
+        <name>SubContractor_Name_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- URL --></label>
+        <name>URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- SubContractor Name --></label>
+        <name>WBS_CBS_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Schedule File URL --></label>
+        <name>WBS_URL__c</name>
+    </fields>
+    <layouts>
+        <layout>Schedule WBS Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว)</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

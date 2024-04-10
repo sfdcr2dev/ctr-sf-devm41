@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Step 31 : Close Out Statistic</value>
+    </caseValues>
+    <fields>
+        <label><!-- Assigned User --></label>
+        <name>Assigned_User__c</name>
+        <relationshipLabel><!-- Step 31: Close Out Statistic --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- BE Cost Estimate File --></label>
+        <name>BE_Cost_Estimate_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- BE WP 16 ID --></label>
+        <name>BE_WP_16_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- Required --></help>
+        <label><!-- Close Out Statistic File --></label>
+        <name>Close_Out_Statistic_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cost Estimate File URL --></label>
+        <name>Cost_Estimate_File_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsWaitingForPreviousStep --></label>
+        <name>IsWaitingForPreviousStep__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Process --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- No --></label>
+        <name>No__c</name>
+    </fields>
+    <fields>
+        <help><!-- Required If have no Close out Static File --></help>
+        <label><!-- Not Applicable --></label>
+        <name>Not_Applicable__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project --></label>
+        <name>Project__c</name>
+        <relationshipLabel><!-- Step 31 : Close Out Statistic --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Remark --></label>
+        <name>Remark__c</name>
+    </fields>
+    <fields>
+        <label><!-- SME --></label>
+        <lookupFilter>
+            <errorMessage><!-- Selected User is not SME. Please select SME user. --></errorMessage>
+            <informationalMessage><!-- Please select SME user. --></informationalMessage>
+        </lookupFilter>
+        <name>SME__c</name>
+        <relationshipLabel><!-- Step 31 : Close Out Statistic --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Submit Status --></label>
+        <name>Submit_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Waiting for Approve --></label>
+        <name>Waiting_for_Approve__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Process Status --></label>
+        <name>Work_Process_Status__c</name>
+    </fields>
+    <layouts>
+        <layout>Close Out Database Layout</layout>
+        <sections>
+            <label><!-- Cost Estimate --></label>
+            <section>Cost Estimate</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุไฟล์ที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุไฟล์ที่อัพโหลดแล้ว)</section>
+        </sections>
+        <sections>
+            <label><!-- Remark --></label>
+            <section>Remark</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Close Out Database Submit Layout</layout>
+        <sections>
+            <label><!-- Cost Estimate --></label>
+            <section>Cost Estimate</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุไฟล์ที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุไฟล์ที่อัพโหลดแล้ว)</section>
+        </sections>
+        <sections>
+            <label><!-- Remark --></label>
+            <section>Remark</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Step 31 : After Submit --></label>
+        <name>Step_31_After_Submit</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Step 31 : Before Submit --></label>
+        <name>Step_31_Before_Submit</name>
+    </recordTypes>
+</CustomObjectTranslation>

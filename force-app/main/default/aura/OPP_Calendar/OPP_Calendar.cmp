@@ -1,0 +1,148 @@
+<aura:component
+    implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+    access="global" controller="OPP_CalendarController">
+
+    <aura:attribute name="next" type="Boolean" default="false"/>
+    <aura:attribute name="previous" type="Boolean" default="false"/>
+    <aura:attribute name="monthAndYear" type="String" />
+    <aura:attribute name="currentMonth" type="String" />
+    <aura:attribute name="currentYear" type="String" />
+    <aura:attribute name="activeDate" type="String" default="0"/>
+    <aura:attribute name="calendars" type="List" />
+    <aura:attribute name="events" type="List" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:html tag="style">
+        @font-face {
+            font-family: 'FC Iconic';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('FC Iconic'), local('FC Iconic-Regular'), url({!$Resource.OPPNews + '/assets/font/FC_Iconic_Regular.otf'}) format('opentype');;
+        }
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('Poppins'), local('Poppins-Regular'), url({!$Resource.OPPNews + '/assets/font/Poppins-Regular.otf'}) format('opentype');;
+        }
+    </aura:html>
+    <div class="card" style="box-shadow: unset; background: unset;">
+        <aura:if isTrue="{!$Browser.formFactor == 'DESKTOP'}">
+            <div class="slds-card__header header-box">
+                <div class="slds-grid calendar-header">
+                    <h3 id="monthAndYear"><b>{!v.monthAndYear}</b></h3>
+                    <div class="button-container-calendar">
+                        <aura:if isTrue="{!v.previous}">
+                            <span class="left">
+                                <lightning:icon iconName="utility:chevronleft" alternativeText="Previous" title="Previous" onclick="{!c.previous}" size="small"/>
+                            </span>
+                            <aura:set attribute="else">
+                                <lightning:icon iconName="utility:chevronleft" alternativeText="Previous" title="Previous" onclick="{!c.previous}" size="small"/>
+                            </aura:set>
+                        </aura:if>
+                        <aura:if isTrue="{!v.next}">
+                            <span class="right">
+                                <lightning:icon iconName="utility:chevronright" alternativeText="Next" title="Next" onclick="{!c.next}" size="small"/>
+                            </span>
+                            <aura:set attribute="else">
+                                <lightning:icon iconName="utility:chevronright" alternativeText="Next" title="Next" onclick="{!c.next}" size="small"/>
+                            </aura:set>
+                        </aura:if>   
+                    </div>
+                </div>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!$Browser.isIPhone || $Browser.isAndroid}">
+            <div class="slds-card__header header-box">
+                <div class="slds-grid calendar-header">
+                    <h3 id="monthAndYear"><b>{!v.monthAndYear}</b></h3>
+                    <div class="button-container-calendar">
+                        <aura:if isTrue="{!v.previous}">
+                            <span class="left">
+                                <lightning:icon iconName="utility:chevronleft" alternativeText="Previous" title="Previous" onclick="{!c.previous}" size="small"/>
+                            </span>
+                            <aura:set attribute="else">
+                                <lightning:icon iconName="utility:chevronleft" alternativeText="Previous" title="Previous" onclick="{!c.previous}" size="small"/>
+                            </aura:set>
+                        </aura:if>
+                        <aura:if isTrue="{!v.next}">
+                            <span class="right">
+                                <lightning:icon iconName="utility:chevronright" alternativeText="Next" title="Next" onclick="{!c.next}" size="small"/>
+                            </span>
+                            <aura:set attribute="else">
+                                <lightning:icon iconName="utility:chevronright" alternativeText="Next" title="Next" onclick="{!c.next}" size="small"/>
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                </div>
+            </div>
+        </aura:if>
+        <div class="slds-card__body slds-card__body_inner" style="padding-left: 0px; padding-right: 0px;">
+            <table class="table-calendar" id="calendar" data-lang="en">
+                <thead id="thead-month">
+                    <tr>
+                        <th class="padding">SU</th>
+                        <th>MO</th>
+                        <th class="padding">TU</th>
+                        <th class="padding">WE</th>
+                        <th class="padding">TH</th>
+                        <th class="padding">FR</th>
+                        <th class="padding">SA</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-body">
+                    <aura:iteration items="{!v.calendars}" var="calendar">
+                        <tr>
+                            <aura:iteration items="{!calendar.dates}" var="d">
+                                <aura:if isTrue="{!calendar.today == d.date}">
+                                    <td class="day"><a href="" onclick="{!c.showEvents}" id="{!d.date}" class="font-style">{!d.date}</a></td>
+                                    <aura:set attribute="else">
+                                        <aura:if isTrue="{!d.event == d.date}">
+                                            <td><a href="" onclick="{!c.showEvents}" id="{!d.date}" class="date">{!d.date}</a></td>
+                                            <aura:set attribute="else">
+                                                <td><a href="" onclick="{!c.showEvents}" id="{!d.date}">{!d.date}</a></td>
+                                            </aura:set>
+                                        </aura:if>
+                                        
+                                    </aura:set>
+                                </aura:if> 
+                            </aura:iteration>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card top-page">
+        <aura:iteration items="{!v.events}" var="event">
+            <div class="slds-card__body slds-card__body_inner">
+                <div class="header-event">
+                    <p class="alignleft"><a href="" onclick="{!c.goToEvent}" id="{!event.Id}" class="subject">{!event.Subject}</a></p>
+                    <aura:if isTrue="{!event.IsAllDayEvent}">
+                        <p class="alignright">All Day</p>
+                        <aura:set attribute="else">
+                            <p class="alignright"><lightning:formattedDateTime value="{!event.StartDateTime}" hour="2-digit"
+                                minute="2-digit" hour12="false"/>&nbsp;-&nbsp;<lightning:formattedDateTime value="{!event.EndDateTime}" hour="2-digit"
+                                minute="2-digit" hour12="false"/></p>
+                        </aura:set>
+                    </aura:if>
+                    
+                </div>
+                <p class="body-event">{!event.Location}</p>
+                <aura:if isTrue="{!event.Last}">
+                    <div class="footer-event">
+                        <a href="" onclick="{!c.goToCalendar}" class="see-more">
+                            See more
+                        </a>
+                    </div>
+                    <aura:set attribute="else">
+                        <hr/>
+                    </aura:set>
+                </aura:if>
+            </div>
+        </aura:iteration>
+    </div>
+</aura:component>

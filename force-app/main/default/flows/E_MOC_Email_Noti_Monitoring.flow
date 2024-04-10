@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_email_to_MOC_Extend</name>
+        <label>Send email to MOC Extend</label>
+        <locationX>334</locationX>
+        <locationY>623</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Body_Extend</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Recipient</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>sfdc.r2@roundtwosolutions.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>Subject_Extend</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_email_to_MOC_Not_Extend</name>
+        <label>Send email to MOC Not Extend</label>
+        <locationX>598</locationX>
+        <locationY>623</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Body_Not_Extend</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Recipient</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>sfdc.r2@roundtwosolutions.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>Subject_NotExtend</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Assign_recipient</name>
+        <label>Assign recipient</label>
+        <locationX>334</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>Recipient</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.MOC_Focal_Point_Name__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_email_to_MOC_Extend</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Copy_1_of_Assign_recipient</name>
+        <label>Copy 1 of Assign recipient</label>
+        <locationX>598</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>Recipient</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.MOC_Focal_Point_Name__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_email_to_MOC_Not_Extend</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Check_Extend_Or_Not_Extend</name>
+        <label>Check Extend Or Not Extend</label>
+        <locationX>598</locationX>
+        <locationY>383</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Extend</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Extend_Require_to_extend__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_recipient</targetReference>
+            </connector>
+            <label>Extend</label>
+        </rules>
+        <rules>
+            <name>Not_Extend</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Not_Extend_Require_to_extend__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Assign_recipient</targetReference>
+            </connector>
+            <label>Not Extend</label>
+        </rules>
+    </decisions>
+    <description>Revise subject email</description>
+    <interviewLabel>E-MOC-Email Noti Monitoring {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>E-MOC-Email Noti Monitoring</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <startElementReference>Check_Extend_Or_Not_Extend</startElementReference>
+    <status>Active</status>
+    <textTemplates>
+        <name>Body_Extend</name>
+        <text>MOC Title : {!$Record.E_MOC_Title__c}
+Functional Location : {!$Record.Functional_Location__r.Name}
+FL Description : {!$Record.Functional_Location__r.Description__c}
+Category Type :{!$Record.Category_Type__c}
+Status : {!$Record.Status_Common_Workflow__c}
+Link: https://thaioil.lightning.force.com/lightning/r/E_MOC_Application__c/{!$Record.Id}/view</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Body_Not_Extend</name>
+        <text>MOC Title : {!$Record.E_MOC_Title__c}
+Functional Location : {!$Record.Functional_Location__r.Name}
+FL Description : {!$Record.Functional_Location__r.Description__c}
+Category Type :{!$Record.Category_Type__c}
+Status : {!$Record.Status_Common_Workflow__c}
+Link: https://thaioil.lightning.force.com/lightning/r/E_MOC_Application__c/{!$Record.Id}/view</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Subject_Extend</name>
+        <text>[E-MOC Application] For information: Initiator select extend: Common Workflow/ {!$Record.Name}/{!$Record.Functional_Location__r.Name}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Subject_NotExtend</name>
+        <text>[E-MOC Application] For information: Initiator select not extend: Common Workflow / {!$Record.Name}/{!$Record.Functional_Location__r.Name}</text>
+    </textTemplates>
+    <variables>
+        <name>Recipient</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

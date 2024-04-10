@@ -1,0 +1,107 @@
+<aura:component implements="lightning:actionOverride,force:lightningQuickActionWithoutHeader,force:hasRecordId" controller="OPP_CaseController" access="global">
+    <lightning:quickActionAPI aura:id="quickActionAPI" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
+    <aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" />
+
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="recordTypeId" type="Id" />
+    <aura:attribute name="recordUi" type="Map" default="{}" />
+    <aura:attribute name="isLoading" type="Boolean" default="false" />
+
+    <aura:attribute name="picklistMap" type="Map" default="{}" />
+    <aura:attribute name="softwareType" type="String" default="" />
+    <aura:attribute name="softwareItem" type="Map" default="{}" />
+
+    <aura:html tag="style">
+        <!-- .modal-container.slds-modal__container{
+            background: transparent;
+            box-shadow: none !important;
+            }
+            .modal-container.slds-modal__container .modal-header.slds-modal__header{
+            display:none;
+            }
+            .modal-container.slds-modal__container .modal-body{
+            background: transparent;
+            box-shadow: none !important;;
+            }
+            .modal-container.slds-modal__container .modal-footer.slds-modal__footer{
+            display:none;
+            .slds-button.slds-modal__close{
+            display:none;
+            }
+            } -->
+        .slds-modal .slds-modal__container {
+        width: 70%;
+        max-width: 950px;
+        min-width: 480px;
+        }
+        .quick-actions-panel .slds-modal__content {
+        height: 100% !important;
+        max-height: 100% !important;
+        }
+        .cuf-content {
+        padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+        padding: 0rem !important;
+        }
+        .slds-modal__content {
+        overflow-y: hidden !important;
+        height: unset !important;
+        max-height: unset !important;
+        }
+    </aura:html>
+
+    <div class="slds-is-relative">
+        <div class="slds-col modal-header slds-modal__header">
+            <h2 class="title slds-text-heading_medium">New Item</h2>
+        </div>
+        <div class="slds-col modal-body scrollable slds-var-p-around_medium">
+            <lightning:recordEditForm recordTypeId="{!v.recordTypeId}" density="comfy" objectApiName="OPP_Case_Line_Items__c" onload="{!c.handleLoad}"
+                onsubmit="{!c.handleSubmit}" onsuccess="{!c.handleSuccess}" onerror="{!c.handleError}" aura:id="recordEditForm">
+
+                <lightning:messages aura:id="messages" />
+                <lightning:layout multipleRows="true">
+                    <lightning:layoutItem size="12" smallDeviceSize="6" padding="around-small">
+                        <lightning:inputField fieldName="Case__c" disabled="true" value="{!v.recordId}" />
+                    </lightning:layoutItem>
+
+                    <lightning:layoutItem size="12" smallDeviceSize="6" padding="around-small">
+                        <lightning:inputField fieldName="Asset_Owner__c" required="true" value="{!v.softwareItem.Asset_Owner__c}"
+                            onchange="{!c.handleITAssetOwner}" />
+                    </lightning:layoutItem>
+
+                    <lightning:layoutItem size="12" smallDeviceSize="6" padding="around-small">
+                        <lightning:inputField class="slds-hide" fieldName="OPP_Software_Asset__c" value="{!v.softwareItem.OPP_Software_Asset__c}" />
+                        <lightning:select variant="label-inline" label="{!v.recordUi.objectInfo.fields.OPP_Software_Asset__c.label}" required="true"
+                            value="{!v.softwareItem.OPP_Software_Asset__c}">
+                            <option value="">--None--</option>
+                            <aura:iteration items="{!v.picklistMap.SoftwareAsset}" var="item" indexVar="key">
+                                <option text="{!item.Name}" value="{!item.Id}" />
+                            </aura:iteration>
+                        </lightning:select>
+                    </lightning:layoutItem>
+
+                    <lightning:layoutItem size="12" smallDeviceSize="6" padding="around-small">
+                        <lightning:inputField class="slds-hide" fieldName="OPP_IT_Asset__c" value="{!v.softwareItem.OPP_IT_Asset__c}" />
+                        <lightning:select variant="label-inline" label="{!v.recordUi.objectInfo.fields.OPP_IT_Asset__c.label}" required="true"
+                            value="{!v.softwareItem.OPP_IT_Asset__c}">
+                            <option value="">--None--</option>
+                            <aura:iteration items="{!v.picklistMap.OPP_IT_Asset__c}" var="item" indexVar="key">
+                                <option text="{!item.label}" value="{!item.value}" />
+                            </aura:iteration>
+                        </lightning:select>
+                    </lightning:layoutItem>
+                </lightning:layout>
+
+                <c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+            </lightning:recordEditForm>
+        </div>
+        <div class="slds-col modal-footer slds-modal__footer">
+            <lightning:button variant="brand" label="Cancel" onclick="{!c.handleCloseModal}" />
+            <lightning:button variant="brand" label="Save" disabled="{!v.isLoading}" onclick="{!c.handleUtilityLwcButton}" />
+        </div>
+
+    </div>
+</aura:component>

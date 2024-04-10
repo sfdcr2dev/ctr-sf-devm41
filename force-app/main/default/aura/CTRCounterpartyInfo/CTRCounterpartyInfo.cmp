@@ -1,0 +1,288 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName" access="global">
+
+    <aura:attribute name="recordId" type="Id" default="" />
+    <aura:attribute name="disabled" type="boolean" default="false" />
+    <aura:attribute name="isEdit" type="Boolean" default="false" />
+    
+    <aura:attribute name="leadRecordId" type="Id" default="" />
+    <aura:attribute name="fromLead" type="boolean" default="false" />
+    <aura:attribute name="ReqItemRecordId" type="Id" default="" />
+    <aura:attribute name="HeadReqItemRecordId" type="Id" default="" />
+    <aura:attribute name="fromReqItem" type="boolean" default="false" />
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="HeaderRecord" type="Object"/>
+    <aura:attribute name="ItemRecord" type="Object"/>
+    <aura:attribute name="error" type="String"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <!-- <aura:attribute name="counterpartyInfoList" type="Object" default="{}" /> -->
+<aura:if isTrue="{!not(v.fromLead)}">
+    <aura:if isTrue="{!not(v.fromReqItem)}">
+    <div class="slds-section__content" id="counterpartyInformationDetail">
+        <div class="slds-grid slds-wrap slds-var-p-around_large">
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-form-element_horizontal">
+                        <label class="slds-form-element__label display-table" for="horizontal-input-id-02">Company
+                            Name :</label>
+                        <div class="slds-form-element__control slds-var-p-top_x-small"
+                            style="padding-left: 0% !important;">
+                            <p><b>P. General Group Co.,LTD.</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-form-element_horizontal">
+                        <label class="slds-form-element__label display-table" for="horizontal-input-id-02">Contact
+                            Person :</label>
+                        <div class="slds-form-element__control slds-var-p-top_x-small"
+                            style="padding-left: 0% !important;">
+                            <p><b>Lawan Saowakhonratn</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-form-element_horizontal">
+                        <label class="slds-form-element__label display-table" for="horizontal-input-id-02">Email
+                            :</label>
+                        <div class="slds-form-element__control slds-var-p-top_x-small"
+                            style="padding-left: 0% !important;">
+                            <p><b>lawan.r2@pgeneralgroup.com</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-form-element_horizontal">
+                        <label class="slds-form-element__label display-table" for="horizontal-input-id-02">Telephone
+                            :</label>
+                        <div class="slds-form-element__control slds-var-p-top_x-small"
+                            style="padding-left: 0% !important;">
+                            <p><b>02 112 1122</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-form-element_horizontal display-table">
+                        <label class="slds-form-element__label" for="horizontal-input-id-02">Interested in
+                            registration to be: Supplier:</label>
+                        <div class="slds-form-element__control slds-var-p-top_x-small"
+                            style="padding-left: 0% !important;">
+                            <p><b>Crude</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </aura:if>
+</aura:if>
+<aura:if isTrue="{!v.fromLead}">
+    <force:recordData 
+        aura:id="Leadrecord"
+        recordId="{!v.leadRecordId}"
+        fields="Name,Company,Email,MobilePhone,InterestedProductTypeasCustomer__c"
+        targetFields="{!v.record}"
+        targetError="{!v.error}"
+        
+    />
+    <!--recordUpdated="{!c.handleRecordUpdated}"-->
+    <div class="slds-section__content" id="counterpartyInformationDetail">
+        <div class="slds-grid slds-wrap slds-var-p-around_large">
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-form-element_horizontal">
+                        <label class="slds-form-element__label display-table" for="horizontal-input-id-02">Company
+                            Name :</label>
+                        <div class="slds-form-element__control slds-var-p-top_x-small"
+                            style="padding-left: 0% !important;">
+                            <p><b>{!v.record.Company}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-form-element_horizontal">
+                        <label class="slds-form-element__label display-table" for="horizontal-input-id-02">Contact
+                            Person :</label>
+                        <div class="slds-form-element__control slds-var-p-top_x-small"
+                            style="padding-left: 0% !important;">
+                            <p><b>{!v.record.Name}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-form-element_horizontal">
+                        <label class="slds-form-element__label display-table" for="horizontal-input-id-02">Email
+                            :</label>
+                        <div class="slds-form-element__control slds-var-p-top_x-small"
+                            style="padding-left: 0% !important;">
+                            <p><b>{!v.record.Email}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-form-element_horizontal">
+                        <label class="slds-form-element__label display-table" for="horizontal-input-id-02">Telephone
+                            :</label>
+                        <div class="slds-form-element__control slds-var-p-top_x-small"
+                            style="padding-left: 0% !important;">
+                            <p><b>{!v.record.MobilePhone}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-form-element_horizontal display-table">
+                        <label class="slds-form-element__label" for="horizontal-input-id-02">Interested in
+                            registration to be: Customer:</label>
+                        <div class="slds-form-element__control slds-var-p-top_x-small"
+                            style="padding-left: 0% !important;">
+                            <p><b>{!v.record.InterestedProductTypeasCustomer__c}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:if>
+<aura:if isTrue="{!v.fromReqItem}">
+    <force:recordData 
+        aura:id="Reqrecord"
+        recordId="{!v.ReqItemRecordId}"
+        fields="CTRRequestFormHeader__c,CTRRequestFormHeader__r.FirstName__c,CTRRequestFormHeader__r.LastName__c,CTRRequestFormHeader__r.Email__c,fmlAccountTypeName__c,CTRRequestFormHeader__r.Customer__r.CompanyNameLocal__c, CTRRequestFormHeader__r.Customer__r.FirstName__c, CTRRequestFormHeader__r.Customer__r.LastName__c, CTRRequestFormHeader__r.Customer__r.Email__c,CTRRequestFormHeader__r.CompanyNameENF__c, CTRRequestFormHeader__r.Customer__r.MobilePhone__c, CTRRequestFormHeader__r.Phone__c, InterestedProductTypeAsSupplier__c,InterestedProductTypeAsCustomer__c,InterestedProductTypeAsCustomerTOP__c,InterestedProductTypeAsCustomerTX__c,InterestedProductTypeAsSupplierTOP__c,InterestedProductTypeAsSupplierTX__c,RecordType.DeveloperName,CTRRequestFormHeader__r.CustomerPurchaseProductFrom__c,BusinessUnit__c"
+        targetFields="{!v.record}"
+        targetError="{!v.error}"
+        recordUpdated="{!c.handleRecordUpdated}"
+    />
+    <!-- <aura:if isTrue="{!v.HeadReqItemRecordId}">
+        <force:recordData 
+            aura:id="HeaderReqrecord"
+            recordId="{!v.HeadReqItemRecordId}"
+            fields="Name,Email__c,MobilePhone__c"
+            targetFields="{!v.HeaderRecord}"
+            targetError="{!v.error}"
+        />
+    </aura:if> -->
+    <!--recordUpdated="{!c.handleRecordUpdated}"-->
+    <div class="slds-section__content" id="counterpartyInformationDetail">
+        <div class="slds-grid slds-wrap slds-var-p-around_large">
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-grid">
+                        <div class="slds-col slds-size_1-of-3">
+                            <label class="slds-form-element__label display-table"> Company Name : </label>
+                        </div>
+                        <div class="slds-col slds-form-element__control slds-var-p-top_x-small slds-size_2-of-3" style="padding-left: 0% !important;">
+                            <p><b>{!v.record.CTRRequestFormHeader__r.CompanyNameENF__c}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-grid">
+                        <div class="slds-col slds-size_1-of-3">
+                            <label class="slds-form-element__label display-table">Contact Person :</label>
+                        </div>
+                        <div class="slds-col slds-form-element__control slds-var-p-top_x-small slds-size_2-of-3" style="padding-left: 0% !important;">
+                            <p><b>{!v.record.CTRRequestFormHeader__r.FirstName__c}&nbsp;{!v.record.CTRRequestFormHeader__r.LastName__c}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-var-m-top_x-large">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-grid">
+                        <div class="slds-col slds-size_1-of-3">
+                            <label class="slds-form-element__label display-table">Email :</label>
+                        </div>
+                        <div class="slds-col slds-form-element__control slds-var-p-top_x-small slds-size_2-of-3" style="padding-left: 0% !important;">
+                            <p><b>{!v.record.CTRRequestFormHeader__r.Email__c}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-var-m-top_x-large">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-grid">
+                        <div class="slds-col slds-size_1-of-3">
+                            <label class="slds-form-element__label display-table">Telephone :</label>
+                        </div>
+                        <div class="slds-col slds-form-element__control slds-var-p-top_x-small slds-size_2-of-3" style="padding-left: 0% !important;">
+                            <p><b>{!v.record.CTRRequestFormHeader__r.Phone__c}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aura:if isTrue="{!v.record.fmlAccountTypeName__c == 'Customer'}">
+            <!--<aura:if isTrue="{(!v.record.RecordType.DeveloperName.includes('Customer'))}">-->
+                <div class="slds-col slds-size_1-of-2 slds-var-m-top_x-large">
+                    <div class="slds-form">
+                        <div class="slds-form-element slds-grid">
+                            <div class="slds-col slds-size_1-of-2">
+                                <label class="slds-form-element__label display-table">Interested in registration to be Customer:</label>
+                            </div>
+                            
+                            <aura:if isTrue="{!or(v.record.BusinessUnit__c == 'TOP',v.record.BusinessUnit__c == 'LABIX')}">
+                            	<div class="slds-col slds-form-element__control slds-var-p-top_x-small slds-size_2-of-3" style="padding-left: 0% !important;">
+                                	<p><b>{!v.record.InterestedProductTypeAsCustomerTOP__c}</b></p>
+                            	</div>
+                            </aura:if>
+                            
+                            <aura:if isTrue="{!v.record.BusinessUnit__c == 'TX'}">
+                            	<div class="slds-col slds-form-element__control slds-var-p-top_x-small slds-size_2-of-3" style="padding-left: 0% !important;">
+                                	<p><b>{!v.record.InterestedProductTypeAsCustomerTX__c}</b></p>
+                            	</div>
+                            </aura:if>
+                            
+                        </div>
+                    </div>
+                </div>
+            </aura:if>
+            
+            <aura:if isTrue="{!v.record.fmlAccountTypeName__c == 'Supplier'}">
+                <div class="slds-col slds-size_1-of-2 slds-var-m-top_x-large">
+                    <div class="slds-form">
+                        <div class="slds-form-element slds-grid">
+                            
+                            <div class="slds-col slds-size_1-of-2">
+                                <label class="slds-form-element__label display-table">Interested in registration to be Supplier:</label>
+                            </div>
+                            
+                            
+                            <aura:if isTrue="{!or(v.record.BusinessUnit__c == 'TOP',v.record.BusinessUnit__c == 'LABIX')}">
+                            	<div class="slds-form-element__control slds-var-p-top_x-small slds-size_2-of-3" style="padding-left: 0% !important;">
+                                	<p><b>{!v.record.InterestedProductTypeAsSupplierTOP__c}</b></p>
+                            	</div>
+                            </aura:if>
+                            
+                            <aura:if isTrue="{!v.record.BusinessUnit__c == 'TX'}">
+                                <div class="slds-form-element__control slds-var-p-top_x-small slds-size_2-of-3" style="padding-left: 0% !important;">
+                                	<p><b>{!v.record.InterestedProductTypeAsSupplierTX__c}</b></p>
+                            	</div>
+                            </aura:if>
+                                
+                        </div>
+                    </div>
+                </div>
+            </aura:if>
+        </div>
+    </div>
+</aura:if>
+    
+</aura:component>

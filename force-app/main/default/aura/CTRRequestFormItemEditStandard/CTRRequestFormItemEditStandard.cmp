@@ -1,0 +1,40 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName,force:lightningQuickActionWithoutHeader,lightning:actionOverride,lightning:hasPageReference" controller="CTRRequestFormItemController" access="global">
+    <aura:attribute name="recordId" type="Id" />
+        <aura:attribute name="showSpinner" type="Boolean" default="false" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.onInit}"></aura:handler>
+    <aura:handler name="onSaveSuccess" event="force:recordSaveSuccess" action="{!c.onSaveSuccess}"></aura:handler>
+
+    <lightning:Navigation aura:Id="navService" />
+ <aura:html tag="style">
+        .slds-modal__container {
+        	width: 90% !important;
+            max-width: 80% !important;
+        	height: 100% !important; 
+            /*   width:210mm;
+            height:297mm;*/
+        }
+        .cuf-content {
+            padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+            padding: 0rem !important;
+        }
+        .slds-modal__content {
+            height: unset !important;
+            max-height: unset !important;
+        }
+    </aura:html>
+
+    <aura:renderIf isTrue="{!v.showSpinner}">
+                <lightning:spinner size="large" variant="brand" />
+            </aura:renderIf>
+    <force:recordEdit aura:id="edit" recordId="{!v.recordId}"/>
+
+	<div class="slds-align_absolute-center slds-var-p-bottom_x-large">
+                <lightning:button variant="brand-outline" label="Cancel" title="Cancel" onclick="{!c.handleCancel}" />
+                <div class="slds-var-p-right_small" />
+    			<lightning:button label="Save" onclick="{!c.save}"/>
+
+            </div>
+</aura:component>

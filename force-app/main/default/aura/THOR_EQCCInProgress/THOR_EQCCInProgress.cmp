@@ -1,0 +1,219 @@
+<aura:component controller="THOR_NotificationListPagingCtrl" implements="flexipage:availableForAllPageTypes,force:appHostable" access="global">
+	<lightning:navigation aura:id="navService" />
+	<ltng:require styles="{!$Resource.noHeader}" />
+
+	<!-- ATTRIBUTES -->
+	<aura:attribute name="withoutNotificationsList" type="List" default="[]" access="private" />
+	<aura:attribute name="inProgressList" type="List" default="[]" access="private" />
+	<aura:attribute name="withoutNotificationsListCount" type="Integer" default="0" access="private" />
+	<aura:attribute name="inProgressListCount" type="Integer" default="0" access="private" />
+	<aura:attribute name="eqccStep" type="Map" default="{}" access="private" />
+	<aura:attribute
+		name="eqccMapConfig"
+		type="Map"
+		default="{
+      'new': {
+        isLoading: false,
+        limit: 3,
+      },
+      'inprogress' : {
+        isLoading: false,
+        limit: 3,
+      }
+    }"
+		access="private"
+	/>
+
+	<aura:attribute name="filter" type="Map" default="{}" access="private" />
+	<!-- <aura:attribute name="isLoading" type="Boolean" default="false" access="private" /> -->
+	<!-- EVENTS -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.handleRefresh}" />
+	<aura:handler name="fitlerEnhanceEvent" event="c:THOR_FilterEnhanceEvent" action="{!c.handleFilter}" />
+	<!-- <aura:handler name="viewAllEvent" event="c:THOR_Event" action="{!c.handleViewAll}" /> -->
+
+	<!-- IMPORTED STYLES-->
+	<!-- <ltng:require styles="{!$Resource.fluidScroller}" /> -->
+
+	<div class="slds-hide">
+		<c:THOR_navigateBack />
+	</div>
+
+	<c:THOR_Header title="EQCC In Progress" iconName="custom:custom11">
+		<aura:set attribute="actions">
+			<c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterEQCCInprogressFrom" />
+		</aura:set>
+	</c:THOR_Header>
+
+	<!-- BODY -->
+	<lightning:layout class="container" multipleRows="true">
+		<lightning:layoutItem class="slds-p-bottom_small" padding="horizontal-small" size="12">
+			<lightning:card class="slds-is-relative">
+				<aura:set attribute="title">
+					<div>You have {!v.withoutNotificationsListCount} EQCC without Notification or Order</div>
+				</aura:set>
+				<aura:set attribute="footer">
+					<aura:if isTrue="{!v.withoutNotificationsListCount gt v.eqccMapConfig.new.limit}">
+						<lightning:button variant="base" label="Show more" title="Show more" name="withoutnotificationororder" onclick="{!c.handleViewAll}" />
+					</aura:if>
+				</aura:set>
+
+				<aura:if isTrue="{!v.eqccMapConfig.new.isLoading}">
+					<lightning:spinner alternativeText="Loading" size="small" />
+				</aura:if>
+				<p class="slds-var-p-around_medium bg-gray">
+					FL, Equipment
+					<div style="white-space: break-spaces">&#09;=> Header sheet name, EQCC Code, EQCC Name, Status, Requestor, Create on, Last modify date</div>
+				</p>
+
+				<div class="slds-p-around_x-small">
+					<aura:iteration items="{!v.withoutNotificationsList}" var="item" indexVar="index">
+						<div class="slds-box slds-box_small">
+							<a
+								data-record-id="{!item.Id}"
+								data-page-ref="c__THOR_EQCCHeaderRecordDisplay"
+								href="javascript:void(0);"
+								class="slds-text-link_reset"
+								onclick="{!c.navigateToDisplay}"
+							>
+								<p class="slds-text-link">{!item.Name}</p>
+							</a>
+							<aura:iteration items="{!item.infos}" var="info">
+								<a
+									data-record-id="{!info.recordId}"
+									data-page-ref="c__THOR_ApprovalSteps"
+									href="javascript:void(0);"
+									class="slds-text-link_reset"
+									onclick="{!c.navigateToDisplay}"
+								>
+									<p class="slds-text-link" style="white-space: break-spaces">{! info.text }</p>
+								</a>
+							</aura:iteration>
+						</div>
+					</aura:iteration>
+				</div>
+			</lightning:card>
+		</lightning:layoutItem>
+
+		<lightning:layoutItem class="slds-p-bottom_small" padding="horizontal-small" size="12">
+			<lightning:card class="slds-is-relative">
+				<aura:set attribute="title">
+					<div>You have {!v.inProgressListCount} In Progress EQCC</div>
+				</aura:set>
+				<aura:set attribute="footer">
+					<aura:if isTrue="{!v.inProgressListCount gt v.eqccMapConfig.inprogress.limit}">
+						<lightning:button variant="base" label="Show more" title="Show more" name="inprogress" onclick="{!c.handleViewAll}" />
+					</aura:if>
+				</aura:set>
+
+				<aura:if isTrue="{!v.eqccMapConfig.inprogress.isLoading}">
+					<lightning:spinner alternativeText="Loading" size="small" />
+				</aura:if>
+				<p class="slds-var-p-around_medium bg-gray">
+					Notification number, Order number, FL, Equipment, Description
+					<div style="white-space: break-spaces">&#09;=> Header sheet name, EQCC Code, EQCC Name, Status, Requestor, Create on, Last modify date</div>
+				</p>
+
+				<div class="slds-p-around_x-small">
+					<aura:iteration items="{!v.inProgressList}" var="item" indexVar="index">
+						<div class="slds-box slds-box_small">
+							<a
+								data-record-id="{!item.Id}"
+								data-page-ref="c__THOR_EQCCHeaderRecordDisplay"
+								href="javascript:void(0);"
+								class="slds-text-link_reset"
+								onclick="{!c.navigateToDisplay}"
+							>
+								<p class="slds-text-link">{!item.Name}</p>
+							</a>
+							<aura:iteration items="{!item.infos}" var="info">
+								<a
+									data-record-id="{!info.recordId}"
+									data-page-ref="c__THOR_ApprovalSteps"
+									href="javascript:void(0);"
+									class="slds-text-link_reset"
+									onclick="{!c.navigateToDisplay}"
+								>
+									<p class="slds-text-link" style="white-space: break-spaces">{! info.text }</p>
+								</a>
+							</aura:iteration>
+						</div>
+					</aura:iteration>
+				</div>
+			</lightning:card>
+		</lightning:layoutItem>
+	</lightning:layout>
+
+	<!-- <lightning:layout>
+		<lightning:layoutItem padding="horizontal-small" size="12">
+			<lightning:layout>
+				<lightning:layoutItem size="12">
+					<c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterEQCCInprogressFrom" />
+					<p class="title">You have {!v.withoutNotificationsListCount} EQCC without Notification or Order</p>
+					<aura:if isTrue="{!not(empty(v.labelSequence1))}">
+						<aura:if isTrue="{! greaterthan(v.withoutNotificationsListCount, 0)}">
+							<p class="labelSequence">FL, Equipment</p>
+							<p class="labelSequence">
+								<span class="slds-p-left_large">{!v.labelSequence1}</span>
+							</p>
+						</aura:if>
+					</aura:if>
+
+					<div class="cardContainer">
+						<aura:if isTrue="{!v.viewWithoutNotifications}">
+							<aura:iteration items="{!v.withoutNotificationsList}" var="item">
+								<c:THOR_EQCCInProgressCard EQCCItem="{!item}" />
+							</aura:iteration>
+
+							<aura:set attribute="else">
+								<aura:iteration items="{!v.withoutNotificationsList}" var="item" indexVar="index">
+									<aura:if isTrue="{! !greaterthan(index, v.maxSizeEQCCWithoutNotification - 1)}">
+										<c:THOR_EQCCInProgressCard EQCCItem="{!item}" />
+									</aura:if>
+								</aura:iteration>
+							</aura:set>
+						</aura:if>
+					</div>
+				</lightning:layoutItem>
+			</lightning:layout>
+
+			<aura:if isTrue="{!greaterthan(v.withoutNotificationsListCount, 2)}">
+				<c:THOR_ViewAll title="{! v.viewMoreLess1}" viewingAll="{! v.viewWithoutNotifications}" target="{! v.target1}" />
+			</aura:if>
+
+			<lightning:layout>
+				<lightning:layoutItem size="12">
+					<p class="title">You have {!v.inProgressListCount} In Progress EQCC</p>
+					<aura:if isTrue="{!not(empty(v.labelSequence2))}">
+						<aura:if isTrue="{! greaterthan(v.inProgressListCount, 0)}">
+							<p class="labelSequence">Notification number, Order number, FL, Equipment, Description</p>
+							<p class="labelSequence">
+								<span class="slds-p-left_large">{!v.labelSequence2}</span>
+							</p>
+						</aura:if>
+					</aura:if>
+
+					<div class="cardContainer">
+						<aura:if isTrue="{!v.viewInProgress}">
+							<aura:iteration items="{!v.inProgressList}" var="item">
+								<c:THOR_EQCCInProgressCard inProgress="true" EQCCItem="{!item}" />
+							</aura:iteration>
+
+							<aura:set attribute="else">
+								<aura:iteration items="{!v.inProgressList}" var="item" indexVar="index">
+									<aura:if isTrue="{! !greaterthan(index, v.maxSizeEQCCInProgress - 1)}">
+										<c:THOR_EQCCInProgressCard inProgress="true" EQCCItem="{!item}" />
+									</aura:if>
+								</aura:iteration>
+							</aura:set>
+						</aura:if>
+					</div>
+				</lightning:layoutItem>
+			</lightning:layout>
+
+			<aura:if isTrue="{!greaterthan(v.inProgressListCount, v.maxSizeEQCCInProgress)}">
+				<c:THOR_ViewAll title="{! v.viewMoreLess2}" viewingAll="{! v.viewInProgress}" target="{! v.target2}" />
+			</aura:if>
+		</lightning:layoutItem>
+	</lightning:layout> -->
+</aura:component>

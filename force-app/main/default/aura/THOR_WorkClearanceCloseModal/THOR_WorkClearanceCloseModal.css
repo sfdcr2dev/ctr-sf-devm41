@@ -1,0 +1,35 @@
+.THIS .slds-modal__container .slds-modal__content-mobile {
+	height: 100%;
+	max-height: 32em;
+	aspect-ratio: 4/3;
+}
+
+.THIS .cTHOR_ModalSelected .slds-modal__container .slds-box {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+
+.THIS > .slds-modal__container > .slds-modal__content > .slds-grid {
+	aspect-ratio: 4/3;    
+}
+
+/* @media screen and (max-width: 768px) { */
+    .THIS lightning-pill span.slds-pill {
+        max-width: 30vw;
+    }
+/* } */
+
+.THIS .slds-card__header-title {
+	justify-content: center;
+}
+
+.THIS .slds-card__footer {
+	text-align: right;
+}
+
+@media (max-width: 602px) {
+	.THIS .slds-form-element__label,
+	.THIS .slds-card__footer button.slds-button {
+		font-size: 0.875rem !important;
+	}
+}

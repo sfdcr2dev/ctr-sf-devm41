@@ -1,0 +1,37 @@
+<aura:component>
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:attribute name="title" type="String" />
+	<aura:attribute name="body" type="Aura.Component[]" />
+	<aura:attribute name="footer" type="Aura.Component[]" />
+	<aura:attribute name="size" type="String" description="empty, small, medium, large" />
+	<aura:attribute name="isToggle" type="Boolean" default="false" />
+	<aura:attribute name="isHideCloseButton" type="Boolean" default="false" />
+	<aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" access="private" />
+	<aura:attribute name="modalFactor" type="String" default="" access="private" />
+
+	<aura:if isTrue="{!v.isToggle}">
+		<section role="dialog" tabindex="-1" class="{! 'slds-modal slds-fade-in-open ' + v.modalFactor}">
+			<div class="slds-modal__container">
+				<header class="{! 'slds-modal__header' + ( not(v.title) ? ' slds-modal__header_empty' : '')}">
+					<aura:if isTrue="{!!v.isHideCloseButton}">
+						<lightning:buttonIcon
+							class="slds-modal__close"
+							iconName="utility:close"
+							variant="bare-inverse"
+							title="Close"
+							onclick="{!c.handleToggleModal}"
+						/>
+					</aura:if>
+					<aura:if isTrue="{!v.title}">
+						<h2 class="slds-modal__title slds-hyphenate">{!v.title}</h2>
+					</aura:if>
+				</header>
+				<div class="slds-modal__content slds-is-relative slds-p-around_medium">{!v.body}</div>
+				<aura:if isTrue="{!v.footer.length}">
+					<div class="slds-modal__footer">{!v.footer}</div>
+				</aura:if>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open" style="opacity: 0.5"></div>
+	</aura:if>
+</aura:component>

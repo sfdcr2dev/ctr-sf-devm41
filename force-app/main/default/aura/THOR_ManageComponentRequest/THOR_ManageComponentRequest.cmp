@@ -1,0 +1,153 @@
+<aura:component implements="lightning:isUrlAddressable" controller="THOR_ManageComponentRequestController">
+	<aura:attribute name="recordId" type="String" access="global" />
+	<aura:attribute name="cart" type="Spare_Part_Request__c[]" />
+	<aura:attribute name="showConfirmation" type="Boolean" default="false" />
+	<aura:attribute name="hasResponsiblePerson" type="Boolean" />
+	<aura:attribute name="modalContent" type="String" />
+	<aura:attribute name="modalMode" type="String" />
+	<aura:attribute name="requestToDelete" type="String" />
+	<aura:attribute name="operations" type="List" default="[]" />
+	<aura:attribute name="operationObjects" type="List" default="[]" />
+	<aura:attribute name="selectedComponents" type="List" />
+	<aura:attribute name="selectedCount" type="Integer" default="0" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" />
+	<aura:attribute
+		name="labelSequence"
+		type="String"
+		default="Item Number, Material Number, Material Description, Operation no (OpAC), Operation Short Text, Available Qty, UM, Reqmt Qty"
+		access="global"
+	/>
+	<aura:handler name="init" value="{! this }" action="{! c.init }" />
+	<aura:handler name="updateQuantity" event="c:THOR_UpdateComponentQuantity" action="{!c.handleUpdateQuantity}" />
+	<aura:handler name="deleteRequest" event="c:THOR_DeleteRequest" action="{!c.handleDeleteRequest}" />
+	<aura:handler name="componentSelect" event="c:THOR_ComponentSelect" action="{!c.handleComponentSelect}" />
+	<aura:handler name="closeModalEvent" event="c:THOR_Event" action="{!c.handleConfirmationModal}" />
+
+	<aura:registerEvent name="closeModalEvent" type="c:THOR_Event" />
+	<lightning:navigation aura:id="navService" />
+
+	<aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" access="private" />
+
+	<!-- <aura:attribute name="cartPendingApproval" type="Spare_Part_Request__c[]" /> -->
+	<aura:handler name="change" value="{!v.cart}" action="{!c.handleCartDraft}" />
+	<aura:attribute
+		name="isModalAction"
+		type="Map"
+		default="{
+			'integration': false
+		}"
+		access="private"
+	/>
+
+	<aura:attribute name="interval" type="Integer" access="private" />
+	<aura:attribute name="timeout" type="Integer" access="private" />
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.reInit}" />
+
+	<aura:if isTrue="{!v.showConfirmation}">
+		<c:THOR_ConfirmationModal content="{!v.modalContent}" />
+	</aura:if>
+
+	<div class="slds-text-heading_medium slds-var-m-vertical_medium">
+		<!-- <c:THOR_navigateBack backToTabIndex="3" /> -->
+		<!-- Components -->
+		<c:THOR_previousBack />
+	</div>
+
+	<aura:if isTrue="{! and(v.isModalAction.integration, $Browser.isIOS) }">
+		<aura:html tag="style">
+			div.windowViewMode-normal.oneContent { overflow: hidden; }
+		</aura:html>
+	</aura:if>
+	<c:THOR_ModalSelected size="empty" isToggle="{!v.isModalAction.integration}" isHideCloseButton="true">
+		<div class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center">
+			<div class="slds-col">
+				<div class="slds-is-relative" style="height: 8em">
+					<lightning:spinner size="large" />
+				</div>
+			</div>
+			<div class="slds-col">
+				<h2 class="slds-text-heading_large slds-text-align_center slds-p-horizontal_medium slds-p-bottom_medium">Please wait...</h2>
+			</div>
+			<!-- <div class="slds-col">
+				<lightning:button label="Refresh" variant="base" onclick="{!c.reInit}" />
+			</div> -->
+		</div>
+	</c:THOR_ModalSelected>
+
+	<div
+		class="{! 'slds-tabs_default' + (v.formFactor == 'TABLET' ? ' slds-scrollable_y' : '') }"
+		style="{! v.formFactor == 'TABLET' ? 'height: 100%;' : ''}"
+	>
+		<lightning:card class="slds-var-p-around_medium">
+			<aura:set attribute="title">
+				<span class="slds-text-heading_small slds-truncate"> MANAGE COMPONENT REQUEST ({!v.cart.length}) </span>
+			</aura:set>
+			<aura:set attribute="actions">
+				<lightning:buttonIcon
+					iconName="utility:add"
+					variant="bare"
+					onclick="{! c.addComponent }"
+					alternativeText="Add Component"
+					class="slds-float_right"
+					size="large"
+				/>
+			</aura:set>
+
+			<aura:set attribute="footer">
+				<div class="slds-text-align_right">
+					<lightning:buttonGroup class="slds-var-m-bottom_small">
+						<aura:if isTrue="{!v.cart.length != 0}">
+							<lightning:button label="Save Draft" onclick="{!c.handleSaveDraftButton}" />
+							<lightning:button label="Submit" onclick="{!c.handleSubmitButton}" />
+						</aura:if>
+					</lightning:buttonGroup>
+				</div>
+			</aura:set>
+
+			<aura:if isTrue="{!v.cart.length == 0}">
+				<div class="slds-illustration slds-illustration_small">
+					<div class="slds-text-longform">
+						<h3 class="slds-text-heading_medium">Your cart is empty.</h3>
+						<p class="slds-text-body_regular">Add components to your cart to submit a request.</p>
+					</div>
+				</div>
+
+				<aura:set attribute="else">
+					<div class="slds-form-element slds-form-element_stacked">
+						<div class="{! 'slds-grid slds-grid_vertical-align-end ' + ( v.formFactor == 'DESKTOP' ? 'slds-grid_align-center':'' )}">
+							<div class="slds-p-horizontal_x-small slds-col slds-large-size_1-of-2">
+								<lightning:combobox aura:id="operation" placeholder="Select an Operation" label="Operation" options="{!v.operations}" />
+							</div>
+							<div class="slds-p-horizontal_x-small slds-col slds-grow-none">
+								<lightning:button variant="brand" label="Update" title="Update" onclick="{!c.updateOperation}" />
+							</div>
+						</div>
+					</div>
+
+					<div class="slds-is-relative">
+						<aura:if isTrue="{! v.isLoading }">
+							<lightning:spinner alternativeText="Loading" size="medium" />
+						</aura:if>
+
+						<lightning:layout>
+							<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="labelSequence">
+								<lightning:input
+									class="slds-p-left_x-small"
+									aura:id="selectAll"
+									type="checkbox"
+									label="{!v.labelSequence}"
+									onchange="{!c.selectAll}"
+								/>
+							</lightning:layoutItem>
+						</lightning:layout>
+						<aura:iteration items="{!v.cart}" var="item">
+							<lightning:layout>
+								<c:THOR_ManageComponentRequestListItem aura:id="compRecord" recordId="{!item.Id}" requestItem="{!item}" />
+							</lightning:layout>
+						</aura:iteration>
+					</div>
+				</aura:set>
+			</aura:if>
+		</lightning:card>
+	</div>
+</aura:component>

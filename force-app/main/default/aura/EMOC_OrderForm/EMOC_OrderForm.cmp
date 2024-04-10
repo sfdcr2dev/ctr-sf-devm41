@@ -1,0 +1,11 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,lightning:isUrlAddressable,lightning:actionOverride,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:appHostable,force:hasRecordId,force:LightningQuickAction" access="global" controller="EMOC_OrderController">
+    <lightning:navigation aura:id="navService" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:attribute name="recordId" type="String" />
+    <!--aura:attribute name="recordId" type="Id" /-->
+    <aura:attribute name="formMode" type="String" />
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <lightning:container aura:id="vueApp"
+                         src="{!$Resource.EMOC_OrderForm  + '/index.html?id=' + v.recordId + '&amp;formMode=' + v.formMode}"
+                         onmessage="{!c.handleMessage}"/>
+</aura:component>

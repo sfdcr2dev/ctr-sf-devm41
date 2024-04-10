@@ -1,0 +1,52 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName,force:lightningQuickActionWithoutHeader" controller="CTRComplianceCheckController" access="global">
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="recordObject" type="Object" />
+    <aura:attribute name="complianceCheckMessage" type="String" />
+    <aura:attribute name="complianceCheckResult" type="String" />
+    <aura:attribute name="isLoaded" type="Boolean" default="false" />
+
+    <force:recordData aura:id="recordLoader" recordId="{!v.recordId}" fields="Id,Name,Status__c,ComplianceCheck__c,ComplianceCheckResult__c,LastModifiedDate" targetFields="{!v.recordObject}" targetError="{!v.recordLoadError}" recordUpdated="{!c.recordUpdatedAction}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <lightning:card>
+        <aura:renderIf isTrue="{!v.recordObject.ComplianceCheck__c}">
+            <div class="slds-p-around_x-small">
+                <div class="content-border slds-p-around_large" style="color: red;">
+                    <div class="slds-grid slds-wrap">
+                        <aura:if isTrue="{!v.recordObject.Status__c == 'Rejected'}">
+                            <div class="slds-col slds-size_3-of-3 slds-align_absolute-center slds-text-heading_large slds-p-bottom_medium" style="font-weight: bold;">
+                                This Request Form has been rejected
+                            </div>
+                        </aura:if>
+                        <div class="slds-col slds-size_3-of-3 slds-align_absolute-center slds-text-heading_small" style="font-weight: bold;">
+                            {!v.complianceCheckMessage}
+                        </div>
+                        <aura:if isTrue="{!not(empty(v.complianceCheckResult))}">
+                            <div class="slds-col slds-size_1-of-3" />
+                            <div class="slds-col slds-size_1-of-3 slds-p-top_medium">
+                                <aura:unescapedHtml value="{!v.complianceCheckResult}" />
+                            </div>
+                            <div class="slds-col slds-size_1-of-3" />
+                    </aura:if>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-p-around_x-small">
+                <div class="slds-align_absolute-center slds-text-heading_small content-border slds-p-around_large" style="color: black;font-weight: bold;">
+                    Last Updated &nbsp; <ui:outputDateTime aura:id="lastModifiedDate" value="{!v.recordObject.LastModifiedDate}" format="dd/MM/yyyy HH:mm" />
+                </div>
+            </div>
+            <aura:set attribute="else">
+                <div class="slds-p-around_x-small">
+                    <div class="slds-align_absolute-center slds-text-heading_small content-border slds-p-around_large" style="color: rgb(255, 132, 0);font-weight: bold;">
+                        Compliance Check has not been received yet
+                    </div>
+                </div>
+            </aura:set>
+        </aura:renderIf>
+        <aura:if isTrue="{!!v.isLoaded}">
+            <lightning:spinner variant="brand" style="z-index:2" />
+        </aura:if>
+    </lightning:card>
+</aura:component>

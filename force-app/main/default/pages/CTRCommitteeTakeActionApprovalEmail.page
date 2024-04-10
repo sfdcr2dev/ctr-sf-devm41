@@ -1,0 +1,37 @@
+<apex:page showHeader="false" sidebar="false">
+
+
+    <apex:includeLightning />
+    <div id="lightning" />
+    <script>        
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const actionButton = urlParams.get('button');
+        const recordId = urlParams.get('id');
+        const name = urlParams.get('name');
+        const actionBy = urlParams.get('actionBy');
+        const userId = urlParams.get('userId');
+        if(actionBy == 'EVPC' || actionBy == 'CEO') {
+            $Lightning.use("c:CTRDueDiligenceActionViaEmailApp", function() {
+                $Lightning.createComponent("c:CTRDueDiligenceActionViaEmail",
+                    {actionButton: actionButton, recordId: recordId, actionBy: actionBy, userId: userId},
+                    "lightning",
+                    function(cmp) {
+                        console.log('Aura Component created');
+                    }
+                );
+            });
+        } else {
+            $Lightning.use("c:CTRCommitteeTakeActionApprovalEmailApp", function() {
+                $Lightning.createComponent("c:CTRCommitteeTakeActionApprovalEmail",
+                    {actionButton : actionButton, recordId: recordId, NameRequestFormItem: name, sendFromSFDC: false},
+                    "lightning",
+                    function(cmp) {
+                        console.log('Aura Component created');
+                    }
+                );
+            });
+        }
+    </script>
+        
+</apex:page>

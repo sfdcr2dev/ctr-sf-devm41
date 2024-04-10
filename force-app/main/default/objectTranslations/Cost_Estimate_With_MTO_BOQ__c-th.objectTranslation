@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Cost Estimate With MTO BOQ</value>
+    </caseValues>
+    <fields>
+        <help><!-- ไฟล์ข้อมูล BOQ ของ Subcontract --></help>
+        <label><!-- BOQ File --></label>
+        <name>BOQ_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cost Estimate --></label>
+        <name>Cost_Estimate__c</name>
+        <relationshipLabel><!-- Cost Estimate With MTO BOQ --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- ไฟล์ข้อมูล MTO ของ Subcontract --></help>
+        <label><!-- MTO File --></label>
+        <name>MTO_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- MTO and BOQ File URL --></label>
+        <name>MTO_and_BOQ_File_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- MTO and BOQ File --></label>
+        <name>MTO_and_BOQ_File__c</name>
+    </fields>
+    <layouts>
+        <layout>Cost Estimate With MTO BOQ Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว)</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

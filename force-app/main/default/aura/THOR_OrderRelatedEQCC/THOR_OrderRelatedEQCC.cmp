@@ -1,0 +1,144 @@
+<aura:component controller="THOR_OrderRelatedEQCCController">
+
+    <!-- Attributes -->
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="csEQCCId" type="String"/>
+    <aura:attribute name="isCreateCheckedSheetOpen" type="Boolean"/>
+    <aura:attribute name="showConfirmModal" type="Boolean" default="false"/>
+    <aura:attribute name="recordToDelete" type="String" default=""/>
+    <!--aura:attribute name="isCreateHeaderOpen" type="Boolean"/-->
+    <aura:attribute name="showCreateModal" type="Boolean" default="false"/>
+
+    <aura:attribute name="RelatedEQCCs" type="List" default="[]"/>
+
+    <lightning:navigation aura:id="navLink" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:method name="closeModal" action="{!c.closeCreateModal}" ></aura:method>
+
+    <aura:registerEvent name="stopLoadingEvent" type="c:THOR_Event"/>
+
+    <!-- BODY -->
+    <div style="background: #FFFFFF;">
+
+        <div class="slds-box slds-p-left_xxx-small">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_10-of-12" style="align-self:center">
+                    <div class="slds-text-heading_small">EQCC ({! v.RelatedEQCCs.length })</div>
+                </div>
+                <div class="slds-col slds-size_2-of-12">
+                    <div class="slds-m-left_large">
+                        <lightning:icon iconName="utility:add"
+                                        alternativeText="Add EQCC Sheet"
+                                        title="Image"
+                                        onclick="{!c.goToEQCCForm}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <lightning:layout multipleRows="true">
+            <aura:iteration items="{! v.RelatedEQCCs }" var="eqcc">
+                <lightning:layoutItem size="12">
+                    <div class="slds-box">
+
+                        <div class="slds-grid slds-gutters">
+
+                            <div class="slds-col slds-size_10-of-12 slds-m-left_medium">
+                                <c:THOR_EQCCHeaderLink header="{!eqcc.header}" />
+                                <div class="slds-m-left_medium">
+                                    <lightning:layout multipleRows="true">
+                                        <aura:iteration items="{! eqcc.sheets }" var="item">
+                                            <lightning:layoutItem size="12">
+                                                <c:THOR_EQCCCheckedSheetHyperlink
+                                                     headerId="{!eqcc.header.Id}"
+                                                     headerSheetId="{!item.headerSheetId}"
+                                                     checkedSheetGroup="{!item.sheet.Group__c}"
+                                                     checkedSheetCode="{!item.sheet.Sheet_Code__c}"
+                                                     checkedSheetStatus="{!item.status}"
+                                                     checkedSheetRequester="{!item.requester}"
+                                                     checkedSheetCreatedDate="{!item.createdDate}"
+                                                     backToTabIndex="2"
+                                                />
+                                            </lightning:layoutItem>
+                                        </aura:iteration>
+                                    </lightning:layout>
+                                </div>
+                            </div>
+
+
+                            <div class="slds-col slds-size_2-of-12" style="">
+                                <lightning:buttonMenu iconName="utility:threedots"
+                                    iconSize="small"
+                                    variant="border-filled"
+                                    alternativeText="Settings"
+                                    onselect="{!c.showCheckedSheetCreation}"
+                                    menuAlignment="right">
+                                    <lightning:menuItem label="Insert Checked Sheet" value="{!eqcc.header.Id}"/>
+                                    <lightning:menuItem disabled="{!or(
+                                                                        not(eqcc.isOwnerOrAdmin),
+                                                                        or(
+                                                                            eqcc.hasPendingForApproval,
+                                                                            or(
+                                                                                eqcc.isPolluted,
+                                                                                or(
+                                                                                    eqcc.hasSeveralCheckedSheets,
+                                                                                    not(eqcc.isManuallyCreated)
+                                                                                )
+                                                                            )
+                                                                        )
+                                                                      )}"
+                                                        class="{!eqcc.header.Id}"
+                                                        label="Delete"
+                                                        value="Delete"/>
+                                    <lightning:menuItem label="Cancel" value="Cancel"/>
+                                </lightning:buttonMenu>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </lightning:layoutItem>
+
+            </aura:iteration>
+
+            <aura:if isTrue="{!v.showConfirmModal}">
+                <div>
+                    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+                        <div class="slds-modal__container">
+                            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                <p class="slds-align_absolute-center slds-text-heading_medium">Are you sure you want to delete this record?</p>
+                            </div>
+                            <footer class="slds-modal__footer">
+                                <button onclick="{!c.cancelConfirm}" id="cancel" class="slds-button slds-button_neutral">Cancel</button>
+                                <button onclick="{!c.deleteConfirm}" id="delete" class="slds-button slds-button_brand">Delete</button>
+                            </footer>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </div>
+            </aura:if>
+
+            <aura:if isTrue="{! v.showCreateModal }">
+                <aura:if isTrue="{!v.recordId}">
+                    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+                        <div class="slds-modal__container showAtTop">
+                            <c:Thor_EQCCHeaderForm parent="{! this }" orderId="{!v.recordId}" isModal="true" />
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </aura:if>
+            </aura:if>
+
+            <aura:if isTrue="{!v.isCreateCheckedSheetOpen}">
+                <div>
+                    <c:THOR_EQCCAddCheckedSheet eqccHeaderId="{!v.csEQCCId}" eqccCreationEvent="{!c.handleEQCCCreation}" />
+                </div>
+            </aura:if>
+        </lightning:layout>
+    </div>
+    <!-- /BODY -->
+
+</aura:component>

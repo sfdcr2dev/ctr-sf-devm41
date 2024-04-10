@@ -1,0 +1,44 @@
+<apex:page controller="ESS_Manpower" standardStylesheets="false" lightningStylesheets="false" sidebar="false"
+  showHeader="false" applyHtmlTag="true" applyBodyTag="false" docType="html-5.0" language="th">
+
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <link rel="stylesheet" href="{!URLFOR($Resource.ESS_Frontend,'/css/data-table.css')}?d=1688113761319"></link>
+    <link rel="stylesheet" href="{!URLFOR($Resource.ESS_Frontend,'/css/icomoon.css')}?d=1688113761319"></link>
+    <link rel="stylesheet" href="{!URLFOR($Resource.ESS_Frontend,'/css/fonts.css')}?d=1688113761319"></link>
+    <title>ESSMSS(Personal Information)</title>
+    <script>
+      window.assetsPath = "{!URLFOR($Resource.ESS_Frontend)}";
+      window.homePath = "{!$Page.ESS_Home}";
+    </script>
+    <script type="module" crossorigin="anonymous" src="{!URLFOR($Resource.ESS_Frontend,'/assets/manpower-onbehalf-list.js')}?d=1688113761319"></script>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/MainLayout.js')}?d=1688113761319"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/formatter.js')}?d=1688113761319"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/Collapse.js')}?d=1688113761319"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/Card.js')}?d=1688113761319"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/Label.js')}?d=1688113761319"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/BaseInput.js')}?d=1688113761319"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/Button.js')}?d=1688113761319"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/Dropdown.js')}?d=1688113761319"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/CurrentStatusDropdown.js')}?d=1688113761319"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/ESS_Manpower.service.js')}?d=1688113761319"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/_commonjsHelpers.js')}?d=1688113761319"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/html.js')}?d=1688113761319"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/Table.js')}?d=1688113761319"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/flatpickr.js')}?d=1688113761319"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.ESS_Frontend,'/assets/DateRange.js')}?d=1688113761319"></link>
+    <link rel="stylesheet" href="{!URLFOR($Resource.ESS_Frontend,'/assets/style.css')}?d=1688113761319"></link>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    
+  </body>
+
+  </html>
+
+</apex:page>

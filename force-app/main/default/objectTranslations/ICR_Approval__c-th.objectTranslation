@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ICR Approval</value>
+    </caseValues>
+    <fields>
+        <label><!-- AMM Conclusion --></label>
+        <name>AMM_Conclusion__c</name>
+        <picklistValues>
+            <masterLabel>Appoint</masterLabel>
+            <translation><!-- Appoint --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disappoint</masterLabel>
+            <translation><!-- Disappoint --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- กรุณา Checked เมื่ออัพโหลดเอกสาร Appointed หรือ Disappoint ผลมติการประชุม --></help>
+        <label><!-- Appointed/Disappointed File --></label>
+        <name>Appointed_Disappointed_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approver Name --></label>
+        <name>Approver_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approver --></label>
+        <name>Approver__c</name>
+        <relationshipLabel><!-- ICR Approval --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Ask to Review --></label>
+        <name>Ask_to_Review__c</name>
+    </fields>
+    <fields>
+        <label><!-- Auto Approve --></label>
+        <name>Auto_Approve__c</name>
+    </fields>
+    <fields>
+        <label><!-- BE EVP ID --></label>
+        <name>BE_EVP_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- BE File Upload --></label>
+        <name>BE_File_Upload__c</name>
+    </fields>
+    <fields>
+        <label><!-- BE GSCS ID --></label>
+        <name>BE_GSCS_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- BE GSCS Staff ID --></label>
+        <name>BE_GSCS_Staff_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- BE GSVP ID --></label>
+        <name>BE_GSVP_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- BE Line Manager ID --></label>
+        <name>BE_Line_Manager_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- BE PMSV ID --></label>
+        <name>BE_PMSV_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cancel Reason --></label>
+        <name>Cancel_Reason__c</name>
+    </fields>
+    <fields>
+        <help><!-- กรุณา Checked เมื่อได้ทำการอัพโหลดเอกสาร Circular หลังมติการประชุม --></help>
+        <label><!-- Circular File --></label>
+        <name>Circular_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- Circular No --></label>
+        <name>Circular_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Circular Template --></label>
+        <name>Circular_Template__c</name>
+    </fields>
+    <fields>
+        <label><!-- Committee Title --></label>
+        <name>Committee_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Confidential --></label>
+        <name>Confidential__c</name>
+    </fields>
+    <fields>
+        <help><!-- กรุณา Checked เมื่อทำการอัพโหลดเอกสาร Draft of Circular --></help>
+        <label><!-- Draft Circular File --></label>
+        <name>Draft_Circular_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- EVP Approved --></label>
+        <name>EVP_Approved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Employee Id --></label>
+        <name>Employee_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date_Wording__c</name>
+    </fields>
+    <fields>
+        <help><!-- วันสิ้นสุ --></help>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- File URL --></label>
+        <name>File_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Finished Date --></label>
+        <name>Finished_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- จุดประสงค์ของการทำ ICR ในครั้งนี้ --></help>
+        <label><!-- Committee Objective --></label>
+        <name>Objective__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Full Name --></label>
+        <name>Owner_Full_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- หมายเหตุ --></label>
+        <name>Remark__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Date --></label>
+        <name>Request_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Reason --></label>
+        <name>Request_Reason__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requester --></label>
+        <name>Requester__c</name>
+    </fields>
+    <fields>
+        <help><!-- กรุณา Checked เมื่อทำการอัพโหลดเอกสาร Signed Circular --></help>
+        <label><!-- Signed Circular File --></label>
+        <name>Signed_Circular_File__c</name>
+    </fields>
+    <fields>
+        <help><!-- วันเริ่มต้น --></help>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Appointed</masterLabel>
+            <translation><!-- Appointed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled Request</masterLabel>
+            <translation><!-- Cancelled Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disappointed</masterLabel>
+            <translation><!-- Disappointed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Submit</masterLabel>
+            <translation><!-- Not Submit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting Circular No.</masterLabel>
+            <translation><!-- Waiting Circular No. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting EVP Approval</masterLabel>
+            <translation><!-- Waiting EVP Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting GSCS Approval</masterLabel>
+            <translation><!-- Waiting GSCS Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting Line Manager Approval</masterLabel>
+            <translation><!-- Waiting Line Manager Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting Requester Revise</masterLabel>
+            <translation><!-- Waiting Requester Revise --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting Requester Update Result</masterLabel>
+            <translation><!-- Waiting Requester Update Result --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting Signed Circular File</masterLabel>
+            <translation><!-- Waiting Signed Circular File --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting Submit Approval Type</masterLabel>
+            <translation><!-- Waiting Submit Approval Type --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Today --></label>
+        <name>Today__c</name>
+    </fields>
+    <fields>
+        <help><!-- หมายเหตุในการเลือก Approval Type --></help>
+        <label><!-- Reason for select type --></label>
+        <name>Type_Remark__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>AMM</masterLabel>
+            <translation><!-- AMM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CEO</masterLabel>
+            <translation><!-- CEO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>AMM Circular</layout>
+        <sections>
+            <label><!-- AMM Approval Type --></label>
+            <section>AMM Approval Type</section>
+        </sections>
+        <sections>
+            <label><!-- Circular --></label>
+            <section>Circular</section>
+        </sections>
+        <sections>
+            <label><!-- Circular Template --></label>
+            <section>Circular Template</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Approval Type --></label>
+            <section>Committee Approval Type</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Request Information --></label>
+            <section>Committee Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AMM Signed Circular</layout>
+        <sections>
+            <label><!-- AMM Approval Type --></label>
+            <section>AMM Approval Type</section>
+        </sections>
+        <sections>
+            <label><!-- Circular --></label>
+            <section>Circular</section>
+        </sections>
+        <sections>
+            <label><!-- Circular Template --></label>
+            <section>Circular Template</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Approval Type --></label>
+            <section>Committee Approval Type</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Request Information --></label>
+            <section>Committee Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AMM Type</layout>
+        <sections>
+            <label><!-- AMM Committee Result --></label>
+            <section>AMM Committee Result</section>
+        </sections>
+        <sections>
+            <label><!-- Circular Template --></label>
+            <section>Circular Template</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Approval Type --></label>
+            <section>Committee Approval Type</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Request Information --></label>
+            <section>Committee Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Approval Type</layout>
+        <sections>
+            <label><!-- Circular Template --></label>
+            <section>Circular Template</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Approval Type --></label>
+            <section>Committee Approval Type</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Request Information --></label>
+            <section>Committee Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CEO Circular</layout>
+        <sections>
+            <label><!-- CEO Approval Type --></label>
+            <section>CEO Approval Type</section>
+        </sections>
+        <sections>
+            <label><!-- Circular --></label>
+            <section>Circular</section>
+        </sections>
+        <sections>
+            <label><!-- Circular Template --></label>
+            <section>Circular Template</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Approval Type --></label>
+            <section>Committee Approval Type</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Request Information --></label>
+            <section>Committee Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CEO Signed Circular</layout>
+        <sections>
+            <label><!-- CEO Approval type --></label>
+            <section>CEO Approval type</section>
+        </sections>
+        <sections>
+            <label><!-- Circular --></label>
+            <section>Circular</section>
+        </sections>
+        <sections>
+            <label><!-- Circular Template --></label>
+            <section>Circular Template</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Approval Type --></label>
+            <section>Committee Approval Type</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Request Information --></label>
+            <section>Committee Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CEO Type</layout>
+        <sections>
+            <label><!-- CEO Approval Type --></label>
+            <section>CEO Approval Type</section>
+        </sections>
+        <sections>
+            <label><!-- Circular Templete --></label>
+            <section>Circular Templete</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Approval Type --></label>
+            <section>Committee Approval Type</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Request Information --></label>
+            <section>Committee Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Completed</layout>
+        <sections>
+            <label><!-- AMM/CEO Approval Type Information --></label>
+            <section>AMM/CEO Approval Type Information</section>
+        </sections>
+        <sections>
+            <label><!-- Canceled Reason --></label>
+            <section>Canceled Reason</section>
+        </sections>
+        <sections>
+            <label><!-- Circular --></label>
+            <section>Circular</section>
+        </sections>
+        <sections>
+            <label><!-- Circular Template --></label>
+            <section>Circular Template</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Approval Type --></label>
+            <section>Committee Approval Type</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Request Information --></label>
+            <section>Committee Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Request</layout>
+        <sections>
+            <label><!-- Circular Template --></label>
+            <section>Circular Template</section>
+        </sections>
+        <sections>
+            <label><!-- Committee Request Information --></label>
+            <section>Committee Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- AMM Circular --></label>
+        <name>AMM_Circular</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- AMM Signed Circular --></label>
+        <name>AMM_Signed_Circular</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- AMM Type --></label>
+        <name>AMM_Type</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Approval Type --></label>
+        <name>Approval_Type</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CEO Circular --></label>
+        <name>CEO_Circular</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CEO Signed Circular --></label>
+        <name>CEO_Signed_Circular</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CEO Type --></label>
+        <name>CEO_Type</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Completed --></label>
+        <name>Completed</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Request --></label>
+        <name>Request</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Appointed/Disappointed File need to be uploaded and checked if AMM Conclusion is &quot;Appoint&quot; . --></errorMessage>
+        <name>Check_AMM_Appoint_Disappoint_File</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Circular File need to be check. --></errorMessage>
+        <name>Check_AMM_Circular_File</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Appointed/Disappointed File need to be uploaded and checked if AMM Conclusion is &quot;Disappoint&quot; --></errorMessage>
+        <name>Check_AMM_Conclusion_Disappoint</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- EVP Approved need to be checked if AMM Conclusion is &quot;Appoint&quot; --></errorMessage>
+        <name>Check_AMM_EVP_Approved</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Signed Circular File need to be check, if Circular No is filled. --></errorMessage>
+        <name>Check_AMM_Signed_Circular_File</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Circular File need to be check. --></errorMessage>
+        <name>Check_CEO_Circular_File</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- EVP Approved need to be checked when Status is &quot;Waiting Requester Update Result&quot; --></errorMessage>
+        <name>Check_CEO_EVP_Approved</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Signed Circular File need to be check, if status is &apos;Appointed&apos; --></errorMessage>
+        <name>Check_CEO_Signed_Circular_File</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter Circular No before Save --></errorMessage>
+        <name>Check_Circular_No</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please check your &quot;End Date&quot;. End Date should not less than Start Date --></errorMessage>
+        <name>Check_End_Date_with_Start_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- กรุณากรอกหมายเหตุ ถ้าเลือก Type เป็น CEO หรือ อื่นๆ --></errorMessage>
+        <name>Type_Reason_Require</name>
+    </validationRules>
+</CustomObjectTranslation>

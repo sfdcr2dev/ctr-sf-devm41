@@ -1,0 +1,1850 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Company_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Company Name</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Current_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Current Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Created</fullName>
+                    <default>true</default>
+                    <label>Created</label>
+                </value>
+                <value>
+                    <fullName>GeneratedToPDF</fullName>
+                    <default>false</default>
+                    <label>Generated to PDF</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Date_Joined_Company__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Joined Company</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Department_Full_EN__c</fullName>
+        <externalId>false</externalId>
+        <label>Department Full EN</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Department_Full_TH__c</fullName>
+        <externalId>false</externalId>
+        <label>Department Full TH</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Department__c</fullName>
+        <externalId>false</externalId>
+        <label>Department</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Document_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Document No</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Employee_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Employee ID</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Employee_Name_TH__c</fullName>
+        <externalId>false</externalId>
+        <label>Employee Name TH</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Employee_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Employee Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Function__c</fullName>
+        <externalId>false</externalId>
+        <label>Function</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Gender__c</fullName>
+        <externalId>false</externalId>
+        <label>Gender</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Male</fullName>
+                    <default>false</default>
+                    <label>Male</label>
+                </value>
+                <value>
+                    <fullName>Female</fullName>
+                    <default>false</default>
+                    <label>Female</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Generate_PDF_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Generate PDF Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Language__c</fullName>
+        <externalId>false</externalId>
+        <label>Language</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Thai</fullName>
+                    <default>false</default>
+                    <label>ภาษาไทย</label>
+                </value>
+                <value>
+                    <fullName>English</fullName>
+                    <default>false</default>
+                    <label>ภาษาอังกฤษ</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Leave_End__c</fullName>
+        <externalId>false</externalId>
+        <label>วันที่สิ้นสุดการลา</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Leave_Start__c</fullName>
+        <externalId>false</externalId>
+        <label>วันที่เริ่มต้นการลา</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Letter_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Letter Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>SalaryLetterForFinancial</fullName>
+                    <default>false</default>
+                    <label>จดหมายรับรองเงินเดือน (สำหรับทำธุรกรรมทางการเงิน)</label>
+                </value>
+                <value>
+                    <fullName>SalaryLetterWithLeaveForVisa</fullName>
+                    <default>false</default>
+                    <label>จดหมายรับรองเงินเดือน แบบระบุวันลา (สำหรับยื่นขอ Visa)</label>
+                </value>
+                <value>
+                    <fullName>SalaryLetterWithoutLeaveForVisa</fullName>
+                    <default>false</default>
+                    <label>จดหมายรับรองเงินเดือน แบบไม่ระบุวันลา (สำหรับยื่นขอ Visa)</label>
+                </value>
+                <value>
+                    <fullName>WorkLetterWithoutSalary</fullName>
+                    <default>false</default>
+                    <label>จดหมายรับรองการทำงาน ไม่ระบุเงินเดือน</label>
+                </value>
+                <value>
+                    <fullName>GrantedLetter</fullName>
+                    <default>false</default>
+                    <label>จดหมายผ่านสิทธิ์ (สำหรับทำธุรกรรมกับธนาคาร ธอส.)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Other_Organization__c</fullName>
+        <externalId>false</externalId>
+        <label>ระบุชื่อหน่วยงาน</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Position_TH__c</fullName>
+        <externalId>false</externalId>
+        <label>Position TH</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Position__c</fullName>
+        <externalId>false</externalId>
+        <label>Position</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Remark__c</fullName>
+        <externalId>false</externalId>
+        <label>Remark</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>50</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Section__c</fullName>
+        <externalId>false</externalId>
+        <label>Section</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>To_Organization_EN__c</fullName>
+        <externalId>false</externalId>
+        <label>To Organization EN</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Letter_Type__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Bangkok Bank Public Company Limited</fullName>
+                    <default>false</default>
+                    <label>Bangkok Bank Public Company Limited</label>
+                </value>
+                <value>
+                    <fullName>Krungthai Bank Public Company Limited</fullName>
+                    <default>false</default>
+                    <label>Krungthai Bank Public Company Limited</label>
+                </value>
+                <value>
+                    <fullName>Bank of Ayudhya Public Company Limited</fullName>
+                    <default>false</default>
+                    <label>Bank of Ayudhya Public Company Limited</label>
+                </value>
+                <value>
+                    <fullName>Kasikornbank</fullName>
+                    <default>false</default>
+                    <label>Kasikornbank</label>
+                </value>
+                <value>
+                    <fullName>Kiatnakin Phatra Bank</fullName>
+                    <default>false</default>
+                    <label>Kiatnakin Phatra Bank</label>
+                </value>
+                <value>
+                    <fullName>CIMB Thai Bank Public Company Limited</fullName>
+                    <default>false</default>
+                    <label>CIMB Thai Bank Public Company Limited</label>
+                </value>
+                <value>
+                    <fullName>TMB Thanachart Bank</fullName>
+                    <default>false</default>
+                    <label>TMB Thanachart Bank</label>
+                </value>
+                <value>
+                    <fullName>TISCO Bank</fullName>
+                    <default>false</default>
+                    <label>TISCO Bank</label>
+                </value>
+                <value>
+                    <fullName>Siam Commercial Bank</fullName>
+                    <default>false</default>
+                    <label>Siam Commercial Bank</label>
+                </value>
+                <value>
+                    <fullName>United Overseas Bank Limited (UOB)</fullName>
+                    <default>false</default>
+                    <label>United Overseas Bank Limited (UOB)</label>
+                </value>
+                <value>
+                    <fullName>Land and Houses Public Company Limited</fullName>
+                    <default>false</default>
+                    <label>Land and Houses Public Company Limited</label>
+                </value>
+                <value>
+                    <fullName>Standard Chartered Bank (Thai) PCL</fullName>
+                    <default>false</default>
+                    <label>Standard Chartered Bank (Thai) PCL</label>
+                </value>
+                <value>
+                    <fullName>Industrial and Commercial Bank of China (Asia) Limited</fullName>
+                    <default>false</default>
+                    <label>Industrial and Commercial Bank of China (Asia) Limited</label>
+                </value>
+                <value>
+                    <fullName>Thai Credit Retail Bank Public Company</fullName>
+                    <default>false</default>
+                    <label>Thai Credit Retail Bank Public Company</label>
+                </value>
+                <value>
+                    <fullName>Sumitomo Mitsui Trust Bank (Thai) PCL</fullName>
+                    <default>false</default>
+                    <label>Sumitomo Mitsui Trust Bank (Thai) PCL</label>
+                </value>
+                <value>
+                    <fullName>MEGA International Commercial Bank Public Company Limited</fullName>
+                    <default>false</default>
+                    <label>MEGA International Commercial Bank Public Company Limited</label>
+                </value>
+                <value>
+                    <fullName>Bank of China (Thai) Public Company Limited</fullName>
+                    <default>false</default>
+                    <label>Bank of China (Thai) Public Company Limited</label>
+                </value>
+                <value>
+                    <fullName>JPMorgan Chase</fullName>
+                    <default>false</default>
+                    <label>JPMorgan Chase</label>
+                </value>
+                <value>
+                    <fullName>Citibank</fullName>
+                    <default>false</default>
+                    <label>Citibank</label>
+                </value>
+                <value>
+                    <fullName>Sumitomo Mitsui Banking Corporation</fullName>
+                    <default>false</default>
+                    <label>Sumitomo Mitsui Banking Corporation</label>
+                </value>
+                <value>
+                    <fullName>BNP Paribas</fullName>
+                    <default>false</default>
+                    <label>BNP Paribas</label>
+                </value>
+                <value>
+                    <fullName>Mizuho Bank</fullName>
+                    <default>false</default>
+                    <label>Mizuho Bank</label>
+                </value>
+                <value>
+                    <fullName>RHB</fullName>
+                    <default>false</default>
+                    <label>RHB</label>
+                </value>
+                <value>
+                    <fullName>Indian Overseas Bank</fullName>
+                    <default>false</default>
+                    <label>Indian Overseas Bank</label>
+                </value>
+                <value>
+                    <fullName>OCBC Bank</fullName>
+                    <default>false</default>
+                    <label>OCBC Bank</label>
+                </value>
+                <value>
+                    <fullName>HSBC Thailand</fullName>
+                    <default>false</default>
+                    <label>HSBC Thailand</label>
+                </value>
+                <value>
+                    <fullName>Government Savings Bank</fullName>
+                    <default>false</default>
+                    <label>Government Savings Bank</label>
+                </value>
+                <value>
+                    <fullName>Bank for Agriculture and Agricultural Co-operatives</fullName>
+                    <default>false</default>
+                    <label>Bank for Agriculture and Agricultural Co-operatives</label>
+                </value>
+                <value>
+                    <fullName>Government Housing Bank</fullName>
+                    <default>false</default>
+                    <label>Government Housing Bank</label>
+                </value>
+                <value>
+                    <fullName>The British Embassy</fullName>
+                    <default>false</default>
+                    <label>The British Embassy</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Australia</fullName>
+                    <default>false</default>
+                    <label>Embassy of Australia</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Austria</fullName>
+                    <default>false</default>
+                    <label>Embassy of Austria</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Canada</fullName>
+                    <default>false</default>
+                    <label>Embassy of Canada</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Denmark</fullName>
+                    <default>false</default>
+                    <label>Embassy of Denmark</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Germany</fullName>
+                    <default>false</default>
+                    <label>Embassy of Germany</label>
+                </value>
+                <value>
+                    <fullName>Embassy of France</fullName>
+                    <default>false</default>
+                    <label>Embassy of France</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Japan</fullName>
+                    <default>false</default>
+                    <label>Embassy of Japan</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Finland</fullName>
+                    <default>false</default>
+                    <label>Embassy of Finland</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Italy</fullName>
+                    <default>false</default>
+                    <label>Embassy of Italy</label>
+                </value>
+                <value>
+                    <fullName>Embassy of India</fullName>
+                    <default>false</default>
+                    <label>Embassy of India</label>
+                </value>
+                <value>
+                    <fullName>Embassy of the United State of America</fullName>
+                    <default>false</default>
+                    <label>Embassy of the United State of America</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Switzerland</fullName>
+                    <default>false</default>
+                    <label>Embassy of Switzerland</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Croatia</fullName>
+                    <default>false</default>
+                    <label>Embassy of Croatia</label>
+                </value>
+                <value>
+                    <fullName>Embassy of the Czech Republic</fullName>
+                    <default>false</default>
+                    <label>Embassy of the Czech Republic</label>
+                </value>
+                <value>
+                    <fullName>Embassy of The People&apos;s Republic of China</fullName>
+                    <default>false</default>
+                    <label>Embassy of The People&apos;s Republic of China</label>
+                </value>
+                <value>
+                    <fullName>Embassy of the Republic of Korea</fullName>
+                    <default>false</default>
+                    <label>Embassy of the Republic of Korea</label>
+                </value>
+                <value>
+                    <fullName>Embassy of the Republic of China (Taiwan)</fullName>
+                    <default>false</default>
+                    <label>Embassy of the Republic of China (Taiwan)</label>
+                </value>
+                <value>
+                    <fullName>Korea Immigration Services</fullName>
+                    <default>false</default>
+                    <label>Korea Immigration Services</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Vietnam</fullName>
+                    <default>false</default>
+                    <label>Embassy of Vietnam</label>
+                </value>
+                <value>
+                    <fullName>Embassy of New Zealand</fullName>
+                    <default>false</default>
+                    <label>Embassy of New Zealand</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Russia</fullName>
+                    <default>false</default>
+                    <label>Embassy of Russia</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Turkey</fullName>
+                    <default>false</default>
+                    <label>Embassy of Turkey</label>
+                </value>
+                <value>
+                    <fullName>Embassy of the Netherlands</fullName>
+                    <default>false</default>
+                    <label>Embassy of the Netherlands</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Qatar</fullName>
+                    <default>false</default>
+                    <label>Embassy of Qatar</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Spain</fullName>
+                    <default>false</default>
+                    <label>Embassy of Spain</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Malaysia</fullName>
+                    <default>false</default>
+                    <label>Embassy of Malaysia</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Sweden</fullName>
+                    <default>false</default>
+                    <label>Embassy of Sweden</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Norway</fullName>
+                    <default>false</default>
+                    <label>Embassy of Norway</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Hungary</fullName>
+                    <default>false</default>
+                    <label>Embassy of Hungary</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Chile</fullName>
+                    <default>false</default>
+                    <label>Embassy of Chile</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Myanmar</fullName>
+                    <default>false</default>
+                    <label>Embassy of Myanmar</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Singapore</fullName>
+                    <default>false</default>
+                    <label>Embassy of Singapore</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Argentina</fullName>
+                    <default>false</default>
+                    <label>Embassy of Argentina</label>
+                </value>
+                <value>
+                    <fullName>Embassy of the United Arab Emirates</fullName>
+                    <default>false</default>
+                    <label>Embassy of the United Arab Emirates</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Portugal</fullName>
+                    <default>false</default>
+                    <label>Embassy of Portugal</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Greece</fullName>
+                    <default>false</default>
+                    <label>Embassy of Greece</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Belgium</fullName>
+                    <default>false</default>
+                    <label>Embassy of Belgium</label>
+                </value>
+                <value>
+                    <fullName>Embassy of South Africa</fullName>
+                    <default>false</default>
+                    <label>Embassy of South Africa</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Brazil</fullName>
+                    <default>false</default>
+                    <label>Embassy of Brazil</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Saudi Arabia</fullName>
+                    <default>false</default>
+                    <label>Embassy of Saudi Arabia</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Oman</fullName>
+                    <default>false</default>
+                    <label>Embassy of Oman</label>
+                </value>
+                <value>
+                    <fullName>Embassy of the Republic of the Philippines</fullName>
+                    <default>false</default>
+                    <label>Embassy of the Republic of the Philippines</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Egypt</fullName>
+                    <default>false</default>
+                    <label>Embassy of Egypt</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Brunei</fullName>
+                    <default>false</default>
+                    <label>Embassy of Brunei</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Bangkok Bank Public Company Limited</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Krungthai Bank Public Company Limited</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Bank of Ayudhya Public Company Limited</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Kasikornbank</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Kiatnakin Phatra Bank</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>CIMB Thai Bank Public Company Limited</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>TMB Thanachart Bank</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>TISCO Bank</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Siam Commercial Bank</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>United Overseas Bank Limited (UOB)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Land and Houses Public Company Limited</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Standard Chartered Bank (Thai) PCL</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Industrial and Commercial Bank of China (Asia) Limited</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Thai Credit Retail Bank Public Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Sumitomo Mitsui Trust Bank (Thai) PCL</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>MEGA International Commercial Bank Public Company Limited</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Bank of China (Thai) Public Company Limited</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>JPMorgan Chase</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Citibank</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Sumitomo Mitsui Banking Corporation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>BNP Paribas</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Mizuho Bank</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>RHB</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Indian Overseas Bank</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>OCBC Bank</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>HSBC Thailand</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <controllingFieldValue>GrantedLetter</controllingFieldValue>
+                <valueName>Government Savings Bank</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Bank for Agriculture and Agricultural Co-operatives</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>Government Housing Bank</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>WorkLetterWithoutSalary</controllingFieldValue>
+                <valueName>Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>The British Embassy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Australia</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Austria</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Canada</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Denmark</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Germany</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of France</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Japan</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Finland</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Italy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of India</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of the United State of America</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Switzerland</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Croatia</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of the Czech Republic</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of The People&apos;s Republic of China</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of the Republic of Korea</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of the Republic of China (Taiwan)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Korea Immigration Services</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Vietnam</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of New Zealand</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Russia</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Turkey</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of the Netherlands</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Qatar</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Spain</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Malaysia</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Sweden</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Norway</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Hungary</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Chile</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Myanmar</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Singapore</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Argentina</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of the United Arab Emirates</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Portugal</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Greece</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Belgium</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of South Africa</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Brazil</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Saudi Arabia</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Oman</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of the Republic of the Philippines</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Egypt</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Brunei</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>To_Organization__c</fullName>
+        <externalId>false</externalId>
+        <label>หน่วยงาน</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Letter_Type__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ธนาคารไทยพาณิชย์ จำกัด (มหาชน)</fullName>
+                    <default>false</default>
+                    <label>ธนาคารไทยพาณิชย์ จำกัด (มหาชน)</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารทหารไทยธนชาต จำกัด (มหาชน)</fullName>
+                    <default>false</default>
+                    <label>ธนาคารทหารไทยธนชาต จำกัด (มหาชน)</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารทิสโก้ จำกัด (มหาชน)</fullName>
+                    <default>false</default>
+                    <label>ธนาคารทิสโก้ จำกัด (มหาชน)</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารธนชาต จำกัด (มหาชน)</fullName>
+                    <default>false</default>
+                    <label>ธนาคารธนชาต จำกัด (มหาชน)</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารยูโอบี จำกัด (มหาชน)</fullName>
+                    <default>false</default>
+                    <label>ธนาคารยูโอบี จำกัด (มหาชน)</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารแลนด์ แอนด์ เฮ้าส์ จำกัด (มหาชน)</fullName>
+                    <default>false</default>
+                    <label>ธนาคารแลนด์ แอนด์ เฮ้าส์ จำกัด (มหาชน)</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารสแตนดาร์ดชาร์เตอร์ด (ไทย) จำกัด (มหาชน)</fullName>
+                    <default>false</default>
+                    <label>ธนาคารสแตนดาร์ดชาร์เตอร์ด (ไทย) จำกัด (มหาชน)</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารไอซีบีซี (ไทย) จำกัด (มหาชน)</fullName>
+                    <default>false</default>
+                    <label>ธนาคารไอซีบีซี (ไทย) จำกัด (มหาชน)</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารไทยเครดิต เพื่อรายย่อย จำกัด (มหาชน)</fullName>
+                    <default>false</default>
+                    <label>ธนาคารไทยเครดิต เพื่อรายย่อย จำกัด (มหาชน)</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารซูมิโตโม มิตซุย ทรัสต์ (ไทย) จำกัด (มหาชน)</fullName>
+                    <default>false</default>
+                    <label>ธนาคารซูมิโตโม มิตซุย ทรัสต์ (ไทย) จำกัด (มหาชน)</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารเมกะ สากลพาณิชย์ จำกัด (มหาชน)</fullName>
+                    <default>false</default>
+                    <label>ธนาคารเมกะ สากลพาณิชย์ จำกัด (มหาชน)</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารแห่งประเทศจีน (ไทย) จำกัด (มหาชน)</fullName>
+                    <default>false</default>
+                    <label>ธนาคารแห่งประเทศจีน (ไทย) จำกัด (มหาชน)</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารเอเอ็นแซด (ไทย) จำกัด (มหาชน)</fullName>
+                    <default>false</default>
+                    <label>ธนาคารเอเอ็นแซด (ไทย) จำกัด (มหาชน)</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารเจพีมอร์แกน เชส</fullName>
+                    <default>false</default>
+                    <label>ธนาคารเจพีมอร์แกน เชส</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารซิตี้แบงก์ เอ็น.เอ.</fullName>
+                    <default>false</default>
+                    <label>ธนาคารซิตี้แบงก์ เอ็น.เอ.</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารซูมิโตโม มิตซุย แบงกิ้ง คอร์ปอเรชั่น</fullName>
+                    <default>false</default>
+                    <label>ธนาคารซูมิโตโม มิตซุย แบงกิ้ง คอร์ปอเรชั่น</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารดอยซ์แบงก์ เอจี</fullName>
+                    <default>false</default>
+                    <label>ธนาคารดอยซ์แบงก์ เอจี</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารบีเอ็นพี พารีบาส์</fullName>
+                    <default>false</default>
+                    <label>ธนาคารบีเอ็นพี พารีบาส์</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารมิซูโฮ จำกัด สาขากรุงเทพฯ</fullName>
+                    <default>false</default>
+                    <label>ธนาคารมิซูโฮ จำกัด สาขากรุงเทพฯ</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารแห่งอเมริกาเนชั่นแนลแอสโซซิเอชั่น</fullName>
+                    <default>false</default>
+                    <label>ธนาคารแห่งอเมริกาเนชั่นแนลแอสโซซิเอชั่น</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารอาร์ เอช บี จำกัด</fullName>
+                    <default>false</default>
+                    <label>ธนาคารอาร์ เอช บี จำกัด</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารอินเดียนโอเวอร์ซีส์</fullName>
+                    <default>false</default>
+                    <label>ธนาคารอินเดียนโอเวอร์ซีส์</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารโอเวอร์ซี-ไชนีสแบงกิ้งคอร์ปอเรชั่น จำกัด</fullName>
+                    <default>false</default>
+                    <label>ธนาคารโอเวอร์ซี-ไชนีสแบงกิ้งคอร์ปอเรชั่น จำกัด</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารฮ่องกงและเซี่ยงไฮ้แบงกิ้งคอร์ปอเรชั่น จำกัด</fullName>
+                    <default>false</default>
+                    <label>ธนาคารฮ่องกงและเซี่ยงไฮ้แบงกิ้งคอร์ปอเรชั่น จำกัด</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารออมสิน</fullName>
+                    <default>false</default>
+                    <label>ธนาคารออมสิน</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารอาคารสงเคราะห์</fullName>
+                    <default>false</default>
+                    <label>ธนาคารอาคารสงเคราะห์</label>
+                </value>
+                <value>
+                    <fullName>ธนาคารเพื่อการเกษตรและสหกรณ์</fullName>
+                    <default>false</default>
+                    <label>ธนาคารเพื่อการเกษตรและสหกรณ์</label>
+                </value>
+                <value>
+                    <fullName>The British Embassy</fullName>
+                    <default>false</default>
+                    <label>The British Embassy</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Australia</fullName>
+                    <default>false</default>
+                    <label>Embassy of Australia</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Austria</fullName>
+                    <default>false</default>
+                    <label>Embassy of Austria</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Canada</fullName>
+                    <default>false</default>
+                    <label>Embassy of Canada</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Denmark</fullName>
+                    <default>false</default>
+                    <label>Embassy of Denmark</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Germany</fullName>
+                    <default>false</default>
+                    <label>Embassy of Germany</label>
+                </value>
+                <value>
+                    <fullName>Embassy of France</fullName>
+                    <default>false</default>
+                    <label>Embassy of France</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Japan</fullName>
+                    <default>false</default>
+                    <label>Embassy of Japan</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Finland</fullName>
+                    <default>false</default>
+                    <label>Embassy of Finland</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Italy</fullName>
+                    <default>false</default>
+                    <label>Embassy of Italy</label>
+                </value>
+                <value>
+                    <fullName>Embassy of India</fullName>
+                    <default>false</default>
+                    <label>Embassy of India</label>
+                </value>
+                <value>
+                    <fullName>Embassy of the United State of America</fullName>
+                    <default>false</default>
+                    <label>Embassy of the United State of America</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Switzerland</fullName>
+                    <default>false</default>
+                    <label>Embassy of Switzerland</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Croatia</fullName>
+                    <default>false</default>
+                    <label>Embassy of Croatia</label>
+                </value>
+                <value>
+                    <fullName>Embassy of the Czech Republic</fullName>
+                    <default>false</default>
+                    <label>Embassy of the Czech Republic</label>
+                </value>
+                <value>
+                    <fullName>Embassy of The People&apos;s Republic of China</fullName>
+                    <default>false</default>
+                    <label>Embassy of The People&apos;s Republic of China</label>
+                </value>
+                <value>
+                    <fullName>Embassy of the Republic of Korea</fullName>
+                    <default>false</default>
+                    <label>Embassy of the Republic of Korea</label>
+                </value>
+                <value>
+                    <fullName>Embassy of the Republic of China (Taiwan)</fullName>
+                    <default>false</default>
+                    <label>Embassy of the Republic of China (Taiwan)</label>
+                </value>
+                <value>
+                    <fullName>Korea Immigration Services</fullName>
+                    <default>false</default>
+                    <label>Korea Immigration Services</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Vietnam</fullName>
+                    <default>false</default>
+                    <label>Embassy of Vietnam</label>
+                </value>
+                <value>
+                    <fullName>Embassy of New Zealand</fullName>
+                    <default>false</default>
+                    <label>Embassy of New Zealand</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Russia</fullName>
+                    <default>false</default>
+                    <label>Embassy of Russia</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Turkey</fullName>
+                    <default>false</default>
+                    <label>Embassy of Turkey</label>
+                </value>
+                <value>
+                    <fullName>Embassy of the Netherlands</fullName>
+                    <default>false</default>
+                    <label>Embassy of the Netherlands</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Qatar</fullName>
+                    <default>false</default>
+                    <label>Embassy of Qatar</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Spain</fullName>
+                    <default>false</default>
+                    <label>Embassy of Spain</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Malaysia</fullName>
+                    <default>false</default>
+                    <label>Embassy of Malaysia</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Sweden</fullName>
+                    <default>false</default>
+                    <label>Embassy of Sweden</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Norway</fullName>
+                    <default>false</default>
+                    <label>Embassy of Norway</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Hungary</fullName>
+                    <default>false</default>
+                    <label>Embassy of Hungary</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Chile</fullName>
+                    <default>false</default>
+                    <label>Embassy of Chile</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Myanmar</fullName>
+                    <default>false</default>
+                    <label>Embassy of Myanmar</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Singapore</fullName>
+                    <default>false</default>
+                    <label>Embassy of Singapore</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Argentina</fullName>
+                    <default>false</default>
+                    <label>Embassy of Argentina</label>
+                </value>
+                <value>
+                    <fullName>Embassy of the United Arab Emirates</fullName>
+                    <default>false</default>
+                    <label>Embassy of the United Arab Emirates</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Portugal</fullName>
+                    <default>false</default>
+                    <label>Embassy of Portugal</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Greece</fullName>
+                    <default>false</default>
+                    <label>Embassy of Greece</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Belgium</fullName>
+                    <default>false</default>
+                    <label>Embassy of Belgium</label>
+                </value>
+                <value>
+                    <fullName>Embassy of South Africa</fullName>
+                    <default>false</default>
+                    <label>Embassy of South Africa</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Brazil</fullName>
+                    <default>false</default>
+                    <label>Embassy of Brazil</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Saudi Arabia</fullName>
+                    <default>false</default>
+                    <label>Embassy of Saudi Arabia</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Oman</fullName>
+                    <default>false</default>
+                    <label>Embassy of Oman</label>
+                </value>
+                <value>
+                    <fullName>Embassy of the Republic of the Philippines</fullName>
+                    <default>false</default>
+                    <label>Embassy of the Republic of the Philippines</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Egypt</fullName>
+                    <default>false</default>
+                    <label>Embassy of Egypt</label>
+                </value>
+                <value>
+                    <fullName>Embassy of Brunei</fullName>
+                    <default>false</default>
+                    <label>Embassy of Brunei</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารไทยพาณิชย์ จำกัด (มหาชน)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารทหารไทยธนชาต จำกัด (มหาชน)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารทิสโก้ จำกัด (มหาชน)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารธนชาต จำกัด (มหาชน)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารยูโอบี จำกัด (มหาชน)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารแลนด์ แอนด์ เฮ้าส์ จำกัด (มหาชน)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารสแตนดาร์ดชาร์เตอร์ด (ไทย) จำกัด (มหาชน)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารไอซีบีซี (ไทย) จำกัด (มหาชน)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารไทยเครดิต เพื่อรายย่อย จำกัด (มหาชน)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารซูมิโตโม มิตซุย ทรัสต์ (ไทย) จำกัด (มหาชน)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารเมกะ สากลพาณิชย์ จำกัด (มหาชน)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารแห่งประเทศจีน (ไทย) จำกัด (มหาชน)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารเอเอ็นแซด (ไทย) จำกัด (มหาชน)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารเจพีมอร์แกน เชส</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารซิตี้แบงก์ เอ็น.เอ.</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารซูมิโตโม มิตซุย แบงกิ้ง คอร์ปอเรชั่น</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารดอยซ์แบงก์ เอจี</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารบีเอ็นพี พารีบาส์</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารมิซูโฮ จำกัด สาขากรุงเทพฯ</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารแห่งอเมริกาเนชั่นแนลแอสโซซิเอชั่น</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารอาร์ เอช บี จำกัด</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารอินเดียนโอเวอร์ซีส์</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารโอเวอร์ซี-ไชนีสแบงกิ้งคอร์ปอเรชั่น จำกัด</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารฮ่องกงและเซี่ยงไฮ้แบงกิ้งคอร์ปอเรชั่น จำกัด</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารออมสิน</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <controllingFieldValue>GrantedLetter</controllingFieldValue>
+                <valueName>ธนาคารอาคารสงเคราะห์</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <valueName>ธนาคารเพื่อการเกษตรและสหกรณ์</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterForFinancial</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>WorkLetterWithoutSalary</controllingFieldValue>
+                <valueName>Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>The British Embassy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Australia</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Austria</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Canada</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Denmark</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Germany</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of France</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Japan</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Finland</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Italy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of India</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of the United State of America</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Switzerland</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Croatia</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of the Czech Republic</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of The People&apos;s Republic of China</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of the Republic of Korea</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of the Republic of China (Taiwan)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Korea Immigration Services</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Vietnam</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of New Zealand</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Russia</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Turkey</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of the Netherlands</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Qatar</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Spain</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Malaysia</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Sweden</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Norway</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Hungary</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Chile</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Myanmar</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Singapore</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Argentina</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of the United Arab Emirates</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Portugal</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Greece</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Belgium</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of South Africa</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Brazil</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Saudi Arabia</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Oman</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of the Republic of the Philippines</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Egypt</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SalaryLetterWithLeaveForVisa</controllingFieldValue>
+                <controllingFieldValue>SalaryLetterWithoutLeaveForVisa</controllingFieldValue>
+                <valueName>Embassy of Brunei</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Unit__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>letter_purpose__c</fullName>
+        <externalId>false</externalId>
+        <label>วัตถุประสงค์ของการขอจดหมายรับรอง</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>ESS Letter of Recommendation</label>
+    <nameField>
+        <displayFormat>LOR-{00000}</displayFormat>
+        <label>Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

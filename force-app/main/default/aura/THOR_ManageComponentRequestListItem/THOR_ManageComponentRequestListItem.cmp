@@ -1,0 +1,92 @@
+<aura:component>
+	<aura:attribute name="recordId" type="String" />
+	<aura:attribute name="requestItem" type="Spare_Part_Request__c" />
+	<aura:attribute name="quantity" type="Integer" default="1" />
+	<aura:attribute name="selected" type="Boolean" default="false" />
+	<aura:registerEvent name="updateQuantity" type="c:THOR_UpdateComponentQuantity" />
+	<aura:registerEvent name="deleteRequest" type="c:THOR_DeleteRequest" />
+	<aura:registerEvent name="componentSelect" type="c:THOR_ComponentSelect" />
+	<lightning:navigation aura:id="navService" />
+	<aura:handler name="init" value="{! this }" action="{! c.init }" />
+
+	<aura:method name="clearSelection" action="{!c.clearSelection}" access="public"></aura:method>
+	<aura:method name="selectAll" action="{!c.selectAll}" access="public"></aura:method>
+
+	<lightning:layoutItem size="10" smallDeviceSize="6" mediumDeviceSize="8" largeDeviceSize="10" flexibility="auto" padding="around-small">
+		<tr class="slds-hint-parent" style="height: 4rem">
+			<lightning:input
+				aura:id="lightning-input-checkbox"
+				type="checkbox"
+				name="{!v.recordId}"
+				onchange="{!c.selectRecord}"
+				checked="{!v.selected}"
+				label="{!
+					concat(v.requestItem.Item_No__c + ', ',
+						concat(v.requestItem.Spare_Part__r.Material_Number__c + ', ',
+							concat(v.requestItem.Spare_Part__r.Material_Description__c + ', ',
+								concat(
+									if (v.requestItem.Order_Operation__r.Operation_Text__c != null,
+										v.requestItem.Order_Operation__r.Operation_Text__c,
+										if (v.requestItem.OrderOperation.Operation_Text__c != null,
+											v.requestItem.OrderOperation.Operation_Text__c,
+											''
+										)
+									) + ', ',
+										concat(
+											if (v.requestItem.Order_Operation__r.Operation_Shot_Text__c != null,
+												v.requestItem.Order_Operation__r.Operation_Shot_Text__c,
+												if (v.requestItem.OrderOperation.Operation_Shot_Text__c != null,
+													v.requestItem.OrderOperation.Operation_Shot_Text__c,
+													''
+												)
+											) + ', ',
+												concat(
+													v.requestItem.Available_Quantity + ', ',
+													v.requestItem.UM__c
+												)
+										)
+								))))
+				}"
+			/>
+			<aura:if isTrue="{!v.requestItem.Integration_Message__c}">
+				<div class="slds-p-left_large slds-text-color_error">{!v.requestItem.Integration_Message__c}</div>
+			</aura:if>
+		</tr>
+	</lightning:layoutItem>
+
+	<lightning:layoutItem size="2" smallDeviceSize="6" mediumDeviceSize="4" largeDeviceSize="2" flexibility="auto" padding="around-small">
+		<tr>
+			<div style="display: inline-flex">
+				<lightning:buttonIcon
+					iconName="utility:ban"
+					variant="bare"
+					onclick="{! c.decreaseQuantity }"
+					alternativeText="Decrease Quantity"
+					title="Decrease Quantity"
+					size="large"
+				/>
+				<div class="slds-var-m-horizontal_small" style="width: 3rem">
+					<lightning:input type="number" min="0" value="{!v.quantity}" variant="label-hidden" />
+				</div>
+				<lightning:buttonIcon
+					iconName="utility:new"
+					variant="bare"
+					onclick="{! c.increaseQuantity }"
+					alternativeText="Increase Quantity"
+					title="Increase Quantity"
+					size="large"
+				/>
+				<div class="slds-var-m-horizontal_small">
+					<lightning:buttonIcon
+						iconName="utility:delete"
+						variant="bare"
+						onclick="{! c.deleteRequest}"
+						alternativeText="Remove"
+						title="Remove"
+						size="large"
+					/>
+				</div>
+			</div>
+		</tr>
+	</lightning:layoutItem>
+</aura:component>

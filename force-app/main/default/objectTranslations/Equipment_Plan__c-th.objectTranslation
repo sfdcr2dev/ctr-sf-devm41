@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Equipment*</value>
+    </caseValues>
+    <fields>
+        <label><!-- Discipline --></label>
+        <name>Discipline__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Procurement Plan --></label>
+        <name>Project_Procurement_Plan__c</name>
+        <relationshipLabel><!-- Equipment* --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Equipment Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

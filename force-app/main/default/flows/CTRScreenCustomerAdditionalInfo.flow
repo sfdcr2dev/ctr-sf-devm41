@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>(22/02/2024) Edit display formula company&apos;s credit rating.</description>
+    <formulas>
+        <name>fxCompanyLatestCreditRating</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!getAccountRec.CompanyLatestCreditRating__c}), &quot;-&quot;, {!getAccountRec.CompanyLatestCreditRating__c})</expression>
+    </formulas>
+    <formulas>
+        <name>fxMainProduct</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK(TEXT({!getAccountRec.MainProduct__c})), &quot;-&quot;, TEXT({!getAccountRec.MainProduct__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>fxMainService</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK(TEXT({!getAccountRec.MainService__c})), &quot;-&quot;, TEXT({!getAccountRec.MainService__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>fxOtherMainProduct</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!getAccountRec.OtherMainProduct__c}), &quot;-&quot;, {!getAccountRec.OtherMainProduct__c})</expression>
+    </formulas>
+    <formulas>
+        <name>fxOtherMainService</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!getAccountRec.OtherMainService__c}), &quot;-&quot;, {!getAccountRec.OtherMainService__c})</expression>
+    </formulas>
+    <interviewLabel>CTRScreen {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CTRScreenCustomerAdditionalInfo</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>getAccountRec</name>
+        <label>getAccountRec</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>AdditionalInformation</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>Account</object>
+    </recordLookups>
+    <screens>
+        <name>AdditionalInformation</name>
+        <label>AdditionalInformation</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>AdditionalInformationSection</name>
+            <fieldText>Additional Information</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>CompanyLatestCreditRating</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Company&apos;s latest credit rating by international agencies: (Please specify if any e.g. BBB, Baa2)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;{!fxCompanyLatestCreditRating}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;____________________________________________________________________________________________________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <startElementReference>getAccountRec</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

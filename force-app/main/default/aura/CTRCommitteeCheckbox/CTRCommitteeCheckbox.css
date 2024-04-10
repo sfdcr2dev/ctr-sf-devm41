@@ -1,0 +1,26 @@
+.THIS .slds-is-open>.slds-accordion__summary {
+    margin-bottom: calc(var(--slds-c-accordion-section-spacing-block-end, var(--sds-c-accordion-section-spacing-block-end, var(--lwc-spacingSmall,0.75rem))) * -1)
+}
+
+.THIS .slds-accordion__section {
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.THIS .slds-accordion__section [icon-name="utility:switch"] {
+    transform: rotate(-90deg);
+}
+
+.THIS .slds-accordion__section.slds-is-open [icon-name="utility:switch"] {
+    transform: rotate(0deg);
+}
+
+
+.THIS .slds-button:hover,
+.THIS .slds-button:focus {
+    text-decoration: none;
+}
+
+.THIS .slds-button:active {
+    border-color: transparent;
+}

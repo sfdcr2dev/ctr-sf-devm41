@@ -1,0 +1,139 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,lightning:isUrlAddressable"
+    access="global" controller="ODM_HomeCtrl">
+
+    <aura:attribute name="user" type="Object" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="fitlerEnhanceEvent" event="c:ODM_FilterEnhanceEvent" action="{!c.handleFilter}" />
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.doInit}" />
+
+    <aura:attribute name="notification_list" type="List" default="[
+        { Name: 'Loading', Type__c: '', description: 'Please wait...' },
+    ]" access="private" />
+    <aura:attribute name="isLoadingNotificationList" type="Boolean" default="true" access="private" />
+
+    <aura:attribute name="filter" type="Map" default="{}" access="private" />
+    <aura:attribute name="filterDefaultNoti" type="Map" default="{ 'Notification_Number__c': '', 'Notification_Type__c': '', 'Functional_Location__c': '', 'Main_Work_Center__c': '', 'Maintenance_Plant__c': '', 'Create_Date_From__c': '', 'Create_Date_To__c': '', 'Submission_Date_From__c': '', 'Submission_Date_To__c': '', 'Description__c': '', 'Requester__c': '' }" access="private" />
+    <aura:attribute name="isLoadedMainWorkCenter" type="Boolean" default="false" />
+
+    <aura:attribute name="wctotalrecord" type="Integer" default="0" access="private" />
+    <aura:attribute name="wcveritotalrecord" type="Integer" default="0" access="private" />
+    <aura:attribute name="wcinspectotalrecord" type="Integer" default="0" access="private" />
+
+    <aura:attribute name="pagination" type="List" default="['...']" access="private" />
+    <aura:attribute name="totalrecord" type="Integer" default="0" access="private" />
+    <aura:attribute name="totalpage" type="Integer" default="0" access="private" />
+    <aura:attribute name="currentpage" type="Integer" default="1" access="private" />
+    <aura:attribute name="offset" type="Integer" default="0" access="private" />
+    <aura:attribute name="rowlimit" type="Integer" default="20" access="private" />
+
+    <lightning:navigation aura:id="navService" />
+
+    <div>
+        <div class="slds-grid">
+            <div class="slds-col">
+                <lightning:avatar class="thaioil_logo" src="{! $Resource.Logo }" size="large" />
+            </div>
+        </div>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                <p class="header">
+                    Hello, <strong>{!(not(empty(v.user.FirstName))) ? v.user.FirstName : v.user.LastName}</strong>
+                </p>
+                <span class="header-title">Have a nice day !</span>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-m-top_medium slds-text-align_right">
+                <!-- <div class="slds-show_inline-block">
+                    <c:ODM_RaiseSAP />
+                </div>
+                <div class="slds-show_inline-block">
+                    <c:ODM_RaiseMMBO />
+                </div> -->
+                <div class="slds-show_inline-block">
+                    <c:ODM_NotificationCreatePage />
+                </div>
+            </div>
+        </div>
+        <div class="slds-grid slds-m-top_medium">
+            <div class="slds-col slds-size_1-of-4 slds-align_absolute-center menu-button">
+                <lightning:button variant="base" name="WorkClearance" value="WorkClearance"
+                    onclick="{!c.redirectPageWc}">
+                    <div><img src="{!$Resource.PTWVerificationIcon + '/WorkClearanceIcon.png'}" /></div>
+                    <label>Work<br />Clearance</label>
+                </lightning:button>
+            </div>
+            <div class="slds-col slds-size_1-of-4 slds-align_absolute-center menu-button">
+                <lightning:button variant="base" name="PTWVerification" value="Verification"
+                    onclick="{!c.redirectPageWc}">
+                    <div><img src="{!$Resource.PTWVerificationIcon + '/PTW_VerificationIcon.png'}" /></div>
+                    <label>PTW<br />Verification</label>
+                </lightning:button>
+            </div>
+            <div class="slds-col slds-size_1-of-4 slds-align_absolute-center menu-button">
+                <lightning:button variant="base" name="PTWInspection" value="Inspection" onclick="{!c.redirectPageWc}">
+                    <div><img src="{!$Resource.PTWVerificationIcon + '/PTW_InspectionIcon.png'}" /></div>
+                    <label>PTW<br />Inspection</label>
+                </lightning:button>
+            </div>
+            <div class="slds-col slds-size_1-of-4 slds-align_absolute-center menu-button">
+                <lightning:button variant="base" name="SwitchOver" onclick="{!c.redirectPageSwitchOver}">
+                    <div><img src="{!$Resource.PTWVerificationIcon + '/SwitchOverIcon.png'}" /></div>
+                    <label>Switch<br />Over</label>
+                </lightning:button>
+            </div>
+        </div>
+
+        <div class="slds-grid slds-m-top_medium">
+            <div class="slds-col">
+                <p class="slds-text-heading_medium heading-notification"><strong>You have {!v.totalrecord}
+                        Notifications!</strong></p>
+                <p class="slds-text-body_small heading-notification-column">Notification No., Notification Status, Type,
+                    FL, Notification Date, Description</p>
+            </div>
+            <aura:if isTrue="{!v.isLoadedMainWorkCenter}">
+                <div class="slds-col slds-grow-none slds-col_bump-left">
+                    <c:ODM_FilterEnhance aura:id="ODM_FilterEnhance" title="Notification - Filter by" filterPage="ODM_NotificationFilter" filterDefault="{!v.filterDefaultNoti}" />
+                </div>
+            </aura:if>
+        </div>
+
+        <div class="slds-m-top_medium slds-is-relative">
+            <aura:if isTrue="{!v.isLoadingNotificationList}">
+                <lightning:spinner alternativeText="Loading" size="small" />
+            </aura:if>
+            <aura:if
+                isTrue="{!and(and(not(v.isLoadingNotificationList), v.isInitialized), v.notification_list.length == 0)}">
+                <div class="slds-text-align_center">Data not found</div>
+            </aura:if>
+            <aura:iteration items="{!v.notification_list}" var="noti" indexVar="index" start="0" end="6">
+                <div class="slds-box slds-box_small">
+                    <div class="slds-grid">
+                        <div
+                            class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+                            <!-- <lightning:icon iconName="utility:notification" alternativeText="{!noti.Name}" title="{!noti.Name}" /> -->
+                            <div class="icon-type">{! noti.Type__c}</div>
+                        </div>
+                        <div class="box-detail slds-col">
+                            <a data-record-id="{!noti.Id}" href="javascript:void(0);" class="slds-text-link_reset"
+                                onclick="{!c.navigateToDisplay}">
+                                <aura:if isTrue="{!noti.Name}">
+                                    <p class="slds-text-link">{!noti.Name}</p>
+                                </aura:if>
+                                <p>{! noti.info }</p>
+                                <aura:if isTrue="{!noti.description}">
+                                    <p class="slds-hyphenate">{! noti.description }</p>
+                                </aura:if>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </aura:iteration>
+        </div>
+
+        <div class="slds-m-top_medium slds-text-align_right">
+            <lightning:button class="show-more" variant="Neutral" label="Show More >" title="Show More >"
+                onclick="{!c.redirectPageNotification}" />
+        </div>
+    </div>
+
+</aura:component>

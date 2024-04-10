@@ -1,0 +1,30 @@
+.THIS .slds-card__header-title {
+	justify-content: center;
+}
+
+.THIS .slds-card__footer {
+	text-align: right;
+}
+
+@media (max-width: 602px) {
+	.THIS .slds-form-element__label,
+	.THIS .slds-card__footer button.slds-button {
+		font-size: 0.875rem !important;
+	}
+}
+
+.THIS .custom-box {
+	border: 1px solid #d8dde6;
+}
+
+.THIS .hidden {
+	display: none;
+}
+
+.THIS .noPointer {
+	pointer-events: none;
+}
+
+.THIS lightning-formatted-rich-text.slds-rich-text-editor__output span {
+	white-space: break-spaces;
+}

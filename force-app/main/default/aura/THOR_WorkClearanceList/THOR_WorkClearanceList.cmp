@@ -1,0 +1,108 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" controller="THOR_WorkClearanceController" access="global">
+	<lightning:navigation aura:id="navService" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="fitlerEnhanceEvent" event="c:THOR_FilterEnhanceEvent" action="{!c.handleFilter}" />
+
+	<aura:attribute name="filter" type="Map" default="{}" access="private" />
+	<aura:attribute name="workClearances" type="List" default="[]" access="private" />
+	<aura:attribute name="workClearances_execution" type="List" default="[]" access="private" />
+	<aura:attribute name="workClearances_execution_count" type="Integer" default="0" access="private" />
+	<aura:attribute name="workClearances_execution_loading" type="Boolean" default="false" access="private" />
+	<aura:attribute name="workClearances_new" type="List" default="[]" access="private" />
+	<aura:attribute name="workClearances_new_count" type="Integer" default="0" access="private" />
+	<aura:attribute name="workClearances_new_loading" type="Boolean" default="false" access="private" />
+
+	<div class="workclearance__container">
+		<lightning:layout multipleRows="true">
+			<lightning:layoutItem class="slds-var-p-vertical_small slds-var-p-bottom_small" padding="horizontal-small" size="12">
+				<div class="d-flex d-justify-space-between">
+					<h5 style="display: flex; align-items: center">Work Clearance List ({!v.workClearances_new_count + v.workClearances_execution_count})</h5>
+					<c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterWorkClearanceListFrom" />
+				</div>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem class="slds-var-p-bottom_small" padding="horizontal-small" size="12">
+				<lightning:card>
+					<aura:set attribute="title">
+						<div>You have {!v.workClearances_new_count} Work Clearance without Notification and Order</div>
+					</aura:set>
+					<!-- <aura:set attribute="actions"></aura:set> -->
+					<aura:set attribute="footer">
+						<aura:if isTrue="{! v.workClearances_new_count gt 3}">
+							<lightning:button
+								variant="base"
+								label="Show more"
+								title="Show more"
+								name="Without Notification and Order"
+								onclick="{!c.redirectWorkClearanceAll}"
+							/>
+						</aura:if>
+					</aura:set>
+
+					<aura:if isTrue="{!v.workClearances_new_loading}">
+						<lightning:spinner alternativeText="Loading" size="small" />
+					</aura:if>
+					<p class="slds-var-p-around_medium workclearance__bg-gray">Work Clearance number, FL, Main Work center, Description</p>
+
+					<div class="slds-var-p-around_x-small">
+						<aura:iteration items="{!v.workClearances_new}" var="w" indexVar="index">
+							<aura:if isTrue="{! index lt 3}">
+								<div class="slds-box slds-box_small">
+									<a data-record-id="{!w.Id}" href="javascript:void(0);" class="slds-text-link_reset" onclick="{!c.navigateToDisplay}">
+										<aura:if isTrue="{!w.Name}">
+											<p class="slds-text-link">{!w.Name}</p>
+										</aura:if>
+										<p>{! w.info }</p>
+										<!-- <aura:if isTrue="{!w.Description__c}">
+											<p class="slds-hyphenate">{! w.Description__c }</p>
+										</aura:if> -->
+									</a>
+								</div>
+							</aura:if>
+						</aura:iteration>
+					</div>
+				</lightning:card>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem class="slds-var-p-bottom_small" padding="horizontal-small" size="12">
+				<lightning:card>
+					<aura:set attribute="title">
+						<div>You have {!v.workClearances_execution_count} Execution Work Clearance</div>
+					</aura:set>
+					<!-- <aura:set attribute="actions"></aura:set> -->
+					<aura:set attribute="footer">
+						<aura:if isTrue="{! v.workClearances_execution_count gt 3}">
+							<lightning:button variant="base" label="Show more" title="Show more" name="In Progress" onclick="{!c.redirectWorkClearanceAll}" />
+						</aura:if>
+					</aura:set>
+
+					<aura:if isTrue="{!v.workClearances_execution_loading}">
+						<lightning:spinner alternativeText="Loading" size="small" />
+					</aura:if>
+					<p class="slds-var-p-around_medium workclearance__bg-gray">
+						Work Clearance number, Notification Number, Order Number, FL, Priority, Main Work center, Description
+					</p>
+
+					<div class="slds-var-p-around_x-small">
+						<aura:iteration items="{!v.workClearances_execution}" var="w" indexVar="index">
+							<aura:if isTrue="{! index lt 3}">
+								<div class="slds-box slds-box_small">
+									<a data-record-id="{!w.Id}" href="javascript:void(0);" class="slds-text-link_reset" onclick="{!c.navigateToDisplay}">
+										<aura:if isTrue="{!w.Name}">
+											<p class="slds-text-link">{!w.Name}</p>
+										</aura:if>
+										<p>{! w.info }</p>
+										<!-- <aura:if isTrue="{!w.Description__c}">
+											<p class="slds-hyphenate">{! w.Description__c }</p>
+										</aura:if> -->
+									</a>
+								</div>
+							</aura:if>
+						</aura:iteration>
+					</div>
+				</lightning:card>
+			</lightning:layoutItem>
+		</lightning:layout>
+	</div>
+</aura:component>

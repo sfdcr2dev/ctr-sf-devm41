@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Handover</value>
+    </caseValues>
+    <fields>
+        <label><!-- As Built P&amp;ID --></label>
+        <name>As_Built_P_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- As Built --></label>
+        <name>As_Built__c</name>
+    </fields>
+    <fields>
+        <label><!-- COD --></label>
+        <name>COD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Concerned Equipment Installation --></label>
+        <name>Concerned_Equipment_Installation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contractor --></label>
+        <name>Contractor__c</name>
+    </fields>
+    <fields>
+        <label><!-- E and I Work Election --></label>
+        <name>E_and_I_Work_Election__c</name>
+    </fields>
+    <fields>
+        <label><!-- Function Testing --></label>
+        <name>Function_Testing__c</name>
+    </fields>
+    <fields>
+        <label><!-- HOC --></label>
+        <name>HOC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Item --></label>
+        <name>Item__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loop Testing --></label>
+        <name>Loop_Testing__c</name>
+    </fields>
+    <fields>
+        <label><!-- MCC --></label>
+        <name>MCC__c</name>
+    </fields>
+    <fields>
+        <label><!-- MC P --></label>
+        <name>MC_P__c</name>
+    </fields>
+    <fields>
+        <label><!-- MC --></label>
+        <name>MC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Operating Manual --></label>
+        <name>Operating_Manal__c</name>
+    </fields>
+    <fields>
+        <label><!-- PSSR --></label>
+        <name>PSSR__c</name>
+    </fields>
+    <fields>
+        <label><!-- P&amp;ID --></label>
+        <name>P_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Piping ReInstatement --></label>
+        <name>Piping_ReInstatement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Punch A Complete --></label>
+        <name>Punch_A_Complete__c</name>
+    </fields>
+    <fields>
+        <label><!-- Punch B --></label>
+        <name>Punch_B__c</name>
+    </fields>
+    <fields>
+        <label><!-- Punch C --></label>
+        <name>Punch_C__c</name>
+    </fields>
+    <fields>
+        <label><!-- Punch List Management System --></label>
+        <name>Punch_List_Management_System__c</name>
+        <relationshipLabel><!-- Handover --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- RFSU P --></label>
+        <name>RSFU_P__c</name>
+    </fields>
+    <fields>
+        <label><!-- RFSU --></label>
+        <name>RSFU__c</name>
+    </fields>
+    <fields>
+        <label><!-- Red Mark --></label>
+        <name>Red_Mark__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAP Data --></label>
+        <name>SAP_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Spare Parts List --></label>
+        <name>Spare_Parts_List__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tag and Datasheet --></label>
+        <name>Tag_and_Datasheet__c</name>
+    </fields>
+    <fields>
+        <label><!-- Test Pack --></label>
+        <name>Test_Pack__c</name>
+    </fields>
+    <layouts>
+        <layout>Handover Layout</layout>
+        <sections>
+            <label><!-- Construction Activity (MC) --></label>
+            <section>Construction Activity (MC)</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Other --></label>
+            <section>Other</section>
+        </sections>
+        <sections>
+            <label><!-- Precommissioning (RSFU) --></label>
+            <section>Precommissioning (RSFU)</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- As Built P&amp;ID cannot be greater than 100 --></errorMessage>
+        <name>As_Built_P_ID_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- As Built cannot be greater than 100 --></errorMessage>
+        <name>As_Built_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- No letter are allow. --></errorMessage>
+        <name>Check_No_Alphabet_allow</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Concerned Equipment Installaion cannot be greater than 100 --></errorMessage>
+        <name>Concerned_Equipment_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- E and I Work Election cannot be greater than 100 --></errorMessage>
+        <name>E_I_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Function Testing cannot be greater than 100 --></errorMessage>
+        <name>Function_Testing_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- HOC cannot be greater than 100 --></errorMessage>
+        <name>HOC_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Loop Testing cannot be greater than 100 --></errorMessage>
+        <name>Loop_Testing_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- MCC cannot be greater than 100 --></errorMessage>
+        <name>MCC_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Operating Manual cannot be greater than 100 --></errorMessage>
+        <name>Operating_Manual_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Piping ReInstatement cannot be greater than 100 --></errorMessage>
+        <name>Piping_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Punch A Complete cannot be greater than 100 --></errorMessage>
+        <name>Punch_A_Complete_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Punch B cannot be greater than 100 --></errorMessage>
+        <name>Punch_B_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Punch C cannot be greater than 100 --></errorMessage>
+        <name>Punch_C_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Red Mark cannot be greater than 100 --></errorMessage>
+        <name>Red_Mark_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- SAP Data cannot be greater than 100 --></errorMessage>
+        <name>SAP_Data_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Spare Parts List cannot be greater than 100 --></errorMessage>
+        <name>Spare_Parts_List_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Tag and Datasheet cannot be greater than 100 --></errorMessage>
+        <name>Tag_And_DataSheet_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Test Pack cannot be greater than 100 --></errorMessage>
+        <name>Test_Pack_Validation</name>
+    </validationRules>
+</CustomObjectTranslation>

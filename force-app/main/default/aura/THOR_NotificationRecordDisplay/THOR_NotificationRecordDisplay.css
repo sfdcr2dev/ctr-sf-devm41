@@ -1,0 +1,77 @@
+.THIS {
+	/* height: 100% !important; */
+	/* position: relative; */
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.THIS .slds-tabs_default__nav {
+	background-color: white;
+}
+
+.THIS .custom-box {
+	border: 1px solid #d8dde6;
+}
+
+.THIS .wrap-text {
+	overflow-wrap: break-word;
+}
+
+.THIS.slds-tabs_default {
+	background-color: transparent;
+}
+
+.THIS .container {
+	position: relative;
+	z-index: 1;
+}
+
+.THIS .prevent-me {
+	z-index: 2;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.THIS .trunc-text .slds-form-element__static {
+	width: 350px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.THIS .cTHOR_SingleTab {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.THIS .slds-tabs_scoped__content {
+	padding: 0 !important;
+}
+
+.THIS .tab-Padding {
+	padding: 1em !important;
+}
+
+.THIS .edit-modal-container {
+	width: 85% !important;
+	margin: 0 auto;
+	/* background-color: white; */
+}
+
+.THIS.back-button {
+	width: 60px;
+	background-color: white;
+	border-radius: 5px;
+	font-size: 28px;
+}
+
+.THIS#edit-modal {
+	overflow: scroll !important;
+}
+
+@media only screen and (max-width: 900px) {
+	.THIS .edit-modal-container {
+		width: 100% !important;
+	}
+}

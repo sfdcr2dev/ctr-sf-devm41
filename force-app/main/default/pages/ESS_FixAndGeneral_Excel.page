@@ -1,0 +1,261 @@
+<apex:page controller="ESS_FixAndGeneralExcelController"
+  language="th"
+  cache="true" showHeader="false" action="{!OnloadExcel}"
+  contentType="application/vnd.ms-excel#FixAndGeneral Report - {!todayDate}.xls">
+  
+  <html lang="en">
+      <head>
+          <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+          <style>
+                table, td, th {
+                  border: 1px solid;
+                }
+                
+                table {
+                  width: 100%;
+                  border-collapse: collapse;
+                }
+                .text { mso-number-format:\@; }
+            </style>
+      </head>
+      <body>
+      
+          <apex:outputPanel rendered="{!fagSize > 0}">
+              <h3>{!reportName}</h3>
+              <b>Data as of : {!todayDate} Time : {!todayTime}</b> <br/>
+              <b>Year : {!year}, Month : {!monthName}</b> <br/><br/>
+              <table>
+                  <tr>
+                      <th>Document No</th>
+                      <th>Document Type</th>
+                      <th>หัวเรื่อง (Topic)</th>
+                      <th>รายละเอียด (Detail)</th>
+                      <apex:outputPanel rendered="{!typeOfService != 'Housing'}">
+                          <th>วันที่ต้องการให้แล้วเสร็จ</th>
+                      </apex:outputPanel>
+                      <apex:outputPanel rendered="{!typeOfService == 'Housing'}">
+                          <th>วันที่ต้องการให้เข้าซ่อม</th>
+                          <th>เวลาที่ต้องการให้เข้าซ่อม</th>
+                          <th>วันที่ต้องการให้แล้วเสร็จ</th>
+                          <th>บ้านเลขที่</th>
+                          <th>กะ</th>
+                          <th>ประเภทที่อยู่อาศัย</th>
+                      </apex:outputPanel>
+                      <apex:outputPanel rendered="{!typeOfService == 'OfficeEquipment'}">
+                          <th>พื้นที่แจ้งซ่อม</th>
+                          <th>สำนักงาน/อาคาร (Office/Building)</th>
+                          <th>ชั้น/พื้นที่ (Floor/Location/Area)</th>
+                      </apex:outputPanel>
+                      <apex:outputPanel rendered="{!typeOfService == 'Transportation'}">
+                          <th>สถานที่/พื้นที่ (Location/Area)</th>
+                          <th>ประเภทยานพาหนะ</th>
+                          <th>หมายเลขยานพาหนะ</th>
+                          <th>รายละเอียดของแต่ละคัน</th>
+                      </apex:outputPanel>
+                      <apex:outputPanel rendered="{!typeOfService == 'GeneralService'}">
+                          <th>พื้นที่แจ้งซ่อม</th>
+                          <th>ชั้น/พื้นที่ (Floor/Location/Area)</th>
+                      </apex:outputPanel>
+                      
+                      <th>เบอร์โทรศัพท์ภายใน</th>
+                      <th>เบอร์โทรศัพท์มือถือ</th>
+                      <th>Employee Name (Requester)</th>
+                      <th>Employee ID (Requester)</th>
+                      <th>Email (Requester)</th>
+                      <th>Position (Requester)</th>
+                      <th>Function (Requester)</th>
+                      <th>Department (Requester)</th>
+                      <th>Section (Requester)</th>
+                      <th>Unit (Requester)</th>
+                      <th>Created Date</th>
+                      <th>Submitted Date</th>
+                      <th>Employee Name (On Behalf Of)</th>
+                      <th>Employee ID (On Behalf Of)</th>
+                      <th>Email (On Behalf Of)</th>
+                      <th>Position (On Behalf Of)</th>
+                      <th>Function (On Behalf Of)</th>
+                      <th>Department (On Behalf Of)</th>
+                      <th>Section (On Behalf Of)</th>
+                      <th>Unit (On Behalf Of)</th>
+                      <th>สถานะการ Verify</th>
+                      <th>เหตุผล (On Behalf Of)</th>
+                      <th>Verified Date / Rejected Date</th>
+                      <th>Accepted By</th>
+                      <th>Accepted Date</th>
+                      <th>ประเภทการซ่อม</th>
+                      <th>ประเภทการซ่อมอื่นๆ</th>
+                      <th>ค่าใช้จ่าย</th>
+                      <th>รายละเอียดเพิ่มเติม</th>
+                      <th>รายละเอียดสำหรับ Admin</th>
+                      <th>Completed By</th>
+                      <th>Completed Date</th>
+                      <th>Cancelled By</th>
+                      <th>Cancelled Reason</th>
+                      <th>Cancelled Date</th>
+                      <th>Current Status</th>
+                      <th>Rating (Requester)</th>
+                      <th>มือความเอาใจใส่ (Requester)</th>
+                      <th>ทำงานรวดเร็ว (Requester)</th>
+                      <th>ตรงต่อเวลา (Requester)</th>
+                      <th>มีความเชี่ยวชาญ (Requester)</th>
+                      <th>Rating (On Behalf of)</th>
+                      <th>มือความเอาใจใส่ (On Behalf of)</th>
+                      <th>ทำงานรวดเร็ว (On Behalf of)</th>
+                      <th>ตรงต่อเวลา (On Behalf of)</th>
+                      <th>มีความเชี่ยวชาญ (On Behalf of)</th>
+                  </tr>
+                  <apex:repeat value="{!fagTables}" var="Data">
+                      <tr>
+                          <td>{!Data.documentNo}</td>
+                          <td>{!Data.documentType}</td>
+                          <td>{!Data.topic}</td>
+                          <td>{!Data.detail}</td>
+                          
+                          <apex:outputPanel rendered="{!typeOfService != 'Housing'}">
+                              <td>
+                                  <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                    <apex:param value="{!Data.expectedDueDate}"/>  
+                                  </apex:outputText>
+                              </td>
+                          </apex:outputPanel>
+                          
+                          <apex:outputPanel rendered="{!typeOfService == 'Housing'}">
+                              <td>
+                                  <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                    <apex:param value="{!Data.repairDate}"/>  
+                                  </apex:outputText>
+                              </td>
+                              <td>
+                                  <apex:outputText value="{0,time,HH:MM}" >  
+                                    <apex:param value="{!Data.repairTime}"/>  
+                                  </apex:outputText>
+                              </td>
+                              <td>
+                                  <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                    <apex:param value="{!Data.expectedDueDate}"/>  
+                                  </apex:outputText>
+                              </td>
+                              <td>{!Data.houseNo}</td>
+                              <td>{!Data.period}</td>
+                              <td>{!Data.houseType}</td>
+                          </apex:outputPanel>
+                          
+                          <apex:outputPanel rendered="{!typeOfService == 'OfficeEquipment'}">
+                              <td>{!Data.repairArea}</td>
+                              <td>{!Data.building}</td>
+                              <td>{!Data.floor}</td>
+                          </apex:outputPanel>
+                          
+                          <apex:outputPanel rendered="{!typeOfService == 'Transportation'}">
+                              <td>{!Data.location}</td>
+                              <td>{!Data.transportationType}</td>
+                              <td>{!Data.transportationNo}</td>
+                              <td>{!Data.transportationDetail}</td>
+                          </apex:outputPanel>
+                          
+                          <apex:outputPanel rendered="{!typeOfService == 'GeneralService'}">
+                              <td>{!Data.repairArea}</td>
+                              <td>{!Data.floor}</td>
+                          </apex:outputPanel>
+                          
+                          <td class="text">{!Data.telNo}</td>
+                          <td class="text">{!Data.mobileNo}</td>
+                          <td>{!Data.requesterName}</td>
+                          <td class="text">{!Data.requesterEmployeeId}</td>
+                          <td>{!Data.requesterEmail}</td>
+                          <td>{!Data.requesterPosition}</td>
+                          <td>{!Data.requesterFunction}</td>
+                          <td>{!Data.requesterDepartment}</td>
+                          <td>{!Data.requesterSection}</td>
+                          <td>{!Data.requesterUnit}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.createdDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.submittedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.obhName}</td>
+                          <td class="text">{!Data.obhEmployeeId}</td>
+                          <td>{!Data.obhEmail}</td>
+                          <td>{!Data.obhPosition}</td>
+                          <td>{!Data.obhFunction}</td>
+                          <td>{!Data.obhDepartment}</td>
+                          <td>{!Data.obhSection}</td>
+                          <td>{!Data.obhUnit}</td>
+                          <td>{!Data.verifyStatus}</td>
+                          <td>{!Data.obhComment}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.verifiedRejectedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.acceptedBy}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.acceptedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.typeOfService}</td>
+                          <td>{!Data.typeOfServiceOther}</td>
+                          <td>
+                              <apex:outputText value="{0, number, ###,###,###.##}" >  
+                                <apex:param value="{!Data.cost}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.moreDetail}</td>
+                          <td>{!Data.internalDetail}</td>
+                          <td>{!Data.completedBy}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.completedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.cancelledBy}</td>
+                          <td>{!Data.cancelComment}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.cancelledDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.currentStatus}</td>
+                          <apex:outputPanel rendered="{!Data.requesterRatingCompleted == true}">
+                              <td>{!Data.requesterRating}</td>
+                              <td>{!Data.requesterAttentiveness}</td>
+                              <td>{!Data.requesterFast}</td>
+                              <td>{!Data.requesterPunctuality}</td>
+                              <td>{!Data.requesterExpertise}</td>
+                          </apex:outputPanel>
+                          <apex:outputPanel rendered="{!Data.requesterRatingCompleted == false}">
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                          </apex:outputPanel>
+                          <apex:outputPanel rendered="{!Data.obhRatingCompleted == true}">
+                              <td>{!Data.obhRating}</td>
+                              <td>{!Data.obhAttentiveness}</td>
+                              <td>{!Data.obhFast}</td>
+                              <td>{!Data.obhPunctuality}</td>
+                              <td>{!Data.obhExpertise}</td>
+                          </apex:outputPanel>
+                          <apex:outputPanel rendered="{!Data.obhRatingCompleted == false}">
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                          </apex:outputPanel>
+                          
+                      </tr>
+                  </apex:repeat>
+              </table>
+          </apex:outputPanel>
+          
+      </body>
+  </html>
+</apex:page>

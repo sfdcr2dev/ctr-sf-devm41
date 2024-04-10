@@ -1,0 +1,86 @@
+.THIS .slds-media__body {
+    padding: 1rem .5rem 1rem .5rem;
+}
+.THIS .title {
+    border-right: 3px solid #ddd !important;
+    justify-content: center;
+}
+.THIS .news-coin-balance {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.THIS .news-coin-balance label {
+    display: block;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.THIS .news-coin-balance .news-coin-icon {
+    font-weight: 600;
+}
+
+.THIS .news-coin-balance .news-coin-icon svg {
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+}
+.THIS .news-coin-expiry {
+    color: rgb(128, 128, 128, 1);
+    font-size: .9rem;
+    font-style: italic;
+}
+.THIS .slds-m-right_small {
+    width: 30%;
+    margin-left: 5px;
+}
+@media (max-width: 1474px) {
+    .THIS .text-coin {
+        display: none !important;
+    }
+}
+@media (max-width: 1023px) {
+    .THIS .card__header-title {
+        font-size: 0.9rem !important;
+    }
+    .THIS .news-coin-balance {
+        font-size: 1.2rem !important;
+    }
+}
+.THIS .card__header-title {
+    text-transform: uppercase;
+    font-size: 150%;
+    font-weight: bold;
+}
+.THIS .text-coin {
+    display: block;
+    font-family: FC Iconic;
+}
+.THIS .total-coin {
+    text-align: center;
+    font-size: 1.2rem;
+    font-family: Poppins;
+}
+.THIS .logo {
+    width: 60%;
+}
+
+.THIS .spacex {
+    justify-content: unset;
+    text-align: unset;
+}
+
+.THIS .name {
+    margin-left: 0;
+}
+
+@media (min-width: 48em) {
+    .THIS .spacex {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .THIS .name {
+        margin-left: 22%;
+    }
+}

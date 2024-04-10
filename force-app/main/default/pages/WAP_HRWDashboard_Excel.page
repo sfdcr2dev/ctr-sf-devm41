@@ -1,0 +1,45 @@
+<apex:page controller="WAP_HRWDashboardExcelController"
+  language="th" action="{!OnloadExcel}"
+  cache="true" showHeader="false"
+  contentType="application/vnd.ms-excel#HRW Dashboard - {!todayDate}.xls">
+  
+  <html lang="en">
+      <head>
+          <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+          <style>
+                table, td, th {
+                  border: 1px solid;
+                }
+                
+                table {
+                  width: 100%;
+                  border-collapse: collapse;
+                }
+            </style>
+      </head>
+      <body>
+      
+          <h3>HRW Dashboard</h3>
+          <br/><br/>
+          <table>
+              <tr>
+                  <th>Clearance No.</th>
+                  <th>วันที่ให้ปฏิบัติงาน</th>
+                  <th>เวลาให้ปฏิบัติงาน</th>
+                  <th>Type of Work</th>
+                  <th>Area</th>
+              </tr>
+              <apex:repeat value="{!HRWs}" var="HRW">
+                  <tr>
+                      <td>{!HRW.clearanceNo}</td>
+                      <td><apex:outputText value="{0,date, MM/dd/yyyy}"> <apex:param value="{!HRW.workingDate}" /> </apex:outputText></td>
+                      <td>{!HRW.workingTime}</td>
+                      <td>{!HRW.typeOfWork}</td>
+                      <td>{!HRW.area}</td>
+                  </tr>
+              </apex:repeat>
+          </table>
+          
+      </body>
+  </html>
+</apex:page>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Master Zone</value>
+    </caseValues>
+    <fields>
+        <label><!-- Dashboard Display --></label>
+        <name>Dashboard_Display__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company --></label>
+        <name>SD_Company__c</name>
+        <relationshipLabel><!-- Master Zone --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Zone Type --></label>
+        <name>Zone_Type__c</name>
+        <picklistValues>
+            <masterLabel>Non-Project</masterLabel>
+            <translation><!-- Non-Project --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Project</masterLabel>
+            <translation><!-- Project --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Zone Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

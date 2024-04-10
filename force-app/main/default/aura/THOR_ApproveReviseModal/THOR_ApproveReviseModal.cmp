@@ -1,0 +1,32 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId">
+
+    <!-- ATTRIBUTES -->
+    <aura:attribute name="actions" type="Aura.Component[]" default="" access="global" />
+    <aura:attribute name="actionLabel" type="String" default="" access="global" />
+
+    <!-- EVENTS -->
+    <aura:registerEvent name="approveReviseEvent" type="c:THOR_Event" />
+
+    <!-- BODY -->
+    <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true"
+        aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header slds-modal__header_empty">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <div class="slds-form-element">
+                    <lightning:textarea aura:id="comments" label="Comments" />
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                {!v.actions}
+                <button class="slds-button slds-button_brand"
+                    onclick="{! c.fireApproveReviseEvent }">{!v.actionLabel}</button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</aura:component>

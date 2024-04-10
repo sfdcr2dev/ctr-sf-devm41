@@ -1,0 +1,95 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="THOR_SetUserStatusController"
+    access="global">
+    <!-- ATTRIBUTES -->
+    <aura:attribute name="allStatusList" type="List" default="[]" access="private" />
+    <aura:attribute name="availableStatusList" type="List" default="[]" access="private" />
+    <aura:attribute name="selectedStatusList" type="List" default="[]" access="private" />
+    <aura:attribute name="itemToAdd" type="String" default="" access="private" />
+    <aura:attribute name="itemsToAddList" type="List" default="[]" access="private" />
+    <aura:attribute name="itemToRemove" type="String" default="" access="private" />
+    <aura:attribute name="itemsToRemoveList" type="List" default="[]" access="private" />
+    <aura:attribute name="currentUserStatus" type="String" default="" access="global" />
+    <aura:attribute name="userStatusTemp" type="String" default="" access="global" />
+    <aura:attribute name="type" type="String" default="" access="global" />
+    <aura:attribute name="target" type="String" default="" access="global" />
+
+    <!-- EVENTS -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:registerEvent name="closeModalEvent" type="c:THOR_Event" />
+
+    <!-- BODY -->
+    <div role="dialog" class="slds-modal slds-fade-in-open" style="z-index: 600;">
+        <div class="slds-modal__container">
+            <div class="slds-modal__content slds-p-around--medium">
+                <div class="slds-form-element" role="group" aria-labelledby="picklist-group-label">
+                    <div style="text-align: right;">
+                        <lightning:icon iconName="utility:close" class="slds-icon_small" alternativeText="close"
+                            onclick="{!c.closeModal}" />
+                    </div>
+                    <div class="slds-form-element__control">
+                        <div class="slds-dueling-list">
+                            <div class="slds-dueling-list__column">
+                                <span class="slds-form-element__label" id="label-7">Available</span>
+                                <div class="slds-dueling-list__options">
+                                    <ul aria-describedby="option-drag-label" aria-labelledby="label-7"
+                                        aria-multiselectable="true" class="slds-listbox slds-listbox_vertical"
+                                        role="listbox">
+                                        <aura:iteration items="{!v.availableStatusList}" var="item" indexVar="index">
+                                            <li role="presentation" class="slds-listbox__item">
+                                                <div class="slds-listbox__option slds-listbox__option_plain slds-media slds-media_small slds-media_inline"
+                                                    aria-selected="false" draggable="true" role="option" tabindex="0">
+                                                    <span class="slds-media__body">
+                                                        <span class="slds-truncate" id="{!item.name}"
+                                                            onclick="{!c.selectItemToAdd}">{!item.name + ' ' +
+                                                            item.description}</span>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </aura:iteration>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="buttonContainer">
+                                <button class="slds-button slds-button_icon slds-button_icon-container"
+                                    title="Move Selection to Second Category">
+                                    <lightning:icon iconName="utility:down" alternativeText="alternativeText"
+                                        onclick="{!c.add}" />
+                                </button>
+                                <button class="slds-button slds-button_icon slds-button_icon-container"
+                                    title="Move Selection to First Category">
+                                    <lightning:icon iconName="utility:up" alternativeText="alternativeText"
+                                        onclick="{!c.remove}" />
+                                </button>
+                            </div>
+                            <div class="slds-dueling-list__column">
+                                <span class="slds-form-element__label" id="label-8">Selected Status</span>
+                                <div class="slds-dueling-list__options">
+                                    <ul aria-describedby="option-drag-label" aria-labelledby="label-8"
+                                        aria-multiselectable="true" class="slds-listbox slds-listbox_vertical"
+                                        role="listbox">
+                                        <aura:iteration items="{!v.selectedStatusList}" var="item" indexVar="index">
+                                            <li role="presentation" class="slds-listbox__item">
+                                                <div class="slds-listbox__option slds-listbox__option_plain slds-media slds-media_small slds-media_inline"
+                                                    aria-selected="false" draggable="true" role="option" tabindex="0">
+                                                    <span class="slds-media__body">
+                                                        <span class="slds-truncate" id="{!item.name}"
+                                                            onclick="{!c.selectItemToRemove}">{!item.name + ' ' +
+                                                            item.description}</span>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </aura:iteration>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <lightning:button name='Done' label='Done' onclick="{!c.setUserStatus}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slds-backdrop slds-backdrop_open" style="z-index: 550;"></div>
+</aura:component>

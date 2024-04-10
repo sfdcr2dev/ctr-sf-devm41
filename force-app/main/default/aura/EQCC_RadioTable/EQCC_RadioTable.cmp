@@ -1,0 +1,49 @@
+<aura:component>
+  <aura:attribute name="fieldInputs" type="List" default="" access="global" />
+  <aura:attribute name="code" type="List" default="" access="global" />
+
+  <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+    <thead>
+      <tr class="slds-line-height_reset">
+        <th class="" scope="col">
+          <div class="slds-truncate" title="Opportunity Name">{!v.fieldInputs[0].value}</div>
+        </th>
+        <aura:iteration items="{!v.fieldInputs[0].subParts}" var="subPart" indexVar="inputNumber">
+          <th class="" scope="col">
+            <div class="slds-truncate" title="Opportunity Name">{!subPart.value}</div>
+          </th>
+        </aura:iteration>
+      </tr>
+    </thead>
+    <tbody>
+      <aura:iteration items="{!v.fieldInputs[0].subParts}" var="subPart" indexVar="inputNumber">
+        <aura:if isTrue="{!subPart.part =='Description'}">
+          <tr class="slds-hint-parent">
+            <th data-label="Opportunity Name" scope="row">
+              <div>
+                {! subPart.value}
+              </div>
+            </th>
+            <aura:iteration items="{! subPart.inputs}" var="input" indexVar="i">
+              <td data-label="Account Name">
+                <lightning:layout horizontalAlign="start" verticalAlign="start" multipleRows="false"
+                  pullToBoundary="small">
+
+                    <aura:if isTrue="{!input.option == 'Picklist'}">
+                      <lightning:layoutItem padding="horizontal-small">
+                        <c:EQCC_DropMenu input="{!input}" selected="{!input.selected}" />
+                      </lightning:layoutItem>
+                      <lightning:layoutItem padding="horizontal-small">
+                        <c:EQCC_TextField input="{!input}" isDisabled="{!input.selected != 'Not Pass' }" />
+                      </lightning:layoutItem>
+                    </aura:if>
+
+                </lightning:layout>
+              </td>
+            </aura:iteration>
+          </tr>
+        </aura:if>
+      </aura:iteration>
+    </tbody>
+  </table>
+</aura:component>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>ORTLRelevantUserCompactLayout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>ORTLRelevantUserCompactLayout</fullName>
+        <fields>RelevantUser__c</fields>
+        <fields>ActionNumber__c</fields>
+        <label>Relevant User Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>ActionNumber__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Display Action Number</description>
+        <externalId>false</externalId>
+        <label>Action Number</label>
+        <referenceTo>ORTLAction__c</referenceTo>
+        <relationshipLabel>Relevant User (CC to)</relationshipLabel>
+        <relationshipName>RelevantUser</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CurrentUser__c</fullName>
+        <externalId>false</externalId>
+        <formula>RelevantUser__r.Id = $User.Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Current User</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>RelevantUser__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>To display Relevant name who related to that particular action</description>
+        <externalId>false</externalId>
+        <label>Relevant User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Relevant_User_CC_to1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>TagNo__c</fullName>
+        <externalId>false</externalId>
+        <formula>ActionNumber__r.txtTagNo__c</formula>
+        <label>Tag No.</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TaskObjective__c</fullName>
+        <externalId>false</externalId>
+        <formula>ActionNumber__r.Objective__c</formula>
+        <label>Task Objective</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TaskTitle__c</fullName>
+        <externalId>false</externalId>
+        <label>Task Title</label>
+        <length>5000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>TaskType__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(ActionNumber__r.TaskType__c)</formula>
+        <label>Task Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txtRelevantUser__c</fullName>
+        <description>Relevant user as text field</description>
+        <externalId>false</externalId>
+        <label>Relevant User</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Relevant User (CC to)</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>txtRelevantUser__c</columns>
+        <columns>ActionNumber__c</columns>
+        <columns>TagNo__c</columns>
+        <columns>TaskType__c</columns>
+        <columns>TaskObjective__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>MyCCto</fullName>
+        <columns>NAME</columns>
+        <columns>txtRelevantUser__c</columns>
+        <columns>ActionNumber__c</columns>
+        <columns>TagNo__c</columns>
+        <columns>TaskType__c</columns>
+        <columns>TaskObjective__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CurrentUser__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>My CC to</label>
+    </listViews>
+    <nameField>
+        <displayFormat>CC-{000}</displayFormat>
+        <label>CC Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
+        <excludedStandardButtons>NewFromDocument</excludedStandardButtons>
+        <excludedStandardButtons>PrintableListView</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Import</excludedStandardButtons>
+        <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <searchResultsAdditionalFields>txtRelevantUser__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ActionNumber__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TagNo__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TaskType__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TaskObjective__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>ORTLRelevantUserCheckName</fullName>
+        <active>false</active>
+        <description>Relevant user != Owner action</description>
+        <errorConditionFormula>RelevantUser__r.FirstName&amp;RelevantUser__r.LastName  =  ActionNumber__r.Owner:User.FirstName &amp;  ActionNumber__r.Owner:User.LastName</errorConditionFormula>
+        <errorMessage>Not allow to add relevant user as same as action owner.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

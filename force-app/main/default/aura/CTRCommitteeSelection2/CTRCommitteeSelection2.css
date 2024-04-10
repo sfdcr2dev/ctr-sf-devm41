@@ -1,0 +1,42 @@
+.THIS .preview-button {
+    background-color: #D3D3D3; 
+    color: #000000; 
+    border-color: #BEBEBE;
+}
+
+.THIS .display-flex .slds-form-element__control {
+    display: flex;
+}
+
+.THIS .display-table .slds-form-element__label {
+    display: table;
+    max-width: 50%;
+    /* calc(50% - var(--lwc-squareIconUtilityMedium,1.25rem)); */
+}
+
+.THIS .slds-textarea[disabled], 
+.THIS .slds-textarea.slds-is-disabled {
+    background-color: var(--slds-g-color-neutral-base-95, var(--lwc-colorBackgroundInputDisabled,rgb(243, 243, 243))) ;
+}
+
+.THIS .email-urgent .slds-form-element__control {
+    padding-left: 1em;
+}
+
+.THIS #CounterpartyItemList .slds-grid > div {
+    height: 36px;
+}
+
+@media (min-width: 48em) {
+    .THIS .slds-form-element_horizontal .slds-form-element__control, 
+    .THIS .slds-form_horizontal .slds-form-element .slds-form-element__control, 
+    .THIS .slds-form_stacked .slds-form-element_horizontal .slds-form-element__control {
+        padding-left: 16.66%;
+    }
+
+    .THIS #finalConditionDetail .slds-form-element_horizontal .slds-form-element__control,
+    .THIS #finalConditionDetail .slds-form_horizontal .slds-form-element .slds-form-element__control,
+    .THIS #finalConditionDetail .slds-form_stacked .slds-form-element_horizontal .slds-form-element__control {
+        padding-left: 33%;
+    }
+}

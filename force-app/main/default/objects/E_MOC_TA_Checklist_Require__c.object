@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>E_MOC_TA_Checklist_Require_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>E_MOC_TA_Checklist_Require_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Document__c</fullName>
+        <externalId>false</externalId>
+        <label>Document</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Document Require Checklist</fullName>
+                    <default>false</default>
+                    <label>Document Require Checklist</label>
+                </value>
+                <value>
+                    <fullName>Hazard Screen Checklist</fullName>
+                    <default>false</default>
+                    <label>Hazard Screen Checklist</label>
+                </value>
+                <value>
+                    <fullName>TA Checklist</fullName>
+                    <default>false</default>
+                    <label>TA Checklist</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Notification_Sub_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Notification Sub Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Air Cooled Exchangers</fullName>
+                    <default>false</default>
+                    <label>Air Cooled Exchangers</label>
+                </value>
+                <value>
+                    <fullName>Fired Heaters / Fire Boiler</fullName>
+                    <default>false</default>
+                    <label>Fired Heaters / Fire Boiler</label>
+                </value>
+                <value>
+                    <fullName>Tanks</fullName>
+                    <default>false</default>
+                    <label>Tanks</label>
+                </value>
+                <value>
+                    <fullName>Drainage system (AOC, COC, etc)  / Bund / Others</fullName>
+                    <default>false</default>
+                    <label>Drainage system (AOC, COC, etc)  / Bund / Others</label>
+                </value>
+                <value>
+                    <fullName>Temporary repair</fullName>
+                    <default>false</default>
+                    <label>Temporary repair</label>
+                </value>
+                <value>
+                    <fullName>Tracing steam/steam trap</fullName>
+                    <default>false</default>
+                    <label>Tracing steam/steam trap</label>
+                </value>
+                <value>
+                    <fullName>Pipes / Flanges / Valve</fullName>
+                    <default>false</default>
+                    <label>Pipes / Flanges / Valve</label>
+                </value>
+                <value>
+                    <fullName>Pressure Vessels</fullName>
+                    <default>false</default>
+                    <label>Pressure Vessels</label>
+                </value>
+                <value>
+                    <fullName>Relief Systems</fullName>
+                    <default>false</default>
+                    <label>Relief Systems</label>
+                </value>
+                <value>
+                    <fullName>Shell &amp; Tube Heat Exchangers</fullName>
+                    <default>false</default>
+                    <label>Shell &amp; Tube Heat Exchangers</label>
+                </value>
+                <value>
+                    <fullName>SBM / CBM</fullName>
+                    <default>false</default>
+                    <label>SBM / CBM</label>
+                </value>
+                <value>
+                    <fullName>Hot tap</fullName>
+                    <default>false</default>
+                    <label>Hot tap</label>
+                </value>
+                <value>
+                    <fullName>Range</fullName>
+                    <default>false</default>
+                    <label>Range</label>
+                </value>
+                <value>
+                    <fullName>Buidling and Road</fullName>
+                    <default>false</default>
+                    <label>Buidling and Road</label>
+                </value>
+                <value>
+                    <fullName>Loading arm (Jetty &amp; Lorry)</fullName>
+                    <default>false</default>
+                    <label>Loading arm (Jetty &amp; Lorry)</label>
+                </value>
+                <value>
+                    <fullName>Hydraulic power unit</fullName>
+                    <default>false</default>
+                    <label>Hydraulic power unit</label>
+                </value>
+                <value>
+                    <fullName>Alarm</fullName>
+                    <default>false</default>
+                    <label>Alarm</label>
+                </value>
+                <value>
+                    <fullName>QMI</fullName>
+                    <default>false</default>
+                    <label>QMI</label>
+                </value>
+                <value>
+                    <fullName>APC</fullName>
+                    <default>false</default>
+                    <label>APC</label>
+                </value>
+                <value>
+                    <fullName>SIF</fullName>
+                    <default>false</default>
+                    <label>SIF</label>
+                </value>
+                <value>
+                    <fullName>Base layer control (DCS), PLC, TAS/TAM</fullName>
+                    <default>false</default>
+                    <label>Base layer control (DCS), PLC, TAS/TAM</label>
+                </value>
+                <value>
+                    <fullName>Rotating equipment</fullName>
+                    <default>false</default>
+                    <label>Rotating equipment</label>
+                </value>
+                <value>
+                    <fullName>SBM</fullName>
+                    <default>false</default>
+                    <label>SBM</label>
+                </value>
+                <value>
+                    <fullName>Fire &amp; Gas detection system</fullName>
+                    <default>false</default>
+                    <label>Fire &amp; Gas detection system</label>
+                </value>
+                <value>
+                    <fullName>Driver/Actuator (process) at Valve (e.g. Motor, MOV)</fullName>
+                    <default>false</default>
+                    <label>Driver/Actuator (process) at Valve (e.g. Motor, MOV)</label>
+                </value>
+                <value>
+                    <fullName>Instrumentation equipment</fullName>
+                    <default>false</default>
+                    <label>Instrumentation equipment</label>
+                </value>
+                <value>
+                    <fullName>Control valve</fullName>
+                    <default>false</default>
+                    <label>Control valve</label>
+                </value>
+                <value>
+                    <fullName>Electrical equipment/system</fullName>
+                    <default>false</default>
+                    <label>Electrical equipment/system</label>
+                </value>
+                <value>
+                    <fullName>Emergency Backup Systems</fullName>
+                    <default>false</default>
+                    <label>Emergency Backup Systems</label>
+                </value>
+                <value>
+                    <fullName>Comunication (e.g. talk-back, CCTV, radio, public announce and telecomunication network)</fullName>
+                    <default>false</default>
+                    <label>Comunication (e.g. talk-back, CCTV, radio, public announce and telecomunication network)</label>
+                </value>
+                <value>
+                    <fullName>Valve (e.g. Pneumatic/Hydraulic,TSO, ROV, FSO)</fullName>
+                    <default>false</default>
+                    <label>Valve (e.g. Pneumatic/Hydraulic,TSO, ROV, FSO)</label>
+                </value>
+                <value>
+                    <fullName>Structures / foundations</fullName>
+                    <default>false</default>
+                    <label>Structures / foundations</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Question_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Question No</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Question__c</fullName>
+        <externalId>false</externalId>
+        <label>Question</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>30</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Stationary Eq &amp; Piping (ENTS)</fullName>
+                    <default>false</default>
+                    <label>Stationary Eq &amp; Piping (ENTS)</label>
+                </value>
+                <value>
+                    <fullName>Instrument Engineering Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Instrument Engineering Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Stationary Equipment and Piping Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Stationary Equipment and Piping Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Rotating Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Rotating Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Civil and Structure Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Civil and Structure Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Discipline Checklist (Common questions)</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Discipline Checklist (Common questions)</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Discipline Checklist ( Electrical equipment/system )</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Discipline Checklist ( Electrical equipment/system )</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Discipline Checklist (Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Discipline Checklist (Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Discipline Checklist ( Comunication (e.g. talk-back, CCTV, radio, public announce and telecomunication network))</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Discipline Checklist ( Comunication (e.g. talk-back, CCTV, radio, public announce and telecomunication network))</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Discipline Checklist  ( Driver/Actuator (process) at Valve (e.g. Motor, MOV))</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Discipline Checklist  ( Driver/Actuator (process) at Valve (e.g. Motor, MOV))</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>E-MOC TA Checklist Require</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Document__c</columns>
+        <columns>Type__c</columns>
+        <columns>Notification_Sub_Type__c</columns>
+        <columns>Question__c</columns>
+        <columns>Question_No__c</columns>
+        <columns>Sequence__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Type__c</field>
+            <operation>equals</operation>
+            <value>Stationary Equipment and Piping Discipline Checklist</value>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>ENEM_E_MOC_TA_Checklist_Require</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENEM</label>
+        <queue>ENEM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TNPA_E_MOC_TA_Checklist_Require</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TNPA</label>
+        <queue>TNPA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>TACR-{00000000}</displayFormat>
+        <label>E-MOC TA Checklist Require No</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <searchLayouts>
+        <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
+        <excludedStandardButtons>NewFromDocument</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Import</excludedStandardButtons>
+        <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>PrintableListView</excludedStandardButtons>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

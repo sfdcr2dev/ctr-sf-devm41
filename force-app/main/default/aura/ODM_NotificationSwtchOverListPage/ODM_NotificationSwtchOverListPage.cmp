@@ -1,0 +1,269 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,lightning:isUrlAddressable"
+	controller="ODM_NotificationController">
+
+	<lightning:navigation aura:id="navService" />
+	<lightning:notificationsLibrary aura:id="notifLib" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="fitlerEnhanceEvent" event="c:ODM_FilterEnhanceEvent" action="{!c.handleFilter}" />
+
+	<aura:attribute name="notification_list" type="List" default="[]" access="private" />
+	<aura:attribute name="notification_list_loaded" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isInitialized" type="Boolean" default="false" access="private" />
+
+	<aura:attribute name="filter" type="Map" default="{}" access="private" />
+	<aura:attribute name="filterDefaultNoti" type="Map" default="{ 'Notification_Number__c': '', 'Notification_Type__c': 'OP', 'Functional_Location__c': '', 'Main_Work_Center__c': '', 'Create_Date_From__c': '', 'Create_Date_To__c': '', 'Submission_Date_From__c': '', 'Submission_Date_To__c': '', 'Description__c': 'Switch Over', 'Requester__c': '', }" access="private" />
+
+	<aura:attribute name="pagination" type="List" default="['...']" access="private" />
+	<aura:attribute name="totalrecord" type="Integer" default="0" access="private" />
+	<aura:attribute name="totalpage" type="Integer" default="0" access="private" />
+	<aura:attribute name="currentpage" type="Integer" default="1" access="private" />
+	<aura:attribute name="offset" type="Integer" default="0" access="private" />
+	<aura:attribute name="rowlimit" type="Integer" default="20" access="private" />
+
+	<div>
+		<div class="slds-grid">
+			<div class="slds-col">
+				<!-- <p class="slds-text-heading_medium"><strong>Notification List</strong></p> -->
+			</div>
+			<div class="slds-col slds-grow-none slds-col_bump-left">
+				<c:ODM_FilterEnhance aura:id="ODM_FilterEnhance" title="Notification - Filter by" filterPage="ODM_NotificationSwitchOverFilter" filterDefault="{!v.filterDefaultNoti}" />
+			</div>
+		</div>
+
+		<div class="slds-grid slds-m-top_medium page-header">
+			<div class="slds-col">
+				<p class="slds-text-heading_medium">
+					You have<br/>
+					Notifications
+				</p>
+			</div>
+			<div class="slds-col slds-text-heading_medium">
+				<p>{!v.totalrecord}</p>
+			</div>
+		</div>
+
+		<div class="slds-grid slds-m-top_x-small">
+			<div class="slds-col">
+				<p class="slds-text-body_small">Notification No., Notification Status, Type, FL, Notification Date, Description</p>
+			</div>
+		</div>
+
+		<div class="slds-m-top_medium">
+			<aura:if isTrue="{!v.notification_list_loaded}">
+				<lightning:spinner alternativeText="Loading" size="small" />
+			</aura:if>
+			<aura:if isTrue="{!and(and(not(v.notification_list_loaded), v.isInitialized), v.notification_list.length == 0)}">
+				<div class="slds-text-align_center">Data not found</div>
+			</aura:if>
+			<aura:iteration items="{!v.notification_list}" var="noti" indexVar="index">
+				<div class="slds-box slds-box_small">
+					<div class="slds-grid">
+						<div
+							class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+							<div class="icon-type">{! noti.Type__c}</div>
+						</div>
+						<div class="box-detail slds-col">
+							<a data-record-id="{!noti.Id}" href="javascript:void(0);" class="slds-text-link_reset"
+								onclick="{!c.navigateToDisplay}">
+								<aura:if isTrue="{!noti.Name}">
+									<p class="slds-text-link">{!noti.Name}</p>
+								</aura:if>
+								<p>{! noti.info }</p>
+								<aura:if isTrue="{!noti.description}">
+									<p class="slds-hyphenate">{! noti.description }</p>
+								</aura:if>
+							</a>
+						</div>
+					</div>
+				</div>
+			</aura:iteration>
+		</div>
+
+		<div class="slds-scrollable pagination">
+			<div class="slds-m-vertical_medium slds-text-align_center">
+				<lightning:buttonGroup>
+					<lightning:buttonIcon
+						name="first"
+						size="large"
+						iconName="utility:jump_to_left"
+						variant="border-filled"
+						alternativeText="Settings"
+						title="Settings"
+						disabled="{!v.currentpage == 1}"
+						onclick="{!c.navigateToPaging}"
+					/>
+					<lightning:buttonIcon
+						name="previous"
+						size="large"
+						iconName="utility:chevronleft"
+						variant="border-filled"
+						alternativeText="Settings"
+						title="Settings"
+						disabled="{!v.currentpage == 1}"
+						onclick="{!c.navigateToPaging}"
+					/>
+
+					<aura:iteration items="{!v.pagination}" var="page_label">
+						<lightning:button
+							name="{!page_label}"
+							label="{!page_label}"
+							variant="{! page_label == v.currentpage ? 'brand' : 'neutral' }"
+							disabled="{! page_label == '...' }"
+							onclick="{!c.navigateToPaging}"
+						/>
+					</aura:iteration>
+
+					<lightning:buttonIcon
+						name="next"
+						size="large"
+						iconName="utility:chevronright"
+						variant="border-filled"
+						alternativeText="Settings"
+						title="Settings"
+						disabled="{!or(v.currentpage == v.totalpage, v.totalpage == 0)}"
+						onclick="{!c.navigateToPaging}"
+					/>
+					<lightning:buttonIcon
+						name="last"
+						size="large"
+						iconName="utility:jump_to_right"
+						variant="border-filled"
+						alternativeText="Settings"
+						title="Settings"
+						disabled="{!or(v.currentpage == v.totalpage, v.totalpage == 0)}"
+						onclick="{!c.navigateToPaging}"
+					/>
+				</lightning:buttonGroup>
+			</div>
+		</div>
+	</div>
+
+</aura:component>
+<!--
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,lightning:isUrlAddressable" controller="ODM_NotificationSwtchOverCtrl">
+	<lightning:navigation aura:id="navService" />
+	<lightning:notificationsLibrary aura:id="notifLib" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="fitlerEnhanceEvent" event="c:ODM_FilterEnhanceEvent" action="{!c.handleFilter}" />
+
+	<aura:attribute name="notification_list" type="List" default="[]" access="private" />
+	<aura:attribute name="notification_list_loaded" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isInitialized" type="Boolean" default="false" access="private" />
+
+	<aura:attribute name="filter" type="Map" default="{}" access="private" />
+
+	<aura:attribute name="pagination" type="List" default="['...']" access="private" />
+	<aura:attribute name="totalrecord" type="Integer" default="0" access="private" />
+	<aura:attribute name="totalpage" type="Integer" default="0" access="private" />
+	<aura:attribute name="currentpage" type="Integer" default="1" access="private" />
+	<aura:attribute name="offset" type="Integer" default="0" access="private" />
+	<aura:attribute name="rowlimit" type="Integer" default="20" access="private" />
+
+
+
+	<div class="header_container slds-grid slds-wrap slds-grid_vertical-align-end slds-m-bottom_small">
+
+		<div class="slds-col  slds-p-left_x-small">
+			<c:ODM_FilterEnhance aura:id="ODM_FilterEnhance" title="Notification - Filter by" filterPage="ODM_NotificationSwitchOverFilter" />
+		</div>
+	</div>
+
+	<lightning:card class="container">
+		<aura:set attribute="title">
+			<div>You have  {!v.totalrecord} Notifications</div>
+
+		</aura:set>
+
+		<aura:set attribute="footer">
+			<lightning:buttonGroup>
+				<lightning:buttonIcon
+					name="first"
+					size="large"
+					iconName="utility:jump_to_left"
+					variant="border-filled"
+					alternativeText="Settings"
+					title="Settings"
+					disabled="{!v.currentpage == 1}"
+					onclick="{!c.navigateToPaging}"
+				/>
+				<lightning:buttonIcon
+					name="previous"
+					size="large"
+					iconName="utility:chevronleft"
+					variant="border-filled"
+					alternativeText="Settings"
+					title="Settings"
+					disabled="{!v.currentpage == 1}"
+					onclick="{!c.navigateToPaging}"
+				/>
+
+				<aura:iteration items="{!v.pagination}" var="page_label">
+					<lightning:button
+						name="{!page_label}"
+						label="{!page_label}"
+						variant="{! page_label == v.currentpage ? 'brand' : 'neutral' }"
+						disabled="{! page_label == '...' }"
+						onclick="{!c.navigateToPaging}"
+					/>
+				</aura:iteration>
+
+				<lightning:buttonIcon
+					name="next"
+					size="large"
+					iconName="utility:chevronright"
+					variant="border-filled"
+					alternativeText="Settings"
+					title="Settings"
+					disabled="{!or(v.currentpage == v.totalpage, v.totalpage == 0)}"
+					onclick="{!c.navigateToPaging}"
+				/>
+				<lightning:buttonIcon
+					name="last"
+					size="large"
+					iconName="utility:jump_to_right"
+					variant="border-filled"
+					alternativeText="Settings"
+					title="Settings"
+					disabled="{!or(v.currentpage == v.totalpage, v.totalpage == 0)}"
+					onclick="{!c.navigateToPaging}"
+				/>
+			</lightning:buttonGroup>
+		</aura:set>
+
+		<div class="header__label">
+			<p class="slds-var-p-around_medium">Notification No., Notification Status, Type, FL, Notification date, Description</p>
+		</div>
+
+		<div class="slds-p-around_x-small">
+			<aura:if isTrue="{!v.notification_list_loaded}">
+				<lightning:spinner alternativeText="Loading" size="small" />
+			</aura:if>
+			<aura:if isTrue="{!and(and(not(v.notification_list_loaded), v.isInitialized), v.notification_list.length == 0)}">
+				<div class="slds-text-align_center">Data not found</div>
+			</aura:if>
+			<aura:iteration items="{!v.notification_list}" var="noti" indexVar="index">
+				<div class="slds-box slds-box_small">
+					<div class="slds-grid">
+						<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+							<lightning:icon iconName="utility:notification" alternativeText="{!noti.Name}" title="{!noti.Name}" />
+						</div>
+						<div class="box-detail slds-col">
+							<a data-record-id="{!noti.Id}" href="javascript:void(0);" class="slds-text-link_reset" onclick="{!c.navigateToDisplay}">
+								<aura:if isTrue="{!noti.Name}">
+									<p class="slds-text-link">{!noti.Name}</p>
+								</aura:if>
+								<p>{! noti.info }</p>
+								<aura:if isTrue="{!noti.description}">
+									<p class="slds-hyphenate">{! noti.description }</p>
+								</aura:if>
+							</a>
+						</div>
+					</div>
+				</div>
+			</aura:iteration>
+		</div>
+	</lightning:card>
+</aura:component>
+-->

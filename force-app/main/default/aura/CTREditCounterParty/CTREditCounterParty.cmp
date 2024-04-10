@@ -1,0 +1,75 @@
+<aura:component controller="CTRInitialCustomerTOP" implements="lightning:hasPageReference,lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader" access="global" >
+    
+    <aura:attribute name="IsPageDisable" type="Boolean" default="false"/>
+
+    <aura:attribute name="value" type="String" default="option1"/>
+    <aura:attribute name="itemList" type="String[]"/> 
+    <aura:attribute name="headerId" type="String"/>
+    <aura:attribute name="onPageRecordID" type="String"/>
+    <aura:attribute name="isTX" type="Boolean" default="false" />
+    <aura:attribute name="isTOP" type="Boolean" default="false" />
+
+    <aura:attribute name="isLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="isCustomerType" type="Boolean" default="false"/>
+    <aura:attribute name="isSupplierType" type="Boolean" default="false"/>
+    <aura:attribute name="isTRCR" type="Boolean" default="false" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="currentUserName" type="String" />
+
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.onPageReferenceChanged}" />
+    <aura:handler name="CTRAddNewRowEvt" event="c:CTRAddNewRowEvt" action="{!c.addNewRow}"/>
+    <aura:handler name="CTRDeleteRowEvt" event="c:CTRDeleteRowEvt" action="{!c.removeDeletedRow}"/>
+    <aura:handler name="change" value="{!v.IsPageDisable}" action="{!c.onLoadAnotherPage}" />
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    
+    <aura:html tag="style">
+        .slds-modal__container {
+            overflow-y:hidden !important;
+        	width: 90% !important;
+            max-width: 80% !important;
+        	height: 100% !important;
+            /*   width:210mm;
+            height:297mm;*/
+        }
+        .cuf-content {
+            padding: 0 0rem !important;
+        }
+
+
+        .slds-p-around--medium {
+
+            padding: 0rem !important;
+
+        }       
+    </aura:html>
+
+    <div class=" modal-header slds-modal__header slds-size_1-of-1" style = "top: 0; position: sticky; z-index: 5;">
+        <h4 class="title slds-text-heading–medium"><b>Edit Counterparty</b></h4>
+    </div>
+    <div style = "padding :20px;">
+    <aura:if isTrue="{!v.isLoaded}">
+    <aura:renderIf isTrue="{!v.isTX}">
+
+        <aura:if isTrue="{!!v.IsPageDisable}">
+                <c:CTRInitialCustomerTX isInitial="false" ObjectType="CTRRequestFormHeader__c" onPageRecordID = "{!v.headerId}" IsPageDisable = "{!v.IsPageDisable}" isAccount = "false" IsCounterParty = "true"
+                recordId = "{!v.headerId}" reqitemId="{!v.recordId}" isCustomerType = "{!v.isCustomerType}" isSupplierType = "{!v.isSupplierType}" isTRCR = "{!v.isTRCR}" currentUserName = "{!v.currentUserName}"/>
+            </aura:if>
+    </aura:renderIf>
+
+    <aura:renderIf isTrue="{!v.isTOP}">
+
+        <!-- Edit Mode -->
+        <aura:if isTrue="{!!v.IsPageDisable}">
+    
+            <c:CTRInitialCustomerTOP isInitial="false" ObjectType="CTRRequestFormHeader__c" onPageRecordID = "{!v.headerId}" IsPageDisable = "{!v.IsPageDisable}" isAccount = "false" IsCounterParty = "true"
+                                        recordId = "{!v.headerId}" reqitemId="{!v.recordId}" isCustomerType = "{!v.isCustomerType}" isSupplierType = "{!v.isSupplierType}" isTRCR = "{!v.isTRCR}" currentUserName = "{!v.currentUserName}"/>
+        </aura:if>
+
+    </aura:renderIf> 
+    </aura:if>
+    </div>
+    <aura:if isTrue="{!!v.isLoaded}">
+        <lightning:spinner variant="brand" style="z-index:2" />
+    </aura:if>
+</aura:component>

@@ -1,0 +1,91 @@
+<apex:page controller="ESS_ProbationExcelController" 
+    cache="true" showHeader="false" 
+    contentType="application/vnd.ms-excel#Probation List - {!todayDate}.xls"> {!LanguageThai} <!-- contentType="application/vnd.ms-excel#Probation List - {!todayDate}.xls" -->
+
+     <html lang="en">
+          <head>
+              <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+              <style>
+                    table, td, th {
+                      border: 1px solid;
+                    }
+                    
+                    table {
+                      width: 100%;
+                      border-collapse: collapse;
+                    }
+                    .text { mso-number-format:\@; }
+                </style>
+          </head>
+          <body>
+          
+              <apex:outputPanel rendered="{!resultSize = 0}">
+                  <b><apex:outputText style="font-size:20px;"> Employee Probation List </apex:outputText></b>
+              </apex:outputPanel>
+          
+              <apex:outputPanel rendered="{!resultSize > 0}">
+                  <h3>Employee Probation List</h3>
+                  <table>
+                      <tr>
+                          <th>Date Stamp</th>
+                          <th>Employee ID</th>
+                          <th>Employee Name</th>
+                          <th>Level</th>
+                          <th>Date Joined Company</th>
+                          <th>Date Completed Probation</th>
+                          <th>Immediate Line / Section Head Employee Id</th>
+                          <th>Immediate Line / Section Head</th>
+                          <th>Department Head Employee Id</th>
+                          <th>Department Head</th>
+                          <th>CEP</th>
+                          <th>Function</th>
+                          <th>Department</th>
+                          <th>Scetion</th>
+                          <th>Unit</th>
+                      </tr>
+                      <apex:repeat value="{!results}" var="probation">
+                          <tr>
+                              <td>
+                                  <apex:outputText value="{0,date, dd/MM/yyyy}" >  
+                                    <apex:param value="{!probation.dateStamp}"/>  
+                                  </apex:outputText>
+                              </td>
+                              <td class="text">{!probation.employeeId}</td>
+                              <td>{!probation.employeeName}</td>
+                              <td>{!probation.level}</td>
+                              <td>
+                                  <apex:outputText value="{0,date, dd/MM/yyyy}" >  
+                                    <apex:param value="{!probation.dateJoinedCompany}"/>  
+                                  </apex:outputText>
+                              </td>
+                              <td>
+                                  <apex:outputText value="{0,date, dd/MM/yyyy}" >  
+                                    <apex:param value="{!probation.dateCompletedProbation}"/>  
+                                  </apex:outputText>
+                              </td>
+                              <td class="text">
+                                  <apex:outputPanel rendered="{!probation.sectionHeadEmployeeId != null}">
+                                      {!probation.sectionHeadEmployeeId}
+                                  </apex:outputPanel>
+                              </td>
+                              <td>{!probation.sectionHeadName}</td>
+                              <td class="text">
+                                  <apex:outputPanel rendered="{!probation.departmentHeadEmployeeId != null}">
+                                      {!probation.departmentHeadEmployeeId}
+                                  </apex:outputPanel>
+                              </td>
+                              <td>{!probation.departmentHeadname}</td>
+                              <td>{!probation.cep}</td>
+                              <td>{!probation.function}</td>
+                              <td>{!probation.department}</td>
+                              <td>{!probation.section}</td>
+                              <td>{!probation.unit}</td>
+                          </tr>
+                      </apex:repeat>
+                  </table>
+              </apex:outputPanel>
+              
+          </body>
+      </html>
+
+</apex:page>

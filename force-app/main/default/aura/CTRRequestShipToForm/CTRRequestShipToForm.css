@@ -1,0 +1,42 @@
+.THIS .custom_modal_container {
+    width: 100% !important;
+    margin: 0px;
+    max-width: 100% !important;
+}
+
+.THIS .custom-help-txt .slds-form-element__icon {
+    padding-top: 0.1rem;
+}
+
+.THIS .help-txt-hidden .slds-form-element__icon {
+    display: none !important;
+}
+
+.THIS .custom-output {
+    padding: 0.3rem 0;
+}
+
+.THIS .custom-error {
+    color: var(--slds-g-color-error-base-40, var(--lwc-colorTextError,rgb(234, 0, 30)));
+    /* display: none; */
+}
+
+.THIS .custom-error-enabled {
+    display: block !important;
+}
+
+.THIS .slds-form-element__help {
+    display: none;
+}
+
+.THIS .slds-has-error .slds-form-element {
+    /* border-color: var(--slds-g-color-error-base-40, var(--lwc-colorTextError,rgb(234, 0, 30))); */
+    --slds-c-input-color-border: var(--slds-g-color-error-base-40, #ea001e);
+    --slds-c-input-shadow: var(--slds-g-color-error-base-40, #ea001e) 0 0 0 1px inset;
+    --slds-c-input-color-background: var(--slds-c-input-color-background, var(--sds-c-input-color-background, var(--slds-g-color-neutral-base-100, #fff)));
+    --slds-c-input-text-color: var(--slds-c-input-text-color, var(--sds-c-input-text-color, var(--slds-g-color-neutral-base-10, #747474)));
+}
+
+.THIS .readonly-input-custom input {
+    padding-left: 1rem;
+}

@@ -1,0 +1,165 @@
+.THIS {
+    font-family: Poppins;
+}
+.THIS .wrapper {
+    margin: 15px auto;
+    max-width: 1100px;
+}
+
+.THIS  .container-calendar {
+    padding: 15px;
+    max-width: 475px;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.THIS  .table-calendar {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.THIS  .table-calendar td, .THIS  .table-calendar th {
+    padding: 0.5rem 0;
+    width: 14.28%;
+    border: 3px solid #f1f1f1;
+    text-align: center;
+    vertical-align: top;
+    background-color: #fff;
+}
+
+.THIS .date-picker.selected {
+    font-weight: bold;
+    outline: 1px dashed #00BCD4;
+}
+
+.THIS .date-picker.selected span {
+    border-bottom: 2px solid currentColor;
+}
+
+/* sunday */
+.THIS .date-picker:nth-child(1) {
+  color: red;
+}
+
+/* friday */
+.THIS .date-picker:nth-child(6) {
+  color: green;
+}
+
+.THIS #monthAndYear {
+    text-align: center;
+    font-size: 1.2rem;
+    font-family: Poppins;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.THIS .button-container-calendar {
+    position: relative;
+    overflow: hidden;
+    clear: both;
+} 
+
+.THIS .footer-container-calendar {
+    margin-top: 1em;
+    border-top: 1px solid #dadada;
+    padding: 10px 0;
+}
+
+.THIS .footer-container-calendar select {
+    cursor: pointer;
+    display: inline-block;
+    zoom: 1;
+    background: #ffffff;
+    color: #585858;
+    border: 1px solid #bfc5c5;
+    border-radius: 3px;
+    padding: 5px 1em;
+}
+
+.THIS .day {
+    background-color: #4d6bb3 !important;
+}
+
+.THIS .font-style {
+    color: #ffffff;
+}
+
+.THIS .calendar-header {
+    margin-left: 7px;
+    margin-right: 7px;
+    justify-content: space-between;
+}
+
+.THIS h3 {
+    /* text-transform:uppercase */
+}
+
+.THIS .slds-card__body {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+.THIS .header-box {
+    padding-top: 0.75rem !important;
+    padding-bottom: .5rem;
+    margin-bottom: 0rem !important;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+.THIS hr {
+    margin: 0;
+}
+
+.THIS .alignleft {
+	float: left;
+    margin: auto;
+    white-space: nowrap;
+    width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.THIS .alignright {
+	float: right;
+    color: #999999;;
+}
+.THIS .header-event {
+    padding: 0.5rem 0.5rem 0rem 0.5rem;
+    clear: both;
+}
+.THIS .body-event {
+    padding: 0rem 0.5rem 0.5rem 0.5rem;
+    color: #999999;;
+    font-size: 12px;
+    clear: both;
+}
+.THIS a {
+    color: #000;
+}
+.THIS a:hover, .THIS a:focus {
+    text-decoration: unset;
+}
+.THIS .footer-event {
+    padding: 0 .5rem .5rem .5rem;
+    text-align: right;
+}
+.THIS .see-more {
+    color: rgb(15 45 112);
+}
+
+.THIS .see-more:hover {
+    text-decoration: none;
+    color: rgb(183, 183, 183, 1);
+}
+
+.THIS .date {
+    color: #195EA4;
+}
+
+.THIS .left svg {
+    fill: #4d6bb3;
+}
+
+.THIS .right svg {
+    fill: #4d6bb3;
+}

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <name>Check_Category</name>
+        <label>Check Category</label>
+        <locationX>738</locationX>
+        <locationY>476</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>MOS_for_maintenance</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.MOS_for_maintenance__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_FN_Category_Type</targetReference>
+            </connector>
+            <label>MOS for maintenance</label>
+        </rules>
+        <rules>
+            <name>Safeguarding_Force_signal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Safeguarding_force_signal__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_FN_Category_Type_0</targetReference>
+            </connector>
+            <label>Safeguarding Force signal</label>
+        </rules>
+        <rules>
+            <name>OOS</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OOS__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_FN_Category_Type03</targetReference>
+            </connector>
+            <label>OOS</label>
+        </rules>
+        <rules>
+            <name>MOS_for_Ops_purpose</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.MOS_for_ops_purpose__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>MOS_for_Ops_purpose1</targetReference>
+            </connector>
+            <label>MOS for Ops purpose</label>
+        </rules>
+        <rules>
+            <name>Inhibit_for_process_or_equipment_S_D</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Inhibit_for_process_or_Equipment_S_D__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Inhibit_for_process_or_equipment_S_D1</targetReference>
+            </connector>
+            <label>Inhibit for process or equipment S/D</label>
+        </rules>
+        <rules>
+            <name>Inhibit_alarm_for_maintenance</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Inhibit_alarm_for_maintenance__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Inhibit_alarm_for_maintenance1</targetReference>
+            </connector>
+            <label>Inhibit alarm for maintenance</label>
+        </rules>
+        <rules>
+            <name>Disable_alarm_by_Ops_for_HW</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Disable_Alarm_by_Ops_for_HW__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Disable_alarm_by_Ops_for_HW1</targetReference>
+            </connector>
+            <label>Disable alarm by Ops for HW</label>
+        </rules>
+        <rules>
+            <name>Inhibit_alarm_request_for_FOX</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Inhibit_Alarm_request_for_FOX__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Inhibit_alarm_request_for_FOX1</targetReference>
+            </connector>
+            <label>Inhibit alarm request for FOX</label>
+        </rules>
+    </decisions>
+    <description>Add FN Category</description>
+    <interviewLabel>E-MOC - FN-Update FN Category Type {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>E-MOC - FN-Update FN Category Type</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Disable_alarm_by_Ops_for_HW1</name>
+        <label>Disable alarm by Ops for HW</label>
+        <locationX>964</locationX>
+        <locationY>865</locationY>
+        <inputAssignments>
+            <field>FN_Category_Type__c</field>
+            <value>
+                <stringValue>Disable alarm by Ops for HW</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Inhibit_alarm_for_maintenance1</name>
+        <label>Inhibit alarm for maintenance</label>
+        <locationX>520</locationX>
+        <locationY>853</locationY>
+        <inputAssignments>
+            <field>FN_Category_Type__c</field>
+            <value>
+                <stringValue>Inhibit alarm for maintenance</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Inhibit_alarm_request_for_FOX1</name>
+        <label>Inhibit alarm request for FOX</label>
+        <locationX>1433</locationX>
+        <locationY>767</locationY>
+        <inputAssignments>
+            <field>FN_Category_Type__c</field>
+            <value>
+                <stringValue>Inhibit alarm request for FOX</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Inhibit_for_process_or_equipment_S_D1</name>
+        <label>Inhibit for process or equipment S/D</label>
+        <locationX>50</locationX>
+        <locationY>729</locationY>
+        <inputAssignments>
+            <field>FN_Category_Type__c</field>
+            <value>
+                <stringValue>Inhibit for process or equipment S/D </stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>MOS_for_Ops_purpose1</name>
+        <label>MOS for Ops purpose</label>
+        <locationX>63</locationX>
+        <locationY>491</locationY>
+        <inputAssignments>
+            <field>FN_Category_Type__c</field>
+            <value>
+                <stringValue>MOS for Ops purpose</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_FN_Category_Type</name>
+        <label>Update FN Category Type</label>
+        <locationX>1440</locationX>
+        <locationY>479</locationY>
+        <inputAssignments>
+            <field>FN_Category_Type__c</field>
+            <value>
+                <stringValue>MOS for maintenance</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_FN_Category_Type03</name>
+        <label>Update FN Category Type</label>
+        <locationX>64</locationX>
+        <locationY>288</locationY>
+        <inputAssignments>
+            <field>FN_Category_Type__c</field>
+            <value>
+                <stringValue>OOS</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_FN_Category_Type_0</name>
+        <label>Update FN Category Type</label>
+        <locationX>1443</locationX>
+        <locationY>290</locationY>
+        <inputAssignments>
+            <field>FN_Category_Type__c</field>
+            <value>
+                <stringValue>Safeguarding Force signal</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <startElementReference>Check_Category</startElementReference>
+    <status>Active</status>
+</Flow>

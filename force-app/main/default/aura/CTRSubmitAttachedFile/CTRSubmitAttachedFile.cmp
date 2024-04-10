@@ -1,0 +1,16 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName"
+               access="global" controller="CTRAttachedFile">
+
+    <aura:attribute name="fileList" type="List" default="[]"/>
+    <!-- File Upload Component -->
+    <lightning:fileUpload label="Attach Files" multiple="true" aura:id="files" 
+                          accept=".pdf, .doc, .docx, .png"
+                          recordId="{!v.recordId}"
+                          onuploadfinished="{!c.handleUploadFinished}"/>
+
+    <!-- Button to trigger file submission -->
+    <lightning:button label="Submit1" onclick="{!c.submitFiles}" />
+
+    <!-- ========================================================= -->
+
+</aura:component>

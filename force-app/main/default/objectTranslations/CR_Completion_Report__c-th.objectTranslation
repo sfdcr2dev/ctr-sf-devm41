@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Step 32 : CR (Completion Report)</value>
+    </caseValues>
+    <fields>
+        <help><!-- Required --></help>
+        <label><!-- Asset Template File --></label>
+        <name>Asset_Template_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assigned User --></label>
+        <name>Assigned_User__c</name>
+        <relationshipLabel><!-- Step 32:  CR (Completion Report) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Required --></help>
+        <label><!-- Completion Report File --></label>
+        <name>Completion_Report_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsWaitingForPreviousStep --></label>
+        <name>IsWaitingForPreviousStep__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Process --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- No --></label>
+        <name>No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project --></label>
+        <name>Project__c</name>
+        <relationshipLabel><!-- Step 32 : CR (Completion Report) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Remark --></label>
+        <name>Remark__c</name>
+    </fields>
+    <fields>
+        <label><!-- SME --></label>
+        <lookupFilter>
+            <errorMessage><!-- Selected User is not SME. Please select SME user. --></errorMessage>
+            <informationalMessage><!-- Please select SME user. --></informationalMessage>
+        </lookupFilter>
+        <name>SME__c</name>
+        <relationshipLabel><!-- Step 32:  CR (Completion Report) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Submit Status --></label>
+        <name>Submit_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Waiting for Approve --></label>
+        <name>Waiting_for_Approve__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Process Status --></label>
+        <name>Work_Process_Status__c</name>
+    </fields>
+    <layouts>
+        <layout>CR : Completion Report Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุไฟล์ที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุไฟล์ที่อัพโหลดแล้ว)</section>
+        </sections>
+        <sections>
+            <label><!-- Remark --></label>
+            <section>Remark</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CR : Completion Report Submit Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุไฟล์ที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุไฟล์ที่อัพโหลดแล้ว)</section>
+        </sections>
+        <sections>
+            <label><!-- Remark --></label>
+            <section>Remark</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Step 32 : After Submit --></label>
+        <name>Step_32_After_Submit</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Step 32 : Before Submit --></label>
+        <name>Step_32_Before_Submit</name>
+    </recordTypes>
+</CustomObjectTranslation>

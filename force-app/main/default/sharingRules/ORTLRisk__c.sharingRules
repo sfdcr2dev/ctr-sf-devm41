@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ORTLRiskAPUA</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ORTL: Risk-APU A</label>
+        <sharedTo>
+            <group>ORTLA</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>A</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ORTLRiskAPUB</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ORTL: Risk-APU B</label>
+        <sharedTo>
+            <group>ORTLB</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>B</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ORTLRiskAPUC</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ORTL: Risk-APU C</label>
+        <sharedTo>
+            <group>ORTLC</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>C</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ORTLRiskAPUD</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ORTL: Risk-APU D</label>
+        <sharedTo>
+            <group>ORTLD</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>D</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ORTLRiskAPUE</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ORTL: Risk-APU E</label>
+        <sharedTo>
+            <group>ORTLE</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>E</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ORTLRiskAPUF</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ORTL: Risk-APU F</label>
+        <sharedTo>
+            <group>ORTLF</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>F</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+</SharingRules>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CTRRequestFormItemApproval</value>
+    </caseValues>
+    <fields>
+        <label><!-- Approval Type --></label>
+        <name>ApprovalType__c</name>
+        <picklistValues>
+            <masterLabel>Counter Party</masterLabel>
+            <translation><!-- Counter Party --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAP Information</masterLabel>
+            <translation><!-- SAP Information --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Approver User --></label>
+        <name>ApproverUser__c</name>
+        <relationshipLabel><!-- CTRRequestFormItemApproval (Approver User) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CTR Request Form Item --></label>
+        <name>CTRRequestFormItem__c</name>
+        <relationshipLabel><!-- Approva Request Form Item --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Previous Approval Step --></label>
+        <name>PreviousApprovalStep__c</name>
+        <relationshipLabel><!-- CTRRequestFormItemApproval --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Remarks --></label>
+        <name>Remarks__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Submitted User --></label>
+        <name>SubmittedUser__c</name>
+        <relationshipLabel><!-- CTRRequestFormItemApproval (Submitted User) --></relationshipLabel>
+    </fields>
+</CustomObjectTranslation>

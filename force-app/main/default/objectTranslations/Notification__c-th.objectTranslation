@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Notification</value>
+    </caseValues>
+    <fields>
+        <label><!-- Assigned To --></label>
+        <name>AssignedToText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assigned To --></label>
+        <name>AssignedTo__c</name>
+        <relationshipLabel><!-- Notification (Assigned To) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Breakdown (Not Use) --></label>
+        <name>Break_Down__c</name>
+    </fields>
+    <fields>
+        <label><!-- Breakdown --></label>
+        <name>Breakdown__c</name>
+    </fields>
+    <fields>
+        <label><!-- Code Group --></label>
+        <name>Code_Group__c</name>
+        <relationshipLabel><!-- Notifications (Code Group) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Department Resp (ORG ID) --></label>
+        <name>Department_Resp__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- E-MOC Application No. --></label>
+        <name>E_MOC_Application_No__c</name>
+        <relationshipLabel><!-- Notification --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Equipment --></label>
+        <name>Equipment_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Equipment --></label>
+        <name>Equipment__c</name>
+        <relationshipLabel><!-- Notifications --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Fault Code --></label>
+        <name>FaultCodeText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fault Code Description --></label>
+        <name>Fault_Code_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fault Code --></label>
+        <lookupFilter>
+            <errorMessage><!-- Value does not match Fault Code type. --></errorMessage>
+        </lookupFilter>
+        <name>Fault_Code__c</name>
+        <relationshipLabel><!-- Notifications (Fault Code) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Functional Location --></label>
+        <name>Functional_Location_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Functional Location --></label>
+        <name>Functional_Location__c</name>
+        <relationshipLabel><!-- Notifications --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- History Detail --></label>
+        <name>History_Detail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Integration Message --></label>
+        <name>Integration_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Integration Status --></label>
+        <name>Integration_Status__c</name>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Success</masterLabel>
+            <translation><!-- Success --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- LINK --></label>
+        <name>LINK__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Activity --></label>
+        <name>Last_Activity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Item --></label>
+        <name>Last_Item__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Main Work Center --></label>
+        <name>MainWorkCenterText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Main Work Center Text --></label>
+        <name>Main_Work_Center_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Main Work Center --></label>
+        <name>Main_Work_Center__c</name>
+        <relationshipLabel><!-- Notifications --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Main Work Center --></label>
+        <name>Main_Work_Center_and_Plant_Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- Maintenance Plant Text --></label>
+        <name>MaintenancePlantText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Maintenance Plant --></label>
+        <name>Maintenance_Plant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notification Number --></label>
+        <name>Notification_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notification Status Set --></label>
+        <name>Notification_Status_Set__c</name>
+        <relationshipLabel><!-- Notifications --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Notification Status --></label>
+        <name>Notification_Status__c</name>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Process</masterLabel>
+            <translation><!-- In Process --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- OPS Main Work Center --></label>
+        <name>OPSMainWorkCenter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order Name Text --></label>
+        <name>Order_Name_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <lookupFilter>
+            <errorMessage><!-- Order does not integration with SAP System --></errorMessage>
+        </lookupFilter>
+        <name>Order__c</name>
+        <relationshipLabel><!-- Notifications --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Planner Group Text --></label>
+        <name>Planner_Group_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planner Group --></label>
+        <name>Planner_Group__c</name>
+        <relationshipLabel><!-- Notifications (Planner Group) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Planning Plant Text --></label>
+        <name>Planning_Plant_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planning Plant --></label>
+        <name>Planning_Plant__c</name>
+        <relationshipLabel><!-- Notifications (Planning Plant) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Plant Section Text --></label>
+        <name>PlantSectionText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plant Section --></label>
+        <name>Plant_Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- Priority --></label>
+        <name>Priority__c</name>
+        <picklistValues>
+            <masterLabel>Float Time - 12M</masterLabel>
+            <translation><!-- Float Time - 12M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Float Time - 15M</masterLabel>
+            <translation><!-- Float Time - 15M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Float Time - 18M</masterLabel>
+            <translation><!-- Float Time - 18M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Float Time - 1M</masterLabel>
+            <translation><!-- Float Time - 1M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Float Time - 3M</masterLabel>
+            <translation><!-- Float Time - 3M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Float Time - 6M</masterLabel>
+            <translation><!-- Float Time - 6M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Float Time - 9M</masterLabel>
+            <translation><!-- Float Time - 9M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Immediately</masterLabel>
+            <translation><!-- Immediately --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Normal</masterLabel>
+            <translation><!-- Normal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Urgent</masterLabel>
+            <translation><!-- Urgent --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Report By --></label>
+        <name>Report_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requested Date --></label>
+        <name>Requested_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requester Text --></label>
+        <name>Requester_PISUser_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requester --></label>
+        <name>Requester_PISUser__c</name>
+        <relationshipLabel><!-- Notification --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Requester --></label>
+        <name>Requester__c</name>
+        <relationshipLabel><!-- Notification (Requester) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Required End --></label>
+        <name>Required_End__c</name>
+    </fields>
+    <fields>
+        <label><!-- Required Start --></label>
+        <name>Required_Start__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- System Status Text --></label>
+        <name>System_Status_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>CM</masterLabel>
+            <translation><!-- CM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CR</masterLabel>
+            <translation><!-- CR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FN</masterLabel>
+            <translation><!-- FN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OP</masterLabel>
+            <translation><!-- OP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PM</masterLabel>
+            <translation><!-- PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SH</masterLabel>
+            <translation><!-- SH --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- User Status Text --></label>
+        <name>User_Status_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Status --></label>
+        <name>User_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Clearance --></label>
+        <name>Work_Clearance__c</name>
+        <relationshipLabel><!-- Notifications --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- isIRPA --></label>
+        <name>isIRPA__c</name>
+    </fields>
+    <fields>
+        <label><!-- isSOAP --></label>
+        <name>isSOAP__c</name>
+    </fields>
+    <fields>
+        <label><!-- mainWorkCenterPlantText --></label>
+        <name>mainWorkCenterPlantText__c</name>
+    </fields>
+    <fields>
+        <label><!-- mainWorkCenterPlant --></label>
+        <name>mainWorkCenterPlant__c</name>
+        <relationshipLabel><!-- Notification (mainWorkCenterPlant) --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Formato Notification</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Notification Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>ORTLNotificationLayout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- New Order --></label>
+        <name>New_Order</name>
+    </quickActions>
+</CustomObjectTranslation>

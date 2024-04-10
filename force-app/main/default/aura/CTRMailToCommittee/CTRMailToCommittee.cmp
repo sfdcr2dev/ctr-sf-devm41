@@ -1,0 +1,78 @@
+<aura:component 
+    implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName" access="global">
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="isEdit" type="Boolean" default="false" />
+    <aura:attribute name="filetype" type="List" default="['.png', '.jpg', '.jpeg']" />
+    <aura:attribute name="multiple" type="Boolean" default="true" />
+    <aura:attribute name="emailUrgent" type="String" default="No" />
+    <aura:attribute name="emailSubject" type="String" default="" />
+    <aura:attribute name="isCommittee" type="Boolean" default="false" />
+    <aura:attribute name="selectedEmailCC" type="String" default="" />
+    <aura:attribute name="templateType" type="String" default="" />
+    <aura:attribute name="isReqDoc" type="Boolean" default="false" />
+    <aura:attribute name="emailInfo" type="sObject" default="{}" />
+    <aura:attribute name="mailToCommitteeObj" type="sObject" default="{}" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <div class="slds-section__content">
+        <div class="slds-grid slds-wrap slds-var-p-around_large">
+            <aura:if isTrue="{!AND(v.isCommittee == false, v.isReqDoc == false)}">
+                <div class="slds-col slds-size_1-of-1">
+                    <lightning:input type="text" label="Email To:" variant="label-inline" disabled="{!!v.isEdit}"
+                        value="{!v.emailInfo.EmailTo__c}"></lightning:input>
+                </div>
+            </aura:if>
+            <!-- Email To Request Document -->
+            <aura:if isTrue="{!v.isReqDoc}">
+                <div class="slds-col slds-size_1-of-1">
+                    <lightning:input type="text" label="Email To:" variant="label-inline" disabled="true"
+                        value="{!v.emailInfo.EmailTo__c}"></lightning:input>
+                </div>
+            </aura:if>
+            <!-- Multi-Select CC Email -->
+            <div class="slds-col slds-size_1-of-1">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-form-element_horizontal">
+                        <label class="slds-form-element__label" for="horizontal-input-id-02">CC:</label>
+                        <div class="slds-form-element__control">
+                            <c:CTRCustomMultiLookupComponent disabled="{!!v.isEdit}"
+                                selectedValuesString="{!v.selectedEmailCC}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-1">
+                <lightning:input type="text" label="Subject:" variant="label-inline" disabled="{!!v.isEdit}"
+                    value="{!v.emailInfo.Subject__c}">
+                </lightning:input>
+            </div>
+            <div class="slds-col slds-size_1-of-1">
+                <div class="slds-form">
+                    <div class="slds-form-element slds-form-element_horizontal">
+                        <label class="slds-form-element__label" for="horizontal-input-id-02">Message:</label>
+                        <div class="slds-form-element__control">
+                            <aura:if isTrue="{!v.isEdit}">
+                                <lightning:inputRichText value="{!v.emailInfo.Message__c}" formats="['font', 'size', 'bold', 'italic', 'underline',
+                                                                'strike', 'list', 'indent', 'align',
+                                                                'clean', 'table', 'header', 'color', 'image']">
+                                    <lightning:insertImageButton/>
+                                </lightning:inputRichText>
+                                <aura:set attribute="else">
+                                    <lightning:inputRichText value="{!v.emailInfo.Message__c}" formats="['font', 'size', 'bold', 'italic', 'underline',
+                                                                'strike', 'list', 'indent', 'align',
+                                                                'clean', 'table', 'header', 'color', 'image']" disabled="true">
+                                </lightning:inputRichText>
+                                </aura:set>
+                            </aura:if>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</aura:component>

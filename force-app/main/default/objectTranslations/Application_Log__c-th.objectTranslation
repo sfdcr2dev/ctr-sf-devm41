@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Application Log</value>
+    </caseValues>
+    <fields>
+        <label><!-- CTRReProcessLogToItem --></label>
+        <name>CTRReProcessLogToItem__c</name>
+    </fields>
+    <fields>
+        <label><!-- Error Message --></label>
+        <name>Error_Message__c</name>
+    </fields>
+    <fields>
+        <help><!-- - Job UID; SAP Integration --></help>
+        <label><!-- External ID --></label>
+        <name>External_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Integration Name --></label>
+        <name>Integration_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Log Type --></label>
+        <name>Log_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Message Type --></label>
+        <name>Message_Type__c</name>
+        <picklistValues>
+            <masterLabel>Fail</masterLabel>
+            <translation><!-- Fail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Success</masterLabel>
+            <translation><!-- Success --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Method --></label>
+        <name>Method__c</name>
+        <picklistValues>
+            <masterLabel>Create</masterLabel>
+            <translation><!-- Create --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Delete</masterLabel>
+            <translation><!-- Delete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Update</masterLabel>
+            <translation><!-- Update --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Upsert</masterLabel>
+            <translation><!-- Upsert --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Salesforce Id --></help>
+        <label><!-- Reference ID --></label>
+        <name>Reference_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Body --></label>
+        <name>Request_Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- Response Body --></label>
+        <name>Response_Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAP Response Body --></label>
+        <name>SAP_Response_Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- iRPA Response Body --></label>
+        <name>iRPA_Response_Body__c</name>
+    </fields>
+    <layouts>
+        <layout>Application Log Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Response --></label>
+            <section>Response</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

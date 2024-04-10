@@ -1,0 +1,43 @@
+<aura:component controller="THOR_NotRelListDisplayerController"
+    implements="flexipage:availableForAllPageTypes,lightning:isUrlAddressable">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="viewAll" type="Boolean" default="true" access="private" />
+    <aura:attribute name="totalCards" type="String" default="" access="global" />
+    <aura:attribute name="labelSequence" type="String" default="" access="global" />
+    <aura:attribute name="DisplayableObjectFullList" type="List" default='[]' access="global" />
+    <aura:attribute name="object" type="String" default="" access="global" />
+    <aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+    <aura:attribute name="hasWriteAccess" type="Boolean" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.forceRefresh}" />
+
+    <lightning:navigation aura:id="navLink"/>
+
+    <c:THOR_navigateBack backToTabIndex="3"/>
+
+    <aura:if isTrue="{!v.isLoading}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+    <lightning:layout>
+        <lightning:layoutItem padding="horizontal-small" size="12">
+            <div class="slds-box slds-theme_default">
+                <lightning:layout verticalAlign="center">
+                <lightning:button class="myButton"
+                                  disabled="{!not(v.hasWriteAccess)}"
+                                  variant="base"
+                                  label="Insert Item"
+                                  onclick="{! c.insertNewItem }"/>
+                <lightning:layoutItem>
+                    <lightning:icon iconName="custom:custom108" alternativeText="" class="thaiColor"/>
+                </lightning:layoutItem>
+                <lightning:layoutItem  padding="horizontal-small">
+                    <p><b>{!v.totalCards}</b></p>
+                    <p>{!v.DisplayableObjectFullList.length} Items</p>
+                </lightning:layoutItem>
+                </lightning:layout>
+             </div>
+             <c:THOR_ListObjectDisplayer labelSequence="{!v.labelSequence}" navigateToComponent="c__THOR_ItemRecordDisplay" viewAll='{! v.viewAll}' items="{! v.DisplayableObjectFullList}" />
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

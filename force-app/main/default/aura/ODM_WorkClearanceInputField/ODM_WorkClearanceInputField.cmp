@@ -1,0 +1,88 @@
+<aura:component>
+    <aura:attribute name="type" type="String" access="global" />
+    <aura:attribute name="fieldName" type="String" access="global" />
+    <aura:attribute name="label" type="String" access="global" />
+    <aura:attribute name="value" type="String" access="global" />
+    <aura:attribute name="oldValue" type="String" access="global" />
+    <aura:attribute name="headerId" type="String" access="global" />
+    <aura:attribute name="questionId" type="String" access="global" />
+    <aura:attribute name="picklist" type="String" access="global" />
+    <aura:attribute name="alignment" type="String" access="global" />
+    <aura:attribute name="fetchSObjectName" type="String" access="global" />
+    <aura:attribute name="nameDisplayFormat" type="String" access="global" />
+    <aura:attribute name="descriptionDisplayFormat" type="String" access="global" />
+    <aura:attribute name="disabled" type="Boolean" default="false" access="global" />
+    <aura:attribute name="multiple" type="Boolean" default="false" access="global" />
+    <aura:attribute name="constants" type="Object" default="" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:registerEvent name="valueChangeEvent" type="c:ODM_WorkClearanceInputFieldChangeEvent" />
+    
+	<ltng:require
+		styles="{! $Resource.select2 + '/select2-4.0.3/dist/css/select2.min.css'}"
+		scripts="{!join(',',
+	        $Resource.jQuery224 ,
+	        $Resource.select2 + '/select2-4.0.3/dist/js/select2.js')
+		}"
+		afterScriptsLoaded="{!c.handleSelect2Loaded}"
+	/>
+
+    <aura:if isTrue="{!empty(v.type)}">
+        Blank Field
+    </aura:if>
+    <aura:if isTrue="{!v.type == v.constants.DATA_TYPE.DATE}">
+        <lightning:input type="date" label="{!v.label}" value="{!v.value}" disabled="{!v.disabled}" onchange="{!c.handleChanged}" />
+    </aura:if>
+    <aura:if isTrue="{!v.type == v.constants.DATA_TYPE.TEXT}">
+        <lightning:input type="text" label="{!v.label}" value="{!v.value}" disabled="{!v.disabled}" onchange="{!c.handleChanged}" />
+    </aura:if>
+    <aura:if isTrue="{!v.type == v.constants.DATA_TYPE.LOOKUP}">
+        <aura:if isTrue="{!v.disabled}">
+            <lightning:input type="text" label="{!v.label}" value="{!v.value}" disabled="{!v.disabled}" onchange="{!c.handleChanged}" />
+            <aura:set attribute="else">
+                <c:thorFilterSuggestLookup
+                    alignment="{!v.alignment}"
+                    sObjectName="PTW_Answer__c"
+                    fieldName="Answer__c"
+                    value="{!v.value}"
+                    onchangeValue="{!c.handleSuggestLookupChanged}"
+                    fetchSObjectName="{!v.fetchSObjectName}"
+                    nameDisplayFormat="{!v.nameDisplayFormat}"
+                    descriptionDisplayFormat="{!v.descriptionDisplayFormat}"
+                />
+            </aura:set>
+        </aura:if>
+    </aura:if>
+    <aura:if isTrue="{!v.type == v.constants.DATA_TYPE.NUMBER}">
+        <lightning:input type="number" label="{!v.label}" value="{!v.value}" disabled="{!v.disabled}" onchange="{!c.handleChanged}" />
+    </aura:if>
+    <aura:if isTrue="{!v.type == v.constants.DATA_TYPE.PERCENT}">
+        <lightning:input type="number" formatter="percent" label="{!v.label}"
+            value="{!v.value}" disabled="{!v.disabled}" onchange="{!c.handleChanged}" />
+    </aura:if>
+    <aura:if isTrue="{!v.type == v.constants.DATA_TYPE.TEXT_AREA}">
+        <lightning:textarea label="{!v.label}" value="{!v.value}" disabled="{!v.disabled}" onchange="{!c.handleChanged}" />
+    </aura:if>
+    <aura:if isTrue="{!v.type == v.constants.DATA_TYPE.PICKLIST}">
+        <aura:if isTrue="{!v.multiple}">
+            <div class="slds-form-element slds-form-element_stacked">
+                <label class="slds-form-element__label">{!v.label}</label>
+                <div class="slds-form-element__control">
+                    <select style="width: 100%" id="{!v.fieldName}" class="select2Class" disabled="{!v.disabled}" multiple="multiple">
+                        <aura:iteration items="{!v.picklist}" var="item">
+                            <option value="{!item}">{!item}</option>
+                        </aura:iteration>
+                    </select>
+                </div>
+            </div>
+            <aura:set attribute="else">
+                <lightning:select label="{!v.label}" value="{!v.value}" disabled="{!v.disabled}" onchange="{!c.handleChanged}">
+                    <aura:iteration items="{!v.picklist}" var="item">
+                        <option value="{!item}">{!item}</option>
+                    </aura:iteration>
+                </lightning:select>
+            </aura:set>
+        </aura:if>
+    </aura:if>
+</aura:component>

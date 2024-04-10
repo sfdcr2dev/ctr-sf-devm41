@@ -1,0 +1,453 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global">
+    <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account">
+        <div class="slds-section slds-is-open animate" aura:id="CompanyInformation">
+            <!--section header-->
+            <h3 class="slds-section__title">
+                <button aria-controls="CompanyInformationList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="CompanyInformation">
+                    <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                    <span class="slds-truncate" title="Counterparty Information">Company Information</span>
+                </button>
+            </h3>
+            <!--section body-->
+            <div class="slds-section__content" id="CompanyInformationList">
+                <!--<lightning:messages />-->
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_2-of-5">
+                        <b>*Company Name (Local)</b>
+                        <lightning:outputField aura:id="CompanyNameLocal__c" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                    </div>
+                    <div class="slds-col slds-size_1-of-5">
+                    </div>
+                    <div class="slds-col slds-size_2-of-5">
+                        <b>Company Name (English)</b>
+                        <lightning:outputField aura:id="CompanyNameEnglish__c" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                    </div>
+                    
+                    <br/>
+                    <div class="slds-col slds-size_2-of-5">
+                        <b>Thr Former Name of Company (if any)</b>
+                        <lightning:outputField aura:id="3CompanyNameEnglish__c" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                    </div>
+                    <div class="slds-col slds-size_1-of-5">
+                    </div>
+                    <div class="slds-col slds-size_2-of-5">
+                        <b>Incoperation Date</b>
+                        <lightning:outputField aura:id="IncoperationDate__c" fieldName="IncoperationDate__c" variant="label-hidden"/>
+                    </div>
+                    
+                    <br/>
+                    <div class="slds-col slds-size_2-of-5">
+                        <b>*Tax Number</b>
+                        <lightning:outputField aura:id="4CompanyNameEnglish__c" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                    </div>
+                    <div class="slds-col slds-size_1-of-5">
+                    </div>
+                    <div class="slds-col slds-size_2-of-5">
+                        <b>Company Website</b>
+                        <lightning:outputField aura:id="5CompanyNameEnglish__c" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                    </div>
+                    <br/>
+                    <div class="slds-col slds-size_1-of-1">
+                        <b>Customer Type</b>
+                        <lightning:outputField aura:id="CustomerType__c" fieldName="CustomerType__c" variant="label-hidden"/>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="slds-section slds-is-open animate" aura:id="RegisteredAddress1">
+            <!--section header-->
+            <h3 class="slds-section__title">
+                <button aria-controls="RegisteredAddressList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="RegisteredAddress1">
+                    <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                    <span class="slds-truncate" title="Counterparty Information">Registered Address</span>
+                </button>
+            </h3>
+            <!--section body-->
+            <div class="slds-section__content" id="RegisteredAddressList">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-4">
+                        <!-- Your lightning:inputField components here -->
+                        <b>*House no. (Local)</b>
+                        <lightning:outputField aura:id="House" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                        <b>District</b>
+                        <lightning:outputField aura:id="District" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                        <b>*Country</b>
+                        <lightning:outputField aura:id="Country" fieldName="CityStateLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4"></div>
+                    <div class="slds-col slds-size_1-of-4">
+                        <!-- More lightning:inputField components here -->
+                        <b>Street</b>
+                        <lightning:outputField aura:id="Street" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                        <b>*City</b>
+                        <lightning:outputField aura:id="City" fieldName="CityStateLocal__c" variant="label-hidden"/>
+                        <br/>
+                        <b>Postal Code</b>
+                        <lightning:outputField aura:id="Postal" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+        <div class="slds-section slds-is-open animate" aura:id="MailingAddress">
+          
+            <h3 class="slds-section__title">
+                <button aria-controls="MailingAddressList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="MailingAddress">
+                    <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                    <span class="slds-truncate" title="Counterparty Information">Mailing Address</span>
+                </button>
+            </h3>
+            <div class="slds-section__content" id="MailingAddressList">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-4">
+                     
+                        <b>*House no. (Local)</b>
+                        <lightning:outputField aura:id="House2" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                        <b>District</b>
+                        <lightning:outputField aura:id="District2" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                        <b>*Country</b>
+                        <lightning:outputField aura:id="Country2" fieldName="CityStateLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4"></div>
+                    <div class="slds-col slds-size_1-of-4">
+                       
+                        <b>Street</b>
+                        <lightning:outputField aura:id="Street2" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                        <b>*City</b>
+                        <lightning:outputField aura:id="City2" fieldName="CityStateLocal__c" variant="label-hidden"/>
+                        <br/>
+                        <b>Postal Code</b>
+                        <lightning:outputField aura:id="Postal2" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        -->
+        <div class="slds-section slds-is-open animate" aura:id="ContactPerson">
+            <!--section header-->
+            <h3 class="slds-section__title">
+                <button aria-controls="ContactPersonList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="ContactPerson">
+                    <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                    <span class="slds-truncate" title="Counterparty Information">Contact Person Information</span>
+                </button>
+            </h3>
+            <!--section body-->
+            <div class="slds-section__content" id="ContactPersonList">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-4">
+                        <!-- Your lightning:inputField components here -->
+                        <b>First Name</b>
+                        <lightning:outputField aura:id="House2" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                        <b>Country Code</b>
+                        <lightning:outputField aura:id="Country" fieldName="CustomerType__c" variant="label-hidden"/>
+                        <br/>
+                        <b>*Email Address</b>
+                        <lightning:outputField aura:id="Country2" fieldName="CityStateLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4"></div>
+                    <div class="slds-col slds-size_1-of-4">
+                        <!-- More lightning:inputField components here -->
+                        <b>*Last Name</b>
+                        <lightning:outputField aura:id="Last" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                        <b>*Mobile</b>
+                        <lightning:outputField aura:id="Mobile" fieldName="CityStateLocal__c" variant="label-hidden"/>
+                        <br/>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="slds-section slds-is-open animate" aura:id="ProductTypeOfInterest">
+            <!--section header-->
+            <h3 class="slds-section__title">
+                <button aria-controls="ProductTypeOfInterestList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="ProductTypeOfInterest">
+                    <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                    <span class="slds-truncate" title="Counterparty Information">Product Type as Interest</span>
+                </button>
+            </h3>
+            <!--section body-->
+            <div class="slds-section__content" id="ProductTypeOfInterestList">
+                <div class="slds-grid slds-wrap">
+                    
+                    <div class="slds-col slds-size_1-of-4">
+                        <b>Interested Product Type Customer</b><br/><br />
+                        <lightning:outputField aura:id="4InterestedProductTypeCustomer__c" fieldName="InterestedProductTypeCustomer__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4"></div>
+                    <div class="slds-col slds-size_1-of-4">
+                        <b>Interested Product Type Supplier</b><br /><br />
+                        <lightning:outputField aura:id="InterestedProductTypeSupplier__c" fieldName="InterestedProductTypeCustomer__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4"></div>
+                    
+                    
+                    <div class="slds-col slds-size_2-of-3">
+                        <b>Please esitmate the company purchasing volumn per grade per month</b>
+                        <lightning:outputField aura:id="Name1" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3"></div>
+                    
+                    <div class="slds-col slds-size_1-of-1">
+                        <b>Has the company ever had any default payment over the amount of USD 50,000 in the last 3 years?</b>
+                        <lightning:outputField aura:id="Name1" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                    </div>
+                 
+                    <!--
+                    <div class="slds-col slds-size_1-of-1">
+                        <b>(Please specify the reason of the default)</b><br/>
+                        <lightning:outputField aura:id="reason" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        
+                    </div>
+                    <br /><br /><br />
+                    
+                    <div class="slds-col slds-size_1-of-1">
+                        <b>Are any of your company, company's directors, shareholders, beneficial owners violating anti-money laundering laws?</b>
+                        <lightning:outputField aura:id="reason" fieldName="CompanyNameLocal__c" variant="label-hidden"/>          
+                    </div>
+                    
+                    <div class="slds-col slds-size_1-of-1">
+                        <b>(Please specify the reason of the default)</b><br/>
+                        <lightning:outputField aura:id="reason" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        
+                    </div>
+                   -->
+                    
+                    
+                    <br /><br /><br />
+                    
+                    <div class="slds-col slds-size_1-of-1">
+                        <b>For customer of fuel oil in the country, please specify the tradder's license number</b>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1">    
+                        <lightning:outputField aura:id="license" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    
+                    
+                    <div class="slds-col slds-size_1-of-1"> 
+                        <b>Destination Country</b>
+                        <lightning:outputField aura:id="Destination" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div> 
+               
+                    
+                    <div class="slds-col slds-size_1-of-1">
+                        <b>Year of experience in selling the products you intend to purchase</b>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1"> 
+                        <lightning:outputField aura:id="experience" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div> 
+                 
+                    
+                    
+                    <div class="slds-col slds-size_1-of-1"> 
+                        <b>Estimated monthly purchase quantity</b>
+                        <lightning:outputField aura:id="Estimated" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    
+                    <div class="slds-col slds-size_1-of-1"> 
+                        <b>Environment: Does your company have Envirnment policy?</b>
+                        <lightning:outputField aura:id="experience" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div> 
+
+                    <div class="slds-col slds-size_1-of-1"> 
+                        <b>Society: Does your company have Occupational Health and Safety policy?</b>
+                        <lightning:outputField aura:id="experience" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1"> 
+                        <b>Governance: Does your company have Corporate Governance policy?</b>
+                        <lightning:outputField aura:id="experience" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    
+                    <br/><br/><br/>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="slds-section slds-is-open animate" aura:id="AdditionalInformationRequires">
+            <!--section header-->
+            <h3 class="slds-section__title">
+                <button aria-controls="AdditionalInformationRequiresList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="AdditionalInformationRequires">
+                    <lightning:icon iconName="utility:switch" size="x-small" class="slds-section__title-action-icon slds-button__icon_left" alternativeText="button icon"/>
+                    <span class="slds-truncate" title="Counterparty Information">Additional Information Requires</span>
+                </button>
+            </h3>
+            <!--section body-->
+            <div class="slds-section__content" id="AdditionalInformationRequiresList">
+                <div class="slds-grid slds-wrap">
+                    
+                    <div class="slds-col slds-size_1-of-1">
+                        <br/><b>Name of CEO/President/Managing Director</b> <br/>
+                    </div>
+                    
+                    <div class="slds-col slds-size_1-of-4">
+                        <b>First Name</b>
+                        <lightning:outputField aura:id="FirstName" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4"></div>
+                    <div class="slds-col slds-size_1-of-4">
+                        <b>Last Name</b>
+                        <lightning:outputField aura:id="LastName" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4"></div>
+                    
+                    <div class="slds-col slds-size_1-of-1">
+                        <b>List of Shareholders who hold an interst in the company more than 10%</b>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-align_absolute-center">
+                        <div class="slds-col slds-size_1-of-5"></div>
+                        <div class="slds-col slds-size_3-of-5">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Opportunity Name">No</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Account Name">First Name</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Close Date">Last Nname</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Stage">% of Shareholders</div>
+                                        </th>
+                                        <th scope="col" class="">
+                                            <a onclick="{!c.addNewRow}">
+                                                <lightning:icon iconName="utility:add" class="slds-icon slds-icon_small" size="small" alternativeText="add"/>
+                                                <span class="slds-assistive-text">Add Icon</span>
+                                            </a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <aura:iteration items="{!v.itemList}" var="item" indexVar="index">
+                                        <c:CTRDynamicRowTable rowIndex="{!index}"/>
+                                    </aura:iteration>
+                                    <!--
+                                            <tr class="slds-hint-parent">
+                                              <th data-label="No" scope="row">
+                                                <div class="slds-truncate" title="Cloudhub">
+                                                  <a href="#" tabindex="-1"></a>
+                                                </div>
+                                              </th>
+                                              <td data-label="First Name">
+                                                <div class="slds-truncate" title=""></div>
+                                              </td>
+                                              <td data-label="Last Name">
+                                                <div class="slds-truncate" title=""></div>
+                                              </td>
+                                              <td data-label="% of Shareholders">
+                                                <div class="slds-truncate" title=""></div>
+                                              </td>
+                                            </tr>-->
+                                </tbody>
+                            </table>
+                            <br/>
+                        </div>
+                        <div class="slds-col slds-size_1-of-"></div>
+                    </div>
+                    
+                    <div class="slds-col slds-size_1-of-1">
+                        <b>Parent Company:(If any) (Please give full legal/official company name)</b> <br/>
+                    </div>
+                    
+                    <div class="slds-col slds-size_2-of-5">
+                        <b>Immidiate Parent Company</b>
+                        <lightning:outputField aura:id="ImmidiateParent" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br />
+                    </div>
+                    <div class="slds-col slds-size_1-of-5"></div>
+                    <div class="slds-col slds-size_2-of-5">
+                        <b>Ultimate Parent Company</b>
+                        <lightning:outputField aura:id="UltimateParent" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                  
+                    
+                    
+                    <div class="slds-col slds-size_2-of-5">
+                        
+                        <b>Type of Business</b>
+                        <lightning:outputField aura:id="otherradio" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    <div class="slds-col slds-size_1-of-5"></div>
+                    <div class="slds-col slds-size_2-of-5">
+                        
+                        <b>Other Type of Business</b>
+                        <lightning:outputField aura:id="otherradio" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    
+                    <div class="slds-col slds-size_2-of-5">
+                        <b>Main Service</b>
+                        <lightning:outputField aura:id="MainService" fieldName="CustomerType__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    <div class="slds-col slds-size_1-of-5"></div>
+                    <div class="slds-col slds-size_2-of-5">
+                        
+                        <b>Other Main Service</b>
+                        <lightning:outputField aura:id="OtherMainService" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    
+                    <div class="slds-col slds-size_2-of-5">
+                        <b>Main Product</b>
+                        <lightning:outputField aura:id="MainProduct" fieldName="CustomerType__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    <div class="slds-col slds-size_1-of-5"></div>
+                    <div class="slds-col slds-size_2-of-5">
+                        
+                        <b>Other Main Product</b>
+                        <lightning:outputField aura:id="OtherMainProduct" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    
+                    <div class="slds-col slds-size_1-of-1">
+                        <b>Company's latest credit rating by international agencies: (Please specify if any e.g.BBB,Baa2)</b>
+                        <lightning:outputField aura:id="CompanyCredit" fieldName="CompanyNameLocal__c" variant="label-hidden"/>
+                        <br/>
+                    </div>
+                    
+                    
+                    
+                </div>
+                
+            </div>
+        </div>
+    </lightning:recordViewForm>
+</aura:component>

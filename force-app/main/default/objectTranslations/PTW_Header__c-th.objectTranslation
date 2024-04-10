@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>PTW Header</value>
+    </caseValues>
+    <fields>
+        <label><!-- (Auditor) Name --></label>
+        <name>Auditor_Name__c</name>
+        <relationshipLabel><!-- PTW Header --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Count Permit to work --></label>
+        <name>Count_Permit_to_work__c</name>
+    </fields>
+    <fields>
+        <label><!-- Department --></label>
+        <name>Department__c</name>
+    </fields>
+    <fields>
+        <label><!-- Department for Verification --></label>
+        <name>Department_for_Verification__c</name>
+    </fields>
+    <fields>
+        <label><!-- FormName --></label>
+        <name>FormName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Main Work Center --></label>
+        <name>Main_Work_Center__c</name>
+    </fields>
+    <fields>
+        <label><!-- Main Work Center of Verification --></label>
+        <name>Main_Work_Center_of_Verification__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Agree</masterLabel>
+            <translation><!-- Agree --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disagree</masterLabel>
+            <translation><!-- Disagree --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Draft</masterLabel>
+            <translation><!-- Draft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ดำเนินการได้</masterLabel>
+            <translation><!-- ดำเนินการได้ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>หยุดงานชั่วคราว</masterLabel>
+            <translation><!-- หยุดงานชั่วคราว --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>หยุดงานถาวร</masterLabel>
+            <translation><!-- หยุดงานถาวร --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Total Stop Work --></label>
+        <name>Total_Stop_Work__c</name>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <name>User__c</name>
+        <relationshipLabel><!-- PTW Header --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Verification Name --></label>
+        <name>Verification_Name__c</name>
+        <relationshipLabel><!-- PTW Header (Verfication Name) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Version --></label>
+        <name>Version__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Clearance --></label>
+        <name>Work_Clearance__c</name>
+        <relationshipLabel><!-- PTW Header --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>PTW Header Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Inspection --></label>
+        <name>Inspection</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Verification --></label>
+        <name>Verification</name>
+    </recordTypes>
+</CustomObjectTranslation>

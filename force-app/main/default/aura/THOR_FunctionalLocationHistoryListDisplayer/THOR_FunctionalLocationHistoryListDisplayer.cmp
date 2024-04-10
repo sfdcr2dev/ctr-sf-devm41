@@ -1,0 +1,59 @@
+<aura:component controller="THOR_RetrieverController" implements="force:appHostable,flexipage:availableForAllPageTypes,lightning:isUrlAddressable,force:hasRecordId">
+
+    <aura:handler name='init' value='{!this}' action='{!c.doInit}' />
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.reInit}" />
+    <aura:handler name="filterSelectedEvent" event="c:THOR_Event" action="{!c.handleFilterSelected}" />
+
+    <!-- ATTRIBUTES -->
+    <aura:attribute name="goToComponent" type="String" access="global" default="Notification__c" />
+    <aura:attribute name="ListType1" type="String" access="global" default="FL New Notifications" />
+    <aura:attribute name="ListType2" type="String" access="global" default="FL In Progress Notifications" />
+    <aura:attribute name="ListType3" type="String" access="global" default="FL Closed Notifications" />
+    <aura:attribute name="fromRecordId" type="String" access="global" />
+    <aura:attribute name="RelatedId" type="String" default="" access="global" />
+    <aura:attribute name="listNew" type="List" access="global" />
+    <aura:attribute name="listInProgress" type="List" access="global" />
+    <aura:attribute name="listClosed" type="List" access="global" />
+    <aura:attribute name="FLTitle" type="String" default="" access="global" />
+    <aura:attribute name="totalFL" type="Integer" default="0" access="global" />
+    <aura:attribute name="labelSequence" type="String" default="Notification Number, Notification Type, Priority, Create on, Description" />
+
+    <aura:attribute name="filterOptions" type="List" default="[]" access="global" />
+    <aura:attribute name="filterSelected" type="String" default="" access="global" />
+    <aura:attribute name="userFilterActive" type="Boolean" default="false" access="global" />
+    <aura:attribute name="fromDateFilter" type="Date" default="" access="global" />
+    <aura:attribute name="toDateFilter" type="Date" default="" access="global" />
+
+    <lightning:navigation aura:id="navLink" />
+
+    <c:THOR_navigateBack />
+
+
+    <c:THOR_Header title="{! v.FLTitle }" iconName="standard:case">
+    </c:THOR_Header>
+
+    <div class="slds-m-bottom_medium">
+        <aura:if isTrue="{!v.RelatedId}">
+        <c:THOR_Retriever
+            maxSize="2"
+            defaultItems="1"
+            ListType1="{!v.ListType1}"
+            ListType2="{!v.ListType2}"
+            ListType3="{!v.ListType3}"
+            RelatedId="{!v.RelatedId}"
+            labelSequence1="{!v.labelSequence}"
+            labelSequence2="{!v.labelSequence}"
+            labelSequence3="{!v.labelSequence}"
+            DisplayableObjectFullList1="{!v.listNew}"
+            DisplayableObjectFullList1Count="{!v.listNew.length}"
+            DisplayableObjectFullList2="{!v.listInProgress}"
+            DisplayableObjectFullList2Count="{!v.listInProgress.length}"
+            DisplayableObjectFullList3="{!v.listClosed}"
+            DisplayableObjectFullList3Count="{!v.listClosed.length}"
+            isNavigable="true"
+        />
+        </aura:if>
+    </div>
+
+
+</aura:component>

@@ -1,0 +1,32 @@
+<aura:component controller="OPP_CoinController" 
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" 
+                access="global" 
+>
+  <ltng:require styles="{!$Resource.slds_page_header_hide}" />
+  <aura:attribute name="coin" type="string"/>
+  <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <article class="slds-card">
+        <div class="slds-grid slds-einstein-header slds-card__header">
+          <header class="slds-media slds-media_center slds-has-flexi-truncate">
+            <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+              <div class="slds-media__body">
+                <h2 class="slds-truncate" title="COIN">
+                <img src="https://img.icons8.com/emoji/452/coin-emoji.png" />
+                  <!-- <a href="#" class="slds-card__header-link" title="Einstein (10+)"> -->
+                    <span class="slds-text-heading_small">
+                      {!v.coin}
+                    </span>
+                  <!-- </a> -->
+                </h2>
+              </div>
+            </div>
+            <div class="slds-einstein-header__figure slds-size_1-of-4 slds-medium-size_1-of-3"></div>
+          </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner"></div>
+        <footer class="slds-card__footer">
+          <a class="slds-card__footer-action" href="#">Go to Shop
+          </a>
+        </footer>
+      </article>
+</aura:component>

@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>ContractLineItem</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>ContractLineItem</fullName>
+        <fields>Product__c</fields>
+        <fields>ContractNumber__c</fields>
+        <fields>ContractVolume__c</fields>
+        <fields>ContractVolumeUOM__c</fields>
+        <label>Contract Line Item</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>ContractFormNo__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract Form No.</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ContractNumber__c</fullName>
+        <externalId>false</externalId>
+        <formula>Contract__r.ContractNumber__c</formula>
+        <label>Contract Number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ContractVolumeUOM__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract Volume UOM</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Unit</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ContractVolume__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract Volume</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contract__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contract</label>
+        <referenceTo>C360_Contract__c</referenceTo>
+        <relationshipLabel>Contract Line Item</relationshipLabel>
+        <relationshipName>Contract_Line_Item</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Currency__c</fullName>
+        <externalId>false</externalId>
+        <label>Currency</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Currency</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>DistributionChannel__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(Contract__r.DistributionChannel__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Distribution Channel</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FreeVolumeUOM__c</fullName>
+        <externalId>false</externalId>
+        <label>Free Volume UOM</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Unit</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FreeVolume__c</fullName>
+        <externalId>false</externalId>
+        <label>Free Volume</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>KeyReport__c</fullName>
+        <description>Use for TPX Labix Report</description>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISPICKVAL(Contract__r.SalesOrganization__c, &apos;1300&apos;),ISPICKVAL(Contract__r.SalesOrganization__c, &apos;1700&apos;)) ,
+TEXT(Contract__r.SalesOrganization__c) &amp;&quot;_&quot;&amp;
+TEXT(Contract__r.DistributionChannel__c) &amp;&quot;_&quot;&amp;
+Contract__r.SoldTo__r.AccountNumber__c &amp;&quot;_&quot;&amp;
+Product__r.MaterialCode__c &amp;&quot;_&quot;&amp;
+TEXT(ContractVolumeUOM__c),
+null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Key Report</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Key__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Key</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>LoadingEndDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Loading End Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>LoadingStartDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Loading Start Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MaximumVolume__c</fullName>
+        <externalId>false</externalId>
+        <label>Maximum Volume</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MinimumPrice__c</fullName>
+        <externalId>false</externalId>
+        <label>Minimum Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MinimumVolumeUOM__c</fullName>
+        <externalId>false</externalId>
+        <label>Minimum Volume UOM</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Unit</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MinimumVolume__c</fullName>
+        <externalId>false</externalId>
+        <label>Minimum Volume</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mode__c</fullName>
+        <externalId>false</externalId>
+        <label>Mode</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Bulk</fullName>
+                    <default>false</default>
+                    <label>Bulk</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>OrderQuantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Order Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PricingUnit__c</fullName>
+        <externalId>false</externalId>
+        <label>Pricing Unit</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>PricingUnit</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ProductGroupReport__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(CONTAINS(Product__r.MaterialCode__c, &apos;HAB&apos;) , &apos;HAB&apos;,
+IF(CONTAINS(Product__r.MaterialCode__c, &apos;150EX&apos;) , &apos;150EX&apos;,
+IF(CONTAINS(Product__r.MaterialCode__c, &apos;500EX&apos;) , &apos;500EX&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;BSEX&apos;) , &apos;BSEX&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;150SW&apos;) , &apos;150SW&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;500SW&apos;) , &apos;500SW&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;BSSW&apos;) , &apos;BSSW&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;TDATE&apos;) ,&apos;TDATE&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;TRAE&apos;) , &apos;TRAE&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;MES&apos;) , &apos;MES&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;LAB&apos;) , &apos;LAB&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;150SN&apos;) , &apos;150SN&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;500SN&apos;) , &apos;500SN&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;150BS&apos;) , &apos;150BS&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;YBIT&apos;) , &apos;Bitumen&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;Raf&apos;) , &apos;Raffinate&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;BZ&apos;) , &apos;BZ&apos;,
+IF( CONTAINS( Product__r.Name , &apos;PX&apos;) , &apos;PX&apos;,
+Null))))))))))))))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Product Group</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <lookupFilter>
+            <active>false</active>
+            <filterItems>
+                <field>C360_Product__c.DeletionMark__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>C360_Product__c</referenceTo>
+        <relationshipLabel>Contract Line Item</relationshipLabel>
+        <relationshipName>Contract_Line_Item</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>RejectStatus__c</fullName>
+        <externalId>false</externalId>
+        <label>Reject Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>C</fullName>
+                    <default>false</default>
+                    <label>C</label>
+                </value>
+                <value>
+                    <fullName>A</fullName>
+                    <default>false</default>
+                    <label>A</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>SalesDocumentItem__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Document Item</label>
+        <length>6</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SalesUnit__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Unit</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Unit</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ShipTo__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Ship-To Party</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Contract Line Item (Ship-To)</relationshipLabel>
+        <relationshipName>Contract_Line_Item</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>false</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>Inactive</fullName>
+                    <default>false</default>
+                    <label>Inactive</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>VolumeAllocationMTConversion__c</fullName>
+        <description>Use for TPX Labix report</description>
+        <externalId>false</externalId>
+        <label>Volume Allocation (MT) Conversion</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VolumeAllocationMTReport__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL( ContractVolumeUOM__c , &apos;MT&apos;) , 
+ContractVolume__c , 
+VolumeAllocationMTConversion__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Volume Allocation (MT)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VolumeLiftingMTReport__c</fullName>
+        <description>Use only in TPX Labix report</description>
+        <externalId>false</externalId>
+        <label>Volume Lifting (MT)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VolumeRangeTo__c</fullName>
+        <externalId>false</externalId>
+        <label>Volume Range To</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VolumeRangeUOM__c</fullName>
+        <externalId>false</externalId>
+        <label>Volume Range UOM</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Unit</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>VolumeRange__c</fullName>
+        <externalId>false</externalId>
+        <label>Volume Range From</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Contract Line Item</label>
+    <nameField>
+        <displayFormat>SFCTI{0000000}</displayFormat>
+        <label>Item Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

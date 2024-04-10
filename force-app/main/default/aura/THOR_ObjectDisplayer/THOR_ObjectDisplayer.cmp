@@ -1,0 +1,46 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId">
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="selected" type="Integer" default= "0" access="global"/>
+    <aura:attribute name="isLoading" type="Boolean" default="false" access="global" />
+    <aura:attribute name="titles" type="String[]" access="global"/>
+    <aura:attribute name="tabs" type="Aura.Component[]" />
+    <aura:attribute name="forEqcc" type="Boolean" default="false" access="private" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.selected}" action="{!c.tabChanged}"/>
+
+    <!-- <aura:if isTrue="{!v.isLoading}">
+        <lightning:spinner alternativeText="Loadings" size="medium" />
+    </aura:if> -->
+    <div class="slds-tabs_default" aura:id="tabs">
+        <div id="tab-default-1" class="slds-tabs_default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">
+          <div class="slds-tabs_scoped">
+            <ul class="slds-tabs_scoped__nav" role="tablist">
+                <aura:iteration items="{!v.titles}" var="title" indexVar="index">
+                    <li title="{!title}" class="{!index == v.selected ? 'slds-is-active slds-tabs_scoped__item' : 'slds-tabs_scoped__item'}" role="presentation">
+                        <a class="slds-tabs_scoped__link"
+                            href="javascript:void(0);"
+                            role="tab" aura:id="menuItem"
+                            aria-selected="{!index == v.selected ? true : false}"
+                            aria-controls="{!index + '-tab-scoped'}"
+                            id="{!index + '-tab-scoped-item'}"
+                            onclick="{!c.setIndex}" data-index="{!index}" data-title="{!title}">
+                             {!title}
+                        </a>
+                    </li>
+                </aura:iteration>
+            </ul>
+            <aura:iteration items="{!v.tabs}" var="tab" indexVar="index">
+                <div id="{!index + '-tab-scoped'}" class="{!index == v.selected ? 'slds-show slds-tabs_scoped__content' : ''}"
+                    role="tabpanel"
+                    aria-labelledby="{!index + '-tab-scoped-item'}"
+                >
+                    {!tab}
+                </div>
+            </aura:iteration>
+
+          </div>
+        </div>
+    </div>
+
+</aura:component>

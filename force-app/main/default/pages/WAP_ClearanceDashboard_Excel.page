@@ -1,0 +1,61 @@
+<apex:page controller="WAP_ClearanceDashboardExcelController"
+  language="th" action="{!OnloadExcel}"
+  cache="true" showHeader="false"
+  contentType="application/vnd.ms-excel#Dashboard - {!todayDate}.xls">
+  >
+  
+  <!-- contentType="application/vnd.ms-excel#Dashboard - {!todayDate}.xls"> -->
+  
+  <html lang="en">
+      <head>
+          <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+          <style>
+                table, td, th {
+                  border: 1px solid;
+                }
+                
+                table {
+                  width: 100%;
+                  border-collapse: collapse;
+                }
+            </style>
+      </head>
+      <body>
+      
+          <h3>Clearance Dashboard</h3>
+          <br/><br/>
+          <table>
+              <tr>
+                  <th>Clearance No.</th>
+                  <th>วันที่ให้ปฏิบัติงาน</th>
+                  <th>เวลาให้ปฏิบัติงาน</th>
+                  <th>Type of Work</th>
+                  <th>Area</th>
+                  <th>การขอขยายเวลา</th>
+                  <th>Extended Date</th>
+                  <th>Extended Time</th>
+                  <th>Extending Time (ขออยายเวลาถึง)</th>
+              </tr>
+              <apex:repeat value="{!CDWs}" var="CDW">
+                  <tr>
+                      <td>{!CDW.clearanceNo}</td>
+                      <td><apex:outputText value="{0,date, MM/dd/yyyy}"> <apex:param value="{!CDW.workingDate}" /> </apex:outputText></td>
+                      <td>{!CDW.workingTime}</td>
+                      <td>{!CDW.typeOfWork}</td>
+                      <td>{!CDW.area}</td>
+                      <td>{!CDW.requestExtended}</td>
+                      <td><apex:outputText value="{0,date, MM/dd/yyyy}"> <apex:param value="{!CDW.extendedDate}" /> </apex:outputText></td>
+                      <td>{!CDW.extendedTime}</td>
+                      <td>{!CDW.extendingTime}</td>
+                      
+                      <!-- <td><apex:outputText value="{0,date, MM/dd/yyyy}"> <apex:param value="{!SP.firstExtendDate}" /> </apex:outputText></td>
+                      <td><apex:outputText value="{0,date, MM/dd/yyyy}"> <apex:param value="{!SP.secondExtendDate}" /> </apex:outputText></td>
+                      <td><apex:outputText value="{0,date, MM/dd/yyyy}"> <apex:param value="{!SP.thirdExtendDate}" /> </apex:outputText></td> -->
+                  </tr>
+              </apex:repeat>
+          </table>
+          
+      </body>
+  </html>
+  
+</apex:page>

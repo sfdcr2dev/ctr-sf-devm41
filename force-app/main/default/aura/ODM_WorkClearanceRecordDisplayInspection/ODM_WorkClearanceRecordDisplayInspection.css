@@ -1,0 +1,177 @@
+.THIS {
+
+}
+
+.THIS .bg-white {
+    background-color: white;
+}
+
+.THIS .slds-card {
+    /* border-radius: 2rem; */
+    padding: 0.5rem;
+}
+
+.THIS .slds-form-element__label {
+    color: black;
+    font-size: 14px;
+}
+
+.THIS .header-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    /* padding-top: 0.5rem; */
+    /* padding-bottom: 0.5rem; */
+    color: #222;
+    text-align: center;
+}
+
+.THIS .header-action-button {
+    /* margin-top: -2.5rem; */
+    margin-right: 8px
+}
+
+.THIS .slds-col_bump-left {
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.THIS .slds-col_bump-right {
+    text-align: right;
+    margin-right: 0.5rem;
+}
+
+.THIS .ptw-list-header {
+    background-color: rgb(224, 224, 224, 1);
+    font-weight: bold;
+    font-size: 0.875rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.THIS .ptw-list-detail {
+    padding: 0.75rem;
+    border: 1px solid rgb(224, 224, 224, 1);
+    cursor: pointer;
+}
+
+.THIS .ptw-header .slds-col {
+    padding: 0.5rem;
+}
+
+.THIS .ptw-header .slds-col label.label-horizontal {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.THIS .ptw-header .label-hidden .slds-form-element__label {
+    display: none;
+}
+
+.THIS .ptw-section-header {
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding-left: 0.5rem;
+    text-decoration: underline;
+}
+
+.THIS .ptw-list-detail:hover {
+    background-color: rgb(245, 245, 245, 1);
+}
+
+.THIS .slds-table td {
+    white-space: normal;
+}
+
+.THIS table.ptw-section-question td:nth-child(1) {
+    width: 95%;
+}
+
+.THIS table.ptw-section-comment td:nth-child(1) {
+    width: 40px;
+    text-align: right;
+    vertical-align: top;
+    padding-top: 0.4rem;
+}
+
+.THIS table.ptw-section-comment td:nth-child(3) {
+    width: 160px;
+    vertical-align: top;
+    padding-top: 0.4rem;
+}
+
+.THIS table.ptw-section-question td .slds-form-element__label {
+    display: none;
+}
+
+.THIS table.ptw-section-question .slds-select_container {
+    width: 4rem;
+    min-width: 4rem;
+    max-width: 4rem;
+}
+
+.THIS .label-hidden-file-upload .slds-file-selector__text.slds-medium-show,
+.THIS .label-hidden-file-upload .slds-form-element .slds-form-element__label {
+    display: none;
+}
+
+.THIS .ptw-section-comment-attach-file li {
+    padding: .5rem 0.5rem 0;
+}
+
+.THIS .ptw-section-comment-attach-file li lightning-icon {
+    padding: 0.25rem;
+}
+
+.THIS ul.ptw-section-comment-attach-file > li > div {
+    display: inline;
+    cursor: pointer;
+}
+
+.THIS ul.ptw-section-comment-attach-file > li > div:nth-child(2) {
+    float: right;
+}
+
+.THIS .ptw-section-comment-attach-file {
+    display: inline;
+}
+
+.THIS c-thor-filter-suggest-lookup .slds-form-element_stacked {
+    padding: 0;
+}
+
+.THIS .action-dropup .slds-dropdown {
+    top: -150px;
+}
+
+.THIS .ptw-compliance-score-container {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.THIS .muh-class > .slds-form-element > .slds-form-element__label {
+	display: none;
+}
+
+.THIS span.slds-file-selector__text.slds-medium-show {
+	display: none;
+}
+
+.THIS .slds-file-selector__dropzone {
+	border: none;
+}
+
+@media (max-width: 602px) {
+
+    .THIS.show-modal {
+        height: 80%
+    }
+
+    .THIS .action-dropup .slds-dropdown {
+        top: -181px;
+    }
+}

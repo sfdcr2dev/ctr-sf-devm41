@@ -1,0 +1,2999 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>E_MOC_Attachment_Doc_require_Record_Page1</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>E_MOC_Attachment_Doc_require_Record_Page1</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>E_MOC</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>E_MOC</fullName>
+        <fields>Name</fields>
+        <fields>Attachment__c</fields>
+        <fields>E_MOC_Doc_Type__c</fields>
+        <fields>E_MOC_Checklist_type__c</fields>
+        <fields>OwnerId</fields>
+        <label>E-MOC</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Attachment__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Attachment</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>E_MOC_Application__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>E-MOC Application</label>
+        <referenceTo>E_MOC_Application__c</referenceTo>
+        <relationshipLabel>E-MOC Attachment Doc require</relationshipLabel>
+        <relationshipName>E_MOC_Attachment_Doc_require</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>E_MOC_Attachment__c</fullName>
+        <externalId>false</externalId>
+        <label>E-MOC Attachment</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>E_MOC_Doc_Type__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Plot Plan</fullName>
+                    <default>false</default>
+                    <label>Plot Plan</label>
+                </value>
+                <value>
+                    <fullName>General Equipment Arrangements &amp; Elevations</fullName>
+                    <default>false</default>
+                    <label>General Equipment Arrangements &amp; Elevations</label>
+                </value>
+                <value>
+                    <fullName>Isometric drawing/GA drawing</fullName>
+                    <default>false</default>
+                    <label>Isometric drawing/GA drawing</label>
+                </value>
+                <value>
+                    <fullName>Process Flow Diagram (PFD)</fullName>
+                    <default>false</default>
+                    <label>Process Flow Diagram (PFD)</label>
+                </value>
+                <value>
+                    <fullName>Process Engineering Flow Schemes (P&amp;ID)</fullName>
+                    <default>false</default>
+                    <label>Process Engineering Flow Schemes (P&amp;ID)</label>
+                </value>
+                <value>
+                    <fullName>PSFSs (Process Safeguarding Flow Schemes)</fullName>
+                    <default>false</default>
+                    <label>PSFSs (Process Safeguarding Flow Schemes)</label>
+                </value>
+                <value>
+                    <fullName>Cause and Effect diagram</fullName>
+                    <default>false</default>
+                    <label>Cause and Effect diagram</label>
+                </value>
+                <value>
+                    <fullName>Hazadous Area Classification Schedule/Drawing</fullName>
+                    <default>false</default>
+                    <label>Hazadous Area Classification Schedule/Drawing</label>
+                </value>
+                <value>
+                    <fullName>Equipment datasheet</fullName>
+                    <default>false</default>
+                    <label>Equipment datasheet</label>
+                </value>
+                <value>
+                    <fullName>Instrument datasheet</fullName>
+                    <default>false</default>
+                    <label>Instrument datasheet</label>
+                </value>
+                <value>
+                    <fullName>Equipment/Instrument drawing</fullName>
+                    <default>false</default>
+                    <label>Equipment/Instrument drawing</label>
+                </value>
+                <value>
+                    <fullName>Line list</fullName>
+                    <default>false</default>
+                    <label>Line list</label>
+                </value>
+                <value>
+                    <fullName>Fire &amp; Gas Detector Layout</fullName>
+                    <default>false</default>
+                    <label>Fire &amp; Gas Detector Layout</label>
+                </value>
+                <value>
+                    <fullName>Safety Critical Equipment list</fullName>
+                    <default>false</default>
+                    <label>Safety Critical Equipment list</label>
+                </value>
+                <value>
+                    <fullName>Safety Data Sheet</fullName>
+                    <default>false</default>
+                    <label>Safety Data Sheet</label>
+                </value>
+                <value>
+                    <fullName>Hazards &amp; Effects Register</fullName>
+                    <default>false</default>
+                    <label>Hazards &amp; Effects Register</label>
+                </value>
+                <value>
+                    <fullName>HEMP Bowties</fullName>
+                    <default>false</default>
+                    <label>HEMP Bowties</label>
+                </value>
+                <value>
+                    <fullName>Pre-Incident Plan</fullName>
+                    <default>false</default>
+                    <label>Pre-Incident Plan</label>
+                </value>
+                <value>
+                    <fullName>Simplified Process Flow Diagram</fullName>
+                    <default>false</default>
+                    <label>Simplified Process Flow Diagram</label>
+                </value>
+                <value>
+                    <fullName>Operating Manuals / Procedures</fullName>
+                    <default>false</default>
+                    <label>Operating Manuals / Procedures</label>
+                </value>
+                <value>
+                    <fullName>Work Instructions / Standing Instructions</fullName>
+                    <default>false</default>
+                    <label>Work Instructions / Standing Instructions</label>
+                </value>
+                <value>
+                    <fullName>Training Manuals</fullName>
+                    <default>false</default>
+                    <label>Training Manuals</label>
+                </value>
+                <value>
+                    <fullName>Process Design Information (Process Chemistry, Process Description)</fullName>
+                    <default>false</default>
+                    <label>Process Design Information (Process Chemistry, Process Description)</label>
+                </value>
+                <value>
+                    <fullName>Heat &amp; Material Balance</fullName>
+                    <default>false</default>
+                    <label>Heat &amp; Material Balance</label>
+                </value>
+                <value>
+                    <fullName>RV load summary</fullName>
+                    <default>false</default>
+                    <label>RV load summary</label>
+                </value>
+                <value>
+                    <fullName>Process Safeguarding Memorandum</fullName>
+                    <default>false</default>
+                    <label>Process Safeguarding Memorandum</label>
+                </value>
+                <value>
+                    <fullName>Instrument Safeguarding Narrative</fullName>
+                    <default>false</default>
+                    <label>Instrument Safeguarding Narrative</label>
+                </value>
+                <value>
+                    <fullName>Reactive Hazards Analysis (RHA)</fullName>
+                    <default>false</default>
+                    <label>Reactive Hazards Analysis (RHA)</label>
+                </value>
+                <value>
+                    <fullName>PI Process Book (needs to be updated if DCS display/schematic is updated)</fullName>
+                    <default>false</default>
+                    <label>PI Process Book (needs to be updated if DCS display/schematic is updated)</label>
+                </value>
+                <value>
+                    <fullName>Feed or Product Specifications</fullName>
+                    <default>false</default>
+                    <label>Feed or Product Specifications</label>
+                </value>
+                <value>
+                    <fullName>Catalyst Loading Diagrams</fullName>
+                    <default>false</default>
+                    <label>Catalyst Loading Diagrams</label>
+                </value>
+                <value>
+                    <fullName>Catalyst Plan</fullName>
+                    <default>false</default>
+                    <label>Catalyst Plan</label>
+                </value>
+                <value>
+                    <fullName>Upload process equipment details (tray drawings, packing size/characteristics, burner curves, etc…)</fullName>
+                    <default>false</default>
+                    <label>Upload process equipment details (tray drawings, packing size/characteristics, burner curves, etc…)</label>
+                </value>
+                <value>
+                    <fullName>Process Simulations (Aspen, PRO-II, etc)</fullName>
+                    <default>false</default>
+                    <label>Process Simulations (Aspen, PRO-II, etc)</label>
+                </value>
+                <value>
+                    <fullName>Update Datarec (calculations, lineups, and meters).</fullName>
+                    <default>false</default>
+                    <label>Update Datarec (calculations, lineups, and meters).</label>
+                </value>
+                <value>
+                    <fullName>Bill of Process related  Materials (e.g. absorbent, chemical, etc)</fullName>
+                    <default>false</default>
+                    <label>Bill of Process related  Materials (e.g. absorbent, chemical, etc)</label>
+                </value>
+                <value>
+                    <fullName>Mass Balance Calculation Tools (Excel)</fullName>
+                    <default>false</default>
+                    <label>Mass Balance Calculation Tools (Excel)</label>
+                </value>
+                <value>
+                    <fullName>Energy Balance Tools</fullName>
+                    <default>false</default>
+                    <label>Energy Balance Tools</label>
+                </value>
+                <value>
+                    <fullName>Tank Strapping Tables Updates</fullName>
+                    <default>false</default>
+                    <label>Tank Strapping Tables Updates</label>
+                </value>
+                <value>
+                    <fullName>Financial Volume Balances: Any stream (Hydrocarbon, Hydrogen, Utilities, etc., flowing different material through same meter, new pipe routing, change in hands between chemical/refinery/third party)</fullName>
+                    <default>false</default>
+                    <label>Financial Volume Balances: Any stream (Hydrocarbon, Hydrogen, Utilities, etc., flowing different material through same meter, new pipe routing, change in hands between chemical/refinery/third party)</label>
+                </value>
+                <value>
+                    <fullName>Flare Map Drawings</fullName>
+                    <default>false</default>
+                    <label>Flare Map Drawings</label>
+                </value>
+                <value>
+                    <fullName>Refinery or Chemicals Linear Program model (a.k.a: “LP model”) - to be updated via E&amp;S model coordinator.</fullName>
+                    <default>false</default>
+                    <label>Refinery or Chemicals Linear Program model (a.k.a: “LP model”) - to be updated via E&amp;S model coordinator.</label>
+                </value>
+                <value>
+                    <fullName>RATS (range alarm and trip setting)</fullName>
+                    <default>false</default>
+                    <label>RATS (range alarm and trip setting)</label>
+                </value>
+                <value>
+                    <fullName>IPF Narative</fullName>
+                    <default>false</default>
+                    <label>IPF Narative</label>
+                </value>
+                <value>
+                    <fullName>Process Control Narrative</fullName>
+                    <default>false</default>
+                    <label>Process Control Narrative</label>
+                </value>
+                <value>
+                    <fullName>Alarm narrative</fullName>
+                    <default>false</default>
+                    <label>Alarm narrative</label>
+                </value>
+                <value>
+                    <fullName>APC / Real Time Optimization (RTO) (APC/RQE narrative)</fullName>
+                    <default>false</default>
+                    <label>APC / Real Time Optimization (RTO) (APC/RQE narrative)</label>
+                </value>
+                <value>
+                    <fullName>Plant Historian (PI)</fullName>
+                    <default>false</default>
+                    <label>Plant Historian (PI)</label>
+                </value>
+                <value>
+                    <fullName>Oil Movements System</fullName>
+                    <default>false</default>
+                    <label>Oil Movements System</label>
+                </value>
+                <value>
+                    <fullName>Custody transfer measurement (CTM)</fullName>
+                    <default>false</default>
+                    <label>Custody transfer measurement (CTM)</label>
+                </value>
+                <value>
+                    <fullName>IPF Documents</fullName>
+                    <default>false</default>
+                    <label>IPF Documents</label>
+                </value>
+                <value>
+                    <fullName>Loop Drawings / SPI (Intools) / SAP / Loop Data &amp; Calculations / Specification sheets</fullName>
+                    <default>false</default>
+                    <label>Loop Drawings / SPI (Intools) / SAP / Loop Data &amp; Calculations / Specification sheets</label>
+                </value>
+                <value>
+                    <fullName>SIFPro Design (SIFPro Database)</fullName>
+                    <default>false</default>
+                    <label>SIFPro Design (SIFPro Database)</label>
+                </value>
+                <value>
+                    <fullName>IPF online &amp; offline test procedures - final as-built</fullName>
+                    <default>false</default>
+                    <label>IPF online &amp; offline test procedures - final as-built</label>
+                </value>
+                <value>
+                    <fullName>Controller</fullName>
+                    <default>false</default>
+                    <label>Controller</label>
+                </value>
+                <value>
+                    <fullName>Instrument Equipment Files</fullName>
+                    <default>false</default>
+                    <label>Instrument Equipment Files</label>
+                </value>
+                <value>
+                    <fullName>Spare Parts (Instruments)</fullName>
+                    <default>false</default>
+                    <label>Spare Parts (Instruments)</label>
+                </value>
+                <value>
+                    <fullName>DCS Graphics and Trends</fullName>
+                    <default>false</default>
+                    <label>DCS Graphics and Trends</label>
+                </value>
+                <value>
+                    <fullName>DCS documentation (functional specifications)</fullName>
+                    <default>false</default>
+                    <label>DCS documentation (functional specifications)</label>
+                </value>
+                <value>
+                    <fullName>Instrument RCM (ABC Indicator)</fullName>
+                    <default>false</default>
+                    <label>Instrument RCM (ABC Indicator)</label>
+                </value>
+                <value>
+                    <fullName>PLC Database Backup (e.g. Package Equipment)</fullName>
+                    <default>false</default>
+                    <label>PLC Database Backup (e.g. Package Equipment)</label>
+                </value>
+                <value>
+                    <fullName>Fire and Gas Cause and Effect Diagram</fullName>
+                    <default>false</default>
+                    <label>Fire and Gas Cause and Effect Diagram</label>
+                </value>
+                <value>
+                    <fullName>Standard Document List?? (To be discussed with ADOE)</fullName>
+                    <default>false</default>
+                    <label>Standard Document List?? (To be discussed with ADOE)</label>
+                </value>
+                <value>
+                    <fullName>Documents such as equipment trim drawing, OEM Manual, Equipment Files, Mechanical calculation, Stress Analysis report, etc.</fullName>
+                    <default>false</default>
+                    <label>Documents such as equipment trim drawing, OEM Manual, Equipment Files, Mechanical calculation, Stress Analysis report, etc.</label>
+                </value>
+                <value>
+                    <fullName>Corrosion and Material Drawings (e.g. material selection diagram (MSD), etc)</fullName>
+                    <default>false</default>
+                    <label>Corrosion and Material Drawings (e.g. material selection diagram (MSD), etc)</label>
+                </value>
+                <value>
+                    <fullName>IMS Updates for SCE, Critical equipment, CUI, RBI, Injection point program,  Dead leg program, ect.</fullName>
+                    <default>false</default>
+                    <label>IMS Updates for SCE, Critical equipment, CUI, RBI, Injection point program,  Dead leg program, ect.</label>
+                </value>
+                <value>
+                    <fullName>Corrosion Control Documents (e.g. IOW, etc)</fullName>
+                    <default>false</default>
+                    <label>Corrosion Control Documents (e.g. IOW, etc)</label>
+                </value>
+                <value>
+                    <fullName>Inspection Drawings</fullName>
+                    <default>false</default>
+                    <label>Inspection Drawings</label>
+                </value>
+                <value>
+                    <fullName>Updated equipment / component drawings, equipment curves, equipment datasheets, layout drawings, OEM Manual, Equipment Files (Rotating part)</fullName>
+                    <default>false</default>
+                    <label>Updated equipment / component drawings, equipment curves, equipment datasheets, layout drawings, OEM Manual, Equipment Files (Rotating part)</label>
+                </value>
+                <value>
+                    <fullName>CMMS BOM Updates</fullName>
+                    <default>false</default>
+                    <label>CMMS BOM Updates</label>
+                </value>
+                <value>
+                    <fullName>CMMS Equipment Setup</fullName>
+                    <default>false</default>
+                    <label>CMMS Equipment Setup</label>
+                </value>
+                <value>
+                    <fullName>Operating Manuals, Procedure, Work instruction (Rotating part)</fullName>
+                    <default>false</default>
+                    <label>Operating Manuals, Procedure, Work instruction (Rotating part)</label>
+                </value>
+                <value>
+                    <fullName>Training Manuals (Rotating part)</fullName>
+                    <default>false</default>
+                    <label>Training Manuals (Rotating part)</label>
+                </value>
+                <value>
+                    <fullName>Lubrication Database / Lube Oil Sampling Setup</fullName>
+                    <default>false</default>
+                    <label>Lubrication Database / Lube Oil Sampling Setup</label>
+                </value>
+                <value>
+                    <fullName>Vendor seal database</fullName>
+                    <default>false</default>
+                    <label>Vendor seal database</label>
+                </value>
+                <value>
+                    <fullName>CMMS PM Schedule and Operation task</fullName>
+                    <default>false</default>
+                    <label>CMMS PM Schedule and Operation task</label>
+                </value>
+                <value>
+                    <fullName>Labelling (Rotating part)</fullName>
+                    <default>false</default>
+                    <label>Labelling (Rotating part)</label>
+                </value>
+                <value>
+                    <fullName>Proactive Monitoring Database / Sleeping Equipment</fullName>
+                    <default>false</default>
+                    <label>Proactive Monitoring Database / Sleeping Equipment</label>
+                </value>
+                <value>
+                    <fullName>Deviation from choice of standards for hazardous area classification and equipment selection, installation and inspection</fullName>
+                    <default>false</default>
+                    <label>Deviation from choice of standards for hazardous area classification and equipment selection, installation and inspection</label>
+                </value>
+                <value>
+                    <fullName>Electrical Load list</fullName>
+                    <default>false</default>
+                    <label>Electrical Load list</label>
+                </value>
+                <value>
+                    <fullName>Cable sizing calculations</fullName>
+                    <default>false</default>
+                    <label>Cable sizing calculations</label>
+                </value>
+                <value>
+                    <fullName>Equipment sizing calculation</fullName>
+                    <default>false</default>
+                    <label>Equipment sizing calculation</label>
+                </value>
+                <value>
+                    <fullName>Connection diagrams</fullName>
+                    <default>false</default>
+                    <label>Connection diagrams</label>
+                </value>
+                <value>
+                    <fullName>Control system block diagram</fullName>
+                    <default>false</default>
+                    <label>Control system block diagram</label>
+                </value>
+                <value>
+                    <fullName>Schematic diagrams</fullName>
+                    <default>false</default>
+                    <label>Schematic diagrams</label>
+                </value>
+                <value>
+                    <fullName>Area classification layouts and sections</fullName>
+                    <default>false</default>
+                    <label>Area classification layouts and sections</label>
+                </value>
+                <value>
+                    <fullName>Cable routing layouts</fullName>
+                    <default>false</default>
+                    <label>Cable routing layouts</label>
+                </value>
+                <value>
+                    <fullName>Power layout</fullName>
+                    <default>false</default>
+                    <label>Power layout</label>
+                </value>
+                <value>
+                    <fullName>Substation layouts</fullName>
+                    <default>false</default>
+                    <label>Substation layouts</label>
+                </value>
+                <value>
+                    <fullName>Cable trench details</fullName>
+                    <default>false</default>
+                    <label>Cable trench details</label>
+                </value>
+                <value>
+                    <fullName>Construction details</fullName>
+                    <default>false</default>
+                    <label>Construction details</label>
+                </value>
+                <value>
+                    <fullName>Temporary installation(s) (construction power supplies).</fullName>
+                    <default>false</default>
+                    <label>Temporary installation(s) (construction power supplies).</label>
+                </value>
+                <value>
+                    <fullName>Summary of Electrical Engineering (electrical equipment summary sheets)</fullName>
+                    <default>false</default>
+                    <label>Summary of Electrical Engineering (electrical equipment summary sheets)</label>
+                </value>
+                <value>
+                    <fullName>Utility data (electrical)</fullName>
+                    <default>false</default>
+                    <label>Utility data (electrical)</label>
+                </value>
+                <value>
+                    <fullName>S.L. diagrams (Single line diagram)</fullName>
+                    <default>false</default>
+                    <label>S.L. diagrams (Single line diagram)</label>
+                </value>
+                <value>
+                    <fullName>Equipment data sheet and Drawing (Electrical)</fullName>
+                    <default>false</default>
+                    <label>Equipment data sheet and Drawing (Electrical)</label>
+                </value>
+                <value>
+                    <fullName>Motor re-start and reacceleration after voltage dip</fullName>
+                    <default>false</default>
+                    <label>Motor re-start and reacceleration after voltage dip</label>
+                </value>
+                <value>
+                    <fullName>Motor starting</fullName>
+                    <default>false</default>
+                    <label>Motor starting</label>
+                </value>
+                <value>
+                    <fullName>VSDS economics</fullName>
+                    <default>false</default>
+                    <label>VSDS economics</label>
+                </value>
+                <value>
+                    <fullName>System Description including Power Generation &amp; Distribution Philosophy</fullName>
+                    <default>false</default>
+                    <label>System Description including Power Generation &amp; Distribution Philosophy</label>
+                </value>
+                <value>
+                    <fullName>System Operation Philosophy</fullName>
+                    <default>false</default>
+                    <label>System Operation Philosophy</label>
+                </value>
+                <value>
+                    <fullName>Control, Monitoring and Protection</fullName>
+                    <default>false</default>
+                    <label>Control, Monitoring and Protection</label>
+                </value>
+                <value>
+                    <fullName>Harmonic analysis</fullName>
+                    <default>false</default>
+                    <label>Harmonic analysis</label>
+                </value>
+                <value>
+                    <fullName>Illumination level</fullName>
+                    <default>false</default>
+                    <label>Illumination level</label>
+                </value>
+                <value>
+                    <fullName>Power factor correction (if required)</fullName>
+                    <default>false</default>
+                    <label>Power factor correction (if required)</label>
+                </value>
+                <value>
+                    <fullName>Protection philosophy</fullName>
+                    <default>false</default>
+                    <label>Protection philosophy</label>
+                </value>
+                <value>
+                    <fullName>Protection scheme &amp; relay setting schedules</fullName>
+                    <default>false</default>
+                    <label>Protection scheme &amp; relay setting schedules</label>
+                </value>
+                <value>
+                    <fullName>Short circuit &amp; load flow</fullName>
+                    <default>false</default>
+                    <label>Short circuit &amp; load flow</label>
+                </value>
+                <value>
+                    <fullName>System dynamic stability and load shedding</fullName>
+                    <default>false</default>
+                    <label>System dynamic stability and load shedding</label>
+                </value>
+                <value>
+                    <fullName>SAFOP (Electrical Systems Safe Operability Review - Study)</fullName>
+                    <default>false</default>
+                    <label>SAFOP (Electrical Systems Safe Operability Review - Study)</label>
+                </value>
+                <value>
+                    <fullName>EMC Review</fullName>
+                    <default>false</default>
+                    <label>EMC Review</label>
+                </value>
+                <value>
+                    <fullName>Arc Flash energy calculations</fullName>
+                    <default>false</default>
+                    <label>Arc Flash energy calculations</label>
+                </value>
+                <value>
+                    <fullName>Protection and metering key diagrams</fullName>
+                    <default>false</default>
+                    <label>Protection and metering key diagrams</label>
+                </value>
+                <value>
+                    <fullName>Protection setting document</fullName>
+                    <default>false</default>
+                    <label>Protection setting document</label>
+                </value>
+                <value>
+                    <fullName>Earthing layouts</fullName>
+                    <default>false</default>
+                    <label>Earthing layouts</label>
+                </value>
+                <value>
+                    <fullName>Lighting and LV power layouts (including buildings)</fullName>
+                    <default>false</default>
+                    <label>Lighting and LV power layouts (including buildings)</label>
+                </value>
+                <value>
+                    <fullName>Trace heating system layouts</fullName>
+                    <default>false</default>
+                    <label>Trace heating system layouts</label>
+                </value>
+                <value>
+                    <fullName>Control, alarm and monitoring table</fullName>
+                    <default>false</default>
+                    <label>Control, alarm and monitoring table</label>
+                </value>
+                <value>
+                    <fullName>HV switchgear schedule</fullName>
+                    <default>false</default>
+                    <label>HV switchgear schedule</label>
+                </value>
+                <value>
+                    <fullName>LV switchgear schedule</fullName>
+                    <default>false</default>
+                    <label>LV switchgear schedule</label>
+                </value>
+                <value>
+                    <fullName>Protection relay settings including individual set point lists for all relay protection parameters whether utilised or not</fullName>
+                    <default>false</default>
+                    <label>Protection relay settings including individual set point lists for all relay protection parameters whether utilised or not</label>
+                </value>
+                <value>
+                    <fullName>Emergency and Vital Supplies</fullName>
+                    <default>false</default>
+                    <label>Emergency and Vital Supplies</label>
+                </value>
+                <value>
+                    <fullName>Vital Supply Recovery Study</fullName>
+                    <default>false</default>
+                    <label>Vital Supply Recovery Study</label>
+                </value>
+                <value>
+                    <fullName>Emergency and vital systems</fullName>
+                    <default>false</default>
+                    <label>Emergency and vital systems</label>
+                </value>
+                <value>
+                    <fullName>Network diagram (Comunication system)</fullName>
+                    <default>false</default>
+                    <label>Network diagram (Comunication system)</label>
+                </value>
+                <value>
+                    <fullName>Maintenance Procedures</fullName>
+                    <default>false</default>
+                    <label>Maintenance Procedures</label>
+                </value>
+                <value>
+                    <fullName>SAP (Maintenance tracking)</fullName>
+                    <default>false</default>
+                    <label>SAP (Maintenance tracking)</label>
+                </value>
+                <value>
+                    <fullName>SAP Bill of Material (BOM) Updates</fullName>
+                    <default>false</default>
+                    <label>SAP Bill of Material (BOM) Updates</label>
+                </value>
+                <value>
+                    <fullName>Spare parts</fullName>
+                    <default>false</default>
+                    <label>Spare parts</label>
+                </value>
+                <value>
+                    <fullName>COC, AOC, Drainage, U / G Facilities Drawing </fullName>
+                    <default>false</default>
+                    <label>COC, AOC, Drainage, U / G Facilities Drawing </label>
+                </value>
+                <value>
+                    <fullName>Site Master Plan (onshore)</fullName>
+                    <default>false</default>
+                    <label>Site Master Plan (onshore)</label>
+                </value>
+                <value>
+                    <fullName>Infrastructure Works Management Plan and Assessment Report (bride, road, box culvert, etc)</fullName>
+                    <default>false</default>
+                    <label>Infrastructure Works Management Plan and Assessment Report (bride, road, box culvert, etc)</label>
+                </value>
+                <value>
+                    <fullName>Structural Integrity Management Plan and Assessment Report (piperack, equipment structure)</fullName>
+                    <default>false</default>
+                    <label>Structural Integrity Management Plan and Assessment Report (piperack, equipment structure)</label>
+                </value>
+                <value>
+                    <fullName>Building Management Plan and Assessment (MCB, FAR, Substation, temporary building)</fullName>
+                    <default>false</default>
+                    <label>Building Management Plan and Assessment (MCB, FAR, Substation, temporary building)</label>
+                </value>
+                <value>
+                    <fullName>Refractory plan and assessment report</fullName>
+                    <default>false</default>
+                    <label>Refractory plan and assessment report</label>
+                </value>
+                <value>
+                    <fullName>Fired Heater/Boiler Design datasheet and related documents</fullName>
+                    <default>false</default>
+                    <label>Fired Heater/Boiler Design datasheet and related documents</label>
+                </value>
+                <value>
+                    <fullName>Corrosion Control Documents</fullName>
+                    <default>false</default>
+                    <label>Corrosion Control Documents</label>
+                </value>
+                <value>
+                    <fullName>Corrosion and Material Drawings</fullName>
+                    <default>false</default>
+                    <label>Corrosion and Material Drawings</label>
+                </value>
+                <value>
+                    <fullName>IMS Updates</fullName>
+                    <default>false</default>
+                    <label>IMS Updates</label>
+                </value>
+                <value>
+                    <fullName>AIM (Equipment Drawings, Piperack Cross Section Drawing)</fullName>
+                    <default>false</default>
+                    <label>AIM (Equipment Drawings, Piperack Cross Section Drawing)</label>
+                </value>
+                <value>
+                    <fullName>Relief Device Spec Sheet</fullName>
+                    <default>false</default>
+                    <label>Relief Device Spec Sheet</label>
+                </value>
+                <value>
+                    <fullName>Update Critical Check Valve (IMS)</fullName>
+                    <default>false</default>
+                    <label>Update Critical Check Valve (IMS)</label>
+                </value>
+                <value>
+                    <fullName>Update CUI inspection program (IMS)</fullName>
+                    <default>false</default>
+                    <label>Update CUI inspection program (IMS)</label>
+                </value>
+                <value>
+                    <fullName>Update RBI Model/ Inspection Strategy Database</fullName>
+                    <default>false</default>
+                    <label>Update RBI Model/ Inspection Strategy Database</label>
+                </value>
+                <value>
+                    <fullName>Update Injection Point program (IMS, CCD, and Inspection ISO)</fullName>
+                    <default>false</default>
+                    <label>Update Injection Point program (IMS, CCD, and Inspection ISO)</label>
+                </value>
+                <value>
+                    <fullName>Update Dead Leg Program (IMS and Inspetion ISO)</fullName>
+                    <default>false</default>
+                    <label>Update Dead Leg Program (IMS and Inspetion ISO)</label>
+                </value>
+                <value>
+                    <fullName>Site Firewater plans and drawings</fullName>
+                    <default>false</default>
+                    <label>Site Firewater plans and drawings</label>
+                </value>
+                <value>
+                    <fullName>Site Safety Procedures</fullName>
+                    <default>false</default>
+                    <label>Site Safety Procedures</label>
+                </value>
+                <value>
+                    <fullName>Emergency Response Manual</fullName>
+                    <default>false</default>
+                    <label>Emergency Response Manual</label>
+                </value>
+                <value>
+                    <fullName>Quantitative Risk Assessment (QRA)</fullName>
+                    <default>false</default>
+                    <label>Quantitative Risk Assessment (QRA)</label>
+                </value>
+                <value>
+                    <fullName>TOP Facility Siting Model</fullName>
+                    <default>false</default>
+                    <label>TOP Facility Siting Model</label>
+                </value>
+                <value>
+                    <fullName>Environment Aspect Register</fullName>
+                    <default>false</default>
+                    <label>Environment Aspect Register</label>
+                </value>
+                <value>
+                    <fullName>Environment documents (e.g. legal/EIA, complaint and sustain issues)</fullName>
+                    <default>false</default>
+                    <label>Environment documents (e.g. legal/EIA, complaint and sustain issues)</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</controllingFieldValue>
+                <valueName>Emergency and Vital Supplies</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</controllingFieldValue>
+                <valueName>Vital Supply Recovery Study</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</controllingFieldValue>
+                <valueName>Emergency and vital systems</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Communication (e.g. talk-back, CCTV, radio, public announce and telecommunication network)</controllingFieldValue>
+                <valueName>Network diagram (Comunication system)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Maintenance document</controllingFieldValue>
+                <valueName>Maintenance Procedures</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Maintenance document</controllingFieldValue>
+                <valueName>SAP (Maintenance tracking)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Maintenance document</controllingFieldValue>
+                <valueName>SAP Bill of Material (BOM) Updates</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Maintenance document</controllingFieldValue>
+                <valueName>Spare parts</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Civil and Structure document</controllingFieldValue>
+                <valueName>COC, AOC, Drainage, U / G Facilities Drawing </valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Civil and Structure document</controllingFieldValue>
+                <valueName>Site Master Plan (onshore)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Civil and Structure document</controllingFieldValue>
+                <valueName>Infrastructure Works Management Plan and Assessment Report (bride, road, box culvert, etc)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Civil and Structure document</controllingFieldValue>
+                <valueName>Structural Integrity Management Plan and Assessment Report (piperack, equipment structure)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Civil and Structure document</controllingFieldValue>
+                <valueName>Building Management Plan and Assessment (MCB, FAR, Substation, temporary building)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Civil and Structure document</controllingFieldValue>
+                <valueName>Refractory plan and assessment report</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>Fired Heater/Boiler Design datasheet and related documents</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>Corrosion Control Documents</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>Corrosion and Material Drawings</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>IMS Updates</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>AIM (Equipment Drawings, Piperack Cross Section Drawing)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>Relief Device Spec Sheet</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>Update Critical Check Valve (IMS)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>Update CUI inspection program (IMS)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>Update RBI Model/ Inspection Strategy Database</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>Update Injection Point program (IMS, CCD, and Inspection ISO)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>Update Dead Leg Program (IMS and Inspetion ISO)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>HSE document</controllingFieldValue>
+                <controllingFieldValue>Process Safety and Fire Safety document</controllingFieldValue>
+                <valueName>Site Firewater plans and drawings</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>HSE document</controllingFieldValue>
+                <valueName>Site Safety Procedures</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>HSE document</controllingFieldValue>
+                <valueName>Emergency Response Manual</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Process Safety and Fire Safety document</controllingFieldValue>
+                <valueName>Quantitative Risk Assessment (QRA)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Process Safety and Fire Safety document</controllingFieldValue>
+                <valueName>TOP Facility Siting Model</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Environment document</controllingFieldValue>
+                <valueName>Environment Aspect Register</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Environment document</controllingFieldValue>
+                <valueName>Environment documents (e.g. legal/EIA, complaint and sustain issues)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Plot Plan</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>General Equipment Arrangements &amp; Elevations</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Isometric drawing/GA drawing</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Process Flow Diagram (PFD)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Process Engineering Flow Schemes (P&amp;ID)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>PSFSs (Process Safeguarding Flow Schemes)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Cause and Effect diagram</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Hazadous Area Classification Schedule/Drawing</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Equipment datasheet</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Instrument datasheet</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Equipment/Instrument drawing</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Line list</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Fire &amp; Gas Detector Layout</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Safety Critical Equipment list</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Safety Data Sheet</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Hazards &amp; Effects Register</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>HEMP Bowties</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Pre-Incident Plan</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Operations document</controllingFieldValue>
+                <valueName>Simplified Process Flow Diagram</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Operations document</controllingFieldValue>
+                <valueName>Operating Manuals / Procedures</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Operations document</controllingFieldValue>
+                <valueName>Work Instructions / Standing Instructions</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Operations document</controllingFieldValue>
+                <valueName>Training Manuals</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Process Design Information (Process Chemistry, Process Description)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Heat &amp; Material Balance</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>RV load summary</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Process Safeguarding Memorandum</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Instrument Safeguarding Narrative</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Reactive Hazards Analysis (RHA)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>PI Process Book (needs to be updated if DCS display/schematic is updated)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Feed or Product Specifications</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Catalyst Loading Diagrams</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Catalyst Plan</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Upload process equipment details (tray drawings, packing size/characteristics, burner curves, etc…)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Process Simulations (Aspen, PRO-II, etc)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Update Datarec (calculations, lineups, and meters).</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Bill of Process related  Materials (e.g. absorbent, chemical, etc)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Mass Balance Calculation Tools (Excel)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Energy Balance Tools</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Tank Strapping Tables Updates</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Financial Volume Balances: Any stream (Hydrocarbon, Hydrogen, Utilities, etc., flowing different material through same meter, new pipe routing, change in hands between chemical/refinery/third party)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Flare Map Drawings</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Refinery or Chemicals Linear Program model (a.k.a: “LP model”) - to be updated via E&amp;S model coordinator.</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Process Control Document</controllingFieldValue>
+                <valueName>RATS (range alarm and trip setting)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Process Control Document</controllingFieldValue>
+                <valueName>IPF Narative</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Process Control Document</controllingFieldValue>
+                <valueName>Process Control Narrative</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Process Control Document</controllingFieldValue>
+                <valueName>Alarm narrative</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Process Control Document</controllingFieldValue>
+                <valueName>APC / Real Time Optimization (RTO) (APC/RQE narrative)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Process Control Document</controllingFieldValue>
+                <valueName>Plant Historian (PI)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Oil Movements System</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Custody transfer measurement (CTM)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>IPF Documents</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Loop Drawings / SPI (Intools) / SAP / Loop Data &amp; Calculations / Specification sheets</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>SIFPro Design (SIFPro Database)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>IPF online &amp; offline test procedures - final as-built</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Controller</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Instrument Equipment Files</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Spare Parts (Instruments)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>DCS Graphics and Trends</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>DCS documentation (functional specifications)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Instrument RCM (ABC Indicator)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>PLC Database Backup (e.g. Package Equipment)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Fire and Gas Cause and Effect Diagram</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Standard Document List?? (To be discussed with ADOE)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Stationary Equipment and Piping Document</controllingFieldValue>
+                <valueName>Documents such as equipment trim drawing, OEM Manual, Equipment Files, Mechanical calculation, Stress Analysis report, etc.</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Stationary Equipment and Piping Document</controllingFieldValue>
+                <valueName>Corrosion and Material Drawings (e.g. material selection diagram (MSD), etc)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Stationary Equipment and Piping Document</controllingFieldValue>
+                <valueName>IMS Updates for SCE, Critical equipment, CUI, RBI, Injection point program,  Dead leg program, ect.</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Stationary Equipment and Piping Document</controllingFieldValue>
+                <valueName>Corrosion Control Documents (e.g. IOW, etc)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Stationary Equipment and Piping Document</controllingFieldValue>
+                <valueName>Inspection Drawings</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>Updated equipment / component drawings, equipment curves, equipment datasheets, layout drawings, OEM Manual, Equipment Files (Rotating part)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>CMMS BOM Updates</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>CMMS Equipment Setup</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>Operating Manuals, Procedure, Work instruction (Rotating part)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>Training Manuals (Rotating part)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>Lubrication Database / Lube Oil Sampling Setup</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>Vendor seal database</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>CMMS PM Schedule and Operation task</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>Labelling (Rotating part)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>Proactive Monitoring Database / Sleeping Equipment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Deviation from choice of standards for hazardous area classification and equipment selection, installation and inspection</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Electrical Load list</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Cable sizing calculations</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Equipment sizing calculation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Connection diagrams</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Control system block diagram</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Schematic diagrams</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Area classification layouts and sections</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Cable routing layouts</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Power layout</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Substation layouts</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Cable trench details</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Construction details</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Temporary installation(s) (construction power supplies).</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Summary of Electrical Engineering (electrical equipment summary sheets)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Utility data (electrical)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>S.L. diagrams (Single line diagram)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Equipment data sheet and Drawing (Electrical)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Driver/Actuator (process) at Valve (e.g. Motor, MOV)</controllingFieldValue>
+                <valueName>Motor re-start and reacceleration after voltage dip</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Driver/Actuator (process) at Valve (e.g. Motor, MOV)</controllingFieldValue>
+                <valueName>Motor starting</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Driver/Actuator (process) at Valve (e.g. Motor, MOV)</controllingFieldValue>
+                <valueName>VSDS economics</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>System Description including Power Generation &amp; Distribution Philosophy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>System Operation Philosophy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Control, Monitoring and Protection</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Harmonic analysis</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Illumination level</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Power factor correction (if required)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Protection philosophy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Protection scheme &amp; relay setting schedules</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Short circuit &amp; load flow</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>System dynamic stability and load shedding</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>SAFOP (Electrical Systems Safe Operability Review - Study)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>EMC Review</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Arc Flash energy calculations</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Protection and metering key diagrams</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Protection setting document</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Earthing layouts</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Lighting and LV power layouts (including buildings)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Trace heating system layouts</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Control, alarm and monitoring table</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>HV switchgear schedule</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>LV switchgear schedule</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Protection relay settings including individual set point lists for all relay protection parameters whether utilised or not</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>E_MOC_Checklist_type__c</fullName>
+        <externalId>false</externalId>
+        <label>E-MOC Checklist type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>E_MOC_Doc_Type__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Plot Plan</fullName>
+                    <default>false</default>
+                    <label>Plot Plan</label>
+                </value>
+                <value>
+                    <fullName>General Equipment Arrangements &amp; Elevations (GA drawing)</fullName>
+                    <default>false</default>
+                    <label>General Equipment Arrangements &amp; Elevations (GA drawing)</label>
+                </value>
+                <value>
+                    <fullName>Isometric drawing/GA drawing</fullName>
+                    <default>false</default>
+                    <label>Isometric drawing/GA drawing</label>
+                </value>
+                <value>
+                    <fullName>Process Flow Diagram (PFD)</fullName>
+                    <default>false</default>
+                    <label>Process Flow Diagram (PFD)</label>
+                </value>
+                <value>
+                    <fullName>Process Engineering Flow Schemes (P&amp;ID)</fullName>
+                    <default>false</default>
+                    <label>Process Engineering Flow Schemes (P&amp;ID)</label>
+                </value>
+                <value>
+                    <fullName>PSFSs (Process Safeguarding Flow Schemes)</fullName>
+                    <default>false</default>
+                    <label>PSFSs (Process Safeguarding Flow Schemes)</label>
+                </value>
+                <value>
+                    <fullName>Cause and Effect diagram</fullName>
+                    <default>false</default>
+                    <label>Cause and Effect diagram</label>
+                </value>
+                <value>
+                    <fullName>Hazadous Area Classification Schedule/Drawing</fullName>
+                    <default>false</default>
+                    <label>Hazadous Area Classification Schedule/Drawing</label>
+                </value>
+                <value>
+                    <fullName>Equipment datasheet</fullName>
+                    <default>false</default>
+                    <label>Equipment datasheet</label>
+                </value>
+                <value>
+                    <fullName>Instrument datasheet</fullName>
+                    <default>false</default>
+                    <label>Instrument datasheet</label>
+                </value>
+                <value>
+                    <fullName>Equipment/Instrument drawing</fullName>
+                    <default>false</default>
+                    <label>Equipment/Instrument drawing</label>
+                </value>
+                <value>
+                    <fullName>Equipment list</fullName>
+                    <default>false</default>
+                    <label>Equipment list</label>
+                </value>
+                <value>
+                    <fullName>RATS (range alarm and trip setting)</fullName>
+                    <default>false</default>
+                    <label>RATS (range alarm and trip setting)</label>
+                </value>
+                <value>
+                    <fullName>Line list</fullName>
+                    <default>false</default>
+                    <label>Line list</label>
+                </value>
+                <value>
+                    <fullName>Fire &amp; Gas Detector Layout</fullName>
+                    <default>false</default>
+                    <label>Fire &amp; Gas Detector Layout</label>
+                </value>
+                <value>
+                    <fullName>Safety Critical Equipment list</fullName>
+                    <default>false</default>
+                    <label>Safety Critical Equipment list</label>
+                </value>
+                <value>
+                    <fullName>Safety Data Sheet</fullName>
+                    <default>false</default>
+                    <label>Safety Data Sheet</label>
+                </value>
+                <value>
+                    <fullName>Hazards &amp; Effects Register</fullName>
+                    <default>false</default>
+                    <label>Hazards &amp; Effects Register</label>
+                </value>
+                <value>
+                    <fullName>HEMP Bowties</fullName>
+                    <default>false</default>
+                    <label>HEMP Bowties</label>
+                </value>
+                <value>
+                    <fullName>Pre-Incident Plan</fullName>
+                    <default>false</default>
+                    <label>Pre-Incident Plan</label>
+                </value>
+                <value>
+                    <fullName>Bill of Material</fullName>
+                    <default>false</default>
+                    <label>Bill of Material</label>
+                </value>
+                <value>
+                    <fullName>Spare part interchangable record (SPIR) and spare part list</fullName>
+                    <default>false</default>
+                    <label>Spare part interchangable record (SPIR) and spare part list</label>
+                </value>
+                <value>
+                    <fullName>Stock inventory</fullName>
+                    <default>false</default>
+                    <label>Stock inventory</label>
+                </value>
+                <value>
+                    <fullName>Simplified Process Flow Diagram</fullName>
+                    <default>false</default>
+                    <label>Simplified Process Flow Diagram</label>
+                </value>
+                <value>
+                    <fullName>Operating Manuals / Procedures</fullName>
+                    <default>false</default>
+                    <label>Operating Manuals / Procedures</label>
+                </value>
+                <value>
+                    <fullName>Work Instructions / Standing Instructions</fullName>
+                    <default>false</default>
+                    <label>Work Instructions / Standing Instructions</label>
+                </value>
+                <value>
+                    <fullName>Training Manuals</fullName>
+                    <default>false</default>
+                    <label>Training Manuals</label>
+                </value>
+                <value>
+                    <fullName>Product Storage Tank Technical data</fullName>
+                    <default>false</default>
+                    <label>Product Storage Tank Technical data</label>
+                </value>
+                <value>
+                    <fullName>Process Design Information (Process Chemistry, Process Description)</fullName>
+                    <default>false</default>
+                    <label>Process Design Information (Process Chemistry, Process Description)</label>
+                </value>
+                <value>
+                    <fullName>Feed or Product Specifications</fullName>
+                    <default>false</default>
+                    <label>Feed or Product Specifications</label>
+                </value>
+                <value>
+                    <fullName>Heat &amp; Material Balance including composition change</fullName>
+                    <default>false</default>
+                    <label>Heat &amp; Material Balance including composition change</label>
+                </value>
+                <value>
+                    <fullName>Mass Balance Calculation Tools (Excel)</fullName>
+                    <default>false</default>
+                    <label>Mass Balance Calculation Tools (Excel)</label>
+                </value>
+                <value>
+                    <fullName>Energy Balance Tools (PRO-II, Utility Steam/Electricity balance tools….)</fullName>
+                    <default>false</default>
+                    <label>Energy Balance Tools (PRO-II, Utility Steam/Electricity balance tools….)</label>
+                </value>
+                <value>
+                    <fullName>RV load summary</fullName>
+                    <default>false</default>
+                    <label>RV load summary</label>
+                </value>
+                <value>
+                    <fullName>Process Safeguarding Memorandum</fullName>
+                    <default>false</default>
+                    <label>Process Safeguarding Memorandum</label>
+                </value>
+                <value>
+                    <fullName>Reactive Hazards Analysis (RHA)</fullName>
+                    <default>false</default>
+                    <label>Reactive Hazards Analysis (RHA)</label>
+                </value>
+                <value>
+                    <fullName>Hydrocarbon management system</fullName>
+                    <default>false</default>
+                    <label>Hydrocarbon management system</label>
+                </value>
+                <value>
+                    <fullName>Adsorbents/Catalyst Loading Diagrams/Instructions</fullName>
+                    <default>false</default>
+                    <label>Adsorbents/Catalyst Loading Diagrams/Instructions</label>
+                </value>
+                <value>
+                    <fullName>Catalyst/Adsorbent Performance Reports/Postmortem documents</fullName>
+                    <default>false</default>
+                    <label>Catalyst/Adsorbent Performance Reports/Postmortem documents</label>
+                </value>
+                <value>
+                    <fullName>Upload process equipment details (tray drawings, packing size/characteristics, burner curves, etc…)</fullName>
+                    <default>false</default>
+                    <label>Upload process equipment details (tray drawings, packing size/characteristics, burner curves, etc…)</label>
+                </value>
+                <value>
+                    <fullName>Process Simulations (Aspen, PRO-II, etc)</fullName>
+                    <default>false</default>
+                    <label>Process Simulations (Aspen, PRO-II, etc)</label>
+                </value>
+                <value>
+                    <fullName>Flare Map Drawings and Flare study reports</fullName>
+                    <default>false</default>
+                    <label>Flare Map Drawings and Flare study reports</label>
+                </value>
+                <value>
+                    <fullName>Refinery or Chemicals Linear Program model (a.k.a: “LP model”) - to be updated via E&amp;S model coordinator.</fullName>
+                    <default>false</default>
+                    <label>Refinery or Chemicals Linear Program model (a.k.a: “LP model”) - to be updated via E&amp;S model coordinator.</label>
+                </value>
+                <value>
+                    <fullName>IPF Narative</fullName>
+                    <default>false</default>
+                    <label>IPF Narative</label>
+                </value>
+                <value>
+                    <fullName>Process Control Narrative</fullName>
+                    <default>false</default>
+                    <label>Process Control Narrative</label>
+                </value>
+                <value>
+                    <fullName>APC / Real Time Optimization (RTO) (APC/RQE narrative)</fullName>
+                    <default>false</default>
+                    <label>APC / Real Time Optimization (RTO) (APC/RQE narrative)</label>
+                </value>
+                <value>
+                    <fullName>Plant Historian (PI)</fullName>
+                    <default>false</default>
+                    <label>Plant Historian (PI)</label>
+                </value>
+                <value>
+                    <fullName>Loop Drawings / SPI (Intools) / SAP / Loop Data &amp; Calculations/ Specification sheets / Instrument location lay out/ F&amp;G location lay out</fullName>
+                    <default>false</default>
+                    <label>Loop Drawings / SPI (Intools) / SAP / Loop Data &amp; Calculations/ Specification sheets / Instrument location lay out/ F&amp;G location lay out</label>
+                </value>
+                <value>
+                    <fullName>Equipment / Package Opeating Manual</fullName>
+                    <default>false</default>
+                    <label>Equipment / Package Opeating Manual</label>
+                </value>
+                <value>
+                    <fullName>Instrument Index</fullName>
+                    <default>false</default>
+                    <label>Instrument Index</label>
+                </value>
+                <value>
+                    <fullName>Oil Movements System</fullName>
+                    <default>false</default>
+                    <label>Oil Movements System</label>
+                </value>
+                <value>
+                    <fullName>Custody transfer measurement (CTM)</fullName>
+                    <default>false</default>
+                    <label>Custody transfer measurement (CTM)</label>
+                </value>
+                <value>
+                    <fullName>Tank Strapping Tables Updates</fullName>
+                    <default>false</default>
+                    <label>Tank Strapping Tables Updates</label>
+                </value>
+                <value>
+                    <fullName>TAS/TAM database</fullName>
+                    <default>false</default>
+                    <label>TAS/TAM database</label>
+                </value>
+                <value>
+                    <fullName>Functional Logic Diagram (FLD)</fullName>
+                    <default>false</default>
+                    <label>Functional Logic Diagram (FLD)</label>
+                </value>
+                <value>
+                    <fullName>SIFPro Design (SIFPro Database)</fullName>
+                    <default>false</default>
+                    <label>SIFPro Design (SIFPro Database)</label>
+                </value>
+                <value>
+                    <fullName>Test Procedure for IPF</fullName>
+                    <default>false</default>
+                    <label>Test Procedure for IPF</label>
+                </value>
+                <value>
+                    <fullName>DCS Graphics and Trends</fullName>
+                    <default>false</default>
+                    <label>DCS Graphics and Trends</label>
+                </value>
+                <value>
+                    <fullName>DCS documentation/Drawing/IO assignment</fullName>
+                    <default>false</default>
+                    <label>DCS documentation/Drawing/IO assignment</label>
+                </value>
+                <value>
+                    <fullName>DCS architecture</fullName>
+                    <default>false</default>
+                    <label>DCS architecture</label>
+                </value>
+                <value>
+                    <fullName>DCS database (Logic+function+configuration)</fullName>
+                    <default>false</default>
+                    <label>DCS database (Logic+function+configuration)</label>
+                </value>
+                <value>
+                    <fullName>PLC Database Backup (e.g. Package Equipment)</fullName>
+                    <default>false</default>
+                    <label>PLC Database Backup (e.g. Package Equipment)</label>
+                </value>
+                <value>
+                    <fullName>Instrument Criticality Ranking (ABC Indicator in SAP)</fullName>
+                    <default>false</default>
+                    <label>Instrument Criticality Ranking (ABC Indicator in SAP)</label>
+                </value>
+                <value>
+                    <fullName>Fire and Gas Cause and Effect Diagram</fullName>
+                    <default>false</default>
+                    <label>Fire and Gas Cause and Effect Diagram</label>
+                </value>
+                <value>
+                    <fullName>Documents such as equipment trim drawing, OEM Manual, Equipment Files, Mechanical calculation, Stress Analysis report, etc.</fullName>
+                    <default>false</default>
+                    <label>Documents such as equipment trim drawing, OEM Manual, Equipment Files, Mechanical calculation, Stress Analysis report, etc.</label>
+                </value>
+                <value>
+                    <fullName>Corrosion and Material Drawings (e.g. material selection diagram (MSD), etc)</fullName>
+                    <default>false</default>
+                    <label>Corrosion and Material Drawings (e.g. material selection diagram (MSD), etc)</label>
+                </value>
+                <value>
+                    <fullName>IMS Updates for SCE, Critical equipment, CUI, RBI, Injection point program,  Dead leg program, ect.</fullName>
+                    <default>false</default>
+                    <label>IMS Updates for SCE, Critical equipment, CUI, RBI, Injection point program,  Dead leg program, ect.</label>
+                </value>
+                <value>
+                    <fullName>Corrosion Control Documents (e.g. IOW, etc)</fullName>
+                    <default>false</default>
+                    <label>Corrosion Control Documents (e.g. IOW, etc)</label>
+                </value>
+                <value>
+                    <fullName>Inspection Drawings</fullName>
+                    <default>false</default>
+                    <label>Inspection Drawings</label>
+                </value>
+                <value>
+                    <fullName>Updated equipment / component drawings, equipment curves, equipment datasheets, layout drawings, OEM Manual, Equipment Files (Rotating part)</fullName>
+                    <default>false</default>
+                    <label>Updated equipment / component drawings, equipment curves, equipment datasheets, layout drawings, OEM Manual, Equipment Files (Rotating part)</label>
+                </value>
+                <value>
+                    <fullName>CMMS Equipment Setup</fullName>
+                    <default>false</default>
+                    <label>CMMS Equipment Setup</label>
+                </value>
+                <value>
+                    <fullName>Procedure, Work instruction (Rotating part)</fullName>
+                    <default>false</default>
+                    <label>Procedure, Work instruction (Rotating part)</label>
+                </value>
+                <value>
+                    <fullName>Training Manuals (Rotating part)</fullName>
+                    <default>false</default>
+                    <label>Training Manuals (Rotating part)</label>
+                </value>
+                <value>
+                    <fullName>Lubrication Database / Lube Oil Sampling Setup</fullName>
+                    <default>false</default>
+                    <label>Lubrication Database / Lube Oil Sampling Setup</label>
+                </value>
+                <value>
+                    <fullName>Vendor seal database</fullName>
+                    <default>false</default>
+                    <label>Vendor seal database</label>
+                </value>
+                <value>
+                    <fullName>CMMS PM Schedule and Operation task</fullName>
+                    <default>false</default>
+                    <label>CMMS PM Schedule and Operation task</label>
+                </value>
+                <value>
+                    <fullName>Labelling (Rotating part)</fullName>
+                    <default>false</default>
+                    <label>Labelling (Rotating part)</label>
+                </value>
+                <value>
+                    <fullName>Proactive Monitoring Database / Sleeping Equipment</fullName>
+                    <default>false</default>
+                    <label>Proactive Monitoring Database / Sleeping Equipment</label>
+                </value>
+                <value>
+                    <fullName>Deviation from choice of standards for hazardous area classification and equipment selection, installation and inspection</fullName>
+                    <default>false</default>
+                    <label>Deviation from choice of standards for hazardous area classification and equipment selection, installation and inspection</label>
+                </value>
+                <value>
+                    <fullName>Electrical Load list</fullName>
+                    <default>false</default>
+                    <label>Electrical Load list</label>
+                </value>
+                <value>
+                    <fullName>Cable sizing calculations</fullName>
+                    <default>false</default>
+                    <label>Cable sizing calculations</label>
+                </value>
+                <value>
+                    <fullName>Equipment sizing calculation</fullName>
+                    <default>false</default>
+                    <label>Equipment sizing calculation</label>
+                </value>
+                <value>
+                    <fullName>Connection diagrams</fullName>
+                    <default>false</default>
+                    <label>Connection diagrams</label>
+                </value>
+                <value>
+                    <fullName>Control system block diagram</fullName>
+                    <default>false</default>
+                    <label>Control system block diagram</label>
+                </value>
+                <value>
+                    <fullName>Schematic diagrams</fullName>
+                    <default>false</default>
+                    <label>Schematic diagrams</label>
+                </value>
+                <value>
+                    <fullName>Cable routing layouts</fullName>
+                    <default>false</default>
+                    <label>Cable routing layouts</label>
+                </value>
+                <value>
+                    <fullName>Power layout</fullName>
+                    <default>false</default>
+                    <label>Power layout</label>
+                </value>
+                <value>
+                    <fullName>Substation layouts</fullName>
+                    <default>false</default>
+                    <label>Substation layouts</label>
+                </value>
+                <value>
+                    <fullName>Cable trench details</fullName>
+                    <default>false</default>
+                    <label>Cable trench details</label>
+                </value>
+                <value>
+                    <fullName>Construction details</fullName>
+                    <default>false</default>
+                    <label>Construction details</label>
+                </value>
+                <value>
+                    <fullName>Temporary installation(s) (construction power supplies).</fullName>
+                    <default>false</default>
+                    <label>Temporary installation(s) (construction power supplies).</label>
+                </value>
+                <value>
+                    <fullName>Summary of Electrical Engineering (electrical equipment summary sheets)</fullName>
+                    <default>false</default>
+                    <label>Summary of Electrical Engineering (electrical equipment summary sheets)</label>
+                </value>
+                <value>
+                    <fullName>Utility data (electrical)</fullName>
+                    <default>false</default>
+                    <label>Utility data (electrical)</label>
+                </value>
+                <value>
+                    <fullName>S.L. diagrams (Single line diagram)</fullName>
+                    <default>false</default>
+                    <label>S.L. diagrams (Single line diagram)</label>
+                </value>
+                <value>
+                    <fullName>Equipment data sheet and Drawing (Electrical)</fullName>
+                    <default>false</default>
+                    <label>Equipment data sheet and Drawing (Electrical)</label>
+                </value>
+                <value>
+                    <fullName>Motor re-start and reacceleration after voltage dip</fullName>
+                    <default>false</default>
+                    <label>Motor re-start and reacceleration after voltage dip</label>
+                </value>
+                <value>
+                    <fullName>Motor starting</fullName>
+                    <default>false</default>
+                    <label>Motor starting</label>
+                </value>
+                <value>
+                    <fullName>VSDS economics</fullName>
+                    <default>false</default>
+                    <label>VSDS economics</label>
+                </value>
+                <value>
+                    <fullName>System Description including Power Generation &amp; Distribution Philosophy</fullName>
+                    <default>false</default>
+                    <label>System Description including Power Generation &amp; Distribution Philosophy</label>
+                </value>
+                <value>
+                    <fullName>System Operation Philosophy</fullName>
+                    <default>false</default>
+                    <label>System Operation Philosophy</label>
+                </value>
+                <value>
+                    <fullName>Control, Monitoring and Protection</fullName>
+                    <default>false</default>
+                    <label>Control, Monitoring and Protection</label>
+                </value>
+                <value>
+                    <fullName>Harmonic analysis</fullName>
+                    <default>false</default>
+                    <label>Harmonic analysis</label>
+                </value>
+                <value>
+                    <fullName>Illumination level</fullName>
+                    <default>false</default>
+                    <label>Illumination level</label>
+                </value>
+                <value>
+                    <fullName>Power factor correction (if required)</fullName>
+                    <default>false</default>
+                    <label>Power factor correction (if required)</label>
+                </value>
+                <value>
+                    <fullName>Protection philosophy</fullName>
+                    <default>false</default>
+                    <label>Protection philosophy</label>
+                </value>
+                <value>
+                    <fullName>Protection scheme &amp; relay setting schedules</fullName>
+                    <default>false</default>
+                    <label>Protection scheme &amp; relay setting schedules</label>
+                </value>
+                <value>
+                    <fullName>Short circuit &amp; load flow</fullName>
+                    <default>false</default>
+                    <label>Short circuit &amp; load flow</label>
+                </value>
+                <value>
+                    <fullName>System dynamic stability and load shedding</fullName>
+                    <default>false</default>
+                    <label>System dynamic stability and load shedding</label>
+                </value>
+                <value>
+                    <fullName>SAFOP (Electrical Systems Safe Operability Review - Study)</fullName>
+                    <default>false</default>
+                    <label>SAFOP (Electrical Systems Safe Operability Review - Study)</label>
+                </value>
+                <value>
+                    <fullName>EMC Review</fullName>
+                    <default>false</default>
+                    <label>EMC Review</label>
+                </value>
+                <value>
+                    <fullName>Arc Flash energy calculations</fullName>
+                    <default>false</default>
+                    <label>Arc Flash energy calculations</label>
+                </value>
+                <value>
+                    <fullName>Protection and metering key diagrams</fullName>
+                    <default>false</default>
+                    <label>Protection and metering key diagrams</label>
+                </value>
+                <value>
+                    <fullName>Protection setting document</fullName>
+                    <default>false</default>
+                    <label>Protection setting document</label>
+                </value>
+                <value>
+                    <fullName>Earthing layouts</fullName>
+                    <default>false</default>
+                    <label>Earthing layouts</label>
+                </value>
+                <value>
+                    <fullName>Lighting and LV power layouts (including buildings)</fullName>
+                    <default>false</default>
+                    <label>Lighting and LV power layouts (including buildings)</label>
+                </value>
+                <value>
+                    <fullName>Trace heating system layouts</fullName>
+                    <default>false</default>
+                    <label>Trace heating system layouts</label>
+                </value>
+                <value>
+                    <fullName>Control, alarm and monitoring table</fullName>
+                    <default>false</default>
+                    <label>Control, alarm and monitoring table</label>
+                </value>
+                <value>
+                    <fullName>HV switchgear schedule</fullName>
+                    <default>false</default>
+                    <label>HV switchgear schedule</label>
+                </value>
+                <value>
+                    <fullName>LV switchgear schedule</fullName>
+                    <default>false</default>
+                    <label>LV switchgear schedule</label>
+                </value>
+                <value>
+                    <fullName>Protection relay settings including individual set point lists for all relay protection parameters whether utilised or not</fullName>
+                    <default>false</default>
+                    <label>Protection relay settings including individual set point lists for all relay protection parameters whether utilised or not</label>
+                </value>
+                <value>
+                    <fullName>Emergency and Vital Supplies</fullName>
+                    <default>false</default>
+                    <label>Emergency and Vital Supplies</label>
+                </value>
+                <value>
+                    <fullName>Vital Supply Recovery Study</fullName>
+                    <default>false</default>
+                    <label>Vital Supply Recovery Study</label>
+                </value>
+                <value>
+                    <fullName>Emergency and vital systems</fullName>
+                    <default>false</default>
+                    <label>Emergency and vital systems</label>
+                </value>
+                <value>
+                    <fullName>Network diagram (Comunication system)</fullName>
+                    <default>false</default>
+                    <label>Network diagram (Comunication system)</label>
+                </value>
+                <value>
+                    <fullName>Maintenance Procedures</fullName>
+                    <default>false</default>
+                    <label>Maintenance Procedures</label>
+                </value>
+                <value>
+                    <fullName>SAP (Maintenance tracking)</fullName>
+                    <default>false</default>
+                    <label>SAP (Maintenance tracking)</label>
+                </value>
+                <value>
+                    <fullName>COC, AOC, Drainage, U / G Facilities Drawing </fullName>
+                    <default>false</default>
+                    <label>COC, AOC, Drainage, U / G Facilities Drawing </label>
+                </value>
+                <value>
+                    <fullName>Site Master Plan (onshore)</fullName>
+                    <default>false</default>
+                    <label>Site Master Plan (onshore)</label>
+                </value>
+                <value>
+                    <fullName>Infrastructure Works Management Plan and Assessment/Calculation Report (bridge, road, box culvert, etc)/Drawings</fullName>
+                    <default>false</default>
+                    <label>Infrastructure Works Management Plan and Assessment/Calculation Report (bridge, road, box culvert, etc)/Drawings</label>
+                </value>
+                <value>
+                    <fullName>Structural Integrity Management Plan and Assessment/Calculation Report (piperack, equipment structure)/Drawings</fullName>
+                    <default>false</default>
+                    <label>Structural Integrity Management Plan and Assessment/Calculation Report (piperack, equipment structure)/Drawings</label>
+                </value>
+                <value>
+                    <fullName>Building Management Plan and Assessment/Calculation Report (MCB, FAR, Substation, temporary building)/Drawings</fullName>
+                    <default>false</default>
+                    <label>Building Management Plan and Assessment/Calculation Report (MCB, FAR, Substation, temporary building)/Drawings</label>
+                </value>
+                <value>
+                    <fullName>Refractory plan and Assessment/Calculation report/Drawings</fullName>
+                    <default>false</default>
+                    <label>Refractory plan and Assessment/Calculation report/Drawings</label>
+                </value>
+                <value>
+                    <fullName>Fired Heater/Boiler Design datasheet</fullName>
+                    <default>false</default>
+                    <label>Fired Heater/Boiler Design datasheet</label>
+                </value>
+                <value>
+                    <fullName>APH Design datasheet</fullName>
+                    <default>false</default>
+                    <label>APH Design datasheet</label>
+                </value>
+                <value>
+                    <fullName>IDF &amp; FDF Datasheet</fullName>
+                    <default>false</default>
+                    <label>IDF &amp; FDF Datasheet</label>
+                </value>
+                <value>
+                    <fullName>Burner Performance Datasheet</fullName>
+                    <default>false</default>
+                    <label>Burner Performance Datasheet</label>
+                </value>
+                <value>
+                    <fullName>Fired Heater/Boiler Instruction &amp; Operating Manual (IOM)</fullName>
+                    <default>false</default>
+                    <label>Fired Heater/Boiler Instruction &amp; Operating Manual (IOM)</label>
+                </value>
+                <value>
+                    <fullName>Burner Operating Manual (IOM)</fullName>
+                    <default>false</default>
+                    <label>Burner Operating Manual (IOM)</label>
+                </value>
+                <value>
+                    <fullName>Flare Datasheet &amp; IOM</fullName>
+                    <default>false</default>
+                    <label>Flare Datasheet &amp; IOM</label>
+                </value>
+                <value>
+                    <fullName>SRU/Incinerator burner datasheet</fullName>
+                    <default>false</default>
+                    <label>SRU/Incinerator burner datasheet</label>
+                </value>
+                <value>
+                    <fullName>Equipment Bill of Material (BOM) for Burner/Fired Heater/Boiler/Flare</fullName>
+                    <default>false</default>
+                    <label>Equipment Bill of Material (BOM) for Burner/Fired Heater/Boiler/Flare</label>
+                </value>
+                <value>
+                    <fullName>Safe Working Procedures</fullName>
+                    <default>false</default>
+                    <label>Safe Working Procedures</label>
+                </value>
+                <value>
+                    <fullName>Emergency Response Procedure and Manual</fullName>
+                    <default>false</default>
+                    <label>Emergency Response Procedure and Manual</label>
+                </value>
+                <value>
+                    <fullName>Fire and Safety assessment</fullName>
+                    <default>false</default>
+                    <label>Fire and Safety assessment</label>
+                </value>
+                <value>
+                    <fullName>Site Firewater plans and drawings</fullName>
+                    <default>false</default>
+                    <label>Site Firewater plans and drawings</label>
+                </value>
+                <value>
+                    <fullName>Safety equipment plot plan</fullName>
+                    <default>false</default>
+                    <label>Safety equipment plot plan</label>
+                </value>
+                <value>
+                    <fullName>Environment Aspect Register</fullName>
+                    <default>false</default>
+                    <label>Environment Aspect Register</label>
+                </value>
+                <value>
+                    <fullName>Environment documents (e.g. legal/EIA)</fullName>
+                    <default>false</default>
+                    <label>Environment documents (e.g. legal/EIA)</label>
+                </value>
+                <value>
+                    <fullName>Sample monitoring fugitives</fullName>
+                    <default>false</default>
+                    <label>Sample monitoring fugitives</label>
+                </value>
+                <value>
+                    <fullName>Monitoring program and legal report</fullName>
+                    <default>false</default>
+                    <label>Monitoring program and legal report</label>
+                </value>
+                <value>
+                    <fullName>AIM (Equipment Drawings, Piperack Cross Section Drawing)</fullName>
+                    <default>false</default>
+                    <label>AIM (Equipment Drawings, Piperack Cross Section Drawing)</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</controllingFieldValue>
+                <valueName>Emergency and Vital Supplies</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</controllingFieldValue>
+                <valueName>Vital Supply Recovery Study</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</controllingFieldValue>
+                <valueName>Emergency and vital systems</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Communication (e.g. talk-back, CCTV, radio, public announce and telecommunication network)</controllingFieldValue>
+                <valueName>Network diagram (Comunication system)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Maintenance document</controllingFieldValue>
+                <valueName>Maintenance Procedures</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Maintenance document</controllingFieldValue>
+                <valueName>SAP (Maintenance tracking)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Civil and Structure document</controllingFieldValue>
+                <valueName>COC, AOC, Drainage, U / G Facilities Drawing </valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Civil and Structure document</controllingFieldValue>
+                <valueName>Site Master Plan (onshore)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Civil and Structure document</controllingFieldValue>
+                <valueName>Infrastructure Works Management Plan and Assessment/Calculation Report (bridge, road, box culvert, etc)/Drawings</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Civil and Structure document</controllingFieldValue>
+                <valueName>Structural Integrity Management Plan and Assessment/Calculation Report (piperack, equipment structure)/Drawings</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Civil and Structure document</controllingFieldValue>
+                <valueName>Building Management Plan and Assessment/Calculation Report (MCB, FAR, Substation, temporary building)/Drawings</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Civil and Structure document</controllingFieldValue>
+                <valueName>Refractory plan and Assessment/Calculation report/Drawings</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>Fired Heater/Boiler Design datasheet</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>APH Design datasheet</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>IDF &amp; FDF Datasheet</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>Burner Performance Datasheet</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>Fired Heater/Boiler Instruction &amp; Operating Manual (IOM)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>Burner Operating Manual (IOM)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>Flare Datasheet &amp; IOM</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>SRU/Incinerator burner datasheet</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Combustion document</controllingFieldValue>
+                <valueName>Equipment Bill of Material (BOM) for Burner/Fired Heater/Boiler/Flare</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>HSE document</controllingFieldValue>
+                <valueName>Safe Working Procedures</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>HSE document</controllingFieldValue>
+                <valueName>Emergency Response Procedure and Manual</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Process Safety and Fire Safety document</controllingFieldValue>
+                <valueName>Fire and Safety assessment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Process Safety and Fire Safety document</controllingFieldValue>
+                <valueName>Site Firewater plans and drawings</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Process Safety and Fire Safety document</controllingFieldValue>
+                <valueName>Safety equipment plot plan</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Environment document</controllingFieldValue>
+                <valueName>Environment Aspect Register</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Environment document</controllingFieldValue>
+                <valueName>Environment documents (e.g. legal/EIA)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Environment document</controllingFieldValue>
+                <valueName>Sample monitoring fugitives</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Environment document</controllingFieldValue>
+                <valueName>Monitoring program and legal report</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Plot Plan</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>General Equipment Arrangements &amp; Elevations (GA drawing)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Isometric drawing/GA drawing</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Process Flow Diagram (PFD)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Process Engineering Flow Schemes (P&amp;ID)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>PSFSs (Process Safeguarding Flow Schemes)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Cause and Effect diagram</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Hazadous Area Classification Schedule/Drawing</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Equipment datasheet</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Instrument datasheet</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Equipment/Instrument drawing</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Equipment list</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>RATS (range alarm and trip setting)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Line list</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Fire &amp; Gas Detector Layout</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Safety Critical Equipment list</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Safety Data Sheet</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Hazards &amp; Effects Register</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>HEMP Bowties</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Pre-Incident Plan</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Bill of Material</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Spare part interchangable record (SPIR) and spare part list</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Common document</controllingFieldValue>
+                <valueName>Stock inventory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Operations document</controllingFieldValue>
+                <valueName>Simplified Process Flow Diagram</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Operations document</controllingFieldValue>
+                <valueName>Operating Manuals / Procedures</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Operations document</controllingFieldValue>
+                <valueName>Work Instructions / Standing Instructions</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Operations document</controllingFieldValue>
+                <valueName>Training Manuals</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Operations document</controllingFieldValue>
+                <valueName>Product Storage Tank Technical data</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Process Design Information (Process Chemistry, Process Description)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Feed or Product Specifications</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Heat &amp; Material Balance including composition change</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Mass Balance Calculation Tools (Excel)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Energy Balance Tools (PRO-II, Utility Steam/Electricity balance tools….)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>RV load summary</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Process Safeguarding Memorandum</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Reactive Hazards Analysis (RHA)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Hydrocarbon management system</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Adsorbents/Catalyst Loading Diagrams/Instructions</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Catalyst/Adsorbent Performance Reports/Postmortem documents</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Upload process equipment details (tray drawings, packing size/characteristics, burner curves, etc…)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Process Simulations (Aspen, PRO-II, etc)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Flare Map Drawings and Flare study reports</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Technologist document</controllingFieldValue>
+                <valueName>Refinery or Chemicals Linear Program model (a.k.a: “LP model”) - to be updated via E&amp;S model coordinator.</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Process Control Document</controllingFieldValue>
+                <valueName>IPF Narative</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Process Control Document</controllingFieldValue>
+                <valueName>Process Control Narrative</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Process Control Document</controllingFieldValue>
+                <valueName>APC / Real Time Optimization (RTO) (APC/RQE narrative)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Process Control Document</controllingFieldValue>
+                <valueName>Plant Historian (PI)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Loop Drawings / SPI (Intools) / SAP / Loop Data &amp; Calculations/ Specification sheets / Instrument location lay out/ F&amp;G location lay out</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Equipment / Package Opeating Manual</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Instrument Index</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Oil Movements System</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Custody transfer measurement (CTM)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Tank Strapping Tables Updates</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>TAS/TAM database</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Functional Logic Diagram (FLD)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>SIFPro Design (SIFPro Database)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Test Procedure for IPF</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>DCS Graphics and Trends</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>DCS documentation/Drawing/IO assignment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>DCS architecture</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>DCS database (Logic+function+configuration)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>PLC Database Backup (e.g. Package Equipment)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Instrument Criticality Ranking (ABC Indicator in SAP)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Instrument Engineering Document</controllingFieldValue>
+                <valueName>Fire and Gas Cause and Effect Diagram</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Stationary Equipment and Piping Document</controllingFieldValue>
+                <valueName>Documents such as equipment trim drawing, OEM Manual, Equipment Files, Mechanical calculation, Stress Analysis report, etc.</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Stationary Equipment and Piping Document</controllingFieldValue>
+                <valueName>Corrosion and Material Drawings (e.g. material selection diagram (MSD), etc)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Stationary Equipment and Piping Document</controllingFieldValue>
+                <valueName>IMS Updates for SCE, Critical equipment, CUI, RBI, Injection point program,  Dead leg program, ect.</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Stationary Equipment and Piping Document</controllingFieldValue>
+                <valueName>Corrosion Control Documents (e.g. IOW, etc)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Stationary Equipment and Piping Document</controllingFieldValue>
+                <valueName>Inspection Drawings</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>Updated equipment / component drawings, equipment curves, equipment datasheets, layout drawings, OEM Manual, Equipment Files (Rotating part)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>CMMS Equipment Setup</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>Procedure, Work instruction (Rotating part)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>Training Manuals (Rotating part)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>Lubrication Database / Lube Oil Sampling Setup</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>Vendor seal database</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>CMMS PM Schedule and Operation task</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>Labelling (Rotating part)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rotating Document</controllingFieldValue>
+                <valueName>Proactive Monitoring Database / Sleeping Equipment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Deviation from choice of standards for hazardous area classification and equipment selection, installation and inspection</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Electrical Load list</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Cable sizing calculations</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Equipment sizing calculation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Connection diagrams</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Control system block diagram</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Schematic diagrams</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Cable routing layouts</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Power layout</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Substation layouts</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Cable trench details</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Construction details</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Temporary installation(s) (construction power supplies).</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Summary of Electrical Engineering (electrical equipment summary sheets)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Utility data (electrical)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>S.L. diagrams (Single line diagram)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Common</controllingFieldValue>
+                <valueName>Equipment data sheet and Drawing (Electrical)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Driver/Actuator (process) at Valve (e.g. Motor, MOV)</controllingFieldValue>
+                <valueName>Motor re-start and reacceleration after voltage dip</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Driver/Actuator (process) at Valve (e.g. Motor, MOV)</controllingFieldValue>
+                <valueName>Motor starting</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Driver/Actuator (process) at Valve (e.g. Motor, MOV)</controllingFieldValue>
+                <valueName>VSDS economics</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>System Description including Power Generation &amp; Distribution Philosophy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>System Operation Philosophy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Control, Monitoring and Protection</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Harmonic analysis</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Illumination level</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Power factor correction (if required)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Protection philosophy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Protection scheme &amp; relay setting schedules</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Short circuit &amp; load flow</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>System dynamic stability and load shedding</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>SAFOP (Electrical Systems Safe Operability Review - Study)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>EMC Review</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Arc Flash energy calculations</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Protection and metering key diagrams</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Protection setting document</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Earthing layouts</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Lighting and LV power layouts (including buildings)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Trace heating system layouts</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Control, alarm and monitoring table</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>HV switchgear schedule</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>LV switchgear schedule</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Electrical and Telecommunication Document Electrical equipment/system</controllingFieldValue>
+                <valueName>Protection relay settings including individual set point lists for all relay protection parameters whether utilised or not</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>E_MOC_Doc_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>E-MOC Doc Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Common document</fullName>
+                    <default>false</default>
+                    <label>Common document</label>
+                </value>
+                <value>
+                    <fullName>Operations document</fullName>
+                    <default>false</default>
+                    <label>Operations document</label>
+                </value>
+                <value>
+                    <fullName>Technologist document</fullName>
+                    <default>false</default>
+                    <label>Technologist document</label>
+                </value>
+                <value>
+                    <fullName>Process Control Document</fullName>
+                    <default>false</default>
+                    <label>Process Control Document</label>
+                </value>
+                <value>
+                    <fullName>Instrument Engineering Document</fullName>
+                    <default>false</default>
+                    <label>Instrument Document</label>
+                </value>
+                <value>
+                    <fullName>Stationary Equipment and Piping Document</fullName>
+                    <default>false</default>
+                    <label>Stationary Equipment and Piping Document</label>
+                </value>
+                <value>
+                    <fullName>Rotating Document</fullName>
+                    <default>false</default>
+                    <label>Rotating Document</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Document Common</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Document Common</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Document Driver/Actuator (process) at Valve (e.g. Motor, MOV)</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Document Driver/Actuator (process) at Valve (e.g. Motor, MOV)</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Document Electrical equipment/system</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Document Electrical equipment/system</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Document Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Document Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Document Communication (e.g. talk-back, CCTV, radio, public announce and telecommunication network)</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Document Communication (e.g. talk-back, CCTV, radio, public announce and telecommunication network)</label>
+                </value>
+                <value>
+                    <fullName>Maintenance document</fullName>
+                    <default>false</default>
+                    <label>Maintenance document</label>
+                </value>
+                <value>
+                    <fullName>Civil and Structure document</fullName>
+                    <default>false</default>
+                    <label>Civil and Structure document</label>
+                </value>
+                <value>
+                    <fullName>Combustion document</fullName>
+                    <default>false</default>
+                    <label>Combustion document</label>
+                </value>
+                <value>
+                    <fullName>HSE document</fullName>
+                    <default>false</default>
+                    <label>HSE document</label>
+                </value>
+                <value>
+                    <fullName>Process Safety and Fire Safety document</fullName>
+                    <default>false</default>
+                    <label>Process Safety and Fire Safety document</label>
+                </value>
+                <value>
+                    <fullName>Environment document</fullName>
+                    <default>false</default>
+                    <label>Environment document</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Question_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Question No</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>E-MOC Attachment Doc require</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>E_MOC_Doc_Type__c</columns>
+        <columns>E_MOC_Checklist_type__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Description__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>Doc Require-{0000000}</displayFormat>
+        <label>Attachment No</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,26 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes">
+	<lightning:navigation aura:id="navService" />
+	<!-- IMPORTED STYLES-->
+	<ltng:require styles="{!$Resource.noHeader}" />
+
+	<!-- ATTRIBUTES -->
+	<aura:attribute name="createNew" type="Boolean" default="false" access="global" />
+
+	<!-- EVENTS -->
+	<!-- <aura:handler name="closeModalEvent" event="c:THOR_Event" action="{!c.handleCloseModal}" /> -->
+
+	<span class="slds-hide">
+		<c:THOR_navigateBack />
+	</span>
+
+	<!-- BODY-->
+	<c:THOR_Header title="Orders" iconName="standard:related_list">
+		<aura:set attribute="actions">
+			<lightning:button variant="brand" label="Create Order" title="Create Order" onclick="{! c.newOrder }" />
+		</aura:set>
+	</c:THOR_Header>
+
+	<!-- <aura:if isTrue="{!v.createNew}">
+		<c:THOR_OrderCreation />
+	</aura:if> -->
+</aura:component>

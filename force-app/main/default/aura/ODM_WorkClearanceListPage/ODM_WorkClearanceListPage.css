@@ -1,0 +1,176 @@
+.THIS {
+	padding: 10px;
+}
+
+.THIS .page-header {
+	background: linear-gradient(0.25turn, #775df1, #c292f3);
+	box-shadow: 0px 0px 2px #c292f3;
+	color: white;
+	font-weight: bold;
+	padding: 15px;
+	border-radius: 12px
+}
+
+.THIS .page-header.verification {
+	background: linear-gradient(0.25turn, #01c6b7, #57e0a5);
+}
+
+.THIS .page-header.inspection {
+	background: linear-gradient(0.25turn, #ffd688, #febd75);
+}
+
+.THIS .page-header > div:nth-child(2) {
+	text-align: right;
+	font-size: 2.5rem;
+}
+
+.THIS .slds-box {
+	background-color: #ffffff;
+}
+
+.THIS .icon-type {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #dde5ff;
+    border-radius: 20px;
+    background: #dde5ff;
+    color: black;
+    font-size: 18px;
+    padding: 4px;
+    text-align: center;
+}
+
+.THIS .icon-type svg {
+	width: 25px;
+	height: 25px;
+}
+
+.THIS .icon-type.icon-inspected {
+    padding: 4px;
+    border: 1px solid #2f64ea;
+    background: #2f64ea;
+}
+
+.THIS .icon-type.icon-agree {
+    padding: 4px;
+    border: 1px solid #01c6b7;
+    background: #01c6b7;
+}
+
+.THIS .icon-type.icon-warning {
+    padding: 4px;
+    border: 1px solid #f6b26b;
+    background: #f6b26b;
+}
+
+.THIS .icon-type.icon-disagree {
+    padding: 4px;
+    border: 1px solid #f75c55;
+    background: #f75c55;
+}
+
+.THIS .icon-type.icon-inspected svg,
+.THIS .icon-type.icon-agree svg,
+.THIS .icon-type.icon-disagree svg,
+.THIS .icon-type.icon-warning svg {
+	width: 28px;
+	height: 28px;
+	fill: #ffffff;
+}
+
+.THIS .created-date {
+	font-weight: 500;
+}
+
+.THIS .checkbox-filter {
+	display: flex;
+	margin: auto;
+}
+
+.THIS .checkbox-filter label {
+	padding: 0 1em 0 0.5em;
+}
+
+@media (max-width: 602px) {
+	.THIS {
+		padding: 6px;
+	}
+
+	.THIS .pagination button {
+		padding-left: 8px;
+		padding-right: 8px;
+	}
+}
+
+/*
+.THIS.header_container .thaioil_logo {
+	width: 12rem !important;
+	height: 100% !important;
+}
+
+.THIS .slds-line-clamp_small {
+    -webkit-line-clamp: 4;
+}
+
+.THIS.container.slds-card {
+	background-color: #a0b76e;
+}
+
+.THIS.container.slds-card .slds-card__header-title .slds-text-heading_small {
+	font-size: var(--lwc-fontSize5, 1rem);
+	font-weight: normal !important;
+}
+
+.THIS.container .header__label {
+	background-color: #dddbda;
+	font-weight: 700;
+}
+
+.THIS.container.slds-card .slds-card__body {
+	background-color: #eaefde;
+	margin-bottom: 0;
+}
+
+.THIS.container.slds-card .slds-card__footer {
+	background-color: #ffffff;
+	margin-top: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.THIS.container .slds-box {
+	background-color: #fff !important;
+}
+
+.THIS.container .slds-box:hover {
+	background-color: #f7f7f7 !important;
+}
+
+@media (max-width: 602px) {
+	.THIS.container .header__label p {
+		padding-top: 5px !important;
+		padding-bottom: 5px !important;
+		font-size: 0.875rem;
+	}
+
+	.THIS.container .box-detail,
+	.THIS.container .header__label p {
+		font-size: 0.75rem;
+	}
+	
+	.THIS.container.slds-card .slds-card__header-title .slds-text-heading_small {
+		font-size: 0.875rem;
+	}
+
+	.THIS.container.slds-card__body .slds-box {
+		font-size: var(--lwc-fontSize4, 0.875rem);
+		padding-top: 0.5em !important;
+		padding-bottom: 0.5em !important;
+	}
+
+	.THIS.container.slds-card .slds-card__footer button {
+		font-size: var(--lwc-fontSize5, 1rem);
+		font-weight: bold !important;
+	}
+}
+*/

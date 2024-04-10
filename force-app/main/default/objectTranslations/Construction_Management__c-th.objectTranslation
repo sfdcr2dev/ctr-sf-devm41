@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Step 24 : Construction Management</value>
+    </caseValues>
+    <fields>
+        <label><!-- Assigned User --></label>
+        <name>Assigned_User__c</name>
+        <relationshipLabel><!-- Step 24: Construction Management --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Confirm Schedule --></label>
+        <name>Confirm_Schedule__c</name>
+    </fields>
+    <fields>
+        <label><!-- Constructability --></label>
+        <name>Constructability__c</name>
+    </fields>
+    <fields>
+        <label><!-- Construction Interface Work --></label>
+        <name>Construction_Interface_Work__c</name>
+    </fields>
+    <fields>
+        <label><!-- ITB : Construction Part --></label>
+        <name>ITB_Construction_Part__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsWaitingForPreviousStep --></label>
+        <name>IsWaitingForPreviousStep__c</name>
+    </fields>
+    <fields>
+        <label><!-- Layout, Plot Plan and Site Facilities --></label>
+        <name>Layout_Plot_Plan_and_Site_Facilities__c</name>
+    </fields>
+    <fields>
+        <label><!-- Method Statement and JSA --></label>
+        <name>Method_Statement_and_JSA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Process --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- No --></label>
+        <name>No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permit to Work and Clearance --></label>
+        <name>Permit_to_Work_and_Clearance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project --></label>
+        <name>Project__c</name>
+        <relationshipLabel><!-- Step 24 : Construction Management --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Remark --></label>
+        <name>Remark__c</name>
+    </fields>
+    <fields>
+        <label><!-- Confirm Drawing for Construction --></label>
+        <name>Review_and_Confirm_Drawing_for_Constru__c</name>
+    </fields>
+    <fields>
+        <label><!-- SME --></label>
+        <lookupFilter>
+            <errorMessage><!-- Selected User is not SME. Please select SME user. --></errorMessage>
+            <informationalMessage><!-- Please select SME user. --></informationalMessage>
+        </lookupFilter>
+        <name>SME__c</name>
+        <relationshipLabel><!-- Step 24: Construction Management --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- SSHE Plan --></label>
+        <name>SSHE_Plan__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scope of Work --></label>
+        <name>Scope_of_Work__c</name>
+    </fields>
+    <fields>
+        <label><!-- Site Communication Team --></label>
+        <name>Site_Communication_Team__c</name>
+    </fields>
+    <fields>
+        <label><!-- Site Community --></label>
+        <name>Site_Community__c</name>
+    </fields>
+    <fields>
+        <label><!-- Submit Status --></label>
+        <name>Submit_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Transportation Management --></label>
+        <name>Transportation_Management__c</name>
+    </fields>
+    <fields>
+        <label><!-- Waiting for Approve --></label>
+        <name>Waiting_for_Approve__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Permit Approval From Government --></label>
+        <name>Work_Permit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Process Status --></label>
+        <name>Work_Process_Status__c</name>
+    </fields>
+    <layouts>
+        <layout>Construction Management Layout</layout>
+        <sections>
+            <label><!-- CM Checklist --></label>
+            <section>CM Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Remark --></label>
+            <section>Remark</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Construction Management Submit Layout</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Remark --></label>
+            <section>Remark</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Step 24 : After Submit --></label>
+        <name>Step_24_After_Submit</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Step 24 : Before Submit --></label>
+        <name>Step_24_Before_Submit</name>
+    </recordTypes>
+</CustomObjectTranslation>

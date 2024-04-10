@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CG Reporting</value>
+    </caseValues>
+    <fields>
+        <label><!-- AnnualResendEmail --></label>
+        <name>AnnualResendEmail__c</name>
+    </fields>
+    <fields>
+        <help><!-- ข้าพเจ้าจะศึกษา --></help>
+        <label><!-- Agree to Study --></label>
+        <name>CG_Agree_to_Study__c</name>
+    </fields>
+    <fields>
+        <label><!-- Download CG Manual --></label>
+        <name>CG_Download_Manual__c</name>
+    </fields>
+    <fields>
+        <help><!-- ข้าพเจ้าได้รับคู่มือหลักการ --></help>
+        <label><!-- CG Received Manual --></label>
+        <name>CG_Received_Manual__c</name>
+    </fields>
+    <fields>
+        <label><!-- CG Reporting History --></label>
+        <name>CG_Reporting_History__c</name>
+    </fields>
+    <fields>
+        <label><!-- COI Action --></label>
+        <name>COI_Action__c</name>
+    </fields>
+    <fields>
+        <help><!-- เงื่อนไขและข้อตกลง --></help>
+        <label><!-- Agree --></label>
+        <name>COI_Agree__c</name>
+    </fields>
+    <fields>
+        <help><!-- รายละเอียด --></help>
+        <label><!-- COI Detail --></label>
+        <name>COI_Detail__c</name>
+    </fields>
+    <fields>
+        <label><!-- COI Disclosure --></label>
+        <name>COI_Disclosure__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NotSure</masterLabel>
+            <translation><!-- NotSure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- ทำธุรกรรมโดยตนเอง --></help>
+        <label><!-- Transaction By Me --></label>
+        <name>COI_Transaction_By_Me__c</name>
+    </fields>
+    <fields>
+        <label><!-- Transaction By Other Name --></label>
+        <name>COI_Transaction_By_Other_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Transaction By Other Relation Name --></label>
+        <name>COI_Transaction_By_Other_Relation_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- ทำธุรกรรมโดยบุคคลที่มีความสัมพันธ์ทางสายเลือก --></help>
+        <label><!-- Transaction By Other Relation --></label>
+        <name>COI_Transaction_By_Other_Relation__c</name>
+    </fields>
+    <fields>
+        <help><!-- ความสัมพันธ์ --></help>
+        <label><!-- Transaction By Other Relationship --></label>
+        <name>COI_Transaction_By_Other_Relationship__c</name>
+    </fields>
+    <fields>
+        <help><!-- ทำธุรกรรมโดยผู้อื่น --></help>
+        <label><!-- Transaction By Other --></label>
+        <name>COI_Transaction_By_Other__c</name>
+    </fields>
+    <fields>
+        <label><!-- COI Transaction Company Name --></label>
+        <name>COI_Transaction_Company_Name__c</name>
+        <picklistValues>
+            <masterLabel>Other (Please specify)</masterLabel>
+            <translation><!-- Other (Please specify) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PT TOP Investment Indonesia</masterLabel>
+            <translation><!-- PT TOP Investment Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TOP SPP Co., Ltd.</masterLabel>
+            <translation><!-- TOP SPP Co., Ltd. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TOPNEXT International Co., Ltd.</masterLabel>
+            <translation><!-- TOPNEXT International Co., Ltd. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thai Lube Base Plc</masterLabel>
+            <translation><!-- Thai Lube Base Plc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thai Oil Plc</masterLabel>
+            <translation><!-- Thai Oil Plc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thai Paraxylene Co., Ltd.</masterLabel>
+            <translation><!-- Thai Paraxylene Co., Ltd. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thaioil Energy Services Co., Ltd.</masterLabel>
+            <translation><!-- Thaioil Energy Services Co., Ltd. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thaioil Ethanol Co., Ltd.</masterLabel>
+            <translation><!-- Thaioil Ethanol Co., Ltd. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thaioil Solvent Co., Ltd.</masterLabel>
+            <translation><!-- Thaioil Solvent Co., Ltd. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thaioil Treasury Center Co., Ltd.</masterLabel>
+            <translation><!-- Thaioil Treasury Center Co., Ltd. --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- มีการทำธุรกรรมกับบริษัท --></help>
+        <label><!-- Transaction Company --></label>
+        <name>COI_Transaction_Company__c</name>
+        <relationshipLabel><!-- CG Reporting --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- COI Transaction Other Company Name --></label>
+        <name>COI_Transaction_Other_Company_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cancelled By --></label>
+        <name>Cancelled_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cancelled Date --></label>
+        <name>Cancelled_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company --></label>
+        <name>Company__c</name>
+    </fields>
+    <fields>
+        <label><!-- Debug Log --></label>
+        <name>Debug_Log__c</name>
+    </fields>
+    <fields>
+        <label><!-- Department --></label>
+        <name>Department__c</name>
+    </fields>
+    <fields>
+        <label><!-- Employee Id --></label>
+        <name>Employee_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Duration --></label>
+        <name>End_Duration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Function --></label>
+        <name>Function__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLGC Action By Company EN --></label>
+        <name>GLGC_Action_By_Company_EN__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLGC Action By Company TH --></label>
+        <name>GLGC_Action_By_Company_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLGC Action By EN --></label>
+        <name>GLGC_Action_By_EN__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLGC Action By Position EN --></label>
+        <name>GLGC_Action_By_Position_EN__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLGC Action By Position TH --></label>
+        <name>GLGC_Action_By_Position_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLGC Action By TH --></label>
+        <name>GLGC_Action_By_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLGC Action Date --></label>
+        <name>GLGC_Action_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLGC Approver Status --></label>
+        <name>GLGC_Approver_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLGC Id --></label>
+        <name>GLGC_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLGC Receive By --></label>
+        <name>GLGC_Receive_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLVP Action By Company EN --></label>
+        <name>GLVP_Action_By_Company_EN__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLVP Action By Company TH --></label>
+        <name>GLVP_Action_By_Company_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLVP Action By EN --></label>
+        <name>GLVP_Action_By_EN__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLVP Action By Position EN --></label>
+        <name>GLVP_Action_By_Position_EN__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLVP Action By Position TH --></label>
+        <name>GLVP_Action_By_Position_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLVP Action By TH --></label>
+        <name>GLVP_Action_By_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLVP Action Date --></label>
+        <name>GLVP_Action_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLVP Approver Status --></label>
+        <name>GLVP_Approver_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLVP Comment --></label>
+        <name>GLVP_Comment__c</name>
+    </fields>
+    <fields>
+        <label><!-- GLVP Id --></label>
+        <name>GLVP_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- GenerateFromBatch --></label>
+        <name>GenerateFromBatch__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gift Date --></label>
+        <name>Gift_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gift Item --></label>
+        <name>Gift_Item__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gift Status --></label>
+        <name>Gift_Status__c</name>
+        <picklistValues>
+            <masterLabel>Donated</masterLabel>
+            <translation><!-- Donated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Stock</masterLabel>
+            <translation><!-- In Stock --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Gift Supervisor Suggestion --></label>
+        <name>Gift_Supervisor_Suggestion__c</name>
+        <picklistValues>
+            <masterLabel>Keep for internal use</masterLabel>
+            <translation><!-- Keep for internal use --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Send back to the giver</masterLabel>
+            <translation><!-- Send back to the giver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Send to GLVP</masterLabel>
+            <translation><!-- Send to GLVP --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IsAcknowledge --></label>
+        <name>IsAcknowledge__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Department --></label>
+        <name>Owner_Department__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Full Name EN --></label>
+        <name>Owner_Full_Name_EN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Full Name TH --></label>
+        <name>Owner_Full_Name_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Function --></label>
+        <name>Owner_Function__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Position --></label>
+        <name>Owner_Position__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Section --></label>
+        <name>Owner_Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Unit --></label>
+        <name>Owner_Unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reported By Company EN --></label>
+        <name>Reported_By_Company_EN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reported By Company TH --></label>
+        <name>Reported_By_Company_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reported By Department --></label>
+        <name>Reported_By_Department__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reported By EN --></label>
+        <name>Reported_By_EN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reported By Employee Id --></label>
+        <name>Reported_By_Employee_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reported By Function --></label>
+        <name>Reported_By_Function__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reported By Position EN --></label>
+        <name>Reported_By_Position_EN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reported By Position TH --></label>
+        <name>Reported_By_Position_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reported By Section --></label>
+        <name>Reported_By_Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reported By TH --></label>
+        <name>Reported_By_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reported Date --></label>
+        <name>Reported_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Running No --></label>
+        <name>Running_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- Send Email --></label>
+        <name>Send_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Duration --></label>
+        <name>Start_Duration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status JSON --></label>
+        <name>Status_JSON__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Cancel</masterLabel>
+            <translation><!-- Cancel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expired</masterLabel>
+            <translation><!-- Expired --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Success</masterLabel>
+            <translation><!-- Success --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting GLGC</masterLabel>
+            <translation><!-- Waiting GLGC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting GLVP</masterLabel>
+            <translation><!-- Waiting GLVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting Supervisor</masterLabel>
+            <translation><!-- Waiting Supervisor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting for Submit</masterLabel>
+            <translation><!-- Waiting for Submit --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Submit Within Date --></label>
+        <name>Submit_Within_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Submitted Date --></label>
+        <name>Submitted_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supervisor Action By Company EN --></label>
+        <name>Supervisor_Action_By_Company_EN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supervisor Action By Company TH --></label>
+        <name>Supervisor_Action_By_Company_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supervisor Action By EN --></label>
+        <name>Supervisor_Action_By_EN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supervisor Action By Position EN --></label>
+        <name>Supervisor_Action_By_Position_EN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supervisor Action By Position TH --></label>
+        <name>Supervisor_Action_By_Position_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supervisor Action By TH --></label>
+        <name>Supervisor_Action_By_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supervisor Action Date --></label>
+        <name>Supervisor_Action_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supervisor Approver Status --></label>
+        <name>Supervisor_Approver_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supervisor Comment --></label>
+        <name>Supervisor_Comment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supervisor Name --></label>
+        <name>Supervisor_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type of Report --></label>
+        <name>Type_of_Report__c</name>
+        <picklistValues>
+            <masterLabel>CG Manual (Annual)</masterLabel>
+            <translation><!-- CG Manual (Annual) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CG Manual (Manual)</masterLabel>
+            <translation><!-- CG Manual (Manual) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CG Manual (New Employee)</masterLabel>
+            <translation><!-- CG Manual (New Employee) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COI (Annual Report)</masterLabel>
+            <translation><!-- COI (Annual Report) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COI (Incident Report)</masterLabel>
+            <translation><!-- COI (Incident Report) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COI (New Employee Report)</masterLabel>
+            <translation><!-- COI (New Employee Report) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gift Registration</masterLabel>
+            <translation><!-- Gift Registration --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Unit --></label>
+        <name>Unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supervisor --></label>
+        <name>User__c</name>
+        <relationshipLabel><!-- CG Reporting --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- isDisable --></label>
+        <name>isDisable__c</name>
+    </fields>
+    <layouts>
+        <layout>CG Manual Annual Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- GLVP --></label>
+            <section>GLVP</section>
+        </sections>
+        <sections>
+            <label><!-- Reported --></label>
+            <section>Reported</section>
+        </sections>
+        <sections>
+            <label><!-- Supervisor --></label>
+            <section>Supervisor</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CG Manual Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- GLVP --></label>
+            <section>GLVP</section>
+        </sections>
+        <sections>
+            <label><!-- Reported --></label>
+            <section>Reported</section>
+        </sections>
+        <sections>
+            <label><!-- Supervisor --></label>
+            <section>Supervisor</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CG Manual New Employee Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- GLVP --></label>
+            <section>GLVP</section>
+        </sections>
+        <sections>
+            <label><!-- Reported --></label>
+            <section>Reported</section>
+        </sections>
+        <sections>
+            <label><!-- Supervisor --></label>
+            <section>Supervisor</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>COI Annual Layout</layout>
+        <sections>
+            <label><!-- Conflict of Interest Report --></label>
+            <section>Conflict of Interest Report</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- GLVP --></label>
+            <section>GLVP</section>
+        </sections>
+        <sections>
+            <label><!-- Reported --></label>
+            <section>Reported</section>
+        </sections>
+        <sections>
+            <label><!-- Supervisor --></label>
+            <section>Supervisor</section>
+        </sections>
+        <sections>
+            <label><!-- The Transaction with a Trade Agreement --></label>
+            <section>The Transaction with a Trade Agreement</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>COI Incident Layout</layout>
+        <sections>
+            <label><!-- Conflict of Interest Report --></label>
+            <section>Conflict of Interest Report</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- GLVP --></label>
+            <section>GLVP</section>
+        </sections>
+        <sections>
+            <label><!-- Reported --></label>
+            <section>Reported</section>
+        </sections>
+        <sections>
+            <label><!-- Supervisor --></label>
+            <section>Supervisor</section>
+        </sections>
+        <sections>
+            <label><!-- The Transaction with a Trade Agreement --></label>
+            <section>The Transaction with a Trade Agreement</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>COI New Employee Layout</layout>
+        <sections>
+            <label><!-- Conflict of Interest Report --></label>
+            <section>Conflict of Interest Report</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- GLVP --></label>
+            <section>GLVP</section>
+        </sections>
+        <sections>
+            <label><!-- Reported --></label>
+            <section>Reported</section>
+        </sections>
+        <sections>
+            <label><!-- Supervisor --></label>
+            <section>Supervisor</section>
+        </sections>
+        <sections>
+            <label><!-- The Transaction with a Trade Agreement --></label>
+            <section>The Transaction with a Trade Agreement</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Gift Registration Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- GLGC --></label>
+            <section>GLGC</section>
+        </sections>
+        <sections>
+            <label><!-- GLVP --></label>
+            <section>GLVP</section>
+        </sections>
+        <sections>
+            <label><!-- Reported --></label>
+            <section>Reported</section>
+        </sections>
+        <sections>
+            <label><!-- Supervisor --></label>
+            <section>Supervisor</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- CG COI Annual --></label>
+        <name>CG_COI_Annual</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CG COI Incident --></label>
+        <name>CG_COI_Incident</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CG COI New Employee --></label>
+        <name>CG_COI_New_Employee</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CG Manual --></label>
+        <name>CG_Manual</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CG Manual Annual --></label>
+        <name>CG_Manual_Annual</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CG Manual New Employee --></label>
+        <name>CG_Manual_New_Employee</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Gift Registration --></label>
+        <name>Gift_Registration</name>
+    </recordTypes>
+</CustomObjectTranslation>

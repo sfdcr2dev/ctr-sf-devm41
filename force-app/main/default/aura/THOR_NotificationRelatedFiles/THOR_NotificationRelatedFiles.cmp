@@ -1,0 +1,152 @@
+<aura:component implements="lightning:isUrlAddressable" controller="THOR_NotificationsListRelatedController">
+	<!-- Attributes -->
+	<aura:attribute name="notificationId" type="String" default="" />
+	<aura:attribute name="filesRelated" type="List" default="[]" />
+	<aura:attribute name="finishedLoading" type="Boolean" default="false" />
+
+	<aura:attribute name="hasEditAccess" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+	<aura:attribute name="interval" type="Integer" access="private" />
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.handleRefresh}" />
+	<aura:handler name="refreshFileList" event="c:THOR_Event_notificationAttachmentUploadFinished" action="{!c.handleRefresh}" />
+
+	<lightning:navigation aura:id="navLink" />
+
+	<!-- Handlers -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<!-- Quick Actions -->
+	<aura:if isTrue="{!v.notificationId}">
+		<c:THOR_NotificationAttachmentQuickActions notificationId="{!v.notificationId}">
+			<aura:set attribute="body">
+				<!-- <lightning:button label="Refresh" iconName="utility:refresh" onclick="{!c.doInit}" /> -->
+			</aura:set>
+		</c:THOR_NotificationAttachmentQuickActions>
+	</aura:if>
+
+	<!-- <aura:method name="reInit" action="{!c.doInit}" description="Runs the init method again" /> -->
+
+	<!-- BODY -->
+	<div class="slds-box slds-theme_default slds-is-relative">
+		<aura:if isTrue="{! and(v.isLoading, not(v.finishedLoading)) }">
+			<lightning:spinner alternativeText="Loading" size="medium" />
+		</aura:if>
+		<aura:if isTrue="{!not(empty(v.filesRelated))}">
+			<p class="labelSequence">Sequential no., Description, Filetype, Create on</p>
+
+			<lightning:layout multipleRows="true">
+				<aura:iteration items="{! v.filesRelated }" var="file">
+					<lightning:layoutItem size="12">
+						<div class="slds-box slds-box_xx-small">
+							<lightning:layout verticalAlign="center">
+								<lightning:layoutItem flexibility="auto" padding="horizontal-small" class="slds-grid slds-grid_vertical-align-center">
+									<div class="slds-col slds-grow-none slds-p-right_x-small">
+										<lightning:helptext
+											class="{! file.Integration_Status__c == 'Success' ? 'icon-color_default' : ''}"
+											iconVariant="{! file.Integration_Status__c == 'In Progress' ? 'warning' : 'error' }"
+											content="{! 'Integration Status: ' + (file.Integration_Status__c ? file.Integration_Status__c : 'Failed') }"
+											iconName="utility:record"
+										/>
+									</div>
+									<div
+										class="slds-col slds-grow-none"
+										data-filetype="{! file.document.ContentDocument.FileType}"
+										id="{!file.document.ContentDocumentId}"
+										onclick="{! c.preview}"
+									>
+										{!file.sequentialNumber} . {!file.document.ContentDocument.Title} . {!file.document.ContentDocument.FileType} .
+										<lightning:formattedDateTime value="{!file.document.ContentDocument.CreatedDate}" year="numeric" month="numeric" day="numeric" />
+
+										<aura:if isTrue="{! equals(file.document.ContentDocument.FileType, 'MP4') }">
+											<c:THOR_VideoPreviewModal
+												aura:id="VideoFile"
+												fileId="{! file.document.ContentDocumentId }"
+												fileTitle="{! file.document.ContentDocument.Title }"
+											/>
+										</aura:if>
+									</div>
+									<aura:if isTrue="{! file.isLoading }">
+										<div class="slds-col slds-grow-none slds-m-left_large slds-is-relative" style="display: inline-block">
+											<lightning:spinner alternativeText="Loading" size="small" />
+										</div>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem flexibility="auto, no-grow" alignmentBump="right" padding="horizontal-small" class="slds-grid">
+									<div
+										data-filetype="{! file.document.ContentDocument.FileType}"
+										id="{!file.document.ContentDocumentId}"
+										onclick="{!c.preview}"
+										class="slds-col slds-p-horizontal_xx-small"
+									>
+										<aura:if isTrue="{! equals(file.document.ContentDocument.FileType, 'UNKNOWN') }">
+											<lightning:icon iconName="doctype:unknown" alternativeText="FILE" title="FILE" />
+										</aura:if>
+										<aura:if isTrue="{! equals(file.document.ContentDocument.FileType, 'CSV') }">
+											<lightning:icon iconName="doctype:csv" alternativeText="CSV" title="CSV" />
+										</aura:if>
+										<aura:if isTrue="{! equals(file.document.ContentDocument.FileType, 'EXCEL_X') }">
+											<lightning:icon iconName="doctype:excel" alternativeText="EXCEL" title="EXCEL" />
+										</aura:if>
+										<aura:if isTrue="{! equals(file.document.ContentDocument.FileType, 'WORD_X') }">
+											<lightning:icon iconName="doctype:word" alternativeText="WORD" title="WORD" />
+										</aura:if>
+										<aura:if isTrue="{! equals(file.document.ContentDocument.FileType, 'POWER_POINT_X') }">
+											<lightning:icon iconName="doctype:slide" alternativeText="PPT" title="PPT" />
+										</aura:if>
+										<aura:if isTrue="{! equals(file.document.ContentDocument.FileType, 'PDF') }">
+											<lightning:icon iconName="doctype:pdf" alternativeText="PDF" title="PDF" />
+										</aura:if>
+										<aura:if isTrue="{! equals(file.document.ContentDocument.FileType, 'MP4') }">
+											<lightning:icon iconName="doctype:mp4" alternativeText="MP4" title="MP4" />
+										</aura:if>
+										<aura:if
+											isTrue="{!
+												equals(file.document.ContentDocument.FileType, 'JPEG') ||
+												equals(file.document.ContentDocument.FileType, 'JPG') ||
+												equals(file.document.ContentDocument.FileType, 'PNG')
+											}"
+										>
+											<lightning:icon iconName="doctype:image" alternativeText="Image" title="Image" />
+										</aura:if>
+									</div>
+
+									<lightning:buttonIcon
+										name="{!file.document.ContentDocumentId}"
+										class="slds-col slds-p-horizontal_xx-small"
+										size="large"
+										variant="bare"
+										iconName="utility:delete"
+										tooltip="Delete"
+										onclick="{!c.deleteMe}"
+										disabled="{!file.Integration_Status__c == 'In Progress' || not(v.hasEditAccess)}"
+									/>
+
+									<lightning:buttonIcon
+										name="{!file.document.ContentDocumentId}"
+										class="{! 'slds-col slds-p-horizontal_xx-small' + (!file.isCanResend ? ' slds-hidden': '') }"
+										size="large"
+										iconName="utility:refresh"
+										variant="bare"
+										tooltip="Resend"
+                    disabled="{!v.hasEditAccess}"
+										onclick="{!c.resendAttachment}"
+									/>
+								</lightning:layoutItem>
+							</lightning:layout>
+						</div>
+					</lightning:layoutItem>
+				</aura:iteration>
+			</lightning:layout>
+			<aura:set attribute="else">
+				<p>There are no related Files</p>
+			</aura:set>
+		</aura:if>
+		<!-- <aura:if isTrue="{!v.finishedLoading}">
+
+			<aura:set attribute="else">
+				<p>Loading Files...</p>
+			</aura:set>
+		</aura:if> -->
+	</div>
+	<!-- /BODY -->
+</aura:component>

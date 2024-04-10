@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Acknowledge__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Acknowledge</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Acknowledge_by__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Acknowledge by</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>E_MOC_Activity1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Action_by__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Action by</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>E_MOC_Activity</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Created_Task__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Created Task</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>E_MOC_Application__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>E-MOC Application</label>
+        <referenceTo>E_MOC_Application__c</referenceTo>
+        <relationshipLabel>E-MOC Activity</relationshipLabel>
+        <relationshipName>E_MOC_Activity</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Frequency_days__c</fullName>
+        <externalId>false</externalId>
+        <label>Frequency days</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Next_Monitoring_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Next Monitoring Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Next_Reminder_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Next Reminder Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Noti_before_end_date__c</fullName>
+        <externalId>false</externalId>
+        <formula>E_MOC_Application__r.End_Date_Monitoring_Program__c - 31</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Noti before end date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Period_frequency2__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+    ISPICKVAL(Period_frequency__c, &quot;15 Days&quot;), 15,
+    IF(ISPICKVAL(Period_frequency__c, &quot;1 month&quot;), 30,
+        IF(ISPICKVAL(Period_frequency__c, &quot;2 months&quot;), 60,
+            IF(ISPICKVAL(Period_frequency__c, &quot;3 months&quot;), 90,
+                IF(ISPICKVAL(Period_frequency__c, &quot;4 months&quot;), 120,
+                    IF(ISPICKVAL(Period_frequency__c, &quot;5 months&quot;), 150,
+                        IF(ISPICKVAL(Period_frequency__c, &quot;6 months&quot;), 180,
+                            IF(ISPICKVAL(Period_frequency__c, &quot;7 months&quot;), 210,
+                                IF(ISPICKVAL(Period_frequency__c, &quot;8 months&quot;), 240,
+                                    IF(ISPICKVAL(Period_frequency__c, &quot;9 months&quot;), 270,
+                                        IF(ISPICKVAL(Period_frequency__c, &quot;10 months&quot;), 300,
+                                            IF(ISPICKVAL(Period_frequency__c, &quot;11 months&quot;), 330,
+                                                IF(ISPICKVAL(Period_frequency__c, &quot;1 Year&quot;), 365,
+                                                    IF(ISPICKVAL(Period_frequency__c, &quot;1.5 Years&quot;), 548,
+                                                        IF(ISPICKVAL(Period_frequency__c, &quot;2 Years&quot;), 730,
+                                                            IF(ISPICKVAL(Period_frequency__c, &quot;3 Years&quot;), 1095,
+                                                                IF(ISPICKVAL(Period_frequency__c, &quot;6 Years&quot;), 2190, 0)
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Period/frequency2</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Period_frequency__c</fullName>
+        <externalId>false</externalId>
+        <label>Period/frequency</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>15 days</fullName>
+                    <default>false</default>
+                    <label>15 days</label>
+                </value>
+                <value>
+                    <fullName>1 month</fullName>
+                    <default>false</default>
+                    <label>1 month</label>
+                </value>
+                <value>
+                    <fullName>2 months</fullName>
+                    <default>false</default>
+                    <label>2 months</label>
+                </value>
+                <value>
+                    <fullName>3 months</fullName>
+                    <default>false</default>
+                    <label>3 months</label>
+                </value>
+                <value>
+                    <fullName>4 months</fullName>
+                    <default>false</default>
+                    <label>4 months</label>
+                </value>
+                <value>
+                    <fullName>5 months</fullName>
+                    <default>false</default>
+                    <label>5 months</label>
+                </value>
+                <value>
+                    <fullName>6 months</fullName>
+                    <default>false</default>
+                    <label>6 months</label>
+                </value>
+                <value>
+                    <fullName>7 months</fullName>
+                    <default>false</default>
+                    <label>7 months</label>
+                </value>
+                <value>
+                    <fullName>8 months</fullName>
+                    <default>false</default>
+                    <label>8 months</label>
+                </value>
+                <value>
+                    <fullName>9 months</fullName>
+                    <default>false</default>
+                    <label>9 months</label>
+                </value>
+                <value>
+                    <fullName>10 months</fullName>
+                    <default>false</default>
+                    <label>10 months</label>
+                </value>
+                <value>
+                    <fullName>11 months</fullName>
+                    <default>false</default>
+                    <label>11 months</label>
+                </value>
+                <value>
+                    <fullName>1 year</fullName>
+                    <default>false</default>
+                    <label>1 year</label>
+                </value>
+                <value>
+                    <fullName>1.5 years</fullName>
+                    <default>false</default>
+                    <label>1.5 years</label>
+                </value>
+                <value>
+                    <fullName>2 years</fullName>
+                    <default>false</default>
+                    <label>2 years</label>
+                </value>
+                <value>
+                    <fullName>3 years</fullName>
+                    <default>false</default>
+                    <label>3 years</label>
+                </value>
+                <value>
+                    <fullName>6 years</fullName>
+                    <default>false</default>
+                    <label>6 years</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Reminder_date__c</fullName>
+        <externalId>false</externalId>
+        <formula>E_MOC_Application__r.Start_date2__c  + 
+
+IF(
+    ISPICKVAL(Period_frequency__c, &quot;15 Days&quot;), 15,
+    IF(ISPICKVAL(Period_frequency__c, &quot;1 month&quot;), 30,
+        IF(ISPICKVAL(Period_frequency__c, &quot;2 months&quot;), 60,
+            IF(ISPICKVAL(Period_frequency__c, &quot;3 months&quot;), 90,
+                IF(ISPICKVAL(Period_frequency__c, &quot;4 months&quot;), 120,
+                    IF(ISPICKVAL(Period_frequency__c, &quot;5 months&quot;), 150,
+                        IF(ISPICKVAL(Period_frequency__c, &quot;6 months&quot;), 180,
+                            IF(ISPICKVAL(Period_frequency__c, &quot;7 months&quot;), 210,
+                                IF(ISPICKVAL(Period_frequency__c, &quot;8 months&quot;), 240,
+                                    IF(ISPICKVAL(Period_frequency__c, &quot;9 months&quot;), 270,
+                                        IF(ISPICKVAL(Period_frequency__c, &quot;10 months&quot;), 300,
+                                            IF(ISPICKVAL(Period_frequency__c, &quot;11 months&quot;), 330,
+                                                IF(ISPICKVAL(Period_frequency__c, &quot;1 Year&quot;), 365,
+                                                    IF(ISPICKVAL(Period_frequency__c, &quot;1.5 Years&quot;), 548,
+                                                        IF(ISPICKVAL(Period_frequency__c, &quot;2 Years&quot;), 730,
+                                                            IF(ISPICKVAL(Period_frequency__c, &quot;3 Years&quot;), 1095,
+                                                                IF(ISPICKVAL(Period_frequency__c, &quot;6 Years&quot;), 2190, 0)
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+)</formula>
+        <label>Reminder date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Reminder_date_before_10d__c</fullName>
+        <externalId>false</externalId>
+        <formula>Reminder_date__c  - 10</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Reminder date before 10d</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Reminder_date_before_5d__c</fullName>
+        <externalId>false</externalId>
+        <formula>Reminder_date__c - 5</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Reminder date before 5d</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <label>E-MOC Activity</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>E_MOC_Application__c</columns>
+        <columns>Acknowledge__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Action_by__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Activity</label>
+        <type>Text</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,117 @@
+<aura:component controller="THOR_RetrieverController"
+   implements="force:appHostable,flexipage:availableForAllPageTypes,lightning:isUrlAddressable">
+
+   <!-- ATTRIBUTES -->
+   <aura:attribute name="RelatedId" type="String" default="none" access="global" />
+   <aura:attribute name="isNavigable" type="boolean" default="true" />
+   <aura:attribute name="defaultItems" type="Integer" default="2" access="global" />
+
+   <aura:attribute name="maxSize" type="Integer" default="3" access="global" />
+
+   <aura:attribute name="ListType1" type="String" default='none' access="global" />
+   <aura:attribute name="NavigateToComponentForListType1" type="String" default="" />
+   <aura:attribute name="ListType2" type="String" default='none' access="global" />
+   <aura:attribute name="NavigateToComponentForListType2" type="String" default="" />
+   <aura:attribute name="ListType3" type="String" default='none' access="global" />
+   <aura:attribute name="NavigateToComponentForListType3" type="String" default="" />
+
+   <aura:attribute name="DisplayableObjectFullList1" type="List" default='[]' access="global" />
+   <aura:attribute name="DisplayableObjectFullList2" type="List" default='[]' access="global" />
+   <aura:attribute name="DisplayableObjectFullList3" type="List" default='[]' access="global" />
+   <aura:attribute name="DisplayableObjectFullList1Count" type="Integer" default='0' access="global" />
+   <aura:attribute name="DisplayableObjectFullList2Count" type="Integer" default='0' access="global" />
+   <aura:attribute name="DisplayableObjectFullList3Count" type="Integer" default='0' access="global" />
+
+   <aura:attribute name="title1" type="String" default="New Notifications" access="global" />
+   <aura:attribute name="title2" type="String" default="Excecution Notifications" access="global" />
+   <aura:attribute name="title3" type="String" default="Closed Notifications" access="global" />
+   <aura:attribute name="viewAllTitle1" type="String" default="Show more" access="global" />
+   <aura:attribute name="viewAllTitle2" type="String" default="Show more" access="global" />
+   <aura:attribute name="viewAllTitle3" type="String" default="Show more" access="global" />
+
+   <aura:attribute name="viewAll1" type="Boolean" default="false" access="private" />
+   <aura:attribute name="viewAll2" type="Boolean" default="false" access="private" />
+   <aura:attribute name="viewAll3" type="Boolean" default="false" access="private" />
+   <aura:attribute name="viewMoreLess1" type="String" access="private" />
+   <aura:attribute name="viewMoreLess2" type="String" access="private" />
+   <aura:attribute name="viewMoreLess3" type="String" access="private" />
+   <aura:attribute name="target1" type="String" default="list1" access="private" />
+   <aura:attribute name="target2" type="String" default="list2" access="private" />
+   <aura:attribute name="target3" type="String" default="list2" access="private" />
+   <aura:attribute name="labelSequence1" type="String" default="" access="global" />
+   <aura:attribute name="labelSequence2" type="String" default="" access="global" />
+   <aura:attribute name="labelSequence3" type="String" default="" access="global" />
+   <aura:attribute name="totalCards" type="String" default="" access="global" />
+
+   <aura:attribute name="filterOptions" type="List" default="[]" access="global" />
+   <aura:attribute name="filterSelected" type="String" default="" access="global" />
+   <aura:attribute name="userFilterActive" type="Boolean" default="false" access="global" />
+   <aura:attribute name="fromDateFilter" type="Date" default="" access="global" />
+   <aura:attribute name="toDateFilter" type="Date" default="" access="global" />
+   <aura:attribute name="pageName" type="String" default="" access="global" />
+
+   <aura:attribute name="isLoadingNotifications" type="Boolean" default="false" access="private" />
+   <aura:attribute name="isLoadingOrders" type="Boolean" default="false" access="private" />
+   <aura:attribute name="isLoadingOperations" type="Boolean" default="false" access="private" />
+   <aura:attribute name="isLoadingFilters" type="Boolean" default="false" access="private" />
+   <aura:attribute name="isLoadingViewAll" type="Boolean" default="false" access="private" />
+   <aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+
+   <!-- EVENTS -->
+   <aura:handler name='init' value='{!this}' action='{!c.doInit}' />
+   <aura:handler name="change" value="{!v.pageReference}" action="{!c.doInit}" />
+   <aura:handler name="viewAllEvent" event="c:THOR_Event" action="{!c.handleViewAll}" />
+   <aura:handler name="filterSelectedEvent" event="c:THOR_Event" action="{!c.handleFilterSelected}" />
+
+   <aura:method name="reInit" action="{!c.doInit}" access="PUBLIC"></aura:method>
+
+   <!-- IMPORTED STYLES-->
+   <ltng:require styles="{!$Resource.fluidScroller}" />
+
+   <!-- BODY -->
+   <aura:if isTrue="{!v.isLoading}">
+      <lightning:spinner alternativeText="Loading" size="medium" />
+   </aura:if>
+   
+   <lightning:layout multipleRows="true">
+      <lightning:layoutItem padding="horizontal-small" size="12" class="right-align">
+         <aura:if isTrue="{!v.pageName != 'operations'}">
+            <c:THOR_Filter options="{!v.filterOptions}" pageName="{!v.pageName}" />
+         </aura:if>
+      </lightning:layoutItem>
+      <lightning:layoutItem padding="horizontal-small" size="12">
+         <aura:if isTrue="{!v.totalCards != ''}">
+            <p>{!v.totalCards} ({!v.DisplayableObjectFullList1Count + v.DisplayableObjectFullList2Count +
+               v.DisplayableObjectFullList3.length})</p>
+         </aura:if>
+         <aura:if isTrue="{!v.ListType1 != 'none'}">
+            <c:THOR_ListObjectDisplayer defaultItems="{!v.defaultItems}" viewAll='{! v.viewAll1}'
+               title="{! v.DisplayableObjectFullList1Count + ' ' + v.title1}" items="{! v.DisplayableObjectFullList1}"
+               navigateToComponent="{!v.NavigateToComponentForListType1}" isNavigable="{!v.isNavigable}"
+               labelSequence="{! v.labelSequence1}" />
+         </aura:if>
+         <aura:if isTrue="{! and(v.ListType1 != 'none', greaterthan(v.DisplayableObjectFullList1Count, v.maxSize))}">
+            <c:THOR_ViewAll title="{! v.viewMoreLess1}" viewingAll='{! v.viewAll1}' target='{! v.target1}' />
+         </aura:if>
+         <aura:if isTrue="{!v.ListType2 != 'none'}">
+            <c:THOR_ListObjectDisplayer defaultItems="{!v.defaultItems}" viewAll='{! v.viewAll2}'
+               title="{! v.DisplayableObjectFullList2Count + ' ' + v.title2}" items="{! v.DisplayableObjectFullList2}"
+               navigateToComponent="{!v.NavigateToComponentForListType2}" isNavigable="{!v.isNavigable}"
+               labelSequence="{! v.labelSequence2}" />
+         </aura:if>
+         <aura:if isTrue="{! and(v.ListType2 != 'none', greaterthan(v.DisplayableObjectFullList2Count,v.maxSize))}">
+            <c:THOR_ViewAll title="{! v.viewMoreLess2}" viewingAll='{! v.viewAll2}' target='{! v.target2}' />
+         </aura:if>
+         <aura:if isTrue="{!v.ListType3 != 'none'}">
+            <c:THOR_ListObjectDisplayer defaultItems="{!v.defaultItems}" viewAll='{! v.viewAll3}'
+               title="{! v.DisplayableObjectFullList3.length + ' ' + v.title3}" items="{! v.DisplayableObjectFullList3}"
+               navigateToComponent="{!v.NavigateToComponentForListType3}" isNavigable="{!v.isNavigable}"
+               labelSequence="{! v.labelSequence3}" />
+         </aura:if>
+         <aura:if isTrue="{! and(v.ListType3 != 'none', greaterthan(v.DisplayableObjectFullList3.length,v.maxSize))}">
+            <c:THOR_ViewAll title="{! v.viewMoreLess3}" viewingAll='{! v.viewAll3}' target='{! v.target3}' />
+         </aura:if>
+      </lightning:layoutItem>
+   </lightning:layout>
+
+</aura:component>

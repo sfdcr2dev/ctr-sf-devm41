@@ -1,0 +1,34 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName,force:lightningQuickActionWithoutHeader,lightning:actionOverride,lightning:hasPageReference" 
+controller="CTRRequestFormItemEditController" access="global">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="sObjectName" type="String" />
+    <aura:attribute name="RecordTypeName" type="String" />
+    <aura:attribute name="recordObject" type="Object" />
+    <aura:attribute name="recordHeader" type="Object" />
+    <aura:attribute name="recordLoadError" type="String" />
+    <aura:attribute name="businessUnit" type="String" />
+    <aura:attribute name="currentUserName" type="String" />
+    <aura:attribute name="recordTypeId" type="String" />
+    <aura:attribute name="isLoaded" type="Boolean" default="false" />
+    <aura:attribute name="isStandard" type="Boolean" default="false" />
+    <aura:attribute name="isTOP" type="Boolean" default="false" />
+    <aura:attribute name="isTX" type="Boolean" default="false" />
+
+    <aura:attribute name="isModalOpen" type="Boolean" default="false" />
+    <aura:attribute name="showLoading" type="Boolean" default="false" /> 
+
+    <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> -->
+     <force:recordData aura:id="recordLoader" recordId="{!v.recordId}" 
+     fields="Id,Name,InterestedProductTypeAsCustomerTOP__c,InterestedProductTypeAsSupplierTOP__c,InterestedProductTypeAsCustomerTX__c,
+     InterestedProductTypeAsSupplierTX__c,RecordTypeId,RecordType.Name,RecordType.DeveloperName,SalesOrganizationTOP__c,SalesOrganizationTX__c,PurchasingOrganizationTOP__c,PurchasingOrganizationTX__c,Customer__c,DistributionChannel__c,PaymentTerm__c,PaymentMethod__c,CompanyCodeTX__c, 
+     CTRRequestFormHeader__c, CTRRequestFormHeader__r.Country__c, CTRRequestFormHeader__r.Country__r.Code__c, InternalEditField__c"
+     targetFields="{!v.recordObject}" targetError="{!v.recordLoadError}" recordUpdated="{!c.handleRecordUpdated}" />
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <lightning:workspaceAPI aura:id="workspace" />
+    <lightning:navigation aura:id="navService" />
+
+    <aura:if isTrue="{!!v.isLoaded}">
+        <lightning:spinner variant="brand" style="z-index:2" />
+    </aura:if>
+
+</aura:component>

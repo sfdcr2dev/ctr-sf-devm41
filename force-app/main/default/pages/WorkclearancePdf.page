@@ -1,0 +1,359 @@
+<apex:page renderAs="pdf" controller="THOR_WorkClearancePDFController" applyHtmlTag="false" showHeader="false" cache="true"
+    readOnly="true" contentType="text/html;charset=UTF-8">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <script type="text/javascript">
+            window.onload=function(){
+                alert('hello')
+                var attachments = "";
+                if(attachments) {
+                    openAttachmentTabs(attachments, function print(){
+                        window.print();
+                    });
+                } else {
+                    window.print();
+                }
+            };
+            
+            function openAttachmentTabs(attachments, print){
+            
+                var urls = attachments.replace("[", "").replace("]","").split(",");
+                alert(urls)
+                for (i=0;i<urls.length;i++) {
+                    window.open(urls[i], "myWindow" + i, "width=1000, height=480");
+                }
+            
+                setTimeout(function(){
+                    print();
+                }, 1000);
+                
+            }
+            
+            </script>
+        <style>
+            @page {
+                size: A4;
+                /* @top-left {
+                    content: "Company Name - ";
+                }
+                @top-right {
+                    content: "Document Name - ";
+                } */
+                @bottom-center {
+                    content: "Page " counter(page) " of " counter(pages);
+                }
+            }
+            body { 
+            	font-family: Arial Unicode MS; 
+                font-size: 12px;
+            }
+            font { font-family: Arial Unicode MS !important; }
+            table {
+                -fs-table-paginate: paginate;
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+                border-spacing: 0;
+                border-top: 1px solid #ddd;
+                border-right: 1px solid #ddd;
+                border-left: 1px solid #ddd;
+            }
+            td {
+            	vertical-align: top;
+                border: 0px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+                word-wrap: break-word;
+            }
+            table tr, table td{
+                page-break-inside: avoid;
+                word-wrap: break-word;
+            }
+            .column {
+            	border-right: 1px solid #ddd;
+            }
+            .column-bottom {
+            	border-bottom: 1px solid #ddd;
+            }
+            .w-medium {
+            	width: 50%;
+            }
+            .w-small {
+            	width: 33.33%
+            }
+            p {
+                font-family: Arial Unicode MS;
+            }
+        </style>
+    </head>
+
+    <body style="font-family: Arial Unicode MS;">
+
+        <table>
+                    <tbody>
+                        <tr>
+                            <td class="column w-medium">
+                                <label>Clearence No.</label>
+                                <p>{!wc.Work_Clearance__c}</p>
+                            </td>
+                            <td>
+                                <apex:image url="{!urlImg}" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="column w-small">
+                                <label>Notification</label>
+                                <p>{!wc.Notification__r.Name}</p>
+                            </td>
+                            <td class="column w-small">
+                                <label>Priority</label>
+                                <p>{!wc.Priority_Map__c}</p>
+                            </td>
+                            <td>
+                                <label>Requester</label>
+                                <p>{!wc.Requester__c}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="column w-medium">
+                                <label>Functional Location</label>
+                                <p>{!wc.Functional_Location__c}</p>
+                            </td>
+                            <td>
+                                <label>Description</label>
+                                <p>{!wc.Description__c}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="column w-medium">
+                                <label>Area</label>
+                                <p>{!wc.Area__c}</p>
+                            </td>
+                            <td>
+                                <label>Maintenance Unit</label>
+                                <p>{!wc.Maintenance_Unit__c}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label>Problem</label>
+                                <p>{!wc.Problem__c}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label>Work Detail</label>
+                                <p>{!wc.Work_Detail__c}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="column w-medium">
+                                <label>Thaioil Supervisor Indicator</label>
+                                <p>{!wc.Thaioil_Supervisor_Indicator__c}</p>
+                            </td>
+                            <td>
+                                <label>Telephone No</label>
+                                <p>{!wc.Telephone_No__c}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="column w-medium">
+                                <label>Applicant or Bearer</label>
+                                <p>{!wc.Applicant_or_Bearer__c}</p>
+                            </td>
+                            <td>
+                                <label>Telephone No</label>
+                                <p>{!wc.Telephone_No_2__c}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="column w-small">
+                                <label>Bearer : 1</label>
+                                <p>{!wc.Bearer1__c}</p>
+                            </td>
+                            <td class="column w-small">
+                                <label>Bearer : 2</label>
+                                <p>{!wc.Bearer2__c}</p>
+                            </td>
+                            <td>
+                                <label>Bearer : 3</label>
+                                <p>{!wc.Bearer3__c}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center">
+                                <label>3 What's</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="column w-small">
+                                <label>What can go wrong?</label>
+                            </td>
+                            <td class="column w-small">
+                                <label>What can cause it to go wrong?</label>
+                            </td>
+                            <td>
+                                <label>What can you do to prevent if from going wrong?</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="column column-bottom w-small">
+                                <p>{!wc.Can_go_wrong1__c}</p>
+                            </td>
+                            <td class="column column-bottom w-small">
+                                <p>{!wc.Cause1__c}</p>
+                            </td>
+                            <td class="column-bottom">
+                                <p>{!wc.Prevent1__c}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="column column-bottom w-small">
+                                <p>{!wc.Can_go_wrong2__c}</p>
+                            </td>
+                            <td class="column column-bottom w-small">
+                                <p>{!wc.Cause2__c}</p>
+                            </td>
+                            <td class="column-bottom">
+                                <p>{!wc.Prevent2__c}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="column column-bottom w-small">
+                                <p>{!wc.Can_go_wrong3__c}</p>
+                            </td>
+                            <td class="column column-bottom w-small">
+                                <p>{!wc.Cause3__c}</p>
+                            </td>
+                            <td class="column-bottom">
+                                <p>{!wc.Prevent3__c}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="column w-small">
+                                <p>{!wc.Can_go_wrong4__c}</p>
+                            </td>
+                            <td class="column w-small">
+                                <p>{!wc.Cause4__c}</p>
+                            </td>
+                            <td>
+                                <p>{!wc.Prevent4__c}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="column w-medium">
+                                <label>Authorized Signature / Indicator</label>
+                                <p>{!wc.Authorized_Indicator__c}</p>
+                            </td>
+                            <td>
+                                <label>Applicant or Bearer</label>
+                                <p>{!wc.Applicant_or_Bearer__c}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center">
+                                <label>Approval</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="column column-bottom w-small">
+                                <label>Authorized Signature</label>
+                                <p>{!wc.Authorized_Signature__c}</p>
+                            </td>
+                            <td class="column column-bottom w-small">
+                                <label>Date</label>
+                                <p>{!wc.Check_Date__c}</p>
+                            </td>
+                            <td class="column-bottom">
+                                <label>Time</label>
+                                <p>{!wc.Check_Time__c}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="column column-bottom w-small">
+                                <label>Extending Time</label>
+                                <p>{!wc.Extend_Time_To__c}&nbsp;<apex:outputField value="{!wc.Extend_Time_Flag_Formula__c}"/></p>
+                            </td>
+                            <td class="column column-bottom w-small">
+                                <label>Applicant or Bearer</label>
+                                <p>{!wc.Extend_Applicant_or_Bearer__c}</p>
+                            </td>
+                            <td class="column-bottom">
+                                <label>Extend Authorized Sign</label>
+                                <p>{!wc.Extend_Authorized_Sign__c}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="column column-bottom w-small">
+                                <label>Sign off</label>
+                                <p>
+                                    <apex:outputField value="{!wc.Sign_off_Flag_Formula__c}"/>
+                                </p>
+                            </td>
+                            <td class="column column-bottom w-small">
+                                <label>Applicant or Bearer</label>
+                                <p>{!wc.Close_Applicant_or_Bearer__c}</p>
+                            </td>
+                            <td class="column-bottom">
+                                <label>Authorized Sign off</label>
+                                <p>{!wc.Close_Authorized_Sign_off__c}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        
+        </body>
+</apex:page>

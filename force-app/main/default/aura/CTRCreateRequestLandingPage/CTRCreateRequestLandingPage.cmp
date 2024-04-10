@@ -1,0 +1,155 @@
+<aura:component controller="CTRRequestItemCreatePageController" implements="lightning:isUrlAddressable,force:lightningQuickActionWithoutHeader,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+
+    <aura:attribute name="recordId" type="String" />
+
+    <aura:attribute name="recordTypeName" type="String" />
+    <aura:attribute name="recordTypeList" type="List" default="[]" />
+
+    <aura:attribute name="step" type="String" default="BU" />
+    <aura:attribute name="selectRecordTypeId" type="String" />
+
+    <aura:attribute name="isModalOpen" type="Boolean" default="true" />
+    <aura:attribute name="showLoading" type="Boolean" default="true" />
+
+    <aura:attribute name="isNewRequestModalOpen" type="Boolean" default="false" />
+    <aura:attribute name="showNewRequestLoading" type="Boolean" default="true" />
+    <aura:attribute name="newRequestModalTitle" type="String" default="" />
+    <aura:attribute name="newRequestModalBody" type="Object" default="{}" />
+
+    <aura:attribute name="buOptions" type="List" default="[{'label':'TOP','value':'TOP'},{'label':'LABIX','value':'LABIX'},{'label':'TX','value':'TX'}]" />
+
+    <aura:attribute name="isTOP" type="Boolean" default="false" />
+    <aura:attribute name="isLABIX" type="Boolean" default="false" />
+    <aura:attribute name="isTX" type="Boolean" default="false" />
+    <aura:attribute name="selectedBU" type="String" />
+    <aura:attribute name="displayWarning" type="Boolean" default="false" />
+    <aura:attribute name="warningMessage" type="String" />
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+
+    <aura:html tag="style">
+        .slds-modal__container {
+        	width: 90% !important;
+            max-width: 80% !important;
+        	height: 100% !important;
+        }
+        .cuf-content {
+            padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+            padding: 0rem !important;
+        }
+        .slds-modal__content {
+            overflow-y: auto !important;
+            height: unset !important;
+            max-height: unset !important;
+        }
+        .closeIcon {
+            display: none !important;
+        }
+    </aura:html>
+
+    <aura:if isTrue="{!v.isModalOpen}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class="slds-modal slds-fade-in-open"> <!-- style="padding-top:10%; width:200%; margin-left:-50%;" -->
+            <div class="slds-modal__container">
+                <!-- HEADER -->
+                <div class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                        Create New Request
+                    </h2>
+                </div>
+                <!-- BODY -->
+                <div class="slds-modal__content slds-var-p-around_medium"> <!-- slds-modal__content_headless slds-container-center h-75 style="margin-bottom: auto; margin-top: auto;"-->
+                    <aura:if isTrue="{!v.step == 'RecordType'}">
+                        <div class="slds-grid slds-wrap slds-var-p-around_x-large">
+                            <div class="slds-col slds-size_5-of-12">
+                                <p style="text-align: right;">Select a record type: </p>
+                            </div>
+                            <div class="slds-col slds-size_7-of-12"></div>
+                            <br /><br />
+                            <!-- <aura:iteration items="{!v.recordTypeList}" var="recordType" indexVar="index">
+                                <div class="slds-col slds-size_5-of-12"></div>
+                                <div class="slds-col slds-size_6-of-12">
+                                    //<input type="radio" id="{!recordType}" name="options"  onclick="{!c.checkboxSelect}"  />
+                                    <span clas="slds-radio" style="text-align: center;">
+                                        <input aura:id="{!recordType.mId}" type="radio" id="{!recordType.mId}"
+                                            value="{!recordType.mId}" name="index" checked="{!recordType.mSelected}"
+                                            onclick="{!c.handleClickRadio}" data-sfid="{!recordType.mId}" />
+                                        <label class="slds-radio__label" for="{!recordType.mId}">
+                                            <span class="slds-radio_faux"></span>
+                                            <span class="slds-form-element__label slds-var-m-left_small">{!recordType.mName}</span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <br /><br />
+                                //<lightning:button label="{!recordType.Name}" iconName="utility:open_folder" value ="{!recordType.Id}" iconPosition="left" onclick="{!c.linkUrl}" /> 
+                            </aura:iteration> -->
+                            <div class="slds-col slds-size_5-of-12"></div>
+                            <div class="slds-col slds-size_7-of-12">
+                                <lightning:radioGroup name="radioGroup" label="" variant="label-hidden" options="{!v.recordTypeList}" value="{!v.selectRecordTypeId}" type="radio" class="radio-padding-bottom" />
+                            </div>
+                        </div>
+
+                        <aura:set attribute="else">
+                            <div class="slds-grid slds-gutters slds-wrap" Style="padding :20px;align-items:center">
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_5-of-12">
+                                    <p style="text-align: right;">Select a BU: </p>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                                    <lightning:combobox aura:id="BU" name="BU" variant="label-hidden" options="{!v.buOptions}" onchange="{!c.handleChangeBU}" />
+                                </div>
+                            </div>
+                        </aura:set>
+                    </aura:if>
+                </div>
+                <!-- FOOTER -->
+                <footer class="slds-modal__footer">
+                    <lightning:button type="cancel" variant="brand-outline" label="Cancel" title="Cancel" onclick="{!c.handleCancel}" />
+                    <!-- <lightning:button type="submit" variant="brand" label="Next" title="Next" onclick="{!c.handleNext}" disabled="{!AND(NOT(AND(v.step == 'BU', OR(v.isTOP, v.isLABIX, v.isTX))), NOT(AND(v.step == 'RecordType', v.selectRecordTypeId)))}" /> -->
+                    <lightning:button type="submit" variant="brand" label="Next" title="Next" onclick="{!c.handleNext}" />
+                </footer>
+            </div>
+        </section>
+    </aura:if>
+
+    <aura:if isTrue="{!v.isNewRequestModalOpen}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class="slds-modal slds-fade-in-open"> <!-- slds-modal_small modal-w-full -->
+            <div class="slds-modal__container">
+                <!-- HEADER -->
+                <div class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                        {!v.newRequestModalTitle}
+                    </h2>
+                </div>
+                <!-- BODY -->
+                <div class="slds-modal__content slds-var-p-around_medium slds-container_center" style="background-color: white;width: 100%;">
+                    {!v.newRequestModalBody}
+                </div>
+                <!-- FOOTER -->
+                <footer class="slds-modal__footer slds-text-align_center">
+                    <aura:renderIf isTrue="{!v.displayWarning}">
+                        <div class="slds-grid slds-gutters slds-var-p-around_large">
+                            <div class="slds-col slds-medium-size_4-of-12 slds-show_medium" />
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-var-p-around_medium" style="border: solid 2px red;color: red;border-radius: 5px;">
+                                <!-- This customer has been registered in this product. -->
+                                {!v.warningMessage}
+                            </div>
+                            <div class="slds-col slds-medium-size_4-of-12 slds-show_medium" />
+                        </div>
+                    </aura:renderIf>
+                    <lightning:button type="cancel" variant="brand-outline" label="Cancel" title="Cancel"
+                        onclick="{!c.handleCancel}" />
+                    <lightning:button type="submit" variant="brand" label="Save" title="Save" onclick="{!c.handleSave}" />
+                    <aura:renderIf isTrue="{!v.displayWarning}">
+                        <lightning:icon iconName="utility:warning" alternativeText="{!v.warningMessage}" variant="error" title="{!v.warningMessage}" size="small" class="slds-var-p-around_small" />
+                    </aura:renderIf>
+                </footer>
+            </div>
+        </section>
+    </aura:if>
+
+    <!-- SPINNER -->
+    <aura:if isTrue="{!v.showLoading}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+</aura:component>

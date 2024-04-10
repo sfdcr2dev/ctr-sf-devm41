@@ -1,0 +1,12 @@
+.THIS .caption {
+    font-weight: 700;
+}
+
+.THIS .slds-form-element__help:after {
+    margin-left: 0.2rem;
+    content: "The file number exceeds the maximum limit. ";
+}
+
+.THIS lightning-file-upload span[data-form-label] {
+    display: none !important;
+}

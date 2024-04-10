@@ -1,0 +1,99 @@
+.THIS .slds-button {
+	white-space: nowrap;
+	/* padding: 0 12px; */
+	border-radius: 10px;
+}
+
+.THIS .slds-button_brand {
+	background: #5c77cc;
+}
+
+.THIS .btn-radius-1 {
+	/* border-radius: 0.875rem; */
+	/* background-color: #2a7393; */
+	/* 	border-color: #2a7393; */
+	/* color: #ffffff; */
+
+	/* border-radius: 5px; */
+	/* color: #4573b0; */
+	/* height: 35px; */
+	/* background-color: transparent; */
+	/* border: 2px solid #4573b0; */
+
+	height: 36px;
+	padding-right: 10px;
+    padding-left: 10px;
+    margin-right: 0px;
+
+	border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-color: #5c77cc;
+
+    background: white;
+    color: #5c77cc;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.THIS .btn-radius-1.active {
+	/* border-radius: 0.875rem; */
+	/* background-color: rgb(255 65 65); */
+	/* border-color: rgb(255 65 65); */
+	/* color: #ffffff; */
+
+	/* color: #ffffff; */
+	/* background-color: #4573b0; */
+	/* border-color: 2px solid #4573b0; */
+
+	background: #5c77cc;
+    color: white;
+}
+
+.THIS lightning-datepicker .slds-icon_container svg,
+.THIS .slds-icon-utility-filterList.slds-icon_container svg {
+	/* fill: #5679c0; */
+	fill: #4573b0;
+	width: 0.875rem;
+	height: 0.875rem;
+}
+
+.THIS .slds-icon-utility-filterList.slds-icon_container.active svg {
+	fill: #ffffff;
+}
+
+.THIS.container__filter {
+	display: flex;
+	justify-content: flex-end;
+}
+
+@media (max-width: 602px) {
+
+    .THIS .slds-button {
+        --slds-c-button-line-height: 2rem;
+        font-size: 0.9rem;
+    }
+
+	.THIS .slds-modal__header .slds-modal__close {
+		top: 0.3rem;
+		right: 0.1rem;
+	}
+
+	.THIS > .slds-modal__container {
+		padding: 0;
+		margin: 0.5rem 0 0 0;
+	}
+
+	.THIS .slds-modal__close .slds-icon-utility-close svg,
+	.THIS .slds-button__icon {
+		/* fill: #101010;
+		width: 2rem;
+		height: 2rem; */
+	}
+
+	.THIS button[title="Close"] svg.slds-icon {
+		fill: black;
+	}
+
+}

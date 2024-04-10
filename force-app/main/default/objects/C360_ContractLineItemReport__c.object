@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>BillingDateMonthYearReport__c</fullName>
+        <description>Defualt Date as 1st date of every month use in Report TPX/LAbix</description>
+        <externalId>false</externalId>
+        <label>Billing Date (Month/Year)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>BillingYearMonth__c</fullName>
+        <description>Billing Date  group(Year-Month)</description>
+        <externalId>false</externalId>
+        <label>Billing Date (Year-Month)</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ContractEndDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ContractStartDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ContractStartYearMonth__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract Start YearMonth</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ContractVolumeUOM__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract Volume UOM</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Unit</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ContractVolume__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract Volume</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DistributionChannel__c</fullName>
+        <externalId>false</externalId>
+        <label>Distribution Channel</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>DistributionChannel</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>KeyReport__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISPICKVAL(SalesOrganization__c,&apos;1300&apos;),
+ISPICKVAL(SalesOrganization__c, &apos;1700&apos;)) ,
+TEXT(SalesOrganization__c) &amp;&quot;_&quot;&amp;
+TEXT(DistributionChannel__c) &amp;&quot;_&quot;&amp;
+SoldTo__r.AccountNumber__c &amp;&quot;_&quot;&amp;
+Product__r.MaterialCode__c &amp;&quot;_&quot;&amp;
+TEXT(ContractVolumeUOM__c),
+null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Key Report</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Key__c</fullName>
+        <externalId>true</externalId>
+        <label>Key</label>
+        <length>100</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LoadingEndDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Loading End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MonthYearAllocationReport__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(RIGHT( BillingYearMonth__c , 2),
+&quot;01&quot;, &quot;01&quot;,
+&quot;02&quot;, &quot;02&quot;,
+&quot;03&quot;, &quot;03&quot;,
+&quot;04&quot;, &quot;04&quot;,
+&quot;05&quot;, &quot;05&quot;,
+&quot;06&quot;, &quot;06&quot;,
+&quot;07&quot;, &quot;07&quot;,
+&quot;08&quot;, &quot;08&quot;,
+&quot;09&quot;, &quot;09&quot;,
+&quot;10&quot;, &quot;10&quot;,
+&quot;11&quot;, &quot;11&quot;,
+&quot;12&quot;, &quot;12&quot;,
+&quot;None&quot;)&amp;&quot;-&quot;&amp;
+CASE(RIGHT( BillingYearMonth__c , 2),
+&quot;01&quot;, &quot;January&quot;,
+&quot;02&quot;, &quot;February&quot;,
+&quot;03&quot;, &quot;March&quot;,
+&quot;04&quot;, &quot;April&quot;,
+&quot;05&quot;, &quot;May&quot;,
+&quot;06&quot;, &quot;June&quot;,
+&quot;07&quot;, &quot;July&quot;,
+&quot;08&quot;, &quot;August&quot;,
+&quot;09&quot;, &quot;September&quot;,
+&quot;10&quot;, &quot;October&quot;,
+&quot;11&quot;, &quot;November&quot;,
+&quot;12&quot;, &quot;December&quot;,
+&quot;None&quot;)&amp;&quot; &quot;&amp;
+LEFT(BillingYearMonth__c, 4)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Month/Year</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProductGroupReport__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(CONTAINS(Product__r.MaterialCode__c, &apos;HAB&apos;) , &apos;HAB&apos;,
+IF(CONTAINS(Product__r.MaterialCode__c, &apos;150EX&apos;) , &apos;150EX&apos;,
+IF(CONTAINS(Product__r.MaterialCode__c, &apos;500EX&apos;) , &apos;500EX&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;BSEX&apos;) , &apos;BSEX&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;150SW&apos;) , &apos;150SW&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;500SW&apos;) , &apos;500SW&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;BSSW&apos;) , &apos;BSSW&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;TDATE&apos;) ,&apos;TDATE&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;TRAE&apos;) , &apos;TRAE&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;MES&apos;) , &apos;MES&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;LAB&apos;) , &apos;LAB&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;150SN&apos;) , &apos;150SN&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;500SN&apos;) , &apos;500SN&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;150BS&apos;) , &apos;150BS&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;YBIT&apos;) , &apos;Bitumen&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;Raf&apos;) , &apos;Raffinate&apos;,
+IF( CONTAINS(Product__r.MaterialCode__c, &apos;BZ&apos;) , &apos;BZ&apos;,
+IF( CONTAINS( Product__r.Name , &apos;PX&apos;) , &apos;PX&apos;,
+Null))))))))))))))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Product Group</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>C360_Product__c</referenceTo>
+        <relationshipLabel>Contract Line Item Report</relationshipLabel>
+        <relationshipName>Contract_Line_Item_Report</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ReferenceContactLineItemKey__c</fullName>
+        <externalId>false</externalId>
+        <label>Reference Contact Line Item Key</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>SalesOrganization__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Organization</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>SalesOrganization</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>SoldTo__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sold-To Party</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Contract Line Item Report</relationshipLabel>
+        <relationshipName>Contract_Line_Item_Report</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>VolumeAllocationMTConversion__c</fullName>
+        <externalId>false</externalId>
+        <label>Volume Allocation (MT) Conversion</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VolumeAllocationMTReport__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL( ContractVolumeUOM__c , &apos;MT&apos;) , 
+ ContractVolume__c , 
+ VolumeAllocationMTConversion__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Volume Allocation (MT)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VolumeLiftingMTReport__c</fullName>
+        <externalId>false</externalId>
+        <label>Volume Lifting (MT)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Contract Line Item Report</label>
+    <nameField>
+        <displayFormat>SFCTIR{0000000}</displayFormat>
+        <label>Contract Line Item Report Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

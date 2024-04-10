@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Customer__c</field>
+        <field>ShipToNameEng__c</field>
+        <field>ShipToNameLocl__c</field>
+        <field>RecordTypeName__c</field>
+        <field>Owner</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>MDCMngName__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <label>Step 1</label>
+        <name>Step_1</name>
+    </approvalStep>
+    <description>CTR TX Edit Ship-to S/H Approval</description>
+    <emailTemplate>CTREmailTemplate/CTRTXEditShipToRequestSHforApproval</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <criteriaItems>
+            <field>CTRRequestFormItem__c.Status__c</field>
+            <operation>equals</operation>
+            <value>In Review</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CTRRequestFormItem__c.Approval_Step__c</field>
+            <operation>equals</operation>
+            <value>Waiting for Approval</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CTRRequestFormItem__c.RecordType</field>
+            <operation>equals</operation>
+            <value>Edit Ship-to</value>
+        </criteriaItems>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>TXEditShipToInformMDCAfterSHApproved</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>UpdateFieldApprovalSteptoInform</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>UpdateFieldMDCMStatusApproved</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>UpdateFieldStatustoApproved</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>TXEditShipToInformTraderAfterSHRejected</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>UpdateFieldApprovalSteptoRejected</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>UpdateFieldMDCMStatusRejected2</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>UpdateFieldStatustoRejected</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>CTR TX Edit Ship-to S/H Approval</label>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

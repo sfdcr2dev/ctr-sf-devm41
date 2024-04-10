@@ -1,0 +1,21 @@
+<aura:component controller="CTRInitialCustomerTOP" implements="lightning:hasPageReference,lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    
+    <aura:attribute name="userProfile" type="String"/>
+    <aura:attribute name="recordTypeId" type="String"/>
+    <aura:attribute name="ObjectType" type="String" default="Account"/>
+    
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.onPageReferenceChanged}" />
+     <lightning:navigation aura:id="navService"/>
+    
+    <!--aura:renderIf isTrue="{!or(v.userProfile == 'TX')}">
+    </aura:renderIf-->
+    
+    <aura:renderIf isTrue="{!and((v.userProfile == 'TOP' || v.userProfile == 'System Administrator')) }">
+    <!--    <c:CTRInitialCustomerTOP isInitial="true" recordTypeId="{!v.recordTypeId}" ObjectType="{!v.ObjectType}" onPageRecordID = "{!v.recordId}" recordId = "{!v.recordId}"/>-->
+    </aura:renderIf>
+
+    
+</aura:component>

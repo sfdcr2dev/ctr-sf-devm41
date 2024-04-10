@@ -1,0 +1,44 @@
+.THIS .slds-th__action {
+    display: flex;
+    justify-content: center;
+    padding: var(--lwc-tableCellSpacing,0.25rem 0.5rem);
+    height: 2rem;
+    align-items: center;
+}
+.THIS .slds-button_icon-bare {
+    display: none;
+}
+.THIS .textcenter {
+    justify-content: center;
+    display: flex;
+}
+.THIS .custom-icon-style-flag-false {
+    border: none;  /* Remove the border */
+    background: none;  /* Remove the background color */
+    box-shadow: none;  /* Remove any box shadow */
+    padding: 0;  /* Remove padding if needed */
+    /* Add your custom styles here */
+    color: grey; /* Example: Change the icon color to green */
+    font-size: 28px; /* Example: Change the icon font size */
+    /* Add any other custom styles as needed */
+    --slds-c-button-radius-border: 2000px;
+}
+.THIS .custom-icon-style-flag-true {
+    border: none;  /* Remove the border */
+    background: none;  /* Remove the background color */
+    box-shadow: none;  /* Remove any box shadow */
+    padding: 0;  /* Remove padding if needed */
+
+    /* Add your custom styles here */
+    color: red; /* Example: Change the icon color to green */
+    font-size: 28px; /* Example: Change the icon font size */
+    /* Add any other custom styles as needed */
+}
+.THIS .custom-close-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: var(--lwc-spacingXSmall, 0.5rem);
+}
+/* .THIS .custom-close-icon .slds-button__icon_left {
+    margin-right: var(--lwc-spacingXSmall, 0rem);
+} */

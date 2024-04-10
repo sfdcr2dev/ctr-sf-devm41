@@ -1,0 +1,888 @@
+<aura:component
+	implements="flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable"
+	access="global"
+	controller="THOR_WorkClearanceController"
+>
+	<aura:attribute name="extendNo" type="String" access="private" />
+	<aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" access="private" />
+	<aura:attribute name="hasEditAccess" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isAlertIntegration" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isHistorical" type="Boolean" default="false" access="public" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isClosed" type="Boolean" default="false" access="private" />
+	<aura:attribute name="hasWorkClearanceNumber" type="Boolean" default="false" access="private" />
+
+	<aura:attribute name="isTemporaryClosed" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isModalAction" type="Map" access="private" default="{ discard: false, resend: false, extendDuringRepair: false }" />
+	<aura:attribute name="interval" type="Object" access="private" />
+	<aura:attribute name="integrationStatus" type="String" access="private" />
+	<aura:attribute name="recordId" type="String" default="" />
+	<aura:attribute name="systemStatus" type="String" access="private" />
+	<aura:attribute name="selected" type="Integer" access="global" default="0" />
+	<aura:attribute name="workClearance" type="Work_Clearance__c" />
+	<aura:attribute name="workClearanceRecord" type="Object" />
+	<aura:attribute name="workDetail" type="String" default="" access="private" />
+	<aura:attribute name="isUserStatusExtendDuringRepair" type="Boolean" default="false" access="private" />
+
+	<aura:attribute name="showViewMore" type="Boolean" default="false" access="private" />
+	<aura:attribute name="showViewLess" type="Boolean" default="false" access="private" />
+	<aura:attribute name="truncatedText" type="String" default="" access="private" />
+	<aura:attribute name="allText" type="String" default="" access="private" />
+
+	<aura:attribute name="lat" type="Decimal" default = '13.105058'/>
+    <aura:attribute name="lng" type="Decimal" default = '100.898309'/>
+	<!-- latitude : {!v.lat}, longitude : {!v.lng} -->
+	<!-- <aura:handler name="change2" value="{!v.pageReference2}" action="{!c.handleRefresh}" />
+	<aura:handler name="refresEvt" type="c:THOR_WorkClearanceRefresh"
+        action="{!c.handleRefresh}"/> -->
+
+	<lightning:navigation aura:id="navService" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.doInit}" />
+	<!-- <aura:handler event="aura:doneRendering" action="{!c.doneRendering}" /> -->
+	<aura:handler name="stopLoadingEvent" event="c:THOR_Event" action="{!c.stopLoading}" />
+
+	<aura:registerEvent name="openModalEvent" type="c:THOR_openWorkClearanceEditModal" />
+
+	<force:recordData
+		aura:id="recordLoader"
+		recordId="{!v.recordId}"
+		fields="Name, Last_User_Action__c, Integration_Status__c, Integration_Message__c, User_Status__c, System_Status__c, Work_Clearance_Status__c"
+		targetFields="{!v.workClearanceRecord}"
+		targetError="{!v.recordLoadError}"
+		recordUpdated="{!c.handleRecordUpdated}"
+	/>
+
+	<lightning:recordEditForm
+		class="slds-hide"
+		aura:id="recordTimeoutForm"
+		recordId="{!v.recordId}"
+		objectApiName="Work_Clearance__c"
+		onerror="{!c.handleTimeoutFormError}"
+	>
+		<lightning:inputField fieldName="Integration_Status__c" value="Failed" />
+	</lightning:recordEditForm>
+
+	<!-- <aura:if isTrue="{!v.hasEditAccess}"></aura:if> -->
+	<lightning:recordEditForm
+		class="slds-hide"
+		aura:id="recordEditForm"
+		recordId="{!v.recordId}"
+		objectApiName="Work_Clearance__c"
+		onsubmit="{!c.handleSubmit}"
+		onsuccess="{!c.handleSuccess}"
+		onerror="{!c.handleError}"
+		onload="{!c.handleLoad}"
+	>
+		<lightning:inputField fieldName="Integration_Status__c" value="" />
+		<lightning:inputField fieldName="Integration_Message__c" value="" />
+		<lightning:inputField fieldName="isIRPA__c" value="{!true}" />
+	</lightning:recordEditForm>
+
+	<!--
+	<c:THOR_ModalSelected size="empty" isToggle="{!v.isModalAction.pinMap}" isHideCloseButton="false">
+		<div class="slds-grid">
+			<div class="slds-col">
+				<c:leafletMapFSC popupTextValue='testtest' currentLocationButtonLabel='get current location' draggable='true' 
+                     latitude = '{!v.lat}' longitude = '{!v.lng}'/>
+			</div>
+		</div>
+	</c:THOR_ModalSelected>
+	-->
+
+	<aura:if isTrue="{!v.isModalAction.pinMap}">
+		<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+			class="slds-modal slds-fade-in-open">
+			<div class="slds-modal__container">
+				<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+					<lightning:buttonIcon
+							class="slds-modal__close"
+							iconName="utility:close"
+							variant="bare-inverse"
+							title="Close"
+							onclick="{!c.pinMap}"
+						/>
+				</button>
+				<div class="slds-modal__header">
+					<h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Pin Map</h1>
+				</div>
+				<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+					<c:leafletMapFSC popupTextValue='testtest' currentLocationButtonLabel='Get Current Location' draggable='true' 
+                		latitude = '{!v.lat}' longitude = '{!v.lng}'/>
+						<!-- latitude = '{!v.lat}' longitude = '{!v.lng}' onchange = '{!c.doInit}' -->
+
+				</div>
+				<div class="slds-modal__footer">
+					<button class="slds-button slds-button_neutral" onclick="{!c.pinMap}" aria-label="Cancel and close">Cancel</button>
+					<button class="slds-button slds-button_brand" onclick="{!c.savePinMap}" onsuccess="{!c.handleSuccess2}">Save</button>
+				</div>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+	</aura:if>
+
+	<c:THOR_ModalSelected size="empty" isToggle="{!v.workClearanceRecord.Integration_Status__c == 'In Progress'}" isHideCloseButton="true">
+		<div class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center">
+			<div class="slds-col">
+				<div class="slds-is-relative" style="height: 8em">
+					<lightning:spinner size="large" />
+				</div>
+			</div>
+			<div class="slds-col">
+				<h2 class="slds-text-heading_large slds-text-align_center slds-var-p-horizontal_medium">Please wait...</h2>
+			</div>
+		</div>
+	</c:THOR_ModalSelected>
+
+	<c:THOR_ModalSelected size="empty" title="Extend During Repair" isToggle="{!v.isModalAction.extendDuringRepair}">
+		<lightning:recordEditForm
+			class="slds-hide"
+			aura:id="extendDuringRepairForm"
+			recordId="{!v.recordId}"
+			objectApiName="Work_Clearance__c"
+			onload="{!c.handleLoad}"
+			onsubmit="{!c.handleSubmit}"
+			onsuccess="{!c.handleSuccess}"
+			onerror="{!c.handleError}"
+		>
+			<lightning:inputField fieldName="User_Status__c" value="EXTD" />
+			<lightning:inputField fieldName="Extend_Applicant_or_Bearer__c" value="{!null}" />
+			<lightning:inputField fieldName="Extend_Applicant_or_Bearer_UI__c" value="{!null}" />
+			<lightning:inputField fieldName="Close_Applicant_or_Bearer__c" value="{!null}" />
+			<lightning:inputField fieldName="Close_Applicant_or_Bearer_UI__c" value="{!null}" />
+			<lightning:inputField fieldName="Extend_Time_Flag__c" value="{!null}" />
+			<lightning:inputField fieldName="Extend_Time_To__c" value="{!null}" />
+			<lightning:inputField fieldName="Extend_Time_To_UI__c" value="{!null}" />
+			<lightning:inputField fieldName="Extend_Authorized_Sign__c" value="{!null}" />
+			<lightning:inputField fieldName="Extend_Authorized_Sign_UI__c" value="{!null}" />
+			<lightning:inputField fieldName="Integration_Status__c" value="{!null}" />
+			<lightning:inputField fieldName="isIRPA__c" value="{!true}" />
+			<lightning:inputField fieldName="Last_User_Action__c" value="EXTD1" />
+			<lightning:inputField fieldName="Last_User_Action_Status__c" value="In Progress" />
+			<c:utilityLwcButton class="slds-hide" aura:id="extendDuringRepairButton" type="submit" />
+		</lightning:recordEditForm>
+
+		<div class="slds-text-align_center slds-var-p-bottom_large">Are you sure you want to Extend During Repair Work?</div>
+		<div class="slds-var-p-bottom_large">
+			<ol class="slds-list_dotted">
+				<li>User Status จะเปลี่ยนค่าเป็น EXTD</li>
+				<li>Default Date เป็นวันที่ขอ Extend During Repair</li>
+				<li>ล้างค่าสถานะ Applicant (ผู้ขอขยายเวลา)</li>
+				<li>ล้างค่าสถานะ Extend time to</li>
+				<li>ล้างค่าสถานะ Applicant (ผู้อนุญาตให้ขยายเวลา)</li>
+			</ol>
+		</div>
+		<div class="slds-grid slds-grid_align-end">
+			<div class="slds-col slds-var-p-left_x-small">
+				<lightning:button name="extendDuringRepair" variant="neutral" label="Extend" onclick="{!c.extendDuringRepair}" />
+				<!-- disabled="{!v.isModalAction.extendDuringRepair}" -->
+			</div>
+			<div class="slds-col slds-var-p-left_x-small">
+				<lightning:button variant="neutral" label="Cancel" onclick="{!c.extendDuringRepair}" />
+			</div>
+		</div>
+	</c:THOR_ModalSelected>
+
+	<c:THOR_ModalSelected size="empty" title="Discard Work Clearance" isToggle="{!v.isModalAction.discard}">
+		<div class="slds-text-align_center slds-var-p-bottom_large">Are you sure you want to discard this Work Clearance?</div>
+		<div class="slds-grid slds-grid_align-end">
+			<div class="slds-col slds-var-p-left_x-small">
+				<lightning:button name="discard" variant="neutral" label="Discard" onclick="{!c.discardWorkClearance}" />
+			</div>
+			<div class="slds-col slds-var-p-left_x-small">
+				<lightning:button variant="neutral" label="Cancel" onclick="{!c.discardWorkClearance}" />
+			</div>
+		</div>
+	</c:THOR_ModalSelected>
+
+	<c:THOR_ModalSelected size="empty" title="Resend Work Clearance" isToggle="{!v.isModalAction.resend}">
+		<div class="slds-text-align_center slds-var-p-bottom_large">Are you sure you want to resend this Work Clearance?</div>
+		<div class="slds-grid slds-grid_align-end">
+			<div class="slds-col slds-var-p-left_x-small">
+				<lightning:button name="resend" variant="neutral" label="Resend" onclick="{!c.resendWorkClearance}" />
+			</div>
+			<div class="slds-col slds-var-p-left_x-small">
+				<lightning:button variant="neutral" label="Cancel" onclick="{!c.resendWorkClearance}" />
+			</div>
+		</div>
+	</c:THOR_ModalSelected>
+
+	<div
+		class="{! 'slds-tabs_default' + ($Browser.formFactor == 'TABLET' ? ' slds-scrollable_y' : '') }"
+		style="{! $Browser.formFactor == 'TABLET' ? 'height: 100vh;' : ''}"
+	>
+		<aura:if isTrue="{! not(v.isHistorical) }">
+			<c:THOR_Header title="Work Clearance" iconName="custom:custom32">
+				<aura:set attribute="actions">
+					<lightning:buttonMenu menuAlignment="right" alternativeText="Show menu" label="Actions" onselect="{!c.handleSelectButtonMenu}">
+						<lightning:menuItem
+							label="Print PDF"
+							title="Print PDF"
+							value="c.openPDF"
+							disabled="{! not(v.hasEditAccess) || v.workClearanceRecord.Integration_Status__c eq 'In Progress' || v.formFactor eq 'TABLET'}"
+						/>
+
+						<lightning:menuItem
+							label="Edit Work Clearance"
+							title="Edit Work Clearance"
+							value="c.fireModalEvent"
+							disabled="{! not(v.hasEditAccess) || v.workClearanceRecord.Integration_Status__c eq 'In Progress' || v.isClosed}"
+						/>
+
+						<lightning:menuItem
+							label="Extend from Normal Hours"
+							title="Extend from Normal Hours"
+							value="c.extendHours"
+							disabled="{! not(v.hasEditAccess) ||
+								not(v.workClearanceRecord.Integration_Status__c eq 'Success') ||
+								not(v.workClearanceRecord.System_Status__c eq 'PREP') ||
+								v.isClosed}"
+						/>
+
+						<lightning:menuItem
+							label="Will be Continue Next Day"
+							title="Will be Continue Next Day"
+							value="c.continue"
+							disabled="{! not(v.hasEditAccess) ||
+								not(and(!(v.isTemporaryClosed), v.workClearanceRecord.Integration_Status__c eq 'Success')) ||
+								not(v.workClearanceRecord.System_Status__c eq 'PREP') ||
+								v.isClosed}"
+						/>
+
+						<lightning:menuItem
+							label="Extend Other Day"
+							title="Extend Other Day"
+							value="c.extendDay"
+							disabled="{! not(v.hasEditAccess) ||
+								not(and((v.isTemporaryClosed), v.workClearanceRecord.Integration_Status__c eq 'Success')) ||
+								not(v.workClearanceRecord.System_Status__c eq 'PREP') ||
+								v.isClosed}"
+						/>
+
+						<!--
+						<lightning:menuItem
+							label="Close Work Clearance"
+							title="Close Work Clearance"
+							value="c.closeWorkClearance"
+							disabled="{! not(v.hasEditAccess) ||
+								not(and(!(v.isTemporaryClosed), v.workClearanceRecord.Integration_Status__c eq 'Success')) ||
+								not(v.workClearanceRecord.System_Status__c eq 'PREP') ||
+								v.isClosed}"
+						/>
+						-->
+						<lightning:menuItem
+							label="Close Work Clearance"
+							title="Close Work Clearance"
+							value="c.closeWorkClearance"
+							disabled="{! not(v.hasEditAccess) ||
+								not(v.workClearanceRecord.Integration_Status__c eq 'Success') ||
+								not(v.workClearanceRecord.System_Status__c eq 'PREP') ||
+								v.isClosed}"
+						/>
+
+						<lightning:menuItem
+							label="Extend During Repair"
+							title="Extend During Repair"
+							value="c.extendDuringRepair"
+							disabled="{!
+								empty(v.extendNo) ||
+								!v.isUserStatusExtendDuringRepair ||
+								v.isClosed
+							}"
+						/>
+
+						<lightning:menuItem
+							label="Discard Work Clearance"
+							title="Discard Work Clearance"
+							value="c.discardWorkClearance"
+							disabled="{! not(v.hasEditAccess) || not(or(empty(v.workClearanceRecord.Integration_Status__c), v.workClearanceRecord.Integration_Status__c eq 'Failed')) ||
+			  					v.hasWorkClearanceNumber ||
+								v.isClosed}"
+						/>
+
+						<lightning:menuItem
+							label="Resend Work Clearance"
+							title="Resend Work Clearance"
+							value="c.resendWorkClearance"
+							disabled="{! not(v.hasEditAccess) || not(or(empty(v.workClearanceRecord.Integration_Status__c), v.workClearanceRecord.Integration_Status__c eq 'Failed')) ||
+								v.isClosed}"
+						/>
+
+						<lightning:menuItem
+							label="Pin Map"
+							title="Pin Map"
+							value="c.pinMap"
+							disabled="{! not(v.hasEditAccess) || not(v.workClearanceRecord.Work_Clearance_Status__c eq 'Created') || v.isClosed}"
+						/>
+					</lightning:buttonMenu>
+				</aura:set>
+			</c:THOR_Header>
+			<aura:set attribute="else">
+				<c:THOR_Header title="Work Clearance History" iconName="custom:custom32"> </c:THOR_Header>
+			</aura:set>
+		</aura:if>
+
+		<c:THOR_ObjectDisplayer selected="{!v.selected}" isLoading="{!v.isLoading}">
+			<aura:set attribute="tabs">
+				<c:THOR_SingleTab tabTitle="Detail">
+					<!-- BODY -->
+					<div class="slds-theme_default slds-scrollable_y">
+						<aura:if isTrue="{! v.isAlertIntegration }">
+							<div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+								<lightning:icon
+									iconName="utility:error"
+									variant="inverse"
+									alternativeText="Error"
+									title="error"
+									size="{!v.formFactor == 'DESKTOP' ? 'x-small' : 'medium'}"
+								/>
+								<h2 class="slds-var-p-horizontal_xx-small">
+									Integration Failed:
+									<aura:if isTrue="{!v.workClearanceRecord.Integration_Status__c == 'Failed'}">
+										<aura:if isTrue="{!v.workClearanceRecord.Integration_Message__c}">
+											{!v.workClearanceRecord.Integration_Message__c}
+											<aura:set attribute="else">
+												<span>Your network could not connect to Server. Please contact System Administer.</span>
+											</aura:set>
+										</aura:if>
+									</aura:if>
+								</h2>
+
+								<div class="slds-notify__close">
+									<lightning:buttonIcon iconName="utility:close" variant="bare-inverse" title="Close" onclick="{!c.closeAlertIntegration}" />
+								</div>
+							</div>
+						</aura:if>
+						<aura:if isTrue="{!not(empty(v.workClearance))}">
+							<lightning:layout multipleRows="true" verticalAlign="stretch">
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Clearence Number</label>
+									<p>{!v.workClearance.Name}<aura:if isTrue="{!v.extendNo}">/{!v.extendNo}</aura:if></p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<img
+										src="{!'https://www.webarcode.com/barcode/image.php?code=' + v.workClearance.Work_Clearance__c + '&amp;type=C128B&amp;xres=3&amp;font=5&amp;output=jpeg&amp;style=68'}"
+									/>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">User Status</label>
+									<p>{!v.workClearance.User_Status__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Integration Status</label>
+									<p>{!v.workClearance.Integration_Status__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Notification</label>
+									<p>{!v.workClearance.Notification__r.Name}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Order</label>
+									<p>{!v.workClearance.Order__r.Name}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">High Risk Work</label>
+									<p>{!v.workClearance.High_Risk_Work__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Work Clearance Status</label>
+									<p>{!v.workClearance.Work_Clearance_Status__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Priority</label>
+									<p>{!v.workClearance.Priority__c}</p>
+									<!--
+									<aura:if isTrue="{!v.workClearance.Priority__c == '1'}">
+										<p>Immediately</p>
+									</aura:if>
+									<aura:if isTrue="{!v.workClearance.Priority__c == '2'}">
+										<p>Urgent</p>
+									</aura:if>
+									<aura:if isTrue="{!v.workClearance.Priority__c == '3'}">
+										<p>Normal</p>
+									</aura:if>
+									-->
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Requester</label>
+									<aura:if isTrue="{!v.workClearance.Requester_UI__r}">
+										<p>{!v.workClearance.Requester_UI__r.ENFIRSTNAME__c}&nbsp;{!v.workClearance.Requester_UI__r.ENLASTNAME__c}</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Requester__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Functional Location</label>
+									<aura:if isTrue="{!v.workClearance.FunctionalLocation__r}">
+										<p>{!v.workClearance.FunctionalLocation__r.Name}</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Functional_Location__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Description</label>
+									<p>{!v.workClearance.Description__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Latitude</label>
+									<p>{!v.workClearance.Latitude__c}</p>
+									<!-- <p>{!v.lat}</p> -->
+
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Longitude</label>
+									<p>{!v.workClearance.Longitude__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Area<br />(พื้นที่ปฏิบัติงาน)</label>
+									<p>{!v.workClearance.Area_Text__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Maintenance Unit<br />(หน่วยที่ปฏิบัติงาน)</label>
+									<aura:if isTrue="{!v.workClearance.Main_Work_Center__r}">
+										<p>{!v.workClearance.Main_Work_Center__r.Name}</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Maintenance_Unit__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Work Clearance Description</label>
+									<p>{!v.workClearance.Work_Clearance_Description__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Problem (ปัญหาเบื้องต้น)</label>
+									<p>{!v.workClearance.Problem__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Work detail (รายละเอียดการปฏิบัติงาน)</label>
+									<aura:if isTrue="{!v.showViewMore}">
+										<div class="slds-text-body_regular">
+											<div class="slds-truncate">
+												<aura:unescapedHtml value="{!v.truncatedText}" />
+											</div>
+											<a onclick="{!c.viewMore}"> view more</a>
+										</div>
+										<aura:set attribute="else">
+											<aura:if isTrue="{!v.showViewLess}">
+												<div class="slds-text-body_regular">
+													<aura:unescapedHtml value="{!v.allText}" />
+													<a onclick="{!c.viewLess}"> view less</a>
+												</div>
+												<aura:set attribute="else">
+													<div class="slds-text-body_regular">
+														<aura:unescapedHtml value="{!v.allText}" />
+													</div>
+												</aura:set>
+											</aura:if>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">TOP Group Applicant or Bearer<br />(ผู้ควบคุมงาน)</label>
+									<aura:if isTrue="{!v.workClearance.Thaioil_Supervisor_Indicator_UI__r}">
+										<p>
+											{!v.workClearance.Thaioil_Supervisor_Indicator_UI__r.ENFIRSTNAME__c}&nbsp;{!v.workClearance.Thaioil_Supervisor_Indicator_UI__r.ENLASTNAME__c}
+										</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Thaioil_Supervisor_Indicator__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Telephone No</label>
+									<p>{!v.workClearance.TOP_Supervisor_Telephone__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Contractor Applicant or Bearer<br />(ผู้ขออนุญาต)</label>
+									<!--
+									<aura:if isTrue="{!v.workClearance.Applicant_or_Bearer_UI__r}">
+										<p>{!v.workClearance.Applicant_or_Bearer_UI__r.Description__c}</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Applicant_or_Bearer__c}</p>
+										</aura:set>
+									</aura:if>
+									-->
+									<aura:if isTrue="{!v.workClearance.Applicant_or_Bearer_UI__r}">
+										<p>{!v.workClearance.Applicant_or_Bearer_UI__r.Description__c}</p>
+										<aura:set attribute="else">
+											<aura:if isTrue="{!v.workClearance.Thaioil_Supervisor_Indicator_UI__r}">
+												<p>{!v.workClearance.Thaioil_Supervisor_Indicator_UI__r.ENFIRSTNAME__c}&nbsp;{!v.workClearance.Thaioil_Supervisor_Indicator_UI__r.ENLASTNAME__c}</p>
+											</aura:if>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Telephone No</label>
+									<p>{!v.workClearance.Applicant_or_Bearer_Telephone__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Bearer : 1<br />(ผู้ถือใบอนุญาต 1)</label>
+									<aura:if isTrue="{!v.workClearance.Bearer1_UI__r}">
+										<p>{!v.workClearance.Bearer1_UI__r.Description__c}</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Bearer1__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Bearer : 2<br />(ผู้ถือใบอนุญาต 2)</label>
+									<aura:if isTrue="{!v.workClearance.Bearer2_UI__r}">
+										<p>{!v.workClearance.Bearer2_UI__r.Description__c}</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Bearer2__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Bearer : 3<br />(ผู้ถือใบอนุญาต 3)</label>
+									<aura:if isTrue="{!v.workClearance.Bearer3_UI__r}">
+										<p>{!v.workClearance.Bearer3_UI__r.Description__c}</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Bearer3__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Bearer : 4<br />(ผู้ถือใบอนุญาต 4)</label>
+									<aura:if isTrue="{!v.workClearance.Bearer4_UI__r}">
+										<p>{!v.workClearance.Bearer4_UI__r.Description__c}</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Bearer4__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box slds-text-align_center">
+									<label class="slds-form-element__label">3 What's</label>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box slds-text-align_center">
+									<label class="slds-form-element__label">What can go wrong?</label>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box slds-text-align_center">
+									<label class="slds-form-element__label">What can cause it to go wrong?</label>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box slds-text-align_center">
+									<label class="slds-form-element__label">What can you do to prevent it from going wrong?</label>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Can_go_wrong1__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Cause1__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Prevent1__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Can_go_wrong2__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Cause2__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Prevent2__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Can_go_wrong3__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Cause3__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Prevent3__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Can_go_wrong4__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Cause4__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Prevent4__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Can_go_wrong5__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Cause5__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Prevent5__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Can_go_wrong6__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Cause6__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label"></label>
+									<p>{!v.workClearance.Prevent6__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Authorized Signature / Indicator<br />(ผู้อนุญาตให้ปฏิบัติงาน)</label>
+									<aura:if isTrue="{!v.workClearance.Authorized_Signature_UI__r}">
+										<p>
+											{!v.workClearance.Authorized_Signature_UI__r.ENFIRSTNAME__c}&nbsp;{!v.workClearance.Authorized_Signature_UI__r.ENLASTNAME__c}
+										</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Authorized_Signature__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Applicant or Bearer<br />(ผู้ขออนุญาต)</label>
+									<!--
+									<aura:if isTrue="{!v.workClearance.Applicant_or_Bearer_UI__r}">
+										<p>{!v.workClearance.Applicant_or_Bearer_UI__r.Description__c}</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Applicant_or_Bearer__c}</p>
+										</aura:set>
+									</aura:if>
+									-->
+									<aura:if isTrue="{!v.workClearance.Applicant_or_Bearer_UI__r}">
+										<p>{!v.workClearance.Applicant_or_Bearer_UI__r.Description__c}</p>
+										<aura:set attribute="else">
+											<aura:if isTrue="{!v.workClearance.Thaioil_Supervisor_Indicator_UI__r}">
+												<p>{!v.workClearance.Thaioil_Supervisor_Indicator_UI__r.ENFIRSTNAME__c}&nbsp;{!v.workClearance.Thaioil_Supervisor_Indicator_UI__r.ENLASTNAME__c}</p>
+											</aura:if>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box slds-text-align_center">
+									<label class="slds-form-element__label">Approval</label>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">ขอขยายเวลา</label>
+									<p class="slds-grid">
+										<aura:if isTrue="{!not(empty(v.workClearance.Extend_Time_Flag__c))}">
+											<div class="slds-form-element mgl-5">
+												<div class="slds-form-element__control">
+													<div class="slds-checkbox">
+														<input
+															type="checkbox"
+															name="options"
+															id="checkbox-unique-id-73"
+															value="checkbox-unique-id-73"
+															checked="true"
+															disabled="true"
+														/>
+														<label class="slds-checkbox__label">
+															<span class="slds-checkbox_faux"></span>
+															<span class="slds-form-element__label"></span>
+														</label>
+													</div>
+												</div>
+											</div>
+											<aura:set attribute="else">
+												<div class="slds-form-element mgl-5">
+													<div class="slds-form-element__control">
+														<div class="slds-checkbox">
+															<input
+																type="checkbox"
+																name="options"
+																id="checkbox-unique-id-73"
+																value="checkbox-unique-id-73"
+																checked="false"
+																disabled="true"
+															/>
+															<label class="slds-checkbox__label">
+																<span class="slds-checkbox_faux"></span>
+																<span class="slds-form-element__label"></span>
+															</label>
+														</div>
+													</div>
+												</div>
+											</aura:set>
+										</aura:if>
+									</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<div class="slds-grid">
+										<div class="slds-col">
+											<label class="slds-form-element__label">Date<br />(วันที่)</label>
+											<!-- <p>{!v.workClearance.Check_Date__c}</p> -->
+											<p>{!v.workClearance.Extend_Date_Text__c}</p>
+										</div>
+										<div class="slds-col">
+											<label class="slds-form-element__label">Time<br />(เวลา)</label>
+											<!-- <p>{!v.workClearance.Check_Time__c}</p> -->
+											<p>{!v.workClearance.Extend_Time_Text__c}</p>
+										</div>
+									</div>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Authorized Signatory<br />(ผู้อนุญาตให้ทำงาน)</label>
+									<aura:if isTrue="{!v.workClearance.Authorized_Signatory_UI__r}">
+										<p>
+											{!v.workClearance.Authorized_Signatory_UI__r.ENFIRSTNAME__c}&nbsp;{!v.workClearance.Authorized_Signatory_UI__r.ENLASTNAME__c}
+										</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Authorized_Signatory__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Extending Time<br />(ขอขยายเวลาถึง)</label>
+									<p class="slds-grid">{!v.workClearance.Extend_Time_To__c}</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Applicant or Bearer<br />(ผู้ขอขยายเวลา)</label>
+									<aura:if isTrue="{!v.workClearance.Extend_Applicant_or_Bearer_UI__r}">
+										<p>
+											{!v.workClearance.Extend_Applicant_or_Bearer_UI__r.ENFIRSTNAME__c}&nbsp;{!v.workClearance.Extend_Applicant_or_Bearer_UI__r.ENLASTNAME__c}
+										</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Extend_Applicant_or_Bearer__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Extend Authorized Sign<br />(ผู้อนุญาตให้ขยายเวลา)</label>
+									<aura:if isTrue="{!v.workClearance.Extend_Authorized_Sign_UI__r}">
+										<p>
+											{!v.workClearance.Extend_Authorized_Sign_UI__r.ENFIRSTNAME__c}&nbsp;{!v.workClearance.Extend_Authorized_Sign_UI__r.ENLASTNAME__c}
+										</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Extend_Authorized_Sign__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Sign off</label>
+									<p class="slds-grid">
+										<aura:if isTrue="{!not(empty(v.workClearance.Sign_off_Flag__c))}">
+											<div class="slds-form-element mgl-5">
+												<div class="slds-form-element__control">
+													<div class="slds-checkbox">
+														<input
+															type="checkbox"
+															name="options"
+															id="checkbox-unique-id-73"
+															value="checkbox-unique-id-73"
+															checked="true"
+															disabled="true"
+														/>
+														<label class="slds-checkbox__label">
+															<span class="slds-checkbox_faux"></span>
+															<span class="slds-form-element__label"></span>
+														</label>
+													</div>
+												</div>
+											</div>
+											<aura:set attribute="else">
+												<div class="slds-form-element mgl-5">
+													<div class="slds-form-element__control">
+														<div class="slds-checkbox">
+															<input
+																type="checkbox"
+																name="options"
+																id="checkbox-unique-id-73"
+																value="checkbox-unique-id-73"
+																checked="false"
+																disabled="true"
+															/>
+															<label class="slds-checkbox__label">
+																<span class="slds-checkbox_faux"></span>
+																<span class="slds-form-element__label"></span>
+															</label>
+														</div>
+													</div>
+												</div>
+											</aura:set>
+										</aura:if>
+									</p>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Applicant or Bearer<br />(ผู้ขอปิดงาน)</label>
+									<aura:if isTrue="{!v.workClearance.Close_Applicant_or_Bearer_UI__r}">
+										<p>
+											{!v.workClearance.Close_Applicant_or_Bearer_UI__r.ENFIRSTNAME__c}&nbsp;{!v.workClearance.Close_Applicant_or_Bearer_UI__r.ENLASTNAME__c}
+										</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Close_Applicant_or_Bearer__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Authorized Sign off<br />(ผู้อนุญาตให้ปิดงาน)</label>
+									<aura:if isTrue="{!v.workClearance.Close_Applicant_or_Bearer_UI__r}">
+										<p>
+											{!v.workClearance.Close_Authorized_Sign_off_UI__r.ENFIRSTNAME__c}&nbsp;{!v.workClearance.Close_Authorized_Sign_off_UI__r.ENLASTNAME__c}
+										</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Close_Authorized_Sign_off__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Safety Permit: 1</label>
+									<aura:if isTrue="{!v.workClearance.Safety_Permit1_UI__r}">
+										<p>{!v.workClearance.Safety_Permit1_UI__r.Name}</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Safety_Permit1__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Safety Permit: 2</label>
+									<aura:if isTrue="{!v.workClearance.Safety_Permit2_UI__r}">
+										<p>{!v.workClearance.Safety_Permit2_UI__r.Name}</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Safety_Permit2__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="4" flexibility="auto" padding="around-small" class="custom-box">
+									<label class="slds-form-element__label">Safety Permit: 3</label>
+									<aura:if isTrue="{!v.workClearance.Safety_Permit3_UI__r}">
+										<p>{!v.workClearance.Safety_Permit3_UI__r.Name}</p>
+										<aura:set attribute="else">
+											<p>{!v.workClearance.Safety_Permit3__c}</p>
+										</aura:set>
+									</aura:if>
+								</lightning:layoutItem>
+							</lightning:layout>
+							<aura:set attribute="else">
+								<p>There are no related Work Clearances</p>
+							</aura:set>
+						</aura:if>
+					</div>
+					<!-- <c:THOR_OrderRelatedWorkClearance recordId="a0P9D000000wLioUAE" /> -->
+				</c:THOR_SingleTab>
+			</aura:set>
+		</c:THOR_ObjectDisplayer>
+
+		<!--
+		<c:THOR_WorkClearanceEditModal recordId="{!v.recordId}" oldWorkDetail="{!v.workDetail}" userStatus="{!v.userStatus}" type="{!v.type}" />
+
+		<c:THOR_WorkClearanceExtendHoursModal recordId="{!v.recordId}" userStatus="{!v.userStatus}" type="{!v.type}" />
+
+		<c:THOR_WorkClearanceExtendDayModal recordId="{!v.recordId}" userStatus="{!v.userStatus}" type="{!v.type}" />
+
+		<c:THOR_WorkClearanceContinueModal recordId="{!v.recordId}" userStatus="{!v.userStatus}" type="{!v.type}" />
+
+		<c:THOR_WorkClearanceCloseModal recordId="{!v.recordId}" userStatus="{!v.userStatus}" type="{!v.type}" />
+		--></div>
+</aura:component>

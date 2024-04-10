@@ -1,0 +1,175 @@
+<aura:component
+	implements="flexipage:availableForAllPageTypes,lightning:isUrlAddressable,force:appHostable"
+	controller="THOR_ApprovalStepsController"
+>
+	<!-- ATTRIBUTES -->
+	<aura:attribute name="eqccStepId" default="" type="String" />
+	<aura:attribute name="eqccStep" type="List" default="[{}]" access="private" />
+	<aura:attribute name="percentage" type="Integer" default="0" access="private" />
+	<aura:attribute name="isCurrent" type="Boolean" default="false" access="private" />
+
+	<aura:attribute name="recordId" type="String" />
+	<aura:attribute name="readOnly" type="Boolean" default="true" />
+	<aura:attribute name="isCan" type="Boolean" />
+	<aura:attribute name="step" type="Object" />
+	<aura:attribute name="stepId" type="String" />
+	<aura:attribute name="forApprovals" type="Boolean" default="true" />
+	<aura:attribute name="sheetCode" type="String" />
+	<aura:attribute name="sheetGroup" type="String" />
+
+	<!-- <aura:attribute name="body" type="Aura.Component[]" access="private" /> -->
+	<aura:attribute name="timmer" type="Integer" access="private" />
+	<aura:attribute name="printDisplay" type="String" access="private" />
+	<aura:attribute name="errorMessage" type="String" access="private" />
+	<aura:attribute name="isLoading" type="Boolean" default="true" access="private" />
+
+	<!-- EVENTS -->
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.forceRefresh}" />
+	<aura:handler event="c:THOR_refreshStepsAfterRevise" action="{! c.forceRefreshSteps }" />
+	<lightning:navigation aura:id="navService" />
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<!-- <aura:handler name="stopLoadingEvent" event="c:THOR_Event" action="{!c.stopLoading}" /> -->
+	<aura:attribute name="backToTabIndex" type="Integer" default="0" access="global" />
+
+	<div class="slds-hide">
+		<c:THOR_navigateBack aura:id="navback" backToTabIndex="{!v.backToTabIndex}" />
+	</div>
+
+	<div class="slds-text-heading_small title">
+		<div class="slds-grid slds-grid_vertical-align-center">
+			<div class="slds-col">
+				<lightning:buttonIcon
+					class="slds-p-horizontal_large"
+					size="large"
+					variant="border-filled"
+					iconName="utility:chevronleft"
+					onclick="{!c.handleClickBack}"
+				/>
+				Check Sheet
+			</div>
+			<div class="slds-col slds-grow-none slds-p-horizontal_x-small">
+				<c:THOR_PrintReportCtl recordId="{!v.eqccStepId}" />
+			</div>
+			<div class="slds-col slds-grow-none slds-p-horizontal_x-small">
+				<aura:iteration items="{!v.eqccStep}" var="item" indexVar="index">
+					<button
+						data-record-id="{!item.Id}"
+						data-form-group="{!item.Form_Group__c}"
+						class="slds-button"
+						type="button"
+						href="javascript:void(0);"
+						onclick="{!c.handleClickStep}"
+					>
+						<lightning:avatar
+							size="{! item.Id == v.recordId ? 'large' : 'small'}"
+							variant="circle"
+							initials="{! item.Step_Number__c ? item.Step_Number__c : '1' }"
+							alternativeText="{! 'Step ' + (item.Step_Number__c ? item.Step_Number__c : '1') }"
+							fallbackIconName="{! item.Status__c == 'Approved' ? 'standard:approval' : (item.Is_Current__c ? 'standard:trailhead_alt' : 'standard:default') }"
+							class="{! 'slds-m-right_xxx-small ' }"
+						/>
+						<!-- + ( and(item.Is_Current__c, item.Id == v.recordId) ? 'avatar_step-active' : '' ) -->
+					</button>
+				</aura:iteration>
+			</div>
+			<div class="slds-col slds-grow-none slds-p-horizontal_x-small" style="padding-top: 5px">
+				<c:progressRing percentage="{!v.percentage}" isCurrent="{!v.isCurrent}"></c:progressRing>
+				<!-- style="height: 32px"  -->
+			</div>
+		</div>
+	</div>
+
+	<aura:attribute name="innerHeight" type="Integer" default="796" access="private" />
+	<aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" />
+	<aura:html tag="style">
+		.cTHOR_ApprovalSteps .slds-tabs_default__content { height: {!v.innerHeight?v.innerHeight:'796'}px; }
+	</aura:html>
+
+	<lightning:card>
+		<lightning:tabset class="slds-is-relative slds-p-horizontal_small" selectedTabId="one">
+			<lightning:tab class="slds-p-bottom_small slds-scrollable_y" label="Detail" id="one">
+				<div class="form-padding">
+					<aura:if isTrue="{!v.errorMessage}">
+						<div class="slds-text-color_destructive">{!v.errorMessage}</div>
+						<aura:set attribute="else">
+							{!v.body}
+
+							<aura:if isTrue="{!v.printDisplay}">{!v.printDisplay}</aura:if>
+							<aura:if isTrue="{!v.isLoading}">
+								<lightning:spinner alternativeText="Loading" size="medium" />
+							</aura:if>
+						</aura:set>
+					</aura:if>
+					<!-- <aura:if isTrue="{! v.forApprovals }">
+						<aura:if isTrue="{! equals(v.sheetGroup, '1')}">
+							<c:eqccCheckedSheet
+								recordId="{!if(v.step != null, v.step.recordId, v.stepId)}"
+								readOnly="{!v.readOnly}"
+								isCan="{!v.isCan}"
+								onpercentage="{!c.handlepercentage}"
+							/>
+						</aura:if>
+						<aura:if isTrue="{! equals(v.sheetGroup, '2')}">
+							<c:eqccCheckedSheet2
+								recordId="{!if(v.step != null, v.step.recordId, v.stepId)}"
+								readOnly="{!v.readOnly}"
+								isCan="{!v.isCan}"
+								onpercentage="{!c.handlepercentage}"
+							/>
+						</aura:if>
+						<aura:if isTrue="{! equals(v.sheetGroup, '31')}">
+							<c:eqccCheckedSheet31
+								recordId="{!if(v.step != null, v.step.recordId, v.stepId)}"
+								readOnly="{!v.readOnly}"
+								isCan="{!v.isCan}"
+								onpercentage="{!c.handlepercentage}"
+							/>
+						</aura:if>
+						<aura:if isTrue="{! equals(v.sheetGroup, '33')}">
+							<c:eqccCheckedSheet33
+								recordId="{!if(v.step != null, v.step.recordId, v.stepId)}"
+								readOnly="{!v.readOnly}"
+								isCan="{!v.isCan}"
+								onpercentage="{!c.handlepercentage}"
+							/>
+						</aura:if>
+						<aura:if isTrue="{! equals(v.sheetGroup, '41')}">
+							<c:eqccCheckedSheet41
+								recordId="{!if(v.step != null, v.step.recordId, v.stepId)}"
+								readOnly="{!v.readOnly}"
+								onpercentage="{!c.handlepercentage}"
+							/>
+						</aura:if>
+						<aura:set attribute="else">
+							<aura:if isTrue="{! equals(v.sheetGroup, '1')}">
+								<c:eqccCheckedSheet recordId="{!v.recordId}" readOnly="{!v.readOnly}" isCan="{!v.isCan}" onpercentage="{!c.handlepercentage}" />
+							</aura:if>
+							<aura:if isTrue="{! equals(v.sheetGroup, '2')}">
+								<c:eqccCheckedSheet2 recordId="{!v.recordId}" readOnly="{!v.readOnly}" isCan="{!v.isCan}" onpercentage="{!c.handlepercentage}" />
+							</aura:if>
+							<aura:if isTrue="{! equals(v.sheetGroup, '31')}">
+								<c:eqccCheckedSheet31 recordId="{!v.recordId}" readOnly="{!v.readOnly}" isCan="{!v.isCan}" onpercentage="{!c.handlepercentage}" />
+							</aura:if>
+							<aura:if isTrue="{! equals(v.sheetGroup, '33')}">
+								<c:eqccCheckedSheet33 recordId="{!v.recordId}" readOnly="{!v.readOnly}" isCan="{!v.isCan}" onpercentage="{!c.handlepercentage}" />
+							</aura:if>
+							<aura:if isTrue="{! equals(v.sheetGroup, '41')}">
+								<c:eqccCheckedSheet41 recordId="{!v.recordId}" readOnly="{!v.readOnly}" onpercentage="{!c.handlepercentage}" />
+							</aura:if>
+						</aura:set>
+					</aura:if> -->
+				</div>
+			</lightning:tab>
+			<lightning:tab class="slds-p-bottom_small slds-scrollable_y" label="Action for Approve" id="two">
+				<div class="actions-padding">
+					<aura:if isTrue="{! v.forApprovals }">
+						<c:THOR_ActionForApprove forApprovals="true" eqccStepId="{! v.eqccStepId }" />
+						<aura:set attribute="else">
+							<c:THOR_ActionForApprove forApprovals="false" eqccStepId="{! v.recordId }" />
+						</aura:set>
+					</aura:if>
+				</div>
+			</lightning:tab>
+		</lightning:tabset>
+	</lightning:card>
+</aura:component>

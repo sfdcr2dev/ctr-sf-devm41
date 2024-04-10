@@ -1,0 +1,96 @@
+.THIS .approval-row {
+    display: flex;
+    flex-direction: row;
+    border-left: .1em solid #a6a6a6;
+    border-right: .1em solid #a6a6a6;
+}
+
+.THIS .approval-row:last-child {
+    border-bottom: .1em solid #a6a6a6;
+}
+
+.THIS .approval-row {
+    padding: 2.5px;
+    margin: 2.5px;
+}
+
+.THIS .approval-row p {
+    width: 25%;
+    box-sizing: border-box;
+}
+
+.THIS .approval-row.approval-table-columns {
+    font-weight: bold;
+    border: .1em solid #a6a6a6;
+    padding: 5px;
+}
+
+.THIS .approve-revise-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #DDDBDA;
+    align-items: center;
+    padding-left: 5px;
+}
+
+.THIS .approve-revise-header .approve-revise-btns {
+    padding: 5px;
+}
+
+.THIS .approval-row.selected {
+    border: 2px dotted green;
+}
+
+.THIS .approve-revise-btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.THIS .table-header{
+    margin:2em 0;
+}
+
+.THIS .approve-button{
+    width: 57px;
+    border-radius: 50%;
+    height: 57px;
+    background-color:green;
+}
+
+.THIS .revise-button{
+    width: 57px;
+    border-radius: 50%;
+    height: 57px;
+    background-color:red;
+}
+
+.THIS .reassign-button{
+    width: 57px;
+    border-radius: 50%;
+    height: 57px;
+    background-color:blue;
+}
+
+.THIS .field-item{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.THIS h2{
+    font-weight: bold;
+    font-size:1.25em;
+}
+
+@media (max-width: 950px){
+    .THIS .slds-modal__container {
+        justify-content: flex-start !important;
+    }
+}
+
+.THIS .inline-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

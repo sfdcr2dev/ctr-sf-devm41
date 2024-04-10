@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Position__c</fullName>
+        <externalId>false</externalId>
+        <label>Position</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>MROA</fullName>
+                    <default>false</default>
+                    <label>MROA</label>
+                </value>
+                <value>
+                    <fullName>MROB</fullName>
+                    <default>false</default>
+                    <label>MROB</label>
+                </value>
+                <value>
+                    <fullName>MROC</fullName>
+                    <default>false</default>
+                    <label>MROC</label>
+                </value>
+                <value>
+                    <fullName>MMLF</fullName>
+                    <default>false</default>
+                    <label>MMLF</label>
+                </value>
+                <value>
+                    <fullName>MMLD</fullName>
+                    <default>false</default>
+                    <label>MMLD</label>
+                </value>
+                <value>
+                    <fullName>MPOE</fullName>
+                    <default>false</default>
+                    <label>MPOE</label>
+                </value>
+                <value>
+                    <fullName>MPOF</fullName>
+                    <default>false</default>
+                    <label>MPOF</label>
+                </value>
+                <value>
+                    <fullName>MFOP</fullName>
+                    <default>false</default>
+                    <label>MFOP</label>
+                </value>
+                <value>
+                    <fullName>TNPA</fullName>
+                    <default>false</default>
+                    <label>TNPA</label>
+                </value>
+                <value>
+                    <fullName>TNPB</fullName>
+                    <default>false</default>
+                    <label>TNPB</label>
+                </value>
+                <value>
+                    <fullName>TNPC</fullName>
+                    <default>false</default>
+                    <label>TNPC</label>
+                </value>
+                <value>
+                    <fullName>TNPD</fullName>
+                    <default>false</default>
+                    <label>TNPD</label>
+                </value>
+                <value>
+                    <fullName>TNPE</fullName>
+                    <default>false</default>
+                    <label>TNPE</label>
+                </value>
+                <value>
+                    <fullName>TNFX</fullName>
+                    <default>false</default>
+                    <label>TNFX</label>
+                </value>
+                <value>
+                    <fullName>ENRM</fullName>
+                    <default>false</default>
+                    <label>ENRM</label>
+                </value>
+                <value>
+                    <fullName>TNFL</fullName>
+                    <default>false</default>
+                    <label>TNFL</label>
+                </value>
+                <value>
+                    <fullName>TNPP</fullName>
+                    <default>false</default>
+                    <label>TNPP</label>
+                </value>
+                <value>
+                    <fullName>ENTS</fullName>
+                    <default>false</default>
+                    <label>ENTS</label>
+                </value>
+                <value>
+                    <fullName>ENMM</fullName>
+                    <default>false</default>
+                    <label>ENMM</label>
+                </value>
+                <value>
+                    <fullName>ENIM</fullName>
+                    <default>false</default>
+                    <label>ENIM</label>
+                </value>
+                <value>
+                    <fullName>ENEM</fullName>
+                    <default>false</default>
+                    <label>ENEM</label>
+                </value>
+                <value>
+                    <fullName>ENCM</fullName>
+                    <default>false</default>
+                    <label>ENCM</label>
+                </value>
+                <value>
+                    <fullName>EOSC</fullName>
+                    <default>false</default>
+                    <label>EOSC</label>
+                </value>
+                <value>
+                    <fullName>QMTS</fullName>
+                    <default>false</default>
+                    <label>QMTS</label>
+                </value>
+                <value>
+                    <fullName>QMOS</fullName>
+                    <default>false</default>
+                    <label>QMOS</label>
+                </value>
+                <value>
+                    <fullName>QMEV</fullName>
+                    <default>false</default>
+                    <label>QMEV</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TA2_Expert_Field__c</fullName>
+        <externalId>false</externalId>
+        <label>expert field</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Operations Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Operations Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Technologist Discipline Checklist (Any impact on the following?)</fullName>
+                    <default>false</default>
+                    <label>Technologist Discipline Checklist (Any impact on the following?)</label>
+                </value>
+                <value>
+                    <fullName>Technologist  Discipline Checklist  (Technologist  Safeguarding Discipline Checklist)</fullName>
+                    <default>false</default>
+                    <label>Technologist  Discipline Checklist  (Technologist  Safeguarding Discipline Checklist)</label>
+                </value>
+                <value>
+                    <fullName>Technologist Discipline Checklist  (Consider the following specific hazards relevant to impact other disciplines)</fullName>
+                    <default>false</default>
+                    <label>Technologist Discipline Checklist  (Consider the following specific hazards relevant to impact other disciplines)</label>
+                </value>
+                <value>
+                    <fullName>Process Control Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Process Control Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Stationary Equipment and Piping Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Stationary Equipment and Piping Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Rotating Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Rotating Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Maintenance Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Maintenance Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Instrument Engineering Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Instrument Engineering Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Discipline Checklist (Common questions)</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Discipline Checklist (Common questions)</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Discipline Checklist  ( Driver/Actuator (process) at Valve (e.g. Motor, MOV))</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Discipline Checklist  ( Driver/Actuator (process) at Valve (e.g. Motor, MOV))</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Discipline Checklist ( Electrical equipment/system )</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Discipline Checklist ( Electrical equipment/system )</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Discipline Checklist (Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Discipline Checklist (Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</label>
+                </value>
+                <value>
+                    <fullName>Electrical and Telecommunication Discipline Checklist ( Comunication (e.g. talk-back, CCTV, radio, public announce and telecomunication network))</fullName>
+                    <default>false</default>
+                    <label>Electrical and Telecommunication Discipline Checklist ( Comunication (e.g. talk-back, CCTV, radio, public announce and telecomunication network))</label>
+                </value>
+                <value>
+                    <fullName>Civil and Structure Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Civil and Structure Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Combustion Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Combustion Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Process Safety and Fire Safety Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Process Safety and Fire Safety Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>HSE Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>HSE Discipline Checklist</label>
+                </value>
+                <value>
+                    <fullName>Environment Discipline Checklist</fullName>
+                    <default>false</default>
+                    <label>Environment Discipline Checklist</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>E-MOC TA Mapping Checklist</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Type__c</columns>
+        <columns>Position__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>ENEM_E_MOC_TA_Mapping_Checklist</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ENEM</label>
+        <queue>ENEM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TNPA_E_MOC_TA_Mapping_Checklist</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TNPA</label>
+        <queue>TNPA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>TMC-{00000000}</displayFormat>
+        <label>E-MOC TA Mapping Checklist No</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

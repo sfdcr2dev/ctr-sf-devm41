@@ -1,0 +1,149 @@
+<apex:page controller="AssignUserController"  standardStylesheets="true" lightningStylesheets="false" sidebar="true" showHeader="true" applyHtmlTag="true" applyBodyTag="false" docType="html-5.0" language="th">{!LanguageThai}
+
+    <apex:stylesheet value="{!URLFOR($Resource.PM_Dashboard_Style, 'style.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.PM_Dashboard_Style, 'reset.css')}"/>
+    
+    <apex:form >
+        <html lang="en">
+        
+            <head>
+              <meta charset="UTF-8" />
+              <meta
+                http-equiv="X-UA-Compatible"
+                content="IE=edge"
+              />
+              <title>AI-CPEM</title>
+              <style>
+                Body {
+                    font-family: 'SalesforceSans';
+                }
+                .ProjectLink {
+                    text-decoration : none;
+                }
+                .ProjectLink:hover {
+                    color: rgba(225,19,131,1);
+                }
+                .PagingButton {
+                    font-family: 'SalesforceSans';
+                    background-color :#0077d6;
+                }
+                .SpanHeader {
+                    Font-size: 30px;
+                    color:  rgba(225,19,131,1);
+                }
+              </style>
+            </head>
+        
+            <body>
+            
+              <section class="section">
+                <div class="box">
+                  <div class="block-2 is-flex is-centered">
+                    <apex:outputPanel rendered="{!AUWrapperSize != 0}"> 
+                        <span class="SpanHeader">Reassign Work Process</span>
+                    </apex:outputPanel>
+                    <!-- <div>
+                      <apex:inputText styleClass="input" style="width:420px" value="{!searchProject}" html-placeholder="Project Name, Project Number" />
+                    </div>
+                    <div styleclass="button is-primary">
+                      <apex:commandButton style="width:70px;background:rgba(225,19,131,1)" image="{!URLFOR($Resource.search_button)}" action="{!ShowAllProject}" reRender="projectsTable,pagePagination" />
+                    </div> -->
+                  </div>
+                    
+                    <!-- <apex:commandButton value="Sort By Project No" action="{!sortByProjectNo}" reRender="projectsTable,pagePagination" /> -->
+                    
+                    <apex:outputPanel rendered="{!AUWrapperSize == 0}"> 
+                        <div align="center" style="color:red;">
+                            No Work Process assign to you.
+                        </div>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!AUWrapperSize != 0}"> 
+                    
+                        <apex:outputPanel id="projectsTable">
+                        <table class="table is-fullwidth" style="width:100%;">
+                            <thead>
+                                  <tr>
+                                    <th class="">Project No.</th>
+                                    <th class="">Project Name</th>
+                                    <th class="">Work Process</th>
+                                  </tr>
+                               </thead>
+                               
+                                <apex:repeat value="{!AUWrappers}" var="item">
+                                <tbody>
+                                    <tr>
+                                        <td style="width:10%">{!item.ProjectNo}</td>
+                                        <td style="width:50%">{!item.ProjectName}</td>
+                                        <!-- <td style="width:40%"><a class="ProjectLink" style="text-decoration:none;" href="{!item.ProjectUrl}" target="_blank">{!item.ProjectName}</a></td> -->
+                                        <td style="width:40%">
+                                            <apex:outputPanel rendered="{!OR(item.CurrentStepNo == 1,item.CurrentStepNo == 2,item.CurrentStepNo == 3)}">
+                                                <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g1-project-scope_gray.png')}" /> 
+                                            </apex:outputPanel>
+                                              <apex:outputPanel rendered="{!OR(item.CurrentStepNo == 4,item.CurrentStepNo == 24,item.CurrentStepNo == 26,item.CurrentStepNo == 27,item.CurrentStepNo == 28)}">
+                                                  <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g8-execution_gray.png')}" />
+                                              </apex:outputPanel>
+                                              <apex:outputPanel rendered="{!OR(item.CurrentStepNo == 5,item.CurrentStepNo == 10,item.CurrentStepNo == 11,item.CurrentStepNo == 18,item.CurrentStepNo == 19,item.CurrentStepNo == 20,item.CurrentStepNo == 22)}">
+                                                  <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_gray.png')}" />
+                                              </apex:outputPanel>
+                                              <apex:outputPanel rendered="{!OR(item.CurrentStepNo == 6,item.CurrentStepNo == 9,item.CurrentStepNo == 16,item.CurrentStepNo == 25)}">
+                                                  <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g2-project-cost-control_gray.png')}" />
+                                              </apex:outputPanel>
+                                              <apex:outputPanel rendered="{!OR(item.CurrentStepNo == 7,item.CurrentStepNo == 8,item.CurrentStepNo == 16,item.CurrentStepNo == 25)}">
+                                                  <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g3-project-schedule-control_gray.png')}" />
+                                              </apex:outputPanel>
+                                              <apex:outputPanel rendered="{!OR(item.CurrentStepNo == 12,item.CurrentStepNo == 15,item.CurrentStepNo == 17)}">
+                                                  <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g6-engineering_gray.png')}" />
+                                              </apex:outputPanel>
+                                              <apex:outputPanel rendered="{!item.CurrentStepNo == 23}">
+                                                  <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g7-material-control_gray.png')}" />
+                                              </apex:outputPanel>
+                                              <apex:outputPanel rendered="{!OR(item.CurrentStepNo == 29,item.CurrentStepNo == 30,item.CurrentStepNo == 31,item.CurrentStepNo == 32)}">
+                                                  <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g9-project-handover_gray.png')}" />
+                                              </apex:outputPanel>
+                                              <apex:outputPanel rendered="{!item.CurrentStepNo == 0}">
+                                                  <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g10-risk-analyst_gray.png')}" />
+                                              </apex:outputPanel>
+                                            <a class="ProjectLink" style="text-decoration:none;" href="{!item.WorkProcessURL}" target="_self">
+                                                {!item.CurrentStep}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                </apex:repeat>
+                              
+                              <tfoot class="table-footer">
+                                  <tr>
+                                  </tr>
+                              </tfoot>
+                          </table>
+                        </apex:outputPanel>
+                        
+                        <br/>
+                        
+                        <!-- <apex:outputPanel id="pagePagination">
+                            <div class="table-pagination" style="margin-left:-20px;background-color:transparent;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <apex:commandButton style="padding: 6px;margin-left:10px; background: rgba(225,19,131,1);color: white;font-weight: 100;border: rgba(225,19,131,1);" value="First Page" rerender="projectsTable,pagePagination" action="{!FirstPage}" disabled="{!prev}"/>
+                                        <apex:commandButton style="padding: 6px;margin-left:10px; background: rgba(225,19,131,1);color: white;font-weight: 100;border: rgba(225,19,131,1);" value="Prev" rerender="projectsTable,pagePagination" action="{!previous}" disabled="{!prev}" />           
+                                        <apex:commandButton style="padding: 6px;margin-left:10px; background: rgba(225,19,131,1);color: white;font-weight: 100;border: rgba(225,19,131,1);" value="Next" rerender="projectsTable,pagePagination" action="{!next}" disabled="{!nxt}" />          
+                                        <apex:commandButton style="padding: 6px;margin-left:10px; background: rgba(225,19,131,1);color: white;font-weight: 100;border: rgba(225,19,131,1);" value="Last Page" rerender="projectsTable,pagePagination" action="{!LastPage}" disabled="{!nxt}"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            {!FirstRecord}-{!PageRecords} of {!TotalRecords}
+                            </div>
+                        </apex:outputPanel> -->
+                    
+                    </apex:outputPanel>
+                    
+                                
+                </div>
+              </section>
+            </body>
+        </html>
+    </apex:form>
+</apex:page>

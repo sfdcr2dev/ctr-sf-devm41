@@ -1,0 +1,57 @@
+.THIS label,
+.THIS .bold {
+    font-weight: 700;
+}
+.THIS .preview-button {
+    background-color: #D3D3D3;
+    color: #000000;
+    border-color: #BEBEBE;
+}
+
+.THIS #mailToCommitteeDetail .email {
+    margin-top: -1rem;
+}
+
+.THIS #mailToCommitteeDetail .email-to .slds-form-element__control,
+.THIS #mailToCommitteeDetail .email-urgent .slds-form-element__control {
+    margin-left: 0.6rem;
+}
+
+.THIS #mailToCommitteeDetail .email-urgent .slds-form-element__control {
+    width: 250px;
+}
+
+.THIS #mailToCommitteeDetail .email-to .slds-form-element .slds-form-element__label,
+.THIS #mailToCommitteeDetail .email-urgent .slds-form-element .slds-form-element__legend {
+    margin-left: 0.75rem;
+}
+
+.THIS #mailToCommitteeDetail .email-to .slds-form-element div,
+.THIS #mailToCommitteeDetail .email-urgent .slds-form-element div {
+    max-width: 99%;
+}
+
+.THIS #trcrReassignTaskDetail .slds-icon-text-default {
+    --slds-c-icon-color-foreground: #FFFFFF;
+}
+
+@media (min-width: 48em) {
+
+    .THIS .slds-form-element_horizontal .slds-form-element__control,
+    .THIS .slds-form_horizontal .slds-form-element .slds-form-element__control,
+    .THIS .slds-form_stacked .slds-form-element_horizontal .slds-form-element__control {
+        padding-left: 16.66%;
+    }
+
+    .THIS #finalConditionDetail .slds-form-element_horizontal .slds-form-element__control,
+    .THIS #finalConditionDetail .slds-form_horizontal .slds-form-element .slds-form-element__control,
+    .THIS #finalConditionDetail .slds-form_stacked .slds-form-element_horizontal .slds-form-element__control {
+        padding-left: 33.33%;
+    }
+
+    .THIS #trcrReassignTaskDetail .slds-form-element_horizontal .slds-form-element__control,
+    .THIS #trcrReassignTaskDetail .slds-form_horizontal .slds-form-element .slds-form-element__control,
+    .THIS #trcrReassignTaskDetail .slds-form_stacked .slds-form-element_horizontal .slds-form-element__control {
+        padding-left: 3.33%;
+    }
+}

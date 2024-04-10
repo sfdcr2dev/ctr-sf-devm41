@@ -1,0 +1,22 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <div class="card">
+        <div class="slds-card__header slds-grid">
+          <header class="slds-media slds-media_center slds-has-flexi-truncate header">
+            <div class="slds-media__body">
+              <h1 class="slds-card__header-title">
+                <span class="black">Latest For You</span>
+              </h1>
+            </div>
+          </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+          <div class="slds-card card">
+            <div aura:id="feedContainer" class="feed-container">
+              <!-- <forceChatter:feed type="groups" /> -->
+              <forceChatter:publisher context="GLOBAL" />
+              <forceChatter:feed type="Company"/>
+            </div>
+          </div>
+        </div>
+      </div>
+</aura:component>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>2</description>
+    <interviewLabel>E-MOC FNUpdate Extension {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>E-MOC - FN Update Extension</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_E_MOC_TA_Mandatory_Mapping</name>
+        <label>Update E-MOC TA Mandatory Mapping</label>
+        <locationX>616</locationX>
+        <locationY>595</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Already_sent_a_noti__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>E_MOC_TA_Mandatory_Mapping__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Extend</name>
+        <label>Update Extend</label>
+        <locationX>616</locationX>
+        <locationY>436</locationY>
+        <connector>
+            <targetReference>Update_E_MOC_TA_Mandatory_Mapping</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Extend_Require_to_extend__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <startElementReference>Update_Extend</startElementReference>
+    <status>Active</status>
+</Flow>

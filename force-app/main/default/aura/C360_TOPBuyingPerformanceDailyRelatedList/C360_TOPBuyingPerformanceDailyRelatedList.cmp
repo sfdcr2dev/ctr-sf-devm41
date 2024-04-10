@@ -1,0 +1,432 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="C360_TOPBuyingPerformanceDailyList" access="global" >
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.refresh}"/>
+    <aura:attribute name="mergedrow" type="String" />    
+    <aura:attribute name="productList" type="Object[]" />
+    <aura:attribute name="Objects" type="Object[]"/>
+    
+    <aura:attribute name="recordError" type="String"/>
+    <aura:attribute name="recordInfo" type="Object" />
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordId" type="String"/>
+  
+    <aura:attribute name="customerid" type="String"/>
+    <aura:attribute name="isShowViewAll" type="String"/>
+    <aura:attribute name="loadingStatus" type="String" default = 'Loading'/>
+    <aura:attribute name="Object" type="Object"/>
+    <aura:attribute name="itemsize" type="String"/>
+    
+
+      <!--Header-->
+        <div class="slds-page-header">
+            <div class="slds-page-header__row">
+                <div class="slds-page-header__col-title">
+                    <div class="slds-media">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-standard-opportunity">
+                                <lightning:avatar src="/bad/image/url.jpg" initials="" fallbackIconName="custom:custom70"  alternativeText="Wilson Enterprises" class="slds-m-center_small"/>
+                            </span>
+                        </div>
+                        <div lst-listviewmanagerheader_listviewmanagerheader="" class="slds-media__body slds-align-middle">
+                            <h2 lst-listviewmanagerheader_listviewmanagerheader="" class="slds-card__header-title">
+                                <span lst-listviewmanagerheader_listviewmanagerheader="" class="slds-truncate slds-m-right--xx-small" title="Daily Buying Performance">Daily Buying Performance</span>
+                                <span lst-listviewmanagerheader_listviewmanagerheader="" class="lds-shrink-none slds-m-right--xx-small" title="(0)">({!v.itemsize})</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+
+    <!--Related List page--> 
+    <aura:renderIf isTrue="{!v.itemsize != 0}">
+		<aura:renderIf isTrue="{!v.loadingStatus == 'Loading'}">
+			<div lightning-datatable_table="" class="slds-scrollable_x related-order-table-wrapper">
+    			<!-- <table class="slds-table slds-table_bordered  slds-table-header-fixed">  -->
+            	<table aria-multiselectable="true" class="slds-table slds-table_bordered slds-table-header-fixed" role="grid" aria-label="Daily Buying Performance Number" style="width:100%">
+  					<thead>
+                		<tr class="slds-line-height_reset">
+                        	<th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode " scope="col">
+                            <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Daily Buying Performance Number">Daily Buying Performance Number</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="slds-resizable">
+                                <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                </span>
+                            </div>
+                        </th>
+                        	<th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                            <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Billing Date">Billing Date</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="slds-resizable">
+                                <input type="range" aria-label="Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-540" max="1000" min="20" tabindex="0" />
+                                <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                </span>
+                            </div>
+                        </th>
+                        	<th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                            <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Sales Organization">Sales Organization</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="slds-resizable">
+                                <input type="range" aria-label="Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-540" max="1000" min="20" tabindex="0" />
+                                <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                </span>
+                            </div>
+                        </th>
+                        	<th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                                <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Distribution Channel">Distribution Channel</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                      
+                                    </span>
+                                  </div>
+                                </a>
+                                <div class="slds-resizable">
+                                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" tabindex="0" />
+                                  <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                  </span>
+                                </div>
+                            </th>
+                            <th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                                <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Product Name">Product Name</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                      
+                                    </span>
+                                  </div>
+                                </a>
+                                <div class="slds-resizable">
+                                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" tabindex="0" />
+                                  <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                  </span>
+                                </div>
+                            </th>
+                            <th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                                <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Shipping Point">Shipping Point</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                      
+                                    </span>
+                                  </div>
+                                </a>
+                                <div class="slds-resizable">
+                                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" tabindex="0" />
+                                  <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                  </span>
+                                </div>
+                            </th>
+                        	<th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                                <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Quantity (MT)">Quantity (MT)</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                      
+                                    </span>
+                                  </div>
+                                </a>
+                                <div class="slds-resizable">
+                                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" tabindex="0" />
+                                  <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                  </span>
+                                </div>
+                            </th>
+                            <th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                                <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Quantity (L30)">Quantity (L30)</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                      
+                                    </span>
+                                  </div>
+                                </a>
+                                <div class="slds-resizable">
+                                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" tabindex="0" />
+                                  <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                  </span>
+                                </div>
+                            </th>
+                            <th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                                <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Total">Total</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                      
+                                    </span>
+                                  </div>
+                                </a>
+                                <div class="slds-resizable">
+                                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" tabindex="0" />
+                                  <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                  </span>
+                                </div>
+                            </th>
+                      <!--  <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:100px;text-transform: none;text-align: center;" >Daily Buying Performance Number</div></th>  
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:90px;text-transform: none;text-align: center;"  >Billing Date</div></th>
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:150px;text-transform: none;text-align: center;" >Sales Organization</div></th>
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:150px;text-transform: none;text-align: center;" >Distribution Channel</div></th>
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:90px;text-transform: none;text-align: center;" >Product Name</div></th>
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:90px;text-transform: none;text-align: center;" >Currency (Local)</div></th>
+                        
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:90px;text-transform: none;text-align: center;" >Delivery Quantity</div></th>
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:90px;text-transform: none;text-align: center;" >Net Value (Local)</div></th>
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:90px;text-transform: none;text-align: center;" >Net Profit (Local)</div></th>  -->
+                </tr>
+            </thead>   
+            
+            <tbody>
+                <aura:iteration  items="{!v.Objects}" var="ordersum">
+                    
+                    
+                    <aura:iteration  items="{!ordersum.itemList}" var="con">
+                        <tr class="slds-text-title_caps">
+                            
+                            <td class="slds-cell_action-mode" scope="row"><div class="slds-truncate" title="dostatus"><a onclick="{!c.renderToRecord}" id="{!con.itemId}">{!con.DailyBuyingPerformanceNumber}</a> </div></td>       
+                            <td class="slds-cell_action-mode" scope="row"><div class="slds-truncate" title="doquantity">{!con.BillingDate}</div></td>
+                            <td class="slds-cell_action-mode" scope="row"><div class="slds-truncate" title="donumber">{!con.SalesOrganization}</div></td>
+                            <td class="slds-cell_action-mode" scope="row"><div class="slds-truncate" title="donumber">{!con.DistributionChannel}</div></td>
+                            <td class="slds-cell_action-mode" scope="row"><div class="slds-truncate" title="donumber">{!con.Product}</div></td>
+                            <td class="slds-cell_action-mode" scope="row"><div class="slds-truncate" title="donumber">{!con.ShippingPoint}</div></td>
+                            <aura:renderIf isTrue="{!con.index == 0}">
+                            <td class="slds-cell_action-mode" scope="row" rowspan="{!ordersum.count}"><div class="slds-truncate slds-cell-wrap" style="width:90px;" title="product">{!ordersum.QuantityMT}</div></td>
+                            <td class="slds-cell_action-mode" scope="row" rowspan="{!ordersum.count}"><div class="slds-truncate slds-cell-wrap" style="width:80px;" title="product">{!ordersum.QuantityL30}</div></td>
+                            <td class="slds-cell_action-mode" scope="row" rowspan="{!ordersum.count}"><div class="slds-truncate" title="product">{!ordersum.Total}</div></td>
+                            </aura:renderIf>
+                        </tr>
+                        
+                    </aura:iteration>
+                    
+                    
+                </aura:iteration>     
+            </tbody>
+        
+    	</table>
+        </div>
+    </aura:renderIf>
+    </aura:renderIf>
+    
+    <!--View All page-->
+    <aura:renderIf isTrue="{!v.loadingStatus == ''}">
+    <div lightning-datatable_table="" class="slds-scrollable order-table-wrapper">
+    			<!-- <table class="slds-table slds-table_bordered  slds-table-header-fixed">  -->
+            	<table aria-multiselectable="true" class="slds-table slds-table_bordered slds-table-header-fixed" role="grid" aria-label="Daily Buying Performance Number" style="width:100%">
+  					<thead>
+                		<tr class="slds-line-height_reset">
+                        	<th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode " scope="col">
+                            <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Daily Buying Performance Number">Daily Buying Performance Number</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="slds-resizable">
+                                <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                </span>
+                            </div>
+                        </th>
+                        	<th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                            <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Billing Date">Billing Date</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="slds-resizable">
+                                <input type="range" aria-label="Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-540" max="1000" min="20" tabindex="0" />
+                                <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                </span>
+                            </div>
+                        </th>
+                        	<th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                            <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Sales Organization">Sales Organization</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="slds-resizable">
+                                <input type="range" aria-label="Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-540" max="1000" min="20" tabindex="0" />
+                                <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                </span>
+                            </div>
+                        </th>
+                        	<th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                                <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Distribution Channel">Distribution Channel</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                      
+                                    </span>
+                                  </div>
+                                </a>
+                                <div class="slds-resizable">
+                                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" tabindex="0" />
+                                  <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                  </span>
+                                </div>
+                            </th>
+                            <th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                                <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Product Name">Product Name</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                      
+                                    </span>
+                                  </div>
+                                </a>
+                                <div class="slds-resizable">
+                                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" tabindex="0" />
+                                  <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                  </span>
+                                </div>
+                            </th>
+                            <th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                                <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Shipping Point">Shipping Point</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                      
+                                    </span>
+                                  </div>
+                                </a>
+                                <div class="slds-resizable">
+                                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" tabindex="0" />
+                                  <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                  </span>
+                                </div>
+                            </th>
+                        	<th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                                <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Quantity (MT)">Quantity (MT)</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                      
+                                    </span>
+                                  </div>
+                                </a>
+                                <div class="slds-resizable">
+                                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" tabindex="0" />
+                                  <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                  </span>
+                                </div>
+                            </th>
+                            <th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                                <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Quantity (L30)">Quantity (L30)</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                      
+                                    </span>
+                                  </div>
+                                </a>
+                                <div class="slds-resizable">
+                                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" tabindex="0" />
+                                  <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                  </span>
+                                </div>
+                            </th>
+                            <th aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+                                <a class="slds-th__action slds-text-link_reset" role="button" tabindex="0">
+                                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <span class="slds-truncate" title="Total">Total</span>
+                                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                      
+                                    </span>
+                                  </div>
+                                </a>
+                                <div class="slds-resizable">
+                                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" tabindex="0" />
+                                  <span class="slds-resizable__handle">
+                                    <span class="slds-resizable__divider"></span>
+                                  </span>
+                                </div>
+                            </th>
+                      <!--  <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:100px;text-transform: none;text-align: center;" >Daily Buying Performance Number</div></th>  
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:90px;text-transform: none;text-align: center;"  >Billing Date</div></th>
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:150px;text-transform: none;text-align: center;" >Sales Organization</div></th>
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:150px;text-transform: none;text-align: center;" >Distribution Channel</div></th>
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:90px;text-transform: none;text-align: center;" >Product Name</div></th>
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:90px;text-transform: none;text-align: center;" >Currency (Local)</div></th>
+                        
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:90px;text-transform: none;text-align: center;" >Delivery Quantity</div></th>
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:90px;text-transform: none;text-align: center;" >Net Value (Local)</div></th>
+                        <th scope="col"><div class="slds-truncate slds-cell-wrap" style="width:90px;text-transform: none;text-align: center;" >Net Profit (Local)</div></th>  -->
+                </tr>
+            </thead>   
+            
+            <tbody>
+                <aura:iteration  items="{!v.Objects}" var="ordersum">
+                    
+                    
+                    <aura:iteration  items="{!ordersum.itemList}" var="con">
+                        <tr class="slds-text-title_caps">
+                            
+                            <td class="slds-cell_action-mode" scope="row"><div class="slds-truncate" title="dostatus"><a onclick="{!c.renderToRecord}" id="{!con.itemId}">{!con.DailyBuyingPerformanceNumber}</a> </div></td>       
+                            <td class="slds-cell_action-mode" scope="row"><div class="slds-truncate" title="doquantity">{!con.BillingDate}</div></td>
+                            <td class="slds-cell_action-mode" scope="row"><div class="slds-truncate" title="donumber">{!con.SalesOrganization}</div></td>
+                            <td class="slds-cell_action-mode" scope="row"><div class="slds-truncate" title="donumber">{!con.DistributionChannel}</div></td>
+                            <td class="slds-cell_action-mode" scope="row"><div class="slds-truncate" title="donumber">{!con.Product}</div></td>
+                            <td class="slds-cell_action-mode" scope="row"><div class="slds-truncate" title="donumber">{!con.ShippingPoint}</div></td>
+                            <aura:renderIf isTrue="{!con.index == 0}">
+                            <td class="slds-cell_action-mode" scope="row" rowspan="{!ordersum.count}"><div class="slds-truncate slds-cell-wrap" style="width:90px;" title="product">{!ordersum.QuantityMT}</div></td>
+                            <td class="slds-cell_action-mode" scope="row" rowspan="{!ordersum.count}"><div class="slds-truncate slds-cell-wrap" style="width:80px;" title="product">{!ordersum.QuantityL30}</div></td>
+                            <td class="slds-cell_action-mode" scope="row" rowspan="{!ordersum.count}"><div class="slds-truncate" title="product">{!ordersum.Total}</div></td>
+                            </aura:renderIf>
+                        </tr>
+                        
+                    </aura:iteration>
+                    
+                    
+                </aura:iteration>     
+            </tbody>
+        
+    	</table>
+        </div>
+    </aura:renderIf>
+
+    <aura:renderIf isTrue="{!v.isShowViewAll == 'true'}">
+        <div lst-relatedlistviewmanager_relatedlistviewmanager="" class="slds-card__footer">
+            <span lst-relatedlistviewmanager_relatedlistviewmanager="" class="view-all-label">
+                <p align="center"><a onclick="{!c.ViewAll}">View All</a></p>
+            </span>
+        </div>
+    </aura:renderIf>
+    
+</aura:component>

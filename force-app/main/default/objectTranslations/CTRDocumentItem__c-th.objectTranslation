@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CTR Document Item</value>
+    </caseValues>
+    <fields>
+        <label><!-- Business Unit --></label>
+        <name>BusinessUnit__c</name>
+    </fields>
+    <fields>
+        <label><!-- CTR Request Form Item --></label>
+        <name>CTRRequestFormItem__c</name>
+        <relationshipLabel><!-- CTR Document Item --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Document Name --></label>
+        <name>DocumentName__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Key --></label>
+        <name>ExternalKey__c</name>
+    </fields>
+    <fields>
+        <label><!-- Required --></label>
+        <name>IsRequired__c</name>
+    </fields>
+    <fields>
+        <label><!-- Result --></label>
+        <name>Result__c</name>
+        <picklistValues>
+            <masterLabel>Not Passed</masterLabel>
+            <translation><!-- Not Passed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Passed</masterLabel>
+            <translation><!-- Passed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waived</masterLabel>
+            <translation><!-- Waived --></translation>
+        </picklistValues>
+    </fields>
+</CustomObjectTranslation>

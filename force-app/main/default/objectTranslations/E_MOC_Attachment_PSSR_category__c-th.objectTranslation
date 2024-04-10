@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>E-MOC Attachment PSSR category</value>
+    </caseValues>
+    <fields>
+        <label><!-- Attachment --></label>
+        <name>Attachment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- E-MOC Application --></label>
+        <name>E_MOC_Application__c</name>
+        <relationshipLabel><!-- E-MOC Attachment PSSR category --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- E-MOC Checklist type --></label>
+        <name>E_MOC_Checklist_type__c</name>
+        <picklistValues>
+            <masterLabel>PSSR category</masterLabel>
+            <translation><!-- PSSR category --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- E-MOC Doc Type --></label>
+        <name>E_MOC_Doc_Type__c</name>
+        <picklistValues>
+            <masterLabel>PSSR category</masterLabel>
+            <translation><!-- PSSR category --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>E-MOC Attachment PSSR category Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

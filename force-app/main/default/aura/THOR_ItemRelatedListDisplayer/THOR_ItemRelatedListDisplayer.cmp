@@ -1,0 +1,29 @@
+<aura:component controller="THOR_ItemController" implements="flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="isNavigable" type="boolean" default="false" />
+    <aura:attribute name="DisplayableObjectFullList" type="List" default='[]' access="global" />
+   <aura:attribute name="DisplayableObjectFullListCount" type="Integer" default='0' access="global" />
+    <aura:attribute name="objectName" type="String" default="" access="global" />
+    <aura:attribute name="labelSequence" type="String" default="" />
+    
+    <aura:attribute name="viewAllTitle" type="String" default="Show more" access="global" />
+    <aura:attribute name="viewAll" type="Boolean" default="false" access="private" />
+    <aura:attribute name="viewMoreLess" type="String" access="private" default="Show more" />
+    <aura:attribute name="target" type="String" default="list1" access="private" />
+    
+    <aura:handler name="viewAllEvent" event="c:THOR_Event" action="{!c.handleViewAll}" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <lightning:layout>
+        <lightning:layoutItem size="12">
+            <c:THOR_ListObjectDisplayer viewAll="{!v.viewAll}" labelSequence="{!v.labelSequence}" isNavigable="{! v.isNavigable}"
+               items="{! v.DisplayableObjectFullList}"/>
+            <aura:if isTrue="{! greaterthan(v.DisplayableObjectFullListCount, 3)}">
+                <c:THOR_ViewAll title="{! v.viewMoreLess}" viewingAll='{! v.viewAll}' target='{! v.target}' />
+            </aura:if>
+        </lightning:layoutItem>
+    </lightning:layout>
+
+</aura:component>

@@ -1,0 +1,122 @@
+/*.THIS.workclearance__container .workclearance__bg-gray {
+    background-color: #dddbda;
+}
+
+@media (max-width: 602px) {
+    .THIS.workclearance__container .workclearance__bg-gray {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
+    .THIS.workclearance__container .slds-card__body .slds-box {
+        font-size: var(--lwc-fontSize4, 0.875rem);
+        padding-top: 0.5em !important;
+        padding-bottom: 0.5em !important;
+    }
+}
+
+.THIS.workclearance__container .d-flex {
+    display: flex;
+}
+
+.THIS.workclearance__container .d-justify-space-between {
+    justify-content: space-between;
+}
+
+@media (max-width: 602px) {
+    .THIS.workclearance__container .slds-card .slds-card__footer button {
+        font-size: var(--lwc-fontSize5, 1rem);
+        font-weight: bold !important;
+    }
+}
+
+.THIS.workclearance__container .slds-card .slds-card__header-title .slds-text-heading_small {
+    font-size: var(--lwc-fontSize5, 1rem);
+    font-weight: normal !important;
+}
+
+.THIS.workclearance__container .slds-card .slds-card__body {
+    margin-bottom: 0;
+}
+
+.THIS.workclearance__container .slds-card .slds-card__footer {
+    margin-top: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.THIS.workclearance__container .slds-box:hover {
+    background-color: #f7f7f7 !important;
+}
+                
+*/     
+.THIS .container {
+    position: relative;
+    z-index: auto;
+}
+
+.THIS .totalRequests {
+    padding-bottom: 10px;
+}
+
+.THIS .iconContainer {
+    display: inline-flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.THIS .fadeIn {
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+.THIS .fadeOut {
+    transition: opacity 0.5s ease;
+    opacity: 0;
+}
+
+.THIS .title {
+    /*border: 0.1em solid #a6a6a6;*/
+    margin-top: 1em;
+    padding: 0.5em;
+    background-color: #f7f7f7;
+}
+
+.THIS .labelSequence {
+    border-top: 0;
+    padding: .5em;
+    background-color: #dddbda;
+}
+
+.THIS .cardContainer {
+    padding: .5em;
+    background-color: #fff;
+}
+
+.THIS .cardContainer .slds-box {
+    padding: .5em;
+}
+
+.THIS .cardContainer .wc-box {
+    padding:.5em;
+    border-bottom: 1px solid #dddbda;
+}
+
+.THIS .cardContainer .wc-box .wc-box-chevron {
+    padding:.5em;
+    display:inline-block;
+    vertical-align:top;
+}
+
+.THIS .cardContainer .wc-box .wc-box-title {
+    padding-bottom:.5em;
+    display:inline-block;
+    margin-bottom:.5em;
+}
+
+.THIS .cardContainer .wc-box .wc-box-hist {
+    margin-bottom:.5em;
+    padding-bottom:.5em;
+    border-bottom:1px solid #dddbda;
+}

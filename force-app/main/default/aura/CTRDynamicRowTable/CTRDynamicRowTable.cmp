@@ -1,0 +1,36 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <!-- Register 2 Lightning Event for handle add or Delete rows on Parent Component  -->
+    
+    <aura:attribute name="rowIndex" type="String"/>
+    <aura:registerEvent name="CTRDeleteRowEvt" type="c:CTRDeleteRowEvt"/>
+    <aura:registerEvent name="CTRAddNewRowEvt" type="c:CTRAddNewRowEvt"/>
+    
+    <aura:attribute name="ShareHolder" type="CTRShareholder__c"/>
+    <aura:attribute name="rowcolumn" type="boolean" default = "true"/>
+    <aura:attribute name="isDisabled" type="boolean" default = "false"/>
+    
+    <!-- Table Row -->
+    <tr>
+        <aura:renderIf isTrue = "{!v.rowcolumn}">
+            <td class="">
+                {!v.rowIndex + 1}
+            </td>
+        </aura:renderIf>
+        <td class="">
+            <lightning:input name="Name" value="{! v.ShareHolder.Name }" required="{!!v.isDisabled}" disabled = "{!v.isDisabled}"/>
+        </td>
+        <td class="">
+            <lightning:input type="Number" formatter="percent-fixed" aura:id="percenShareHolder" name="percenShareHolder" value="{! v.ShareHolder.of_Shareholder__c }" 
+            onchange="{!c.onChangePerc}" required="{!!v.isDisabled}" disabled = "{!v.isDisabled}" min="10" max="100" messageWhenRangeOverflow="Value out of range" messageWhenRangeUnderflow="Value out of range"  
+            autocomplete="off"/>
+        </td>
+        <aura:renderIf isTrue = "{!!v.isDisabled}">
+            <td>
+                <a onclick="{!c.removeRow}">
+                    <lightning:icon iconName="utility:delete" variant="error" class="slds-icon slds-icon_small" size="small" alternativeText="icon"/>
+                    <span class="slds-assistive-text">Delete Icon</span>
+                </a>
+            </td>
+        </aura:renderIf>
+    </tr>
+</aura:component>

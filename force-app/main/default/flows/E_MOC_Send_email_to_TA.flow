@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Email</name>
+        <label>Send Email</label>
+        <locationX>598</locationX>
+        <locationY>782</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Email_Text</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddressesArray</name>
+            <value>
+                <elementReference>Recipient</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>sfdc.r2@roundtwosolutions.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>Subject_Template</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Add_Recipient</name>
+        <label>Add Recipient</label>
+        <locationX>686</locationX>
+        <locationY>566</locationY>
+        <assignmentItems>
+            <assignToReference>Recipient</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop.TA2_Name__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop</targetReference>
+        </connector>
+    </assignments>
+    <description>Revise subject email</description>
+    <interviewLabel>E-MOC Send email to TA {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>E-MOC - FN-Send email to TA</label>
+    <loops>
+        <name>Loop</name>
+        <label>Loop</label>
+        <locationX>598</locationX>
+        <locationY>446</locationY>
+        <collectionReference>Get_TA_Mandatory_Mapping</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Add_Recipient</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Send_Email</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_E_MOC_Application</name>
+        <label>Get E-MOC Application</label>
+        <locationX>598</locationX>
+        <locationY>206</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_TA_Mandatory_Mapping</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>E_MOC_Application__c</object>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_TA_Mandatory_Mapping</name>
+        <label>Get TA Mandatory Mapping</label>
+        <locationX>598</locationX>
+        <locationY>326</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop</targetReference>
+        </connector>
+        <filters>
+            <field>E_MOC_Application__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>E_MOC_TA_Mandatory_Mapping__c</object>
+    </recordLookups>
+    <startElementReference>Get_E_MOC_Application</startElementReference>
+    <status>Active</status>
+    <textTemplates>
+        <name>Email_Text</name>
+        <text>Functional Location : {!Get_E_MOC_Application.Functional_Location__r.Name}
+FL Description : {!Get_E_MOC_Application.Functional_Location_Description__c}
+Category Type : {!Get_E_MOC_Application.Category_Type__c}
+Status : {!Get_E_MOC_Application.Status_Common_Workflow__c}
+Link: https://thaioil.lightning.force.com/lightning/r/E_MOC_Application__c/{!Get_E_MOC_Application.Id}/view</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Subject_Template</name>
+        <text>[E-MOC Application] Please Review and Approve Technical term of Functional Override/{!Get_E_MOC_Application.Name}/{!Get_E_MOC_Application.Functional_Location__r.Name}</text>
+    </textTemplates>
+    <variables>
+        <name>Recipient</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

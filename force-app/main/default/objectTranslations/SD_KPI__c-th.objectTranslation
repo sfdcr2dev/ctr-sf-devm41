@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Master OEMS</value>
+    </caseValues>
+    <fields>
+        <label><!-- Benchmark --></label>
+        <name>Benchmark__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- DJSI Display --></label>
+        <name>DJSI_Display__c</name>
+    </fields>
+    <fields>
+        <label><!-- Initial --></label>
+        <name>Initial__c</name>
+    </fields>
+    <fields>
+        <label><!-- KPI Code (DJSI) --></label>
+        <name>KPI_Code_DJSI__c</name>
+    </fields>
+    <fields>
+        <label><!-- KPI Code (PTT) --></label>
+        <name>KPI_Code_PTT__c</name>
+    </fields>
+    <fields>
+        <help><!-- สัญลักษณ์ที่เกี่ยวข้องกับการระบุข้อมูล Target ของ KPI เช่น ต้องการให้ Target ไม่เกิน 5 ก็ให้เลือกเครื่องหมายเป็น &lt; (Less Than) เป็นต้น --></help>
+        <label><!-- Operator --></label>
+        <name>Operator__c</name>
+        <picklistValues>
+            <masterLabel>&lt; (less than)</masterLabel>
+            <translation><!-- &lt; (less than) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>= (equal to)</masterLabel>
+            <translation><!-- = (equal to) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>&gt; (more than)</masterLabel>
+            <translation><!-- &gt; (more than) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>≠ (not eqaul to)</masterLabel>
+            <translation><!-- ≠ (not eqaul to) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>≤ (less than equal to)</masterLabel>
+            <translation><!-- ≤ (less than equal to) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>≥ (greater than equal to)</masterLabel>
+            <translation><!-- ≥ (greater than equal to) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- ระบุเลขลำดับของรายการ KPI เพื่อใช้ในการจัดลำดับในการแสดงข้อมูลในหน้า OEMS --></help>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- PTT Display --></label>
+        <name>PTT_Display__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- Short Name --></label>
+        <name>Short_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Value --></label>
+        <name>Target_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Lagging</masterLabel>
+            <translation><!-- Lagging --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Leading</masterLabel>
+            <translation><!-- Leading --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Unit --></label>
+        <name>Unit__c</name>
+        <picklistValues>
+            <masterLabel>%</masterLabel>
+            <translation><!-- % --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>% (Hazardous waste to landfill per Hazardous waste)</masterLabel>
+            <translation><!-- % (Hazardous waste to landfill per Hazardous waste) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Case</masterLabel>
+            <translation><!-- Case --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Case per 200,000 Man-hours</masterLabel>
+            <translation><!-- Case per 200,000 Man-hours --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Case per mil. Man-hours</masterLabel>
+            <translation><!-- Case per mil. Man-hours --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hours</masterLabel>
+            <translation><!-- Hours --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Million M3</masterLabel>
+            <translation><!-- Million M3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Million M3 per Million Ton Throughput</masterLabel>
+            <translation><!-- Million M3 per Million Ton Throughput --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Million Man-hours</masterLabel>
+            <translation><!-- Million Man-hours --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Million Ton</masterLabel>
+            <translation><!-- Million Ton --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Number</masterLabel>
+            <translation><!-- Number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ton</masterLabel>
+            <translation><!-- Ton --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ล้านตันเทียบเท่าคาร์บอนไดออกไซด์</masterLabel>
+            <translation><!-- ล้านตันเทียบเท่าคาร์บอนไดออกไซด์ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ล้านลูกบาศก์เมตร (Million m3)</masterLabel>
+            <translation><!-- ล้านลูกบาศก์เมตร (Million m3) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Worker Type --></label>
+        <name>Worker_Type__c</name>
+        <picklistValues>
+            <masterLabel>All</masterLabel>
+            <translation><!-- All --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contractor</masterLabel>
+            <translation><!-- Contractor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Staff</masterLabel>
+            <translation><!-- Staff --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>SD_KPI Layout</layout>
+        <sections>
+            <label><!-- Admin Setting --></label>
+            <section>Admin Setting</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Target Setting --></label>
+            <section>Target Setting</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

@@ -1,0 +1,586 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName,force:lightningQuickActionWithoutHeader" controller="CTRCheckDueDiligenceController" access="global">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="sObjectName" type="String" />
+    <aura:attribute name="reviewOptions" type="List" default="[ {'label': 'Proceed', 'value': 'Proceed'}, {'label': 'Not Proceed', 'value': 'Not Proceed'}]" />
+    <!-- <aura:attribute name="cmReviewOptions" type="List" default="[ {'label': 'Proceed', 'value': 'Proceed'}, {'label': 'Not Proceed', 'value': 'Not Proceed'}]" /> -->
+    <aura:attribute name="complianceAdviceOptions" type="List" default="[ {'label': 'Yes', 'value': 'Yes'}, {'label': 'No', 'value': 'No'}]" />
+    <!-- <aura:attribute name="cpxxReviewOptions" type="List" default="[ {'label': 'Proceed', 'value': 'Proceed'}, {'label': 'Not Proceed', 'value': 'Not Proceed'}]" /> -->
+    <!-- <aura:attribute name="cmvpReviewOptions" type="List" default="[ {'label': 'Proceed', 'value': 'Proceed'}, {'label': 'Not Proceed', 'value': 'Not Proceed'}]" /> -->
+    <aura:attribute name="endorseOptions" type="List" default="[ {'label': 'Endorsed', 'value': 'Endorsed'}, {'label': 'Rejected', 'value': 'Rejected'}]" />
+    <aura:attribute name="approveOptions" type="List" default="[ {'label': 'Approved', 'value': 'Approved'}, {'label': 'Rejected', 'value': 'Rejected'}]" />
+    <aura:attribute name="sectionLabelMap" type="Object" />
+
+    <aura:attribute name="isCMReview" type="Boolean" default="false" />
+    <aura:attribute name="isEnhanceDueDiligence" type="Boolean" default="false" />
+    <aura:attribute name="isComplianceAdvice" type="Boolean" default="false" />
+    <aura:attribute name="isCPXXReview" type="Boolean" default="false" />
+    <aura:attribute name="isCMVPReview" type="Boolean" default="false" />
+    <aura:attribute name="isEVPCReview" type="Boolean" default="false" />
+    <aura:attribute name="isEndorseDueDiligence" type="Boolean" default="false" />
+    <aura:attribute name="isApproveDueDiligence" type="Boolean" default="false" />
+    <aura:attribute name="isEdit" type="Boolean" default="false" />
+    <aura:attribute name="currentSection" type="String" />
+
+    <aura:attribute name="displayCMReview" type="Boolean" default="false" />
+    <aura:attribute name="displayEnhanceDueDiligence" type="Boolean" default="false" />
+    <aura:attribute name="displayComplianceAdvice" type="Boolean" default="false" />
+    <aura:attribute name="displayCPXXReview" type="Boolean" default="false" />
+    <aura:attribute name="displayCMVPReview" type="Boolean" default="false" />
+    <aura:attribute name="displayEVPCReview" type="Boolean" default="false" />
+    <aura:attribute name="displayEndorseDueDiligence" type="Boolean" default="false" />
+    <aura:attribute name="displayApproveDueDiligence" type="Boolean" default="false" />
+
+    <aura:attribute name="displayCMReviewButton" type="Boolean" default="false" />
+    <aura:attribute name="displayEnhanceDueDiligenceButton" type="Boolean" default="false" />
+    <aura:attribute name="displayComplianceAdviceButton" type="Boolean" default="false" />
+    <aura:attribute name="displayCPXXReviewButton" type="Boolean" default="false" />
+    <aura:attribute name="displayCMVPReviewButton" type="Boolean" default="false" />
+    <aura:attribute name="displayEVPCReviewButton" type="Boolean" default="false" />
+    <aura:attribute name="displayEndorseDueDiligenceButton" type="Boolean" default="false" />
+    <aura:attribute name="displayApproveDueDiligenceButton" type="Boolean" default="false" />
+
+    <aura:attribute name="displayCMReviewSection" type="Boolean" default="false" />
+    <aura:attribute name="displayEnhanceDueDiligenceSection" type="Boolean" default="false" />
+    <aura:attribute name="displayComplianceAdviceSection" type="Boolean" default="false" />
+    <aura:attribute name="displayCPXXReviewSection" type="Boolean" default="false" />
+    <aura:attribute name="displayCMVPReviewSection" type="Boolean" default="false" />
+    <aura:attribute name="displayEVPCReviewSection" type="Boolean" default="false" />
+    <aura:attribute name="displayEndorseDueDiligenceSection" type="Boolean" default="false" />
+    <aura:attribute name="displayApproveDueDiligenceSection" type="Boolean" default="false" />
+
+    <aura:attribute name="cmReviewResult" type="String" />
+    <aura:attribute name="complianceAdviceResult" type="String" />
+    <aura:attribute name="cpxxReviewResult" type="String" />
+    <aura:attribute name="cmvpReviewResult" type="String" />
+    <aura:attribute name="evpcReviewResult" type="String" />
+    <aura:attribute name="endorseDueDiligenceResult" type="String" />
+    <aura:attribute name="approveDueDiligenceResult" type="String" />
+    <aura:attribute name="recordObject" type="Object" />
+    <aura:attribute name="recordLoadError" type="String" />
+    <aura:attribute name="isHighHighRisk" type="Boolean" default="false" />
+    <aura:attribute name="isRejected" type="Boolean" default="false" />
+    <aura:attribute name="isSupplier" type="Boolean" default="false" />
+    <aura:attribute name="isTX" type="Boolean" default="false" />
+    <aura:attribute name="isLoaded" type="Boolean" default="false" />
+
+    <force:recordData aura:id="recordLoader" recordId="{!v.recordId}" fields="Id,Name,Status__c,Approval_Step__c,EnhanceDueDiligenceProceedByTrader__c,TraderEnhanceDueDiligenceBy__c,EnhanceDueDiligenceBy__c,ComplianceAdviceResult__c,ComplianceAdviceBy__c,
+                                                                              CPXXReviewDueDiligenceResult__c,CPXXReviewDueDiligenceBy__c,CMVPReviewDueDiligenceResult__c,CMVPReviewDueDiligenceBy__c,EVPCReviewEDDResult__c,EVPCReviewEDDBy__c,
+                                                                              EndorseDueDiligenceResult__c,EndorseDueDiligenceBy__c,ApproveDueDiligenceResult__c,ApproveDueDiligenceBy__c,FinalRiskLevel__c,RecordType.DeveloperName" targetFields="{!v.recordObject}" targetError="{!v.recordLoadError}" recordUpdated="{!c.handleRecordUpdated}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <section>
+        <aura:renderIf isTrue="{!and(!v.isEdit, !v.isRejected)}">
+            <div class="slds-text-align_right slds-var-p-bottom_xx-small">
+                <aura:renderIf isTrue="{!v.displayCMReviewButton}">
+                    <lightning:button variant="brand-outline" label="{!v.sectionLabelMap.cmReview.button}" title="{!v.sectionLabelMap.cmReview.button}" name="isCMReview" onclick="{!c.handleEdit}" />
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.displayEnhanceDueDiligenceButton}">
+                    <lightning:button variant="brand-outline" label="{!v.sectionLabelMap.enhanceDueDiligence.button}" title="{!v.sectionLabelMap.enhanceDueDiligence.button}" name="isEnhanceDueDiligence" onclick="{!c.handleEdit}" />
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.displayComplianceAdviceButton}">
+                    <lightning:button variant="brand-outline" label="{!v.sectionLabelMap.complianceAdvice.button}" title="{!v.sectionLabelMap.complianceAdvice.button}" name="isComplianceAdvice" onclick="{!c.handleEdit}" />
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.displayCPXXReviewButton}">
+                    <lightning:button variant="brand-outline" label="{!v.sectionLabelMap.cpxxReview.button}" title="{!v.sectionLabelMap.cpxxReview.button}" name="isCPXXReview" onclick="{!c.handleEdit}" />
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.displayCMVPReviewButton}">
+                    <lightning:button variant="brand-outline" label="{!v.sectionLabelMap.cmvpReview.button}" title="{!v.sectionLabelMap.cmvpReview.button}" name="isCMVPReview" onclick="{!c.handleEdit}" />
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.displayEVPCReviewButton}">
+                    <lightning:button variant="brand-outline" label="{!v.sectionLabelMap.evpcReview.button}" title="{!v.sectionLabelMap.evpcReview.button}" name="isEVPCReview" onclick="{!c.handleEdit}" />
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.displayEndorseDueDiligenceButton}">
+                    <lightning:button variant="brand-outline" label="{!v.sectionLabelMap.endorseDueDiligence.button}" title="{!v.sectionLabelMap.endorseDueDiligence.button}" name="isEndorseDueDiligence" onclick="{!c.handleEdit}" />
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.displayApproveDueDiligenceButton}">
+                    <lightning:button variant="brand-outline" label="{!v.sectionLabelMap.approveDueDiligence.button}" title="{!v.sectionLabelMap.approveDueDiligence.button}" name="isApproveDueDiligence" onclick="{!c.handleEdit}" />
+                </aura:renderIf>
+            </div>
+        </aura:renderIf>
+        <div class="slds-section slds-is-open" aura:id="dueDiligenceResultSection">
+            <h3 class="slds-section__title">
+                <button type="button" aria-controls="dueDiligenceResultDetail" aria-expanded="true" class="slds-button slds-section__title-action" data-auraid="dueDiligenceResultSection" onclick="{!c.handleToggleSection}">
+                    <lightning:icon iconName="utility:switch" alternativeText="switch" title="" size="x-small" class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                    <span class="slds-truncate">Due Diligence Result</span>
+                </button>
+            </h3>
+            <div class="slds-section__content" id="dueDiligenceResultDetail">
+                <c:CTRDueDiligenceResult recordId="{!v.recordId}" sObjectName="{!v.sObjectName}" displayRiskBySystem="false" />
+            </div>
+        </div>
+        
+        <lightning:recordEditForm aura:id="recordEditForm" recordId="{!v.recordId}" objectApiName="{!v.sObjectName}" onload="{!c.handleLoad}" onsubmit="{!c.handleSubmit}" onsuccess="{!c.handleSuccess}" onerror="{!c.handleError}">
+            <aura:renderIf isTrue="{!v.displayCMReviewSection}">
+                <div class="slds-section slds-is-open" aura:id="cmReviewSection">
+                    <h3 class="slds-section__title">
+                        <button type="button" aria-controls="cmReviewDetail" aria-expanded="true" class="slds-button slds-section__title-action" data-auraid="cmReviewSection" onclick="{!c.handleToggleSection}">
+                            <lightning:icon iconName="utility:switch" alternativeText="switch" title="" size="x-small" class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">{!v.sectionLabelMap.cmReview.section}</span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="cmReviewDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-right_medium">
+                                {!v.sectionLabelMap.cmReview.reviewInfo.EnhanceDueDiligenceProceedByTrader__c}:
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-left_medium">
+                                <!-- <lightning:radioGroup type="radio" aura:id="inputRadio" name="cmReviewResult" variant="label-hidden" options="{!v.reviewOptions}" value="{!v.cmReviewResult}" disabled="{!!v.isCMReview}" class="display-flex" required="{!v.isCMReview}" /> -->
+                                <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="EnhanceDueDiligenceProceedByTrader__c" disabled="{!!v.isCMReview}" required="{!v.isCMReview}" />
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-var-p-bottom_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.cmReview.reviewInfo.EnhanceDueDiligenceCommentByTrader__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="EnhanceDueDiligenceCommentByTrader__c" disabled="{!!v.isCMReview}" required="{!v.isCMReview}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-right_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.cmReview.reviewInfo.TraderEnhanceDueDiligenceBy__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="TraderEnhanceDueDiligenceBy__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-left_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.cmReview.reviewInfo.TraderEnhanceDueDiligenceDateTime__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="TraderEnhanceDueDiligenceDateTime__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aura:renderIf>
+
+            <aura:renderIf isTrue="{!v.displayEnhanceDueDiligenceSection}">
+                <div class="slds-section slds-is-open" aura:id="enhanceDueDiligenceSection">
+                    <h3 class="slds-section__title">
+                        <button type="button" aria-controls="enhanceDueDiligenceDetail" aria-expanded="true" class="slds-button slds-section__title-action" data-auraid="enhanceDueDiligenceSection" onclick="{!c.handleToggleSection}">
+                            <lightning:icon iconName="utility:switch" alternativeText="switch" title="" size="x-small" class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">{!v.sectionLabelMap.enhanceDueDiligence.section}</span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="enhanceDueDiligenceDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-right_medium">
+                                {!v.sectionLabelMap.enhanceDueDiligence.reviewInfo.EnhanceDueDiligenceResult__c}
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-left_medium">
+                                <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="EnhanceDueDiligenceResult__c" disabled="{!!v.isEnhanceDueDiligence}" required="{!v.isEnhanceDueDiligence}" />
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-var-p-bottom_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.enhanceDueDiligence.reviewInfo.EnhanceDueDiligenceCommentByEDD__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="EnhanceDueDiligenceCommentByEDD__c" disabled="{!!v.isEnhanceDueDiligence}" required="{!v.isEnhanceDueDiligence}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-right_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.enhanceDueDiligence.reviewInfo.EnhanceDueDiligenceBy__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="EnhanceDueDiligenceBy__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-left_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.enhanceDueDiligence.reviewInfo.EnhanceDueDiligenceDateTime__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="EnhanceDueDiligenceDateTime__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aura:renderIf>
+
+            <aura:renderIf isTrue="{!v.displayComplianceAdviceSection}">
+                <div class="slds-section slds-is-open" aura:id="complianceAdviceSection">
+                    <h3 class="slds-section__title">
+                        <button type="button" aria-controls="complianceAdviceDetail" aria-expanded="true" class="slds-button slds-section__title-action" data-auraid="complianceAdviceSection" onclick="{!c.handleToggleSection}">
+                            <lightning:icon iconName="utility:switch" alternativeText="switch" title="" size="x-small" class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">{!v.sectionLabelMap.complianceAdvice.section}</span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="complianceAdviceDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-right_medium">
+                                {!v.sectionLabelMap.complianceAdvice.reviewInfo.ComplianceAdviceResult__c}
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-left_medium">
+                                <!-- <lightning:radioGroup type="radio" aura:id="inputRadio" name="complianceAdviceResult" variant="label-hidden" options="{!v.complianceAdviceOptions}" value="{!v.complianceAdviceResult}" disabled="{!!v.isComplianceAdvice}" class="display-flex" required="{!v.isComplianceAdvice}" /> -->
+                                <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="ComplianceAdviceResult__c" disabled="{!!v.isComplianceAdvice}" required="{!v.isComplianceAdvice}" />
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-var-p-bottom_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.complianceAdvice.reviewInfo.ComplianceAdviceComment__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="ComplianceAdviceComment__c" disabled="{!!v.isComplianceAdvice}" required="{!v.isComplianceAdvice}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-right_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.complianceAdvice.reviewInfo.ComplianceAdviceBy__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="ComplianceAdviceBy__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-left_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.complianceAdvice.reviewInfo.ComplianceAdviceDateTime__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="ComplianceAdviceDateTime__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aura:renderIf>
+
+            <aura:renderIf isTrue="{!v.displayCPXXReviewSection}">
+                <div class="slds-section slds-is-open" aura:id="cpxxReviewSection">
+                    <h3 class="slds-section__title">
+                        <button type="button" aria-controls="cpxxReviewDetail" aria-expanded="true" class="slds-button slds-section__title-action" data-auraid="cpxxReviewSection" onclick="{!c.handleToggleSection}">
+                            <lightning:icon iconName="utility:switch" alternativeText="switch" title="" size="x-small" class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">{!v.sectionLabelMap.cpxxReview.section}</span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="cpxxReviewDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <!-- <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium">
+                                {!v.sectionLabelMap.cpxxReview.reviewInfo.CPXXReviewDueDiligenceResult__c}:
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium">
+                                <lightning:radioGroup type="radio" aura:id="inputRadio" name="cpxxReviewResult" variant="label-hidden" options="{!v.reviewOptions}" value="{!v.cpxxReviewResult}" disabled="{!!v.isCPXXReview}" class="display-flex" required="{!v.isCPXXReview}" />
+                            </div> -->
+                            <div class="slds-col slds-size_1-of-1 slds-var-p-bottom_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.cpxxReview.reviewInfo.CPXXReviewDueDiligenceComment__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="CPXXReviewDueDiligenceComment__c" disabled="{!!v.isCPXXReview}" required="{!v.isCPXXReview}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-right_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.cpxxReview.reviewInfo.CPXXReviewDueDiligenceBy__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="CPXXReviewDueDiligenceBy__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-left_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.cpxxReview.reviewInfo.CPXXReviewDueDiligenceDateTime__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="CPXXReviewDueDiligenceDateTime__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aura:renderIf>
+
+            <aura:renderIf isTrue="{!v.displayCMVPReviewSection}">
+                <div class="slds-section slds-is-open" aura:id="cmvpReviewSection">
+                    <h3 class="slds-section__title">
+                        <button type="button" aria-controls="cmvpReviewDetail" aria-expanded="true" class="slds-button slds-section__title-action" data-auraid="cmvpReviewSection" onclick="{!c.handleToggleSection}">
+                            <lightning:icon iconName="utility:switch" alternativeText="switch" title="" size="x-small" class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">{!v.sectionLabelMap.cmvpReview.section}</span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="cmvpReviewDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-right_medium">
+                                {!v.sectionLabelMap.cmvpReview.reviewInfo.CMVPReviewDueDiligenceResult__c}:
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-left_medium">
+                                <!-- <lightning:radioGroup type="radio" aura:id="inputRadio" name="cmvpReviewResult" variant="label-hidden" options="{!v.reviewOptions}" value="{!v.cmvpReviewResult}" disabled="{!!v.isCMVPReview}" class="display-flex" required="{!v.isCMVPReview}" /> -->
+                                <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="CMVPReviewDueDiligenceResult__c" disabled="{!!v.isCMVPReview}" required="{!v.isCMVPReview}" />
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-var-p-bottom_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.cmvpReview.reviewInfo.CMVPReviewDueDiligenceComment__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="CMVPReviewDueDiligenceComment__c" disabled="{!!v.isCMVPReview}" required="{!v.isCMVPReview}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-right_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.cmvpReview.reviewInfo.CMVPReviewDueDiligenceBy__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="CMVPReviewDueDiligenceBy__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-left_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.cmvpReview.reviewInfo.CMVPReviewDueDiligenceDateTime__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="CMVPReviewDueDiligenceDateTime__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aura:renderIf>
+
+            <aura:renderIf isTrue="{!v.displayEVPCReviewSection}">
+                <div class="slds-section slds-is-open" aura:id="evpcReviewSection">
+                    <h3 class="slds-section__title">
+                        <button type="button" aria-controls="evpcReviewDetail" aria-expanded="true" class="slds-button slds-section__title-action" data-auraid="evpcReviewSection" onclick="{!c.handleToggleSection}">
+                            <lightning:icon iconName="utility:switch" alternativeText="switch" title="" size="x-small" class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">{!v.sectionLabelMap.evpcReview.section}</span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="evpcReviewDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-right_medium">
+                                {!v.sectionLabelMap.evpcReview.reviewInfo.EVPCReviewEDDResult__c}:
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-left_medium">
+                                <!-- <lightning:radioGroup type="radio" aura:id="inputRadio" name="evpcReviewResult" variant="label-hidden" options="{!v.endorseOptions}" value="{!v.evpcReviewResult}" disabled="{!!v.isEVPCReview}" class="display-flex" required="{!v.isEVPCReview}" /> -->
+                                <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="EVPCReviewEDDResult__c" disabled="{!!v.isEVPCReview}" required="{!v.isEVPCReview}" />
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-var-p-bottom_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.evpcReview.reviewInfo.EVPCReviewEDDComment__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="EVPCReviewEDDComment__c" disabled="{!!v.isEVPCReview}" required="{!v.isEVPCReview}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-right_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.evpcReview.reviewInfo.EVPCReviewEDDBy__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="EVPCReviewEDDBy__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-left_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.evpcReview.reviewInfo.EVPCReviewEDDDateTime__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="EVPCReviewEDDDateTime__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aura:renderIf>
+
+            <aura:renderIf isTrue="{!v.displayEndorseDueDiligenceSection}">
+                <div class="slds-section slds-is-open" aura:id="endorseDueDiligenceSection">
+                    <h3 class="slds-section__title">
+                        <button type="button" aria-controls="endorseDueDiligenceDetail" aria-expanded="true" class="slds-button slds-section__title-action" data-auraid="endorseDueDiligenceSection" onclick="{!c.handleToggleSection}">
+                            <lightning:icon iconName="utility:switch" alternativeText="switch" title="" size="x-small" class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">{!v.sectionLabelMap.endorseDueDiligence.section}</span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="endorseDueDiligenceDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-right_medium">
+                                {!v.sectionLabelMap.endorseDueDiligence.reviewInfo.EndorseDueDiligenceResult__c}:
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-left_medium">
+                                <!-- <lightning:radioGroup type="radio" aura:id="inputRadio" name="endorseDueDiligenceResult" variant="label-hidden" options="{!v.endorseOptions}" value="{!v.endorseDueDiligenceResult}" disabled="{!!v.isEndorseDueDiligence}" class="display-flex" required="{!v.isEndorseDueDiligence}" /> -->
+                                <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="EndorseDueDiligenceResult__c" disabled="{!!v.isEndorseDueDiligence}" required="{!v.isEndorseDueDiligence}" />
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-var-p-bottom_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.endorseDueDiligence.reviewInfo.EndorseDueDiligenceComment__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="EndorseDueDiligenceComment__c" disabled="{!!v.isEndorseDueDiligence}" required="{!v.isEndorseDueDiligence}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-right_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.endorseDueDiligence.reviewInfo.EndorseDueDiligenceBy__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="EndorseDueDiligenceBy__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-left_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.endorseDueDiligence.reviewInfo.EndorseDueDiligenceDateTime__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="EndorseDueDiligenceDateTime__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aura:renderIf>
+
+            <aura:renderIf isTrue="{!v.displayApproveDueDiligenceSection}">
+                <div class="slds-section slds-is-open" aura:id="approveDueDiligenceSection">
+                    <h3 class="slds-section__title">
+                        <button type="button" aria-controls="approveDueDiligenceDetail" aria-expanded="true" class="slds-button slds-section__title-action" data-auraid="approveDueDiligenceSection" onclick="{!c.handleToggleSection}">
+                            <lightning:icon iconName="utility:switch" alternativeText="switch" title="" size="x-small" class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                            <span class="slds-truncate">{!v.sectionLabelMap.approveDueDiligence.section}</span>
+                        </button>
+                    </h3>
+                    <div class="slds-section__content" id="approveDueDiligenceDetail">
+                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-right_medium">
+                                {!v.sectionLabelMap.approveDueDiligence.reviewInfo.ApproveDueDiligenceResult__c}:
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-left_medium">
+                                <!-- <lightning:radioGroup type="radio" aura:id="inputRadio" name="approveDueDiligenceResult" variant="label-hidden" options="{!v.approveOptions}" value="{!v.approveDueDiligenceResult}" disabled="{!!v.isApproveDueDiligence}" class="display-flex" required="{!v.isApproveDueDiligence}" /> -->
+                                <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="ApproveDueDiligenceResult__c" disabled="{!!v.isApproveDueDiligence}" required="{!v.isApproveDueDiligence}" />
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-var-p-bottom_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.approveDueDiligence.reviewInfo.ApproveDueDiligenceComment__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="ApproveDueDiligenceComment__c" disabled="{!!v.isApproveDueDiligence}" required="{!v.isApproveDueDiligence}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-right_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.approveDueDiligence.reviewInfo.ApproveDueDiligenceBy__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="ApproveDueDiligenceBy__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-var-p-bottom_medium slds-var-p-left_medium">
+                                <div class="slds-form">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                            {!v.sectionLabelMap.approveDueDiligence.reviewInfo.ApproveDueDiligenceDateTime__c}:
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField aura:id="inputField" variant="label-hidden" fieldName="ApproveDueDiligenceDateTime__c" disabled="true" class="lookup-disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aura:renderIf>
+
+            <aura:renderIf isTrue="{!v.isEdit}">
+                <div class="slds-align_absolute-center slds-var-p-bottom_medium">
+                    <lightning:button variant="brand-outline" label="Cancel" title="Cancel" onclick="{!c.handleCancel}" />
+                    <lightning:button type="submit" variant="brand" label="Submit" title="Submit" />
+                </div>
+            </aura:renderIf>
+        </lightning:recordEditForm>
+        <aura:if isTrue="{!!v.isLoaded}">
+            <lightning:spinner variant="brand" style="z-index:2" />
+        </aura:if>
+    </section>
+</aura:component>

@@ -1,0 +1,77 @@
+<apex:page controller="ESS_LetterReportExcelController"
+  language="th"
+  cache="true" showHeader="false" action="{!OnloadExcel}"
+  contentType="application/vnd.ms-excel#Recommendation Letter Report - {!todayDate}.xls">
+  <!-- contentType="application/vnd.ms-excel#{!reportName} Report - {!TodayDate}.xls"> -->
+    
+    <html lang="en">
+      <head>
+          <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+          <style>
+                table, td, th {
+                  border: 1px solid;
+                }
+                
+                table {
+                  width: 100%;
+                  border-collapse: collapse;
+                }
+                .text { mso-number-format:\@; }
+            </style>
+      </head>
+      <body>
+      
+          <apex:outputPanel rendered="{!letterSize > 0}">
+              <h3>Recommendation Letter Report</h3> <br/>
+              <table>
+                  <tr>
+                      <th>Document No.</th>
+                      <th>Employee Id</th>
+                      <th>Employee Name</th>
+                      <th>Position</th>
+                      <th>Letter Type</th>
+                      <th>Language</th>
+                      <th>Purpose</th>
+                      <th>To Organization</th>
+                      <th>Created Date</th>
+                      <th>Generated Date</th>
+                      <th>Current Status</th>
+                      <th>Function</th>
+                      <th>Department</th>
+                      <th>Section</th>
+                      <th>Unit</th>
+                  </tr>
+                  <apex:repeat value="{!recommendationLetterTables}" var="Data">
+                      <tr>
+                          <td>{!Data.documentNo}</td>
+                          <td class="text">{!Data.employeeId}</td>
+                          <td>{!Data.employeeName}</td>
+                          <td>{!Data.position}</td>
+                          <td>{!Data.letterType.value}</td>
+                          <td>{!Data.language.value}</td>
+                          <td>{!Data.purpose}</td>
+                          <td>{!Data.toOrganization}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.createdDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.generatedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.status.value}</td>
+                          <td>{!Data.function}</td>
+                          <td>{!Data.department}</td>
+                          <td>{!Data.section}</td>
+                          <td>{!Data.unit}</td>
+                      </tr>
+                  </apex:repeat>
+              </table>
+          </apex:outputPanel>
+          
+      </body>
+  </html>
+    
+</apex:page>

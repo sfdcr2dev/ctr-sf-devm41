@@ -1,0 +1,69 @@
+.THIS .slds-center {
+	text-align: center;
+}
+
+.THIS .slds-card__header-title {
+	font-size: 1.5rem;
+}
+
+.THIS .slds-card__body_inner {
+	/* padding-bottom: 1rem; */
+	padding-top: 1rem;
+}
+
+.THIS .ql-align-right {
+	text-align: right;
+}
+
+.THIS .ql-align-center {
+	text-align: center;
+}
+
+.THIS .ql-font-serif {
+	font-family: serif;
+}
+
+.THIS .btn-inline-block {
+	/* width: 100%; */
+	margin: auto;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.THIS .slds-card__header-title {
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 9px;
+	font-size: 18px;
+}
+.THIS.container__filter {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.THIS .label-name-line {
+	line-height: 1 !important;
+}
+
+@media (max-width: 602px) {
+	.THIS .slds-text-title_bold {
+		font-size: var(--lwc-fontSize5, 0.875rem);
+		font-weight: bolder !important;
+	}
+
+	.THIS .slds-text-body_regular {
+		font-size: 0.875rem !important;
+		font-weight: normal !important;
+	}
+}
+
+.THIS .slds-avatar.slds-avatar_circle {
+	margin: 0 !important;
+	width: 6rem !important;
+	height: 6rem !important;
+}
+
+.THIS input.select2-search__field {
+	width: 100% !important;
+}

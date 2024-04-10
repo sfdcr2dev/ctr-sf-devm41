@@ -1,0 +1,113 @@
+<aura:component access="global">
+
+    <aura:attribute name="isModalOpen" type="boolean" default="false" />
+    <aura:attribute name="email" type="CTRRequestFormItem__c" default="{}" />
+    <aura:attribute name="attachments" type="List" default="[]" />
+    <aura:attribute name="formattedEmailTo" type="String" default="" access="private" />
+
+    <aura:handler name="change" value="{!v.email}" action="{!c.doInit}" />
+
+    <aura:if isTrue="{!v.isModalOpen}">
+        <!-- Modal Background -->
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        <div>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class="slds-modal slds-fade-in-open slds-modal_small">
+                
+                <!-- Modal Header -->
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                        Preview Email
+                    </h2>
+                </header>
+                
+                <!-- Modal Body -->
+                <div class="slds-modal__content slds-var-p-around_medium">
+                    <div class="slds-var-m-top_medium slds-var-m-bottom_x-large">
+                        <div class="slds-grid slds-wrap">
+                            
+                            <!-- Committee Email -->
+                            <div class="slds-section slds-is-open" style="width:100%">
+                                <div class="slds-section__content">
+                                    <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                        
+                                        <!-- Email To -->
+                                        <div class="slds-col slds-size_12-of-12 custom-slds-line-break">
+                                            <div class="slds-form slds-form_horizontal">
+                                                <div class="slds-form-element slds-var-m-bottom_small">
+                                                    <label class="slds-form-element__label slds-text-title">Email To:</label>
+                                                    <div class="slds-form-element__control text-break-word text-bold">
+                                                        {!v.formattedEmailTo}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- CC Email -->
+                                        <div class="slds-col slds-size_12-of-12 custom-slds-line-break slds-var-m-top_small">
+                                            <div class="slds-form slds-form_horizontal">
+                                                <div class="slds-form-element slds-var-m-bottom_small">
+                                                    <label class="slds-form-element__label slds-text-title">CC:</label>
+                                                    <div class="slds-form-element__control text-break-word text-bold">
+                                                        {!v.email.EmailCC__c}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Subject -->
+                                        <div class="slds-col slds-size_12-of-12 custom-slds-line-break slds-var-m-top_small">
+                                            <div class="slds-form slds-form_horizontal">
+                                                <div class="slds-form-element slds-var-m-bottom_small">
+                                                    <label class="slds-form-element__label slds-text-title">Subject:</label>
+                                                    <div class="slds-form-element__control text-break-word text-bold">
+                                                        {!v.email.Subject__c}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Message -->
+                                        <div class="slds-col slds-size_12-of-12 custom-slds-line-break slds-var-m-top_small">
+                                            <div class="slds-form slds-form_horizontal">
+                                                <div class="slds-form-element slds-var-m-bottom_small">
+                                                    <label class="slds-form-element__label slds-text-title">Message:</label>
+                                                    <div class="slds-form-element__control text-break-word">
+                                                        <lightning:formattedRichText value="{!v.email.Message__c}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Attachment -->
+                                        <aura:if isTrue="{!AND(v.attachments, v.attachments.length > 0)}">
+                                            <div class="slds-col slds-size_12-of-12 custom-slds-line-break slds-var-m-top_small" >
+                                                <div class="slds-form slds-form_horizontal">
+                                                    <div class="slds-form-element slds-var-m-bottom_small">
+                                                        <label class="slds-form-element__label slds-text-title">Attachments:</label>
+                                                        <div class="slds-form-element__control text-break-word">
+                                                            <aura:iteration items="{!v.attachments}" var="file">
+                                                                <p>{!file.Title}</p>    
+                                                            </aura:iteration>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </aura:if>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <footer class="slds-modal__footer">
+                    <div class="slds-grid slds-grid_align-center" style="margin-top: 1rem;">
+                        <lightning:button label="Cancel" onclick="{!c.closeModal}" />
+                    </div>
+                </footer>
+            </section>
+        </div>
+    </aura:if>
+
+</aura:component>

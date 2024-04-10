@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>ORTLActionRecordPage</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>ORTLActionRecordPage</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>ORTLActionCompactLayout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>ORTLActionCompactLayout</fullName>
+        <fields>Name</fields>
+        <fields>Risk__c</fields>
+        <fields>TaskType__c</fields>
+        <fields>TagNo__c</fields>
+        <fields>OwnerId</fields>
+        <label>ORTL Action Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Read</externalSharingModel>
+    <fields>
+        <fullName>APU__c</fullName>
+        <description>APU of selected Tag no.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Default from Risk record</inlineHelpText>
+        <label>APU</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ActionBy__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.FirstName+&quot; &quot;+Owner:User.LastName</formula>
+        <label>Action By</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CancelReason__c</fullName>
+        <description>Reason of cancel action</description>
+        <externalId>false</externalId>
+        <label>Cancel Reason</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>CloseDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Close Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>DueDate__c</fullName>
+        <defaultValue>Today()+30</defaultValue>
+        <description>Date to finish task</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Default 30 days after create action record and editable</inlineHelpText>
+        <label>Due Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>InitialDate__c</fullName>
+        <description>Create Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Format: DD/MM/YYYY</inlineHelpText>
+        <label>Initial Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IsActive__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Indicate Record Status Active/Inactive</description>
+        <externalId>false</externalId>
+        <label>Is Active</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsOwner__c</fullName>
+        <externalId>false</externalId>
+        <formula>$User.Id = Owner:User.Id</formula>
+        <label>IsOwner</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MitigateCons__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To check if an action was created to mitigate consequence</description>
+        <externalId>false</externalId>
+        <inlineHelpText>To check if an action was created to mitigate consequence</inlineHelpText>
+        <label>Mitigate Consequence</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Notification__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>SAP Notification Number</description>
+        <externalId>false</externalId>
+        <label>Notification</label>
+        <referenceTo>Notification__c</referenceTo>
+        <relationshipLabel>Action</relationshipLabel>
+        <relationshipName>Action1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Objective__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND(ReduceLLH__c = true, MitigateCons__c  = false),&quot;Reduce Likelihood&quot;, 
+ IF(AND(ReduceLLH__c = false, MitigateCons__c  = true), &quot;Mitigate Consequence&quot;, 
+ IF(AND(ReduceLLH__c = true, MitigateCons__c  = true), &quot;Reduce Likelihood, Mitigate Consequence&quot;, null) ) )</formula>
+        <label>Objective</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PlantCode__c</fullName>
+        <externalId>false</externalId>
+        <formula>TagNo__r.Company_Code__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Plant Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PlantSection__c</fullName>
+        <externalId>false</externalId>
+        <label>Plant Section</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Plant__c</fullName>
+        <description>Display Plant Section of selected Tag no.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Default from Risk record</inlineHelpText>
+        <label>Plant</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReduceLLH__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To check if an action was created to reduce likelihood</description>
+        <externalId>false</externalId>
+        <inlineHelpText>To check if an action was created to reduce likelihood</inlineHelpText>
+        <label>Reduce Likelihood</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>RiskScenario__c</fullName>
+        <description>Default from Risk record</description>
+        <externalId>false</externalId>
+        <label>Threat Scenario</label>
+        <length>20000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Risk__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Threat</label>
+        <referenceTo>ORTLRisk__c</referenceTo>
+        <relationshipLabel>Action</relationshipLabel>
+        <relationshipName>Action</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Section__c</fullName>
+        <description>Task owner section detail</description>
+        <externalId>false</externalId>
+        <label>Section</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>ORTLSectionValue</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TagNo__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <description>Functional Location</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Default from Risk record</inlineHelpText>
+        <label>Tag No.</label>
+        <referenceTo>Functional_Location__c</referenceTo>
+        <relationshipLabel>Action</relationshipLabel>
+        <relationshipName>Action</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>TaskCopyOwner__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.FirstName &amp;&quot; &quot;&amp; Owner:User.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Task Copy Owner</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TaskDescription__c</fullName>
+        <description>Task Description detail</description>
+        <externalId>false</externalId>
+        <label>Task Description</label>
+        <length>20000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>TaskInitiator__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Name Risk owner</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Default name as created user</inlineHelpText>
+        <label>Task Initiator</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Action1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>TaskOwner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Name of assigned action owner</description>
+        <externalId>false</externalId>
+        <label>Task Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Action</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>TaskStatus__c</fullName>
+        <description>Display the current status</description>
+        <externalId>false</externalId>
+        <label>Task Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>ORTLTaskStatus</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TaskTitle__c</fullName>
+        <description>Task title detail</description>
+        <externalId>false</externalId>
+        <label>Task Title</label>
+        <length>5000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>TaskType__c</fullName>
+        <description>Display task type</description>
+        <externalId>false</externalId>
+        <label>Task Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Assessment</fullName>
+                    <default>false</default>
+                    <label>Assessment</label>
+                </value>
+                <value>
+                    <fullName>Awaiting Opportunity</fullName>
+                    <default>false</default>
+                    <label>Awaiting Opportunity</label>
+                </value>
+                <value>
+                    <fullName>Implementation</fullName>
+                    <default>false</default>
+                    <label>Implementation</label>
+                </value>
+                <value>
+                    <fullName>Moc</fullName>
+                    <default>false</default>
+                    <label>Moc</label>
+                </value>
+                <value>
+                    <fullName>Planning</fullName>
+                    <default>false</default>
+                    <label>Planning</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>txtPlanningPlant__c</fullName>
+        <externalId>false</externalId>
+        <label>Planning Plant</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txtTagNo__c</fullName>
+        <description>To search in list view</description>
+        <externalId>false</externalId>
+        <label>Tag No.</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Action</label>
+    <listViews>
+        <fullName>APUA</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>TaskTitle__c</columns>
+        <columns>TaskType__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>TaskStatus__c</columns>
+        <columns>DueDate__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>A</value>
+        </filters>
+        <label>APU A</label>
+    </listViews>
+    <listViews>
+        <fullName>APUB</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>TaskTitle__c</columns>
+        <columns>TaskType__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>TaskStatus__c</columns>
+        <columns>DueDate__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>B</value>
+        </filters>
+        <filters>
+            <field>TaskStatus__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </filters>
+        <filters>
+            <field>PlantSection__c</field>
+            <operation>equals</operation>
+            <value>UTILITY</value>
+        </filters>
+        <filters>
+            <field>txtPlanningPlant__c</field>
+            <operation>equals</operation>
+            <value>1200</value>
+        </filters>
+        <label>APU B</label>
+    </listViews>
+    <listViews>
+        <fullName>APUC</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>TaskTitle__c</columns>
+        <columns>TaskType__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>TaskStatus__c</columns>
+        <columns>DueDate__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>C</value>
+        </filters>
+        <label>APU C</label>
+    </listViews>
+    <listViews>
+        <fullName>APUD</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>TaskTitle__c</columns>
+        <columns>TaskType__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>TaskStatus__c</columns>
+        <columns>DueDate__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>D</value>
+        </filters>
+        <label>APU D</label>
+    </listViews>
+    <listViews>
+        <fullName>APUE</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>TaskTitle__c</columns>
+        <columns>TaskType__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>TaskStatus__c</columns>
+        <columns>DueDate__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>E</value>
+        </filters>
+        <label>APU E</label>
+    </listViews>
+    <listViews>
+        <fullName>APUF</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>TaskTitle__c</columns>
+        <columns>TaskType__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>TaskStatus__c</columns>
+        <columns>DueDate__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>F</value>
+        </filters>
+        <label>APU F</label>
+    </listViews>
+    <listViews>
+        <fullName>ActionInProgress</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>TaskTitle__c</columns>
+        <columns>TaskType__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>TaskStatus__c</columns>
+        <columns>DueDate__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>TaskStatus__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </filters>
+        <label>Action in progress</label>
+    </listViews>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>TaskTitle__c</columns>
+        <columns>TaskType__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>TaskStatus__c</columns>
+        <columns>InitialDate__c</columns>
+        <columns>DueDate__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Chayut_list</fullName>
+        <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>TaskTitle__c</columns>
+        <columns>TaskType__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>TaskStatus__c</columns>
+        <columns>DueDate__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>C</value>
+        </filters>
+        <filters>
+            <field>PlantSection__c</field>
+            <operation>equals</operation>
+            <value>TOC3</value>
+        </filters>
+        <filters>
+            <field>PlantSection__c</field>
+            <operation>equals</operation>
+            <value>TOC3</value>
+        </filters>
+        <filters>
+            <field>TaskStatus__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </filters>
+        <filters>
+            <field>IsActive__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Chayut list</label>
+        <sharedTo>
+            <group>ENMC</group>
+            <group>MFOP</group>
+            <group>MROC</group>
+            <group>TNPC</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CompletedAction</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>TaskTitle__c</columns>
+        <columns>TaskType__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>TaskOwner__c</columns>
+        <columns>TaskStatus__c</columns>
+        <columns>DueDate__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>TaskStatus__c</field>
+            <operation>equals</operation>
+            <value>Done</value>
+        </filters>
+        <label>Completed Action</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Action_List</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>TaskTitle__c</columns>
+        <columns>TaskType__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>TaskStatus__c</columns>
+        <columns>DueDate__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Action List</label>
+    </listViews>
+    <nameField>
+        <label>Action No.</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
+        <excludedStandardButtons>NewFromDocument</excludedStandardButtons>
+        <excludedStandardButtons>PrintableListView</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Import</excludedStandardButtons>
+        <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <searchResultsAdditionalFields>txtTagNo__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>APU__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PlantSection__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RiskScenario__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TaskTitle__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TaskType__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.FIRST_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TaskStatus__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>DueDate__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <validationRules>
+        <fullName>ORTLActionCheckCancelReason</fullName>
+        <active>true</active>
+        <errorConditionFormula>text(TaskStatus__c) = &apos;Canceled&apos; &amp;&amp; (CancelReason__c)=&apos;&apos;</errorConditionFormula>
+        <errorMessage>Please enter Cancel reason</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ORTLActionCheckIsChangeActionNo</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+NOT(ISNEW()),
+ISCHANGED( Name ),
+NOT($Profile.Name = &quot;ผู้ดูแลระบบ&quot;)
+)</errorConditionFormula>
+        <errorMessage>Cannot change value of ActionNo.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

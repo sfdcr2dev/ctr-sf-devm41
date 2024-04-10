@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>ButtonBar</field>
+        <field>Customer__c</field>
+        <field>RecordTypeName__c</field>
+        <field>RiskLevelbySystem__c</field>
+        <field>RequiredDocCompletion__c</field>
+        <field>Owner</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>MDCMngName__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <label>MDCM Approve</label>
+        <name>MDCMApprove</name>
+    </approvalStep>
+    <description>CTR TX Edit Supplier Master Data Controller Manager Approval</description>
+    <emailTemplate>CTREmailTemplate/CTREditSupplierInformationRequestMDCMForApproval</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <criteriaItems>
+            <field>CTRRequestFormItem__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CTRRequestFormItem__c.Approval_Step__c</field>
+            <operation>equals</operation>
+            <value>Summary Report</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CTRRequestFormItem__c.RecordType</field>
+            <operation>equals</operation>
+            <value>Edit Supplier Information</value>
+        </criteriaItems>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>InformRelevantUserAfterMDCMDecision</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>UpdateFieldRequestStatusApproved1</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>InformRelevantUserAfterMDCMDecision</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>UpdateFieldRequestStatusRejected1</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>CTR TX Edit Supplier: MDCM Approval</label>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

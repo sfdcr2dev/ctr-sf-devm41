@@ -1,0 +1,33 @@
+<apex:page controller="WAP_Map" standardStylesheets="false" lightningStylesheets="false" sidebar="false"
+  showHeader="false" applyHtmlTag="true" applyBodyTag="false" docType="html-5.0" language="th">
+
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <link rel="stylesheet" href="{!URLFOR($Resource.WAP_Frontend,'/css/icomoon.css')}?d=1668924349948"></link>
+    <title>Home</title>
+    <script>
+      window.assetsPath = "{!URLFOR($Resource.WAP_Frontend)}";
+      window.homePath = "{!$Page.WAP_Home}";
+    </script>
+    <script type="module" crossorigin="anonymous" src="{!URLFOR($Resource.WAP_Frontend,'/assets/home.js')}?d=1668924349948"></script>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.WAP_Frontend,'/assets/Label.js')}?d=1668924349948"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.WAP_Frontend,'/assets/Modal.js')}?d=1668924349948"></link>
+    <link rel="modulepreload" crossorigin="anonymous" href="{!URLFOR($Resource.WAP_Frontend,'/assets/Link.js')}?d=1668924349948"></link>
+    <link rel="stylesheet" href="{!URLFOR($Resource.WAP_Frontend,'/assets/style.css')}?d=1668924349948"></link>
+  </head>
+
+  <body>
+    <script>
+      window.googleAPIKey = "{!googleAPIKey}";
+    </script>
+    <div id="app"></div>
+    
+  </body>
+
+  </html>
+
+</apex:page>

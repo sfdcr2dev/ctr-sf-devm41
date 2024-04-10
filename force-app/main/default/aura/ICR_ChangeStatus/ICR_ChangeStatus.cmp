@@ -1,0 +1,257 @@
+<aura:component controller="ICR_ChangeStatusController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    
+    <aura:attribute name="isCancelOpen" type="boolean" default="false"/>
+    <aura:attribute name="isDisappointOpen" type="boolean" default="false"/>
+    <aura:attribute name="isExpireOpen" type="boolean" default="false"/>
+    <aura:attribute name="isCancelAvailable" type="boolean" default="false"/>
+    <aura:attribute name="isDisappointAvailable" type="boolean" default="false"/>
+    <aura:attribute name="isAskToReviewAvailable" type="boolean" default="false"/>
+    <aura:attribute name="isAMMConclusionError" type="boolean" default="false"/>
+    <aura:attribute name="isActiveCommittee" type="boolean" default="false"/>
+    <aura:attribute name="isShowActive" type="boolean" default="false"/>
+    <aura:attribute name="isLoading" type="Boolean" default="false" />
+    <aura:attribute name="isExpirePermission" type="Boolean" default="false" />
+    <aura:attribute name="isCancelReasonFill" type="Boolean" default="true" />
+    
+    <aura:attribute name="CancelReason" type="string" default=""/>
+    <aura:attribute name="ICRName" type="string" default=""/>
+    <aura:attribute name="ReviewTitle" type="string" default=""/>
+    <aura:attribute name="ReviewSentTitle" type="string" default=""/>
+    <aura:attribute name="ActiveStatusTitle" type="string" default=""/>
+    
+    <aura:attribute name="RecordData" type="Object"/>
+    <force:recordData aura:id="recordLoader"
+      fields="Name,Status__c,Cancel_Reason__c,Type__c,AMM_Conclusion__c,Active__c,RecordType.Name"
+      recordId="{!v.recordId}"
+      targetFields="{!v.RecordData}"
+      />
+    
+    <div class="slds-m-around_xx-small">  
+        <div class="customDiv">
+            
+            <aura:if isTrue="{! v.isLoading  }">
+                <lightning:spinner alternativeText="Loading" />
+            </aura:if>
+            
+            <aura:if isTrue="{!v.isShowActive == true}"> 
+                <aura:if isTrue="{!v.isActiveCommittee == true}"> 
+                    <div align="center" class="activeDiv">
+                        Active Committee
+                        
+                		<aura:if isTrue="{!v.isExpirePermission == true}"> 
+                        <lightning:Button class="activeButton" variant="brand"
+                                  label="Expire" 
+                                  title="Expire"
+                                  onclick="{! c.goToExpire }"
+                                  />
+                        </aura:if>
+                        <aura:if isTrue="{!v.isExpirePermission == false}"> 
+                        <lightning:Button class="activeDisableButton" variant="brand"
+                                  label="Expire" 
+                                  title="Expire"
+                                  disabled="true"
+                                  />
+                        </aura:if>
+                    </div>
+                </aura:if>
+                
+                <aura:if isTrue="{!v.isActiveCommittee == false}"> 
+                    <div align="center" class="expiredDiv">
+                        Expired Committee
+                        <lightning:Button class="expiredButton" variant="brand"
+                                  label="Expired" 
+                                  title="Expired"
+                                  disabled="true"
+                        />
+                    </div>
+                </aura:if>
+            </aura:if>
+            
+            <!-- <aura:if isTrue="{!v.isActiveCommittee}"> 
+            <lightning:Button class="activeButton" variant="brand"
+                          label="" 
+                          title=""
+                          onclick="{! c.changeToExpired }"
+                          />
+            </aura:if> -->
+            <br/>
+            <aura:if isTrue="{!v.isCancelAvailable}"> 
+            <lightning:Button class="cancelButton" variant="brand"
+                          label="Cancel" 
+                          title="Cancel"
+                          onclick="{! c.goToCancel }"
+                          />
+            </aura:if>
+            
+            <aura:if isTrue="{!v.isCancelAvailable == false}"> 
+        	<lightning:Button class="disableButton" variant="brand"
+                          label="Cancel" 
+                          title="Cancel"
+                          disabled="true"
+                          />
+            </aura:if>
+        
+            <aura:if isTrue="{!v.isDisappointAvailable}"> 
+            <lightning:Button class="disappointButton" variant="brand"
+                          label="Disappoint" 
+                          title="Disappoint"
+                          onclick="{! c.goToDisappoint }" 
+                          />
+            </aura:if>
+        
+            <aura:if isTrue="{!v.isDisappointAvailable == false}"> 
+            	<lightning:Button class="disableButton" variant="brand"
+                          label="Disappoint" 
+                          title="Disappoint"
+                          disabled="true"
+                          />
+            </aura:if>
+            <br/><br/>
+            <aura:if isTrue="{!v.isAskToReviewAvailable}"> 
+            	<lightning:Button class="askToReviewButton" variant="brand"
+                              	label="{!v.ReviewTitle}" 
+                          		title="{!v.ReviewTitle}"
+                          		onclick="{! c.askToReview }"
+                          />
+                <aura:if isTrue="{!v.ReviewTitle == 'Resend to Review'}"> 
+                	<span style="color:red">{!v.ReviewSentTitle}</span>
+                </aura:if>
+            </aura:if>
+        
+        <!--Use aura:if tag to display/hide popup based on isModalOpen value-->  
+        <aura:if isTrue="{!v.isCancelOpen}">    
+            <!-- Modal/Popup Box starts here-->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box Header Starts here-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModal }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate"><span style="color:red">ICR {!v.ICRName}</span></h2>
+                    </header>
+                    <!--Modal/Popup Box Body Starts here-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <div class="slds-p-around_medium lgc-bg">
+                            <lightning:input type="text" label="Enter Cancel Reason" placeholder="" required="true" value="{!v.CancelReason}"></lightning:input>
+                        	
+                            <aura:if isTrue="{!v.isCancelReasonFill == false}">
+                                <span style="color:red;">** Please fill in 'Cancel Reason'.</span>
+                            </aura:if>
+                        </div>
+                        <br/>
+                        <p style="font-size:16px;margin-left:20px;">
+                            <b>
+                                Are you sure you want to <span style="color:red">Cancel</span> this ICR ?
+                            </b>
+                        </p>
+                    </div>
+                    <!--Modal/Popup Box Footer Starts here-->
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral"
+                                          label="Yes"
+                                          title="Yes"
+                                          onclick="{! c.changeToCancel }"/>
+                        <lightning:button variant="neutral"
+                                          label="No"
+                                          title="No"
+                                          onclick="{! c.closeModal }"/>
+                    </footer>
+                    
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+            
+        <aura:if isTrue="{!v.isDisappointOpen}">    
+            <!-- Modal/Popup Box starts here-->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box Header Starts here-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModal }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate"><span style="color:red">ICR {!v.ICRName}</span></h2>
+                    </header>
+                    <!--Modal/Popup Box Body Starts here-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                <p style="font-size:16px">
+                                    <aura:if isTrue="{!v.isAMMConclusionError == false}">
+                                    <b>
+                                        Are you sure you want to <span style="color:red">Disappoint</span> this ICR ?
+                                    </b>
+                                    </aura:if>
+        							<aura:if isTrue="{!v.isAMMConclusionError == true}">
+                                        Cannot Disappoint this ICR as AMM Conclusion is not 'Disappoint'. <br/>
+										<span style="color:red;">** Please select AMM Conclusion as 'Disappoint'.</span>
+                                    </aura:if>
+                                </p>
+                            </div>
+                    <!--Modal/Popup Box Footer Starts here-->
+                    <footer class="slds-modal__footer">
+        				<aura:if isTrue="{!v.isAMMConclusionError == false}">    
+                        <lightning:button variant="neutral"
+                                          label="Yes"
+                                          title="Yes"
+                                          onclick="{! c.changeToDisappoint }"/>
+                        </aura:if>
+                        <lightning:button variant="neutral"
+                                          label="No"
+                                          title="No"
+                                          onclick="{! c.closeModal }"/>
+                    </footer>
+                    
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+            
+        <aura:if isTrue="{!v.isExpireOpen}">    
+            <!-- Modal/Popup Box starts here-->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box Header Starts here-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModal }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate"><span style="color:red">ICR {!v.ICRName}</span></h2>
+                    </header>
+                    <!--Modal/Popup Box Body Starts here-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                <p style="font-size:16px">
+                                    <b>
+                                        Are you sure you want to <span style="color:red">Expire</span> this Committee ?
+                                    </b>
+                                </p>
+                            </div>
+                    <!--Modal/Popup Box Footer Starts here-->
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral"
+                                          label="Yes"
+                                          title="Yes"
+                                          onclick="{! c.changeToExpired }"/>
+                        <lightning:button variant="neutral"
+                                          label="No"
+                                          title="No"
+                                          onclick="{! c.closeModal }"/>
+                    </footer>
+                    
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+        </div>
+    </div>
+    
+</aura:component>

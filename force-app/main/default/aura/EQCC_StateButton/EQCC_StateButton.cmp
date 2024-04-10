@@ -1,0 +1,20 @@
+<aura:component>
+    <aura:attribute name="buttonstate" type="Boolean" default="false" access="global" />
+    <aura:attribute name="labelOff" type="String" default="" access="global" />
+    <aura:attribute name="labelOn" type="String" default="" access="global" />
+    <aura:attribute name="labelHover" type="String" default="" access="global" />
+    <aura:attribute name="iconOff" type="String" default="" access="global" />
+    <aura:attribute name="iconOn" type="String" default="" access="global" />
+    <aura:attribute name="iconHover" type="String" default="" access="global" />
+
+    <lightning:buttonStateful
+        labelWhenOff="{!v.labelOff}"
+        labelWhenOn="{!v.labelOn}"
+        labelWhenHover="{!v.labelHover}"
+        iconNameWhenOff="utility:close"
+        iconNameWhenOn="utility:check"
+        iconNameWhenHover="utility:close"
+        state="{! v.buttonstate }"
+        onclick="{! c.handleClick }"
+    />
+</aura:component>

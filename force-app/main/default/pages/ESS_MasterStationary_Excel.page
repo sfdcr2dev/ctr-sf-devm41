@@ -1,0 +1,119 @@
+<apex:page controller="ESS_MasterStationaryExcelController"
+  language="th"
+  cache="true" showHeader="false" action="{!OnloadExcel}"
+  contentType="application/vnd.ms-excel#Master Stationary Report - {!todayDate}.xls">
+  
+  <html lang="en">
+      <head>
+          <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+          <style>
+                table, td, th {
+                  border: 1px solid;
+                }
+                
+                .tableNone {
+                  border: none !important;
+                }
+                
+                table {
+                  width: 100%;
+                  border-collapse: collapse;
+                }
+                .text { mso-number-format:\@; }
+            </style>
+      </head>
+      <body>
+      
+          <apex:outputPanel rendered="{!masterStationarySize > 0}">
+              
+              <table class="tableNone">
+              <h3>Master Stationary Report</h3> <br/>
+              <h3>Year : {!year}, Month : ALL, Stationery from : {!stationaryFrom}</h3>
+                  <tr>
+                      <td class="tableNone"></td>
+                      <td class="tableNone"></td>
+                      <td class="tableNone"></td>
+                      <td class="tableNone"></td>
+                      <td class="tableNone"></td>
+                      <td class="tableNone"></td>
+                      <td class="tableNone"></td>
+                      <td class="tableNone"></td>
+                      <td class="tableNone"></td>
+                      <td class="tableNone"></td>
+                      <td class="tableNone"></td>
+                      <td class="tableNone"><b>Date as of : 
+                          <apex:outputText value="{0,date,dd'/'MM'/'yyyy}" >  
+                            <apex:param value="{!todayDate}"/>  
+                          </apex:outputText></b>
+                      </td>
+                      <td class="tableNone"></td>
+                  </tr>
+                  <tr>
+                      <th>Id</th>
+                      <th>Type</th>
+                      <th>Name</th>
+                      <th>หน่วย</th>
+                      <th>ราคาขายต่อหน่วย (Price)</th>
+                      <th>จำนวนน้อยสุด (Minimum Stock)</th>
+                      <th>จำนวนคงคลัง</th>
+                      <th>จำนวนค้างจ่าย</th>
+                      <th>จำนวนที่สามารถเบิกได้</th>
+                      <th>Supplier</th>
+                      <th>Last Updated Date</th>
+                      <th>Last Updated By</th>
+                      <th>Active Status</th>
+                  </tr>
+                  <apex:repeat value="{!stationaryTables}" var="Data">
+                      <tr>
+                          <td>{!Data.stationaryId}</td>
+                          <td>{!Data.type.value}</td>
+                          <td>{!Data.stationaryName}</td>
+                          <td>{!Data.unit}</td>
+                          <td>
+                              <apex:outputText styleClass="text" value="{0, number, ###,###,###.##}" >  
+                                <apex:param value="{!Data.price}"/>  
+                              </apex:outputText>
+                              
+                              <!-- <apex:outputPanel rendered="{!MOD(Data.price*100, 100)=0}">
+                                  <apex:outputText value="{0, number, ###,###,###}.00">
+                                      <apex:param value="{!Data.price}" />
+                                  </apex:outputText>
+                              </apex:outputPanel>
+                              
+                              <apex:outputPanel rendered="{!MOD(Data.price*100, 100)>0}">
+                                  <apex:outputText value="{0, number, ###,###,###.00}">
+                                      <apex:param value="{!Data.price}" />
+                                  </apex:outputText>
+                              </apex:outputPanel> -->
+                          </td>
+                          <td>{!Data.minimumStock}</td>
+                          <apex:outputPanel rendered="{!Data.isLowerMinimumStock == true}">
+                              <td style="background-color:#FFC7CE;color:#9C0006;">{!Data.stockOnHand}</td>
+                          </apex:outputPanel>
+                          <apex:outputPanel rendered="{!Data.isLowerMinimumStock == false}">
+                              <td>{!Data.stockOnHand}</td>
+                          </apex:outputPanel>
+                          <td>{!Data.dueStock}</td>
+                          <apex:outputPanel rendered="{!Data.isDueStockMore == true}">
+                              <td style="background-color:#FFC7CE;color:#9C0006;">{!Data.availableStock}</td>
+                          </apex:outputPanel>
+                          <apex:outputPanel rendered="{!Data.isDueStockMore == false}">
+                              <td>{!Data.availableStock}</td>
+                          </apex:outputPanel>
+                          <td>{!Data.supplier.value}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.lastUpdatedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.lastUpdatedBy}</td>
+                          <td>{!Data.active}</td>
+                      </tr>
+                  </apex:repeat>
+              </table>
+          </apex:outputPanel>
+          
+      </body>
+  </html>
+  
+</apex:page>

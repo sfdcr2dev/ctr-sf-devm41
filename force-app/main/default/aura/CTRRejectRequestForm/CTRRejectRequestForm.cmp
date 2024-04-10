@@ -1,0 +1,48 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName,force:lightningQuickActionWithoutHeader" controller="CTRComplianceCheckController" access="global">
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="recordObject" type="Object" />
+
+    <aura:attribute name="isLoaded" type="Boolean" default="false" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:html tag="style">
+        .slds-modal__container {        
+        	width: 90% !important;
+            max-width: 60% !important;
+        	height: 100% !important; 
+            /*   width:210mm;
+            height:297mm;*/
+        }
+        .cuf-content {
+            padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+            padding: 0rem !important;
+        }       
+        .slds-modal__content {
+            overflow-y: hidden !important;
+            height: unset !important;
+            max-height: unset !important;
+        }
+    </aura:html>
+
+    <div class="slds-modal--large">
+        <div class="slds-modal__header slds-size_1-of-1">
+            <h2 class="slds-text-heading--medium">Confirm Reject Request Form</h2>
+        </div>
+        <div class="slds-modal__content slds-var-p-around_xx-large slds-size_1-of-1 slds-is-relative">
+            <div class="slds-align_absolute-center slds-text-heading_small" style="height: 5rem;">
+                Do you intent to confirm reject this request form?
+            </div>
+        </div>
+        <div class="modal-footer slds-modal__footer slds-size_1-of-1" style="text-align: center;">
+            <lightning:button variant="neutral" label="Cancel" onclick="{!c.handleCancel}" />
+            <lightning:button variant="brand" label="Confirm" onclick="{!c.handleConfirm}" />
+        </div>
+        <aura:if isTrue="{!!v.isLoaded}">
+            <lightning:spinner variant="brand" style="z-index:2" />
+        </aura:if>
+    </div>
+</aura:component>

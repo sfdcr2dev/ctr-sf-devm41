@@ -1,0 +1,18 @@
+.THIS .slds-tabs_path .slds-is-current {
+    background-color: rgb(9, 54, 16);
+}
+.THIS .slds-tabs_path .slds-is-current+.slds-is-incomplete:before{
+    background-color: rgb(9, 54, 16);
+}
+
+.THIS .slds-tabs_path__item+.slds-is-current:before {
+    background-color: #f3f3f3;
+}
+
+ .THIS  .slds-tabs_path .slds-is-incomplete {
+    background-color: #f3f3f3;
+}
+
+ .THIS .slds-tabs_path__item+.slds-is-incomplete:before {
+    background-color: #f3f3f3;
+}

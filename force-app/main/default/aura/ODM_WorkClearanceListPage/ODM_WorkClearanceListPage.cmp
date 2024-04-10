@@ -1,0 +1,713 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,lightning:isUrlAddressable" controller="ODM_WorkClearanceController">
+	<lightning:navigation aura:id="navService" />
+	<lightning:notificationsLibrary aura:id="notifLib" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.doInit}" />
+	<aura:handler name="fitlerEnhanceEvent" event="c:ODM_FilterEnhanceEvent" action="{!c.handleFilter}" />
+
+	<aura:attribute name="wclist" type="List" default="[{
+		name: 'Loading',
+		description: 'Please wait...'
+	}]" />
+	<aura:attribute name="veri_wclist" type="List" default="[{
+		name: 'Loading',
+		description: 'Please wait...'
+	}]" />
+	<aura:attribute name="inspect_wclist" type="List" default="[{
+		name: 'Loading',
+		description: 'Please wait...'
+	}]" />
+
+	<aura:attribute name="isInitialized" type="Boolean" default="false" />
+	<aura:attribute name="isLoadingWorkClearanceList" type="Boolean" default="false" />
+	<aura:attribute name="isLoadedMainWorkCenter" type="Boolean" default="false" />
+	<aura:attribute name="filterInspectedCheckbox" type="Boolean" default="false" />
+	<aura:attribute name="filterDefaultWc" type="Map" default="{
+		'Clearance_Number__c': '',
+		'Work_Clearance_Status__c': '',
+		'Functional_Location__c': '',
+		'Create_Date_From__c': '',
+		'Create_Date_To__c': '',
+		'Notification_Number__c': '',
+		'Notification_Type__c': '',
+		'Order_Number__c': '',
+		'Order_Type__c': '',
+		'Priority__c': '',
+		'Requester__c': '',
+		'Main_Work_Center__c': '',
+		'Location__c': ''
+	}" />
+	<aura:attribute name="filterDefaultVeriWc" type="Map" default="{
+		'Clearance_Number__c': '',
+		'Work_Clearance_Status__c': '',
+		'Functional_Location__c': '',
+		'Create_Date_From__c': '',
+		'Create_Date_To__c': '',
+		'Notification_Number__c': '',
+		'Notification_Type__c': '',
+		'Order_Number__c': '',
+		'Order_Type__c': '',
+		'Priority__c': '',
+		'Requester__c': '',
+		'Main_Work_Center__c': '',
+		'Location__c': ''
+	}" />
+	<aura:attribute name="filterDefaultInspecWc" type="Map" default="{
+		'Clearance_Number__c': '',
+		'Work_Clearance_Status__c': '',
+		'Functional_Location__c': '',
+		'Create_Date_From__c': '',
+		'Create_Date_To__c': '',
+		'Notification_Number__c': '',
+		'Notification_Type__c': '',
+		'Order_Number__c': '',
+		'Order_Type__c': '',
+		'Priority__c': '',
+		'Requester__c': '',
+		'Main_Work_Center__c': '',
+		'Location__c': '',
+	}" />
+	<aura:attribute name="filter" type="Map" default="{}" />
+	<aura:attribute name="veri_filter" type="Map" default="{}" />
+	<aura:attribute name="inspect_filter" type="Map" default="{}" />
+
+	<aura:attribute name="pagination" type="List" default="['...']" />
+	<aura:attribute name="totalrecord" type="Integer" default="0" />
+	<aura:attribute name="totalpage" type="Integer" default="0" />
+	<aura:attribute name="currentpage" type="Integer" default="1" />
+	<aura:attribute name="offset" type="Integer" default="0" />
+	<aura:attribute name="rowlimit" type="Integer" default="20" />
+
+	<aura:attribute name="veri_pagination" type="List" default="['...']" />
+	<aura:attribute name="veri_totalrecord" type="Integer" default="0" />
+	<aura:attribute name="veri_totalpage" type="Integer" default="0" />
+	<aura:attribute name="veri_currentpage" type="Integer" default="1" />
+	<aura:attribute name="veri_offset" type="Integer" default="0" />
+	<aura:attribute name="veri_rowlimit" type="Integer" default="20" />
+
+	<aura:attribute name="inspect_pagination" type="List" default="['...']" />
+	<aura:attribute name="inspect_totalrecord" type="Integer" default="0" />
+	<aura:attribute name="inspect_totalpage" type="Integer" default="0" />
+	<aura:attribute name="inspect_currentpage" type="Integer" default="1" />
+	<aura:attribute name="inspect_offset" type="Integer" default="0" />
+	<aura:attribute name="inspect_rowlimit" type="Integer" default="20" />
+
+	<aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" />
+	<aura:attribute name="listPage" type="String" />
+
+	<aura:attribute name="notVerifyWc" type="Boolean" default="false" />
+	<aura:attribute name="verifyWc" type="Boolean" default="false" />
+	<aura:attribute name="disagreeWc" type="Boolean" default="false" />
+
+		<div class="{!v.listPage == 'WorkClearance' ? '' : 'slds-hide'}">
+			<div class="slds-grid">
+				<div class="slds-col">
+					<!-- <p class="slds-text-heading_medium"><strong>Work Clearance List</strong></p> -->
+				</div>
+				<aura:if isTrue="{!v.isLoadedMainWorkCenter}">
+					<div class="slds-col slds-grow-none slds-col_bump-left">
+						<c:ODM_FilterEnhance aura:id="ODM_WorkClearanceFilter" title="Work Clearance - Filter By" filterPage="ODM_WorkClearanceFilter" filterDefault="{!v.filterDefaultWc}" />
+					</div>
+				</aura:if>
+			</div>
+
+			<div class="slds-grid slds-var-m-top_medium page-header">
+				<div class="slds-col">
+					<p class="slds-text-heading_medium">
+						You have<br/>
+						Work Clearances
+					</p>
+				</div>
+				<div class="slds-col slds-text-heading_medium">
+					<p>{!v.totalrecord}</p>
+				</div>
+			</div>
+
+			<div class="slds-grid slds-var-m-top_x-small">
+				<div class="slds-col">
+					<p class="slds-text-body_small">Work Clearance Number, Area, FL, FL Description, Problem, Work Detail, Created Date, Authorized Date</p>
+				</div>
+			</div>
+
+			<div class="slds-var-m-top_medium slds-is-relative">
+				<aura:if isTrue="{!v.isLoadingWorkClearanceList}">
+					<lightning:spinner alternativeText="Loading" size="small" />
+				</aura:if>
+				<aura:if isTrue="{!and(and(not(v.isLoadingWorkClearanceList), v.isInitialized), v.wclist.length == 0)}">
+					<div class="slds-text-align_center">Data not found</div>
+				</aura:if>
+				<aura:iteration items="{!v.wclist}" var="item" indexVar="index">
+					<div class="slds-box slds-box_small">
+						<div class="slds-grid">
+							<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-var-m-right_small">
+								<aura:if isTrue="{!item.Verification_Status__c == 'Draft' || item.Verification_Status__c == ''}">
+									<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-var-m-right_small">
+										<div class="icon-type"><lightning:icon iconName="utility:form" /></div>
+									</div>
+								</aura:if>
+								<aura:if isTrue="{!item.Verification_Status__c == 'Agree'}">
+									<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-var-m-right_small">
+										<div class="icon-type icon-agree"><lightning:icon iconName="utility:check" /></div>
+									</div>
+								</aura:if>
+								<aura:if isTrue="{!item.Verification_Status__c == 'Disagree'}">
+									<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-var-m-right_small">
+										<div class="icon-type icon-disagree"><lightning:icon iconName="utility:close" /></div>
+									</div>
+								</aura:if>
+							</div>
+							<div class="box-detail slds-col slds-truncate">
+								<a data-record-id="{!item.Id}" href="javascript:void(0);" class="slds-text-link_reset" onclick="{!c.navigateToDisplay}">
+									<aura:if isTrue="{!item.name}">
+										<p class="slds-text-link">{!item.name}</p>
+									</aura:if>
+									<p class="slds-truncate slds-line-clamp_small">{!item.info}</p>
+									<p>
+										<aura:if isTrue="{!not(empty(item.CreatedDateText))}">
+											Created On: {!item.CreatedDateText}
+												<aura:if isTrue="{!not(empty(item.AuthorizedDateText))}">
+													<aura:if isTrue="{!v.formFactor == 'PHONE'}">
+														<br/>
+													</aura:if>
+													Authorized On: {!item.AuthorizedDateText}
+												</aura:if>
+										</aura:if>
+									</p>
+									<aura:if isTrue="{!item.description}">
+										<p class="slds-hyphenate slds-line-clamp_x-small">{!item.description}</p>
+									</aura:if>
+								</a>
+							</div>
+						</div>
+					</div>
+				</aura:iteration>
+			</div>
+
+			<div class="slds-scrollable pagination">
+				<div class="slds-m-vertical_medium slds-text-align_center">
+					<lightning:buttonGroup>
+						<lightning:buttonIcon
+							name="first"
+							size="large"
+							iconName="utility:jump_to_left"
+							variant="border-filled"
+							alternativeText="Settings"
+							title="Settings"
+							disabled="{!v.currentpage == 1}"
+							onclick="{!c.navigateToPaging}"
+						/>
+						<lightning:buttonIcon
+							name="previous"
+							size="large"
+							iconName="utility:chevronleft"
+							variant="border-filled"
+							alternativeText="Settings"
+							title="Settings"
+							disabled="{!v.currentpage == 1}"
+							onclick="{!c.navigateToPaging}"
+						/>
+
+						<aura:iteration items="{!v.pagination}" var="page_label">
+							<lightning:button
+								name="{!page_label}"
+								label="{!page_label}"
+								variant="{! page_label == v.currentpage ? 'brand' : 'neutral' }"
+								disabled="{! page_label == '...' }"
+								onclick="{!c.navigateToPaging}"
+							/>
+						</aura:iteration>
+
+						<lightning:buttonIcon
+							name="next"
+							size="large"
+							iconName="utility:chevronright"
+							variant="border-filled"
+							alternativeText="Settings"
+							title="Settings"
+							disabled="{!or(v.currentpage == v.totalpage, v.totalpage == 0)}"
+							onclick="{!c.navigateToPaging}"
+						/>
+						<lightning:buttonIcon
+							name="last"
+							size="large"
+							iconName="utility:jump_to_right"
+							variant="border-filled"
+							alternativeText="Settings"
+							title="Settings"
+							disabled="{!or(v.currentpage == v.totalpage, v.totalpage == 0)}"
+							onclick="{!c.navigateToPaging}"
+						/>
+					</lightning:buttonGroup>
+				</div>
+			</div>
+		</div>
+
+		<div class="{!v.listPage == 'Verification' ? '' : 'slds-hide'}">
+			<div class="slds-grid">
+				<div class="slds-col">
+					<!-- <p class="slds-text-heading_medium"><strong>Work Clearance List</strong></p> -->
+				</div>
+				<aura:if isTrue="{!v.isLoadedMainWorkCenter}">
+					<div class="checkbox-filter">
+						<input type="checkbox" onchange="{!c.handleShowOrHideAllVerification}" />
+						<label>PTW Verification</label>
+					</div>
+					<div class="slds-col slds-grow-none slds-col_bump-left">
+						<c:ODM_FilterEnhance aura:id="ODM_WorkClearanceVerificationFilter" title="Work Clearance - Filter By" filterPage="ODM_WorkClearanceVerificationFilter" filterDefault="{!v.filterDefaultVeriWc}" />
+					</div>
+				</aura:if>
+			</div>
+
+			<div class="slds-grid slds-m-top_medium page-header verification">
+				<div class="slds-col">
+					<p class="slds-text-heading_medium">
+						You have<br/>
+						Work Clearances
+					</p>
+				</div>
+				<div class="slds-col slds-text-heading_medium">
+					<p>{!v.veri_totalrecord}</p>
+				</div>
+			</div>
+
+			<div class="slds-grid slds-m-top_x-small">
+				<div class="slds-col">
+					<p class="slds-text-body_small">Work Clearance Number, Area, FL, FL Description, Problem, Work Detail, Created Date, Authorized Date</p>
+				</div>
+			</div>
+
+			<div class="slds-m-top_medium slds-is-relative">
+				<aura:if isTrue="{!v.isLoadingWorkClearanceList}">
+					<lightning:spinner alternativeText="Loading" size="small" />
+				</aura:if>
+				<aura:if isTrue="{!and(and(not(v.isLoadingWorkClearanceList), v.isInitialized), v.veri_wclist.length == 0)}">
+					<div class="slds-text-align_center">Data not found</div>
+				</aura:if>
+				<aura:iteration items="{!v.veri_wclist}" var="item" indexVar="index">
+					<div class="slds-box slds-box_small">
+						<div class="slds-grid">
+							<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+								<aura:if isTrue="{!item.Verification_Status__c == 'Draft' || item.Verification_Status__c == ''}">
+									<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+										<div class="icon-type"><lightning:icon iconName="utility:form" /></div>
+									</div>
+								</aura:if>
+								<aura:if isTrue="{!item.Verification_Status__c == 'Agree'}">
+									<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+										<div class="icon-type icon-agree"><lightning:icon iconName="utility:check" /></div>
+									</div>
+								</aura:if>
+								<aura:if isTrue="{!item.Verification_Status__c == 'Disagree'}">
+									<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+										<div class="icon-type icon-disagree"><lightning:icon iconName="utility:close" /></div>
+									</div>
+								</aura:if>
+							</div>
+							<div class="box-detail slds-col slds-truncate">
+								<a data-record-id="{!item.Id}" href="javascript:void(0);" class="slds-text-link_reset" onclick="{!c.navigateToDisplay}">
+									<aura:if isTrue="{!item.name}">
+										<p class="slds-text-link">{!item.name}</p>
+									</aura:if>
+									<p class="slds-truncate slds-line-clamp_small">{!item.info}</p>
+									<p>
+										<aura:if isTrue="{!not(empty(item.CreatedDateText))}">
+											Created On: {!item.CreatedDateText}
+												<aura:if isTrue="{!not(empty(item.AuthorizedDateText))}">
+													<aura:if isTrue="{!v.formFactor == 'PHONE'}">
+														<br/>
+													</aura:if>
+													Authorized On: {!item.AuthorizedDateText}
+												</aura:if>
+										</aura:if>
+									</p>
+									<aura:if isTrue="{!item.description}">
+										<p class="slds-hyphenate slds-line-clamp_x-small">{!item.description}</p>
+									</aura:if>
+								</a>
+							</div>
+						</div>
+					</div>
+				</aura:iteration>
+			</div>
+
+			<div class="slds-scrollable pagination">
+				<div class="slds-m-vertical_medium slds-text-align_center">
+					<lightning:buttonGroup>
+						<lightning:buttonIcon
+							name="first"
+							size="large"
+							iconName="utility:jump_to_left"
+							variant="border-filled"
+							alternativeText="Settings"
+							title="Settings"
+							disabled="{!v.veri_currentpage == 1}"
+							onclick="{!c.navigateToPagingVerification}"
+						/>
+						<lightning:buttonIcon
+							name="previous"
+							size="large"
+							iconName="utility:chevronleft"
+							variant="border-filled"
+							alternativeText="Settings"
+							title="Settings"
+							disabled="{!v.veri_currentpage == 1}"
+							onclick="{!c.navigateToPagingVerification}"
+						/>
+
+						<aura:iteration items="{!v.veri_pagination}" var="page_label">
+							<lightning:button
+								name="{!page_label}"
+								label="{!page_label}"
+								variant="{! page_label == v.veri_currentpage ? 'brand' : 'neutral' }"
+								disabled="{! page_label == '...' }"
+								onclick="{!c.navigateToPagingVerification}"
+							/>
+						</aura:iteration>
+
+						<lightning:buttonIcon
+							name="next"
+							size="large"
+							iconName="utility:chevronright"
+							variant="border-filled"
+							alternativeText="Settings"
+							title="Settings"
+							disabled="{!or(v.veri_currentpage == v.veri_totalpage, v.veri_totalpage == 0)}"
+							onclick="{!c.navigateToPagingVerification}"
+						/>
+						<lightning:buttonIcon
+							name="last"
+							size="large"
+							iconName="utility:jump_to_right"
+							variant="border-filled"
+							alternativeText="Settings"
+							title="Settings"
+							disabled="{!or(v.veri_currentpage == v.veri_totalpage, v.veri_totalpage == 0)}"
+							onclick="{!c.navigateToPagingVerification}"
+						/>
+					</lightning:buttonGroup>
+				</div>
+			</div>
+		</div>
+
+		<div class="{!v.listPage == 'Inspection' ? '' : 'slds-hide'}">
+			<div class="slds-grid">
+				<div class="slds-col">
+					<!-- <p class="slds-text-heading_medium"><strong>Work Clearance List</strong></p> -->
+				</div>
+				<aura:if isTrue="{!v.isLoadedMainWorkCenter}">
+					<div class="checkbox-filter">
+						<input type="checkbox" onchange="{!c.handleShowOrHideInspected}" />
+						<label>PTW Inspection</label>
+					</div>
+					<div class="slds-col slds-grow-none slds-col_bump-left">
+						<c:ODM_FilterEnhance aura:id="ODM_WorkClearanceInspectionFilter" title="Work Clearance - Filter By" filterPage="ODM_WorkClearanceInspectionFilter" filterDefault="{!v.filterDefaultInspecWc}" />
+					</div>
+				</aura:if>
+			</div>
+
+			<div class="slds-grid slds-m-top_medium page-header inspection">
+				<div class="slds-col">
+					<p class="slds-text-heading_medium">
+						You have<br/>
+						Work Clearances
+					</p>
+				</div>
+				<div class="slds-col slds-text-heading_medium">
+					<p>{!v.inspect_totalrecord}</p>
+				</div>
+			</div>
+
+			<div class="slds-grid slds-m-top_x-small">
+				<div class="slds-col">
+					<p class="slds-text-body_small">Work Clearance Number, Area, FL, FL Description, Problem, Work Detail, Created Date, Authorized Date</p>
+				</div>
+			</div>
+
+			<div class="slds-m-top_medium slds-is-relative">
+				<aura:if isTrue="{!v.isLoadingWorkClearanceList}">
+					<lightning:spinner alternativeText="Loading" size="small" />
+				</aura:if>
+				<aura:if isTrue="{!and(and(not(v.isLoadingWorkClearanceList), v.isInitialized), v.inspect_wclist.length == 0)}">
+					<div class="slds-text-align_center">Data not found</div>
+				</aura:if>
+				<aura:iteration items="{!v.inspect_wclist}" var="item" indexVar="index">
+					<div class="slds-box slds-box_small">
+						<div class="slds-grid">
+							<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+								<aura:if isTrue="{!item.Verification_Status__c == 'Draft' || item.Verification_Status__c == ''}">
+									<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+										<div class="icon-type"><lightning:icon iconName="utility:form" /></div>
+									</div>
+								</aura:if>
+								<aura:if isTrue="{!item.Verification_Status__c == 'Agree'}">
+									<aura:if isTrue="{!item.PTW_Header__r}">
+										<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+											<div class="icon-type icon-inspected"><lightning:icon iconName="utility:task" /></div>
+										</div>
+										<aura:set attribute="else">
+											<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+												<div class="icon-type icon-agree"><lightning:icon iconName="utility:check" /></div>
+											</div>
+										</aura:set>
+									</aura:if>
+								</aura:if>
+								<aura:if isTrue="{!item.Verification_Status__c == 'Disagree'}">
+									<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+										<div class="icon-type icon-disagree"><lightning:icon iconName="utility:close" /></div>
+									</div>
+								</aura:if>
+							</div>
+							<div class="box-detail slds-col slds-truncate">
+								<a data-record-id="{!item.Id}" href="javascript:void(0);" class="slds-text-link_reset" onclick="{!c.navigateToDisplay}">
+									<aura:if isTrue="{!item.name}">
+										<p class="slds-text-link">{!item.name}</p>
+									</aura:if>
+									<p class="slds-truncate slds-line-clamp_small">{!item.info}</p>
+									<p>
+										<aura:if isTrue="{!not(empty(item.CreatedDateText))}">
+											Created On: {!item.CreatedDateText}
+												<aura:if isTrue="{!not(empty(item.AuthorizedDateText))}">
+													<aura:if isTrue="{!v.formFactor == 'PHONE'}">
+														<br/>
+													</aura:if>
+													Authorized On: {!item.AuthorizedDateText}
+												</aura:if>
+										</aura:if>
+									</p>
+									<aura:if isTrue="{!item.description}">
+										<p class="slds-hyphenate slds-line-clamp_x-small">{!item.description}</p>
+									</aura:if>
+								</a>
+							</div>
+						</div>
+					</div>
+				</aura:iteration>
+			</div>
+
+			<div class="slds-scrollable pagination">
+				<div class="slds-m-vertical_medium slds-text-align_center">
+					<lightning:buttonGroup>
+						<lightning:buttonIcon
+							name="first"
+							size="large"
+							iconName="utility:jump_to_left"
+							variant="border-filled"
+							alternativeText="Settings"
+							title="Settings"
+							disabled="{!v.inspect_currentpage == 1}"
+							onclick="{!c.navigateToPagingInspection}"
+						/>
+						<lightning:buttonIcon
+							name="previous"
+							size="large"
+							iconName="utility:chevronleft"
+							variant="border-filled"
+							alternativeText="Settings"
+							title="Settings"
+							disabled="{!v.inspect_currentpage == 1}"
+							onclick="{!c.navigateToPagingInspection}"
+						/>
+
+						<aura:iteration items="{!v.inspect_pagination}" var="page_label">
+							<lightning:button
+								name="{!page_label}"
+								label="{!page_label}"
+								variant="{! page_label == v.inspect_currentpage ? 'brand' : 'neutral' }"
+								disabled="{! page_label == '...' }"
+								onclick="{!c.navigateToPagingInspection}"
+							/>
+						</aura:iteration>
+
+						<lightning:buttonIcon
+							name="next"
+							size="large"
+							iconName="utility:chevronright"
+							variant="border-filled"
+							alternativeText="Settings"
+							title="Settings"
+							disabled="{!or(v.inspect_currentpage == v.inspect_totalpage, v.inspect_totalpage == 0)}"
+							onclick="{!c.navigateToPagingInspection}"
+						/>
+						<lightning:buttonIcon
+							name="last"
+							size="large"
+							iconName="utility:jump_to_right"
+							variant="border-filled"
+							alternativeText="Settings"
+							title="Settings"
+							disabled="{!or(v.inspect_currentpage == v.inspect_totalpage, v.inspect_totalpage == 0)}"
+							onclick="{!c.navigateToPagingInspection}"
+						/>
+					</lightning:buttonGroup>
+				</div>
+			</div>
+		</div>
+</aura:component>
+
+<!--
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,lightning:isUrlAddressable" controller="ODM_WorkClearanceController">
+	<lightning:navigation aura:id="navService" />
+	<lightning:notificationsLibrary aura:id="notifLib" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="fitlerEnhanceEvent" event="c:ODM_FilterEnhanceEvent" action="{!c.handleFilter}" />
+
+	<aura:attribute name="wclist" type="List" default="[]" access="private" />
+	<aura:attribute name="isLoadingWorkClearanceList" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isInitialized" type="Boolean" default="false" access="private" />
+
+	<aura:attribute name="filter" type="Map" default="{}" access="private" />
+
+	<aura:attribute name="pagination" type="List" default="['...']" access="private" />
+	<aura:attribute name="totalrecord" type="Integer" default="0" access="private" />
+	<aura:attribute name="totalpage" type="Integer" default="0" access="private" />
+	<aura:attribute name="currentpage" type="Integer" default="1" access="private" />
+	<aura:attribute name="offset" type="Integer" default="0" access="private" />
+	<aura:attribute name="rowlimit" type="Integer" default="20" access="private" />
+
+	<aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" access="private" />
+
+	<aura:attribute name="notVerifyWc" type="Boolean" default="false" access="private" />
+	<aura:attribute name="verifyWc" type="Boolean" default="false" access="private" />
+	<aura:attribute name="disagreeWc" type="Boolean" default="false" access="private" />
+
+	<aura:html tag="style">
+		.slds-page-header.header.flexipageHeader { display: none !important; }
+	</aura:html>
+
+	<div class="header_container slds-grid slds-wrap slds-grid_vertical-align-end slds-m-bottom_small">
+		<div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+			<h1 class="slds-text-heading_medium">Work Clearance List</h1>
+		</div>
+		<div class="slds-col slds-grow-none slds-col_bump-left slds-p-left_x-small">
+			<c:ODM_FilterEnhance aura:id="ODM_FilterEnhance" title="Work Clearance - Filter By" filterPage="ODM_WorkClearanceFilter" />
+		</div>
+	</div>
+
+	<lightning:card class="container">
+		<aura:set attribute="title">
+			<div>You have {!v.totalrecord} Work Clearance!</div>
+		</aura:set>
+
+		<aura:set attribute="footer">
+			<lightning:buttonGroup>
+				<lightning:buttonIcon
+					name="first"
+					size="large"
+					iconName="utility:jump_to_left"
+					variant="border-filled"
+					alternativeText="Settings"
+					title="Settings"
+					disabled="{!v.currentpage == 1}"
+					onclick="{!c.navigateToPaging}"
+				/>
+				<lightning:buttonIcon
+					name="previous"
+					size="large"
+					iconName="utility:chevronleft"
+					variant="border-filled"
+					alternativeText="Settings"
+					title="Settings"
+					disabled="{!v.currentpage == 1}"
+					onclick="{!c.navigateToPaging}"
+				/>
+
+				<aura:iteration items="{!v.pagination}" var="page_label">
+					<lightning:button
+						name="{!page_label}"
+						label="{!page_label}"
+						variant="{! page_label == v.currentpage ? 'brand' : 'neutral' }"
+						disabled="{! page_label == '...' }"
+						onclick="{!c.navigateToPaging}"
+					/>
+				</aura:iteration>
+
+				<lightning:buttonIcon
+					name="next"
+					size="large"
+					iconName="utility:chevronright"
+					variant="border-filled"
+					alternativeText="Settings"
+					title="Settings"
+					disabled="{!or(v.currentpage == v.totalpage, v.totalpage == 0)}"
+					onclick="{!c.navigateToPaging}"
+				/>
+				<lightning:buttonIcon
+					name="last"
+					size="large"
+					iconName="utility:jump_to_right"
+					variant="border-filled"
+					alternativeText="Settings"
+					title="Settings"
+					disabled="{!or(v.currentpage == v.totalpage, v.totalpage == 0)}"
+					onclick="{!c.navigateToPaging}"
+				/>
+			</lightning:buttonGroup>
+		</aura:set>
+
+		<div class="header__label">
+			<p class="slds-var-p-around_medium">
+                Work Clearance number, Area, FL, FL description, Problem, Work detail
+			</p>
+		</div>
+
+		<div class="slds-p-around_x-small">
+			<aura:if isTrue="{!v.isLoadingWorkClearanceList}">
+				<lightning:spinner alternativeText="Loading" size="small" />
+			</aura:if>
+			<aura:if isTrue="{!and(and(not(v.isLoadingWorkClearanceList), v.isInitialized), v.wclist.length == 0)}">
+				<div class="slds-text-align_center">Data not found</div>
+			</aura:if>
+			<aura:iteration items="{!v.wclist}" var="item" indexVar="index">
+				<div class="slds-box slds-box_small">
+					<div class="slds-grid">
+								<aura:if isTrue="{!item.Verification_Status__c == 'Draft' || item.Verification_Status__c == ''}">
+									<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+										<lightning:avatar
+											variant="square"
+											src="{!$Resource.WcOP_Icon + '/NotVerify.png'}"
+											size="large "
+											alternativeText="{!item.name}"
+											title="{!item.name}"/>
+									</div>
+								</aura:if>
+								<aura:if isTrue="{!item.Verification_Status__c == 'Agree'}">
+									<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+										<lightning:avatar
+											variant="square"
+											src="{!$Resource.WcOP_Icon + '/Verify.png'}"
+											size="large "
+											alternativeText="{!item.name}"
+											title="{!item.name}"/>
+									</div>
+								</aura:if>
+								<aura:if isTrue="{!item.Verification_Status__c == 'Disagree'}">
+									<div class="box-icon slds-col slds-grow-none slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-right_small">
+										<lightning:avatar
+											variant="square"
+											src="{!$Resource.WcOP_Icon + '/Disagree.png'}"
+											size="large"
+											alternativeText="{!item.name}"
+											title="{!item.name}"/>
+									</div>
+								</aura:if>
+
+						<div class="box-detail slds-col slds-truncate">
+							<a data-record-id="{!item.Id}" href="javascript:void(0);" class="slds-text-link_reset" onclick="{!c.navigateToDisplay}">
+								<aura:if isTrue="{!item.name}">
+									<p class="slds-text-link">{!item.name}</p>
+								</aura:if>
+								<p class="slds-truncate slds-line-clamp_small">{! item.info }</p>
+								<aura:if isTrue="{!item.description}">
+									<p class="slds-hyphenate slds-line-clamp_x-small">{!item.description }</p>
+								</aura:if>
+							</a>
+						</div>
+					</div>
+				</div>
+			</aura:iteration>
+		</div>
+	</lightning:card>
+</aura:component>
+-->

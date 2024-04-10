@@ -1,0 +1,19 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes">
+	<lightning:tabset variant="scoped">
+		<lightning:tab label="Notifications">
+			<c:ODM_NotificationListPage />
+		</lightning:tab>
+		<lightning:tab label="Work Clearances">
+			<c:ODM_WorkClearanceListPage />
+		</lightning:tab>
+		<lightning:tab label="Shift Report">
+			<iframe
+				style="height: 100vh"
+				width="100%"
+				sandbox="allow-scripts allow-forms allow-same-origin allow-popups allow-downloads allow-storage-access-by-user-activation"
+				src="https://pro.thaioilgroup.com/kpi/ui_menu_report.aspx?access_token=xeo0y9IGtkHctsrqnNQ6QV34Y5z%2BX1hCEVs%2FDEVQpEnLNzLo%2BITxuUbrLXe8cPQSroDCEaP0%2BzrWAGnjRuuXMhK4Tw8Oc97oEJ8YCp6N67c43JoddJoy9dl%2B3bmk9%2BEDG%2Frk0WxeXFv%2B1a4dnQVVWg%3D%3D"
+				frameborder="0"
+			></iframe>
+		</lightning:tab>
+	</lightning:tabset>
+</aura:component>

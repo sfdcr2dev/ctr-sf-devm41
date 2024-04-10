@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>InDevelopment</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>HTMLBody__c</fullName>
+        <externalId>false</externalId>
+        <label>Html Body</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Subject__c</fullName>
+        <externalId>false</externalId>
+        <label>Subject</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Committee TOP</fullName>
+                    <default>false</default>
+                    <label>Committee TOP</label>
+                </value>
+                <value>
+                    <fullName>Committee Customer TX</fullName>
+                    <default>false</default>
+                    <label>Committee Customer TX</label>
+                </value>
+                <value>
+                    <fullName>Committee Supplier TX</fullName>
+                    <default>false</default>
+                    <label>Committee Supplier TX</label>
+                </value>
+                <value>
+                    <fullName>Request More Document TOP</fullName>
+                    <default>false</default>
+                    <label>Request More Document TOP</label>
+                </value>
+                <value>
+                    <fullName>Request More Document TX</fullName>
+                    <default>false</default>
+                    <label>Request More Document TX</label>
+                </value>
+                <value>
+                    <fullName>Summarize Report TOP</fullName>
+                    <default>false</default>
+                    <label>Summarize Report TOP</label>
+                </value>
+                <value>
+                    <fullName>Summarize Report TX</fullName>
+                    <default>false</default>
+                    <label>Summarize Report TX</label>
+                </value>
+                <value>
+                    <fullName>Lead TX</fullName>
+                    <default>false</default>
+                    <label>Lead TX</label>
+                </value>
+                <value>
+                    <fullName>Lead TOP</fullName>
+                    <default>false</default>
+                    <label>Lead TOP</label>
+                </value>
+                <value>
+                    <fullName>Committee LABIX</fullName>
+                    <default>false</default>
+                    <label>Committee LABIX</label>
+                </value>
+                <value>
+                    <fullName>Customer TOP Due Diligence Result High</fullName>
+                    <default>false</default>
+                    <label>Customer TOP Due Diligence Result High</label>
+                </value>
+                <value>
+                    <fullName>Customer LABIX Due Diligence Result High</fullName>
+                    <default>false</default>
+                    <label>Customer LABIX Due Diligence Result High</label>
+                </value>
+                <value>
+                    <fullName>Customer TX Due Diligence Result High</fullName>
+                    <default>false</default>
+                    <label>Customer TX Due Diligence Result High</label>
+                </value>
+                <value>
+                    <fullName>Supplier TOP Due Diligence Result High</fullName>
+                    <default>false</default>
+                    <label>Supplier TOP Due Diligence Result High</label>
+                </value>
+                <value>
+                    <fullName>Supplier LABIX Due Diligence Result High</fullName>
+                    <default>false</default>
+                    <label>Supplier LABIX Due Diligence Result High</label>
+                </value>
+                <value>
+                    <fullName>Supplier TX Due Diligence Result High</fullName>
+                    <default>false</default>
+                    <label>Supplier TX Due Diligence Result High</label>
+                </value>
+                <value>
+                    <fullName>Customer TOP Due Diligence Result High High</fullName>
+                    <default>false</default>
+                    <label>Customer TOP Due Diligence Result High High</label>
+                </value>
+                <value>
+                    <fullName>Customer LABIX Due Diligence Result High High</fullName>
+                    <default>false</default>
+                    <label>Customer LABIX Due Diligence Result High High</label>
+                </value>
+                <value>
+                    <fullName>Customer TX Due Diligence Result High High</fullName>
+                    <default>false</default>
+                    <label>Customer TX Due Diligence Result High High</label>
+                </value>
+                <value>
+                    <fullName>Supplier TOP Due Diligence Result High High</fullName>
+                    <default>false</default>
+                    <label>Supplier TOP Due Diligence Result High High</label>
+                </value>
+                <value>
+                    <fullName>Supplier LABIX Due Diligence Result High High</fullName>
+                    <default>false</default>
+                    <label>Supplier LABIX Due Diligence Result High High</label>
+                </value>
+                <value>
+                    <fullName>Supplier TX Due Diligence Result High High</fullName>
+                    <default>false</default>
+                    <label>Supplier TX Due Diligence Result High High</label>
+                </value>
+                <value>
+                    <fullName>Approved Summarize Report TOP</fullName>
+                    <default>false</default>
+                    <label>Approved Summarize Report TOP</label>
+                </value>
+                <value>
+                    <fullName>Approved Summarize Report TX</fullName>
+                    <default>false</default>
+                    <label>Approved Summarize Report TX</label>
+                </value>
+                <value>
+                    <fullName>Rejected Summarize Report TOP</fullName>
+                    <default>false</default>
+                    <label>Rejected Summarize Report TOP</label>
+                </value>
+                <value>
+                    <fullName>Rejected Summarize Report TX</fullName>
+                    <default>false</default>
+                    <label>Rejected Summarize Report TX</label>
+                </value>
+                <value>
+                    <fullName>Approved Customer TOP</fullName>
+                    <default>false</default>
+                    <label>Approved Customer TOP</label>
+                </value>
+                <value>
+                    <fullName>Approved Supplier TOP</fullName>
+                    <default>false</default>
+                    <label>Approved Supplier TOP</label>
+                </value>
+                <value>
+                    <fullName>Rejected Customer TOP</fullName>
+                    <default>false</default>
+                    <label>Rejected Customer TOP</label>
+                </value>
+                <value>
+                    <fullName>Rejected Supplier TOP</fullName>
+                    <default>false</default>
+                    <label>Rejected Supplier TOP</label>
+                </value>
+                <value>
+                    <fullName>Reminder Committee TOP</fullName>
+                    <default>false</default>
+                    <label>Reminder Committee TOP</label>
+                </value>
+                <value>
+                    <fullName>Reminder Committee LABIX</fullName>
+                    <default>false</default>
+                    <label>Reminder Committee LABIX</label>
+                </value>
+                <value>
+                    <fullName>Reminder Committee TX</fullName>
+                    <default>false</default>
+                    <label>Reminder Committee TX</label>
+                </value>
+                <value>
+                    <fullName>Approved Customer TX</fullName>
+                    <default>false</default>
+                    <label>Approved Customer TX</label>
+                </value>
+                <value>
+                    <fullName>Approved Supplier TX</fullName>
+                    <default>false</default>
+                    <label>Approved Supplier TX</label>
+                </value>
+                <value>
+                    <fullName>Rejected Customer TX</fullName>
+                    <default>false</default>
+                    <label>Rejected Customer TX</label>
+                </value>
+                <value>
+                    <fullName>Rejected Supplier TX</fullName>
+                    <default>false</default>
+                    <label>Rejected Supplier TX</label>
+                </value>
+                <value>
+                    <fullName>TOP Change Customer Credit Condition</fullName>
+                    <default>false</default>
+                    <label>TOP Change Customer Credit Condition</label>
+                </value>
+                <value>
+                    <fullName>TX Change Customer Credit Condition</fullName>
+                    <default>false</default>
+                    <label>TX Change Customer Credit Condition</label>
+                </value>
+                <value>
+                    <fullName>TOP Change Supplier Credit Condition</fullName>
+                    <default>false</default>
+                    <label>TOP Change Supplier Credit Condition</label>
+                </value>
+                <value>
+                    <fullName>Approved Ship-To TX</fullName>
+                    <default>false</default>
+                    <label>Approved Ship-To TX</label>
+                </value>
+                <value>
+                    <fullName>Rejected Ship-To TX</fullName>
+                    <default>false</default>
+                    <label>Rejected Ship-To TX</label>
+                </value>
+                <value>
+                    <fullName>Approved Edit Ship-To TX</fullName>
+                    <default>false</default>
+                    <label>Approved Edit Ship-To TX</label>
+                </value>
+                <value>
+                    <fullName>Rejected Edit Ship-To TX</fullName>
+                    <default>false</default>
+                    <label>Rejected Edit Ship-To TX</label>
+                </value>
+                <value>
+                    <fullName>Customer Block to Committee TX</fullName>
+                    <default>false</default>
+                    <label>Customer Block to Committee TX</label>
+                </value>
+                <value>
+                    <fullName>Supplier Block to Committee TX</fullName>
+                    <default>false</default>
+                    <label>Supplier Block to Committee TX</label>
+                </value>
+                <value>
+                    <fullName>Customer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Customer</label>
+                </value>
+                <value>
+                    <fullName>Request More Document Supplier TOP</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Request More Document Supplier TOP</label>
+                </value>
+                <value>
+                    <fullName>Request More Document Supplier TX</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Request More Document Supplier TX</label>
+                </value>
+                <value>
+                    <fullName>Supplier</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Supplier</label>
+                </value>
+                <value>
+                    <fullName>Temp</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Temp</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>CTR Email Template Master</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Subject__c</columns>
+        <columns>Type__c</columns>
+        <columns>HTMLBody__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>CTR Email Template Master Name</label>
+        <type>Text</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

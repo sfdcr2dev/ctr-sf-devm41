@@ -1,0 +1,32 @@
+.THIS .table-relevant-user tr th:nth-child(1),
+.THIS .table-relevant-user tr th:nth-child(3),
+.THIS .table-relevant-user tr td:nth-child(1),
+.THIS .table-relevant-user tr td:nth-child(3) {
+    width: 4rem;
+    text-align: center;
+}
+
+.THIS .table-relevant-user {
+    /* margin-bottom: 10rem; */
+}
+
+.THIS .relevant-user {
+    width: 15rem;
+    max-width: 100%;
+}
+
+.THIS svg[data-key="delete"] {
+    fill: red;
+}
+
+.THIS .relevant-user-footer {
+    position: sticky;
+    bottom: -1rem;
+    background: white;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.THIS .slds-card__body {
+    min-height: 55vh;
+}

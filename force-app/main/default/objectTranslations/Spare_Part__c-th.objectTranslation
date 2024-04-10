@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Spare Part</value>
+    </caseValues>
+    <fields>
+        <label><!-- Base Unit --></label>
+        <name>Base_Unit__c</name>
+        <picklistValues>
+            <masterLabel>PC</masterLabel>
+            <translation><!-- PC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SET</masterLabel>
+            <translation><!-- SET --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Currency --></label>
+        <name>Currency__c</name>
+        <picklistValues>
+            <masterLabel>THB</masterLabel>
+            <translation><!-- THB --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Material Description --></label>
+        <name>Material_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Number --></label>
+        <name>Material_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price --></label>
+        <name>Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>ZMRO</masterLabel>
+            <translation><!-- ZMRO --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Spare Part Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

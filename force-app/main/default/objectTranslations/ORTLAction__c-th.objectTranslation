@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Action</value>
+    </caseValues>
+    <fields>
+        <help><!-- Default from Risk record --></help>
+        <label><!-- APU --></label>
+        <name>APU__c</name>
+    </fields>
+    <fields>
+        <label><!-- Action By --></label>
+        <name>ActionBy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cancel Reason --></label>
+        <name>CancelReason__c</name>
+    </fields>
+    <fields>
+        <label><!-- Close Date --></label>
+        <name>CloseDate__c</name>
+    </fields>
+    <fields>
+        <help><!-- Default 30 days after create action record and editable --></help>
+        <label><!-- Due Date --></label>
+        <name>DueDate__c</name>
+    </fields>
+    <fields>
+        <help><!-- Format: DD/MM/YYYY --></help>
+        <label><!-- Initial Date --></label>
+        <name>InitialDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Active --></label>
+        <name>IsActive__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsOwner --></label>
+        <name>IsOwner__c</name>
+    </fields>
+    <fields>
+        <help><!-- To check if an action was created to mitigate consequence --></help>
+        <label><!-- Mitigate Consequence --></label>
+        <name>MitigateCons__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notification --></label>
+        <name>Notification__c</name>
+        <relationshipLabel><!-- Action --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Objective --></label>
+        <name>Objective__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plant Code --></label>
+        <name>PlantCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plant Section --></label>
+        <name>PlantSection__c</name>
+    </fields>
+    <fields>
+        <help><!-- Default from Risk record --></help>
+        <label><!-- Plant --></label>
+        <name>Plant__c</name>
+    </fields>
+    <fields>
+        <help><!-- To check if an action was created to reduce likelihood --></help>
+        <label><!-- Reduce Likelihood --></label>
+        <name>ReduceLLH__c</name>
+    </fields>
+    <fields>
+        <label><!-- Threat Scenario --></label>
+        <name>RiskScenario__c</name>
+    </fields>
+    <fields>
+        <label><!-- Threat --></label>
+        <name>Risk__c</name>
+        <relationshipLabel><!-- Action --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+    </fields>
+    <fields>
+        <help><!-- Default from Risk record --></help>
+        <label><!-- Tag No. --></label>
+        <name>TagNo__c</name>
+        <relationshipLabel><!-- Action --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Task Copy Owner --></label>
+        <name>TaskCopyOwner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Task Description --></label>
+        <name>TaskDescription__c</name>
+    </fields>
+    <fields>
+        <help><!-- Default name as created user --></help>
+        <label><!-- Task Initiator --></label>
+        <name>TaskInitiator__c</name>
+        <relationshipLabel><!-- Action (Task Initiator) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Task Owner --></label>
+        <name>TaskOwner__c</name>
+        <relationshipLabel><!-- Action (Task Owner) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Task Status --></label>
+        <name>TaskStatus__c</name>
+    </fields>
+    <fields>
+        <label><!-- Task Title --></label>
+        <name>TaskTitle__c</name>
+    </fields>
+    <fields>
+        <label><!-- Task Type --></label>
+        <name>TaskType__c</name>
+        <picklistValues>
+            <masterLabel>Assessment</masterLabel>
+            <translation><!-- Assessment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Opportunity</masterLabel>
+            <translation><!-- Awaiting Opportunity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Implementation</masterLabel>
+            <translation><!-- Implementation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Moc</masterLabel>
+            <translation><!-- Moc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planning</masterLabel>
+            <translation><!-- Planning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Planning Plant --></label>
+        <name>txtPlanningPlant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tag No. --></label>
+        <name>txtTagNo__c</name>
+    </fields>
+    <layouts>
+        <layout>ORTLActionLayout</layout>
+        <sections>
+            <label><!-- Action Cancel Detail --></label>
+            <section>Action Cancel Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Action Close Detail --></label>
+            <section>Action Close Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Task Detail --></label>
+            <section>Task Detail</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Add CC to --></label>
+        <name>ORTLAddRelevantUser</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Cancel --></label>
+        <name>ORTLCancelAction</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Complete Action --></label>
+        <name>ORTLCompleteAction</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Edit --></label>
+        <name>ORTLEditAction</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Re-open --></label>
+        <name>ORTLReopenAction</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Action --></label>
+        <name>ORTLUpdateAction</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- Please enter Cancel reason --></errorMessage>
+        <name>ORTLActionCheckCancelReason</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot change value of ActionNo. --></errorMessage>
+        <name>ORTLActionCheckIsChangeActionNo</name>
+    </validationRules>
+</CustomObjectTranslation>

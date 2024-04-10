@@ -1,0 +1,1331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>E-MOC Attachment Doc require</value>
+    </caseValues>
+    <fields>
+        <label><!-- Attachment --></label>
+        <name>Attachment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- E-MOC Application --></label>
+        <name>E_MOC_Application__c</name>
+        <relationshipLabel><!-- E-MOC Attachment Doc require --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- E-MOC Attachment --></label>
+        <name>E_MOC_Attachment__c</name>
+        <picklistValues>
+            <masterLabel>AIM (Equipment Drawings, Piperack Cross Section Drawing)</masterLabel>
+            <translation><!-- AIM (Equipment Drawings, Piperack Cross Section Drawing) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>APC / Real Time Optimization (RTO) (APC/RQE narrative)</masterLabel>
+            <translation><!-- APC / Real Time Optimization (RTO) (APC/RQE narrative) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Alarm narrative</masterLabel>
+            <translation><!-- Alarm narrative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arc Flash energy calculations</masterLabel>
+            <translation><!-- Arc Flash energy calculations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Area classification layouts and sections</masterLabel>
+            <translation><!-- Area classification layouts and sections --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bill of Process related  Materials (e.g. absorbent, chemical, etc)</masterLabel>
+            <translation><!-- Bill of Process related  Materials (e.g. absorbent, chemical, etc) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Building Management Plan and Assessment (MCB, FAR, Substation, temporary building)</masterLabel>
+            <translation><!-- Building Management Plan and Assessment (MCB, FAR, Substation, temporary building) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CMMS BOM Updates</masterLabel>
+            <translation><!-- CMMS BOM Updates --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CMMS Equipment Setup</masterLabel>
+            <translation><!-- CMMS Equipment Setup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CMMS PM Schedule and Operation task</masterLabel>
+            <translation><!-- CMMS PM Schedule and Operation task --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COC, AOC, Drainage, U / G Facilities Drawing </masterLabel>
+            <translation><!-- COC, AOC, Drainage, U / G Facilities Drawing  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cable routing layouts</masterLabel>
+            <translation><!-- Cable routing layouts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cable sizing calculations</masterLabel>
+            <translation><!-- Cable sizing calculations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cable trench details</masterLabel>
+            <translation><!-- Cable trench details --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Catalyst Loading Diagrams</masterLabel>
+            <translation><!-- Catalyst Loading Diagrams --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Catalyst Plan</masterLabel>
+            <translation><!-- Catalyst Plan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cause and Effect diagram</masterLabel>
+            <translation><!-- Cause and Effect diagram --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Connection diagrams</masterLabel>
+            <translation><!-- Connection diagrams --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Construction details</masterLabel>
+            <translation><!-- Construction details --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Control system block diagram</masterLabel>
+            <translation><!-- Control system block diagram --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Control, Monitoring and Protection</masterLabel>
+            <translation><!-- Control, Monitoring and Protection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Control, alarm and monitoring table</masterLabel>
+            <translation><!-- Control, alarm and monitoring table --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Controller</masterLabel>
+            <translation><!-- Controller --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corrosion Control Documents</masterLabel>
+            <translation><!-- Corrosion Control Documents --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corrosion Control Documents (e.g. IOW, etc)</masterLabel>
+            <translation><!-- Corrosion Control Documents (e.g. IOW, etc) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corrosion and Material Drawings</masterLabel>
+            <translation><!-- Corrosion and Material Drawings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corrosion and Material Drawings (e.g. material selection diagram (MSD), etc)</masterLabel>
+            <translation><!-- Corrosion and Material Drawings (e.g. material selection diagram (MSD), etc) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Custody transfer measurement (CTM)</masterLabel>
+            <translation><!-- Custody transfer measurement (CTM) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCS Graphics and Trends</masterLabel>
+            <translation><!-- DCS Graphics and Trends --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCS documentation (functional specifications)</masterLabel>
+            <translation><!-- DCS documentation (functional specifications) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deviation from choice of standards for hazardous area classification and equipment selection, installation and inspection</masterLabel>
+            <translation><!-- Deviation from choice of standards for hazardous area classification and equipment selection, installation and inspection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Documents such as equipment trim drawing, OEM Manual, Equipment Files, Mechanical calculation, Stress Analysis report, etc.</masterLabel>
+            <translation><!-- Documents such as equipment trim drawing, OEM Manual, Equipment Files, Mechanical calculation, Stress Analysis report, etc. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EMC Review</masterLabel>
+            <translation><!-- EMC Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Earthing layouts</masterLabel>
+            <translation><!-- Earthing layouts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electrical Load list</masterLabel>
+            <translation><!-- Electrical Load list --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Emergency Response Manual</masterLabel>
+            <translation><!-- Emergency Response Manual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Emergency and Vital Supplies</masterLabel>
+            <translation><!-- Emergency and Vital Supplies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Emergency and vital systems</masterLabel>
+            <translation><!-- Emergency and vital systems --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Energy Balance Tools</masterLabel>
+            <translation><!-- Energy Balance Tools --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Environment Aspect Register</masterLabel>
+            <translation><!-- Environment Aspect Register --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Environment documents (e.g. legal/EIA, complaint and sustain issues)</masterLabel>
+            <translation><!-- Environment documents (e.g. legal/EIA, complaint and sustain issues) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equipment data sheet and Drawing (Electrical)</masterLabel>
+            <translation><!-- Equipment data sheet and Drawing (Electrical) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equipment datasheet</masterLabel>
+            <translation><!-- Equipment datasheet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equipment sizing calculation</masterLabel>
+            <translation><!-- Equipment sizing calculation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equipment/Instrument drawing</masterLabel>
+            <translation><!-- Equipment/Instrument drawing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Feed or Product Specifications</masterLabel>
+            <translation><!-- Feed or Product Specifications --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Financial Volume Balances: Any stream (Hydrocarbon, Hydrogen, Utilities, etc., flowing different material through same meter, new pipe routing, change in hands between chemical/refinery/third party)</masterLabel>
+            <translation><!-- Financial Volume Balances: Any stream (Hydrocarbon, Hydrogen, Utilities, etc., flowing different material through same meter, new pipe routing, change in hands between chemical/refinery/third party) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fire &amp; Gas Detector Layout</masterLabel>
+            <translation><!-- Fire &amp; Gas Detector Layout --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fire and Gas Cause and Effect Diagram</masterLabel>
+            <translation><!-- Fire and Gas Cause and Effect Diagram --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fired Heater/Boiler Design datasheet and related documents</masterLabel>
+            <translation><!-- Fired Heater/Boiler Design datasheet and related documents --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flare Map Drawings</masterLabel>
+            <translation><!-- Flare Map Drawings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>General Equipment Arrangements &amp; Elevations</masterLabel>
+            <translation><!-- General Equipment Arrangements &amp; Elevations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HEMP Bowties</masterLabel>
+            <translation><!-- HEMP Bowties --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HV switchgear schedule</masterLabel>
+            <translation><!-- HV switchgear schedule --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Harmonic analysis</masterLabel>
+            <translation><!-- Harmonic analysis --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hazadous Area Classification Schedule/Drawing</masterLabel>
+            <translation><!-- Hazadous Area Classification Schedule/Drawing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hazards &amp; Effects Register</masterLabel>
+            <translation><!-- Hazards &amp; Effects Register --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Heat &amp; Material Balance</masterLabel>
+            <translation><!-- Heat &amp; Material Balance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IMS Updates</masterLabel>
+            <translation><!-- IMS Updates --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IMS Updates for SCE, Critical equipment, CUI, RBI, Injection point program,  Dead leg program, ect.</masterLabel>
+            <translation><!-- IMS Updates for SCE, Critical equipment, CUI, RBI, Injection point program,  Dead leg program, ect. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IPF Documents</masterLabel>
+            <translation><!-- IPF Documents --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IPF Narative</masterLabel>
+            <translation><!-- IPF Narative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IPF online &amp; offline test procedures - final as-built</masterLabel>
+            <translation><!-- IPF online &amp; offline test procedures - final as-built --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Illumination level</masterLabel>
+            <translation><!-- Illumination level --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Infrastructure Works Management Plan and Assessment Report (bride, road, box culvert, etc)</masterLabel>
+            <translation><!-- Infrastructure Works Management Plan and Assessment Report (bride, road, box culvert, etc) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inspection Drawings</masterLabel>
+            <translation><!-- Inspection Drawings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Instrument Equipment Files</masterLabel>
+            <translation><!-- Instrument Equipment Files --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Instrument RCM (ABC Indicator)</masterLabel>
+            <translation><!-- Instrument RCM (ABC Indicator) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Instrument Safeguarding Narrative</masterLabel>
+            <translation><!-- Instrument Safeguarding Narrative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Instrument datasheet</masterLabel>
+            <translation><!-- Instrument datasheet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Isometric drawing/GA drawing</masterLabel>
+            <translation><!-- Isometric drawing/GA drawing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LV switchgear schedule</masterLabel>
+            <translation><!-- LV switchgear schedule --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Labelling (Rotating part)</masterLabel>
+            <translation><!-- Labelling (Rotating part) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lighting and LV power layouts (including buildings)</masterLabel>
+            <translation><!-- Lighting and LV power layouts (including buildings) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Line list</masterLabel>
+            <translation><!-- Line list --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Loop Drawings / SPI (Intools) / SAP / Loop Data &amp; Calculations / Specification sheets</masterLabel>
+            <translation><!-- Loop Drawings / SPI (Intools) / SAP / Loop Data &amp; Calculations / Specification sheets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lubrication Database / Lube Oil Sampling Setup</masterLabel>
+            <translation><!-- Lubrication Database / Lube Oil Sampling Setup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Maintenance Procedures</masterLabel>
+            <translation><!-- Maintenance Procedures --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mass Balance Calculation Tools (Excel)</masterLabel>
+            <translation><!-- Mass Balance Calculation Tools (Excel) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Motor re-start and reacceleration after voltage dip</masterLabel>
+            <translation><!-- Motor re-start and reacceleration after voltage dip --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Motor starting</masterLabel>
+            <translation><!-- Motor starting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Network diagram (Comunication system)</masterLabel>
+            <translation><!-- Network diagram (Comunication system) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oil Movements System</masterLabel>
+            <translation><!-- Oil Movements System --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operating Manuals / Procedures</masterLabel>
+            <translation><!-- Operating Manuals / Procedures --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operating Manuals, Procedure, Work instruction (Rotating part)</masterLabel>
+            <translation><!-- Operating Manuals, Procedure, Work instruction (Rotating part) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PI Process Book (needs to be updated if DCS display/schematic is updated)</masterLabel>
+            <translation><!-- PI Process Book (needs to be updated if DCS display/schematic is updated) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLC Database Backup (e.g. Package Equipment)</masterLabel>
+            <translation><!-- PLC Database Backup (e.g. Package Equipment) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PSFSs (Process Safeguarding Flow Schemes)</masterLabel>
+            <translation><!-- PSFSs (Process Safeguarding Flow Schemes) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plant Historian (PI)</masterLabel>
+            <translation><!-- Plant Historian (PI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plot Plan</masterLabel>
+            <translation><!-- Plot Plan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Power factor correction (if required)</masterLabel>
+            <translation><!-- Power factor correction (if required) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Power layout</masterLabel>
+            <translation><!-- Power layout --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pre-Incident Plan</masterLabel>
+            <translation><!-- Pre-Incident Plan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Proactive Monitoring Database / Sleeping Equipment</masterLabel>
+            <translation><!-- Proactive Monitoring Database / Sleeping Equipment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Control Narrative</masterLabel>
+            <translation><!-- Process Control Narrative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Design Information (Process Chemistry, Process Description)</masterLabel>
+            <translation><!-- Process Design Information (Process Chemistry, Process Description) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Engineering Flow Schemes (P&amp;ID)</masterLabel>
+            <translation><!-- Process Engineering Flow Schemes (P&amp;ID) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Flow Diagram (PFD)</masterLabel>
+            <translation><!-- Process Flow Diagram (PFD) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Safeguarding Memorandum</masterLabel>
+            <translation><!-- Process Safeguarding Memorandum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Simulations (Aspen, PRO-II, etc)</masterLabel>
+            <translation><!-- Process Simulations (Aspen, PRO-II, etc) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Protection and metering key diagrams</masterLabel>
+            <translation><!-- Protection and metering key diagrams --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Protection philosophy</masterLabel>
+            <translation><!-- Protection philosophy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Protection relay settings including individual set point lists for all relay protection parameters whether utilised or not</masterLabel>
+            <translation><!-- Protection relay settings including individual set point lists for all relay protection parameters whether utilised or not --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Protection scheme &amp; relay setting schedules</masterLabel>
+            <translation><!-- Protection scheme &amp; relay setting schedules --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Protection setting document</masterLabel>
+            <translation><!-- Protection setting document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quantitative Risk Assessment (QRA)</masterLabel>
+            <translation><!-- Quantitative Risk Assessment (QRA) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RATS (range alarm and trip setting)</masterLabel>
+            <translation><!-- RATS (range alarm and trip setting) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RV load summary</masterLabel>
+            <translation><!-- RV load summary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reactive Hazards Analysis (RHA)</masterLabel>
+            <translation><!-- Reactive Hazards Analysis (RHA) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refinery or Chemicals Linear Program model (a.k.a: “LP model”) - to be updated via E&amp;S model coordinator.</masterLabel>
+            <translation><!-- Refinery or Chemicals Linear Program model (a.k.a: “LP model”) - to be updated via E&amp;S model coordinator. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refractory plan and assessment report</masterLabel>
+            <translation><!-- Refractory plan and assessment report --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Relief Device Spec Sheet</masterLabel>
+            <translation><!-- Relief Device Spec Sheet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>S.L. diagrams (Single line diagram)</masterLabel>
+            <translation><!-- S.L. diagrams (Single line diagram) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAFOP (Electrical Systems Safe Operability Review - Study)</masterLabel>
+            <translation><!-- SAFOP (Electrical Systems Safe Operability Review - Study) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAP (Maintenance tracking)</masterLabel>
+            <translation><!-- SAP (Maintenance tracking) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAP Bill of Material (BOM) Updates</masterLabel>
+            <translation><!-- SAP Bill of Material (BOM) Updates --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SIFPro Design (SIFPro Database)</masterLabel>
+            <translation><!-- SIFPro Design (SIFPro Database) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Safety Critical Equipment list</masterLabel>
+            <translation><!-- Safety Critical Equipment list --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Safety Data Sheet</masterLabel>
+            <translation><!-- Safety Data Sheet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Schematic diagrams</masterLabel>
+            <translation><!-- Schematic diagrams --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Short circuit &amp; load flow</masterLabel>
+            <translation><!-- Short circuit &amp; load flow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Simplified Process Flow Diagram</masterLabel>
+            <translation><!-- Simplified Process Flow Diagram --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Site Firewater plans and drawings</masterLabel>
+            <translation><!-- Site Firewater plans and drawings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Site Master Plan (onshore)</masterLabel>
+            <translation><!-- Site Master Plan (onshore) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Site Safety Procedures</masterLabel>
+            <translation><!-- Site Safety Procedures --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spare Parts (Instruments)</masterLabel>
+            <translation><!-- Spare Parts (Instruments) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spare parts</masterLabel>
+            <translation><!-- Spare parts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard Document List?? (To be discussed with ADOE)</masterLabel>
+            <translation><!-- Standard Document List?? (To be discussed with ADOE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Structural Integrity Management Plan and Assessment Report (piperack, equipment structure)</masterLabel>
+            <translation><!-- Structural Integrity Management Plan and Assessment Report (piperack, equipment structure) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Substation layouts</masterLabel>
+            <translation><!-- Substation layouts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Summary of Electrical Engineering (electrical equipment summary sheets)</masterLabel>
+            <translation><!-- Summary of Electrical Engineering (electrical equipment summary sheets) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>System Description including Power Generation &amp; Distribution Philosophy</masterLabel>
+            <translation><!-- System Description including Power Generation &amp; Distribution Philosophy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>System Operation Philosophy</masterLabel>
+            <translation><!-- System Operation Philosophy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>System dynamic stability and load shedding</masterLabel>
+            <translation><!-- System dynamic stability and load shedding --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TOP Facility Siting Model</masterLabel>
+            <translation><!-- TOP Facility Siting Model --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tank Strapping Tables Updates</masterLabel>
+            <translation><!-- Tank Strapping Tables Updates --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Temporary installation(s) (construction power supplies).</masterLabel>
+            <translation><!-- Temporary installation(s) (construction power supplies). --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trace heating system layouts</masterLabel>
+            <translation><!-- Trace heating system layouts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training Manuals</masterLabel>
+            <translation><!-- Training Manuals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training Manuals (Rotating part)</masterLabel>
+            <translation><!-- Training Manuals (Rotating part) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Update CUI inspection program (IMS)</masterLabel>
+            <translation><!-- Update CUI inspection program (IMS) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Update Critical Check Valve (IMS)</masterLabel>
+            <translation><!-- Update Critical Check Valve (IMS) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Update Datarec (calculations, lineups, and meters).</masterLabel>
+            <translation><!-- Update Datarec (calculations, lineups, and meters). --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Update Dead Leg Program (IMS and Inspetion ISO)</masterLabel>
+            <translation><!-- Update Dead Leg Program (IMS and Inspetion ISO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Update Injection Point program (IMS, CCD, and Inspection ISO)</masterLabel>
+            <translation><!-- Update Injection Point program (IMS, CCD, and Inspection ISO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Update RBI Model/ Inspection Strategy Database</masterLabel>
+            <translation><!-- Update RBI Model/ Inspection Strategy Database --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Updated equipment / component drawings, equipment curves, equipment datasheets, layout drawings, OEM Manual, Equipment Files (Rotating part)</masterLabel>
+            <translation><!-- Updated equipment / component drawings, equipment curves, equipment datasheets, layout drawings, OEM Manual, Equipment Files (Rotating part) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Upload process equipment details (tray drawings, packing size/characteristics, burner curves, etc…)</masterLabel>
+            <translation><!-- Upload process equipment details (tray drawings, packing size/characteristics, burner curves, etc…) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Utility data (electrical)</masterLabel>
+            <translation><!-- Utility data (electrical) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VSDS economics</masterLabel>
+            <translation><!-- VSDS economics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vendor seal database</masterLabel>
+            <translation><!-- Vendor seal database --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vital Supply Recovery Study</masterLabel>
+            <translation><!-- Vital Supply Recovery Study --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work Instructions / Standing Instructions</masterLabel>
+            <translation><!-- Work Instructions / Standing Instructions --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- E-MOC Checklist type --></label>
+        <name>E_MOC_Checklist_type__c</name>
+        <picklistValues>
+            <masterLabel>AIM (Equipment Drawings, Piperack Cross Section Drawing)</masterLabel>
+            <translation><!-- AIM (Equipment Drawings, Piperack Cross Section Drawing) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>APC / Real Time Optimization (RTO) (APC/RQE narrative)</masterLabel>
+            <translation><!-- APC / Real Time Optimization (RTO) (APC/RQE narrative) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>APH Design datasheet</masterLabel>
+            <translation><!-- APH Design datasheet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Adsorbents/Catalyst Loading Diagrams/Instructions</masterLabel>
+            <translation><!-- Adsorbents/Catalyst Loading Diagrams/Instructions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arc Flash energy calculations</masterLabel>
+            <translation><!-- Arc Flash energy calculations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bill of Material</masterLabel>
+            <translation><!-- Bill of Material --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Building Management Plan and Assessment/Calculation Report (MCB, FAR, Substation, temporary building)/Drawings</masterLabel>
+            <translation><!-- Building Management Plan and Assessment/Calculation Report (MCB, FAR, Substation, temporary building)/Drawings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Burner Operating Manual (IOM)</masterLabel>
+            <translation><!-- Burner Operating Manual (IOM) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Burner Performance Datasheet</masterLabel>
+            <translation><!-- Burner Performance Datasheet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CMMS Equipment Setup</masterLabel>
+            <translation><!-- CMMS Equipment Setup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CMMS PM Schedule and Operation task</masterLabel>
+            <translation><!-- CMMS PM Schedule and Operation task --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COC, AOC, Drainage, U / G Facilities Drawing </masterLabel>
+            <translation><!-- COC, AOC, Drainage, U / G Facilities Drawing  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cable routing layouts</masterLabel>
+            <translation><!-- Cable routing layouts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cable sizing calculations</masterLabel>
+            <translation><!-- Cable sizing calculations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cable trench details</masterLabel>
+            <translation><!-- Cable trench details --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Catalyst/Adsorbent Performance Reports/Postmortem documents</masterLabel>
+            <translation><!-- Catalyst/Adsorbent Performance Reports/Postmortem documents --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cause and Effect diagram</masterLabel>
+            <translation><!-- Cause and Effect diagram --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Connection diagrams</masterLabel>
+            <translation><!-- Connection diagrams --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Construction details</masterLabel>
+            <translation><!-- Construction details --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Control system block diagram</masterLabel>
+            <translation><!-- Control system block diagram --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Control, Monitoring and Protection</masterLabel>
+            <translation><!-- Control, Monitoring and Protection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Control, alarm and monitoring table</masterLabel>
+            <translation><!-- Control, alarm and monitoring table --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corrosion Control Documents (e.g. IOW, etc)</masterLabel>
+            <translation><!-- Corrosion Control Documents (e.g. IOW, etc) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corrosion and Material Drawings (e.g. material selection diagram (MSD), etc)</masterLabel>
+            <translation><!-- Corrosion and Material Drawings (e.g. material selection diagram (MSD), etc) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Custody transfer measurement (CTM)</masterLabel>
+            <translation><!-- Custody transfer measurement (CTM) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCS Graphics and Trends</masterLabel>
+            <translation><!-- DCS Graphics and Trends --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCS architecture</masterLabel>
+            <translation><!-- DCS architecture --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCS database (Logic+function+configuration)</masterLabel>
+            <translation><!-- DCS database (Logic+function+configuration) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCS documentation/Drawing/IO assignment</masterLabel>
+            <translation><!-- DCS documentation/Drawing/IO assignment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deviation from choice of standards for hazardous area classification and equipment selection, installation and inspection</masterLabel>
+            <translation><!-- Deviation from choice of standards for hazardous area classification and equipment selection, installation and inspection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Documents such as equipment trim drawing, OEM Manual, Equipment Files, Mechanical calculation, Stress Analysis report, etc.</masterLabel>
+            <translation><!-- Documents such as equipment trim drawing, OEM Manual, Equipment Files, Mechanical calculation, Stress Analysis report, etc. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EMC Review</masterLabel>
+            <translation><!-- EMC Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Earthing layouts</masterLabel>
+            <translation><!-- Earthing layouts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electrical Load list</masterLabel>
+            <translation><!-- Electrical Load list --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Emergency Response Procedure and Manual</masterLabel>
+            <translation><!-- Emergency Response Procedure and Manual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Emergency and Vital Supplies</masterLabel>
+            <translation><!-- Emergency and Vital Supplies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Emergency and vital systems</masterLabel>
+            <translation><!-- Emergency and vital systems --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Energy Balance Tools (PRO-II, Utility Steam/Electricity balance tools….)</masterLabel>
+            <translation><!-- Energy Balance Tools (PRO-II, Utility Steam/Electricity balance tools….) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Environment Aspect Register</masterLabel>
+            <translation><!-- Environment Aspect Register --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Environment documents (e.g. legal/EIA)</masterLabel>
+            <translation><!-- Environment documents (e.g. legal/EIA) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equipment / Package Opeating Manual</masterLabel>
+            <translation><!-- Equipment / Package Opeating Manual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equipment Bill of Material (BOM) for Burner/Fired Heater/Boiler/Flare</masterLabel>
+            <translation><!-- Equipment Bill of Material (BOM) for Burner/Fired Heater/Boiler/Flare --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equipment data sheet and Drawing (Electrical)</masterLabel>
+            <translation><!-- Equipment data sheet and Drawing (Electrical) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equipment datasheet</masterLabel>
+            <translation><!-- Equipment datasheet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equipment list</masterLabel>
+            <translation><!-- Equipment list --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equipment sizing calculation</masterLabel>
+            <translation><!-- Equipment sizing calculation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equipment/Instrument drawing</masterLabel>
+            <translation><!-- Equipment/Instrument drawing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Feed or Product Specifications</masterLabel>
+            <translation><!-- Feed or Product Specifications --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fire &amp; Gas Detector Layout</masterLabel>
+            <translation><!-- Fire &amp; Gas Detector Layout --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fire and Gas Cause and Effect Diagram</masterLabel>
+            <translation><!-- Fire and Gas Cause and Effect Diagram --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fire and Safety assessment</masterLabel>
+            <translation><!-- Fire and Safety assessment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fired Heater/Boiler Design datasheet</masterLabel>
+            <translation><!-- Fired Heater/Boiler Design datasheet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fired Heater/Boiler Instruction &amp; Operating Manual (IOM)</masterLabel>
+            <translation><!-- Fired Heater/Boiler Instruction &amp; Operating Manual (IOM) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flare Datasheet &amp; IOM</masterLabel>
+            <translation><!-- Flare Datasheet &amp; IOM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flare Map Drawings and Flare study reports</masterLabel>
+            <translation><!-- Flare Map Drawings and Flare study reports --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Functional Logic Diagram (FLD)</masterLabel>
+            <translation><!-- Functional Logic Diagram (FLD) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>General Equipment Arrangements &amp; Elevations (GA drawing)</masterLabel>
+            <translation><!-- General Equipment Arrangements &amp; Elevations (GA drawing) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HEMP Bowties</masterLabel>
+            <translation><!-- HEMP Bowties --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HV switchgear schedule</masterLabel>
+            <translation><!-- HV switchgear schedule --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Harmonic analysis</masterLabel>
+            <translation><!-- Harmonic analysis --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hazadous Area Classification Schedule/Drawing</masterLabel>
+            <translation><!-- Hazadous Area Classification Schedule/Drawing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hazards &amp; Effects Register</masterLabel>
+            <translation><!-- Hazards &amp; Effects Register --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Heat &amp; Material Balance including composition change</masterLabel>
+            <translation><!-- Heat &amp; Material Balance including composition change --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hydrocarbon management system</masterLabel>
+            <translation><!-- Hydrocarbon management system --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IDF &amp; FDF Datasheet</masterLabel>
+            <translation><!-- IDF &amp; FDF Datasheet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IMS Updates for SCE, Critical equipment, CUI, RBI, Injection point program,  Dead leg program, ect.</masterLabel>
+            <translation><!-- IMS Updates for SCE, Critical equipment, CUI, RBI, Injection point program,  Dead leg program, ect. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IPF Narative</masterLabel>
+            <translation><!-- IPF Narative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Illumination level</masterLabel>
+            <translation><!-- Illumination level --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Infrastructure Works Management Plan and Assessment/Calculation Report (bridge, road, box culvert, etc)/Drawings</masterLabel>
+            <translation><!-- Infrastructure Works Management Plan and Assessment/Calculation Report (bridge, road, box culvert, etc)/Drawings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inspection Drawings</masterLabel>
+            <translation><!-- Inspection Drawings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Instrument Criticality Ranking (ABC Indicator in SAP)</masterLabel>
+            <translation><!-- Instrument Criticality Ranking (ABC Indicator in SAP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Instrument Index</masterLabel>
+            <translation><!-- Instrument Index --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Instrument datasheet</masterLabel>
+            <translation><!-- Instrument datasheet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Isometric drawing/GA drawing</masterLabel>
+            <translation><!-- Isometric drawing/GA drawing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LV switchgear schedule</masterLabel>
+            <translation><!-- LV switchgear schedule --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Labelling (Rotating part)</masterLabel>
+            <translation><!-- Labelling (Rotating part) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lighting and LV power layouts (including buildings)</masterLabel>
+            <translation><!-- Lighting and LV power layouts (including buildings) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Line list</masterLabel>
+            <translation><!-- Line list --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Loop Drawings / SPI (Intools) / SAP / Loop Data &amp; Calculations/ Specification sheets / Instrument location lay out/ F&amp;G location lay out</masterLabel>
+            <translation><!-- Loop Drawings / SPI (Intools) / SAP / Loop Data &amp; Calculations/ Specification sheets / Instrument location lay out/ F&amp;G location lay out --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lubrication Database / Lube Oil Sampling Setup</masterLabel>
+            <translation><!-- Lubrication Database / Lube Oil Sampling Setup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Maintenance Procedures</masterLabel>
+            <translation><!-- Maintenance Procedures --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mass Balance Calculation Tools (Excel)</masterLabel>
+            <translation><!-- Mass Balance Calculation Tools (Excel) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monitoring program and legal report</masterLabel>
+            <translation><!-- Monitoring program and legal report --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Motor re-start and reacceleration after voltage dip</masterLabel>
+            <translation><!-- Motor re-start and reacceleration after voltage dip --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Motor starting</masterLabel>
+            <translation><!-- Motor starting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Network diagram (Comunication system)</masterLabel>
+            <translation><!-- Network diagram (Comunication system) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oil Movements System</masterLabel>
+            <translation><!-- Oil Movements System --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operating Manuals / Procedures</masterLabel>
+            <translation><!-- Operating Manuals / Procedures --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLC Database Backup (e.g. Package Equipment)</masterLabel>
+            <translation><!-- PLC Database Backup (e.g. Package Equipment) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PSFSs (Process Safeguarding Flow Schemes)</masterLabel>
+            <translation><!-- PSFSs (Process Safeguarding Flow Schemes) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plant Historian (PI)</masterLabel>
+            <translation><!-- Plant Historian (PI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plot Plan</masterLabel>
+            <translation><!-- Plot Plan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Power factor correction (if required)</masterLabel>
+            <translation><!-- Power factor correction (if required) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Power layout</masterLabel>
+            <translation><!-- Power layout --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pre-Incident Plan</masterLabel>
+            <translation><!-- Pre-Incident Plan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Proactive Monitoring Database / Sleeping Equipment</masterLabel>
+            <translation><!-- Proactive Monitoring Database / Sleeping Equipment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Procedure, Work instruction (Rotating part)</masterLabel>
+            <translation><!-- Procedure, Work instruction (Rotating part) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Control Narrative</masterLabel>
+            <translation><!-- Process Control Narrative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Design Information (Process Chemistry, Process Description)</masterLabel>
+            <translation><!-- Process Design Information (Process Chemistry, Process Description) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Engineering Flow Schemes (P&amp;ID)</masterLabel>
+            <translation><!-- Process Engineering Flow Schemes (P&amp;ID) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Flow Diagram (PFD)</masterLabel>
+            <translation><!-- Process Flow Diagram (PFD) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Safeguarding Memorandum</masterLabel>
+            <translation><!-- Process Safeguarding Memorandum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Simulations (Aspen, PRO-II, etc)</masterLabel>
+            <translation><!-- Process Simulations (Aspen, PRO-II, etc) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Storage Tank Technical data</masterLabel>
+            <translation><!-- Product Storage Tank Technical data --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Protection and metering key diagrams</masterLabel>
+            <translation><!-- Protection and metering key diagrams --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Protection philosophy</masterLabel>
+            <translation><!-- Protection philosophy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Protection relay settings including individual set point lists for all relay protection parameters whether utilised or not</masterLabel>
+            <translation><!-- Protection relay settings including individual set point lists for all relay protection parameters whether utilised or not --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Protection scheme &amp; relay setting schedules</masterLabel>
+            <translation><!-- Protection scheme &amp; relay setting schedules --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Protection setting document</masterLabel>
+            <translation><!-- Protection setting document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RATS (range alarm and trip setting)</masterLabel>
+            <translation><!-- RATS (range alarm and trip setting) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RV load summary</masterLabel>
+            <translation><!-- RV load summary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reactive Hazards Analysis (RHA)</masterLabel>
+            <translation><!-- Reactive Hazards Analysis (RHA) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refinery or Chemicals Linear Program model (a.k.a: “LP model”) - to be updated via E&amp;S model coordinator.</masterLabel>
+            <translation><!-- Refinery or Chemicals Linear Program model (a.k.a: “LP model”) - to be updated via E&amp;S model coordinator. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refractory plan and Assessment/Calculation report/Drawings</masterLabel>
+            <translation><!-- Refractory plan and Assessment/Calculation report/Drawings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>S.L. diagrams (Single line diagram)</masterLabel>
+            <translation><!-- S.L. diagrams (Single line diagram) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAFOP (Electrical Systems Safe Operability Review - Study)</masterLabel>
+            <translation><!-- SAFOP (Electrical Systems Safe Operability Review - Study) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAP (Maintenance tracking)</masterLabel>
+            <translation><!-- SAP (Maintenance tracking) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SIFPro Design (SIFPro Database)</masterLabel>
+            <translation><!-- SIFPro Design (SIFPro Database) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SRU/Incinerator burner datasheet</masterLabel>
+            <translation><!-- SRU/Incinerator burner datasheet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Safe Working Procedures</masterLabel>
+            <translation><!-- Safe Working Procedures --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Safety Critical Equipment list</masterLabel>
+            <translation><!-- Safety Critical Equipment list --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Safety Data Sheet</masterLabel>
+            <translation><!-- Safety Data Sheet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Safety equipment plot plan</masterLabel>
+            <translation><!-- Safety equipment plot plan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sample monitoring fugitives</masterLabel>
+            <translation><!-- Sample monitoring fugitives --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Schematic diagrams</masterLabel>
+            <translation><!-- Schematic diagrams --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Short circuit &amp; load flow</masterLabel>
+            <translation><!-- Short circuit &amp; load flow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Simplified Process Flow Diagram</masterLabel>
+            <translation><!-- Simplified Process Flow Diagram --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Site Firewater plans and drawings</masterLabel>
+            <translation><!-- Site Firewater plans and drawings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Site Master Plan (onshore)</masterLabel>
+            <translation><!-- Site Master Plan (onshore) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spare part interchangable record (SPIR) and spare part list</masterLabel>
+            <translation><!-- Spare part interchangable record (SPIR) and spare part list --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stock inventory</masterLabel>
+            <translation><!-- Stock inventory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Structural Integrity Management Plan and Assessment/Calculation Report (piperack, equipment structure)/Drawings</masterLabel>
+            <translation><!-- Structural Integrity Management Plan and Assessment/Calculation Report (piperack, equipment structure)/Drawings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Substation layouts</masterLabel>
+            <translation><!-- Substation layouts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Summary of Electrical Engineering (electrical equipment summary sheets)</masterLabel>
+            <translation><!-- Summary of Electrical Engineering (electrical equipment summary sheets) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>System Description including Power Generation &amp; Distribution Philosophy</masterLabel>
+            <translation><!-- System Description including Power Generation &amp; Distribution Philosophy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>System Operation Philosophy</masterLabel>
+            <translation><!-- System Operation Philosophy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>System dynamic stability and load shedding</masterLabel>
+            <translation><!-- System dynamic stability and load shedding --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TAS/TAM database</masterLabel>
+            <translation><!-- TAS/TAM database --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tank Strapping Tables Updates</masterLabel>
+            <translation><!-- Tank Strapping Tables Updates --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Temporary installation(s) (construction power supplies).</masterLabel>
+            <translation><!-- Temporary installation(s) (construction power supplies). --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Test Procedure for IPF</masterLabel>
+            <translation><!-- Test Procedure for IPF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trace heating system layouts</masterLabel>
+            <translation><!-- Trace heating system layouts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training Manuals</masterLabel>
+            <translation><!-- Training Manuals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training Manuals (Rotating part)</masterLabel>
+            <translation><!-- Training Manuals (Rotating part) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Updated equipment / component drawings, equipment curves, equipment datasheets, layout drawings, OEM Manual, Equipment Files (Rotating part)</masterLabel>
+            <translation><!-- Updated equipment / component drawings, equipment curves, equipment datasheets, layout drawings, OEM Manual, Equipment Files (Rotating part) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Upload process equipment details (tray drawings, packing size/characteristics, burner curves, etc…)</masterLabel>
+            <translation><!-- Upload process equipment details (tray drawings, packing size/characteristics, burner curves, etc…) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Utility data (electrical)</masterLabel>
+            <translation><!-- Utility data (electrical) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VSDS economics</masterLabel>
+            <translation><!-- VSDS economics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vendor seal database</masterLabel>
+            <translation><!-- Vendor seal database --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vital Supply Recovery Study</masterLabel>
+            <translation><!-- Vital Supply Recovery Study --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work Instructions / Standing Instructions</masterLabel>
+            <translation><!-- Work Instructions / Standing Instructions --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- E-MOC Doc Type --></label>
+        <name>E_MOC_Doc_Type__c</name>
+        <picklistValues>
+            <masterLabel>Civil and Structure document</masterLabel>
+            <translation><!-- Civil and Structure document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Combustion document</masterLabel>
+            <translation><!-- Combustion document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Common document</masterLabel>
+            <translation><!-- Common document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electrical and Telecommunication Document Common</masterLabel>
+            <translation><!-- Electrical and Telecommunication Document Common --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electrical and Telecommunication Document Communication (e.g. talk-back, CCTV, radio, public announce and telecommunication network)</masterLabel>
+            <translation><!-- Electrical and Telecommunication Document Communication (e.g. talk-back, CCTV, radio, public announce and telecommunication network) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electrical and Telecommunication Document Driver/Actuator (process) at Valve (e.g. Motor, MOV)</masterLabel>
+            <translation><!-- Electrical and Telecommunication Document Driver/Actuator (process) at Valve (e.g. Motor, MOV) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electrical and Telecommunication Document Electrical equipment/system</masterLabel>
+            <translation><!-- Electrical and Telecommunication Document Electrical equipment/system --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electrical and Telecommunication Document Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment))</masterLabel>
+            <translation><!-- Electrical and Telecommunication Document Emergency Backup Systems (UPS for Fire &amp; Gas and UPS for DCS, Motor of Firewater pump, Emergency Generator, Emergency lighting, remote fire fighting control equipment)) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Environment document</masterLabel>
+            <translation><!-- Environment document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HSE document</masterLabel>
+            <translation><!-- HSE document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Instrument Document</masterLabel>
+            <translation><!-- Instrument Document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Maintenance document</masterLabel>
+            <translation><!-- Maintenance document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operations document</masterLabel>
+            <translation><!-- Operations document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Control Document</masterLabel>
+            <translation><!-- Process Control Document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Safety and Fire Safety document</masterLabel>
+            <translation><!-- Process Safety and Fire Safety document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rotating Document</masterLabel>
+            <translation><!-- Rotating Document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stationary Equipment and Piping Document</masterLabel>
+            <translation><!-- Stationary Equipment and Piping Document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Technologist document</masterLabel>
+            <translation><!-- Technologist document --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Question No --></label>
+        <name>Question_No__c</name>
+    </fields>
+    <layouts>
+        <layout>E-MOC Attachment Doc require Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

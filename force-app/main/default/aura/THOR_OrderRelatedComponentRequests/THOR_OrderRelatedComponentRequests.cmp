@@ -1,0 +1,43 @@
+<aura:component implements="flexipage:availableForRecordHome" controller="THOR_OrderRelCmpReqController">
+	<!-- ATTRIBUTES -->
+	<aura:attribute name="recordId" type="String" access="global" />
+	<aura:attribute name="hasEditAccess" type="Boolean" default="false" access="global" />
+	<aura:attribute name="hasOrderNumber" type="Boolean" default="false" access="global" />
+
+	<aura:attribute name="items" type="List" access="private" />
+	<aura:attribute name="cartCount" type="Integer" access="private" default="0" />
+	<aura:attribute name="labelSequence" type="String" access="private" />
+
+	<aura:attribute name="isLoadingRequests" type="Boolean" default="false" access="private" />
+	<aura:attribute name="isLoadingCartCount" type="Boolean" default="false" access="private" />
+
+	<!-- EVENTS -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:registerEvent name="stopLoadingEvent" type="c:THOR_Event" />
+	<lightning:navigation aura:id="navService" />
+
+	<!-- BODY -->
+	<lightning:layout>
+		<lightning:layoutItem size="12" class="container">
+			<div class="slds-text-body_regular totalRequests">COMPONENT REQUEST({!v.items.length})</div>
+
+			<!-- <aura:if isTrue="{! and(v.hasEditAccess, v.hasOrderNumber) }"> -->
+				<div class="iconContainer">
+					<!--lightning:icon class="addIcon" iconName="utility:add" size="small" alternativeText="add" onclick="{! c.navigateToAddRequest}" /-->
+					<lightning:icon class="addIcon" iconName="utility:add" size="small" alternativeText="add" onclick="{! c.navigateToAddRequest}" />
+					<div class="carContainer">
+						<lightning:icon class="carIcon" iconName="standard:work_order" size="small" alternativeText="car" onclick="{! c.navigateToCart}" />
+						<div class="slds-text-body_regular carNumber">{!v.cartCount}</div>
+					</div>
+				</div>
+			<!-- </aura:if> -->
+
+			<c:THOR_ListObjectDisplayer
+				items="{!v.items}"
+				labelSequence="{!v.labelSequence}"
+				viewAll="true"
+				navigateToComponent="c__THOR_ComponentRequestRecordDisplay"
+			/>
+		</lightning:layoutItem>
+	</lightning:layout>
+</aura:component>

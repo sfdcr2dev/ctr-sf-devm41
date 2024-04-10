@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Vendor Data Management with Equipment*</value>
+    </caseValues>
+    <fields>
+        <label><!-- Discipline --></label>
+        <name>Discipline__c</name>
+    </fields>
+    <fields>
+        <help><!-- ไฟล์ข้อมูล Vendor Data ของ Equipment --></help>
+        <label><!-- Vendor Data File --></label>
+        <name>Vendor_Data_File_C__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor Data File URL --></label>
+        <name>Vendor_Data_File_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor Data File --></label>
+        <name>Vendor_Data_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor Data Management --></label>
+        <name>Vendor_Data_Management__c</name>
+        <relationshipLabel><!-- Vendor Data Management with Equipment* --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Vendor Data Management with Equipment Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว)</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

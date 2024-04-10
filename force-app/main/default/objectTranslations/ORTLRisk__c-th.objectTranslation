@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Threat</value>
+    </caseValues>
+    <fields>
+        <label><!-- APU --></label>
+        <name>APU__c</name>
+    </fields>
+    <fields>
+        <label><!-- Applicable to other equipment --></label>
+        <name>ApptootherEQP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Threat Type --></label>
+        <name>AssessmentType__c</name>
+        <picklistValues>
+            <masterLabel>PRA (Potential Risk Assessment)</masterLabel>
+            <translation><!-- PRA (Potential Risk Assessment) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RRA (Reactive Risk Assessment)</masterLabel>
+            <translation><!-- RRA (Reactive Risk Assessment) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Cause of failure (Root cause) --></label>
+        <name>Causeoffailure__c</name>
+    </fields>
+    <fields>
+        <label><!-- Check Applicable to Other Equipment --></label>
+        <name>CheckApplicable__c</name>
+    </fields>
+    <fields>
+        <label><!-- DEM No. --></label>
+        <name>DEMNo__c</name>
+    </fields>
+    <fields>
+        <label><!-- DEM /Causal Learning --></label>
+        <name>DEM__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Discipline --></label>
+        <name>Discipline__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enterprise Risk Management --></label>
+        <name>EnRiskMgt__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Failure Mode --></label>
+        <name>FailureMode__c</name>
+        <picklistValues>
+            <masterLabel>E-00001</masterLabel>
+            <translation><!-- E-00001 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E-00002</masterLabel>
+            <translation><!-- E-00002 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Consequence Effect --></label>
+        <name>FinConsEffect__c</name>
+        <picklistValues>
+            <masterLabel>&quot;Bad Actor&quot; Incident</masterLabel>
+            <translation><!-- &quot;Bad Actor&quot; Incident --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Alarm Threat</masterLabel>
+            <translation><!-- Alarm Threat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LOPC : Loss of Primary Containment</masterLabel>
+            <translation><!-- LOPC : Loss of Primary Containment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PTM IOW</masterLabel>
+            <translation><!-- PTM IOW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PTM QMI</masterLabel>
+            <translation><!-- PTM QMI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PTM RE</masterLabel>
+            <translation><!-- PTM RE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Safety Incident</masterLabel>
+            <translation><!-- Process Safety Incident --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trip Threat</masterLabel>
+            <translation><!-- Trip Threat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unit Shutdown/ UPDT</masterLabel>
+            <translation><!-- Unit Shutdown/ UPDT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vibration at D-severity Level</masterLabel>
+            <translation><!-- Vibration at D-severity Level --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Other Final Consequence Effect Detail --></label>
+        <name>FinOtherConsEff__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Threat Consequence --></label>
+        <name>FinRiskCons__c</name>
+        <picklistValues>
+            <masterLabel>Assets</masterLabel>
+            <translation><!-- Assets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Environment</masterLabel>
+            <translation><!-- Environment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>People</masterLabel>
+            <translation><!-- People --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Quality</masterLabel>
+            <translation><!-- Product Quality --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reputation</masterLabel>
+            <translation><!-- Reputation --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Likelihood --></label>
+        <name>FinalLikelihood__c</name>
+        <picklistValues>
+            <masterLabel>A</masterLabel>
+            <translation><!-- A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B</masterLabel>
+            <translation><!-- B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C</masterLabel>
+            <translation><!-- C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D</masterLabel>
+            <translation><!-- D --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E</masterLabel>
+            <translation><!-- E --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Risk Reason --></label>
+        <name>FinalRiskReason__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Risk --></label>
+        <name>FinalRisk__c</name>
+        <picklistValues>
+            <masterLabel>H</masterLabel>
+            <translation><!-- H --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>L</masterLabel>
+            <translation><!-- L --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>L/N</masterLabel>
+            <translation><!-- L/N --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>M</masterLabel>
+            <translation><!-- M --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Severity --></label>
+        <name>FinalSeverity__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Value (MUSD) --></label>
+        <name>FinalValueMUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Value (USD) --></label>
+        <name>FinalValueUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Initial Consequence Effect Detail --></label>
+        <name>IniOtherConsEff__c</name>
+    </fields>
+    <fields>
+        <label><!-- Initial Risk --></label>
+        <name>InitialRisk__c</name>
+        <picklistValues>
+            <masterLabel>H</masterLabel>
+            <translation><!-- H --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>L</masterLabel>
+            <translation><!-- L --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>L/N</masterLabel>
+            <translation><!-- L/N --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>M</masterLabel>
+            <translation><!-- M --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Initial Severity --></label>
+        <name>InitialSeverity__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Initial Value (USD) --></label>
+        <name>InitialValueUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Initiative By --></label>
+        <name>InitiativeBy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Threat Record Date --></label>
+        <name>InitiativeDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Initial Consequence Effect --></label>
+        <name>IntConsEffect__c</name>
+        <picklistValues>
+            <masterLabel>&quot;Bad Actor&quot; Incident</masterLabel>
+            <translation><!-- &quot;Bad Actor&quot; Incident --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Alarm Threat</masterLabel>
+            <translation><!-- Alarm Threat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LOPC : Loss of Primary Containment</masterLabel>
+            <translation><!-- LOPC : Loss of Primary Containment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PTM IOW</masterLabel>
+            <translation><!-- PTM IOW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PTM QMI</masterLabel>
+            <translation><!-- PTM QMI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PTM RE</masterLabel>
+            <translation><!-- PTM RE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Safety Incident</masterLabel>
+            <translation><!-- Process Safety Incident --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trip Threat</masterLabel>
+            <translation><!-- Trip Threat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unit Shutdown/ UPDT</masterLabel>
+            <translation><!-- Unit Shutdown/ UPDT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vibration at D-severity Level</masterLabel>
+            <translation><!-- Vibration at D-severity Level --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Initial Threat Consequence --></label>
+        <name>IntRiskCons__c</name>
+        <picklistValues>
+            <masterLabel>Assets</masterLabel>
+            <translation><!-- Assets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Environment</masterLabel>
+            <translation><!-- Environment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>People</masterLabel>
+            <translation><!-- People --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Quality</masterLabel>
+            <translation><!-- Product Quality --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reputation</masterLabel>
+            <translation><!-- Reputation --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Initial Value (MUSD) --></label>
+        <name>IntValueMUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Initial Likelihood --></label>
+        <name>IntlLikelihood__c</name>
+        <picklistValues>
+            <masterLabel>A</masterLabel>
+            <translation><!-- A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B</masterLabel>
+            <translation><!-- B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C</masterLabel>
+            <translation><!-- C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D</masterLabel>
+            <translation><!-- D --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E</masterLabel>
+            <translation><!-- E --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Is Active --></label>
+        <name>IsActive__c</name>
+    </fields>
+    <fields>
+        <label><!-- Maintenance Tasks --></label>
+        <name>MaintenanceTask__c</name>
+    </fields>
+    <fields>
+        <help><!-- Referral threat number --></help>
+        <label><!-- Original Threat --></label>
+        <name>OriginalRisk__c</name>
+        <relationshipLabel><!-- Threat (Original Threat) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent Threat --></label>
+        <name>ParentRisk__c</name>
+        <relationshipLabel><!-- Threat (Parent Threat) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Plant Code --></label>
+        <name>PlantCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plant Name --></label>
+        <name>PlantName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plant Section --></label>
+        <name>PlantSection__c</name>
+    </fields>
+    <fields>
+        <label><!-- Threat Eradicated Date --></label>
+        <name>RiskClosedDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Threat Initiator --></label>
+        <name>RiskInitiator__c</name>
+        <relationshipLabel><!-- Threat --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Risk Reduction (MUSD) --></label>
+        <name>RiskReductMUSD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Threat Scenario Description --></label>
+        <name>RiskScenarioDes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Threat Scenario --></label>
+        <name>RiskScenario__c</name>
+    </fields>
+    <fields>
+        <label><!-- Threat Status --></label>
+        <name>RiskStatus__c</name>
+        <picklistValues>
+            <masterLabel>Awaiting Final Assessment</masterLabel>
+            <translation><!-- Awaiting Final Assessment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mitigation</masterLabel>
+            <translation><!-- Mitigation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Tag Code --></label>
+        <name>TagCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tag No. --></label>
+        <name>TagNo__c</name>
+        <relationshipLabel><!-- Threat --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Threat --></label>
+        <name>Threat__c</name>
+        <picklistValues>
+            <masterLabel>Equipment Frequent Failures</masterLabel>
+            <translation><!-- Equipment Frequent Failures --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Frequent Violation of PTM limits</masterLabel>
+            <translation><!-- Frequent Violation of PTM limits --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Others</masterLabel>
+            <translation><!-- Others --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Safety, LOPC</masterLabel>
+            <translation><!-- Process Safety, LOPC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stationary Equipment Integrity</masterLabel>
+            <translation><!-- Stationary Equipment Integrity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UpDT incident</masterLabel>
+            <translation><!-- UpDT incident --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Unit --></label>
+        <name>Unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planning Plant --></label>
+        <name>txtPlanningPlant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tag No. --></label>
+        <name>txtTagNo__c</name>
+    </fields>
+    <layouts>
+        <layout>ORTLRiskLayout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Final Risk Assessment --></label>
+            <section>Final Risk Assessment</section>
+        </sections>
+        <sections>
+            <label><!-- Initial Risk Assessment --></label>
+            <section>Initial Risk Assessment</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Threat Description --></label>
+            <section>Threat Description</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Create Action --></label>
+        <name>ORTLCreateAction</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Final Risk Assessment --></label>
+        <name>ORTLFinalRisk</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Initial Risk Assessment --></label>
+        <name>ORTLInitialRisk</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- Please select final risk assessment before save. --></errorMessage>
+        <name>ORTLRiskCheckFinalRiskAssessment</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot change value of Risk No. --></errorMessage>
+        <name>ORTLRiskCheckIsChangeRiskNo</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- ORTLEditRisk --></label>
+        <name>ORTLEditRisk</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ORTLNewRisk --></label>
+        <name>ORTLNewRisk</name>
+    </webLinks>
+</CustomObjectTranslation>

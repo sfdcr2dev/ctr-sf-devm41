@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>E-MOC Prelim Risk</value>
+    </caseValues>
+    <fields>
+        <label><!-- Comment --></label>
+        <name>Comment__c</name>
+    </fields>
+    <fields>
+        <label><!-- E-MOC Application --></label>
+        <name>E_MOC_Application__c</name>
+        <relationshipLabel><!-- E-MOC Prelim Risk --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Topic --></label>
+        <name>Topic__c</name>
+        <picklistValues>
+            <masterLabel>ทำการ Monitor tag ข้างเคียง หรือตัวอ่านที่สามารถทดแทนได้ (Redundant Transmitter) และทำการ Record ตามความถี่ที่เหมาะสม</masterLabel>
+            <translation><!-- ทำการ Monitor tag ข้างเคียง หรือตัวอ่านที่สามารถทดแทนได้ (Redundant Transmitter) และทำการ Record ตามความถี่ที่เหมาะสม --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Mitigation / Precaution</masterLabel>
+            <translation><!-- Mitigation / Precaution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Potential Consequence</masterLabel>
+            <translation><!-- Potential Consequence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Potential Risk</masterLabel>
+            <translation><!-- Potential Risk --></translation>
+        </picklistValues>
+    </fields>
+</CustomObjectTranslation>

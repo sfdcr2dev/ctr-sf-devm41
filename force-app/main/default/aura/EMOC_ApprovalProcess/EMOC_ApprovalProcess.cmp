@@ -1,0 +1,350 @@
+<aura:component implements="lightning:actionOverride,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:appHostable,force:hasRecordId,force:LightningQuickAction,force:hasSObjectName" access="global" controller="EMOC_ApprovalController">
+
+    <aura:attribute name="Submitter" type="String" />
+    <aura:attribute name="DateSubmited" type="String"/>
+    <aura:attribute name="ActualApprover" type="String" />
+    <aura:attribute name="AssignedTo" type="String" />
+    <aura:attribute name="recordId" type="Id" />
+    
+    <aura:attribute name="objectName" type="String" />
+    <aura:attribute name="status" type="String" />
+    <aura:attribute name="subjectName" type="String" />
+    <aura:attribute name="MOCType" type="String" />
+	<aura:attribute name="StatusCommonWorkflow" type="String" />
+    <aura:attribute name="StatusFunctionalOverride" type="String" />
+    <aura:attribute name="RecordTypeName" type="String" />
+    <aura:attribute name="sobjecttype" type="String" default="{!v.sObjectName}"/>
+ 	<aura:attribute name="checkBtnHold" type="boolean" default="false"/>
+    <aura:attribute name="checkBtnReject" type="boolean" default="false"/>
+    <aura:attribute name="checkBtnSendback" type="boolean" default="false"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/> 
+    
+    <aura:attribute name="comment" type="String" default=""  />
+    <aura:attribute name="checkBoxState" type="boolean" default="false"/>
+    <aura:attribute name="checkSequence" type="boolean" default="false"/>
+    
+	<aura:attribute name="isModalApproveOpen" type="boolean" default="false"/>
+    <aura:attribute name="isModalRejectOpen" type="boolean" default="false"/>
+    <aura:attribute name="isModalSendBackOpen" type="boolean" default="false"/>
+    <aura:attribute name="isModalHoldOpen" type="boolean" default="false"/>
+    
+    <aura:attribute name="labelApprove" type="String" />
+    
+    <div class="body">
+       <div class="slds-page-header slds-page-header_record-home forceHighlightsStencilDesktop forceRecordLayout">
+           <div class="slds-grid primaryFieldRow">
+               <div class="slds-grid slds-col slds-has-flexi-truncate">
+                   <div class="profilePicWrapper slds-media slds-no-space">
+                       <div class="slds-media__figure slds-icon forceEntityIcon" style="background-color: #DCD861;">
+                           <span class="uiImage">
+                           		<img class="icon" src="/img/icon/t4v35/standard/approval_120.png"></img>
+                           </span>
+                       </div>
+                   </div>
+         
+                   <div class="slds-media__body">
+                       <h1>
+                       	<div class="entityNameTitle slds-line-height_reset">   
+                            {!v.subjectName}
+                           </div>
+                        <div class="slds-page-header__title slds-m-right--small slds-align-middle clip-text">
+                            <div>
+                                <span class="uiOutputText runtime_approval_processOutputName">
+                                    {!v.objectName} Approval 
+                                </span>
+                         
+                                <aura:if isTrue="{!v.status == 'Approved'}">
+                                    <span class="processStatus status-approved runtime_approval_processOutputStatus">{!v.status}</span>
+                                </aura:if>
+                                <aura:if isTrue="{!v.status == 'Rejected'}">
+                                    <span class="processStatus status-rejected runtime_approval_processOutputStatus">{!v.status}</span>
+                                </aura:if>
+                                <aura:if isTrue="{!v.status == 'Pending' }">
+                                    <span class="processStatus status-pending runtime_approval_processOutputStatus">{!v.status}</span>
+                                </aura:if>
+                                <aura:if isTrue="{!v.status == 'Removed' }">
+                                    <span class="processStatus status-pending runtime_approval_processOutputStatus">Send back</span>
+                                </aura:if>
+                                <aura:if isTrue="{!v.status == 'Submitted' }">
+                                    <span class="processStatus status-pending runtime_approval_processOutputStatus">{!v.status}</span>
+                                </aura:if>
+                                <aura:if isTrue="{!v.status == 'Reassigned' }">
+                                    <span class="processStatus status-pending runtime_approval_processOutputStatus">{!v.status}</span>
+                                </aura:if>
+                                <aura:if isTrue="{!v.status == 'Started' }">
+                                    <span class="processStatus status-pending runtime_approval_processOutputStatus">Submitted</span>
+                                </aura:if>
+
+                            </div>
+                           </div>
+                       </h1>
+                   </div>
+               </div>
+               <div>
+                  <aura:if isTrue="{!v.checkSequence == true}">
+                      <aura:if isTrue="{!v.RecordTypeName == 'Common Workflow'}">
+                           <aura:if isTrue="{!or(v.StatusCommonWorkflow == 'E-MOC Register', v.StatusCommonWorkflow == 'Emergency Approval')}">
+                               <aura:if isTrue="{!v.MOCType == 'Emergency' }">
+                                    <lightning:button variant="Neutral" label="{!v.labelApprove}" onclick="{! c.openModelApprove }" />
+                                    <lightning:button variant="Neutral" label="Reject"  onclick="{! c.openModelReject }"/>
+                                    <aura:set attribute="else">
+                                       <lightning:button variant="Neutral" label="Approve" onclick="{! c.openModelApprove }" />
+                                       <lightning:button variant="Neutral" label="Reject"  onclick="{! c.openModelReject }"/>
+                                       <aura:if isTrue="{!v.checkBtnSendback == false }">
+                                           <lightning:button variant="Neutral" label="Send Back" onclick="{! c.openModelSendBack }"/>
+                                       </aura:if>
+                                       <aura:if isTrue="{!v.checkBtnHold == false }">
+                                            <lightning:button variant="Neutral" label="Hold" onclick="{! c.openModelHold }"/>
+                                       </aura:if>
+                                    </aura:set>
+                               </aura:if>
+                               <aura:set attribute="else">
+                                   <lightning:button variant="Neutral" label="{!v.labelApprove}" onclick="{! c.openModelApprove }" />
+                                   <aura:if isTrue="{!v.checkBtnReject == false }">
+                                       <lightning:button variant="Neutral" label="Reject"  onclick="{! c.openModelReject }"/>
+                                   </aura:if>
+                                   <aura:if isTrue="{!v.checkBtnSendback == false }">
+                                       <lightning:button variant="Neutral" label="Send Back" onclick="{! c.openModelSendBack }"/>
+                                   </aura:if>
+                                   <aura:if isTrue="{!v.checkBtnHold == false }">
+                                       <lightning:button variant="Neutral" label="Hold" onclick="{! c.openModelHold }"/>
+                                   </aura:if>
+                               </aura:set>
+                           </aura:if>
+                      </aura:if>
+                      <aura:if isTrue="{!v.RecordTypeName == 'Functional Override'}">
+                           <lightning:button variant="Neutral" label="Approve" onclick="{! c.openModelApprove }" />
+                           <aura:if isTrue="{!v.checkBtnReject == false }">
+                               <lightning:button variant="Neutral" label="Reject"  onclick="{! c.openModelReject }"/>
+                           </aura:if>
+                           <aura:if isTrue="{!v.checkBtnSendback == false }">
+                               <lightning:button variant="Neutral" label="Send Back" onclick="{! c.openModelSendBack }"/>
+                           </aura:if>
+                           <aura:if isTrue="{!v.checkBtnHold == false }">
+                               <lightning:button variant="Neutral" label="Hold" onclick="{! c.openModelHold }"/>
+                           </aura:if>
+                      </aura:if>
+                      <aura:if isTrue="{!v.RecordTypeName == 'Standard'}">
+                           <lightning:button variant="Neutral" label="Approve" onclick="{! c.openModelApprove }" />
+                           <lightning:button variant="Neutral" label="Reject"  onclick="{! c.openModelReject }"/>
+                      </aura:if>
+                   </aura:if>
+               </div>
+           </div>
+           <ul class="slds-form slds-form_stacked slds-grid slds-page-header__detail-row displayMobile">
+               <li class="slds-page-header__detail-block forceHighlightsDesktopListRecordItem">
+                   <div class="slds-form-element slds-form-element_readonly slds-hint-parent">
+                       <span class="slds-form-element__label slds-truncate mgl15">Submitter</span>
+                       <div class="slds-form-element__control">
+                           <div class="slds-form-element__static slds-truncate">
+                               <span class="uiOutputText mgl15">{!v.Submitter}</span>
+                           </div>
+                       </div>
+                   </div>
+               </li>
+               <li class="slds-page-header__detail-block forceHighlightsDesktopListRecordItem">
+                   <div class="slds-form-element slds-form-element_readonly slds-hint-parent">
+                       <span class="slds-form-element__label slds-truncate">Date Submitted</span>
+                       <div class="slds-form-element__control">
+                           <div class="slds-form-element__static slds-truncate">
+                               <span class="uiOutputText"><lightning:formattedDateTime value="{!v.DateSubmited}" /></span>
+                           </div>
+                       </div>
+                   </div>
+               </li>
+               <li class="slds-page-header__detail-block forceHighlightsDesktopListRecordItem">
+                   <div class="slds-form-element slds-form-element_readonly slds-hint-parent">
+                       <span class="slds-form-element__label slds-truncate">Actual Approver</span>
+                       <div class="slds-form-element__control">
+                           <div class="slds-form-element__static slds-truncate">
+                               <span class="uiOutputText">{!v.ActualApprover}</span>
+                           </div>
+                       </div>
+                   </div>
+               </li>
+               <li class="slds-page-header__detail-block forceHighlightsDesktopListRecordItem">
+                   <div class="slds-form-element slds-form-element_readonly slds-hint-parent">
+                       <span class="slds-form-element__label slds-truncate">Assigned To</span>
+                       <div class="slds-form-element__control">
+                           <div class="slds-form-element__static slds-truncate">
+                               <span class="uiOutputText">{!v.AssignedTo}</span>
+                           </div>
+                       </div>
+                   </div>
+               </li>
+           </ul>
+        </div>
+               
+		<!-- Approve Modal-->
+        <aura:if isTrue="{!v.isModalApproveOpen}">    
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModalApprove }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Approve E-MOC</h2>
+                    </header>
+
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">   
+                        
+					   <lightning:textarea name="comment"  value="{!v.comment}" label="Comment"  class="textareaHeight"/>
+                        
+                       <ui:inputCheckbox aura:id="checkbox" change="{!c.Showhide}" 
+                                         label="I have acknowledged and reviewed this E-MOC." 
+                                         labelClass="slds-p-horizontal--small slds-right"
+                                         class="slds-p-horizontal--small slds-float--left"/>
+                    </div>
+
+                    <footer class="slds-modal__footer">
+                      <lightning:button variant="neutral"
+                         label="Cancel"
+                         title="Cancel"
+                         onclick="{! c.closeModalApprove }"/>
+                      <lightning:button variant="brand"
+                         label="Approve"
+                         title="Approve"
+                         onclick="{!c.approve}"
+                         aura:id="disableenable"
+                         disabled="true"/>
+                        
+                   </footer>
+                    
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+        <!-- End Approve Modal-->
+        
+        <!-- Reject Modal-->
+        <aura:if isTrue="{!v.isModalRejectOpen}">    
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModalReject }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Reject E-MOC</h2>
+                    </header>
+
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">   
+          
+                       <lightning:textarea name="comment" aura:id="comment" required="true" value="{!v.comment}" label="Reason for rejection" class="textareaHeight" 
+                                           messageWhenValueMissing="This field is required."
+                                           onchange="{! c.handleChange }"/>
+
+                       <ui:inputCheckbox aura:id="checkbox" change="{!c.showhideOther}" 
+                                         label="I have confirmed to REJECT this E-MOC." 
+                                         labelClass="slds-p-horizontal--small slds-right"
+                                         class="slds-p-horizontal--small slds-float--left"/>
+                    </div>
+
+                    <footer class="slds-modal__footer">
+                      <lightning:button variant="neutral"
+                         label="Cancel"
+                         title="Cancel"
+                         onclick="{! c.closeModalReject }"/>
+                      <lightning:button variant="destructive"
+                         label="Reject"
+                         title="Reject"
+                         onclick="{!c.reject}"
+                         aura:id="disableenable"
+                         disabled="true"/>
+                        
+                   </footer>
+                    
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+        <!-- End Reject Modal-->
+        
+        <!-- Send Back Modal-->
+        <aura:if isTrue="{!v.isModalSendBackOpen}">    
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModalSendBack }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Send Back E-MOC</h2>
+                    </header>
+
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">   
+          
+					   <lightning:textarea name="comment" aura:id="comment" required="true" value="{!v.comment}" label="Comment" class="textareaHeight" 
+                                           messageWhenValueMissing="This field is required."
+                                           onchange="{! c.handleChange }"/>
+                        
+                       <ui:inputCheckbox aura:id="checkbox" change="{!c.showhideOther}" 
+                                         label="I have acknowledged and reviewed this E-MOC." 
+                                         labelClass="slds-p-horizontal--small slds-right"
+                                         class="slds-p-horizontal--small slds-float--left"/>
+                    </div>
+
+                    <footer class="slds-modal__footer">
+                      <lightning:button variant="neutral"
+                         label="Cancel"
+                         title="Cancel"
+                         onclick="{! c.closeModalSendBack }"/>
+                      <lightning:button variant="destructive"
+                         label="SendBack"
+                         title="SendBack"
+                         onclick="{!c.sendBack}"
+                         aura:id="disableenable"
+                         disabled="true"/>
+                        
+                   </footer>
+                    
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+        <!-- End Send Back Modal-->
+        
+        <!-- Hold Modal-->
+        <aura:if isTrue="{!v.isModalHoldOpen}">    
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModalHold }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Hold E-MOC</h2>
+                    </header>
+
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">   
+          
+                       <lightning:textarea name="comment" aura:id="comment" required="true" value="{!v.comment}" label="Comment" class="textareaHeight" 
+                                           messageWhenValueMissing="This field is required."
+                                           onchange="{! c.handleChangeHold }"/>
+                    </div>
+
+                    <footer class="slds-modal__footer">
+                      <lightning:button variant="neutral"
+                         label="Cancel"
+                         title="Cancel"
+                         onclick="{! c.closeModalHold }"/>
+                      <lightning:button variant="destructive"
+                         label="Hold"
+                         title="Hold"
+                         onclick="{!c.hold}"
+                         aura:id="disableenable"
+                         disabled="true"/>
+                   </footer>    
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+        <!-- End Hold Modal-->
+    </div>
+</aura:component>

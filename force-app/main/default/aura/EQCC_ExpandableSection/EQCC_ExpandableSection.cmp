@@ -1,0 +1,46 @@
+<aura:component>
+    <aura:attribute name="isOpen" type="Boolean" default="false" access="global" />
+    <aura:attribute name="hasBox" type="Boolean" default="true" access="global" />
+    <aura:attribute name="title" type="String" default="" access="global" />
+    <aura:attribute name="index" type="Integer" default="0" access="global" />
+
+    <aura:handler name="render" value="{!this}" action="{!c.firstShow}" />
+
+    <div class="slds-var-p-horizontal_small slds-var-p-top_small">
+
+        <aura:if isTrue="{!v.hasBox}">
+            <label style="position: static;" class="searchSlider slds-button" onclick="{!c.show}">
+                <lightning:icon aura:id="chevron" size="x-small" iconName="utility:chevronright"
+                    style="position:relative;"
+                    class="{! v.isOpen ? 'rotate90 slds-var-p-horizontal_small' : 'rotate0 slds-var-p-horizontal_small'}" />
+                <div class="slds-var-p-right_medium">{!v.title}</div>
+            </label>
+
+            <aura:set attribute="else">
+                <label style="position: static;" class="expandableHeader slds-button" onclick="{!c.show}">
+                    <lightning:icon aura:id="chevron" size="x-small" iconName="utility:chevronright"
+                        style="position:relative;"
+                        class="{! v.isOpen ? 'rotate90 slds-var-p-horizontal_small' : 'rotate0 slds-var-p-horizontal_small'}" />
+
+                    <span style="background-color: var(--lwc-brandAccessible,rgb(0, 112, 210));"
+                        class="slds-badge slds-badge_inverse">
+                        {!v.index}</span>
+                    <div class="slds-var-p-horizontal_small">{!v.title}</div>
+                </label>
+
+            </aura:set>
+        </aura:if>
+
+
+    </div>
+
+    <div aura:id="searchTop" class="preventOverflow">
+        <div style="position: relative; transition: margin-bottom 0.5s ease; bottom: 0.3em;" aura:id="search"
+            class="slds-var-p-horizontal_small hideBar">
+            <div class="{! v.hasBox ? 'slds-box slds-container_fluid' : 'slds-var-p-vertical_small'}"
+                style="{! v.hasBox ? 'box-shadow: 0px 2px 2px 0px #cccccc; border: none; background-color: white;' : ''}">
+                {!v.body}
+            </div>
+        </div>
+    </div>
+</aura:component>

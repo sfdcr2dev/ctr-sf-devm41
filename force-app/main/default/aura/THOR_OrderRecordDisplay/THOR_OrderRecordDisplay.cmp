@@ -1,0 +1,419 @@
+<aura:component
+	implements="flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable"
+	access="global"
+	controller="THOR_OrderRecordDisplayController"
+>
+	<aura:attribute name="recordId" type="String" default="" />
+	<aura:attribute name="selected" type="Integer" access="global" default="null" />
+	<aura:attribute name="closeOrderCondition" type="Object" access="private" />
+	<aura:attribute name="orderRecord" type="Map" default="{}" />
+	<aura:attribute name="recordLoadError" type="String" />
+	<aura:attribute name="createNew" type="boolean" access="global" default="false" />
+	<aura:attribute name="userStatus" type="String" access="global" default="" />
+	<aura:attribute name="type" type="String" access="global" default="" />
+	<aura:attribute name="isClosed" type="Boolean" access="global" default="false" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+	<aura:attribute name="hasWriteAccess" type="Boolean" default="false" access="private" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler event="aura:doneRendering" action="{!c.doneRendering}" />
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.reInit}" />
+	<aura:handler name="closeModalEvent" event="c:THOR_Event" action="{!c.handleCloseModal}" />
+	<aura:handler name="navagationHelper" event="c:THOR_navigateTo" action="{!c.navigateHelper}" />
+	<aura:handler name="recordSavedEvent" event="c:THOR_Event" action="{!c.reload}" />
+	<aura:handler name="stopLoadingEvent" event="c:THOR_Event" action="{!c.stopLoading}" />
+
+	<aura:registerEvent name="openModalEvent" type="c:THOR_openOrderEditModal" />
+
+	<aura:attribute name="interval" type="Integer" access="private" />
+	<aura:attribute name="timeout" type="Integer" access="private" />
+	<aura:attribute
+		name="isModalAction"
+		type="Map"
+		default="{
+			'alert' : false,
+			'discard': false,
+			'resend': false,
+		}"
+	/>
+	<aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" access="private" />
+
+	<lightning:navigation aura:id="navLink" />
+
+	<force:recordData
+		aura:id="orderLoader"
+		recordId="{!v.recordId}"
+		fields="Integration_Status__c, Integration_Message__c, Order_Status__c, Order_Number__c, User_Status__c, Order_Type__c, Super_Order__c, Request_Close__c"
+		targetFields="{!v.orderRecord}"
+		targetError="{!v.recordLoadError}"
+		recordUpdated="{!c.handleRecordUpdated}"
+	/>
+	<!-- <pre>{!v.recordId}</pre> -->
+	<!-- <pre>{!v.orderRecord}</pre> -->
+	<!-- <pre>{!v.orderRecord.Integration_Status__c}</pre> -->
+	<!-- {!v.orderRecord.Integration_Status__c} -->
+
+	<aura:if isTrue="{!v.recordId}">
+		<span class="slds-hide">
+			<c:THOR_navigateBack />
+		</span>
+
+		<aura:if isTrue="{! and(v.orderRecord.Integration_Status__c == 'In Progress', not(equals(v.formFactor, 'DESKTOP'))) }">
+			<aura:html tag="style">
+				div.windowViewMode-normal.oneContent .cTHOR_OrderRecordDisplay { overflow: hidden; }
+			</aura:html>
+		</aura:if>
+		<c:THOR_ModalSelected size="empty" isToggle="{!v.orderRecord.Integration_Status__c == 'In Progress'}" isHideCloseButton="true">
+			<div class="slds-grid slds-grid_vertical slds-grid_vertical-align-center slds-grid_align-center">
+				<div class="slds-col">
+					<div class="slds-is-relative" style="height: 8em">
+						<lightning:spinner size="large" />
+					</div>
+				</div>
+				<div class="slds-col">
+					<h2 class="slds-text-heading_large slds-text-align_center slds-p-horizontal_medium slds-p-bottom_medium">Please wait...</h2>
+				</div>
+				<!-- <div class="slds-col">
+					<lightning:button label="Back" variant="base" onclick="{!c.redirectToHome}" />
+				</div> -->
+			</div>
+		</c:THOR_ModalSelected>
+
+		<div
+			class="{! 'slds-tabs_default' + ($Browser.formFactor == 'TABLET' ? ' slds-scrollable_y' : '') }"
+			style="{! $Browser.formFactor == 'TABLET' ? 'height: 100%;' : ''}"
+		>
+			<c:THOR_Header title="Order" iconName="standard:related_list">
+				<aura:set attribute="actions">
+					<lightning:buttonMenu menuAlignment="right" alternativeText="Show menu" label="Actions" onselect="{!c.handleSelectButtonMenu}">
+						<lightning:menuItem
+							label="Edit"
+							title="Edit"
+							value="c.fireModalEvent"
+							disabled="{!
+							v.orderRecord.Order_Status__c == 'Closed' ||
+							not(v.hasWriteAccess) ||
+							and(v.orderRecord.Integration_Status__c == 'In Progress', not(empty(v.orderRecord.Integration_Status__c))) ||
+              and(v.orderRecord.Request_Close__c, v.orderRecord.Order_Status__c == 'Closed')
+						}"
+						/>
+
+						<lightning:menuItem
+							label="Close"
+							title="Close"
+							value="c.closeOrder"
+							disabled="{!
+							v.orderRecord.Order_Status__c == 'Closed' ||
+							not(v.hasWriteAccess) ||
+							v.orderRecord.Integration_Status__c != 'Success'
+						}"
+						/>
+
+						<lightning:menuItem
+							label="Create Sub Order"
+							title="Create Sub Order"
+							value="c.createSubOrder"
+							disabled="{!
+							v.orderRecord.Order_Status__c == 'Closed' ||
+							not(v.hasWriteAccess) ||
+							v.orderRecord.Integration_Status__c != 'Success'
+						}"
+						/>
+
+						<lightning:menuItem
+							label="Discard"
+							title="Discard"
+							value="c.discardOrder"
+							disabled="{!
+							v.orderRecord.Order_Status__c == 'Closed' ||
+							not(v.hasWriteAccess) ||
+							and(not(equals(v.orderRecord.Order_Number__c.length, 15)) &amp;&amp; not(equals(v.orderRecord.Order_Number__c.length, 18)), not(empty(v.orderRecord.Order_Number__c))) ||
+							v.orderRecord.Integration_Status__c == 'Success'
+						}"
+						/>
+
+						<lightning:menuItem
+							label="Resend"
+							title="Resend"
+							value="c.resendOrder"
+							disabled="{!
+							v.orderRecord.Order_Status__c == 'Closed' ||
+							not(v.hasWriteAccess) ||
+							v.orderRecord.Integration_Status__c == 'Success'
+						}"
+						/>
+
+						<lightning:menuItem
+							label="Create Notification"
+							title="Create Notification"
+							value="c.createNotification"
+							disabled="{!
+							v.orderRecord.Order_Status__c == 'Closed' ||
+							not(v.hasWriteAccess) ||
+							v.orderRecord.Integration_Status__c != 'Success'
+						}"
+						/>
+					</lightning:buttonMenu>
+					<!-- <lightning:button
+					variant="brand"
+					label="Edit"
+					title="Edit"
+					onclick="{! c.fireModalEvent }"
+					disabled="{! or(v.orderRecord.Order_Status__c == 'Closed', v.isClosed)}"
+				/>
+				<lightning:button
+					variant="brand"
+					label="Create Sub Order"
+					title="Create Sub Order"
+					onclick="{! c.createSubOrder }"
+					disabled="{! or(v.orderRecord.Order_Status__c == 'Closed', v.isClosed)}"
+				/>
+				<lightning:button
+					variant="brand"
+					label="Close"
+					title="Close"
+					onclick="{! c.closeOrder }"
+					disabled="{! or(v.orderRecord.Order_Status__c == 'Closed', v.isClosed)}"
+				/> -->
+				</aura:set>
+			</c:THOR_Header>
+
+			<c:THOR_ObjectDisplayer selected="{!v.selected}" isLoading="{!v.isLoading}">
+				<aura:set attribute="tabs">
+					<c:THOR_SingleTab tabTitle="Detail">
+						<!-- <div class="slds-p-around_medium" style="background-color: white; margin: 1em; box-shadow: 0 2px 2px 0 #cccccc"></div> -->
+
+						<lightning:recordViewForm density="comfy" recordId="{! v.recordId }" objectApiName="Order__c">
+							<aura:if isTrue="{! v.isModalAction.alert }">
+								<div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+									<lightning:icon
+										iconName="utility:error"
+										variant="inverse"
+										alternativeText="Error"
+										title="error"
+										size="{!v.formFactor == 'DESKTOP' ? 'x-small' : 'medium'}"
+									/>
+									<h2 class="slds-p-horizontal_xx-small">
+										Integration Failed:
+										<aura:if isTrue="{!v.orderRecord.Integration_Message__c}">
+											{!v.orderRecord.Integration_Message__c}
+											<aura:set attribute="else">
+												<span>Your network could not connect to Server. Please contact System Administer.</span>
+											</aura:set>
+										</aura:if>
+									</h2>
+
+									<div class="slds-notify__close">
+										<lightning:buttonIcon iconName="utility:close" variant="bare-inverse" title="Close" onclick="{!c.closeAlertIntegration}" />
+									</div>
+								</div>
+							</aura:if>
+							<lightning:layout multipleRows="true" verticalAlign="stretch">
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<div class="slds-form-element slds-form-element_stacked">
+										<label class="slds-form-element__label" for="of-Name">Order</label>
+										<div class="slds-form-element__control">
+											<lightning:outputField aura:id="of-Name" variant="label-hidden" fieldName="Name" />
+										</div>
+									</div>
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:outputField fieldName="Integration_Status__c" />
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<div class="slds-form-element slds-form-element_stacked">
+										<label class="slds-form-element__label" for="of-Name">Order Type</label>
+										<div class="slds-form-element__control">
+											<lightning:outputField aura:id="of-Type" variant="label-hidden" fieldName="Order_Type__c" />
+										</div>
+									</div>
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<c:THOR_customRedirectTo
+										fieldLabel="Notification"
+										fromRecord="Order__c"
+										relatedObject="Notification__c"
+										relatedField="Notification__r.Notification_Number__c"
+										toThisComponent="c__THOR_NotificationRecordDisplay"
+										recordId="{!v.recordId}"
+									/>
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<c:THOR_customRedirectTo
+										fieldLabel="Functional Location"
+										fromRecord="Order__c"
+										relatedObject="Functional_Location__r"
+										relatedField="Functional_Location__r.Name"
+										toThisComponent="c__THOR_FunctionalLocationHistoryListDisplayer"
+										recordId="{!v.recordId}"
+									/>
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:outputField fieldName="Equipment_Text__c" />
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:outputField fieldName="Description__c" />
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:outputField fieldName="PM_Activity_Type_Text__c" />
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<c:THOR_customRedirectTo
+										fieldLabel="Super Order"
+										fromRecord="Order__c"
+										relatedObject="Super_Order__c"
+										relatedField="Super_Order__r.Name"
+										toThisComponent="c__THOR_OrderRecordDisplay"
+										recordId="{!v.recordId}"
+										aura:id="reInit"
+									/>
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:outputField fieldName="Order_Status__c" />
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:outputField fieldName="User_Status__c" />
+								</lightning:layoutItem>
+
+								<!-- <lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<c:THOR_customRedirectTo
+										fieldLabel="Work Clearence"
+										fromRecord="Order__c"
+										relatedObject="Work_Clearance__c"
+										relatedField="Work_Clearance__r.Name"
+										recordId="{!v.recordId}"
+										toThisComponent="previewMe"
+										aura:id="reInit"
+									/>
+								</lightning:layoutItem> -->
+
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<div class="slds-form-element slds-form-element_stacked">
+										<label class="slds-form-element__label" for="of-Name">Plant of Main Work Center</label>
+										<div class="slds-form-element__control">
+											<lightning:outputField fieldName="mainWorkCenterPlantText__c" variant="label-hidden" />
+										</div>
+									</div>
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:outputField fieldName="Main_Work_Center_Text__c" />
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="12" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:outputField fieldName="ResponsiblePersonText__c" />
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:outputField fieldName="Priority__c" />
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:outputField fieldName="Requested_Date__c" />
+								</lightning:layoutItem>
+
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:outputField fieldName="Start_Date__c" />
+								</lightning:layoutItem>
+								<lightning:layoutItem size="6" flexibility="auto" padding="around-small" class="custom-box">
+									<lightning:outputField fieldName="Finished_Date__c" />
+								</lightning:layoutItem>
+							</lightning:layout>
+						</lightning:recordViewForm>
+					</c:THOR_SingleTab>
+
+					<c:THOR_SingleTab tabTitle="Work Clearance">
+						<div class="tab-Padding">
+							<c:THOR_OrderRelatedWC recordId="{! v.recordId }" />
+						</div>
+					</c:THOR_SingleTab>
+
+					<c:THOR_SingleTab tabTitle="EQCC">
+						<div class="tab-Padding">
+							<c:THOR_OrderRelatedEQCC recordId="{! v.recordId }" />
+						</div>
+					</c:THOR_SingleTab>
+
+					<c:THOR_SingleTab tabTitle="Component">
+						<div class="tab-Padding">
+							<c:THOR_OrderRelatedComponentRequests
+								recordId="{!v.recordId}"
+								hasEditAccess="{!v.hasWriteAccess}"
+								hasOrderNumber="{!not(empty(v.orderRecord.Order_Number__c))}"
+							/>
+						</div>
+					</c:THOR_SingleTab>
+
+					<c:THOR_SingleTab tabTitle="Related">
+						<div class="tab-Padding">
+							<c:THOR_OrderListRelated recordId="{!v.recordId}" />
+						</div>
+					</c:THOR_SingleTab>
+
+					<c:THOR_SingleTab tabTitle="Chatter">
+						<div class="tab-Padding">
+							<forceChatter:feed type="Record" subjectId="{!v.recordId}" />
+						</div>
+					</c:THOR_SingleTab>
+				</aura:set>
+			</c:THOR_ObjectDisplayer>
+		</div>
+
+		<c:THOR_ModalSelected size="empty" title="Discard Order" isToggle="{!v.isModalAction.discard}">
+			<div class="slds-text-align_center slds-p-bottom_large">Are you sure you want to discard this Order?</div>
+
+			<div class="slds-grid slds-grid_align-end">
+				<div class="slds-col slds-p-left_x-small">
+					<lightning:button name="discard" variant="neutral" label="Discard" onclick="{!c.discardOrder}" />
+				</div>
+				<div class="slds-col slds-p-left_x-small">
+					<lightning:button variant="neutral" label="Cancel" onclick="{!c.discardOrder}" />
+				</div>
+			</div>
+		</c:THOR_ModalSelected>
+		<!--
+			@Description
+			This form is action on click Resend Button menu
+		 -->
+		<lightning:recordEditForm
+			class="slds-hide"
+			aura:id="recordResendForm"
+			recordId="{!v.recordId}"
+			objectApiName="Order__c"
+			onerror="{!c.handleResendFormError}"
+		>
+			<lightning:inputField fieldName="Integration_Status__c" value="In Progress" />
+		</lightning:recordEditForm>
+
+		<!--
+			@Description
+			This form is action for  waiting long time more 1 minute
+		 -->
+		<!-- <lightning:recordEditForm
+			class="slds-hide"
+			aura:id="recordTimeoutForm"
+			recordId="{!v.recordId}"
+			objectApiName="Order__c"
+			onerror="{!c.handleResendFormError}"
+		>
+			<lightning:inputField fieldName="Integration_Status__c" value="Failed" />
+			<lightning:inputField fieldName="Integration_Message__c" value="" />
+		</lightning:recordEditForm> -->
+
+		<!-- <c:THOR_OrderEditModal recordId="{!v.recordId}" userStatus="{!v.userStatus}" type="{!v.type}" /> -->
+
+		<!-- <aura:if isTrue="{!v.createNew}">
+			<c:THOR_SubOrderCreation orderId="{!v.recordId}" />
+		</aura:if> -->
+
+		<!-- <c:THOR_NotificationCreation aura:id="THOR_NotificationCreation" hideButton="true" /> -->
+	</aura:if>
+</aura:component>

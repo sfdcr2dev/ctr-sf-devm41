@@ -1,0 +1,9 @@
+<aura:component implements="force:lightningQuickAction" >
+	<ltng:require scripts="{!join(',', $Resource.CTRDisclaimer + '/js/jspdf.umd.js', $Resource.CTRDisclaimerFontSarabun + '/js/Sarabun.js')}" afterScriptsLoaded="{!c.generatePdf}" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<div>
+		<lightning:spinner alternativeText="Loading" size="large" />
+	</div>
+</aura:component>

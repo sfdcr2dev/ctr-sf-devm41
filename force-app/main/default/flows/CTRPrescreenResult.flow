@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>21/03/2024 Update VP position name</description>
+    <formulas>
+        <name>fml_Org</name>
+        <dataType>String</dataType>
+        <expression>IF(contains({!GetRequestItemRecord.RecordType.DeveloperName}, &apos;Customer&apos;), TEXT({!GetRequestItemRecord.SalesOrganization__c}), IF(contains({!GetRequestItemRecord.RecordType.DeveloperName}, &apos;Supplier&apos;),TEXT({!GetRequestItemRecord.PurchasingOrganization__c}),&apos;&apos;))</expression>
+    </formulas>
+    <formulas>
+        <name>fml_PreScreenby</name>
+        <dataType>String</dataType>
+        <expression>{!GetTraderName.Name}</expression>
+    </formulas>
+    <formulas>
+        <name>fml_PreScreenCmtbyCMVP</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!GetRequestItemRecord.CMVPPreScreenComment__c})), {!GetRequestItemRecord.CMVPPreScreenComment__c}, {!VarNotYetPreScreenText})</expression>
+    </formulas>
+    <formulas>
+        <name>fml_PreScreenCmtBySH</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!GetRequestItemRecord.SHPreScreenComment__c})), {!GetRequestItemRecord.SHPreScreenComment__c}, {!VarNotYetPreScreenText})</expression>
+    </formulas>
+    <formulas>
+        <name>fml_PreScreenCmtByTrader</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!GetRequestItemRecord.RisksOrObservations__c})), {!GetRequestItemRecord.RisksOrObservations__c}, {!VarNotYetPreScreenText})</expression>
+    </formulas>
+    <formulas>
+        <name>fml_PreScreenStatus</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK(TEXT({!GetRequestItemRecord.CMVPPreScreenDecision__c}))), TEXT({!GetRequestItemRecord.CMVPPreScreenDecision__c}), 
+{!VarNotYetPreScreenText})</expression>
+    </formulas>
+    <interviewLabel>CTR Prescreen Result {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CTR Prescreen ResultV02</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>GetRequestItemRecord</name>
+        <label>Get Request Item Record</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>GetTraderName</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordid</elementReference>
+            </value>
+        </filters>
+        <object>CTRRequestFormItem__c</object>
+    </recordLookups>
+    <recordLookups>
+        <name>GetTraderName</name>
+        <label>GetTraderName</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>PreScreenResult</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>GetRequestItemRecord.TraderPreScreenBy__c</elementReference>
+            </value>
+        </filters>
+        <object>User</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+    </recordLookups>
+    <screens>
+        <name>PreScreenResult</name>
+        <label>Pre-Screen Result</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>PreScreenResultSect</name>
+            <fieldText>Pre-Screen Result</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <startElementReference>GetRequestItemRecord</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>recordid</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>VarNotYetPreScreenText</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>-</stringValue>
+        </value>
+    </variables>
+</Flow>

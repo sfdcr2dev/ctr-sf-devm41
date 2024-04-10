@@ -1,0 +1,141 @@
+<apex:page sidebar="false" standardController="Punch_List_Management_System__c" extensions="ImportExportCSVFile" standardStylesheets="true" lightningStylesheets="true"  applyHtmlTag="false" showHeader="false" applyBodyTag="false" docType="html-5.0">
+
+   <apex:form >
+   <html>
+       <head>
+           <style>
+               .arrow-down {
+                  border: solid black;
+                  border-width: 0 2px 2px 0;
+                  display: inline-block;
+                  padding: 4px;
+                  transform: rotate(45deg);
+                  margin-bottom: 4px;
+                  margin-right: 9px;
+                }
+                .arrow-right {
+                  border: solid black;
+                  border-width: 0 2px 2px 0;
+                  display: inline-block;
+                  padding: 4px;
+                  transform: rotate(-45deg);
+                  margin-right: 9px;
+                }
+                .is-clickable {
+                  cursor: pointer;
+                }
+                .headerRow .ColumnTitle {
+                    background-color: transparent !important;
+                    border-color: transparent !important;
+                }
+                .dataCell{
+                    background-color: transparent !important;
+                    border-color: transparent !important;
+                }
+                .handoverLink:link{
+                    text-decoration:none;
+                    font-size:16px;
+                }
+                .handoverLink:hover{
+                    color: #00CA22;
+                    text-decoration:none;
+                }
+           </style>
+       </head>
+       
+      <apex:sectionHeader title="Upload Handover CSV data File"/>
+             
+              <apex:pageBlock id="mainPageBlock" >
+                     <center>
+                      <apex:inputFile value="{!FileContent}" filename="{!Filename}" /> <apex:commandButton action="{!ReadFile}" value="Upload File" id="theButton" style="width:120px;"/>
+                      <br/> <br/> <font color="red"> <b>Note: Please use the standard template (csv file) to upload Handover. <br/> ** Date format for upload should be yyyy-MM-dd</b> </font>
+                       <br/> <br/> <apex:outputLink styleClass="handoverLink" style="color:#00CA22;" value="https://thaioil.my.salesforce.com/sfc/p/2v000003OMdM/a/2v000000ks6y/n9hGMYtB.iekJaDyzNDGUWLHZU8whpFoS0GMc1q_WDE"> Download Handover Template </apex:outputLink>
+                     
+                     </center>  
+              
+              <br/>
+              <apex:outputPanel rendered="{!TotalRecords != 0}">
+                  <div align="center" style="font-size:18px;">
+                      Total Upload : {!TotalRecords} Record(s)
+                  </div>
+                  <br/>
+              </apex:outputPanel>
+              
+              <apex:pageBlocksection id="SectionHeader" title="All uploaded record(s)" showheader="true" collapsible="true" columns="1" rendered="{!NOT(ISNULL(uploadedHandovers))}">
+              
+                  <apex:pageblocktable value="{!uploadedHandovers}" style="width:50%;" var="handover">
+                      <apex:column HeaderValue="" headerClass="ColumnTitle" colspan="2" >
+                          <apex:pageblocksection id="HandoverSection" title="{!handover.Item__c} - {!handover.Name} - {!handover.Contractor__c} - {!handover.P_ID__c}" showheader="true" collapsible="true" columns="2">
+                              
+                              <apex:outputField value="{!handover.Name}"/>
+                              <apex:outputField value="{!handover.Contractor__c}"/>
+                              <apex:outputField value="{!handover.P_ID__c}"/>
+                              <apex:outputField value="{!handover.Tag_and_Datasheet__c}"/>
+                              <apex:outputField value="{!handover.SAP_Data__c}"/>
+                              <apex:outputField value="{!handover.Operating_Manal__c}"/>
+                              <apex:outputField value="{!handover.Spare_Parts_List__c}"/>
+                              <apex:outputField value="{!handover.Concerned_Equipment_Installation__c}"/>
+                              <apex:outputField value="{!handover.Punch_A_Complete__c}"/>
+                              <apex:outputField value="{!handover.Red_Mark__c}"/>
+                              <apex:outputField value="{!handover.Test_Pack__c}"/>
+                              <apex:outputField value="{!handover.Piping_ReInstatement__c}"/>
+                              <apex:outputField value="{!handover.E_and_I_Work_Election__c}"/>
+                              <apex:outputField value="{!handover.MC_P__c}"/>
+                              <apex:outputField value="{!handover.MC__c}"/>
+                              <apex:outputField value="{!handover.Punch_B__c}"/>
+                              <apex:outputField value="{!handover.Loop_Testing__c}"/>
+                              <apex:outputField value="{!handover.Function_Testing__c}"/>
+                              <apex:outputField value="{!handover.MCC__c}"/>
+                              <apex:outputField value="{!handover.As_Built_P_ID__c}"/>
+                              <apex:outputField value="{!handover.PSSR__c}"/>
+                              <apex:outputField value="{!handover.HOC__c}"/>
+                              <apex:outputField value="{!handover.RSFU_P__c}"/>
+                              <apex:outputField value="{!handover.RSFU__c}"/>
+                              <apex:outputField value="{!handover.As_Built__c}"/>
+                              <apex:outputField value="{!handover.COD__c}"/>
+                              <apex:outputField value="{!handover.Punch_C__c}"/>
+                          </apex:pageblocksection>
+                      </apex:column>
+                      
+                 </apex:pageblocktable>
+              
+              </apex:pageBlocksection>
+                  
+                  <apex:outputPanel rendered="{!TotalRecords != 0}">
+                      <br/>
+                      <div align="center">
+                          <apex:commandButton value="Confirm Upload" action="{!ConfirmUpload}" />
+                          <apex:commandButton value="Cancel Upload" action="{!CancelUpload}" />
+                      </div>
+                  </apex:outputPanel>   
+              </apex:pageBlock>    
+           
+           <apex:messages />
+       
+           <script>
+                var handoverDetailCard = document.getElementById('handoverDetailCard');
+                var handoverDetailCardExpander = document.getElementById('handoverDetailCardExpander');
+                var isHandoverDetailCardExpand = false;
+                
+                function toggleHandoverCard() {
+                  isHandoverDetailCardExpand = !isHandoverDetailCardExpand;
+                  setHandoverExpand(handoverDetailCard, handoverDetailCardExpander, isHandoverDetailCardExpand);
+                }
+                
+                function setHandoverExpand(card, expander, isExpand) {
+                  if (isExpand) {
+                    card.style.display = 'block';
+                    expander.classList.remove('arrow-right');
+                    expander.classList.add('arrow-down');
+                  } else {
+                    card.style.display = 'none';
+                    expander.classList.remove('arrow-down');
+                    expander.classList.add('arrow-right');
+                  }
+                }
+                
+                setHandoverExpand(handoverDetailCard, handoverDetailCardExpander, isHandoverDetailCardExpand);
+           </script>
+        </html>
+    </apex:form>
+</apex:page>

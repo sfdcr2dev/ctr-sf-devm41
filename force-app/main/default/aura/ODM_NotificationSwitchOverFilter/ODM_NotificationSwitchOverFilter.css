@@ -1,0 +1,26 @@
+@media (max-width: 602px) {
+	.THIS .slds-form-element__label,
+    .THIS .slds-card__footer button.slds-button {
+        font-size: 0.875rem !important;
+    }
+
+	.THIS .slds-form-element__control,
+	.THIS .slds-form-element__static,
+	.THIS .slds-form-element__label {
+		font-size: 0.75rem;
+	}
+
+	.THIS .slds-input,
+    .THIS .slds-combobox__input,
+    .THIS .slds-listbox__option_plain {
+		font-size: 0.75rem;
+		line-height: 1.5rem;
+	}
+
+	.THIS .slds-input[type=date],
+	.THIS .slds-input[type=datetime-local],
+	.THIS .slds-input[type=month],
+	.THIS .slds-input[type=time] {
+		height: 1.5rem;
+	}
+}

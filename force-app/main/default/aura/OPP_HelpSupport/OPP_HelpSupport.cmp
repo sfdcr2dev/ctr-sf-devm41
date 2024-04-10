@@ -1,0 +1,93 @@
+<aura:component implements="force:appHostable" >
+    <aura:html tag="style">
+        @font-face {
+            font-family: 'FC Iconic';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('FC Iconic'), local('FC Iconic-Regular'), url({!$Resource.OPPNews + '/assets/font/FC_Iconic_Regular.otf'}) format('opentype');;
+        }
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('Poppins'), local('Poppins-Regular'), url({!$Resource.OPPNews + '/assets/font/Poppins-Regular.otf'}) format('opentype');;
+        }
+    </aura:html>
+    <c:OPP_Counter page="Home" />
+<aura:if isTrue="{!$Browser.formFactor == 'DESKTOP'}">
+        <div class="slds-grid slds-gutters slds-wrap">
+
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_12-of-12">
+                <div class="top-page">
+                    <div class="card">
+        				<div class="slds-card__header slds-grid">
+          					<header class="slds-media slds-media_center slds-has-flexi-truncate">
+            					<div class="slds-media__body">
+                                	<img src="{!$Resource.ManualHeader}" style="position: sticky; width: 59%; height: 55%; left: 25%;"/>
+                                	<br/>
+                                    <a href="{!$Resource.TopSpaceManualPDF}" target="_Blank">
+                                    	<img src="{!$Resource.TOPSpaceManualPic}" style="position: sticky; width: 27%; left: 26%;"/>
+                                    </a>
+                                    <a href="{!$Resource.ManualDGServicePDF}" target="_Blank">
+                                    	<img src="{!$Resource.DGServiceManualPic}" style="position: sticky; width: 28%; left: 54%;"/>
+                                    </a>
+                                    &nbsp;<br/>
+                                    <a href="https://web.microsoftstream.com/video/2a78f7b9-b3f9-4115-a423-886a4db61a3e?referrer=https:%2F%2Fwebmail.thaioilgroup.com%2F" target="_Blank">
+                                    	<img src="{!$Resource.TopSpaceVDOPic}" style="position: sticky; width: 20%; left: 24%;"/>
+                                    </a>
+                                    <a href="https://web.microsoftstream.com/video/90d96898-e565-4716-a72e-082c0fa7525d" target="_Blank">
+                                    	<img src="{!$Resource.DGServiceVDOPic}" style="position: sticky; width: 20%; left: 55%;"/>
+                                    </a>
+                                    &nbsp;<br/>
+                                    <img src="{!$Resource.HelpSupport}" style="position: sticky; width: 58%; height: 55%; left: 25%;"/>
+                                    &nbsp;<br/>
+                                    &nbsp;<br/>
+                                    &nbsp;<br/>
+                                </div>
+          					</header>
+        				</div>
+      				</div>
+                </div>
+            </div>
+            
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!$Browser.isIPhone || $Browser.isAndroid}">
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-col slds-size_1-of-1">
+                <div class="top-page">
+                    <div class="card">
+        				<div class="slds-card__header slds-grid">
+          					<header class="slds-media slds-media_center slds-has-flexi-truncate">
+            					<div class="slds-media__body">
+                                    <img src="{!$Resource.ManualHeader}" style="position: sticky; width: 90%; height: 55%; left: 10%;"/>
+                                	<br/>
+                                    <a href="{!$Resource.TopSpaceManualPDF}" target="_Blank">
+                                    	<img src="{!$Resource.TOPSpaceManualPic}" style="position: sticky; width: 30%; left: 18%;"/>
+                                    </a>
+                                    <a href="{!$Resource.ManualDGServicePDF}" target="_Blank">
+                                    	<img src="{!$Resource.DGServiceManualPic}" style="position: sticky; width: 30%; left: 54%;"/>
+                                    </a>
+                                    &nbsp;<br/>
+                                    <a href="https://web.microsoftstream.com/video/2a78f7b9-b3f9-4115-a423-886a4db61a3e?referrer=https:%2F%2Fwebmail.thaioilgroup.com%2F" target="_Blank">
+                                    	<img src="{!$Resource.TopSpaceVDOPic}" style="position: sticky; width: 30%; left: 15%;"/>
+                                    </a>
+                                    <a href="https://web.microsoftstream.com/video/90d96898-e565-4716-a72e-082c0fa7525d" target="_Blank">
+                                    	<img src="{!$Resource.DGServiceVDOPic}" style="position: sticky; width: 30%; left: 54%;"/>
+                                    </a>
+                                    &nbsp;<br/>
+                                    <img src="{!$Resource.HelpSupport}" style="position: sticky; width: 90%; height: 55%; left: 8%;"/>
+                                    &nbsp;<br/>
+                                    &nbsp;<br/>
+                                    &nbsp;<br/>
+                                </div>
+          					</header>
+        				</div>
+      				</div>
+                </div>
+            </div>
+        </div>
+    </aura:if>
+</aura:component>

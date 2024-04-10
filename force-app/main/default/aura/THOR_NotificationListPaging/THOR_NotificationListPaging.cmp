@@ -1,0 +1,204 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" controller="THOR_NotificationListPagingCtrl" access="global">
+	<lightning:navigation aura:id="navService" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="fitlerEnhanceEvent" event="c:THOR_FilterEnhanceEvent" action="{!c.handleFilter}" />
+
+	<aura:attribute name="filter" type="Map" default="{}" access="private" />
+	<aura:attribute name="records" type="List" default="[]" access="private" />
+	<aura:attribute name="eqccStep" type="Map" default="{}" access="private" description="For get current step of EQCC" />
+
+	<aura:attribute
+		name="label"
+		type="Map"
+		default="{'header': 'Loading...', 'subheader': 'Loading...', 'description': 'Loading...'}"
+		access="private"
+	/>
+
+	<aura:attribute
+		name="pagination"
+		type="Map"
+		default="{'totalRows':0,'totalPages':1,'currentPosition':1,'itemsPerPage':20,'displaySize':5,'items':[]}"
+		access="private"
+	/>
+
+	<aura:attribute name="document_type" type="String" default="Notification" />
+	<aura:attribute name="document_status" type="String" default="New" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+
+	<div class="notification__container slds-scrollable_y">
+		<lightning:layout multipleRows="true">
+			<!--
+			<lightning:layoutItem class="slds-p-vertical_small slds-p-bottom_small slds-hidden" padding="horizontal-small" size="12">
+				<div class="d-flex d-justify-space-between">
+					<aura:if isTrue="{!$Browser.formFactor eq 'DESKTOP'}">
+						<lightning:button label="Back" iconName="utility:chevronleft" iconPosition="left" onclick="{!c.navigateToPreviousUrl}" />
+					</aura:if>
+					<!- <h5 style="display: flex; align-items: center;">{!v.label.header}</h5> ->
+					<aura:if isTrue="{!v.document_type eq 'Notification'}">
+						<c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterNotificationListFrom" />
+					</aura:if>
+					<aura:if isTrue="{!v.document_type eq 'Order'}">
+						<c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterOrderListFrom" />
+					</aura:if>
+				</div>
+			</lightning:layoutItem>
+			-->
+			<div class="slds-hide">
+				<aura:if isTrue="{!v.document_type eq 'HomeNotification'}">
+					<c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterHomeNotificationFrom" />
+				</aura:if>
+				<aura:if isTrue="{!v.document_type eq 'HomeOrder'}">
+					<c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterHomeOrderFrom" />
+				</aura:if>
+				<aura:if isTrue="{!v.document_type eq 'Notification'}">
+					<c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterNotificationListFrom" />
+				</aura:if>
+				<aura:if isTrue="{!v.document_type eq 'Order'}">
+					<c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterOrderListFrom" />
+				</aura:if>
+				<aura:if isTrue="{!v.document_type eq 'EQCC'}">
+					<c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterEQCCInprogressFrom" />
+				</aura:if>
+				<aura:if isTrue="{!v.document_type eq 'WorkClearance'}">
+					<c:THOR_FilterEnhance aura:id="THOR_FilterEnhance" filterPage="THOR_FilterWorkClearanceListFrom" />
+				</aura:if>
+			</div>
+
+			<lightning:layoutItem class="slds-p-bottom_small" padding="horizontal-small" size="12">
+				<lightning:card>
+					<aura:set attribute="title">
+						<div>{!v.label.subheader}</div>
+					</aura:set>
+					<!-- <aura:set attribute="actions"></aura:set> -->
+					<aura:set attribute="footer">
+						<aura:if isTrue="{! v.pagination.totalRows gt v.pagination.itemsPerPage}">
+							<lightning:buttonIcon
+								variant="brand-outline"
+								size="large"
+								alternativeText="First Page"
+								iconName="utility:jump_to_left"
+								title="First Page"
+								onclick="{!c.goToPage}"
+								value="{!1}"
+							/>
+							<lightning:buttonIcon
+								variant="brand-outline"
+								size="large"
+								alternativeText="Previous"
+								iconName="utility:chevronleft"
+								title="Previous"
+								onclick="{!c.goToPage}"
+								value="{!if((v.pagination.currentPosition - 1) lt 1, 1, v.pagination.currentPosition - 1)}"
+							/>
+
+							<aura:iteration items="{!v.pagination.items}" var="item">
+								<aura:if isTrue="{! item == '...'}">
+									<lightning:button variant="base" label="{!item}" title="{! 'go to page ' + item}" />
+									<aura:set attribute="else">
+										<aura:if isTrue="{! item eq v.pagination.currentPosition }">
+											<lightning:button variant="brand" label="{!item}" title="{! 'go to page ' + item}" />
+											<aura:set attribute="else">
+												<lightning:button
+													variant="brand-outline"
+													label="{!item}"
+													title="{! 'go to page ' + item}"
+													onclick="{!c.goToPage}"
+													value="{!item}"
+												/>
+											</aura:set>
+										</aura:if>
+									</aura:set>
+								</aura:if>
+							</aura:iteration>
+							<lightning:buttonIcon
+								variant="brand-outline"
+								alternativeText="Next"
+								iconName="utility:chevronright"
+								title="Next"
+								size="large"
+								onclick="{!c.goToPage}"
+								value="{!if((v.pagination.currentPosition + 1) gt v.pagination.totalPages, v.pagination.totalPages, v.pagination.currentPosition + 1)}"
+							/>
+							<lightning:buttonIcon
+								variant="brand-outline"
+								size="large"
+								alternativeText="Last Page"
+								iconName="utility:jump_to_right"
+								title="Last Page"
+								onclick="{!c.goToPage}"
+								value="{!v.pagination.totalPages}"
+							/>
+						</aura:if>
+					</aura:set>
+
+					<p class="slds-var-p-around_medium notification__bg-gray">
+						<p>{!v.label.description}</p>
+						<aura:if isTrue="{! not(empty(v.label.description2))}">
+							<p><span class="slds-p-left_large">{!v.label.description2}</span></p>
+						</aura:if>
+					</p>
+
+					<div class="slds-p-around_x-small slds-is-relative">
+						<aura:if isTrue="{!v.isLoading}">
+							<lightning:spinner alternativeText="Loading" />
+						</aura:if>
+						<aura:iteration items="{!v.records}" var="item" indexVar="index">
+							<aura:if isTrue="{! index lt v.pagination.itemsPerPage}">
+								<aura:if
+									isTrue="{!or(v.document_type eq 'Notification', v.document_type eq 'HomeNotification') || or(v.document_type eq 'Order', v.document_type eq 'HomeOrder') || (v.document_type eq 'WorkClearance')}"
+								>
+									<div class="slds-box slds-box_small">
+										<a data-record-id="{!item.Id}" href="javascript:void(0);" class="slds-text-link_reset" onclick="{!c.navigateToDisplay}">
+											<aura:if isTrue="{!item.Name}">
+												<p class="slds-text-link">{!item.Name}</p>
+											</aura:if>
+											<!-- <aura:if isTrue="{!and(or(v.document_type eq 'Notification', v.document_type eq 'HomeNotification'), not(empty(item.Name)))}">
+												<p class="slds-text-link">{!item.Name}</p>
+											</aura:if>
+											<aura:if isTrue="{!and(or(v.document_type eq 'Order', v.document_type eq 'HomeOrder'), not(empty(item.Name)))}">
+												<p class="slds-text-link">{!item.Name}</p>
+											</aura:if>
+											<aura:if isTrue="{!and(v.document_type eq 'WorkClearance', not(empty(item.Name)))}">
+												<p class="slds-text-link">{!item.Name}</p>
+											</aura:if> -->
+											<p>{! item.info }</p>
+											<aura:if isTrue="{!item.Description__c}">
+												<p class="slds-hyphenate">{! item.Description__c }</p>
+											</aura:if>
+										</a>
+									</div>
+								</aura:if>
+
+								<aura:if isTrue="{!v.document_type eq 'EQCC'}">
+									<div class="slds-box slds-box_small">
+										<a
+											data-record-id="{!item.Id}"
+											data-page-ref="c__THOR_EQCCHeaderRecordDisplay"
+											href="javascript:void(0);"
+											class="slds-text-link_reset"
+											onclick="{!c.navigateToDisplay}"
+										>
+											<p class="slds-text-link">{!item.Name}</p>
+										</a>
+										<aura:iteration items="{!item.infos}" var="info">
+											<a
+												data-record-id="{!info.recordId}"
+												data-page-ref="c__THOR_ApprovalSteps"
+												href="javascript:void(0);"
+												class="slds-text-link_reset"
+												onclick="{!c.navigateToDisplay}"
+											>
+												<p class="slds-text-link" style="white-space: break-spaces">{! info.text }</p>
+											</a>
+										</aura:iteration>
+									</div>
+								</aura:if>
+							</aura:if>
+						</aura:iteration>
+					</div>
+				</lightning:card>
+			</lightning:layoutItem>
+		</lightning:layout>
+	</div>
+</aura:component>

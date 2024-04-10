@@ -1,0 +1,1917 @@
+<aura:component
+    implements="force:lightningQuickAction,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName"
+    access="global" controller="CTRSapInformationController">
+
+    <aura:attribute name="requestFormHeaderObj" type="CTRRequestFormHeader__c" default="{}" />
+    <aura:attribute name="requestFormItemObj" type="CTRRequestFormItem__c" default="{}" />
+    <aura:attribute name="recordTypeName" type="String" />
+    <aura:attribute name="currentUserName" type="String" />
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="recordIdFormHeader" type="String" />
+
+    <aura:attribute name="isModalOpen" type="Boolean" default="false" />
+    <aura:attribute name="showLoading" type="Boolean" default="false" />
+    <aura:attribute name="recordTypeNameCustomer" type="Boolean" />
+    <aura:attribute name="validateMissingField" type="String" />
+    <aura:attribute name="validateFieldShow" type="Boolean" default="false" />
+    <aura:attribute name="SentGeneralView" type="Boolean" />
+    <aura:attribute name="DisabledDistribution" type="Boolean" default="false" />
+    <aura:attribute name="loadedValue" type="Boolean" default="true" />
+
+
+    <aura:attribute name="AccountGroupValue" type="String" />
+    <aura:attribute name="DistributionChannelList" type="List" />
+    <aura:attribute name="AllDistributionChannelList" type="List" />
+
+    <aura:attribute name="SalesOrgList" type="List" />
+
+    <!-- Picklist tab Sales view     -->
+    <aura:attribute name="IncotermsList" type="List" />
+    <aura:attribute name="CurrencyList" type="List" />
+    <aura:attribute name="TaxClassificationList" type="List" />
+    <aura:attribute name="AccountAssignmentGroupList" type="List" />
+    <aura:attribute name="PaymentTermList" type="List" />
+    <aura:attribute name="PaymentGuaranteeProcedureList" type="List" />
+    <aura:attribute name="PriceGroupList" type="List" />
+    <aura:attribute name="CompanyCodeTOPList" type="List" />
+    <aura:attribute name="PurchasingOrgTOPList" type="List" />
+    <aura:attribute name="DivisionList" type="List" />
+
+
+
+    <aura:attribute name="ChangedFieldForEDITHeader" type="List" default="[]" />
+    <aura:attribute name="ChangedFieldForEDITItem" type="List" default="[]" />
+
+    <aura:attribute name="mDependencyMap" type="Map" default="{}" />
+    <aura:handler name="change" value="{!v.AccountGroupValue}" action="{!c.onChangeAccountGroup}" />
+
+    <aura:handler name="OnChangeLookup" event="c:CTROnChangeLookupEvent" action="{!c.LookupChanged}" />
+
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+
+    <lightning:spinner aura:id="spinner" variant="brand" />
+    <lightning:recordEditForm recordId="{!v.recordIdFormHeader}" objectApiName="CTRRequestFormHeader__c"
+        onload="{!c.handleLoad}">
+        <lightning:messages />
+        <div class="slds-modal__content slds-p-around_medium" style="height: 70vh; overflow: auto;">
+            <div style="text-align: center;">
+            </div>
+            <div class="slds-var-m-top_medium slds-var-m-bottom_x-large" style="background-color: white;">
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1" style="overflow-y: auto;">
+                    <lightning:tabset selectedTabId="generalView">
+
+                        <!-- Check RecordType contains Customer -->
+                        <aura:if isTrue="{!v.recordTypeNameCustomer == true}">
+
+
+                            <!-- Tab General View  -->
+                            <lightning:tab label="General View" id="generalView">
+                                <div class="slds-grid slds-wrap">
+                                    <!-- Information Section -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <div class="slds-section slds-is-open" aura:id="informationSection">
+                                            <h3 class="slds-section__title">
+                                                <button type="button" aria-controls="informationDetail"
+                                                    aria-expanded="true" class="slds-button slds-section__title-action"
+                                                    data-auraid="informationSection" onclick="{!c.handleToggleSection}">
+                                                    <lightning:icon iconName="utility:switch" alternativeText="switch"
+                                                        title="" size="x-small"
+                                                        class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                                    <span class="slds-truncate" title="Information">Information</span>
+                                                </button>
+                                            </h3>
+                                            <div class="slds-section__content" id="informationDetail">
+                                                <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                                    <!-- Sales Organization -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                            <p style="color: red;">* &nbsp;</p>Sales Organization
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <!-- <lightning:inputField fieldName="SalesOrganizationTOP__c" variant="label-hidden" required="true"  value="{!v.requestFormHeaderObj.SalesOrganizationTOP__c}"  disabled="{!v.SentGeneralView}"/> -->
+                                                        <!-- Disable? change to item -->
+                                                        <lightning:select name="SalesOrganizationTOP__c" disabled="true"
+                                                            variant="label-hidden" label="Sales Organization"
+                                                            onchange="{!c.handleAddJsonItem}"
+                                                            value="{!v.requestFormItemObj.SalesOrganizationTOP__c}">
+                                                            <option value="">Please select Sales Organization
+                                                            </option>
+                                                            <aura:iteration items="{!v.SalesOrgList}" var="SalesOrgVar">
+                                                                <option value="{!SalesOrgVar.value}">
+                                                                    {!SalesOrgVar.label}
+                                                                </option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </div>
+                                                    <!-- Company code -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                            <p style="color: red;">* &nbsp;</p>Company Code
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <!-- <lightning:inputField fieldName="SalesOrganizationTOP__c" variant="label-hidden" required="true"  value="{!v.requestFormHeaderObj.SalesOrganizationTOP__c}"  disabled="{!v.SentGeneralView}"/> -->
+                                                        <!-- Disable? change to item -->
+                                                        <lightning:select name="SalesOrganizationTOP__c" disabled="true"
+                                                            variant="label-hidden" label="Sales Organization"
+                                                            onchange="{!c.handleAddJsonItem}"
+                                                            value="{!v.requestFormItemObj.SalesOrganizationTOP__c}">
+                                                            <option value="">Please select Company Code
+                                                            </option>
+                                                            <aura:iteration items="{!v.SalesOrgList}" var="SalesOrgVar">
+                                                                <option value="{!SalesOrgVar.value}">
+                                                                    {!SalesOrgVar.label}
+                                                                </option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </div>
+                                                    <!-- Account Group -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-bottom_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                            <p style="color: red;">* &nbsp;</p>Account Group
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="AccountGroup__c"
+                                                            id="Account Group" onchange="{!c.onChangeAccountGroup}"
+                                                            variant="label-hidden" required="true"
+                                                            value="{!v.requestFormHeaderObj.AccountGroup__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- Trading Partner -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-bottom_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 62px; display: flex;">
+                                                            <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                            Trading Partner
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="TradingPartner__c" id="Trading Partner"
+                                                            onchange="{!c.handleAddJsonHeader}" variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.TradingPartner__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+
+                                                    <!-- Industry -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-bottom_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 62px; display: flex;">
+                                                            <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                            Industry
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Industry__c" id="Industry"
+                                                            onchange="{!c.handleAddJsonHeader}" variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.Industry__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- Customer Type -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-bottom_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 62px; display: flex;">
+                                                            <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                            Customer Type
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="CustomerType__c"
+                                                            id="Customer Type" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.CustomerType__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                        <!-- Backend not mapping -->
+                                                    </div>
+                                                    <!-- Type of Bussiness (Branch) -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-bottom_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                            <p style="color: red;">* &nbsp;</p>Type of Bussiness (Branch)
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="TypeOfBusinessBranch__c"
+                                                            id="Type of Bussiness (Branch)"
+                                                            onchange="{!c.handleAddJsonHeader}" variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.TypeOfBusinessBranch__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- TAX Number -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-bottom_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                            <p style="color: red;">* &nbsp;</p>TAX Number
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="TaxCode1__c" id="TAX Number"
+                                                            onchange="{!c.handleAddJsonHeader}" variant="label-hidden"
+                                                            required="true"
+                                                            value="{!v.requestFormHeaderObj.TaxCode1__c}"
+                                                            disabled="true" />
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Name Section -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <div class="slds-section slds-is-open" aura:id="nameSection">
+                                            <h3 class="slds-section__title">
+                                                <button type="button" aria-controls="nameDetail" aria-expanded="true"
+                                                    class="slds-button slds-section__title-action"
+                                                    data-auraid="nameSection" onclick="{!c.handleToggleSection}">
+                                                    <lightning:icon iconName="utility:switch" alternativeText="switch"
+                                                        title="" size="x-small"
+                                                        class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                                    <span class="slds-truncate" title="Name">Name</span>
+                                                </button>
+                                            </h3>
+
+                                            <div class="slds-section__content" id="nameDetail">
+                                                <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                                    <!-- Full Name * -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-bottom_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 62px; display: flex;">
+                                                            <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                            Full Name
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        {!v.requestFormHeaderObj.CompanyNameLocal__c}
+                                                    </div>
+                                                    <!-- Name * -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-bottom_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                            <p style="color: red;">* &nbsp;</p>Name
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="CustomerNameLocal1__c"
+                                                            variant="label-hidden" required="true" id="Name (Local 1)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.CustomerNameLocal1__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!--  Name input 2  -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-bottom_medium">
+                                                        <p style="text-align: left; padding-left: 60px; display: flex;">
+                                                            <!-- {!v.requestFormHeaderObj.CompanyNameLocal__c} -->
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="CustomerNameLocal2__c"
+                                                            variant="label-hidden" id="Name (Local 2)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.CustomerNameLocal2__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- Full Name EN* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-bottom_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 62px; display: flex;">
+                                                            <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                            Full Name (EN)
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        {!v.requestFormHeaderObj.CompanyNameENF__c}
+                                                    </div>
+                                                    <!-- Name(Eng) * -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-bottom_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 62px; display: flex;">
+                                                            Name(Eng)
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="CustomerNameEN1__c"
+                                                            variant="label-hidden" id="Name(Eng 1)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.CustomerNameEN1__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!--  name(Eng) input 2 -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-bottom_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            <!-- {!v.requestFormHeaderObj.CompanyNameENF__c} -->
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="CustomerNameEN2__c"
+                                                            variant="label-hidden" id="Name (EN 2)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.CustomerNameEN2__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Search Terms Section -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <div class="slds-section slds-is-open" aura:id="searchTermsSection">
+                                            <h3 class="slds-section__title">
+                                                <button type="button" aria-controls="searchTermsDetail"
+                                                    aria-expanded="true" class="slds-button slds-section__title-action"
+                                                    data-auraid="searchTermsSection" onclick="{!c.handleToggleSection}">
+                                                    <lightning:icon iconName="utility:switch" alternativeText="switch"
+                                                        title="" size="x-small"
+                                                        class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                                    <span class="slds-truncate" title="Search Terms">Search Terms</span>
+                                                </button>
+                                            </h3>
+                                            <div class="slds-section__content" id="searchTermsDetail">
+                                                <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                                    <!-- Search Term 1* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                            <p style="color: red;">* &nbsp;</p>Search Term 1
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="CustomerSearchTermLocal__c"
+                                                            variant="label-hidden" required="true"
+                                                            id="Search Term 1 (Local)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.CustomerSearchTermLocal__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- Search Term 1(Eng) -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            Search Term 1(Eng)
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="CustomerSearchTermEN__c"
+                                                            id="Search Term 1 (EN)" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.CustomerSearchTermEN__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- Street/House number* -->
+                                                    <div
+                                                        class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        <p style="color: red;">* &nbsp;</p>Street/House number
+                                                        </p>
+
+                                                    </div>
+                                                    <div class="slds-col slds-size_4-of-12"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="StreetLocal__c"
+                                                            variant="label-hidden" required="true" id="Street (Local)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.StreetLocal__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <div class="slds-col slds-size_2-of-12"
+                                                        style="padding-left: 10px; padding-bottom: 16px;">
+                                                        <lightning:inputField fieldName="HousenoLocal__c"
+                                                            variant="label-hidden" id="House number"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.HousenoLocal__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- row 1* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street2Local__c"
+                                                            variant="label-hidden" id="Street2 (Local)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.Street2Local__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- row 2* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street3Local__c"
+                                                            variant="label-hidden" id="Street3 (Local)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.Street3Local__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- row 3* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street4Local__c"
+                                                            variant="label-hidden" id="Street4 (Local)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.Street4Local__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- row 4* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street5Local__c"
+                                                            variant="label-hidden" id="Street5 (Local)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.Street5Local__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- District* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        <p style="color: red;">* &nbsp;</p>District
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="DistrictLocalText__c"
+                                                            variant="label-hidden" required="true" id="District (Local)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.DistrictLocalText__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- Postal Code/City* -->
+                                                    <div
+                                                        class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        <p style="color: red;">* &nbsp;</p>Postal Code/City
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_2-of-12"
+                                                        style="padding-right: 10px;">
+                                                        <lightning:inputField fieldName="PostalCodeLocalText__c"
+                                                            variant="label-hidden" required="true" id="Postal Code"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.PostalCodeLocalText__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <div class="slds-col slds-size_4-of-12"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="CityStateLocal__c"
+                                                            variant="label-hidden" id="City (Local)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.CityStateLocal__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+
+                                                    </div>
+                                                    <!-- Street/House number(Eng) -->
+                                                    <div
+                                                        class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            Street/House number(Eng)
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_4-of-12"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="StreetEN__c"
+                                                            variant="label-hidden" id="Street (EN)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.StreetEN__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <div class="slds-col slds-size_2-of-12"
+                                                        style="padding-left: 10px; padding-bottom: 16px;">
+                                                        <lightning:inputField fieldName="HousenoLocal__c"
+                                                            variant="label-hidden" disabled = "true"
+                                                            value="{!v.requestFormHeaderObj.HousenoLocal__c}"/>
+                                                    </div>
+                                                    <!-- row 1* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street2EN__c"
+                                                            variant="label-hidden" id="Street2 (EN)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.Street2EN__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- row 2* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street3EN__c"
+                                                            variant="label-hidden" id="Stree3 (EN)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.Street3EN__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- row 3* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street4EN__c" id="Street4 (EN)"
+                                                            onchange="{!c.handleAddJsonHeader}" variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.Street4EN__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- row 4* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street5EN__c"
+                                                            variant="label-hidden" id="Street5 (EN)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.Street5EN__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- District (Eng) -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            District (Eng)
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="DistrictENText__c"
+                                                            variant="label-hidden" id="District (EN)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.DistrictENText__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- City (Eng) -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            City (Eng)
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="CityStateLocal__c"
+                                                            variant="label-hidden" id="City (EN)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.CityStateLocal__c}"
+                                                            disabled="true" />
+                                                    </div>
+                                                    <!-- Country* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        <p style="color: red;">* &nbsp;</p>Country
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Country__c"
+                                                            variant="label-hidden" required="true" id="Country"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.Country__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Communication Section -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <div class="slds-section slds-is-open" aura:id="communicationSection">
+                                            <h3 class="slds-section__title">
+                                                <button type="button" aria-controls="communicationDetail"
+                                                    aria-expanded="true" class="slds-button slds-section__title-action"
+                                                    data-auraid="communicationSection"
+                                                    onclick="{!c.handleToggleSection}">
+                                                    <lightning:icon iconName="utility:switch" alternativeText="switch"
+                                                        title="" size="x-small"
+                                                        class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                                    <span class="slds-truncate"
+                                                        title="Communication">Communication</span>
+                                                </button>
+                                            </h3>
+                                            <div class="slds-section__content" id="communicationDetail">
+                                                <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                                    <!-- Language* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        <p style="color: red;">* &nbsp;</p>Language
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <aura:if isTrue="{!v.loadedValue}">
+                                                            <lightning:inputField fieldName="Language__c"
+                                                                variant="label-hidden" required="true" id="Language"
+                                                                onchange="{!c.handleAddJsonHeader}"
+                                                                value="{!v.requestFormHeaderObj.Language__c}"
+                                                                disabled="{!v.SentGeneralView}" />
+                                                        </aura:if>
+                                                    </div>
+                                                    <!-- Mobile -->
+                                                    <div
+                                                        class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        <p style="color: red;">* &nbsp;</p>Mobile
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_2-of-12"
+                                                        style="padding-right: 10px; text-align: start;">
+                                                        <lightning:inputField fieldName="MobileCountryCode__c"
+                                                            variant="label-hidden" id="Mobile Country Code"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.MobileCountryCode__c}"
+                                                            disabled="{!v.SentGeneralView}" required="true" />
+                                                    </div>
+                                                    <div class="slds-col slds-size_4-of-12"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="MobilePhone__c"
+                                                            variant="label-hidden" id="Mobile"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.MobilePhone__c}"
+                                                            disabled="{!v.SentGeneralView}" required="true" />
+                                                    </div>
+                                                    <!-- Telephone -->
+                                                    <div
+                                                        class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <p style="color: red;">* &nbsp;</p>Phone/Phone Extension
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_2-of-12"
+                                                        style="padding-right: 10px; text-align: start;">
+                                                        <lightning:inputField fieldName="PhoneCountryCode__c"
+                                                            variant="label-hidden" id="Phone Country Code"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.PhoneCountryCode__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-12"
+                                                        style="padding-bottom: 16px; padding-right: 10px; text-align: start;">
+                                                        <lightning:inputField fieldName="Phone__c"
+                                                            variant="label-hidden" id="Phone"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.Phone__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-12"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="PhoneExtension__c"
+                                                            variant="label-hidden" id="Phone Extension"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.PhoneExtension__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- Fax -->
+                                                    <div
+                                                        class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            Fax/Fax Extension
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_2-of-12"
+                                                        style="padding-right: 10px; padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="FaxCountryCode__c"
+                                                            variant="label-hidden" id="FaxCountryCode"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.FaxCountryCode__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-12"
+                                                        style="padding-bottom: 16px; padding-right: 10px; text-align: start;">
+                                                        <lightning:inputField fieldName="Fax__c" variant="label-hidden"
+                                                            id="Fax" onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.Fax__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-12"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="FaxExtension__c"
+                                                            variant="label-hidden" id="Fax Extension"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.FaxExtension__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- E-mail -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            E-mail
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Email__c"
+                                                            variant="label-hidden" id="Email"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.Email__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </lightning:tab>
+
+                            <!-- Tab Sales View  Save in ItemForm-->
+                            <lightning:tab label="Sales View" id="salesView">
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <div class="slds-section slds-is-open" aura:id="informationSection">
+                                            <h3 class="slds-section__title">
+                                                <button type="button" aria-controls="informationDetail"
+                                                    aria-expanded="true" class="slds-button slds-section__title-action"
+                                                    data-auraid="informationSection" onclick="{!c.handleToggleSection}">
+                                                    <lightning:icon iconName="utility:switch" alternativeText="switch"
+                                                        title="" size="x-small"
+                                                        class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                                    <span class="slds-truncate" title="Information">Information</span>
+                                                </button>
+                                            </h3>
+                                            <div class="slds-section__content" id="informationDetail">
+                                                <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                    
+                                    <!-- Distribution Channel -->
+                                    <div class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                        <div style="text-align: left; padding-left: 50px; display: flex;">
+                                            <!-- <p style="color: red;">* &nbsp;</p> -->
+                                            <p style="color: red;">* &nbsp;</p>Distribution Channel
+                                        </div>
+                                    </div>
+
+                                    <div class="slds-col slds-size_3-of-6"
+                                        style="padding-bottom: 16px; text-align: start;">
+                                        <!-- <lightning:inputField fieldName="DistributionChannel__c"
+                                                     variant="label-hidden" required="true"  value="{!v.requestFormHeaderObj.DistributionChannel__c}" disabled="{!v.SentGeneralView}"/> -->
+                                        <!-- keep it header but how it map to account group or sales org -->
+                                        <lightning:select name="DistributionChannel__c" disabled="{!v.DisabledDistribution}"
+                                            variant="label-hidden" label="Distribution Channel"
+                                            onchange="{!c.handleAddJsonItem}"
+                                            value="{!v.requestFormItemObj.DistributionChannel__c}">
+                                            <option value="">Please select Distribution Channel
+                                            </option>
+                                            <aura:iteration items="{!v.DistributionChannelList}" var="DistributionVar">
+                                                <option value="{!DistributionVar.value}">
+                                                    {!DistributionVar.label}
+                                                </option>
+                                            </aura:iteration>
+                                        </lightning:select>
+
+                                    </div>
+                                    <!-- Division -->
+                                    <div class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                        <div style="text-align: left; padding-left: 50px; display: flex;">
+                                            <!-- <p style="color: red;">* &nbsp;</p> -->
+                                            <p style="color: red;">* &nbsp;</p>Division
+                                        </div>
+                                    </div>
+
+                                    <div class="slds-col slds-size_3-of-6"
+                                        style="padding-bottom: 16px; text-align: start;">
+                                        <!-- <lightning:inputField fieldName="DistributionChannel__c"
+                                                     variant="label-hidden" required="true"  value="{!v.requestFormHeaderObj.DistributionChannel__c}" disabled="{!v.SentGeneralView}"/> -->
+                                        <!-- keep it header but how it map to account group or sales org -->
+                                        <lightning:select name="Division__c" variant="label-hidden" label="Division"
+                                            onchange="{!c.handleAddJsonItem}"
+                                            value="{!v.requestFormItemObj.Division__c}" disabled="true">
+                                            <option value="">Please select Division
+                                            </option>
+                                            <aura:iteration items="{!v.DivisionList}" var="DivisionVar">
+                                                <option value="{!DivisionVar.value}">
+                                                    {!DivisionVar.label}
+                                                </option>
+                                            </aura:iteration>
+                                        </lightning:select>
+
+                                    </div>
+
+
+                                    <!-- * -->
+                                    <div class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                        <div style="text-align: left; padding-left: 50px; display: flex;">
+                                            <p style="color: red;">* &nbsp;</p>Currency
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-6">
+                                        <aura:if isTrue="{!v.loadedValue}">
+
+                                            <lightning:select name="currency" variant="label-hidden" label="Currency"
+                                                onchange="{!c.handleAddJsonItem}"
+                                                value="{!v.requestFormItemObj.Currency__c}">
+                                                <option value="">Please select Currency
+                                                </option>
+                                                <aura:iteration items="{!v.CurrencyList}" var="currencyVar">
+                                                    <option value="{!currencyVar.value}">
+                                                        {!currencyVar.label}
+                                                    </option>
+                                                </aura:iteration>
+                                            </lightning:select>
+                                        </aura:if>
+                                    </div>
+
+                                    <!-- Tax Classification* -->
+                                    <div class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                        <div style="text-align: left; padding-left: 50px; display: flex;">
+                                            <p style="color: red;">* &nbsp;</p>Tax Classification
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-6" style="padding-top:14px;">
+                                        <!-- <lightning:select name="taxClassification" label=""
+                                                            value="{!v.requestFormItemObj.TaxClassification__c}">
+                                                            <option value="">Please select Tax Classification
+                                                            </option>
+                                                            <aura:iteration items="{!v.TaxClassificationList}"
+                                                                var="taxClassificationVar">
+                                                                <option value="{!taxClassificationVar.value}">
+                                                                    {!taxClassificationVar.label}
+                                                                </option>
+                                                            </aura:iteration>
+                                                        </lightning:select> -->
+                                        <aura:if isTrue="{!v.loadedValue}">
+                                            <lightning:inputField fieldName="TAXClassification__c"
+                                                variant="label-hidden" id="Tax Classification"
+                                                onchange="{!c.handleAddJsonHeader}"
+                                                value="{!v.requestFormHeaderObj.TAXClassification__c}"/>
+                                        </aura:if>
+                                    </div>
+
+                                    <!-- Account Assignment Group* -->
+                                    <div class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                        <div style="text-align: left; padding-left: 50px; display: flex;">
+                                            <p style="color: red;">* &nbsp;</p>Account Assignment Group
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-6">
+                                        <lightning:select name="AccountAssignmentGroup" variant="label-hidden"
+                                            label="Account Assignment Group" onchange="{!c.handleAddJsonItem}"
+                                            value="{!v.requestFormItemObj.AccountAssignmentGroup__c}">
+                                            <option value="">Please select Account Assignment Group
+                                            </option>
+                                            <aura:iteration items="{!v.AccountAssignmentGroupList}"
+                                                var="accountAssignmentGroupVar">
+                                                <option value="{!accountAssignmentGroupVar.value}">
+                                                    {!accountAssignmentGroupVar.label}
+                                                </option>
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </div>
+
+                                    <!-- Pricing/ Statistics Section -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <div class="slds-section slds-is-open" aura:id="PricingStatistics">
+                                            <h3 class="slds-section__title">
+                                                <button type="button" aria-controls="pricingStatisticsDetail"
+                                                    aria-expanded="true" class="slds-button slds-section__title-action"
+                                                    data-auraid="PricingStatistics" onclick="{!c.handleToggleSection}">
+                                                    <lightning:icon iconName="utility:switch" alternativeText="switch"
+                                                        title="" size="x-small"
+                                                        class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                                    <span class="slds-truncate" title="Pricing/ Statistics">Pricing/
+                                                        Statistics</span>
+                                                </button>
+                                            </h3>
+                                            <div class="slds-section__content" id="pricingStatisticsDetail">
+                                                <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                                    <!-- Price Group -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 50px; display: flex;">
+                                                            Price Group
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6">
+                                                        <lightning:select name="PriceGroup" variant="label-hidden"
+                                                            label="Price Group" onchange="{!c.handleAddJsonItem}"
+                                                            value="{!v.requestFormItemObj.PriceGroup__c}">
+                                                            <option value="">Please select Price Group
+                                                            </option>
+                                                            <aura:iteration items="{!v.PriceGroupList}"
+                                                                var="PriceGroupVar">
+                                                                <option value="{!PriceGroupVar.value}">
+                                                                    {!PriceGroupVar.label}
+                                                                </option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+
+                                    <!-- Delivery and payment terms Section -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <div class="slds-section slds-is-open" aura:id="Deliveryandpaymentterms">
+                                            <h3 class="slds-section__title">
+                                                <button type="button" aria-controls="deliveryandpaymenttermsDetail"
+                                                    aria-expanded="true" class="slds-button slds-section__title-action"
+                                                    data-auraid="Deliveryandpaymentterms"
+                                                    onclick="{!c.handleToggleSection}">
+                                                    <lightning:icon iconName="utility:switch" alternativeText="switch"
+                                                        title="" size="x-small"
+                                                        class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                                    <span class="slds-truncate"
+                                                        title="Delivery and payment terms">Delivery and payment terms</span>
+                                                </button>
+                                            </h3>
+                                            <div class="slds-section__content" id="deliveryandpaymenttermsDetail">
+                                                <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                                    <!-- Incoterms -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <p style="color: red;">* &nbsp;</p>Incoterms
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6">
+                                                        <lightning:select name="incoterms" variant="label-hidden"
+                                                            label="Incoterms" onchange="{!c.handleAddJsonItem}"
+                                                            value="{!v.requestFormItemObj.Incoterms__c}">
+                                                            <option value="">Please select Incoterms
+                                                            </option>
+                                                            <aura:iteration items="{!v.IncotermsList}"
+                                                                var="incotermsVar">
+                                                                <option value="{!incotermsVar.value}">
+                                                                    {!incotermsVar.label}
+                                                                </option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </div>
+
+                                                    <!-- Payment Terms* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <p style="color: red;">* &nbsp;</p>Term of Payment
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6" style="padding-top:14px;">
+                                                        <c:CTRCustomLookupSearch aura:id="TermofPayment__c"
+                                                            objectAPIName="Master_Map__c"
+                                                            IconName="standard:product_item"
+                                                            whereCondition="AND Type__c = 'Payment Term'"
+                                                            label="Term of Payment" displaylabel="false"
+                                                            FieldName="TermOfPayment__c"
+                                                            selectedRecordId="{!v.requestFormItemObj.TermOfPayment__c}"
+                                                            disabled="{!v.SentGeneralView}"/>
+                                                        <!-- <lightning:select name="paymentTerm" label=""
+                                                                            value="{!v.requestFormItemObj.PaymentTerm__c}">
+                                                                            <option value="">Please select Payment Term
+                                                                            </option>
+                                                                            <aura:iteration items="{!v.PaymentTermList}"
+                                                                                var="paymentTermVar">
+                                                                                <option value="{!paymentTermVar.value}">
+                                                                                    {!paymentTermVar.label}
+                                                                                </option>
+                                                                            </aura:iteration>
+                                                                        </lightning:select> -->
+                                                    </div>
+
+                                                    <!-- Payment Guarantee Procedure -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <p style="color: red;">* &nbsp;</p>Payment Guarantee
+                                                            Procedure
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6">
+                                                        <aura:if isTrue="{!v.loadedValue}">
+                                                            <lightning:select name="paymentTerm" variant="label-hidden"
+                                                                label="Payment Guarantee Procedure"
+                                                                onchange="{!c.handleAddJsonItem}"
+                                                                value="{!v.requestFormItemObj.PaymentGuaranteeProcedure__c}">
+                                                                <option value="">Please select Payment Guarantee
+                                                                    Procedure
+                                                                </option>
+                                                                <aura:iteration
+                                                                    items="{!v.PaymentGuaranteeProcedureList}"
+                                                                    var="paymentGuaranteeProcedureVar">
+                                                                    <option
+                                                                        value="{!paymentGuaranteeProcedureVar.value}">
+                                                                        {!paymentGuaranteeProcedureVar.label}
+                                                                    </option>
+                                                                </aura:iteration>
+                                                            </lightning:select>
+                                                        </aura:if>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </lightning:tab>
+
+                        </aura:if>
+
+                        <!-- Check RecordType contains Supplier -->
+                        <aura:if isTrue="{!v.recordTypeNameCustomer == false}">
+
+                            <!-- Tab General View  -->
+                            <lightning:tab label="General View" id="generalView">
+                                <div class="slds-grid slds-wrap">
+
+                                    <!-- Check RecordType contains Supplier -->
+                                    <aura:if isTrue="{!v.recordTypeNameCustomer == false}">
+                                        <!-- Information Section -->
+                                        <div class="slds-col slds-size_1-of-1">
+                                            <div class="slds-section slds-is-open" aura:id="informationSection">
+                                                <h3 class="slds-section__title">
+                                                    <button type="button" aria-controls="informationDetail"
+                                                        aria-expanded="true"
+                                                        class="slds-button slds-section__title-action"
+                                                        data-auraid="informationSection"
+                                                        onclick="{!c.handleToggleSection}">
+                                                        <lightning:icon iconName="utility:switch"
+                                                            alternativeText="switch" title="" size="x-small"
+                                                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                                        <span class="slds-truncate"
+                                                            title="Information">
+                                                            Information
+                                                        </span>
+                                                    </button>
+                                                </h3>
+                                                <div class="slds-section__content" id="informationDetail">
+                                                    <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                                        <!-- Sales Organization -->
+                                                        <div
+                                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                            <div
+                                                                style="text-align: left; padding-left: 50px; display: flex;">
+                                                                <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                                <p style="color: red;">* &nbsp;</p>Purchasing Organization
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-col slds-size_3-of-6"
+                                                            style="padding-bottom: 16px; text-align: start;">
+                                                            <!-- <lightning:inputField fieldName="SalesOrganizationTOP__c" variant="label-hidden" required="true"  value="{!v.requestFormHeaderObj.SalesOrganizationTOP__c}"  disabled="{!v.SentGeneralView}"/> -->
+                                                            <!-- Disable? change to item -->
+                                                            <lightning:select name="PurchasingOrganizationTOP__c"
+                                                                disabled="true" variant="label-hidden"
+                                                                label="Purchasing Organization"
+                                                                onchange="{!c.handleAddJsonItem}"
+                                                                value="{!v.requestFormItemObj.PurchasingOrganizationTOP__c}">
+                                                                <option value="">Please select Purchasing Organization
+                                                                </option>
+                                                                <aura:iteration items="{!v.PurchasingOrgTOPList}"
+                                                                    var="PurchasingOrgVar">
+                                                                    <option value="{!PurchasingOrgVar.value}">
+                                                                        {!PurchasingOrgVar.label}
+                                                                    </option>
+                                                                </aura:iteration>
+                                                            </lightning:select>
+                                                        </div>
+                                                        <!-- Company code -->
+                                                        <div
+                                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                            <div
+                                                                style="text-align: left; padding-left: 50px; display: flex;">
+                                                                <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                                <p style="color: red;">* &nbsp;</p>Company Code
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-col slds-size_3-of-6"
+                                                            style="padding-bottom: 16px; text-align: start;">
+                                                            <!-- <lightning:inputField fieldName="SalesOrganizationTOP__c" variant="label-hidden" required="true"  value="{!v.requestFormHeaderObj.SalesOrganizationTOP__c}"  disabled="{!v.SentGeneralView}"/> -->
+                                                            <!-- Disable? change to item -->
+                                                            <lightning:select name="CompanyCodeTOP__c" disabled="true"
+                                                                variant="label-hidden" label="Company Code (TOP)"
+                                                                onchange="{!c.handleAddJsonItem}"
+                                                                value="{!v.requestFormItemObj.CompanyCodeTOP__c}">
+                                                                <option value="">Please select Company Code
+                                                                </option>
+                                                                <aura:iteration items="{!v.CompanyCodeTOPList}"
+                                                                    var="ComCodeVar">
+                                                                    <option value="{!ComCodeVar.value}">
+                                                                        {!ComCodeVar.label}
+                                                                    </option>
+                                                                </aura:iteration>
+                                                            </lightning:select>
+                                                        </div>
+                                                        <!-- Account Group* -->
+                                                        <div
+                                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                            <p
+                                                                style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <p style="color: red;">* &nbsp;</p>Account Group
+                                                            </p>
+                                                        </div>
+                                                        <div class="slds-col slds-size_3-of-6"
+                                                            style="padding-bottom: 16px; text-align: start;">
+                                                            <lightning:inputField fieldName="AccountGroup__c"
+                                                                id="Account Group" onchange="{!c.handleAddJsonHeader}"
+                                                                variant="label-hidden" required="true"
+                                                                value="{!v.requestFormHeaderObj.AccountGroup__c}"
+                                                                disabled="{!v.SentGeneralView}" />
+                                                        </div>
+                                                        <!-- Trading Partner -->
+                                                        <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 62px; display: flex;">
+                                                            <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                            Trading Partner
+                                                        </div>
+                                                    </div>
+                                                        <div class="slds-col slds-size_3-of-6"
+                                                            style="padding-bottom: 16px; text-align: start;">
+                                                            <lightning:inputField fieldName="TradingPartner__c" id="Trading Partner"
+                                                                onchange="{!c.handleAddJsonHeader}" variant="label-hidden"
+                                                                value="{!v.requestFormHeaderObj.TradingPartner__c}"
+                                                                disabled="{!v.SentGeneralView}" />
+                                                        </div>
+                                                        <!-- Type Bussiness (Branch) * -->
+                                                        <div
+                                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                            <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                                <p style="color: red;">* &nbsp;</p>Type of Bussiness (Branch)
+                                                        
+                                                            </p>
+                                                        </div>
+                                                        <div class="slds-col slds-size_3-of-6"
+                                                            style="padding-bottom: 16px; text-align: start;">
+                                                            <lightning:inputField fieldName="TypeOfBusinessBranch__c"
+                                                                required="true" id="Type Bussiness (Branch)"
+                                                                onchange="{!c.handleAddJsonHeader}"
+                                                                variant="label-hidden"
+                                                                value="{!v.requestFormHeaderObj.TypeOfBusinessBranch__c}"
+                                                                disabled="{!v.SentGeneralView}" />
+                                                        </div>
+                                                        <!-- TAX Number * -->
+                                                        <div
+                                                            class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                            <p
+                                                                style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <p style="color: red;">* &nbsp;</p>TAX Number
+                                                            </p>
+                                                        </div>
+                                                        <div class="slds-col slds-size_3-of-6"
+                                                            style="padding-bottom: 16px; text-align: start;">
+                                                            <lightning:inputField fieldName="TaxCode1__c"
+                                                                id="TAX Number" onchange="{!c.handleAddJsonHeader}"
+                                                                variant="label-hidden" required="true"
+                                                                value="{!v.requestFormHeaderObj.TaxCode1__c}"
+                                                                disabled="true" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </aura:if>
+
+                                    <!-- Name Section -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <div class="slds-section slds-is-open" aura:id="nameSection">
+                                            <h3 class="slds-section__title">
+                                                <button type="button" aria-controls="nameDetail" aria-expanded="true"
+                                                    class="slds-button slds-section__title-action"
+                                                    data-auraid="nameSection" onclick="{!c.handleToggleSection}">
+                                                    <lightning:icon iconName="utility:switch" alternativeText="switch"
+                                                        title="" size="x-small"
+                                                        class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                                    <span class="slds-truncate" title="Name">Name</span>
+                                                </button>
+                                            </h3>
+
+                                            <div class="slds-section__content" id="nameDetail">
+                                                <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                                    <!-- Full Name EN* -->
+                                                    <div
+                                                    class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-bottom_medium">
+                                                    <div
+                                                        style="text-align: left; padding-left: 62px; display: flex;">
+                                                        <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                        Full Name (EN)
+                                                    </div>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-6"
+                                                    style="padding-bottom: 16px; text-align: start;">
+                                                    {!v.requestFormHeaderObj.CompanyNameLocal__c}
+                                                </div>
+                                                    <!-- Name * -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        <p style="color: red;">* &nbsp;</p>Name
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="CustomerNameLocal1__c"
+                                                            id="Name (Local 1)" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden" required="true"
+                                                            value="{!v.requestFormHeaderObj.CustomerNameLocal1__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!--  Name input 2  -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 60px; display: flex;">
+                                                            <!-- {!v.requestFormHeaderObj.CompanyNameLocal__c} -->
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="CustomerNameLocal2__c"
+                                                            variant="label-hidden" id="Name (Local 2)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.CustomerNameLocal2__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                     <!-- Full Name EN* -->
+                                                     <div
+                                                     class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-bottom_medium">
+                                                     <div
+                                                         style="text-align: left; padding-left: 62px; display: flex;">
+                                                         <!-- <p style="color: red;">* &nbsp;</p> -->
+                                                         Full Name (EN)
+                                                     </div>
+                                                 </div>
+                                                 <div class="slds-col slds-size_3-of-6"
+                                                     style="padding-bottom: 16px; text-align: start;">
+                                                     {!v.requestFormHeaderObj.CompanyNameENF__c}
+                                                 </div>
+                                                    <!-- Name(Eng) * -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            Name(Eng)
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="CustomerNameEN1__c"
+                                                            variant="label-hidden" id="Name(Eng 1)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.CustomerNameEN1__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!--  name(Eng) input 2 -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            <!-- {!v.requestFormHeaderObj.CompanyNameENF__c} -->
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="CustomerNameEN2__c"
+                                                            variant="label-hidden" id="Name (EN 2)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.CustomerNameEN2__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Search Terms Section -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <div class="slds-section slds-is-open" aura:id="searchTermsSection">
+                                            <h3 class="slds-section__title">
+                                                <button type="button" aria-controls="searchTermsDetail"
+                                                    aria-expanded="true" class="slds-button slds-section__title-action"
+                                                    data-auraid="searchTermsSection" onclick="{!c.handleToggleSection}">
+                                                    <lightning:icon iconName="utility:switch" alternativeText="switch"
+                                                        title="" size="x-small"
+                                                        class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                                    <span class="slds-truncate" title="Search Terms">Search Terms</span>
+                                                </button>
+                                            </h3>
+                                            <div class="slds-section__content" id="searchTermsDetail">
+                                                <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                                    <!-- Search Term 1* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        <p style="color: red;">* &nbsp;</p>Search Term 1
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="SupplierSearchTermLocal__c"
+                                                            id="Search Term 1 (Local)"
+                                                            onchange="{!c.handleAddJsonHeader}" variant="label-hidden"
+                                                            required="true"
+                                                            value="{!v.requestFormHeaderObj.SupplierSearchTermLocal__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- Search Term 1(Eng) -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            Search Term 1(Eng)
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="SupplierSearchTermEN__c"
+                                                            id="Search Term 1 (EN)" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.SupplierSearchTermEN__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- Street/House number* -->
+                                                    <div
+                                                        class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        <p style="color: red;">* &nbsp;</p>Street/House number
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_4-of-12"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="StreetLocal__c"
+                                                            id="Street (Local)" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden" required="true"
+                                                            value="{!v.requestFormHeaderObj.StreetLocal__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <div class="slds-col slds-size_2-of-12"
+                                                        style="padding-left: 10px; padding-bottom: 16px;">
+                                                        <lightning:inputField fieldName="HousenoLocal__c"
+                                                            id="House number" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.HousenoLocal__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- row 1* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street2Local__c"
+                                                            id="Street2 (Local)" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.Street2Local__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- row 2* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street3Local__c"
+                                                            id="Street3 (Local)" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.Street3Local__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- row 3* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street4Local__c"
+                                                            id="Street4 (Local)" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.Street4Local__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- row 4* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street5Local__c"
+                                                            id="Street5 (Local)" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.Street5Local__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- District* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        <p style="color: red;">* &nbsp;</p> District
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="DistrictLocalText__c"
+                                                            id="District (Local)" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden" required="true"
+                                                            value="{!v.requestFormHeaderObj.DistrictLocalText__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <!-- Postal Code/City* -->
+                                                    <div
+                                                        class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        <p style="color: red;">* &nbsp;</p>Postal Code/City
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_2-of-12"
+                                                        style="padding-right: 10px;">
+                                                        <lightning:inputField fieldName="PostalCodeLocalText__c"
+                                                            id="Postal Code" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden" required="true"
+                                                            value="{!v.requestFormHeaderObj.PostalCodeLocalText__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+                                                    </div>
+                                                    <div class="slds-col slds-size_4-of-12"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="CityStateLocal__c"
+                                                            id="City (Local)" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.CityStateLocal__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+
+
+                                                    </div>
+                                                    <!-- Street/House number(Eng) -->
+                                                    <div
+                                                        class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            Street/House number(Eng)
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_4-of-12"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="StreetEN__c"
+                                                            variant="label-hidden" id="Street (EN)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.StreetEN__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <div class="slds-col slds-size_2-of-12"
+                                                        style="padding-left: 10px; padding-bottom: 16px;">
+                                                        <lightning:inputField fieldName="HousenoLocal__c"
+                                                            variant="label-hidden" disabled="true"
+                                                            value="{!v.requestFormHeaderObj.HousenoLocal__c}" />
+                                                    </div>
+                                                    <!-- row 1* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street2EN__c"
+                                                            variant="label-hidden" id="Street2 (EN)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.Street2EN__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- row 2* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street3EN__c"
+                                                            variant="label-hidden" id="Stree3 (EN)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.Street3EN__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- row 3* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street4EN__c" id="Street4 (EN)"
+                                                            onchange="{!c.handleAddJsonHeader}" variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.Street4EN__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- row 4* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Street5EN__c"
+                                                            variant="label-hidden" id="Street5 (EN)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.Street5EN__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- District (Eng) -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            District (Eng)
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="DistrictENText__c"
+                                                            variant="label-hidden" id="District (EN)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.DistrictENText__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- City (Eng) -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            City (Eng)
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="CityStateLocal__c"
+                                                            variant="label-hidden" id="City (EN)"
+                                                            onchange="{!c.handleAddJsonHeader}"
+                                                            value="{!v.requestFormHeaderObj.CityStateLocal__c}"
+                                                            disabled="true" />
+                                                    </div>
+                                                    <!-- Country* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        <p style="color: red;">* &nbsp;</p>Country
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Country__c" id="Country"
+                                                            onchange="{!c.handleAddJsonHeader}" variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.Country__c}"
+                                                            disabled="true" />
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Communication Section -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <div class="slds-section slds-is-open" aura:id="communicationSection">
+                                            <h3 class="slds-section__title">
+                                                <button type="button" aria-controls="communicationDetail"
+                                                    aria-expanded="true" class="slds-button slds-section__title-action"
+                                                    data-auraid="communicationSection"
+                                                    onclick="{!c.handleToggleSection}">
+                                                    <lightning:icon iconName="utility:switch" alternativeText="switch"
+                                                        title="" size="x-small"
+                                                        class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                                    <span class="slds-truncate"
+                                                        title="Communication">Communication</span>
+                                                </button>
+                                            </h3>
+                                            <div class="slds-section__content" id="communicationDetail">
+                                                <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                                    <!-- Language* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        <p style="color: red;">* &nbsp;</p>Language
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Language__c" id="Language"
+                                                            onchange="{!c.handleAddJsonHeader}" variant="label-hidden"
+                                                            required="true"
+                                                            value="{!v.requestFormHeaderObj.Language__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- Mobile -->
+                                                    <div
+                                                        class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <p style="color: red;">* &nbsp;</p>Mobile
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_2-of-12"
+                                                        style="padding-right: 10px; text-align: start;">
+                                                        <lightning:inputField fieldName="MobileCountryCode__c"
+                                                            id="MobileCountryCode" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.MobileCountryCode__c}"
+                                                            disabled="{!v.SentGeneralView}" required="true"/>
+                                                    </div>
+                                                    <div class="slds-col slds-size_4-of-12"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="MobilePhone__c" id="Mobile"
+                                                            onchange="{!c.handleAddJsonHeader}" variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.MobilePhone__c}"
+                                                            disabled="{!v.SentGeneralView}" required="true"/>
+                                                    </div>
+                                                    <!-- Telephone -->
+                                                    <div
+                                                        class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            <p style="color: red;">* &nbsp;</p> Phone/Phone Extension
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_2-of-12"
+                                                        style="padding-right: 10px; text-align: start;">
+                                                        <lightning:inputField fieldName="PhoneCountryCode__c"
+                                                            id="PhoneCountryCode" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.PhoneCountryCode__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-12"
+                                                        style="padding-bottom: 16px; padding-right: 10px; text-align: start;">
+                                                        <lightning:inputField fieldName="Phone__c" id="Phone"
+                                                            onchange="{!c.handleAddJsonHeader}" variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.Phone__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-12"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="PhoneExtension__c"
+                                                            id="Phone Extension" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.PhoneExtension__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- Fax -->
+                                                    <div
+                                                        class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            Fax/Fax Extension
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_2-of-12"
+                                                        style="padding-right: 10px; padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="FaxCountryCode__c"
+                                                            id="FaxCountryCode" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.FaxCountryCode__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-12"
+                                                        style="padding-bottom: 16px; padding-right: 10px; text-align: start;">
+                                                        <lightning:inputField fieldName="Fax__c" id="Fax"
+                                                            onchange="{!c.handleAddJsonHeader}" variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.Fax__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-12"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="FaxExtension__c"
+                                                            id="Fax Extension" onchange="{!c.handleAddJsonHeader}"
+                                                            variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.FaxExtension__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                    <!-- E-mail -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 62px; display: flex;">
+                                                            Email
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:inputField fieldName="Email__c" id="Email"
+                                                            onchange="{!c.handleAddJsonHeader}" variant="label-hidden"
+                                                            value="{!v.requestFormHeaderObj.Email__c}"
+                                                            disabled="{!v.SentGeneralView}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </lightning:tab>
+
+                            <!-- Tab Purchasing View -->
+                            <lightning:tab label="Purchasing View" id="purchasingView">
+                                <div class="slds-grid slds-wrap">
+                                    <!-- Conditions -->
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <div class="slds-section slds-is-open" aura:id="conditionsSection">
+                                            <h3 class="slds-section__title">
+                                                <button type="button" aria-controls="conditionsDetail"
+                                                    aria-expanded="true" class="slds-button slds-section__title-action"
+                                                    data-auraid="conditionsSection" onclick="{!c.handleToggleSection}">
+                                                    <lightning:icon iconName="utility:switch" alternativeText="switch"
+                                                        title="" size="x-small"
+                                                        class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                                                    <span class="slds-truncate" title="Conditions">Condition</span>
+                                                </button>
+                                            </h3>
+                                            <div class="slds-section__content" id="conditionsDetail">
+                                                <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                                    <!-- Order currency* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                        <p style="color: red;">* &nbsp;</p>Order currency
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <!-- <lightning:inputField fieldName="Ordercurrency__c" variant="label-hidden" required="true" value="{!v.requestFormItemObj.Ordercurrency__c}"/> -->
+                                                        <lightning:select name="currency" label="Order currency"
+                                                            variant="label-hidden" onchange="{!c.handleAddJsonItem}"
+                                                            value="{!v.requestFormItemObj.Currency__c}">
+                                                            <option value="">Please select Currency
+                                                            </option>
+                                                            <aura:iteration items="{!v.CurrencyList}" var="currencyVar">
+                                                                <option value="{!currencyVar.value}">
+                                                                    {!currencyVar.label}
+                                                                </option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </div>
+                                                    <!-- Terms of payment* -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <div
+                                                            style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <p style="color: red;">* &nbsp;</p>Terms of payment
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <c:CTRCustomLookupSearch aura:id="TermofPayment__c"
+                                                            objectAPIName="Master_Map__c"
+                                                            IconName="standard:product_item"
+                                                            whereCondition="AND Type__c = 'Payment Term'"
+                                                            label="Terms of payment" displaylabel="false"
+                                                            FieldName="TermOfPayment__c"
+                                                            selectedRecordId="{!v.requestFormItemObj.TermOfPayment__c}" 
+                                                            />
+                                                        <!-- <lightning:inputField fieldName="Incoterms2Port__c" variant="label-hidden" required="true" value="{!v.requestFormHeaderObj.Incoterms2Port__c}"/> -->
+                                                    </div>
+                                                    <!-- <div class="slds-col slds-size_2-of-12" style="padding-left: 10px; padding-bottom: 16px;">
+                                                                        <lightning:inputField fieldName="SupplierSearchTermEN__c" variant="label-hidden" value="{!v.requestFormHeaderObj.SupplierSearchTermEN__c}"/>
+                                                                    </div> -->
+                                                    <!-- Incoterms -->
+                                                    <div
+                                                        class="slds-col slds-size_2-of-6 slds-p-horizontal_x-small slds-p-top_medium">
+                                                        <p style="text-align: left; padding-left: 50px; display: flex;">
+                                                            <p style="color: red;">* &nbsp;</p>Incoterms
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-6"
+                                                        style="padding-bottom: 16px; text-align: start;">
+                                                        <lightning:select name="incoterms" label="Incoterms"
+                                                            variant="label-hidden" onchange="{!c.handleAddJsonItem}"
+                                                            value="{!v.requestFormItemObj.Incoterms__c}">
+                                                            <option value="">Please select Incoterms
+                                                            </option>
+                                                            <aura:iteration items="{!v.IncotermsList}"
+                                                                var="incotermsVar">
+                                                                <option value="{!incotermsVar.value}">
+                                                                    {!incotermsVar.label}
+                                                                </option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                        <!-- <lightning:inputField fieldName="Incoterms__c" variant="label-hidden" value="{!v.requestFormItemObj.Incoterms__c}"/> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </lightning:tab>
+
+                        </aura:if>
+
+                    </lightning:tabset>
+
+                </div>
+            </div>
+        </div>
+    </lightning:recordEditForm>
+
+
+</aura:component>

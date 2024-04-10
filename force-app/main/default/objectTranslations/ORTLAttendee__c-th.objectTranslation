@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Attendee</value>
+    </caseValues>
+    <fields>
+        <label><!-- Attendee Name --></label>
+        <name>AttendeeName__c</name>
+        <relationshipLabel><!-- Attendee --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Risk --></label>
+        <name>Risk__c</name>
+        <relationshipLabel><!-- Attendee --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Final Risk Assessment</masterLabel>
+            <translation><!-- Final Risk Assessment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initial Risk Assessment</masterLabel>
+            <translation><!-- Initial Risk Assessment --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>ORTLAttendeeLayout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

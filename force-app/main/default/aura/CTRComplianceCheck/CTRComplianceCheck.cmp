@@ -1,0 +1,155 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName,force:lightningQuickActionWithoutHeader" controller="CTRComplianceCheckController" access="global">
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="sObjectName" type="String" />
+    <aura:attribute name="recordObject" type="Object" />
+    <aura:attribute name="recordLoadError" type="String" />
+    <aura:attribute name="shiptoList" type="List" />
+    <aura:attribute name="country" type="List" />
+    <aura:attribute name="shareholderList" type="List" />
+    <aura:attribute name="userRecordObject" type="Object" />
+
+    <aura:attribute name="isLoaded" type="Boolean" default="false" />
+    <aura:attribute name="isModalOpen" type="Boolean" />
+
+    <!-- <force:recordData aura:id="recordLoader" recordId="{!v.recordId}" fields="Id,Name,CompanyName__c,Country__c,CEOFirstName__c,CEOLastName__c,SalesOrganization__c,ComplianceCheckby__c" targetFields="{!v.recordObject}" targetError="{!v.recordLoadError}" /> -->
+    <force:recordData aura:id="userRecordLoader" recordId="{!$SObjectType.CurrentUser.Id}" fields="Id,Name" targetFields="{!v.userRecordObject}" targetError="{!v.recordLoadError}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="CTRDeleteRowDestinationEvt" event="c:CTRDeleteRowDestinationEvt" action="{!c.handleDeletedRowShipto}"/>
+    <aura:handler name="CTRDeleteRowEvt" event="c:CTRDeleteRowEvt" action="{!c.handleDeletedRowShareholder}"/>
+
+    <aura:html tag="style">
+        .slds-modal__container {        
+        	width: 90% !important;
+            max-width: 80% !important;
+        	height: 100% !important; 
+            /*   width:210mm;
+            height:297mm;*/
+        }
+        .cuf-content {
+            padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+            padding: 0rem !important;
+        }       
+        .slds-modal__content {
+            overflow-y: hidden !important;
+            height: unset !important;
+            max-height: unset !important;
+        }
+    </aura:html>
+
+    <div class="slds-modal--large">
+        <div class="slds-modal__header slds-size_1-of-1">
+            <h2 class="slds-text-heading--medium">Compliance Check</h2>
+        </div>
+        <lightning:recordEditForm aura:id="recordEditForm" recordId="{!v.recordId}" objectApiName="{!v.sObjectName}" onload="{!c.handleLoad}" onsubmit="{!c.handleSubmit}" onsuccess="{!c.handleSuccess}" onerror="{!c.handleError}">
+            <div class="slds-modal__content slds-var-p-around_xx-large slds-size_1-of-1 slds-is-relative">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+                        <!-- <lightning:input type="text" label="Company Name" disabled="true" value="{!v.recordObject.CompanyName__c}"></lightning:input> -->
+                        <lightning:inputField fieldName="CompanyName__c" variant="label-stacked" disabled="true" />
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+                        <!-- <lightning:input type="text" label="Country" disabled="true" value="{!v.recordObject.Country__c}"></lightning:input> -->
+                        <lightning:inputField fieldName="Country__c" variant="label-stacked" disabled="true" />
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+                        <!-- <lightning:input type="text" label="CEO/President/Managing Director First Name" value="{!v.recordObject.CEOFirstName__c}"></lightning:input> -->
+                        <lightning:inputField fieldName="CEOFirstName__c" variant="label-stacked" />
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+                        <!-- <lightning:input type="text" label="CEO/President/Managing Director Last Name" value="{!v.recordObject.CEOLastName__c}"></lightning:input> -->
+                        <lightning:inputField fieldName="CEOLastName__c" variant="label-stacked" />
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-var-p-around_small">
+                        <div class="slds-form">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                    Country: Ship-to
+                                </label>
+                                <div class="slds-form-element__control">
+                                    <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+                                        <thead>
+                                            <tr class="slds-line-height_reset">
+                                                <th class="" scope="col" style="width: 40%;">
+                                                    <div class="slds-truncate" title="N0">No</div>
+                                                </th>
+                                                <th class="" scope="col" style="width: 40%;">
+                                                    <div class="slds-truncate" title="Country Name">Country Name</div>
+                                                </th>
+                                                <th class="" scope="col" style="width: 20%;">
+                                                    <a onclick="{!c.addNewRowShipto}">
+                                                        <lightning:icon iconName="utility:add" class="slds-icon slds-icon_small" size="small" alternativeText="add" />
+                                                        <span class="slds-assistive-text">Add Icon</span>
+                                                    </a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <aura:iteration items="{!v.shiptoList}" var="item" indexVar="index">
+                                                <c:CTRDynamicRowDestinationTable rowIndex="{!index}" Shipping="{!item}" country="{!v.country}" displayLocationType="false" />
+                                            </aura:iteration>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-var-p-around_small">
+                        <div class="slds-form">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="horizontal-input-id-02">
+                                    List of Shareholders (who hold an interest in the company more than 10%)
+                                </label>
+                                <div class="slds-form-element__control">
+                                    <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+                                        <thead>
+                                            <tr class="slds-line-height_reset">
+                                                <th class="" scope="col" style="width: 30%;">
+                                                    <div class="slds-truncate" title="No">No</div>
+                                                </th>
+                                                <th class="" scope="col" style="width: 30%;">
+                                                    <div class="slds-truncate" title="Name">Name</div>
+                                                </th>
+                                                <th class="" scope="col" style="width: 30%;">
+                                                    <div class="slds-truncate" title="Shareholders">% of Shareholders</div>
+                                                </th>
+                                                <th class="" scope="col" style="width: 10%;">
+                                                    <a onclick="{!c.addNewRowShareholder}">
+                                                        <lightning:icon iconName="utility:add" class="slds-icon slds-icon_small" size="small" alternativeText="add"/>
+                                                        <span class="slds-assistive-text">Add Icon</span>
+                                                    </a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <aura:iteration items="{!v.shareholderList}" var="item" indexVar="index">
+                                                <c:CTRDynamicRowTable rowIndex="{!index}" ShareHolder="{!item}"/>
+                                            </aura:iteration>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+                        <!-- <lightning:input type="text" label="Sales Organization" value="{!v.recordObject.SalesOrganization__c}"></lightning:input> -->
+                        <lightning:inputField fieldName="SalesOrganization__c" variant="label-stacked" />
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+                        <lightning:input type="text" label="Compliance Check by" value="{!v.userRecordObject.Name}" disabled="true"></lightning:input>
+                        <!-- <lightning:inputField fieldName="ComplianceCheckby__c" variant="label-stacked" disabled="true" /> -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer slds-modal__footer slds-size_1-of-1" style="text-align: center;">
+                <lightning:button variant="neutral" label="Cancel" onclick="{!c.handleCancel}" />
+                <lightning:button variant="brand" label="Save&amp;Submit" type="submit" />
+            </div>
+        </lightning:recordEditForm>
+        <aura:if isTrue="{!!v.isLoaded}">
+            <lightning:spinner variant="brand" style="z-index:2" />
+        </aura:if>
+    </div>
+</aura:component>

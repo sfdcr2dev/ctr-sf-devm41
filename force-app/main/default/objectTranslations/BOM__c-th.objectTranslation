@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>BOM</value>
+    </caseValues>
+    <fields>
+        <label><!-- BOMCategory --></label>
+        <name>BOMCategory__c</name>
+    </fields>
+    <fields>
+        <label><!-- BOMUsage --></label>
+        <name>BOMUsage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Equipment --></label>
+        <name>Equipment__c</name>
+        <relationshipLabel><!-- BOM --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- alternateBOM --></label>
+        <name>alternateBOM__c</name>
+    </fields>
+    <fields>
+        <label><!-- plant --></label>
+        <name>plant__c</name>
+        <relationshipLabel><!-- BOM --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>BOM Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

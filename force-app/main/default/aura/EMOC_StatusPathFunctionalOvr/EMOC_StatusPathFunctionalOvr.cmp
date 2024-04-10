@@ -1,0 +1,38 @@
+<aura:component implements="lightning:actionOverride,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:appHostable,force:hasRecordId,force:LightningQuickAction,force:hasSObjectName" access="global" controller="EMOC_StatusPathFnOvrController">
+	<aura:attribute name="recordId" type="string"/>
+    <aura:attribute name="steps" type="List"/>
+	<aura:attribute name="currentStep" type="string"/>
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/> 
+    
+    <lightning:empApi aura:id="empApi" />
+    <aura:attribute name="subscription" type="Map" />
+    
+    <article class="slds-card slds-scrollable_x" >
+       <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-grid">
+                <div class="slds-tabs_path" role="application">
+                    <ul class="slds-tabs_path__nav" role="listbox" aria-orientation="horizontal">
+                        <aura:iteration items="{!v.steps}" var="item" indexVar="index">
+                            <li class="{! item.customcss}" role="presentation">
+                                <a  aria-selected="{!item.selected}" 
+                                    class="slds-tabs_path__link" title="{!item.label}"
+                                    role="option" tabindex="-1" data-index="{!index}">
+                                    <span class="slds-tabs_path__stage">
+                                        <lightning:icon size="x-small" iconName="utility:check" />
+                                        <span class="slds-assistive-text">
+                                            {!item.label}
+                                        </span>
+                                    </span>
+                                    <span class="slds-tabs_path__title">
+                                        {!item.label}
+                                    </span>
+                                </a>
+                            </li>
+                        </aura:iteration>
+                    </ul>
+                </div>
+            </div>
+        </div>
+     </article>
+
+</aura:component>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Partner Function</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account Number --></label>
+        <name>AccountNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Partner Function --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Relationship Type --></label>
+        <name>RelationshipType__c</name>
+        <picklistValues>
+            <masterLabel>Has AG</masterLabel>
+            <translation><!-- Has AG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Has Bill to</masterLabel>
+            <translation><!-- Has Bill to --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Has Payer</masterLabel>
+            <translation><!-- Has Payer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Has Ship to Party</masterLabel>
+            <translation><!-- Has Ship to Party --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Is Ship to Party</masterLabel>
+            <translation><!-- Is Ship to Party --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Account Number --></label>
+        <name>ReverseAccountNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reverse Account --></label>
+        <name>ReverseAccount__c</name>
+        <relationshipLabel><!-- Partner Function (Reverse Account) --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Partner Function Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

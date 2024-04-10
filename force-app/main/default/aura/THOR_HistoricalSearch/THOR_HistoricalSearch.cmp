@@ -1,0 +1,108 @@
+<aura:component implements="lightning:isUrlAddressable,force:appHostable">
+	<ltng:require
+		styles="{! $Resource.select2 + '/select2-4.0.3/dist/css/select2.min.css'}"
+		scripts="{!join(',',
+        $Resource.jQuery224 ,
+        $Resource.select2 + '/select2-4.0.3/dist/js/select2.js')
+      }"
+		afterScriptsLoaded="{!c.scriptsLoaded}"
+	/>
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<aura:attribute name="recordId" type="Id" access="private" />
+	<aura:attribute name="userId" type="Id" default="{!$SObjectType.CurrentUser.Id}" access="private" />
+	<aura:attribute name="title" type="String" default="" access="private" />
+
+	<aura:attribute name="whichState" type="String" default="Notification" />
+
+	<div class="slds-card__header slds-grid box1">
+		<header class="slds-media slds-media_center slds-has-flexi-truncate">
+			<lightning:icon iconName="custom:custom53" alternativeText="Historical Search" title="Historical Search" />
+			<div class="slds-media__body slds-grid icn">
+				<h1 class="slds-card__header-title">
+					<p>Historical Search</p>
+				</h1>
+			</div>
+		</header>
+	</div>
+	<div class="slds-card">
+		<div class="slds-card__body slds-card__body_inner">
+			<div class="slds-grid slds-grid_align-space">
+				<!-- slds-grid_align-space slds-grid_align-space -->
+				<div class="slds-col slds-small-size_1-of-4 slds-text-align_center slds-p-horizontal_small slds-p-bottom_small">
+					<lightning:button variant="base" class="btn-inline-block" name="Notification" onclick="{!c.setState}">
+						<lightning:avatar
+							variant="circle"
+							src="{! v.whichState == 'Notification' ? $Resource.HistoricalICON + '/NotificationHistorical_Active.png' : $Resource.HistoricalICON + '/NotificationHistorical.png'}"
+							class="slds-m-right_small"
+							size="large"
+						/>
+
+						<p class="{! 'label-name-line' + (v.whichState == 'Notification' ? ' slds-text-title_bold': ' slds-text-body_regular')}">
+							<span class="label-name">Notification Historical</span>
+						</p>
+					</lightning:button>
+				</div>
+				<div class="slds-col slds-small-size_1-of-4 slds-text-align_center slds-p-horizontal_small slds-p-bottom_small">
+					<lightning:button variant="base" class="btn-inline-block" name="Order" onclick="{!c.setState}">
+						<lightning:avatar
+							variant="circle"
+							src="{! v.whichState == 'Order' ? $Resource.HistoricalICON + '/OrderHistorical_Active.png' : $Resource.HistoricalICON + '/OrderHistorical.png'}"
+							class="slds-m-right_small"
+							size="large"
+						/>
+
+						<p class="{! 'label-name-line' + (v.whichState == 'Order' ? ' slds-text-title_bold': ' slds-text-body_regular')}">
+							<span class="label-name">Order Historical</span>
+						</p>
+					</lightning:button>
+				</div>
+				<div class="slds-col slds-small-size_1-of-4 slds-text-align_center slds-p-horizontal_small slds-p-bottom_small">
+					<lightning:button variant="base" class="btn-inline-block" name="WorkClearance" onclick="{!c.setState}">
+						<lightning:avatar
+							variant="circle"
+							src="{! v.whichState == 'WorkClearance' ? $Resource.HistoricalICON + '/WorkClearanceHistorical_Active.png' : $Resource.HistoricalICON + '/WorkClearanceHistorical.png'}"
+							class="slds-m-right_small"
+							size="large"
+						/>
+
+						<p class="{! 'label-name-line' + (v.whichState == 'WorkClearance' ? ' slds-text-title_bold': ' slds-text-body_regular')}">
+							<span class="label-name">Work Clearance Historical</span>
+						</p>
+					</lightning:button>
+				</div>
+				<div class="slds-col slds-small-size_1-of-4 slds-text-align_center slds-p-horizontal_small slds-p-bottom_small">
+					<lightning:button variant="base" class="btn-inline-block" name="EQCC" onclick="{!c.setState}">
+						<lightning:avatar
+							variant="circle"
+							src="{! v.whichState == 'EQCC' ? $Resource.HistoricalICON + '/EQCCHistorical_Active.png' : $Resource.HistoricalICON + '/EQCCHistorical.png'}"
+							class="slds-m-right_small"
+							size="large"
+						/>
+
+						<p class="{! 'label-name-line' + (v.whichState == 'EQCC' ? ' slds-text-title_bold': ' slds-text-body_regular')}">
+							<span class="label-name">EQCC Historical</span>
+						</p>
+					</lightning:button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="slds-card slds-p-top_medium">
+		<aura:if isTrue="{!v.whichState == 'Notification'}">
+			<c:THOR_NotificationHistoricalForm />
+		</aura:if>
+		<aura:if isTrue="{!v.whichState == 'Order'}">
+			<c:THOR_OrderHistoricalForm />
+		</aura:if>
+		<aura:if isTrue="{!v.whichState == 'WorkClearance'}">
+			<c:THOR_WorkClearanceHistoricalForm />
+		</aura:if>
+		<aura:if isTrue="{!v.whichState == 'EQCC'}">
+			<c:THOR_EQCCHistoricalForm />
+		</aura:if>
+	</div>
+	<div class="slds-p-vertical_small"></div>
+</aura:component>

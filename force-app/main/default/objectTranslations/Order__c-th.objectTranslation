@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Order</value>
+    </caseValues>
+    <fields>
+        <label><!-- Close Date --></label>
+        <name>Close_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- E-MOC Application No. --></label>
+        <name>E_MOC_Application_No__c</name>
+        <relationshipLabel><!-- Order --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Employee Id --></label>
+        <name>Employee_PISUser__c</name>
+    </fields>
+    <fields>
+        <label><!-- Equipment --></label>
+        <name>Equipment_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Equipment --></label>
+        <name>Equipment__c</name>
+        <relationshipLabel><!-- Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Finished Date --></label>
+        <name>Finished_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Functional Location Description --></label>
+        <name>Functional_Location_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Functional Location --></label>
+        <name>Functional_Location_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Functional Location --></label>
+        <name>Functional_Location__c</name>
+        <relationshipLabel><!-- Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Integration Message --></label>
+        <name>Integration_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Integration Status --></label>
+        <name>Integration_Status__c</name>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Success</masterLabel>
+            <translation><!-- Success --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- LINK --></label>
+        <name>LINK__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Main Work Center --></label>
+        <name>Main_Work_Center_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Main Work Center --></label>
+        <name>Main_Work_Center__c</name>
+        <relationshipLabel><!-- Orders (Main Work Center) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Maintenance Plant --></label>
+        <name>Maintenance_Plant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notification --></label>
+        <name>Notification_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notification --></label>
+        <name>Notification__c</name>
+        <relationshipLabel><!-- Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Order Number --></label>
+        <name>Order_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order Status Set --></label>
+        <name>Order_Status_Set__c</name>
+        <relationshipLabel><!-- Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Order Status --></label>
+        <name>Order_Status__c</name>
+        <picklistValues>
+            <masterLabel>AVAC</masterLabel>
+            <translation><!-- AVAC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CLSD</masterLabel>
+            <translation><!-- CLSD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CNF</masterLabel>
+            <translation><!-- CNF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CSER</masterLabel>
+            <translation><!-- CSER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DLFL</masterLabel>
+            <translation><!-- DLFL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ESTC</masterLabel>
+            <translation><!-- ESTC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GMPS</masterLabel>
+            <translation><!-- GMPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LKD</masterLabel>
+            <translation><!-- LKD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MACM</masterLabel>
+            <translation><!-- MACM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MANC</masterLabel>
+            <translation><!-- MANC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MEBS</masterLabel>
+            <translation><!-- MEBS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MSCP</masterLabel>
+            <translation><!-- MSCP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MSPT</masterLabel>
+            <translation><!-- MSPT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NCMP</masterLabel>
+            <translation><!-- NCMP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NMAT</masterLabel>
+            <translation><!-- NMAT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PCNF</masterLabel>
+            <translation><!-- PCNF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PCST</masterLabel>
+            <translation><!-- PCST --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PPRT</masterLabel>
+            <translation><!-- PPRT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PRC</masterLabel>
+            <translation><!-- PRC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PRT</masterLabel>
+            <translation><!-- PRT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>REL</masterLabel>
+            <translation><!-- REL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RELR</masterLabel>
+            <translation><!-- RELR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SETC</masterLabel>
+            <translation><!-- SETC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TECO</masterLabel>
+            <translation><!-- TECO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WCM</masterLabel>
+            <translation><!-- WCM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WOCO</masterLabel>
+            <translation><!-- WOCO --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Order Type --></label>
+        <name>Order_Type__c</name>
+        <picklistValues>
+            <masterLabel>CM01</masterLabel>
+            <translation><!-- CM01 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CR01</masterLabel>
+            <translation><!-- CR01 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PM01</masterLabel>
+            <translation><!-- PM01 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SH01</masterLabel>
+            <translation><!-- SH01 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- PM Activity Type --></label>
+        <name>PM_Activity_Type_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- PM Activity Type --></label>
+        <name>PM_Activity_Type__c</name>
+        <relationshipLabel><!-- Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Planning Plant Text --></label>
+        <name>Planning_Plant_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planning Plant --></label>
+        <name>Planning_Plant__c</name>
+        <relationshipLabel><!-- Orders (Planning Plant) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Plant Section --></label>
+        <name>Plant_Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- Priority --></label>
+        <name>Priority__c</name>
+        <picklistValues>
+            <masterLabel>Float Time - 12M</masterLabel>
+            <translation><!-- Float Time - 12M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Float Time - 15M</masterLabel>
+            <translation><!-- Float Time - 15M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Float Time - 18M</masterLabel>
+            <translation><!-- Float Time - 18M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Float Time - 1M</masterLabel>
+            <translation><!-- Float Time - 1M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Float Time - 3M</masterLabel>
+            <translation><!-- Float Time - 3M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Float Time - 6M</masterLabel>
+            <translation><!-- Float Time - 6M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Float Time - 9M</masterLabel>
+            <translation><!-- Float Time - 9M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Immediately</masterLabel>
+            <translation><!-- Immediately --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Normal</masterLabel>
+            <translation><!-- Normal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Urgent</masterLabel>
+            <translation><!-- Urgent --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Request Close --></label>
+        <name>Request_Close__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requested Date --></label>
+        <name>Requested_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requester Text --></label>
+        <name>Requester_PISUser_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requester --></label>
+        <name>Requester_PISUser__c</name>
+        <relationshipLabel><!-- Order --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Requester --></label>
+        <name>Requester__c</name>
+        <relationshipLabel><!-- Order (Requester) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Requestor --></label>
+        <name>Requestor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Responsible Person --></label>
+        <name>ResponsiblePersonText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Responsible Person Text --></label>
+        <name>ResponsiblePerson_PISUser_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Responsible Person ID --></label>
+        <name>Responsible_Person_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Responsible Person Name --></label>
+        <name>Responsible_Person_Name__c</name>
+        <relationshipLabel><!-- Order (Responsible Person Name) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Responsible person --></label>
+        <name>Responsible_person_PISUser__c</name>
+        <relationshipLabel><!-- Order (Responsible person) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Responsible person --></label>
+        <name>Responsible_person__c</name>
+        <relationshipLabel><!-- Order (Responsible person) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub-Order Number --></label>
+        <name>Sub_Order_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Super Order --></label>
+        <name>Super_Order_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Super Order --></label>
+        <name>Super_Order__c</name>
+        <relationshipLabel><!-- Sub Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- System Status Text --></label>
+        <name>System_Status_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Status Text --></label>
+        <name>User_Status_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Status --></label>
+        <name>User_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- WBS --></label>
+        <name>WBS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Clearance --></label>
+        <name>Work_Clearance__c</name>
+        <relationshipLabel><!-- Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Group Count --></label>
+        <name>groupcount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group Task --></label>
+        <name>grouptask__c</name>
+    </fields>
+    <fields>
+        <label><!-- isIRPA --></label>
+        <name>isIRPA__c</name>
+    </fields>
+    <fields>
+        <label><!-- isSOAP --></label>
+        <name>isSOAP__c</name>
+    </fields>
+    <fields>
+        <label><!-- mainWorkCenterPlantText --></label>
+        <name>mainWorkCenterPlantText__c</name>
+    </fields>
+    <fields>
+        <label><!-- mainWorkCenterPlant --></label>
+        <name>mainWorkCenterPlant__c</name>
+        <relationshipLabel><!-- Order (mainWorkCenterPlant) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Budget Number (WBS element) --></label>
+        <name>wbs_element__c</name>
+    </fields>
+    <layouts>
+        <layout>Order Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>THOR_Order_Admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

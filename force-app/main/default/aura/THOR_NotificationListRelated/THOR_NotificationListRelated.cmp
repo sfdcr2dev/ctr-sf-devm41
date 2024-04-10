@@ -1,0 +1,56 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" controller="THOR_NotificationsListRelatedController" access="global">
+	<!-- Attributes -->
+	<aura:attribute name="ItemsRelated" type="List" default="[]" />
+	<aura:attribute name="FilesRelated" type="List" default="[]" />
+	<aura:attribute name="orderId" type="String" default="" />
+
+	<aura:method name="childMessageMethod" action="{!c.getMessage}" access="public">
+		<aura:attribute name="Title" type="String" default="Related" />
+	</aura:method>
+
+	<aura:attribute
+		name="pageState"
+		type="String"
+		default="fatherBody"
+		description="variable for representing the only 4 states that the page can be in: 'fatherBody','showItems', 'showSubOrders', 'showFiles', 'fatherBody' represents the initial state and the 3 other states ('showItems', 'showSubOrders', 'showFiles') indicate that the user clicked the respective related list"
+	/>
+
+	<!-- Handlers -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.doInit}" />
+
+	<aura:registerEvent name="stopLoadingEvent" type="c:THOR_Event" />
+
+	<!-- Aura body Section -->
+	<lightning:navigation aura:id="navLink" />
+
+	<lightning:layout multipleRows="true">
+		<lightning:layoutItem size="12" padding="around-small">
+			<a href="javascript:void(0);" class="slds-text-link_faux">
+				<div class="slds-box slds-theme_default clickable-div" onclick="{!c.navigateToRelated }" id="Items__r">
+					<lightning:layout verticalAlign="center">
+						<lightning:layoutItem>
+							<lightning:icon iconName="custom:custom108" alternativeText="" class="thaiColor" />
+						</lightning:layoutItem>
+						<lightning:layoutItem padding="horizontal-small"> Items ({! v.ItemsRelated.length}) </lightning:layoutItem>
+					</lightning:layout>
+				</div>
+			</a>
+		</lightning:layoutItem>
+
+		<lightning:layoutItem size="12" padding="around-small">
+			<a href="javascript:void(0);" class="slds-text-link_faux">
+				<div class="slds-box slds-theme_default clickable-div" onclick="{!c.navigateToRelated }" id="AttachedContentDocuments">
+					<lightning:layout verticalAlign="center">
+						<lightning:layoutItem>
+							<lightning:icon iconName="standard:file" alternativeText="" class="thaiColor" />
+						</lightning:layoutItem>
+						<lightning:layoutItem padding="horizontal-small"> Files ({! v.FilesRelated.length}) </lightning:layoutItem>
+					</lightning:layout>
+				</div>
+			</a>
+		</lightning:layoutItem>
+	</lightning:layout>
+
+	<!-- /Aura body Section -->
+</aura:component>

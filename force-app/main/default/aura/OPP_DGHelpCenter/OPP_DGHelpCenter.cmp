@@ -1,0 +1,155 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" />
+    <aura:handler name="init" value="{!this}" action="{!c.refreshListview}"/>
+    <lightning:navigation aura:id="navService" />
+
+    <aura:attribute name="softWareModal" type="boolean" default="false" />
+    <aura:attribute name="otherModal" type="boolean" default="false" />
+    <aura:attribute name="projectModal" type="boolean" default="false" />
+    <aura:attribute name="hardWare2Modal" type="boolean" default="false" />
+    <aura:attribute name="incidentModal" type="boolean" default="false" />
+    <aura:attribute name="stationeryModal" type="boolean" default="false" />
+    <aura:attribute name="authorizationModal" type="boolean" default="false" />
+
+    <!-- <aura:handler name="oppEvent" event="c:OPP_CaseEvent" action="{!c.handleComponentEvent}" /> -->
+    <aura:html tag="style">
+        @media (min-width: 1024px) {
+        .cOPP_DGHelpCenter .slds-card {
+            background-image: url('{!$Resource.ITSerivce_Icon + '/background.png'}') !important;
+            background-repeat: no-repeat;
+            background-position: right bottom;
+            background-size: contain;
+        }
+    </aura:html>
+    <div class="slds-is-relative">
+        <aura:if isTrue="{!
+            !(v.authorizationModal ||
+            v.stationeryModal ||
+            v.incidentModal ||
+            v.softWareModal ||
+            v.otherModal ||
+            v.projectModal ||
+            v.hardWare2Modal) || v.formFactor == 'DESKTOP'
+        }">
+            <div class="slds-card">
+                <div class="slds-card__header slds-grid box1">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__body slds-grid icn">
+                            <!-- <lightning:icon class="slds-p-right_small" iconName="utility:info_alt" alternativeText="DG" title="DG" /> -->
+                            <h1 class="slds-card__header-title">
+                                <b>DG Service Request</b>
+                            </h1>
+                        </div>
+                    </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <ul class="slds-grid slds-grid_pull-padded slds-wrap">
+                        <li class="slds-p-horizontal_small slds-p-bottom_small slds-size_1-of-2 slds-medium-size_4-of-12 slds-large-size_1-of-8">
+                            <div class="slds-center">
+                                <lightning:button variant="base" class="btn-inline-block" name="OPP_ITServiceStationeryForm" onclick="{!c.navigateToITRequest}">
+                                    <p>
+                                        <img src="{!$Resource.ITSerivce_Icon + '/icon-stationary.png'}" />
+                                    </p>
+                                    <p><span class="label-name">Accessory</span></p>
+                                </lightning:button>
+                            </div>
+                        </li>
+                        <li class="slds-p-horizontal_small slds-p-bottom_small slds-size_1-of-2 slds-medium-size_4-of-12 slds-large-size_1-of-8">
+                            <div class="slds-center">
+                                <lightning:button variant="base" class="btn-inline-block" name="OPP_ITServiceAuthorizationForm"
+                                    onclick="{!c.navigateToITRequest}">
+                                    <p>
+                                        <img src="{!$Resource.ITSerivce_Icon + '/icon-authorition.png'}" />
+
+                                    </p>
+                                    <p><span class="label-name">Authorization</span></p>
+                                </lightning:button>
+                            </div>
+                        </li>
+                        <li class="slds-p-horizontal_small slds-p-bottom_small slds-size_1-of-2 slds-medium-size_4-of-12 slds-large-size_1-of-8">
+                            <div class="slds-center">
+                                <lightning:button variant="base" class="btn-inline-block" name="OPP_ITServiceSoftwareForm" onclick="{!c.navigateToITRequest}">
+                                    <p>
+                                        <img src="{!$Resource.ITSerivce_Icon + '/icon-software.png'}" />
+
+                                    </p>
+                                    <p><span class="label-name">Software</span></p>
+                                </lightning:button>
+                            </div>
+                        </li>
+                        <li class="slds-p-horizontal_small slds-p-bottom_small slds-size_1-of-2 slds-medium-size_4-of-12 slds-large-size_1-of-8">
+                            <div class="slds-center">
+                                <lightning:button variant="base" class="btn-inline-block" name="OPP_ITServiceHardwareForm" onclick="{!c.navigateToITRequest}">
+                                    <p>
+                                        <img src="{!$Resource.ITSerivce_Icon + '/icon-hardware.png'}" />
+                                    </p>
+                                    <p><span class="label-name">Hardware</span></p>
+                                </lightning:button>
+                            </div>
+                        </li>
+                        <!--
+                        <li class="slds-p-horizontal_small slds-p-bottom_small slds-size_1-of-2 slds-medium-size_4-of-12 slds-large-size_1-of-8">
+                            <div class="slds-center">
+                                <lightning:button variant="base" class="btn-inline-block" name="OPP_ITServiceProjectForm" onclick="{!c.navigateToITRequest}">
+                                    <p>
+                                        <img src="{!$Resource.ITSerivce_Icon + '/icon-projectrequest.png'}" />
+                                    </p>
+                                    <p><span class="label-name">Project Request</span></p>
+                                </lightning:button>
+                            </div>
+                        </li>
+                        
+                        <li class="slds-p-horizontal_small slds-p-bottom_small slds-size_1-of-2 slds-medium-size_4-of-12 slds-large-size_1-of-8">
+                            <div class="slds-center">
+                                <lightning:button variant="base" class="btn-inline-block" name="OPP_ITServiceIncidentForm" onclick="{!c.navigateToITRequest}">
+                                    <p>
+                                        <img src="{!$Resource.ITSerivce_Icon + '/icon-incident.png'}" />
+                                    </p>
+                                    <p><span class="label-name">Incident</span></p>
+                                </lightning:button>
+                            </div>
+                        </li>
+                        <li class="slds-p-horizontal_small slds-p-bottom_small slds-size_1-of-2 slds-medium-size_4-of-12 slds-large-size_1-of-8">
+                            <div class="slds-center">
+                                <lightning:button variant="base" class="btn-inline-block" name="OPP_ITServiceOtherForm" onclick="{!c.navigateToITRequest}">
+                                    <p>
+                                        <img src="{!$Resource.ITSerivce_Icon + '/icon-other.png'}" />
+                                    </p>
+                                    <p><span class="label-name">Other</span></p>
+                                </lightning:button>
+                            </div>
+                        </li>
+-->
+                    </ul>
+                </div>
+            </div>
+            
+            {!v.body}
+            
+            <!-- <lightning:listView aura:id="listViewAccounts" objectApiName="Case" listName="My_Requests" rows="10" showSearchBar="true" showActionBar="false"
+                enableInlineEdit="true" showRowLevelActions="false" />-->
+        </aura:if>
+    </div>
+
+    <aura:if isTrue="{!v.authorizationModal}">
+        <c:OPP_ITServiceAuthorizationForm />
+    </aura:if>
+    <aura:if isTrue="{!v.stationeryModal}">
+        <c:OPP_ITServiceStationeryForm />
+    </aura:if>
+    <aura:if isTrue="{!v.incidentModal}">
+        <c:OPP_ITServiceIncidentForm />
+    </aura:if>
+    <aura:if isTrue="{!v.softWareModal}">
+        <c:OPP_ITServiceSoftwareForm />
+    </aura:if>
+    <aura:if isTrue="{!v.otherModal}">
+        <c:OPP_ITServiceOtherForm />
+    </aura:if>
+    <aura:if isTrue="{!v.projectModal}">
+        <c:OPP_ITServiceProjectForm />
+    </aura:if>
+    <aura:if isTrue="{!v.hardWare2Modal}">
+        <c:OPP_ITServiceHardwareForm />
+    </aura:if>
+</aura:component>

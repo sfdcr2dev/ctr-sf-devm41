@@ -1,0 +1,72 @@
+.THIS .submit-cancel-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+}
+
+.THIS .submit-cancel-buttons button {
+    margin: 2%;
+}
+.THIS .edit-modal-container {
+    width: 85% !important;
+    margin: 0 auto;
+    background-color: white;
+}
+.THIS#edit-modal {
+    overflow: scroll !important;
+}
+
+@media only screen and (max-width: 900px) {
+    .THIS .edit-modal-container {
+        width: 100% !important;
+    }
+}
+
+.THIS .hidden {
+    display: none;
+}
+
+.THIS .noPointer {
+    pointer-events: none;
+}
+
+.THIS .mainWorkCenterContainer {
+    display: grid;
+    grid-template-areas: 'a b';
+    width : 100%;
+}
+
+.THIS .mainWorkCenterRight {
+    grid-area: b;
+    width : 100%;
+}
+
+.THIS .mainWorkCenterLeft {
+    grid-area: a;
+    width : 100%;
+}
+
+/* @media screen and (max-width: 768px) { */
+    .THIS lightning-pill span.slds-pill {
+        max-width: 30vw;
+    }
+/* } */
+
+
+
+.THIS .slds-card__header-title {
+	justify-content: center;
+}
+
+.THIS .slds-card__footer {
+	text-align: right;
+}
+
+@media (max-width: 602px) {
+	.THIS .slds-form-element__label,
+	.THIS .slds-card__footer button.slds-button {
+		font-size: 0.875rem !important;
+	}
+}

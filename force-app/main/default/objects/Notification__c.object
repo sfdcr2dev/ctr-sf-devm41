@@ -1,0 +1,1011 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>NotificationRecordPage</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Read</externalSharingModel>
+    <fields>
+        <fullName>AssignedToText__c</fullName>
+        <externalId>false</externalId>
+        <formula>AssignedTo__r.FirstName + &apos; &apos; +  AssignedTo__r.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Assigned To</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AssignedTo__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Assigned To</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Notifications</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Break_Down__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Breakdown (Not Use)</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Breakdown__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Breakdown</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Code_Group__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Code Group</label>
+        <referenceTo>Master_Map__c</referenceTo>
+        <relationshipLabel>Notifications (Code Group)</relationshipLabel>
+        <relationshipName>Notifications2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Department_Resp__c</fullName>
+        <externalId>false</externalId>
+        <label>Department Resp (ORG ID)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>E_MOC_Application_No__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>E-MOC Application No.</label>
+        <referenceTo>E_MOC_Application__c</referenceTo>
+        <relationshipLabel>Notification</relationshipLabel>
+        <relationshipName>Notification</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Text__c</fullName>
+        <externalId>false</externalId>
+        <formula>Equipment__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Equipment</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Equipment__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Equipment</label>
+        <referenceTo>Equipment__c</referenceTo>
+        <relationshipLabel>Notifications</relationshipLabel>
+        <relationshipName>Notifications</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FaultCodeText__c</fullName>
+        <externalId>false</externalId>
+        <formula>Fault_Code__r.Name + &quot; &quot; + if(NOT( ISBLANK(Fault_Code_Description__c)),Fault_Code_Description__c,Fault_Code__r.Description__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fault Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fault_Code_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Fault Code Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fault_Code__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Fault Code</label>
+        <lookupFilter>
+            <active>true</active>
+            <booleanFilter>1 OR 2</booleanFilter>
+            <errorMessage>Value does not match Fault Code type.</errorMessage>
+            <filterItems>
+                <field>Master_Map__c.Type__c</field>
+                <operation>equals</operation>
+                <value>FaultCode</value>
+            </filterItems>
+            <filterItems>
+                <field>Master_Map__c.Type__c</field>
+                <operation>equals</operation>
+                <value>Faultcode</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Master_Map__c</referenceTo>
+        <relationshipLabel>Notifications (Fault Code)</relationshipLabel>
+        <relationshipName>Notifications1</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Functional_Location_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>Functional Location</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Functional_Location__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Functional Location</label>
+        <referenceTo>Functional_Location__c</referenceTo>
+        <relationshipLabel>Notifications</relationshipLabel>
+        <relationshipName>Notifications</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>History_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>History Detail</label>
+        <length>131072</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Integration_Message__c</fullName>
+        <externalId>false</externalId>
+        <label>Integration Message</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Integration_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Integration Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Success</fullName>
+                    <default>false</default>
+                    <label>Success</label>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>false</default>
+                    <label>In Progress</label>
+                </value>
+                <value>
+                    <fullName>Failed</fullName>
+                    <default>false</default>
+                    <label>Failed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>LINK__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/lightning/cmp/c__THOR_NotificationRecordDisplay?c__recordId=&quot;+ Id
+										&amp; MID(&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ012345&quot;,(
+														IF(FIND(MID(Id,1,1), &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)&gt;0,1,0)
+														+IF(FIND(MID(Id,2,1), &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)&gt;0,2,0)
+														+IF(FIND(MID(Id,3,1), &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)&gt;0,4,0)
+														+IF(FIND(MID(Id,4,1), &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)&gt;0,8,0)
+														+IF(FIND(MID(Id,5,1), &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)&gt;0,16,0)
+										)+1,1)
+										&amp; MID(&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ012345&quot;,(
+														IF(FIND(MID(Id,6,1), &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)&gt;0,1,0)
+														+IF(FIND(MID(Id,7,1), &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)&gt;0,2,0)
+														+IF(FIND(MID(Id,8,1), &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)&gt;0,4,0)
+														+IF(FIND(MID(Id,9,1), &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)&gt;0,8,0)
+														+IF(FIND(MID(Id,10,1), &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)&gt;0,16,0)
+										)+1,1)
+										&amp; MID(&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ012345&quot;,(
+														IF(FIND(MID(Id,11,1), &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)&gt;0,1,0)
+														+IF(FIND(MID(Id,12,1), &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)&gt;0,2,0)
+														+IF(FIND(MID(Id,13,1), &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)&gt;0,4,0)
+														+IF(FIND(MID(Id,14,1), &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)&gt;0,8,0)
+														+IF(FIND(MID(Id,15,1), &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)&gt;0,16,0)
+										)+1,1) ,&quot;LINK TO RECORD&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>LINK</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Activity__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Activity</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Item__c</fullName>
+        <defaultValue>&apos;0&apos;</defaultValue>
+        <description>Handles Last Item for the Notification</description>
+        <externalId>false</externalId>
+        <label>Last Item</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(Equipment__c), Functional_Location__r.Location__c, Equipment__r.location__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Location</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MainWorkCenterText__c</fullName>
+        <externalId>false</externalId>
+        <formula>Main_Work_Center__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Main Work Center</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Main_Work_Center_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>Main Work Center Text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Main_Work_Center__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Main Work Center</label>
+        <referenceTo>Master_Map__c</referenceTo>
+        <relationshipLabel>Notifications</relationshipLabel>
+        <relationshipName>Notifications</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Main_Work_Center_and_Plant_Section__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( AND(  LEFT(Main_Work_Center_Text__c, 4)  = &apos;ENMA&apos;, Plant_Section__c = &apos;T1&apos;) , &apos;TOC1&apos; , 
+IF( AND(  LEFT(Main_Work_Center_Text__c, 4)  = &apos;ENMA&apos;, Plant_Section__c = &apos;T2&apos;) , &apos;TOC2&apos; , 
+IF( AND(  RIGHT(Main_Work_Center_Text__c, 3)  = &apos;SPP&apos;, Plant_Section__c = &apos;UT&apos;) , &apos;SPP&apos; ,
+IF( AND(  LEFT(Main_Work_Center_Text__c, 4)  = &apos;ENMB&apos;, Plant_Section__c = &apos;T4&apos;) , &apos;TOC4&apos; ,
+IF( AND(  LEFT(Main_Work_Center_Text__c, 4)  = &apos;ENMB&apos;, Plant_Section__c = &apos;UT&apos;) , &apos;UTIL&apos; ,
+IF( AND(  LEFT(Main_Work_Center_Text__c, 4)  = &apos;ENMC&apos;, Plant_Section__c = &apos;T3&apos;) , &apos;TOC3&apos; ,
+IF( AND(  LEFT(Main_Work_Center_Text__c, 4)  = &apos;ENMC&apos;, Plant_Section__c = &apos;T5&apos;) , &apos;TOC5&apos; ,
+IF( AND(  LEFT(Main_Work_Center_Text__c, 4)  = &apos;ENMD&apos;, Plant_Section__c = &apos;MO&apos;) , &apos;MOV&apos; ,
+IF( AND(  LEFT(Main_Work_Center_Text__c, 4)  = &apos;ENMD&apos;, Plant_Section__c = &apos;OF&apos;) , &apos;OFFS&apos; ,
+IF( AND(  LEFT(Main_Work_Center_Text__c, 4)  = &apos;ENME&apos;, Plant_Section__c = &apos;L1&apos;) , &apos;TLB&apos; ,
+IF( AND(  LEFT(Main_Work_Center_Text__c, 4)  = &apos;ENMF&apos;, Plant_Section__c = &apos;B1&apos;) , &apos;LABIX&apos; ,
+IF( AND(  LEFT(Main_Work_Center_Text__c, 4)  = &apos;ENMF&apos;, Plant_Section__c = &apos;P1&apos;) , &apos;TPX&apos; ,
+
+
+
+
+Main_Work_Center_Text__c ))))))))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Main Work Center</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MaintenancePlantText__c</fullName>
+        <externalId>false</externalId>
+        <label>Maintenance Plant Text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Maintenance_Plant__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(Equipment__c), Functional_Location__r.Maintenance_Plant__r.Code__c, Equipment__r.maintenancePlant__r.Code__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Maintenance Plant</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Notification_Number__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Notification Number</label>
+        <length>16</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Notification_Status_Set__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Notification Status Set</label>
+        <referenceTo>Master_Map_Set__c</referenceTo>
+        <relationshipLabel>Notifications</relationshipLabel>
+        <relationshipName>Notifications</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Notification_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Notification Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>false</default>
+                    <label>New</label>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>false</default>
+                    <label>In Process</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+                <value>
+                    <fullName>In Execution</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>In Execution</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>OPSMainWorkCenter__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(MaintenancePlantText__c == &apos;4200&apos;, &apos;OPS-TLB&apos;,
+ IF(MaintenancePlantText__c == &apos;3200&apos;, &apos;OPS-TPX&apos;,
+  IF(MaintenancePlantText__c == &apos;7200&apos;, &apos;OPS-LABI&apos;,
+   IF(MaintenancePlantText__c == &apos;8200&apos;, IF(PlantSectionText__c != &apos;UT&apos;, &apos;OPS-SPP&apos;, &apos;OPS-UTIL&apos;),
+    IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), PlantSectionText__c == &apos;T1&apos;), &apos;OPS-TOC1&apos;,
+     IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), PlantSectionText__c == &apos;T2&apos;), &apos;OPS-TOC2&apos;,
+      IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), PlantSectionText__c == &apos;T3&apos;), &apos;OPS-TOC3&apos;, 
+       IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), PlantSectionText__c == &apos;T4&apos;), &apos;OPS-TOC4&apos;, 
+        IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), PlantSectionText__c == &apos;T5&apos;), &apos;OPS-TOC5&apos;, 
+         IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), OR(PlantSectionText__c == &apos;UT&apos;, PlantSectionText__c == &apos;UT2&apos;)), &apos;OPS-UTIL&apos;, 
+          IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), PlantSectionText__c == &apos;MO&apos;), &apos;OPS-MOVE&apos;, 
+           IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), PlantSectionText__c == &apos;OF&apos;), &apos;OPS-OFFS&apos;,
+            IF(AND(OR(ISBLANK(MaintenancePlantText__c), MaintenancePlantText__c == &apos;1200&apos;), OR(PlantSectionText__c == &apos;ID1&apos;, PlantSectionText__c == &apos;OC&apos;)), &apos;OPS-TOC1 OPS-TOC2 OPS-TOC3 OPS-TOC4 OPS-TOC5 OPS-UTIL OPS-MOV OPS-OFFS&apos;, &apos;&apos;)))))))))))))</formula>
+        <label>OPS Main Work Center</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Order_Name_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>Order Name Text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Order_Text__c</fullName>
+        <externalId>false</externalId>
+        <formula>Order__r.Order_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Order</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Order</label>
+        <lookupFilter>
+            <active>true</active>
+            <errorMessage>Order does not integration with SAP System</errorMessage>
+            <filterItems>
+                <field>Order__c.Order_Number__c</field>
+                <operation>notEqual</operation>
+                <value></value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Order__c</referenceTo>
+        <relationshipLabel>Notifications</relationshipLabel>
+        <relationshipName>Notifications</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Planner_Group_Text__c</fullName>
+        <externalId>false</externalId>
+        <formula>Planner_Group__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Planner Group Text</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Planner_Group__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Planner Group</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Master_Map__c.Type__c</field>
+                <operation>equals</operation>
+                <value>PlannerGroup</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Master_Map__c</referenceTo>
+        <relationshipLabel>Notifications (Planner Group)</relationshipLabel>
+        <relationshipName>Notification1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Planning_Plant_Text__c</fullName>
+        <externalId>false</externalId>
+        <formula>Planning_Plant__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Planning Plant Text</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Planning_Plant__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Planning Plant</label>
+        <referenceTo>Master_Map__c</referenceTo>
+        <relationshipLabel>Notifications (Planning Plant)</relationshipLabel>
+        <relationshipName>Notifications3</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PlantSectionText__c</fullName>
+        <externalId>false</externalId>
+        <label>Plant Section Text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Plant_Section__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(NOT(ISBLANK(Equipment__c)), Equipment__r.plantSection__c, Functional_Location__r.PlantSection__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Plant Section</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>Priority</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Normal</fullName>
+                    <default>true</default>
+                    <label>Normal</label>
+                </value>
+                <value>
+                    <fullName>Urgent</fullName>
+                    <default>false</default>
+                    <label>Urgent</label>
+                </value>
+                <value>
+                    <fullName>Immediately</fullName>
+                    <default>false</default>
+                    <label>Immediately</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 1M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 1M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 3M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 3M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 6M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 6M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 9M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 9M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 12M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 12M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 15M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 15M</label>
+                </value>
+                <value>
+                    <fullName>Float Time - 18M</fullName>
+                    <default>false</default>
+                    <label>Float Time - 18M</label>
+                </value>
+                <value>
+                    <fullName>HIGH</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>HIGH</label>
+                </value>
+                <value>
+                    <fullName>LOW</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>LOW</label>
+                </value>
+                <value>
+                    <fullName>MEDIUM</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>MEDIUM</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Report_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Report By</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requested_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Requested Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Requester_PISUser_Text__c</fullName>
+        <description>Host Id or Home Id for sync data to SAP Integration</description>
+        <externalId>false</externalId>
+        <label>Requester Text</label>
+        <length>8</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requester_PISUser__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Requester</label>
+        <referenceTo>PISUsers__c</referenceTo>
+        <relationshipLabel>Notification</relationshipLabel>
+        <relationshipName>Notification</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Requester__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Requester</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Notification</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Required_End__c</fullName>
+        <externalId>false</externalId>
+        <label>Required End</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Required_Start__c</fullName>
+        <externalId>false</externalId>
+        <label>Required Start</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>true</default>
+                    <label>New</label>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>false</default>
+                    <label>In Progress</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>System_Status_Text__c</fullName>
+        <defaultValue>&quot;OSNO&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>System Status Text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>CM</fullName>
+                    <default>true</default>
+                    <label>CM</label>
+                </value>
+                <value>
+                    <fullName>PM</fullName>
+                    <default>false</default>
+                    <label>PM</label>
+                </value>
+                <value>
+                    <fullName>SH</fullName>
+                    <default>false</default>
+                    <label>SH</label>
+                </value>
+                <value>
+                    <fullName>OP</fullName>
+                    <default>false</default>
+                    <label>OP</label>
+                </value>
+                <value>
+                    <fullName>CR</fullName>
+                    <default>false</default>
+                    <label>CR</label>
+                </value>
+                <value>
+                    <fullName>FN</fullName>
+                    <default>false</default>
+                    <label>FN</label>
+                </value>
+                <value>
+                    <fullName>PJ</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>PJ</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>User_Status_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>User Status Text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>User Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Clearance__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Work Clearance</label>
+        <referenceTo>Work_Clearance__c</referenceTo>
+        <relationshipLabel>Notifications</relationshipLabel>
+        <relationshipName>Notifications</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>isIRPA__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isIRPA</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>isSOAP__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isSOAP</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>mainWorkCenterPlantText__c</fullName>
+        <externalId>false</externalId>
+        <formula>mainWorkCenterPlant__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>mainWorkCenterPlantText</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>mainWorkCenterPlant__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>mainWorkCenterPlant</label>
+        <referenceTo>Master_Map__c</referenceTo>
+        <relationshipLabel>Notification (mainWorkCenterPlant)</relationshipLabel>
+        <relationshipName>Notification</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Notification</label>
+    <nameField>
+        <label>Notification Number</label>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <searchLayouts>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchResultsAdditionalFields>Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Functional_Location__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>User_Status_Text__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LINK__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

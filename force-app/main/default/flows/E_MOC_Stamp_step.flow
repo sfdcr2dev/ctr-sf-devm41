@@ -1,0 +1,2079 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <name>Check_Area</name>
+        <label>Check Area</label>
+        <locationX>1106</locationX>
+        <locationY>695</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>A</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>A</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_6_of_Update_step</targetReference>
+            </connector>
+            <label>A</label>
+        </rules>
+        <rules>
+            <name>B</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>B</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_7_of_Update_step</targetReference>
+            </connector>
+            <label>B</label>
+        </rules>
+        <rules>
+            <name>C</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>C</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_8_of_Update_step</targetReference>
+            </connector>
+            <label>C</label>
+        </rules>
+        <rules>
+            <name>D_OF</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>D</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.PlantSection__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>OF</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Copy_8_of_Update_step</targetReference>
+            </connector>
+            <label>D-OF</label>
+        </rules>
+        <rules>
+            <name>D_MO</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>D</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.PlantSection__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Common_Workflow</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_9_of_Update_step</targetReference>
+            </connector>
+            <label>D-MO</label>
+        </rules>
+        <rules>
+            <name>E</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>E</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_10_of_Update_step</targetReference>
+            </connector>
+            <label>E</label>
+        </rules>
+        <rules>
+            <name>F_3200</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>F</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Maintenance_Plant__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>3200</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_11_of_Update_step</targetReference>
+            </connector>
+            <label>F-3200</label>
+        </rules>
+        <rules>
+            <name>F_7200</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>F</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Maintenance_Plant__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>7200</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_12_of_Update_step</targetReference>
+            </connector>
+            <label>F-7200</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Category</name>
+        <label>Check Category</label>
+        <locationX>3218</locationX>
+        <locationY>575</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Exclude_Tank_Catalyst_Design</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Tank_change_service__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Catalyst_Chemical__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Design_limit_IOW_change__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Area</targetReference>
+            </connector>
+            <label>Exclude Tank-Catalyst-Design</label>
+        </rules>
+        <rules>
+            <name>Tank_Change_Service</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Tank_change_service__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.show_MOC_Focal_Point_section__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_21_of_Update_step</targetReference>
+            </connector>
+            <label>Tank Change Service</label>
+        </rules>
+        <rules>
+            <name>Tank_Change_Service_Show_MOC_Focal_Point_section</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Tank_change_service__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.show_MOC_Focal_Point_section__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Tank Change Service-Show MOC Focal Point section</label>
+        </rules>
+        <rules>
+            <name>Catalyst_or_Design_limit</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Catalyst_Chemical__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Design_limit_IOW_change__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Check_Area</targetReference>
+            </connector>
+            <label>Catalyst or Design limit</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Change</name>
+        <label>Check Change</label>
+        <locationX>7178</locationX>
+        <locationY>455</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Concept_Approval_Select_MOC_ENMA</name>
+            <conditionLogic>(1 AND 2) OR (1 AND 3 AND 4) OR (1 AND 2 AND 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Concept Approval</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.show_MOC_Focal_Point_section__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.show_MOC_Focal_Point_section__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Tank_change_service__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Category</targetReference>
+            </connector>
+            <label>Concept Approval-Select MOC-ENMA</label>
+        </rules>
+        <rules>
+            <name>Fill_in_Budget_Estimate_Initial</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Budget Registration</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_step_0_0_0_0_0_0_0_0_0_0</targetReference>
+            </connector>
+            <label>Fill in Budget Estimate Initial</label>
+        </rules>
+        <rules>
+            <name>Review_Budget_Type_A</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type_A_Maintenance_budget__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Budget Registration</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_step_0_0_0_0_0_0_0_0_0_0_0_0_0</targetReference>
+            </connector>
+            <label>Review Budget Type-A</label>
+        </rules>
+        <rules>
+            <name>Show_Technical_review_by_MOC_change</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Show_Technical_review_by_MOC__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Show_Technical_review_by_MOC__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_step_0_0_0_0_0_0_0_0_0</targetReference>
+            </connector>
+            <label>Show Technical review by MOC change</label>
+        </rules>
+        <rules>
+            <name>Show_TA_mandatory_changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Show_TA_Mandatory__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Show_TA_Mandatory__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_step_0_0_0_0_0_0_0_0</targetReference>
+            </connector>
+            <label>Show TA mandatory changed</label>
+        </rules>
+        <rules>
+            <name>Send_to_ADOE</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Send_to_ADOE__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_step_0_0_0_0_0_0_0_0_0_0_0</targetReference>
+            </connector>
+            <label>Send to ADOE</label>
+        </rules>
+        <rules>
+            <name>Status_was_changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_status</targetReference>
+            </connector>
+            <label>Status was changed</label>
+        </rules>
+        <rules>
+            <name>Close_Out_ADOE</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Close Out</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Has_ADOE__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_4_of_Update_step</targetReference>
+            </connector>
+            <label>Close Out-ADOE</label>
+        </rules>
+        <rules>
+            <name>Close_Out_MROx_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Close Out</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Send_to_MROx__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_5_of_Update_step</targetReference>
+            </connector>
+            <label>Close Out-MROx-True</label>
+        </rules>
+        <rules>
+            <name>Closed_Lesson_Learn_Approval</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Lesson_Learn__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Recommendation_for_future_improvement__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Update_step</targetReference>
+            </connector>
+            <label>Closed-Lesson Learn Approval</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Change_1</name>
+        <label>Check Change</label>
+        <locationX>12194</locationX>
+        <locationY>575</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Status_was_changed_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Functional_Override__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Status_1</targetReference>
+            </connector>
+            <label>Status was changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Group_1</name>
+        <label>Check Group</label>
+        <locationX>14702</locationX>
+        <locationY>455</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Group_A</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OOS__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.MOS_for_ops_purpose__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Inhibit_for_process_or_Equipment_S_D__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Change_1</targetReference>
+            </connector>
+            <label>Group A</label>
+        </rules>
+        <rules>
+            <name>Group_B</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Inhibit_alarm_for_maintenance__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Disable_Alarm_by_Ops_for_HW__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Inhibit_Alarm_request_for_FOX__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Check_Change</targetReference>
+            </connector>
+            <label>Group B</label>
+        </rules>
+        <rules>
+            <name>Group_C</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Safeguarding_force_signal__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.MOS_for_maintenance__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Copy_1_of_Check_Change</targetReference>
+            </connector>
+            <label>Group C</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Record_Type</name>
+        <label>Check Record Type</label>
+        <locationX>12326</locationX>
+        <locationY>335</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Common_Workflow</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Common Workflow</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Change</targetReference>
+            </connector>
+            <label>Common Workflow</label>
+        </rules>
+        <rules>
+            <name>Functional_Override</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Functional Override</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Group_1</targetReference>
+            </connector>
+            <label>Functional Override</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_status</name>
+        <label>Check status</label>
+        <locationX>8498</locationX>
+        <locationY>575</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>concept_approval</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Concept Approval</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_step</targetReference>
+            </connector>
+            <label>concept approval</label>
+        </rules>
+        <rules>
+            <name>Detail_Design_study</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Detailed Design/Study</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_step_0_0</targetReference>
+            </connector>
+            <label>Detailed Design/study</label>
+        </rules>
+        <rules>
+            <name>hazard_screening</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Hazard Screening</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_step_0_0_0</targetReference>
+            </connector>
+            <label>hazard screening</label>
+        </rules>
+        <rules>
+            <name>technical_review</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical Review</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_step_0_0_0_0</targetReference>
+            </connector>
+            <label>technical review</label>
+        </rules>
+        <rules>
+            <name>APU_Approval</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>APU Approval</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_step_0_0_0_0_0</targetReference>
+            </connector>
+            <label>APU Approval</label>
+        </rules>
+        <rules>
+            <name>VP_Approval</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>VP Approval</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_step_0_0_0_0_0_0</targetReference>
+            </connector>
+            <label>VP Approval</label>
+        </rules>
+        <rules>
+            <name>Implementation</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Implementation</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_step_0_0_0_0_0_0_0</targetReference>
+            </connector>
+            <label>Implementation</label>
+        </rules>
+        <rules>
+            <name>Readiness_Review</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4) AND (5 OR 6 OR 7) AND 8</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Readiness Review</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CATEGORY_1__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CATEGORY_2__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.QA_QC__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Assigned_To_Category_1__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Assigned_To_Category_2__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Assigned_To_QA_QC__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.I_have_confirmed_already_upload_PSSR__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_step_3</targetReference>
+            </connector>
+            <label>Readiness Review</label>
+        </rules>
+        <rules>
+            <name>Readiness_Review_Assign_To_False</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4) AND (5 OR 6 OR 7)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Readiness Review</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CATEGORY_1__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CATEGORY_2__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.QA_QC__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Assigned_To_Category_1__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Assigned_To_Category_2__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Assigned_To_QA_QC__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_2_of_Update_step</targetReference>
+            </connector>
+            <label>Readiness Review-Assign To-False</label>
+        </rules>
+        <rules>
+            <name>Readiness_Review_Approval_Process</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Readiness Review</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.I_have_confirmed_already_upload_PSSR__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_3_of_Update_step</targetReference>
+            </connector>
+            <label>Readiness Review-Approval Process</label>
+        </rules>
+        <rules>
+            <name>Close_Out</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Close Out</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_step_1</targetReference>
+            </connector>
+            <label>Close Out</label>
+        </rules>
+        <rules>
+            <name>Closed_H</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Common_Workflow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RAM_Total__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>H</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_step_2</targetReference>
+            </connector>
+            <label>Closed-H</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Status_1</name>
+        <label>Check Status</label>
+        <locationX>11930</locationX>
+        <locationY>695</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Approval_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Functional_Override__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approval #1</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Step</targetReference>
+            </connector>
+            <label>Approval #1</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Step</name>
+        <label>Check Step</label>
+        <locationX>11666</locationX>
+        <locationY>815</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Approval_1_ASM_False</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Approval_1_ASM__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_22_of_Update_step</targetReference>
+            </connector>
+            <label>Approval #1-ASM-False</label>
+        </rules>
+        <rules>
+            <name>Approval_1_ASM_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Approval_1_ASM__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_23_of_Update_step</targetReference>
+            </connector>
+            <label>Approval #1-ASM-True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Copy_1_of_Check_Area</name>
+        <label>Copy 1 of Check Area</label>
+        <locationX>4010</locationX>
+        <locationY>695</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Copy_1_of_A</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>A</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_13_of_Update_step</targetReference>
+            </connector>
+            <label>Copy 1 of A</label>
+        </rules>
+        <rules>
+            <name>Copy_1_of_B</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>B</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_14_of_Update_step</targetReference>
+            </connector>
+            <label>Copy 1 of B</label>
+        </rules>
+        <rules>
+            <name>Copy_1_of_C</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>C</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_15_of_Update_step</targetReference>
+            </connector>
+            <label>Copy 1 of C</label>
+        </rules>
+        <rules>
+            <name>Copy_1_of_D_OF</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>D</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.PlantSection__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>OF</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_16_of_Update_step</targetReference>
+            </connector>
+            <label>Copy 1 of D-OF</label>
+        </rules>
+        <rules>
+            <name>Copy_1_of_D_MO</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>D</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.PlantSection__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Common_Workflow</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_17_of_Update_step</targetReference>
+            </connector>
+            <label>Copy 1 of D-MO</label>
+        </rules>
+        <rules>
+            <name>Copy_1_of_E</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>E</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_18_of_Update_step</targetReference>
+            </connector>
+            <label>Copy 1 of E</label>
+        </rules>
+        <rules>
+            <name>Copy_1_of_F_3200</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>F</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Maintenance_Plant__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>3200</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_19_of_Update_step</targetReference>
+            </connector>
+            <label>Copy 1 of F-3200</label>
+        </rules>
+        <rules>
+            <name>Copy_1_of_F_7200</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Area__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>F</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Maintenance_Plant__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>7200</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_20_of_Update_step</targetReference>
+            </connector>
+            <label>Copy 1 of F-7200</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Copy_1_of_Check_Change</name>
+        <label>Check Change</label>
+        <locationX>14108</locationX>
+        <locationY>575</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Copy_1_of_Status_was_changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Functional_Override__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Check_Status</targetReference>
+            </connector>
+            <label>Status was changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Copy_1_of_Check_Status</name>
+        <label>Check Status</label>
+        <locationX>13646</locationX>
+        <locationY>695</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Copy_1_of_Approval_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Functional_Override__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approval #1</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Check_Step</targetReference>
+            </connector>
+            <label>Approval #1</label>
+        </rules>
+        <rules>
+            <name>Approval_2</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Functional_Override__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approval #2</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Approval_1_ASM__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_2_of_Check_Step</targetReference>
+            </connector>
+            <label>Approval #2</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Copy_1_of_Check_Step</name>
+        <label>Check Step</label>
+        <locationX>12986</locationX>
+        <locationY>815</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Copy_1_of_Approval_1_ASM_False</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Approval_1_ASM__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_24_of_Update_step</targetReference>
+            </connector>
+            <label>Approval #1-ASM-False</label>
+        </rules>
+        <rules>
+            <name>Copy_1_of_Approval_1_ASM_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Approval_1_ASM__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_25_of_Update_step</targetReference>
+            </connector>
+            <label>Approval #1-ASM-True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Copy_1_of_Copy_1_of_Check_Change</name>
+        <label>Check Change</label>
+        <locationX>16418</locationX>
+        <locationY>575</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Copy_2_of_Status_was_changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Functional_Override__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_2_of_Check_Status</targetReference>
+            </connector>
+            <label>Status was changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Copy_2_of_Check_Status</name>
+        <label>Check Status</label>
+        <locationX>15890</locationX>
+        <locationY>695</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Copy_2_of_Approval_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Functional_Override__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approval #1</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_3_of_Check_Step</targetReference>
+            </connector>
+            <label>Approval #1</label>
+        </rules>
+        <rules>
+            <name>Copy_1_of_Approval_2</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status_Functional_Override__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approval #2</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Approval_1_ASM__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_4_of_Check_Step</targetReference>
+            </connector>
+            <label>Approval #2</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Copy_2_of_Check_Step</name>
+        <label>Check Step</label>
+        <locationX>13778</locationX>
+        <locationY>815</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Approval_2_ASM_False</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Approval_2_ASM__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_26_of_Update_step</targetReference>
+            </connector>
+            <label>Approval #2-ASM-False</label>
+        </rules>
+        <rules>
+            <name>Approval_2_ASM_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Approval_2_ASM__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_27_of_Update_step</targetReference>
+            </connector>
+            <label>Approval #2-ASM-True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Copy_3_of_Check_Step</name>
+        <label>Check Step</label>
+        <locationX>15098</locationX>
+        <locationY>815</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Copy_2_of_Approval_1_ASM_False</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Approval_1_ASM__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_28_of_Update_step</targetReference>
+            </connector>
+            <label>Approval #1-ASM-False</label>
+        </rules>
+        <rules>
+            <name>Copy_2_of_Approval_1_ASM_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Approval_1_ASM__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_29_of_Update_step</targetReference>
+            </connector>
+            <label>Approval #1-ASM-True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Copy_4_of_Check_Step</name>
+        <label>Check Step</label>
+        <locationX>16022</locationX>
+        <locationY>815</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Copy_1_of_Approval_2_ASM_False</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Approval_2_ASM__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_30_of_Update_step</targetReference>
+            </connector>
+            <label>Approval #2-ASM-False</label>
+        </rules>
+        <rules>
+            <name>Copy_1_of_Approval_2_ASM_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Approval_2_ASM__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_31_of_Update_step</targetReference>
+            </connector>
+            <label>Approval #2-ASM-True</label>
+        </rules>
+        <rules>
+            <name>Approval_2_SM_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Approval_2_SM__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_32_of_Update_step</targetReference>
+            </connector>
+            <label>Approval #2-SM-True</label>
+        </rules>
+    </decisions>
+    <description>Update Area F</description>
+    <interviewLabel>E-MOC - Stamp step {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>E-MOC - Stamp step</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Copy_10_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>1370</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-ENME</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_11_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>1634</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-ENMF</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_12_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>1898</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-ENMF</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_13_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>2954</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-TNPA</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_14_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>3218</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-TNPB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_15_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>3482</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-TNPC</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_16_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>3746</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-TNPD</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_17_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>4010</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-TNPD</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_18_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>4274</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-TNPE</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_19_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>4538</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-TNFX</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_1_of_Copy_8_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>842</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-ENMD</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_1_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>10874</locationX>
+        <locationY>575</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Approve lesson learned</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_20_of_Update_step</name>
+        <label>Copy 20 of Update step</label>
+        <locationX>4802</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-TNFL</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_21_of_Update_step</name>
+        <label>Copy 21 of Update step</label>
+        <locationX>2426</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Concept Approval-2-APUs-SCSC	</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_22_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>11402</locationX>
+        <locationY>935</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Approval #1 ASM</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_23_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>11666</locationX>
+        <locationY>935</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Approval #1 SM or POM</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_24_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>12722</locationX>
+        <locationY>935</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Approval #1 ASM</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_25_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>12986</locationX>
+        <locationY>935</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Approval #1 SM or POM</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_26_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>13514</locationX>
+        <locationY>935</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Approval #2 ASM</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_27_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>13778</locationX>
+        <locationY>935</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Approval #2 SM</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_28_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>14834</locationX>
+        <locationY>935</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Approval #1 ASM</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_29_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>15098</locationX>
+        <locationY>935</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Approval #1 SM or POM</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_2_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>9026</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Perform readiness review checklist</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_30_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>15626</locationX>
+        <locationY>935</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Approval #2 ASM</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_31_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>15890</locationX>
+        <locationY>935</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Approval #2 SM</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_32_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>16154</locationX>
+        <locationY>935</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Approval #2 POM</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_3_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>9290</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>SOF/SU Approval</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_4_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>10346</locationX>
+        <locationY>575</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Verify whether all documents/drawing is updated</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_5_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>10610</locationX>
+        <locationY>575</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Ensure all requirement is met objectives</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_6_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>50</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-ENMA</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_7_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>314</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-ENMB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_8_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>578</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-ENMC</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Copy_9_of_Update_step</name>
+        <label>Update step</label>
+        <locationX>1106</locationX>
+        <locationY>815</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select MOC Focal Point &amp; Concept Approval-2-APUs-ENMD</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_step</name>
+        <label>Update step</label>
+        <locationX>6914</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Concept Approval-1-Line Manager</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_step_0_0</name>
+        <label>Update step</label>
+        <locationX>7178</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Budget Estimate Final &amp; Detailed Design/Study</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_step_0_0_0</name>
+        <label>Update step</label>
+        <locationX>7442</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Risk analysis</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_step_0_0_0_0</name>
+        <label>Update step</label>
+        <locationX>7706</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Technical review</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_step_0_0_0_0_0</name>
+        <label>Update step</label>
+        <locationX>7970</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>APU Approval</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_step_0_0_0_0_0_0</name>
+        <label>Update step</label>
+        <locationX>8234</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>VP Approval</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_step_0_0_0_0_0_0_0</name>
+        <label>Update step</label>
+        <locationX>8498</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Implementation</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_step_0_0_0_0_0_0_0_0</name>
+        <label>Update step</label>
+        <locationX>6386</locationX>
+        <locationY>575</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Risk approval</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_step_0_0_0_0_0_0_0_0_0</name>
+        <label>Update step</label>
+        <locationX>6122</locationX>
+        <locationY>575</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>MOC focal review</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_step_0_0_0_0_0_0_0_0_0_0</name>
+        <label>Update step</label>
+        <locationX>5594</locationX>
+        <locationY>575</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Budget Estimate Initial</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_step_0_0_0_0_0_0_0_0_0_0_0</name>
+        <label>Update step</label>
+        <locationX>6650</locationX>
+        <locationY>575</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Verify whether all documents/drawing is updated</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_step_0_0_0_0_0_0_0_0_0_0_0_0_0</name>
+        <label>Update step</label>
+        <locationX>5858</locationX>
+        <locationY>575</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Please review budget type</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_step_1</name>
+        <label>Update step</label>
+        <locationX>9554</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Verify whether there job/all documents are completed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_step_2</name>
+        <label>Update step</label>
+        <locationX>9818</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Fill in lesson learned</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_step_3</name>
+        <label>Update step</label>
+        <locationX>8762</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>Step__c</field>
+            <value>
+                <stringValue>Select category of readiness review checklist</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <startElementReference>Check_Record_Type</startElementReference>
+    <status>Active</status>
+</Flow>

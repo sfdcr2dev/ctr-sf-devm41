@@ -1,0 +1,56 @@
+.THIS.notification__container .notification__bg-gray {
+	background-color: #dddbda;
+	font-size: 0.875rem;
+}
+
+.THIS.notification__container .d-flex {
+	display: flex;
+}
+
+.THIS.notification__container .d-justify-space-between {
+	justify-content: space-between;
+}
+
+.THIS.notification__container .slds-card .slds-card__header-title .slds-text-heading_small {
+	font-size: 14px;
+}
+
+.THIS.notification__container .slds-card .slds-card__body {
+	margin-bottom: 0;
+}
+
+.THIS.notification__container .slds-card .slds-card__footer {
+	position: sticky;
+	margin-top: 0;
+	bottom: 0;
+	/* padding-top: 5px;
+	padding-bottom: 90px; */
+	background: rgb(255, 255, 255, 1);
+}
+
+.THIS .slds-icon_container.active svg {
+	fill: #5679c0;
+}
+
+.THIS.notification__container .slds-box:hover {
+	background-color: #f7f7f7 !important;
+}
+
+@media (max-width: 602px) {
+	.THIS.notification__container .slds-card .slds-card__footer button {
+		font-size: var(--lwc-fontSize5, 1rem);
+		font-weight: bold !important;
+	}
+}
+
+.THIS.notification__container .slds-card .slds-card__header-title .slds-text-heading_small {
+	font-size: var(--lwc-fontSize5, 1rem);
+	font-weight: normal !important;
+}
+
+.THIS .slds-card__header-title {
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 9px;
+	font-size: 18px;
+}

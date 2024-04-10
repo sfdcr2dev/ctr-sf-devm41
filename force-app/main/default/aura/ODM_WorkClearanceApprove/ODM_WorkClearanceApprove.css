@@ -1,0 +1,69 @@
+.THIS.slds-card .slds-card__header-title {
+	justify-content: center;
+}
+
+.THIS.slds-card .slds-card__footer {
+	text-align: right;
+}
+
+.THIS.slds-card .slds-accordion .slds-accordion__summary-action {
+	background-color: #ffc000;
+	margin: 0;
+}
+
+.THIS .slds-table th div.slds-truncate,
+.THIS.slds-table td div.slds-truncate {
+	white-space: normal;
+}
+
+.THIS.slds-card .text-bold {
+	font-weight: bold;
+}
+
+.THIS.slds-card .bg-gray-0 {
+	background-color: #dddbda;
+}
+
+.THIS.slds-card .input-required .slds-form-element.slds-has-error .slds-form-element__help {
+	margin-left: 0%;
+}
+
+.THIS.slds-card .slds-button_destructive svg {
+	fill: white;
+}
+
+/* Special */
+.THIS .hide-label c-thor-filter-suggest-lookup .slds-form-element__label {
+	display: none !important;
+}
+.THIS .hide-label c-odm-filter-suggest-lookup .slds-form-element__label {
+	display: none !important;
+}
+
+@media (max-width: 602px) {
+	.THIS .slds-button,
+	.THIS .slds-text-heading_small {
+		font-size: 0.875rem;
+	}
+
+	.THIS .slds-form-element__control,
+	.THIS .slds-form-element__static,
+	.THIS .slds-form-element__label,
+	.THIS .slds-accordion__summary-content {
+		font-size: 0.75rem;
+	}
+
+	.THIS .slds-input,
+    .THIS .slds-combobox__input,
+    .THIS .slds-listbox__option_plain {
+		font-size: 0.75rem;
+		line-height: 1.5rem;
+	}
+
+	.THIS .slds-input[type=date],
+	.THIS .slds-input[type=datetime-local],
+	.THIS .slds-input[type=month],
+	.THIS .slds-input[type=time] {
+		height: 1.5rem;
+	}
+}

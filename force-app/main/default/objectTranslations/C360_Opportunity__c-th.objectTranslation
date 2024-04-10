@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Opportunity</value>
+    </caseValues>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Opportunities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Amount --></label>
+        <name>Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cargo Size --></label>
+        <name>CargoSize__c</name>
+    </fields>
+    <fields>
+        <label><!-- Close Date --></label>
+        <name>CloseDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Name --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Opportunity --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Create By BU --></label>
+        <name>Create_By_BU__c</name>
+    </fields>
+    <fields>
+        <label><!-- Currency --></label>
+        <name>Currency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Approval Status --></label>
+        <name>CustomerApprovalStatus__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Delivery Condition --></label>
+        <name>DeliveryCondition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distribution Channel --></label>
+        <name>DistributionChannel__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inspection --></label>
+        <name>Inspection__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Status Update --></label>
+        <name>LastStatusUpdate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Modified By BU --></label>
+        <name>Last_Modified_By_BU__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lost Reason --></label>
+        <name>LostReason__c</name>
+        <picklistValues>
+            <masterLabel>Lost to Competitor</masterLabel>
+            <translation><!-- Lost to Competitor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Budget/Lost Funding</masterLabel>
+            <translation><!-- No Budget/Lost Funding --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Decision/Non-Responsive</masterLabel>
+            <translation><!-- No Decision/Non-Responsive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Economics</masterLabel>
+            <translation><!-- No Economics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price</masterLabel>
+            <translation><!-- Price --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Next Step --></label>
+        <name>Next_Step__c</name>
+    </fields>
+    <fields>
+        <label><!-- No Update (Days) --></label>
+        <name>NoUpdateDays__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Lost Reasons --></label>
+        <name>Other_Lost_Reasons__c</name>
+    </fields>
+    <fields>
+        <label><!-- Others --></label>
+        <name>Others__c</name>
+    </fields>
+    <fields>
+        <label><!-- Packing --></label>
+        <name>Packing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment --></label>
+        <name>Payment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price --></label>
+        <name>Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quality --></label>
+        <name>Quality__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quantity --></label>
+        <name>Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Contract Required --></label>
+        <name>SalesContractRequired__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>SalesOrganization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipment --></label>
+        <name>Shipment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stage --></label>
+        <name>Stage__c</name>
+        <picklistValues>
+            <masterLabel>Award Selection</masterLabel>
+            <translation><!-- Award Selection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bidding Closed</masterLabel>
+            <translation><!-- Bidding Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed Lost</masterLabel>
+            <translation><!-- Closed Lost --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed Won</masterLabel>
+            <translation><!-- Closed Won --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Negotiation</masterLabel>
+            <translation><!-- Negotiation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Preparation</masterLabel>
+            <translation><!-- Preparation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Presentation</masterLabel>
+            <translation><!-- Presentation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Qualification</masterLabel>
+            <translation><!-- Qualification --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quotation</masterLabel>
+            <translation><!-- Quotation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sample Submission</masterLabel>
+            <translation><!-- Sample Submission --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spec Verification</masterLabel>
+            <translation><!-- Spec Verification --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>StartDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Submission Date --></label>
+        <name>SubmissionDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Date --></label>
+        <name>TargetDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Technical Clarification Date --></label>
+        <name>TechnicalClarificationDate__c</name>
+    </fields>
+    <layouts>
+        <layout>Customer Bidding Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Customer Bidding Details --></label>
+            <section>Customer Bidding Details</section>
+        </sections>
+        <sections>
+            <label><!-- Date Information --></label>
+            <section>Date Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Joint Bidding Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Date Information --></label>
+            <section>Date Information</section>
+        </sections>
+        <sections>
+            <label><!-- Stage --></label>
+            <section>Stage</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>New Product/HVP Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Date Information --></label>
+            <section>Date Information</section>
+        </sections>
+        <sections>
+            <label><!-- Stage --></label>
+            <section>Stage</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Close Opportunity --></label>
+        <name>CloseOpportunity</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- Customer Bidding --></label>
+        <name>CustomerBidding</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Joint Bidding --></label>
+        <name>JointBidding</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- New Product/HVP --></label>
+        <name>NewProductHVP</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Start that should be less than the close date. Please try again. --></errorMessage>
+        <name>C360_Validate_StartdateEnddate</name>
+    </validationRules>
+</CustomObjectTranslation>

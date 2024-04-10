@@ -1,0 +1,184 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" controller="THOR_HistoricalSearchCtrl" access="global">
+	<lightning:navigation aura:id="navService" />
+	<!--First Add jQuery and Select2 plugin library from static resource Using ltng:require tag-->
+	<!-- <ltng:require styles="{! $Resource.select2 + '/select2-4.0.3/dist/css/select2.min.css'}"
+      scripts="{!join(',',
+        $Resource.jQuery224 ,
+        $Resource.select2 + '/select2-4.0.3/dist/js/select2.js')
+      }" afterScriptsLoaded="{!c.scriptsLoaded}"/>
+     -->
+	<!--init handler event call "doInit" function on component load and fetch picklist values-->
+	<aura:attribute name="redirect" type="Boolean" default="true" />
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<aura:attribute name="picklistPriority" type="String[]" />
+	<aura:attribute name="picklistNotiType" type="String[]" />
+	<aura:attribute name="picklistOrderType" type="String[]" />
+	<aura:attribute name="picklistWcStatus" type="String[]" />
+
+	<aura:attribute name="filterId" type="String" />
+	<aura:attribute name="form" type="Map" default="{}" />
+	<aura:method name="reset" action="{!c.reset}" />
+	<aura:attribute name="isLoading" type="Boolean" default="false" access="private" />
+
+	<div class="THOR_WorkClearanceHistoricalForm__container">
+		<lightning:recordEditForm
+			density="comfy"
+			objectApiName="THOR_Filter__c"
+			recordId="{!v.filterId}"
+			onload="{!c.handleLoad}"
+			onsubmit="{!c.handleSubmit}"
+			onsuccess="{!c.handleSuccess}"
+			onerror="{!c.handleError}"
+			aura:id="filterForm"
+		>
+			<lightning:inputField class="slds-hide" fieldName="User__c" value="{! $SObjectType.CurrentUser.Id }" />
+
+			<lightning:layout multipleRows="true">
+				<lightning:layoutItem size="12" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField aura:id="inputField" fieldName="Clearance_Number__c" />
+				</lightning:layoutItem>
+
+				<lightning:layoutItem size="12" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="StatusMulti__c" />
+
+					<div class="slds-form-element slds-form-element_stacked">
+						<label class="slds-form-element__label">Work Clearance Status</label>
+						<div class="slds-form-element__control">
+							<select style="width: 100%" id="picklistWcStatus_WCForm" class="select2Class" multiple="multiple">
+								<aura:iteration items="{!v.picklistWcStatus}" var="opts">
+									<option value="{!opts}">{!opts}</option>
+								</aura:iteration>
+							</select>
+						</div>
+					</div>
+				</lightning:layoutItem>
+
+				<lightning:layoutItem size="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField aura:id="inputField" fieldName="Functional_Location__c" />
+				</lightning:layoutItem>
+
+				<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField aura:id="inputField" fieldName="Requested_Date_Form__c" />
+				</lightning:layoutItem>
+				<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField aura:id="inputField" fieldName="Requested_Date_To__c" />
+				</lightning:layoutItem>
+
+				<lightning:layoutItem size="12" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField aura:id="inputField" fieldName="Notification_Number__c" />
+				</lightning:layoutItem>
+				<lightning:layoutItem size="12" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+					<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="NotificationTypeMulti__c" />
+
+					<div class="slds-form-element slds-form-element_stacked">
+						<label class="slds-form-element__label">Notification Type</label>
+						<div class="slds-form-element__control">
+							<select style="width: 100%" id="picklistNotiType_WCForm" class="select2Class" multiple="multiple">
+								<aura:iteration items="{!v.picklistNotiType}" var="opts">
+									<option value="{!opts}">{!opts}</option>
+								</aura:iteration>
+							</select>
+						</div>
+					</div>
+				</lightning:layoutItem>
+
+				<lightning:layout multipleRows="true">
+					<lightning:layoutItem size="12" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+						<lightning:inputField aura:id="inputField" fieldName="Order_Number__c" />
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+						<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="OrderTypeMulti__c" />
+
+						<div class="slds-form-element slds-form-element_stacked">
+							<label class="slds-form-element__label">Order Type</label>
+							<div class="slds-form-element__control">
+								<select style="width: 100%" id="picklistOrderType_WCForm" class="select2Class" multiple="multiple">
+									<aura:iteration items="{!v.picklistOrderType}" var="opts">
+										<option value="{!opts}">{!opts}</option>
+									</aura:iteration>
+								</select>
+							</div>
+						</div>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+						<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="PriorityMulti__c" />
+
+						<div class="slds-form-element slds-form-element_stacked">
+							<label class="slds-form-element__label">Priority</label>
+							<div class="slds-form-element__control">
+								<select style="width: 100%" id="picklistPriority_WCForm" class="select2Class" multiple="multiple">
+									<aura:iteration items="{!v.picklistPriority}" var="opts">
+										<option value="{!opts}">{!opts}</option>
+									</aura:iteration>
+								</select>
+							</div>
+						</div>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+						<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="Created_By__c" value="{!v.form.Created_By__c}" />
+						<c:thorFilterSuggestLookup
+							sObjectName="THOR_Filter__c"
+							fieldName="Created_By__c"
+							value="{!v.form.Created_By__c}"
+							onchangeValue="{!c.handleChange}"
+							fetchSObjectName="User"
+							nameDisplayFormat="{Name}"
+							descriptionDisplayFormat="{Employee_Id__c}"
+						/>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+						<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="Main_Work_Center__c" value="{!v.form.Main_Work_Center__c}" />
+						<c:thorFilterSuggest
+							fieldName="Main_Work_Center__c"
+							labelName="Maintenance Unit"
+							value="{!v.form.Main_Work_Center__c}"
+							onchangeValue="{!c.handleChange}"
+							masterMapType="Main Work Center"
+						/>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" smallDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+						<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="Location__c" value="{!v.form.Location__c}" />
+						<c:thorFilterSuggest
+							fieldName="Location__c"
+							value="{!v.form.Location__c}"
+							onchangeValue="{!c.handleChange}"
+							masterMapType="LocationWithPlant"
+							dependencyValue="{!v.form.Maintenance_Plant__c}"
+						/>
+					</lightning:layoutItem>
+
+					<lightning:layoutItem size="12" smallDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+						<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="Plant_Section__c" value="{!v.form.Plant_Section__c}" />
+						<c:thorFilterSuggest
+							fieldName="Plant_Section__c"
+							value="{!v.form.Plant_Section__c}"
+							onchangeValue="{!c.handleChange}"
+							masterMapType="PlantSectionWithPlant"
+							dependencyValue="{!v.form.Maintenance_Plant__c}"
+						/>
+					</lightning:layoutItem>
+					<lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+						<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="Maintenance_Plant__c" value="{!v.form.Maintenance_Plant__c}" />
+						<c:thorFilterSuggest
+							fieldName="Maintenance_Plant__c"
+							value="{!v.form.Maintenance_Plant__c}"
+							onchangeValue="{!c.handleChange}"
+							masterMapType="Plant"
+						/>
+					</lightning:layoutItem>
+				</lightning:layout>
+			</lightning:layout>
+			<c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+		</lightning:recordEditForm>
+	</div>
+	<footer class="slds-modal__footer">
+		<lightning:button label="Submit" title="Neutral action" onclick="{!c.onSubmitFooter}" />
+		<lightning:button label="Clear" title="Neutral action" onclick="{!c.onClearFooter}" />
+	</footer>
+</aura:component>

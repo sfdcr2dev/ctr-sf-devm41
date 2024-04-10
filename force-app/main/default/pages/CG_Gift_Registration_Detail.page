@@ -1,0 +1,41 @@
+<apex:page controller="CG_Gift_Reporting" standardStylesheets="false" lightningStylesheets="false" sidebar="false"
+  showHeader="false" applyHtmlTag="true" applyBodyTag="false" docType="html-5.0" language="th">
+
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <script src="{!URLFOR($Resource.CG_Frontend,'/js/choices.min.js')}?d=1665051895246"></script>
+    <link rel="stylesheet" href="{!URLFOR($Resource.CG_Frontend,'/css/choices.min.css')}?d=1665051895246"></link>
+    <link rel="stylesheet" href="{!URLFOR($Resource.CG_Frontend,'/css/flatpickr.min.css')}?d=1665051895246"></link>
+    <link rel="stylesheet" href="{!URLFOR($Resource.CG_Frontend,'/css/icomoon.css')}?d=1665051895246"></link>
+    <link rel="stylesheet" href="{!URLFOR($Resource.CG_Frontend,'/css/data-table.css')}?d=1665051895246"></link>
+    <title>Gift Registration Detail</title>
+    <script>
+      window.assetsPath = "{!URLFOR($Resource.CG_Frontend)}";
+      window.homePath = "{!$Page.CG_Home}";
+    </script>
+    <script type="module" crossorigin="anonymous" src="{!URLFOR($Resource.CG_Frontend,'/assets/cgGiftRegistrationDetail.js')}?d=1665051895246"></script>
+    <link rel="modulepreload" href="{!URLFOR($Resource.CG_Frontend,'/assets/Layout.js')}?d=1665051895246"></link>
+    <link rel="modulepreload" href="{!URLFOR($Resource.CG_Frontend,'/assets/CG_Gift_Reporting.service.js')}?d=1665051895246"></link>
+    <link rel="modulepreload" href="{!URLFOR($Resource.CG_Frontend,'/assets/Button.js')}?d=1665051895246"></link>
+    <link rel="modulepreload" href="{!URLFOR($Resource.CG_Frontend,'/assets/Workflow.js')}?d=1665051895246"></link>
+    <link rel="modulepreload" href="{!URLFOR($Resource.CG_Frontend,'/assets/DatePicker.js')}?d=1665051895246"></link>
+    <link rel="modulepreload" href="{!URLFOR($Resource.CG_Frontend,'/assets/Alert.js')}?d=1665051895246"></link>
+    <link rel="modulepreload" href="{!URLFOR($Resource.CG_Frontend,'/assets/SupervisorComment.js')}?d=1665051895246"></link>
+    <link rel="modulepreload" href="{!URLFOR($Resource.CG_Frontend,'/assets/BaseInput.js')}?d=1665051895246"></link>
+    <link rel="modulepreload" href="{!URLFOR($Resource.CG_Frontend,'/assets/BaseDropdown.js')}?d=1665051895246"></link>
+    <link rel="modulepreload" href="{!URLFOR($Resource.CG_Frontend,'/assets/GiftStatusDropdown.js')}?d=1665051895246"></link>
+    <link rel="stylesheet" href="{!URLFOR($Resource.CG_Frontend,'/assets/style.css')}?d=1665051895246"></link>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    
+  </body>
+
+  </html>
+
+</apex:page>

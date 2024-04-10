@@ -1,0 +1,247 @@
+<aura:component controller="CTRRequestBlockController"
+    implements="lightning:hasPageReference,lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+    access="global">
+    <!-- SENT FROM CTRCreateRequestLandingPage -->
+    <aura:attribute name="customerId" type="Id" />
+    <aura:attribute name="recordTypeId" type="Id" />
+    <aura:attribute name="bu" type="String" />
+    <aura:attribute name="requestType" type="String" />
+    <!--  -->
+    <aura:attribute name="showSpinner" type="Boolean" default="true" />
+    <aura:attribute name="companyName" type="String" />
+    <aura:attribute name="selectedRequest" type="Map" />
+    <aura:attribute name="itemRecordId" type="Id" />
+    <aura:attribute name="counterPartyType" type="String" />
+
+    <aura:html tag="style">
+        .slds-modal__container {
+        width: 90% !important;
+        max-width: 80% !important;
+        height: 100% !important;
+        }
+        .cuf-content {
+        padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+        padding: 0rem !important;
+        }
+        .slds-modal__content {
+        overflow-y: auto !important;
+        height: unset !important;
+        max-height: unset !important;
+        }
+        .closeIcon {
+        display: none !important;
+        }
+    </aura:html>
+
+    <aura:if isTrue="{!v.showSpinner}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+    <lightning:recordEditForm aura:id="recordEditForm" recordId="{!v.itemRecordId}"
+        objectApiName="CTRRequestFormItem__c" onsubmit="{!c.handleSubmit}" onsuccess="{!c.handleSuccess}"
+        onload="{!c.handleLoad}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            class="slds-modal slds-fade-in-open"> <!-- style="padding-top:10%; width:200%; margin-left:-50%;" -->
+            <div class="slds-modal__container custom_modal_container">
+                <!-- HEADER -->
+                <div class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                        Create Request Form
+                    </h2>
+                </div>
+                <!-- BODY -->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning:layoutItem padding="around-small">
+                        <div class="slds-section slds-is-open animate" aura:id="CounterpartyInfo">
+                            <!--section header-->
+                            <h3 class="slds-section__title">
+                                <a aria-controls="CounterpartyInfoList" class="slds-button slds-section__title-action"
+                                    onclick="{!c.toggleSection}" data-auraId="CounterpartyInfo">
+                                    <lightning:icon iconName="utility:switch" size="x-small"
+                                        class="slds-section__title-action-icon slds-button__icon_left"
+                                        alternativeText="button icon" />
+                                    <span class="slds-truncate" title="Counterparty Information">Counterparty
+                                        Information</span>
+                                </a>
+                            </h3>
+                            <!--section body-->
+                            <div class="slds-section__content" id="CounterpartyInfoList">
+                                <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                    <!-- Counterparty Name -->
+                                    <div
+                                        class="slds-p-right_medium slds-p-left_medium slds-col slds-size_1-of-2 slds-p-bottom_x-small">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="CompanyName__c">
+                                                Counterparty Name</label>
+                                            <lightning:inputField id="CompanyName__c" fieldName="CompanyName__c"
+                                                name="CompanyName__c" value="{!v.companyName}" variant="label-hidden"
+                                                required="true" disabled="true" />
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="slds-p-right_medium slds-p-left_medium slds-col slds-size_1-of-2 slds-p-bottom_x-small">
+                                    </div>
+
+                                    <aura:if isTrue="{!v.counterPartyType == 'Customer'}">
+                                        <!-- Seller -->
+                                        <div
+                                            class="slds-p-right_medium slds-p-left_medium slds-col slds-size_1-of-2 slds-p-bottom_x-small">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="SalesOrganizationTX__c">
+                                                    Seller</label>
+                                                <lightning:inputField class="help-txt-hidden"
+                                                    id="SalesOrganizationTX__c" fieldName="SalesOrganizationTX__c"
+                                                    value="{!v.selectedRequest.mSalesOrg}" variant="label-hidden"
+                                                    name="SalesOrganizationTX__c" disabled="true" />
+                                            </div>
+                                        </div>
+
+                                        <!-- Distribution Channel -->
+                                        <div
+                                            class="slds-p-right_medium slds-p-left_medium slds-col slds-size_2-of-4 slds-p-bottom_x-small">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="DistributionChannel__c">
+                                                    Distribution Channel
+                                                </label>
+                                                <lightning:inputField id="DistributionChannel__c"
+                                                    name="DistributionChannel__c"
+                                                    value="{!v.selectedRequest.mDistributionChannel}"
+                                                    variant="label-hidden" fieldName="DistributionChannel__c"
+                                                    disabled="true" />
+                                            </div>
+                                        </div>
+
+                                        <!-- Division -->
+                                        <div
+                                            class="slds-p-right_medium slds-p-left_medium slds-col slds-size_2-of-4 slds-p-bottom_x-small">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="Division">
+                                                    Division
+                                                </label>
+                                                <lightning:inputField id="Division__c" name="Division__c"
+                                                    value="{!v.selectedRequest.mDivision}" variant="label-hidden"
+                                                    fieldName="Division__c" disabled="true" />
+                                            </div>
+                                        </div>
+                                        <aura:set attribute="else">
+                                            <!-- Buyer -->
+                                            <div
+                                                class="slds-p-right_medium slds-p-left_medium slds-col slds-size_1-of-2 slds-p-bottom_x-small">
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label"
+                                                        for="PurchasingOrganizationTX__c">
+                                                        Buyer</label>
+                                                    <lightning:inputField class="help-txt-hidden"
+                                                        id="PurchasingOrganizationTX__c"
+                                                        fieldName="PurchasingOrganizationTX__c"
+                                                        value="{!v.selectedRequest.mSalesOrg}" variant="label-hidden"
+                                                        name="PurchasingOrganizationTX__c" disabled="true" />
+                                                </div>
+                                            </div>
+                                        </aura:set>
+                                    </aura:if>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slds-section slds-is-open animate" aura:id="ReasonToBlock">
+                            <!--section header-->
+                            <h3 class="slds-section__title">
+                                <a aria-controls="ReasonToBlockList" class="slds-button slds-section__title-action"
+                                    onclick="{!c.toggleSection}" data-auraId="ReasonToBlock">
+                                    <lightning:icon iconName="utility:switch" size="x-small"
+                                        class="slds-section__title-action-icon slds-button__icon_left"
+                                        alternativeText="button icon" />
+                                    <span class="slds-truncate" title="Reason To Block">Reason To Block</span>
+                                </a>
+                            </h3>
+                            <div class="slds-section__content" id="ReasonToBlockList">
+                                <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                    <!-- Reason -->
+                                    <div
+                                        class="slds-p-right_medium slds-p-left_medium slds-col slds-size_1-of-2 slds-p-bottom_x-small">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="BlockedReason__c">
+                                                Reason</label>
+                                            <lightning:inputField class="help-txt-hidden" variant="label-hidden"
+                                                id="BlockedReason__c" fieldName="BlockedReason__c"
+                                                name="BlockedReason__c" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <aura:if isTrue="{!v.counterPartyType == 'Customer'}">
+                            <div class="slds-section slds-is-open animate" aura:id="SalesDistributionBlock">
+                                <!--section header-->
+                                <h3 class="slds-section__title">
+                                    <a aria-controls="SalesDistributionBlockList"
+                                        class="slds-button slds-section__title-action" onclick="{!c.toggleSection}"
+                                        data-auraId="SalesDistributionBlock">
+                                        <lightning:icon iconName="utility:switch" size="x-small"
+                                            class="slds-section__title-action-icon slds-button__icon_left"
+                                            alternativeText="button icon" />
+                                        <span class="slds-truncate" title="Sales and Distribution Block">Sales and
+                                            Distribution Block</span>
+                                    </a>
+                                </h3>
+                                <div class="slds-section__content" id="SalesDistributionBlockList">
+                                    <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                        <!-- Order Block by Selected Area -->
+                                        <div
+                                            class="slds-p-right_medium slds-p-left_medium slds-col slds-size_2-of-4 slds-p-bottom_x-small">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="OrderBlock__c">
+                                                    Order Block by Selected Area</label>
+                                                <lightning:inputField variant="label-hidden" id="OrderBlock__c"
+                                                    fieldName="OrderBlock__c" name="OrderBlock__c" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <aura:set attribute="else">
+                                <div class="slds-section slds-is-open animate" aura:id="PurchasingBlock">
+                                    <!--section header-->
+                                    <h3 class="slds-section__title">
+                                        <a aria-controls="PurchasingBlockList"
+                                            class="slds-button slds-section__title-action" onclick="{!c.toggleSection}"
+                                            data-auraId="PurchasingBlock">
+                                            <lightning:icon iconName="utility:switch" size="x-small"
+                                                class="slds-section__title-action-icon slds-button__icon_left"
+                                                alternativeText="button icon" />
+                                            <span class="slds-truncate" title="Purchasing Block">Purchasing Block</span>
+                                        </a>
+                                    </h3>
+                                    <div class="slds-section__content" id="PurchasingBlockList">
+                                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                            <!-- Selected Purchasing Organization	 -->
+                                            <div
+                                                class="slds-p-right_medium slds-p-left_medium slds-col slds-size_1-of-1 slds-p-bottom_x-small">
+                                                <div class="slds-form-element">
+                                                    <lightning:inputField variant="brand" id="SelectedPurchasingOrg__c"
+                                                        fieldName="SelectedPurchasingOrg__c" value="true" disabled="true"
+                                                        name="SelectedPurchasingOrg__c" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </aura:set>
+                        </aura:if>
+                    </lightning:layoutItem>
+                </div>
+
+                <footer class="slds-modal__footer slds-text-align_center">
+                    <lightning:button type="cancel" variant="brand-outline" label="Cancel" title="Cancel"
+                        onclick="{!c.closeModal}" />
+                    <lightning:button type="submit" variant="brand" label="Save" title="Save" />
+                </footer>
+            </div>
+        </section>
+    </lightning:recordEditForm>
+</aura:component>

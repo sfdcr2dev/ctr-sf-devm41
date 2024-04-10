@@ -1,0 +1,10 @@
+<aura:component implements="lightning:isUrlAddressable" access="global">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="readOnly" type="Boolean" default="false" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.reInit}" />
+    <!-- TODO : Fix page cache issues. After renavigating, it will keep the same eqcc step id even though you navigated to another form. -->
+    <!-- TODO : Fix nav after approved. Goes to Default template instead of read only form. -->
+    <c:THOR_navigateBack />
+    <c:eqccCheckedSheet recordId="{!v.recordId}" readOnly="{!v.readOnly}" />
+</aura:component>

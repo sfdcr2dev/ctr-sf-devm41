@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Favorite Applications</value>
+    </caseValues>
+    <fields>
+        <label><!-- No --></label>
+        <name>No__c</name>
+    </fields>
+    <fields>
+        <label><!-- OPP Application --></label>
+        <name>OPP_Application__c</name>
+        <relationshipLabel><!-- OPP Favorite Application --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <name>User__c</name>
+        <relationshipLabel><!-- Favorite Applications --></relationshipLabel>
+    </fields>
+    <nameFieldLabel>Favorite Application</nameFieldLabel>
+</CustomObjectTranslation>

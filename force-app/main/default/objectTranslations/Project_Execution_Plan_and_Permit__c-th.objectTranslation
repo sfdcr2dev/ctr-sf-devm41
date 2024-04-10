@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Project Execution Plan and Permit*</value>
+    </caseValues>
+    <fields>
+        <label><!-- วันที่ได้รับ --></label>
+        <name>Actual_Receive_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- หน่วยงานออกใบอนุญาต --></label>
+        <name>BE_Permit_Department__c</name>
+    </fields>
+    <fields>
+        <label><!-- เรื่องที่ขออนุญาต --></label>
+        <name>BE_Permit_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- วันที่คาดว่าจะได้รับ --></label>
+        <name>Expected_Receive_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- หน่วยงานที่ออกใบอนุญาต(อื่นๆ) --></label>
+        <name>Other_Permit_Department__c</name>
+    </fields>
+    <fields>
+        <label><!-- เรื่องที่ขออนุญาต(อื่นๆ) --></label>
+        <name>Other_Permit__c</name>
+    </fields>
+    <fields>
+        <label><!-- หน่วยงานออกใบอนุญาต --></label>
+        <name>Permit_Depart_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- เรื่องที่ขออนุญาต --></label>
+        <name>Permit_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permit --></label>
+        <name>Permit__c</name>
+        <relationshipLabel><!-- Project Execution Plan and Permit* --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Project Execution Plan --></label>
+        <name>Project_Execution_Plan__c</name>
+        <relationshipLabel><!-- Project Execution Plan and Permit* --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Project Execution Plan and Permit Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Other Permit (กรณีไม่มีใบอนุญาตที่บันทึกไว้) --></label>
+            <section>Other Permit (กรณีไม่มีใบอนุญาตที่บันทึกไว้)</section>
+        </sections>
+        <sections>
+            <label><!-- Plan and Actual Date --></label>
+            <section>Plan and Actual Date</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Project Execution Plan and Permit* Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- กรุณากรอก &apos;ใบอนุญาตอื่นๆ&apos; และ &apos;หน่วยงานที่อนุญาตอื่นๆ&apos; --></errorMessage>
+        <name>Check_Permit_for_Other</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Email alert when Outstanding reach 80% of Credit Balance</description>
+        <name>Outstanding80Percent</name>
+        <label>Outstanding80Percent</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <actionName>C360_FinancialInfo__c.OutstandingReach80PercentOfCreditBalance</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Notified</targetReference>
+        </connector>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <description>Notify email when Outstanding reach 80% of Credit Balance</description>
+    <interviewLabel>NotifyEmailWhenOutstandingReach80PercentOfCredit Balance {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Trigger: Outstanding Reach 80% of Credit Balance Notification</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Notified</name>
+        <label>Notified</label>
+        <locationX>176</locationX>
+        <locationY>455</locationY>
+        <inputAssignments>
+            <field>notified__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <startElementReference>Outstanding80Percent</startElementReference>
+    <status>Draft</status>
+    <variables>
+        <name>Var_FinanceId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+</Flow>

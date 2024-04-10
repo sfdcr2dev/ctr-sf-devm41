@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <name>Check_Doc_Item_to_Delete</name>
+        <label>Check Doc Item to Delete</label>
+        <locationX>1276</locationX>
+        <locationY>372</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>has_Doc_Item_to_Delete</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>get_All_Doc_Item</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Delete_Doc_Item_of_Old_BU</targetReference>
+            </connector>
+            <label>has Doc Item to Delete</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>is_BU_Changed</name>
+        <label>is BU Changed</label>
+        <locationX>895</locationX>
+        <locationY>371</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>BU_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.BusinessUnit__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>f_BusinessUnit</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>get_Doc_Item</targetReference>
+            </connector>
+            <label>BU Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>is_Create_Update</name>
+        <label>is Create/Update</label>
+        <locationX>656</locationX>
+        <locationY>373</locationY>
+        <defaultConnector>
+            <targetReference>is_BU_Changed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>isUpdate</defaultConnectorLabel>
+        <rules>
+            <name>isCreate</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>isCreate</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <name>f_BusinessUnit</name>
+        <dataType>String</dataType>
+        <expression>IF( OR(CONTAINS( {!$Record.RecordType.DeveloperName}, &apos;Customer&apos;),CONTAINS( {!$Record.RecordType.DeveloperName}, &apos;ShipTo&apos;)),
+IF( NOT(ISBLANK(TEXT({!$Record.SalesOrganization__c}))),
+IF(ISPICKVAL({!$Record.SalesOrganization__c}, &apos;1100&apos;), &apos;TOP&apos;,
+IF(ISPICKVAL({!$Record.SalesOrganization__c}, &apos;1300&apos;), &apos;TOP&apos;,
+IF(ISPICKVAL({!$Record.SalesOrganization__c}, &apos;1400&apos;), &apos;TOP&apos;,
+IF(ISPICKVAL({!$Record.SalesOrganization__c}, &apos;1700&apos;), &apos;LABIX&apos;,
+IF(ISPICKVAL({!$Record.SalesOrganization__c}, &apos;2000&apos;), &apos;TX&apos;,
+IF(ISPICKVAL({!$Record.SalesOrganization__c}, &apos;9100&apos;), &apos;TX&apos;,
+IF(ISPICKVAL({!$Record.SalesOrganization__c}, &apos;9200&apos;), &apos;TX&apos;,
+IF(ISPICKVAL({!$Record.SalesOrganization__c}, &apos;9300&apos;), &apos;TX&apos;,
+IF(ISPICKVAL({!$Record.SalesOrganization__c}, &apos;9400&apos;), &apos;TX&apos;,&apos;&apos;))))))))),&apos;TOP&apos;),
+
+IF( CONTAINS( {!$Record.RecordType.DeveloperName}, &apos;Supplier&apos;),
+IF(NOT(ISBLANK(TEXT( {!$Record.CompanyCodeTOP__c} ))),
+IF(ISPICKVAL({!$Record.CompanyCodeTOP__c}, &apos;1100&apos;), &apos;TOP&apos;,
+IF(ISPICKVAL({!$Record.CompanyCodeTOP__c}, &apos;1300&apos;), &apos;TOP&apos;,
+IF(ISPICKVAL({!$Record.CompanyCodeTOP__c}, &apos;1400&apos;), &apos;TOP&apos;,
+IF(ISPICKVAL({!$Record.CompanyCodeTOP__c}, &apos;1700&apos;), &apos;LABIX&apos;,
+&apos;&apos;)))),
+IF(NOT(ISBLANK(TEXT( {!$Record.CompanyCodeTX__c} ))),
+IF(ISPICKVAL({!$Record.CompanyCodeTX__c}, &apos;2000&apos;), &apos;TX&apos;,
+IF(ISPICKVAL({!$Record.CompanyCodeTX__c}, &apos;9100&apos;), &apos;TX&apos;,
+IF(ISPICKVAL({!$Record.CompanyCodeTX__c}, &apos;9200&apos;), &apos;TX&apos;,
+IF(ISPICKVAL({!$Record.CompanyCodeTX__c}, &apos;9300&apos;), &apos;TX&apos;,
+IF(ISPICKVAL({!$Record.CompanyCodeTX__c}, &apos;9400&apos;), &apos;TX&apos;,
+&apos;&apos;))))),&apos;TOP&apos;)),&apos;TOP&apos;))</expression>
+    </formulas>
+    <formulas>
+        <name>isNew</name>
+        <dataType>Boolean</dataType>
+        <expression>isNew()</expression>
+    </formulas>
+    <interviewLabel>CTRTriggerRequestFormItemAfterUpsert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CTRTriggerRequestFormItemAfterUpsert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <name>Delete_Doc_Item_of_Old_BU</name>
+        <label>Delete Doc Item of Old BU</label>
+        <locationX>1494</locationX>
+        <locationY>363</locationY>
+        <inputReference>get_All_Doc_Item</inputReference>
+    </recordDeletes>
+    <recordLookups>
+        <name>get_Doc_Item</name>
+        <label>get Doc Item</label>
+        <locationX>1094</locationX>
+        <locationY>370</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Doc_Item_to_Delete</targetReference>
+        </connector>
+        <filters>
+            <field>BusinessUnit__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>f_BusinessUnit</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>CTRRequestFormItem__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <object>CTRDocumentItem__c</object>
+        <outputReference>get_All_Doc_Item</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>CTRRequestFormItem__c</queriedFields>
+    </recordLookups>
+    <startElementReference>is_Create_Update</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>get_All_Doc_Item</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>CTRDocumentItem__c</objectType>
+    </variables>
+</Flow>

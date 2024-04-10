@@ -1,0 +1,150 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" controller="THOR_NotificationsController" access="global">
+	<!-- IMPORTED STYLES-->
+	<ltng:require styles="{!$Resource.noHeader}" />
+
+	<!-- ATTRIBUTES -->
+	<aura:attribute name="recordId" type="String" access="global" />
+	<aura:attribute name="createNew" type="boolean" access="global" />
+	<aura:attribute name="notificationRecord" type="Map" access="global" default="{}" />
+	<aura:attribute name="hasWriteAccess" type="Boolean" default="false" access="global" />
+	<aura:attribute
+		name="isModalAction"
+		type="Map"
+		access="private"
+		default="{
+      discard: false,
+      resend: false,
+    }"
+	/>
+	<aura:attribute name="formFactor" type="String" default="{! $Browser.formFactor }" access="private" />
+
+	<!-- EVENTS -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="closeModalEvent" event="c:THOR_Event" action="{!c.handleCloseModal}" />
+	<aura:registerEvent name="openEditModalEvent" type="c:THOR_openNotificationEditModal" />
+
+	<!-- <aura:handler name="change" value="{!v.notificationRecord}" action="{!c.handleNotificationInfo}" /> -->
+	<force:recordData
+		aura:id="notificationLoader"
+		recordId="{!v.recordId}"
+		targetFields="{!v.notificationRecord}"
+		fields="Integration_Status__c, Notification_Number__c, Fault_Code__c, Notification_Status__c, Order__c, System_Status_Text__c, Type__c, User_Status__c, History_Detail__c"
+	/>
+	<lightning:navigation aura:id="navService" />
+
+	<!-- BODY-->
+	<c:THOR_Header title="Notification" iconName="custom:custom53">
+		<aura:set attribute="actions">
+			<lightning:buttonMenu menuAlignment="right" alternativeText="Show menu" label="Actions" onselect="{!c.handleSelectButtonMenu}">
+				<lightning:menuItem
+					label="Edit"
+					title="Edit"
+					value="c.showEditModal"
+					disabled="{!
+						or(v.notificationRecord.Notification_Status__c == 'Closed', not(v.hasWriteAccess)) ||
+						and(v.notificationRecord.Integration_Status__c == 'In Progress', not(empty(v.notificationRecord.Integration_Status__c))) ||
+            v.notificationRecord.System_Status_Text__c == 'NOCO'
+					}"
+				/>
+
+				<lightning:menuItem
+					label="Close"
+					title="Close"
+					value="c.closeNotification"
+					disabled="{!
+						or(v.notificationRecord.Notification_Status__c == 'Closed', not(v.hasWriteAccess)) ||
+						v.notificationRecord.Integration_Status__c != 'Success'
+					}"
+				/>
+
+				<lightning:menuItem
+					label="Discard"
+					title="Discard"
+					value="c.discardNotification"
+					disabled="{!
+						or(v.notificationRecord.Notification_Status__c == 'Closed', not(v.hasWriteAccess)) ||
+						or(v.notificationRecord.Integration_Status__c == 'Success', not(empty(v.notificationRecord.Notification_Number__c))) ||
+						and(not(equals(v.notificationRecord.Notification_Number__c.length, 15)) || not(equals(v.notificationRecord.Notification_Number__c.length, 18)), not(empty(v.notificationRecord.Notification_Number__c)))
+					}"
+				/>
+
+				<lightning:menuItem
+					label="Resend"
+					title="Resend"
+					value="c.resendNotification"
+					disabled="{!
+						or(v.notificationRecord.Notification_Status__c == 'Closed', not(v.hasWriteAccess)) ||
+						v.notificationRecord.Integration_Status__c == 'Success'
+					}"
+				/>
+
+				<lightning:menuItem
+					label="Create Order"
+					title="Create Order"
+					value="c.newOrder"
+					disabled="{!
+						or(v.notificationRecord.Notification_Status__c == 'Closed', not(v.hasWriteAccess)) ||
+						v.notificationRecord.Integration_Status__c != 'Success' ||
+            v.notificationRecord.Order__c != null
+					}"
+				/>
+			</lightning:buttonMenu>
+			<!-- <div class="notification-action-buttons-container slds-grid">
+				<div class="single-button-container slds-var-p-around_xx-small">
+					<lightning:button
+						variant="brand"
+						label="Edit"
+						title="Edit"
+						onclick="{! c.showEditModal }"
+						disabled="{! or(v.notificationRecord.Notification_Status__c == 'Closed', not(v.hasWriteAccess))}"
+					/>
+				</div>
+				<div class="single-button-container slds-var-p-around_xx-small">
+					<lightning:button
+						variant="brand"
+						label="Create Order"
+						title="Create Order"
+						disabled="{! not(v.hasWriteAccess) }"
+						onclick="{! c.newOrder }"
+					/>
+				</div>
+				<div class="single-button-container slds-var-p-around_xx-small">
+					<lightning:button
+						variant="brand"
+						label="Close"
+						title="Close"
+						onclick="{! c.closeNotification }"
+						disabled="{! or(v.notificationRecord.Notification_Status__c == 'Closed', not(v.hasWriteAccess))}"
+					/>
+				</div>
+			</div> -->
+		</aura:set>
+	</c:THOR_Header>
+
+	<c:THOR_ModalSelected size="empty" title="Discard Notification" isToggle="{!v.isModalAction.discard}">
+		<div class="slds-text-align_center slds-p-bottom_large">Are you sure you want to discard this Notification?</div>
+
+		<div class="slds-grid slds-grid_align-end">
+			<div class="slds-col slds-p-left_x-small">
+				<lightning:button name="discard" variant="neutral" label="Discard" onclick="{!c.discardNotification}" />
+			</div>
+			<div class="slds-col slds-p-left_x-small">
+				<lightning:button variant="neutral" label="Cancel" onclick="{!c.discardNotification}" />
+			</div>
+		</div>
+	</c:THOR_ModalSelected>
+
+	<lightning:recordEditForm
+		class="slds-hide"
+		aura:id="recordEditForm"
+		recordId="{!v.recordId}"
+		objectApiName="Notification__c"
+		onerror="{!c.handleError}"
+	>
+		<lightning:inputField fieldName="Integration_Status__c" value="In Progress" />
+	</lightning:recordEditForm>
+
+	<!-- <aura:if isTrue="{!v.createNew}">
+		<c:THOR_OrderCreation notificationId="{!v.recordId}" />
+	</aura:if> -->
+</aura:component>

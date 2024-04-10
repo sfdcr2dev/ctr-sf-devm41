@@ -1,0 +1,1472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>ORTLRiskRecordPage</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>ORTLRiskRecordPage</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>ORTLRiskCompactLayout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>ORTLRiskCompactLayout</fullName>
+        <fields>Name</fields>
+        <fields>RiskStatus__c</fields>
+        <fields>TagNo__c</fields>
+        <fields>IntRiskCons__c</fields>
+        <fields>IntConsEffect__c</fields>
+        <fields>OwnerId</fields>
+        <label>Risk Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Read</externalSharingModel>
+    <fields>
+        <fullName>APU__c</fullName>
+        <externalId>false</externalId>
+        <label>APU</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ApptootherEQP__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To create more Risk record with different TAG No.</description>
+        <externalId>false</externalId>
+        <label>Applicable to other equipment</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AssessmentType__c</fullName>
+        <description>To select Assessment type of Risk</description>
+        <externalId>false</externalId>
+        <label>Threat Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>PRA (Potential Risk Assessment)</fullName>
+                    <default>false</default>
+                    <label>PRA (Potential Risk Assessment)</label>
+                </value>
+                <value>
+                    <fullName>RRA (Reactive Risk Assessment)</fullName>
+                    <default>false</default>
+                    <label>RRA (Reactive Risk Assessment)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Causeoffailure__c</fullName>
+        <description>To record Cause of failure</description>
+        <externalId>false</externalId>
+        <label>Cause of failure (Root cause)</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>CheckApplicable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Check Applicable to Other Equipment</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DEMNo__c</fullName>
+        <externalId>false</externalId>
+        <label>DEM No.</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DEM__c</fullName>
+        <description>To select DEM</description>
+        <externalId>false</externalId>
+        <label>DEM /Causal Learning</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>true</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Discipline__c</fullName>
+        <externalId>false</externalId>
+        <label>Discipline</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EnRiskMgt__c</fullName>
+        <description>To select Enterprise Risk Management</description>
+        <externalId>false</externalId>
+        <label>Enterprise Risk Management</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>true</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FailureMode__c</fullName>
+        <externalId>false</externalId>
+        <label>Failure Mode</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>E-00001</fullName>
+                    <default>false</default>
+                    <label>E-00001</label>
+                </value>
+                <value>
+                    <fullName>E-00002</fullName>
+                    <default>false</default>
+                    <label>E-00002</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FinConsEffect__c</fullName>
+        <description>Display Risk consequence</description>
+        <externalId>false</externalId>
+        <label>Final Consequence Effect</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Alarm Threat</fullName>
+                    <default>false</default>
+                    <label>Alarm Threat</label>
+                </value>
+                <value>
+                    <fullName>&quot;Bad Actor&quot; Incident</fullName>
+                    <default>false</default>
+                    <label>&quot;Bad Actor&quot; Incident</label>
+                </value>
+                <value>
+                    <fullName>LOPC : Loss of Primary Containment</fullName>
+                    <default>false</default>
+                    <label>LOPC : Loss of Primary Containment</label>
+                </value>
+                <value>
+                    <fullName>Process Safety Incident</fullName>
+                    <default>false</default>
+                    <label>Process Safety Incident</label>
+                </value>
+                <value>
+                    <fullName>PTM IOW</fullName>
+                    <default>false</default>
+                    <label>PTM IOW</label>
+                </value>
+                <value>
+                    <fullName>PTM QMI</fullName>
+                    <default>false</default>
+                    <label>PTM QMI</label>
+                </value>
+                <value>
+                    <fullName>PTM RE</fullName>
+                    <default>false</default>
+                    <label>PTM RE</label>
+                </value>
+                <value>
+                    <fullName>Trip Threat</fullName>
+                    <default>false</default>
+                    <label>Trip Threat</label>
+                </value>
+                <value>
+                    <fullName>Unit Shutdown/ UPDT</fullName>
+                    <default>false</default>
+                    <label>Unit Shutdown/ UPDT</label>
+                </value>
+                <value>
+                    <fullName>Vibration at D-severity Level</fullName>
+                    <default>false</default>
+                    <label>Vibration at D-severity Level</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Personal Safety Incident</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Personal Safety Incident</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FinOtherConsEff__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Final Consequence Effect Detail</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FinRiskCons__c</fullName>
+        <description>Display Risk consequence</description>
+        <externalId>false</externalId>
+        <label>Final Threat Consequence</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>People</fullName>
+                    <default>false</default>
+                    <label>People</label>
+                </value>
+                <value>
+                    <fullName>Assets</fullName>
+                    <default>false</default>
+                    <label>Assets</label>
+                </value>
+                <value>
+                    <fullName>Environment</fullName>
+                    <default>false</default>
+                    <label>Environment</label>
+                </value>
+                <value>
+                    <fullName>Reputation</fullName>
+                    <default>false</default>
+                    <label>Reputation</label>
+                </value>
+                <value>
+                    <fullName>Product Quality</fullName>
+                    <default>false</default>
+                    <label>Product Quality</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FinalLikelihood__c</fullName>
+        <description>To select likelihood of risk</description>
+        <externalId>false</externalId>
+        <label>Final Likelihood</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>A</fullName>
+                    <default>false</default>
+                    <label>A</label>
+                </value>
+                <value>
+                    <fullName>B</fullName>
+                    <default>false</default>
+                    <label>B</label>
+                </value>
+                <value>
+                    <fullName>C</fullName>
+                    <default>false</default>
+                    <label>C</label>
+                </value>
+                <value>
+                    <fullName>D</fullName>
+                    <default>false</default>
+                    <label>D</label>
+                </value>
+                <value>
+                    <fullName>E</fullName>
+                    <default>false</default>
+                    <label>E</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FinalRiskReason__c</fullName>
+        <description>Final risk reason when risk remain M or H</description>
+        <externalId>false</externalId>
+        <label>Final Risk Reason</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FinalRisk__c</fullName>
+        <description>Display level of Final Risk</description>
+        <externalId>false</externalId>
+        <label>Final Risk</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>L</fullName>
+                    <default>false</default>
+                    <label>L</label>
+                </value>
+                <value>
+                    <fullName>L/N</fullName>
+                    <default>false</default>
+                    <label>L/N</label>
+                </value>
+                <value>
+                    <fullName>M</fullName>
+                    <default>false</default>
+                    <label>M</label>
+                </value>
+                <value>
+                    <fullName>H</fullName>
+                    <default>false</default>
+                    <label>H</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FinalSeverity__c</fullName>
+        <description>To select seveity of risk</description>
+        <externalId>false</externalId>
+        <label>Final Severity</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>0</fullName>
+                    <default>false</default>
+                    <label>0</label>
+                </value>
+                <value>
+                    <fullName>FinalSeverity</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>FinalSeverity</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FinalValueMUSD__c</fullName>
+        <description>Display final risk value in MUSD</description>
+        <externalId>false</externalId>
+        <formula>FinalValueUSD__c / 1000000</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Final Value (MUSD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FinalValueUSD__c</fullName>
+        <description>Display final risk value in USD</description>
+        <externalId>false</externalId>
+        <label>Final Value (USD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IniOtherConsEff__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Initial Consequence Effect Detail</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>InitialRisk__c</fullName>
+        <description>Display level of Initial Risk</description>
+        <externalId>false</externalId>
+        <label>Initial Risk</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>L</fullName>
+                    <default>false</default>
+                    <label>L</label>
+                </value>
+                <value>
+                    <fullName>L/N</fullName>
+                    <default>false</default>
+                    <label>L/N</label>
+                </value>
+                <value>
+                    <fullName>M</fullName>
+                    <default>false</default>
+                    <label>M</label>
+                </value>
+                <value>
+                    <fullName>H</fullName>
+                    <default>false</default>
+                    <label>H</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>InitialSeverity__c</fullName>
+        <description>To select seveity of risk</description>
+        <externalId>false</externalId>
+        <label>Initial Severity</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>0</fullName>
+                    <default>false</default>
+                    <label>0</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>InitialValueUSD__c</fullName>
+        <description>Display initial risk value in USD</description>
+        <externalId>false</externalId>
+        <label>Initial Value (USD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>InitiativeBy__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.FirstName+&quot; &quot;+Owner:User.LastName</formula>
+        <label>Initiative By</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>InitiativeDate__c</fullName>
+        <description>Display created date</description>
+        <externalId>false</externalId>
+        <label>Threat Record Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IntConsEffect__c</fullName>
+        <description>Display Risk consequence of Initial Risk Assessment</description>
+        <externalId>false</externalId>
+        <label>Initial Consequence Effect</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Alarm Threat</fullName>
+                    <default>false</default>
+                    <label>Alarm Threat</label>
+                </value>
+                <value>
+                    <fullName>&quot;Bad Actor&quot; Incident</fullName>
+                    <default>false</default>
+                    <label>&quot;Bad Actor&quot; Incident</label>
+                </value>
+                <value>
+                    <fullName>LOPC : Loss of Primary Containment</fullName>
+                    <default>false</default>
+                    <label>LOPC : Loss of Primary Containment</label>
+                </value>
+                <value>
+                    <fullName>Process Safety Incident</fullName>
+                    <default>false</default>
+                    <label>Process Safety Incident</label>
+                </value>
+                <value>
+                    <fullName>PTM IOW</fullName>
+                    <default>false</default>
+                    <label>PTM IOW</label>
+                </value>
+                <value>
+                    <fullName>PTM QMI</fullName>
+                    <default>false</default>
+                    <label>PTM QMI</label>
+                </value>
+                <value>
+                    <fullName>PTM RE</fullName>
+                    <default>false</default>
+                    <label>PTM RE</label>
+                </value>
+                <value>
+                    <fullName>Trip Threat</fullName>
+                    <default>false</default>
+                    <label>Trip Threat</label>
+                </value>
+                <value>
+                    <fullName>Unit Shutdown/ UPDT</fullName>
+                    <default>false</default>
+                    <label>Unit Shutdown/ UPDT</label>
+                </value>
+                <value>
+                    <fullName>Vibration at D-severity Level</fullName>
+                    <default>false</default>
+                    <label>Vibration at D-severity Level</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Personal Safety Incident</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Personal Safety Incident</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>IntRiskCons__c</fullName>
+        <description>Display Risk consequence of Initial Risk Assessment</description>
+        <externalId>false</externalId>
+        <label>Initial Threat Consequence</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>People</fullName>
+                    <default>false</default>
+                    <label>People</label>
+                </value>
+                <value>
+                    <fullName>Assets</fullName>
+                    <default>false</default>
+                    <label>Assets</label>
+                </value>
+                <value>
+                    <fullName>Environment</fullName>
+                    <default>false</default>
+                    <label>Environment</label>
+                </value>
+                <value>
+                    <fullName>Reputation</fullName>
+                    <default>false</default>
+                    <label>Reputation</label>
+                </value>
+                <value>
+                    <fullName>Product Quality</fullName>
+                    <default>false</default>
+                    <label>Product Quality</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>IntValueMUSD__c</fullName>
+        <description>Display initial risk value in MUSD</description>
+        <externalId>false</externalId>
+        <formula>InitialValueUSD__c / 1000000</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Initial Value (MUSD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IntlLikelihood__c</fullName>
+        <description>To select likelihood of Initial risk</description>
+        <externalId>false</externalId>
+        <label>Initial Likelihood</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>A</fullName>
+                    <default>false</default>
+                    <label>A</label>
+                </value>
+                <value>
+                    <fullName>B</fullName>
+                    <default>false</default>
+                    <label>B</label>
+                </value>
+                <value>
+                    <fullName>C</fullName>
+                    <default>false</default>
+                    <label>C</label>
+                </value>
+                <value>
+                    <fullName>D</fullName>
+                    <default>false</default>
+                    <label>D</label>
+                </value>
+                <value>
+                    <fullName>E</fullName>
+                    <default>false</default>
+                    <label>E</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>IsActive__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Indicate Risk Record Status Active/Inactive</description>
+        <externalId>false</externalId>
+        <label>Is Active</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MaintenanceTask__c</fullName>
+        <externalId>false</externalId>
+        <label>Maintenance Tasks</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>OriginalRisk__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Display original Risk</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Referral threat number</inlineHelpText>
+        <label>Original Threat</label>
+        <referenceTo>ORTLRisk__c</referenceTo>
+        <relationshipLabel>Threat (Original Threat)</relationshipLabel>
+        <relationshipName>Risk</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ParentRisk__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>To refer to closed risk record which related</description>
+        <externalId>false</externalId>
+        <label>Parent Threat</label>
+        <referenceTo>ORTLRisk__c</referenceTo>
+        <relationshipName>Risk1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PlantCode__c</fullName>
+        <externalId>false</externalId>
+        <formula>TagNo__r.Company_Code__r.Name</formula>
+        <label>Plant Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PlantName__c</fullName>
+        <externalId>false</externalId>
+        <formula>TagNo__r.Company_Code__r.Description__c</formula>
+        <label>Plant Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PlantSection__c</fullName>
+        <externalId>false</externalId>
+        <label>Plant Section</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RiskClosedDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Threat Eradicated Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>RiskInitiator__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Display risk initiator name</description>
+        <externalId>false</externalId>
+        <label>Threat Initiator</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Risk</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>RiskReductMUSD__c</fullName>
+        <description>Display reduced risk value in MUSD</description>
+        <externalId>false</externalId>
+        <formula>IntValueMUSD__c - FinalValueMUSD__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Risk Reduction (MUSD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RiskScenarioDes__c</fullName>
+        <description>To record Risk Scenario Description</description>
+        <externalId>false</externalId>
+        <label>Threat Scenario Description</label>
+        <length>20000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>RiskScenario__c</fullName>
+        <description>To record Risk Scenario</description>
+        <externalId>false</externalId>
+        <label>Threat Scenario</label>
+        <length>2000</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>RiskStatus__c</fullName>
+        <description>Display current risk status</description>
+        <externalId>false</externalId>
+        <label>Threat Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>false</default>
+                    <label>New</label>
+                </value>
+                <value>
+                    <fullName>Mitigation</fullName>
+                    <default>false</default>
+                    <label>Mitigation</label>
+                </value>
+                <value>
+                    <fullName>Awaiting Final Assessment</fullName>
+                    <default>false</default>
+                    <label>Awaiting Final Assessment</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TagCode__c</fullName>
+        <externalId>false</externalId>
+        <formula>TagNo__r.Name</formula>
+        <label>Tag Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TagNo__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Display Functional Location</description>
+        <externalId>false</externalId>
+        <label>Tag No.</label>
+        <referenceTo>Functional_Location__c</referenceTo>
+        <relationshipName>Risk1</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Threat__c</fullName>
+        <description>To select threat of risk record</description>
+        <externalId>false</externalId>
+        <label>Threat</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>UpDT incident</fullName>
+                    <default>false</default>
+                    <label>UpDT incident</label>
+                </value>
+                <value>
+                    <fullName>Process Safety, LOPC</fullName>
+                    <default>false</default>
+                    <label>Process Safety, LOPC</label>
+                </value>
+                <value>
+                    <fullName>Stationary Equipment Integrity</fullName>
+                    <default>false</default>
+                    <label>Stationary Equipment Integrity</label>
+                </value>
+                <value>
+                    <fullName>Equipment Frequent Failures</fullName>
+                    <default>false</default>
+                    <label>Equipment Frequent Failures</label>
+                </value>
+                <value>
+                    <fullName>Frequent Violation of PTM limits</fullName>
+                    <default>false</default>
+                    <label>Frequent Violation of PTM limits</label>
+                </value>
+                <value>
+                    <fullName>Others</fullName>
+                    <default>false</default>
+                    <label>Others</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Unit__c</fullName>
+        <description>Display Unit of selected Tag no.</description>
+        <externalId>false</externalId>
+        <formula>TagNo__r.Location__c</formula>
+        <label>Unit</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txtPlanningPlant__c</fullName>
+        <externalId>false</externalId>
+        <label>Planning Plant</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txtTagNo__c</fullName>
+        <description>To search in list view</description>
+        <externalId>false</externalId>
+        <label>Tag No.</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Threat</label>
+    <listViews>
+        <fullName>APUA</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>InitiativeDate__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>InitialRisk__c</columns>
+        <columns>FinalRisk__c</columns>
+        <columns>RiskStatus__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>A</value>
+        </filters>
+        <label>APU A</label>
+    </listViews>
+    <listViews>
+        <fullName>APUB</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>InitiativeDate__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>InitialRisk__c</columns>
+        <columns>FinalRisk__c</columns>
+        <columns>RiskStatus__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>B</value>
+        </filters>
+        <filters>
+            <field>RiskStatus__c</field>
+            <operation>notContain</operation>
+            <value>Closed</value>
+        </filters>
+        <label>APU B</label>
+    </listViews>
+    <listViews>
+        <fullName>APUC</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>InitiativeDate__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>InitialRisk__c</columns>
+        <columns>FinalRisk__c</columns>
+        <columns>RiskStatus__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>C</value>
+        </filters>
+        <filters>
+            <field>RiskStatus__c</field>
+            <operation>notEqual</operation>
+            <value>Closed</value>
+        </filters>
+        <label>APU C</label>
+    </listViews>
+    <listViews>
+        <fullName>APUD</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>InitiativeDate__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>InitialRisk__c</columns>
+        <columns>FinalRisk__c</columns>
+        <columns>RiskStatus__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>D</value>
+        </filters>
+        <label>APU D</label>
+    </listViews>
+    <listViews>
+        <fullName>APUE</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>InitiativeDate__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>InitialRisk__c</columns>
+        <columns>FinalRisk__c</columns>
+        <columns>RiskStatus__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>E</value>
+        </filters>
+        <label>APU E</label>
+    </listViews>
+    <listViews>
+        <fullName>APUF</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>InitiativeDate__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>InitialRisk__c</columns>
+        <columns>FinalRisk__c</columns>
+        <columns>RiskStatus__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>F</value>
+        </filters>
+        <label>APU F</label>
+    </listViews>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>InitiativeDate__c</columns>
+        <columns>Threat__c</columns>
+        <columns>IntConsEffect__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>InitialRisk__c</columns>
+        <columns>FinalRisk__c</columns>
+        <columns>RiskStatus__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Chayut_LIST</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>InitiativeDate__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>InitialRisk__c</columns>
+        <columns>FinalRisk__c</columns>
+        <columns>RiskStatus__c</columns>
+        <columns>AssessmentType__c</columns>
+        <columns>IntConsEffect__c</columns>
+        <columns>Threat__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>C</value>
+        </filters>
+        <filters>
+            <field>RiskStatus__c</field>
+            <operation>equals</operation>
+            <value>New,Mitigation,Awaiting Final Assessment</value>
+        </filters>
+        <filters>
+            <field>PlantSection__c</field>
+            <operation>equals</operation>
+            <value>TOC5</value>
+        </filters>
+        <label>Chayut TOC-3</label>
+        <sharedTo>
+            <group>ENMC</group>
+            <group>MFOP</group>
+            <group>MROC</group>
+            <group>TNPC</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>RiskCriticalBetweenLAndLN</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>InitiativeDate__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>InitialRisk__c</columns>
+        <columns>FinalRisk__c</columns>
+        <columns>RiskStatus__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>InitialRisk__c</field>
+            <operation>equals</operation>
+            <value>L,L/N</value>
+        </filters>
+        <label>Threat critical between L and L/N</label>
+    </listViews>
+    <listViews>
+        <fullName>RiskCriticalH</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>InitiativeDate__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>InitialRisk__c</columns>
+        <columns>FinalRisk__c</columns>
+        <columns>RiskStatus__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>InitialRisk__c</field>
+            <operation>equals</operation>
+            <value>H</value>
+        </filters>
+        <label>Threat Critical H</label>
+    </listViews>
+    <listViews>
+        <fullName>RiskCriticalM</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>InitiativeDate__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>InitialRisk__c</columns>
+        <columns>FinalRisk__c</columns>
+        <columns>RiskStatus__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>InitialRisk__c</field>
+            <operation>equals</operation>
+            <value>M</value>
+        </filters>
+        <label>Threat Critical M</label>
+    </listViews>
+    <listViews>
+        <fullName>RiskcriticalbetweenHandM</fullName>
+        <columns>NAME</columns>
+        <columns>txtTagNo__c</columns>
+        <columns>APU__c</columns>
+        <columns>PlantSection__c</columns>
+        <columns>txtPlanningPlant__c</columns>
+        <columns>InitiativeDate__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>RiskScenario__c</columns>
+        <columns>InitialRisk__c</columns>
+        <columns>FinalRisk__c</columns>
+        <columns>RiskStatus__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>InitialRisk__c</field>
+            <operation>equals</operation>
+            <value>M,H</value>
+        </filters>
+        <label>Threat critical between H and M</label>
+    </listViews>
+    <nameField>
+        <label>Threat No.</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
+        <excludedStandardButtons>NewFromDocument</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Import</excludedStandardButtons>
+        <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>PrintableListView</excludedStandardButtons>
+        <listViewButtons>ORTLNewRisk</listViewButtons>
+        <searchResultsAdditionalFields>txtTagNo__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>APU__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PlantSection__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>InitiativeDate__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.FIRST_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RiskScenario__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>InitialRisk__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FinalRisk__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RiskStatus__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <validationRules>
+        <fullName>ORTLRiskCheckFinalRiskAssessment</fullName>
+        <active>true</active>
+        <description>Input value before save data.</description>
+        <errorConditionFormula>text(RiskStatus__c) = &apos;Closed&apos; &amp;&amp; text(FinalRisk__c) = &apos;&apos;</errorConditionFormula>
+        <errorMessage>Please select final risk assessment before save.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ORTLRiskCheckIsChangeRiskNo</fullName>
+        <active>true</active>
+        <description>To check if user change risk no.</description>
+        <errorConditionFormula>AND(
+    NOT(ISNEW()),
+    ISCHANGED( Name ),
+    NOT($Profile.Name = &quot;ผู้ดูแลระบบ&quot;)
+)</errorConditionFormula>
+        <errorDisplayField>Name</errorDisplayField>
+        <errorMessage>Cannot change value of Risk No.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>ORTLEditRisk</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Edit</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/lightning/cmp/c__ORTLEditRiskPage?c__recordId={!ORTLRisk__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>ORTLNewRisk</fullName>
+        <availability>online</availability>
+        <description>new risk page</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/lightning/cmp/c__ORTLCreateRiskPage</url>
+    </webLinks>
+</CustomObject>

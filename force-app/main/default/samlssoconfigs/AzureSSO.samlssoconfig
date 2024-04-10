@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SamlSsoConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <identityLocation>SubjectNameId</identityLocation>
+    <identityMapping>FederationId</identityMapping>
+    <issuer>https://sts.windows.net/894f6e4e-e59c-47ff-be1e-b63a852cfb53/</issuer>
+    <loginUrl>https://login.microsoftonline.com/894f6e4e-e59c-47ff-be1e-b63a852cfb53/saml2</loginUrl>
+    <name>AzureSSO</name>
+    <oauthTokenEndpoint>https://thaioil--devm41.sandbox.my.salesforce.com/services/oauth2/token</oauthTokenEndpoint>
+    <redirectBinding>true</redirectBinding>
+    <requestSignatureMethod>1</requestSignatureMethod>
+    <requestSigningCertId>0P12v000009eR0Z</requestSigningCertId>
+    <salesforceLoginUrl>https://thaioil--devm41.sandbox.my.salesforce.com</salesforceLoginUrl>
+    <samlEntityId>https://thaioil.my.salesforce.com</samlEntityId>
+    <samlVersion>SAML2_0</samlVersion>
+    <singleLogoutBinding>RedirectBinding</singleLogoutBinding>
+    <singleLogoutUrl>https://login.microsoftonline.com/894f6e4e-e59c-47ff-be1e-b63a852cfb53/saml2</singleLogoutUrl>
+    <userProvisioning>true</userProvisioning>
+    <validationCert>MIIC8DCCAdigAwIBAgIQYRCHoHN3iq5O/AYo/wvNqzANBgkqhkiG9w0BAQsFADA0MTIwMAYDVQQDEylNaWNyb3NvZnQgQXp1cmUgRmVkZXJhdGVkIFNTTyBDZXJ0aWZpY2F0ZTAeFw0yMTAzMjQwOTE0NDBaFw0yNDAzMjQwOTE0NDBaMDQxMjAwBgNVBAMTKU1pY3Jvc29mdCBBenVyZSBGZWRlcmF0ZWQgU1NPIENlcnRpZmljYXRlMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsveTPYXi1LmSbhPtJYlhDaunnlY1J7Z+AuP+C68lHuGGj2zrfiyv8ELcxGY3mxDM7Q7veCc4Q/x4DmI9gcp3/iemRu7kQVj/YOhEhTfpdOD0+kQK4KF55aVjZA9FizsQdQi7ch/BVN7n7VrcNDVQEgnGynf2r0KfOBccqC07mtvaSBBRJ7gqLCxyymR0DNCsK0OegyiJGTnxo0Y5KihzCN2dnd4IlHgCmEqwRmX9AnJutTA+Uvk6tzLGuCertXBXFebJDqMbLSRzfgFYp4lgkMgPTN4OrtwDZPYOf9p25INn8g67e+MxchhaBLmjnEI7ZpD0BInL7rdDmkYW3dL2cQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQBJDah8uBOfYlCp8ikfTcHh1rN0c5Mu2yGU9/sKjX8wL3apn80N/wF5yxpc1V0R54PoGECP6OyHpkOxTEp2UXoDRlGMdfJzaqfV2MUzLnYtvcnkaOjdePGXssCvjK8FyHVXLb6Q+xCUycsZsWnjAjM02coscx7xldqikmHyx0lgyMwNd7Y9WHAsWz9FI9TWl5heiic8cJydEPst97pKS4O7U63cKCYxWrqx4Q+M/ATxKSotgUz3XOjyNDhAfL4QFKb3A5rQwrBvmmE/wC4vPZZq0XKP7NsSzHlva3FAs5MVhHn58xDOP2SP/ArpWlVqoGRAINRI2h05qPaqSJaQdVCp</validationCert>
+</SamlSsoConfig>

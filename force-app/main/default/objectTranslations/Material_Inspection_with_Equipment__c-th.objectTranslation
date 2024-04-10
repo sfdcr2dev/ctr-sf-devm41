@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Material Inspection with Equipment*</value>
+    </caseValues>
+    <fields>
+        <label><!-- Discipline --></label>
+        <name>Discipline__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Inspection (FAT/SAT) --></label>
+        <name>Material_Inspection_FAT_SAT__c</name>
+        <relationshipLabel><!-- Material Inspection with Equipment* --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Material Inspection --></label>
+        <name>Material_Inspection__c</name>
+        <picklistValues>
+            <masterLabel>FAT (Factory Acceptance Test)</masterLabel>
+            <translation><!-- FAT (Factory Acceptance Test) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FAT and SAT</masterLabel>
+            <translation><!-- FAT and SAT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAT (Site Acceptance Test)</masterLabel>
+            <translation><!-- SAT (Site Acceptance Test) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting to Confirm</masterLabel>
+            <translation><!-- Waiting to Confirm --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Material Inspection with Equipment Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

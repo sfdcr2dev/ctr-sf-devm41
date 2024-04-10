@@ -1,0 +1,43 @@
+<!-- <aura:component implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+access="global"> -->
+<aura:component implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+access="global" controller="TOPAUTH_AUTHENTICATION">
+
+  <aura:attribute name="urlPC" type="String"/>
+  <aura:attribute name="urlKPI" type="String"/>
+  <aura:attribute name="urlMF" type="String"/>
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+  <aura:attribute name="operation" type="Boolean" />
+
+    <div class="card">
+        <div class="slds-card__header slds-grid">
+          <header class="slds-media slds-media_center slds-has-flexi-truncate">
+            <div class="slds-media__body">
+              <lightning:tabset variant="scoped">
+                <aura:if isTrue="{!v.operation}">
+                  <lightning:tab label="MF KPI Dashboard">
+                    <iframe src="{!v.urlMF}" class="iframe"></iframe><br />
+                  </lightning:tab>
+                </aura:if>
+                <lightning:tab label="Corporate KPI">
+                    <div class="right">
+						<a href="https://pro.thaioilgroup.com/kpi/ui_menu_report.aspx?" target="_blank">
+                        	<img src="{!$Resource.opennewtab}" style="position: sticky; width: 17px;"/>
+                    	</a>
+    				</div>
+                  <iframe src="{!v.urlKPI}" class="iframe"></iframe><br />
+                </lightning:tab>
+                <lightning:tab label="PC On Board">
+                    <div class="right">
+                    	<a href="https://pconboard.thaioilgroup.com" target="_blank">
+                        	<img src="{!$Resource.opennewtab}" style="position: sticky; width: 17px;"/>
+                    	</a>
+                    </div>
+                  <iframe src="{!v.urlPC}" class="iframe"></iframe><br />
+                </lightning:tab>
+              </lightning:tabset>
+            </div>
+          </header>
+        </div>
+      </div>
+</aura:component>

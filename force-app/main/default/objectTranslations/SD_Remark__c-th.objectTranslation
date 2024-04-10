@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Master Dashboard Remark</value>
+    </caseValues>
+    <fields>
+        <label><!-- Dashboard Name --></label>
+        <name>Dashboard_Name__c</name>
+        <picklistValues>
+            <masterLabel>Incident and Accident Ratio</masterLabel>
+            <translation><!-- Incident and Accident Ratio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SSHE Performance Dashboard</masterLabel>
+            <translation><!-- SSHE Performance Dashboard --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Remark --></label>
+        <name>Remark__c</name>
+    </fields>
+    <layouts>
+        <layout>Dashboard Remark Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

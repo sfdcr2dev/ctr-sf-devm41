@@ -1,0 +1,657 @@
+<apex:page controller="ADDashboardController" standardStylesheets="true" lightningStylesheets="false" sidebar="false" showHeader="false" applyHtmlTag="true" applyBodyTag="false" docType="html-5.0" language="th"> {!LanguageThai}
+
+    <apex:stylesheet value="{!URLFOR($Resource.ADDashboard, 'style.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.ADDashboard, 'reset.css')}"/>
+
+    <apex:form >
+        <html lang="en">
+        
+        <head>
+          <meta charset="UTF-8" />
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+          <title>AI-CPEM</title>
+          <style>
+            Body {
+                font-family: 'SalesforceSans';
+            }
+            .ProjectLink {
+                text-decoration : none;
+            }
+            .ProjectLink:hover {
+                color: rgba(225,19,131,1);
+            }
+            .ProjectYearSearch{
+                width:70%;
+            }
+            ._project-by-pm-container {
+                min-width: 768px;
+            }
+            @media only screen and (min-width: 768px) {
+              .is-hidden-desktop {
+                display: none;
+              }
+            }
+            @media only screen and (max-width: 768px) {
+              .is-hidden-mobile {
+                display: none;
+              }
+              .section {
+                padding: 10px;
+              }
+              .box {
+                padding: 16px;
+              }
+              ._search {
+                display: block;
+              }
+              ._search-label {
+                margin-bottom: 5px;
+              }
+              ._search .input {
+                width: 100% !important;
+              }
+              ._project-summary-boxes {
+                display: block;
+              }
+              ._project-summary-boxes > .box:not(:last-child) {
+                margin-right: 0;
+                margin-bottom: 24px;
+              }
+              ._project-summary-boxes img {
+                display: none;
+              }
+              ._new-project-label {
+                font-size: 14px;
+              }
+              ._pm-name {
+                display: block;
+                margin-top: 5px;
+              }
+              ._project-bottom {
+                display: block;
+              }
+              ._project-bottom > div {
+                margin-bottom: 24px;
+              }
+          </style>
+          <script>
+                document.getElementById(textid).style.fontWeight = "normal";
+          </script>
+        </head>
+        <apex:pageMessages />
+        <body>
+          <section class="section _section">
+        
+            <div class="boxes _project-summary-boxes">
+              <div class="box is-flex-1 push-right">
+                <div class="card-title">
+                  <div class="icon">
+                    <img src="{!URLFOR($Resource.icons,'project.png')}" />
+                  </div>
+                  <div class="name">
+                    Project
+                  </div>
+                </div>
+        
+                <div class="is-flex">
+                  <div class="is-flex-1 text-primary text-weight-bold text-center">
+                    <div class="block">Total</div>
+                    <div class="text-size-xlarge">{!TotalProject}</div>
+                  </div>
+                  <div>
+                    <div
+                      class="vertical-line"
+                      style="height: 60px"
+                    ></div>
+                  </div>
+                  <div class="is-flex-1 text-secondary text-weight-bold text-center">
+                    <div class="is-flex is-flex is-centered">
+                      <img src="{!URLFOR($Resource.icons,'on-going-project.png')}" />
+                      <div>
+                        <div class="block">Ongoing</div>
+                        <div class="text-size-xlarge text-left">{!TotalOnGoingProject}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="vertical-line"
+                      style="height: 60px"
+                    ></div>
+                  </div>
+                  <div class="is-flex-1 text-tertiary text-weight-bold text-center">
+                    <div class="is-flex is-flex is-centered">
+                      <img src="{!URLFOR($Resource.icons,'complete.png')}" />
+                      <div>
+                        <div class="block">Completed</div>
+                        <div class="text-size-xlarge text-left">{!TotalCompletedProject}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+        
+              <div class="box is-flex-1">
+                <div class="card-title">
+                  <div class="icon">
+                    <img src="{!URLFOR($Resource.icons,'calendar.png')}" />
+                  </div>
+                  <div class="name">
+                    Project by Year
+                  </div>
+                </div>
+        
+                <div class="is-flex">
+                  <div class="is-flex-1">
+                    <div class="block text-weight-bold">Year</div>
+                    
+                    <!-- <apex:selectlist styleClass="ProjectYearSearch select is-fullwidth" style="widhth:70%" value="{!ChooseYear}" multiselect="false" size="1">
+                        <apex:selectoptions value="{!YearList}" />
+                    </apex:selectlist>
+                    <apex:commandButton style="padding: 6px;margin-left:10px; background: rgba(225,19,131,1);color: white;font-weight: 100;border: rgba(225,19,131,1);" value="Search" action="{!SearchProjectByYear}" reRender="" /> -->
+                    
+                    <select id="selectYear" class="select is-fullwidth" style="width:70%;" >
+                      <apex:repeat value="{!LastThreeYearList}" var="year">
+                          <option value="year">
+                              {!ChooseYear}
+                          </option>
+                      </apex:repeat>
+                    </select>
+                    <apex:commandButton style="padding: 6px;margin-top:10px; background: rgba(225,19,131,1);color: white;font-weight: 100;border: rgba(225,19,131,1);" value="Search" action="{!SearchProjectByYear}" reRender="" />
+                    
+                  </div>
+                  <div>
+                    <div
+                      class="vertical-line"
+                      style="height: 60px"
+                    ></div>
+                  </div>
+                  
+                      <div class="is-flex-1 text-new-project text-weight-bold text-center">
+                        <div class="is-flex is-centered">
+                          <img src="{!URLFOR($Resource.icons,'new-project.png')}" />
+                          <div>
+                            <div class="block _new-project-label">New Project</div>
+                            <div class="text-size-xlarge text-left">{!YearNewProject}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <div
+                          class="vertical-line"
+                          style="height: 60px"
+                        ></div>
+                      </div>
+                      <div class="is-flex-1 text-tertiary text-weight-bold text-center">
+                        <div class="is-flex is-centered">
+                          <img src="{!URLFOR($Resource.icons,'complete.png')}" />
+                          <div>
+                            <div class="block">Completed</div>
+                            <div class="text-size-xlarge text-left">{!YearCompletedProject}</div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+              </div>
+            </div>
+        
+            <div class="box text-weight-bold">
+              <div class="card-title">
+                <div class="icon">
+                  <img src="{!URLFOR($Resource.icons,'star.png')}" />
+                </div>
+                <div class="name">
+                  Project Status by PM
+                </div>
+              </div>
+        
+              <div class="block is-flex">
+                <div class="is-flex is-flex-1"></div>
+                <div
+                  class="is-hidden-mobile"
+                  style="width: 15%"
+                >Total Project</div>
+                <div
+                  class="is-hidden-mobile"
+                  style="width: 15%"
+                >% Completed</div>
+                <div
+                  class="is-hidden-desktop"
+                  style="width: 15%"
+                >Total</div>
+                <div
+                  class="is-hidden-desktop"
+                  style="width: 18%"
+                >Compl.</div>
+              </div>
+              
+              <apex:repeat value="{!PMWrappers}" var="PM">
+                  <div class="block is-flex">
+                    <div style="width: 20%;">
+                      
+                          <img
+                        src="{!URLFOR($Resource.icons,'user.png')}"
+                        height="24"
+                        class="push-right" />
+                      <span class="_pm-name">{!PM.PMName}</span>
+                      
+                    </div>
+                    <div class="bar-chart is-flex-1">
+                      <!-- 
+                        max = 12
+                        width = 6/12*100 % 
+                      -->
+                      <div
+                        class="bar is-secondary"
+                        style="{! 'width: ' + PM.OngoingWidthPercent + '%'}"
+                      >
+                      <apex:outputPanel rendered="{!PM.OnGoingProject > 0}">
+                          {!PM.OnGoingProject}
+                      </apex:outputPanel>
+                      </div>
+                      <div
+                        class="bar is-tertiary"
+                        style="{! 'width: ' + PM.CompletedWidthPercent + '%'}"
+                      >
+                      <apex:outputPanel rendered="{!PM.CompletedProject > 0}">
+                          {!PM.CompletedProject}
+                      </apex:outputPanel>
+                      </div>
+                    </div>
+                    <div style="width: 15%">{!PM.TotalProject}</div>
+                    <div
+                      style="width: 15%"
+                      class="text-tertiary"
+                    >
+                        {!PM.CompletedProjectPercent}
+                        <apex:outputPanel rendered="{!PM.CompletedProjectPercent != null}">%</apex:outputPanel>
+                    </div>
+                  </div>
+              </apex:repeat>
+              
+              <div class="is-flex is-right">
+                <div class="bar-chart is-align-center push-right">
+                  <div
+                    class="bar is-secondary push-right"
+                    style="width: 12px; height: 12px;"
+                  ></div>
+                  <div>Ongoing</div>
+                </div>
+                <div class="bar-chart is-align-center ">
+                  <div
+                    class="bar is-tertiary push-right"
+                    style="width: 12px; height: 12px;"
+                  ></div>
+                  <div>Completed</div>
+                </div>
+              </div>
+            </div>
+        
+            <div class="box">
+              <div class="is-flex is-between">
+                <div class="card-title">
+                  <div class="icon">
+                    <img src="{!URLFOR($Resource.icons,'user.png')}" />
+                  </div>
+                  <div class="name">
+                    Project by PM
+                  </div>
+                </div>
+                <div class="is-flex is-align-center">
+                    <span class="text-weight-bold" style="white-space: nowrap;">
+                          Total PM :</span>
+                    <span class="text-size-xlarge text-weight-bold text-primary">{!TotalPM}</span>
+                </div>
+              </div>
+        
+        
+              <div class="block-2 is-flex is-centered _search">
+                <div class="_search-label">Search:</div>
+                <div class="is-flex is-centered">
+                  <apex:inputText styleClass="input" style="width:420px" value="{!EnteredProject}" html-placeholder="Project Manager, Project Number, Project Name" />
+                </div>
+                <div>
+                  <apex:commandButton style="width:70px;background:rgba(225,19,131,1)" image="{!URLFOR($Resource.search_button)}" action="{!SearchProjectByName}" reRender="projectByPMs" />
+                </div>
+              </div>
+        
+              <div style="overflow: auto">
+        
+                  <div class="block is-flex _project-by-pm-container">
+                    <div
+                      class="text-weight-bold"
+                      style="width: 22%"
+                    >PM Name</div>
+                    <div
+                      class="text-weight-bold"
+                      style="width: 45%"
+                    >Project Name</div>
+                    <div
+                      class="text-weight-bold"
+                      style="width: 33%"
+                    >Current Step</div>
+                  </div>
+        
+              
+                  <apex:outputPanel id="projectByPMs">
+                      <apex:variable value="" var="prevPMName"/>
+                      <apex:variable value="" var="currentPMName"/>
+                      <apex:repeat value="{!SearchWrappers}" var="search">
+                          <div class="is-flex _project-by-pm-container">
+                          
+                            <apex:variable value="{!search.PMName}" var="prevPMName"/>
+                                <div style="width: 22%">
+                                    <apex:outputPanel rendered="{!prevPMName != currentPMName}">
+                                      <div class="box is-gray card-row-item">
+                                            <span class="card-row-item-content">
+                                                    {!search.PMName}
+                                            </span>
+                                      </div>
+                                    </apex:outputPanel>
+                                </div>
+                            <apex:variable value="{!search.PMName}" var="currentPMName"/>
+                                        
+                            <div style="width: 45%">
+                              <div class="box is-gray card-row-item">
+                                <a class="ProjectLink" style="text-decoration:none;" href="{!search.ProjectUrl}" target="_blank">
+                                      {!search.ProjectName}
+                                  </a>
+                              </div>
+                              <!-- <div class="box is-gray card-row-item">
+                                <a
+                                  href="#"
+                                  class="text-link card-row-item-content"
+                                >R-1415001 - Improve Energy Saving at MPU Unit Project (MPES) MPU Unit Project (MPES)MPU Unit Project
+                                  (MPES)MPU Unit Project (MPES)</a>
+                              </div> -->
+                            </div>
+                            <div style="width: 33%">
+                              <div class="box is-gray card-row-item">
+                                  
+                                  <apex:outputPanel rendered="{!OR(search.ProjectNo == 1,search.ProjectNo == 2,search.ProjectNo == 3)}">
+                                      <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g1-project-scope_gray.png')}" /> 
+                                  </apex:outputPanel>
+                                  <apex:outputPanel rendered="{!OR(search.ProjectNo == 4,search.ProjectNo == 24,search.ProjectNo == 26,search.ProjectNo == 27,search.ProjectNo == 28)}">
+                                      <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g8-execution_gray.png')}" />
+                                  </apex:outputPanel>
+                                  <apex:outputPanel rendered="{!OR(search.ProjectNo == 5,search.ProjectNo == 10,search.ProjectNo == 11,search.ProjectNo == 18,search.ProjectNo == 19,search.ProjectNo == 20,search.ProjectNo == 22)}">
+                                      <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g4-procurement-status-report_gray.png')}" />
+                                  </apex:outputPanel>
+                                  <apex:outputPanel rendered="{!OR(search.ProjectNo == 6,search.ProjectNo == 9,search.ProjectNo == 16,search.ProjectNo == 25)}">
+                                      <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g2-project-cost-control_gray.png')}" />
+                                  </apex:outputPanel>
+                                  <apex:outputPanel rendered="{!OR(search.ProjectNo == 7,search.ProjectNo == 8,search.ProjectNo == 16,search.ProjectNo == 25)}">
+                                      <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g3-project-schedule-control_gray.png')}" />
+                                  </apex:outputPanel>
+                                  <apex:outputPanel rendered="{!OR(search.ProjectNo == 12,search.ProjectNo == 15,search.ProjectNo == 17)}">
+                                      <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g6-engineering_gray.png')}" />
+                                  </apex:outputPanel>
+                                  <apex:outputPanel rendered="{!search.ProjectNo == 23}">
+                                      <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g7-material-control_gray.png')}" />
+                                  </apex:outputPanel>
+                                  <apex:outputPanel rendered="{!OR(search.ProjectNo == 29,search.ProjectNo == 30,search.ProjectNo == 31,search.ProjectNo == 32)}">
+                                      <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g9-project-handover_gray.png')}" />
+                                  </apex:outputPanel>
+                                  <apex:outputPanel rendered="{!search.ProjectNo == 0}">
+                                      <img id="push-right" style="width:24px;" src="{!URLFOR($Resource.icons,'g10-risk-analyst_gray.png')}" />
+                                  </apex:outputPanel>
+                                  
+                                  <a class="ProjectLink card-row-item-content" style="text-decoration:none;" href="{!search.CurrentStepUrl}" target="_blank">
+                                      &nbsp;{!search.CurrentStep}
+                                  </a>
+                                <!-- <img
+                                  class="push-right"
+                                  src="{!URLFOR($Resource.icons,'g4-procurement-status-report-circle.png')}" />
+                                <a
+                                  href="#"
+                                  class="text-link card-row-item-content"
+                                >10. ITB Standard TB StandardTB StandardTB Standard</a> -->
+                              </div>
+                              <!-- <div class="box is-gray card-row-item">
+                                <img
+                                  class="push-right"
+                                  src="image/g9-project-handover-circle.png" />
+                                <a
+                                  href="#"
+                                  class="text-link card-row-item-content"
+                                >29. MCA</a>
+                              </div> -->
+                            </div>
+                          </div>
+                      </apex:repeat>
+                  </apex:outputPanel>
+                </div>
+            </div>
+        
+            <div class="is-flex _project-bottom">
+              <div class="is-flex-1">
+                <div class="box">
+                  <div class="is-flex is-between">
+                    <div class="card-title">
+                      <div class="icon">
+                        <img src="{!URLFOR($Resource.icons,'on-going-project.png')}" />
+                      </div>
+                      <div class="name">
+                        Ongoing Project
+                      </div>
+                    </div>
+                    <div class="is-flex is-align-center">
+                      <span class="text-weight-bold">Total</span>
+                      <span class="text-size-xlarge text-weight-bold text-secondary push-right">{!TotalOnGoingProject}</span>
+                      <div
+                        id="ongoingCardExpander"
+                        onclick="toggleOngoingCard()"
+                        class="arrow-down is-clickable"
+                      ></div>
+                    </div>
+                  </div>
+        
+                  <div id="ongoingCard">
+                      <apex:repeat value="{!OngoingProjectWrappers}" var="Ongoing">
+                      
+                        <div class="box is-box-card">
+                          <div class="block box is-box-header is-secondary card-row-item">
+                            <span class="card-row-item-content text-invert">{!Ongoing.ProjectName}</span>
+                          </div>
+                          <div class="box-card-content">
+                            <div class="block">
+                              <span>PM :</span>
+                              <span>{!Ongoing.PMName}</span>
+                            </div>
+                            <div class="is-flex is-between">
+                              <div class="box is-gray is-box-plan">
+                                <div class="block">
+                                  <img
+                                    src="{!URLFOR($Resource.icons,'calendar.png')}"
+                                    width="16" />
+                                  <span class="text-label">Plan</span>
+                                </div>
+                                <div class="is-flex">
+                                  <div>
+                                    <div class="block text-size-small">Start Date</div>
+                                    <div>{!Ongoing.PlanStartDate}</div>
+                                  </div>
+                                  <div>
+                                    <div class="block text-size-small">End Date</div>
+                                    <div>{!Ongoing.PlanEndDate}</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div>
+                                <div class="block">
+                                  <img
+                                    src="{!URLFOR($Resource.icons,'calendar.png')}"
+                                    width="16" />
+                                  <span class="text-label">Actual</span>
+                                </div>
+                                <div>
+                                  <div class="block text-label text-size-small">Start Date</div>
+                                  <div>{!Ongoing.ActualStartDate}</div>
+                                </div>
+                              </div>
+                              <div>
+                                <div class="block">
+                                  <span class="block text-label">Work Process</span>
+                                </div>
+                                <div>
+                                  <div class="block text-size-small text-tertiary">Completed</div>
+                                  <div class="text-tertiary">
+                                      <apex:outputPanel rendered="{!Ongoing.CompletedWP != 0}">
+                                          <apex:outputPanel rendered="{!OR(Ongoing.IsDisable1011 == true, Ongoing.IsDisable1819 == true)}">
+                                                <apex:outputText value="{!Ongoing.CompletedWP}/30" />
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!AND(Ongoing.IsDisable1011 == false, Ongoing.IsDisable1819 == false)}">
+                                                <apex:outputText value="{!Ongoing.CompletedWP}/32" />
+                                            </apex:outputPanel>
+                                      </apex:outputPanel>
+                                      <apex:outputPanel rendered="{!Ongoing.CompletedWP == 0}">
+                                        <apex:outputPanel rendered="{!OR(Ongoing.IsDisable1011 == true, Ongoing.IsDisable1819 == true)}">
+                                            <apex:outputText value="0/30" />
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!AND(Ongoing.IsDisable1011 == false, Ongoing.IsDisable1819 == false)}">
+                                            <apex:outputText value="0/32" />
+                                        </apex:outputPanel>
+                                      </apex:outputPanel>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </apex:repeat>
+                  </div>
+                </div>
+              </div>
+        
+              <!--  -->
+        
+              <div class="is-flex-1">
+                <div class="box">
+                  <div class="is-flex is-between">
+                    <div class="card-title">
+                      <div class="icon">
+                        <img src="{!URLFOR($Resource.icons,'complete.png')}" />
+                      </div>
+                      <div class="name">
+                        Completed Project
+                      </div>
+                    </div>
+                    <div class="is-flex is-align-center">
+                      <span class="text-weight-bold">Total</span>
+                      <span class="text-size-xlarge text-weight-bold text-tertiary push-right">{!TotalCompletedProject}</span>
+                      <div
+                        id="completeCardExpander"
+                        onclick="toggleCompleteCard()"
+                        class="arrow-down is-clickable"
+                      ></div>
+                    </div>
+                  </div>
+        
+                  <div id="completeCard">
+                      
+                    <apex:repeat value="{!CompletedProjectWrappers}" var="Completed">
+                        <div class="box is-box-card">
+                          <div class="block box is-box-header is-tertiary card-row-item">
+                            <span class="card-row-item-content text-invert">{!Completed.ProjectName}</span>
+                          </div>
+                          <div class="box-card-content">
+                            <div class="block">
+                              <span>PM :</span>
+                              <span>{!Completed.PMName}</span>
+                            </div>
+                            <div class="is-flex is-between">
+                              <div class="box is-gray is-box-plan">
+                                <div class="block">
+                                  <img
+                                    src="{!URLFOR($Resource.icons,'calendar.png')}"
+                                    width="16" />
+                                  <span class="text-label">Plan</span>
+                                </div>
+                                <div class="is-flex">
+                                  <div>
+                                    <div class="block text-size-small">Start Date</div>
+                                    <div>{!Completed.PlanStartDate}</div>
+                                  </div>
+                                  <div>
+                                    <div class="block text-size-small">End Date</div>
+                                    <div>{!Completed.PlanEndDate}</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div>
+                                <div class="block">
+                                  <img
+                                    src="{!URLFOR($Resource.icons,'calendar.png')}"
+                                    width="16" />
+                                  <span class="text-label">Actual</span>
+                                </div>
+                                <div>
+                                  <div class="block text-label text-size-small">Start Date</div>
+                                  <div>{!Completed.ActualStartDate}</div>
+                                </div>
+                              </div>
+                              <div>
+                                <div class="block">
+                                  <span class="block text-label">&nbsp;</span>
+                                </div>
+                                <div>
+                                  <div class="block text-size-small">End date</div>
+                                  <div>{!Completed.ActualEndDate}</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </apex:repeat>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+          </section>
+        
+        
+          <script>
+          
+            var ongoingCard = document.getElementById('ongoingCard');
+            var ongoingCardExpander = document.getElementById('ongoingCardExpander');
+            var isOngoingCardExpand = false;
+        
+            var completeCard = document.getElementById('completeCard');
+            var completeCardExpander = document.getElementById('completeCardExpander');
+            var isCompleteCardExpand = false;
+        
+            function toggleOngoingCard() {
+              isOngoingCardExpand = !isOngoingCardExpand;
+              setCardExpand(ongoingCard, ongoingCardExpander, isOngoingCardExpand);
+            }
+        
+            function toggleCompleteCard() {
+              isCompleteCardExpand = !isCompleteCardExpand;
+              setCardExpand(completeCard, completeCardExpander, isCompleteCardExpand);
+            }
+        
+            function setCardExpand(card, expander, isExpand) {
+              if (isExpand) {
+                card.style.display = 'block';
+                expander.classList.remove('arrow-right');
+                expander.classList.add('arrow-down');
+              } else {
+                card.style.display = 'none';
+                expander.classList.remove('arrow-down');
+                expander.classList.add('arrow-right');
+              }
+            }
+        
+            setCardExpand(ongoingCard, ongoingCardExpander, isOngoingCardExpand);
+            setCardExpand(completeCard, completeCardExpander, isCompleteCardExpand);
+            
+          </script>
+        </body>
+        
+        </html>
+    </apex:form>
+
+</apex:page>

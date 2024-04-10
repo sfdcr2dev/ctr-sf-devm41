@@ -1,0 +1,83 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName,force:lightningQuickActionWithoutHeader" controller="CTRCheckDueDiligenceController" access="global">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="sObjectName" type="String" />
+    <aura:attribute name="recordObject" type="Object" />
+    <aura:attribute name="recordLoadError" type="String" />
+    <aura:attribute name="riskLevelList" type="List" />
+    <aura:attribute name="isLoaded" type="Boolean" default="false" />
+    <aura:attribute name="riskLevelBySystem" type="Object" />
+    <aura:attribute name="hasPermission" type="Boolean" default="false" />
+
+    <force:recordData aura:id="recordLoader" recordId="{!v.recordId}" fields="Id,Name,CompanyName__c" targetFields="{!v.recordObject}" targetError="{!v.recordLoadError}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.riskLevelBySystem}" action="{!c.handleRiskLevelBySystemChange}" />
+
+    <aura:html tag="style">
+        .slds-modal__container {
+        	width: 90% !important;
+            max-width: 80% !important;
+        	height: 100% !important;
+            /*   width:210mm;
+            height:297mm;*/
+        }
+        .cuf-content {
+            padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+            padding: 0rem !important;
+        }
+        .slds-modal__content {
+            overflow-y: hidden !important;
+            height: unset !important;
+            max-height: unset !important;
+        }
+    </aura:html>
+
+    <div class="slds-modal--large">
+        <div class="slds-modal__header slds-size_1-of-1">
+            <h2 class="slds-text-heading--medium">Due Diligence Result</h2>
+        </div>
+        <div class="slds-modal__content slds-var-p-around_xx-large slds-size_1-of-1 slds-is-relative slds-text-heading_small">
+            <div class="slds-var-p-bottom_medium">
+                <div class="slds-form slds-var-p-bottom_medium">
+                    <div class="slds-form-element slds-form-element_horizontal">
+                        <label class="slds-form-element__label">Company Name :</label>
+                        <div class="slds-form-element__control slds-var-p-top_xxx-small" style="padding-left: 0% !important;">
+                            <p><b>{!v.recordObject.CompanyName__c}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-var-p-bottom_medium">
+                <div class="slds-grid slds-wrap slds-var-p-around_small">
+                    <aura:iteration items="{!v.riskLevelList}" var="item">
+                        <div class="{!'slds-col slds-var-p-bottom_medium slds-size_1-of-' + (item.options.length + 1)}">
+                            <label class="slds-form-element__label">{!item.fieldLabel}&nbsp;
+                                <aura:renderIf isTrue="{!!empty(item.additionalInfo)}">
+                                    {!item.additionalInfo}
+                                </aura:renderIf>
+                            </label>
+                        </div>
+                        <aura:iteration items="{!item.options}" var="option">
+                            <div class="{!'slds-col slds-size_1-of-' + (item.options.length + 1) + ' slds-var-p-bottom_medium slds-var-p-left_xx-large slds-var-p-right_xx-large text-align-center'}">
+                                <button class="slds-button slds-button_neutral slds-container_fluid" onclick="{!c.handleRiskLevelClick}" style="{!IF(option.isSelected == true, 'color: ' + option.color + ';background-color: ' + option.backgroundColor + ';', '') + 'font-weight: 700;'}"
+                                    data-auraid="{!item.fieldName}" value="{!option.value}" disabled="{!item.disabled}">{!option.label}</button>
+                            </div>
+                        </aura:iteration>
+                    </aura:iteration>
+                </div>
+            </div>
+            <div class="custom-content">
+                <c:CTRDueDiligenceResult recordId="{!v.recordId}" sObjectName="{!v.sObjectName}" displayRiskBySystem="true" riskLevelBySystem="{!v.riskLevelBySystem}" />
+            </div>
+        </div>
+        <div class="modal-footer slds-modal__footer slds-size_1-of-1" style="text-align: center;">
+            <lightning:button variant="neutral" label="Cancel" onclick="{!c.handleCancel}" />
+            <lightning:button variant="neutral" label="Save" onclick="{!c.handleSave}" disabled="{!or(!v.isLoaded, !v.hasPermission)}" />
+            <lightning:button variant="brand" label="Submit" onclick="{!c.handleSubmit}" disabled="{!or(!v.isLoaded, !v.hasPermission)}" />
+        </div>
+        <aura:if isTrue="{!!v.isLoaded}">
+            <lightning:spinner variant="brand" style="z-index:2" />
+        </aura:if>
+    </div>
+</aura:component>

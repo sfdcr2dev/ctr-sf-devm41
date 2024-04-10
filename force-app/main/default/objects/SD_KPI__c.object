@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Benchmark__c</fullName>
+        <externalId>false</externalId>
+        <label>Benchmark</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>DJSI_Display__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>DJSI Display</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Initial__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Initial</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>KPI_Code_DJSI__c</fullName>
+        <externalId>false</externalId>
+        <label>KPI Code (DJSI)</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>KPI_Code_PTT__c</fullName>
+        <externalId>false</externalId>
+        <label>KPI Code (PTT)</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Operator__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>สัญลักษณ์ที่เกี่ยวข้องกับการระบุข้อมูล Target ของ KPI เช่น ต้องการให้ Target ไม่เกิน 5 ก็ให้เลือกเครื่องหมายเป็น &lt; (Less Than) เป็นต้น</inlineHelpText>
+        <label>Operator</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>N/A</fullName>
+                    <default>false</default>
+                    <label>N/A</label>
+                </value>
+                <value>
+                    <fullName>= (equal to)</fullName>
+                    <default>false</default>
+                    <label>= (equal to)</label>
+                </value>
+                <value>
+                    <fullName>&lt; (less than)</fullName>
+                    <default>false</default>
+                    <label>&lt; (less than)</label>
+                </value>
+                <value>
+                    <fullName>&gt; (more than)</fullName>
+                    <default>false</default>
+                    <label>&gt; (more than)</label>
+                </value>
+                <value>
+                    <fullName>≥ (greater than equal to)</fullName>
+                    <default>false</default>
+                    <label>≥ (greater than equal to)</label>
+                </value>
+                <value>
+                    <fullName>≤ (less than equal to)</fullName>
+                    <default>false</default>
+                    <label>≤ (less than equal to)</label>
+                </value>
+                <value>
+                    <fullName>≠ (not eqaul to)</fullName>
+                    <default>false</default>
+                    <label>≠ (not eqaul to)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Order__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>ระบุเลขลำดับของรายการ KPI เพื่อใช้ในการจัดลำดับในการแสดงข้อมูลในหน้า OEMS</inlineHelpText>
+        <label>Order</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PTT_Display__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>PTT Display</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Section__c</fullName>
+        <externalId>false</externalId>
+        <label>Section</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Short_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Short Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Target_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Target Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Leading</fullName>
+                    <default>false</default>
+                    <label>Leading</label>
+                </value>
+                <value>
+                    <fullName>Lagging</fullName>
+                    <default>false</default>
+                    <label>Lagging</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Unit__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Number</fullName>
+                    <default>false</default>
+                    <label>Number</label>
+                </value>
+                <value>
+                    <fullName>Case per mil. Man-hours</fullName>
+                    <default>false</default>
+                    <label>Case per mil. Man-hours</label>
+                </value>
+                <value>
+                    <fullName>Case</fullName>
+                    <default>false</default>
+                    <label>Case</label>
+                </value>
+                <value>
+                    <fullName>%</fullName>
+                    <default>false</default>
+                    <label>%</label>
+                </value>
+                <value>
+                    <fullName>ล้านลูกบาศก์เมตร (Million m3)</fullName>
+                    <default>false</default>
+                    <label>ล้านลูกบาศก์เมตร (Million m3)</label>
+                </value>
+                <value>
+                    <fullName>ล้านตันเทียบเท่าคาร์บอนไดออกไซด์</fullName>
+                    <default>false</default>
+                    <label>ล้านตันเทียบเท่าคาร์บอนไดออกไซด์</label>
+                </value>
+                <value>
+                    <fullName>Ton</fullName>
+                    <default>false</default>
+                    <label>Ton</label>
+                </value>
+                <value>
+                    <fullName>Million Ton</fullName>
+                    <default>false</default>
+                    <label>Million Ton</label>
+                </value>
+                <value>
+                    <fullName>Million M3</fullName>
+                    <default>false</default>
+                    <label>Million M3</label>
+                </value>
+                <value>
+                    <fullName>Million M3 per Million Ton Throughput</fullName>
+                    <default>false</default>
+                    <label>Million M3 per Million Ton Throughput</label>
+                </value>
+                <value>
+                    <fullName>% (Hazardous waste to landfill per Hazardous waste)</fullName>
+                    <default>false</default>
+                    <label>% (Hazardous waste to landfill per Hazardous waste)</label>
+                </value>
+                <value>
+                    <fullName>Million Man-hours</fullName>
+                    <default>false</default>
+                    <label>Million Man-hours</label>
+                </value>
+                <value>
+                    <fullName>Case per 200,000 Man-hours</fullName>
+                    <default>false</default>
+                    <label>Case per 200,000 Man-hours</label>
+                </value>
+                <value>
+                    <fullName>Hours</fullName>
+                    <default>false</default>
+                    <label>Hours</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Worker_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Worker Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>All</fullName>
+                    <default>false</default>
+                    <label>All</label>
+                </value>
+                <value>
+                    <fullName>Staff</fullName>
+                    <default>false</default>
+                    <label>Staff</label>
+                </value>
+                <value>
+                    <fullName>Contractor</fullName>
+                    <default>false</default>
+                    <label>Contractor</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Master OEMS</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>KPI Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

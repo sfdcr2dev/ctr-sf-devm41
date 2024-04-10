@@ -1,0 +1,52 @@
+<aura:component controller="ODM_FileUploadActionController" implements="flexipage:availableForRecordHome,force:hasRecordId">
+	<aura:attribute name="recordId" type="String" default="" />
+	<aura:attribute name="multiple" type="Boolean" default="true" />
+	<aura:attribute name="disabled" type="Boolean" default="true" />
+	<aura:attribute name="currentUploadedDocumentId" type="String" />
+	<aura:attribute name="hasWriteAccess" type="Boolean" default="false" />
+	<aura:attribute name="body" type="Aura.Component[]" />
+	<aura:attribute name="originalFileName" type="String" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<lightning:navigation aura:id="navLink" />
+    <!-- <aura:handler event="force:refreshView" action="{!c.doInit}" /> -->
+
+	<aura:registerEvent name="refreshFileList" type="c:THOR_Event_notificationAttachmentUploadFinished" />
+
+	<aura:attribute name="notificationInfo" type="Map" default="{}" />
+    <force:recordData aura:id="recordDataLoader" recordId="{!v.recordId}" fields="Integration_Status__c" targetFields="{!v.notificationInfo}" />
+    <aura:registerEvent name="refreshFileListEvt" type="c:ODM_WorkClearanceVerificationUploadRefresh"/>
+    
+    <div class="slds-grid slds-grid_align-spread">
+        <!-- <lightning:layout> -->
+            <!-- <lightning:layoutItem>
+                <lightning:buttonIcon
+                    class="slds-p-horizontal_large"
+                    size="large"
+                    variant="border-filled"
+                    iconName="utility:chevronleft"
+                    onclick="{!c.redirectBack}"/>
+            </lightning:layoutItem> -->
+    
+            <div class="slds-col">
+                <p class="slds-text-heading--large">Attachment</p>
+            </div>
+            <div >
+                <aura:if isTrue="{!v.body}">
+                    <aura:iteration items="{!v.body}" var="cmp">
+                        <div class="slds-col slds-grow-none slds-m-horizontal_xx-small">{!cmp}</div>
+                    </aura:iteration>
+                </aura:if>
+                <lightning:fileUpload
+                    class="muh-class slds-col slds-grow-none"
+                    label=""
+                    name="fileUploader"
+                    recordId="{!v.recordId}"
+                    onuploadfinished="{!c.handleUploadFinished}"
+                    onclick="{!c.uploadFile}"
+                />
+            </div>
+        <!-- </lightning:layout> -->
+    </div>
+
+</aura:component>

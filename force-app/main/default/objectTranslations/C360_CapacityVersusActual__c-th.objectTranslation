@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Capacity Versus Actual</value>
+    </caseValues>
+    <fields>
+        <label><!-- Actual Volume --></label>
+        <name>ActualVolume__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Date --></label>
+        <name>BillingDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Capacity Volume (MT) --></label>
+        <name>CapacityVolume__c</name>
+    </fields>
+    <fields>
+        <label><!-- Capacity --></label>
+        <name>Capacity__c</name>
+        <relationshipLabel><!-- Capacity Versus Actual --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>CompanyName__c</name>
+        <relationshipLabel><!-- Capacity Versus Actual --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Distribution Channel --></label>
+        <name>DistributionChannel__c</name>
+    </fields>
+    <fields>
+        <label><!-- ExternalID --></label>
+        <name>ExternalID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>Product__c</name>
+        <relationshipLabel><!-- Capacity Versus Actual --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>SalesOrganization__c</name>
+    </fields>
+    <layouts>
+        <layout>Capacity Versus Actual Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

@@ -1,0 +1,468 @@
+<aura:component implements="lightning:isUrlAddressable,force:hasRecordId" controller="ORTLRiskAssmntCtrl">
+    <lightning:navigation aura:id="navService" />
+    <lightning:notificationsLibrary aura:id="notifLib"/>
+
+    <aura:attribute name="isLoaded" type="Boolean" default="false" />
+    <aura:attribute name="isLoading" type="Boolean" default="false" />
+    <aura:attribute name="isFillTagNo" type="Boolean" default="true" access="public" />
+    <aura:attribute name="isSelectedCheckbox" type="Boolean" default="false" access="public" />
+    <aura:attribute name="isSelectedAddBox" type="Boolean" default="false" access="public" />
+    <aura:attribute name="canEditOwner" type="Boolean" default="false" />
+
+    <!-- ATTRIBUTE -->
+    <aura:attribute name="apu" type="String" default="" />
+    <aura:attribute name="unit" type="String" default="" />
+    <aura:attribute name="plantsection" type="String" default="" />
+    <aura:attribute name="discipline" type="String" default="" />
+    <aura:attribute name="planningplant" type="String" default="" />
+    <aura:attribute name="formData" type="Map" default="{}" />
+    <!-- ATTRIBUTES TO ADD ITEM -->
+    <aura:attribute name="relatedRisk" type="List" default="[]"/>
+    <aura:attribute name="loop" type="List" default="[]"/>
+
+    <!-- MODAL OPEN -->
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.doInit}" />
+
+    <div>
+        <lightning:card class="">
+            <div class="slds-is-relative">
+                <lightning:recordEditForm
+                    aura:id="editForm"
+                    density="comfy"
+                    objectApiName="ORTLRisk__c"
+                    recordId="{!v.recordId}"
+                    onload="{!c.handleLoad}"
+                    onsubmit="{!c.handleSubmit}"
+                >
+                    <lightning:layout multipleRows="true">
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="inputField"
+                                fieldName="TagNo__c"
+                                required="true"
+                                onchange="{!c.handleFunctionLocation}"
+                                variant=""
+                                value="{!v.formData.TagNo__c}"
+                                disabled="false"
+                            />
+                        </lightning:layoutItem>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="inputField"
+                                fieldName="Name"
+                                required="false"
+                                onchange="{!c.handleFunctionLocation}"
+                                variant=""
+                                value="{!v.formData.Name}"
+                                disabled="true"
+                            />
+                        </lightning:layoutItem>
+
+                        <aura:if isTrue="{!v.isFillTagNo}">
+                            <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                                <div class="slds-form-element slds-form-element_stacked slds-hide">
+                                    <lightning:input
+                                        type="text"
+                                        label="APU"
+                                        disabled="true"
+                                        value="{!v.apu}"
+                                    />
+                                </div>
+
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <lightning:inputField
+                                        aura:id="inputField"
+                                        fieldName="APU__c"
+                                        required="false"
+                                        onchange=""
+                                        variant=""
+                                        value="{!v.formData.APU__c}"
+                                        disabled="true"
+                                    />
+                                </div>
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                                <div class="slds-form-element slds-form-element_stacked slds-hide">
+                                    <lightning:input
+                                        type="text"
+                                        label="Discipline"
+                                        disabled="true"
+                                        value="{!v.discipline}"
+                                    />
+                                </div>
+
+                                <div class="slds-form-element slds-form-element_stacked slds-hide">
+                                    <lightning:inputField
+                                        aura:id="inputField"
+                                        fieldName="Discipline__c"
+                                        required="false"
+                                        onchange=""
+                                        variant=""
+                                        value="{!v.formData.Discipline__c}"
+                                        disabled="true"
+                                    />
+                                </div>
+
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <lightning:inputField
+                                        aura:id="inputField"
+                                        fieldName="txtPlanningPlant__c"
+                                        required="false"
+                                        onchange=""
+                                        variant=""
+                                        value="{!v.planningplant}"
+                                        disabled="true"
+                                    />
+                                </div>
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                                <div class="slds-form-element slds-form-element_stacked slds-hide">
+                                    <lightning:input
+                                        type="text"
+                                        label="Plant Section"
+                                        disabled="true"
+                                        value="{!v.plantsection}"
+                                    />
+                                </div>
+
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <lightning:inputField
+                                        aura:id="inputField"
+                                        fieldName="PlantSection__c"
+                                        required="false"
+                                        onchange=""
+                                        variant=""
+                                        value="{!v.formData.PlantSection__c}"
+                                        disabled="true"
+                                    />
+                                </div>
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <lightning:input
+                                        type="text"
+                                        label="Unit"
+                                        disabled="true"
+                                        value="{!v.unit}"
+                                    />
+                                </div>
+                            </lightning:layoutItem>
+                        </aura:if>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="inputField"
+                                fieldName="RiskStatus__c"
+                                required="false"
+                                onchange=""
+                                variant=""
+                                value="{!v.formData.RiskStatus__c}"
+                                disabled="true"
+                            />
+                        </lightning:layoutItem>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="inputField"
+                                fieldName="InitiativeDate__c"
+                                required="false"
+                                onchange=""
+                                variant=""
+                                value="{!v.formData.InitiativeDate__c}"
+                                disabled="true"
+                            />
+                        </lightning:layoutItem>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">
+                                    <abbr class="slds-required">*</abbr>
+                                    Owner
+                                </label>
+                                <div class="slds-form-element__control">
+                                    <lightning:inputField
+                                        aura:id="inputField"
+                                        fieldName="RiskInitiator__c"
+                                        required="true"
+                                        onchange=""
+                                        variant="label-hidden"
+                                        value="{!v.formData.RiskInitiator__c}"
+                                        disabled="{!not(v.canEditOwner)}"
+                                    />
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="inputField"
+                                fieldName="OriginalRisk__c"
+                                required="false"
+                                onchange=""
+                                variant=""
+                                value="{!v.formData.OriginalRisk__c}"
+                                disabled="false"
+                            />
+                        </lightning:layoutItem>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="inputField"
+                                fieldName="AssessmentType__c"
+                                required="true"
+                                onchange=""
+                                variant=""
+                                value="{!v.formData.AssessmentType__c}"
+                                disabled="false"
+                            />
+                        </lightning:layoutItem>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="inputField"
+                                fieldName="IntRiskCons__c"
+                                required="true"
+                                onchange=""
+                                variant=""
+                                value="{!v.formData.IntRiskCons__c}"
+                                disabled="false"
+                            />
+                        </lightning:layoutItem>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="inputField"
+                                fieldName="Threat__c"
+                                required="true"
+                                onchange=""
+                                variant=""
+                                value="{!v.formData.Threat__c}"
+                                disabled="false"
+                            />
+                        </lightning:layoutItem>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="inputField"
+                                fieldName="IntConsEffect__c"
+                                required="true"
+                                onchange="{!c.handleChangeConsequenceEffect}"
+                                variant=""
+                                value="{!v.formData.IntConsEffect__c}"
+                                disabled="false"
+                            />
+                        </lightning:layoutItem>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="IniOtherConsEff__c"
+                                fieldName="IniOtherConsEff__c"
+                                required="{!v.formData.IntConsEffect__c == 'Other'}"
+                                onchange=""
+                                variant=""
+                                value="{!v.formData.IniOtherConsEff__c}"
+                                disabled="{!v.formData.IntConsEffect__c != 'Other'}"
+                            />
+                        </lightning:layoutItem>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="inputField"
+                                fieldName="RiskScenario__c"
+                                required="true"
+                                onchange=""
+                                variant=""
+                                value="{!v.formData.RiskScenario__c}"
+                                disabled="false"
+                            />
+                        </lightning:layoutItem>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="inputField"
+                                fieldName="RiskScenarioDes__c"
+                                required="false"
+                                onchange=""
+                                variant=""
+                                value="{!v.formData.RiskScenarioDes__c}"
+                                disabled="false"
+                            />
+                        </lightning:layoutItem>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="inputField"
+                                fieldName="EnRiskMgt__c"
+                                required="true"
+                                onchange=""
+                                variant=""
+                                value="{!v.formData.EnRiskMgt__c}"
+                                disabled="false"
+                            />
+                        </lightning:layoutItem>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="inputField"
+                                fieldName="DEM__c"
+                                required="true"
+                                onchange="{!c.handleChangeDEM}"
+                                variant=""
+                                value="{!v.formData.DEM__c}"
+                                disabled="false"
+                            />
+                        </lightning:layoutItem>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <label class="slds-form-element__label">
+                                    Applicable to other equipment
+                                </label>
+                                <div class="slds-form-element__control">
+                                    <lightning:input
+                                        aura:id="checkbox"
+                                        type="checkbox"
+                                        required="false"
+                                        onclick="{!c.onCheck}"
+                                        checked="{!v.formData.ApptootherEQP__c}"
+                                        disabled="{!not(v.formData.canEditApptootherEQP__c)}"
+                                        class="ortl-lightning-input-checkbox"
+                                    />
+                                </div>
+                                <div class="slds-hide">
+                                    <lightning:inputField
+                                        aura:id="checkbox"
+                                        fieldName="ApptootherEQP__c"
+                                        required="false"
+                                        onclick="{!c.onCheck}"
+                                        variant=""
+                                        value="{!v.formData.ApptootherEQP__c}"
+                                        disabled="{!not(v.formData.canEditApptootherEQP__c)}"
+                                    />
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="DEMNo__c"
+                                fieldName="DEMNo__c"
+                                required="{!v.formData.DEM__c == 'Yes'}"
+                                onchange=""
+                                variant=""
+                                value="{!v.formData.DEMNo__c}"
+                                disabled="{!v.formData.DEM__c != 'Yes'}"
+                            />
+                        </lightning:layoutItem>
+
+                        <!--
+                        <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+                            <div class="slds-form-element slds-form-element_stacked">
+                                <lightning:button label="Preview RAM Matrix" onclick="{!c.openModel}" />
+
+                                <aura:if isTrue="{!v.isModalOpen}">
+                                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                                        <div class="slds-modal__container">
+                                            <header class="slds-modal__header">
+                                                <lightning:buttonIcon iconName="utility:close" onclick="{! c.closeModel }" alternativeText="close" variant="bare-inverse" class="slds-modal__close" />
+                                                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Risk Assessment</h2>
+                                            </header>
+                                            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                                <c:ORTLRiskAssmnt />
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <div class="slds-backdrop slds-backdrop_open"></div>
+                                </aura:if>
+                            </div>
+                        </lightning:layoutItem>
+                    -->
+
+                        <aura:if isTrue="{!v.isSelectedCheckbox}">
+                            <lightning:layoutItem size="12" smallDeviceSize="6" largeDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+
+                                <aura:iteration items="{!v.relatedRisk}" var="risk" indexVar="index">
+                                    <div class="slds-form-element slds-form-element_stacked">
+                                        <label class="slds-form-element__label">
+                                            Tag No. ( {!index+1} )
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:input
+                                                aura:id="inputField"
+                                                required="false"
+                                                onchange=""
+                                                variant="label-hidden"
+                                                value="{!risk.TagNo__r.Name}"
+                                                disabled="true"
+                                            />
+                                        </div>
+                                    </div>
+                                </aura:iteration>
+
+                                <aura:iteration items="{!v.loop}" var="item" indexVar="index">
+                                    <div class="slds-form-element slds-form-element_stacked">
+                                        <label class="slds-form-element__label">
+                                            <aura:if isTrue="{!index != 0}">
+                                                Tag No. ( {!v.relatedRisk.length+index+1} )
+                                                <aura:set attribute="else">
+                                                    Tag No. ( {!v.relatedRisk.length+index+1} )
+                                                </aura:set>
+                                            </aura:if>
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:inputField
+                                                aura:id="inputField"
+                                                fieldName="TagNo__c"
+                                                required="{!index == -1}"
+                                                onchange=""
+                                                variant="label-hidden"
+                                                value="{!item.tagNo}"
+                                                disabled="false"
+                                            />
+                                            <aura:if isTrue="{!index == (v.loop.length - 1)}">
+                                                <lightning:button onclick="{!c.handleAddInputBox}" class="" value="{!index}">+</lightning:button>
+                                            </aura:if>
+                                            <aura:if isTrue="{!(v.loop.length - 1) != 0 }">
+                                                <lightning:button onclick="{!c.handleRemoveInputBox}" class="slds-required" value="{!index}">-</lightning:button>
+                                            </aura:if>
+                                        </div>
+                                    </div>
+                                </aura:iteration>
+                            </lightning:layoutItem>
+                        </aura:if>
+
+                        <lightning:layoutItem size="12" smallDeviceSize="12" largeDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+                            <lightning:inputField
+                                aura:id="inputField"
+                                fieldName="Causeoffailure__c"
+                                required="false"
+                                onchange=""
+                                variant=""
+                                value="{!v.formData.Causeoffailure__c}"
+                                disabled="false"
+                            />
+                        </lightning:layoutItem>
+                    </lightning:layout>
+
+                    <c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+                </lightning:recordEditForm>
+            </div>
+
+            <aura:set attribute="title"><div class="slds-text-heading_medium slds-p-vertical_small slds-hyphenate">Edit Threat</div></aura:set>
+            <aura:set attribute="footer" >
+                <div class="slds-grid slds-grid_align-center ">
+                    <lightning:button label="Cancel" onclick="{!c.redirectBack}" />
+                    <lightning:button label="Save" onclick="{!c.onClickSubmit}" variant="brand" disabled="{!v.isLoading}" />
+                </div>
+            </aura:set>
+        </lightning:card>
+    </div>
+</aura:component>

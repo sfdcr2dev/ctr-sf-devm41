@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CCE with Sub Contract*</value>
+    </caseValues>
+    <fields>
+        <label><!-- BE Sub Contract 11 ID --></label>
+        <name>BE_Sub_Contract_11_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CCE Approval Process --></label>
+        <name>CCE_Approval_Process__c</name>
+        <relationshipLabel><!-- CCE with Sub Contract* --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CCE Approval Form(Construction) File URL --></label>
+        <name>CCE_Construction_File_URL__c</name>
+    </fields>
+    <fields>
+        <help><!-- ไฟล์ข้อมูล CCE ของการทำ Construction --></help>
+        <label><!-- CCE Approval Form (Construction) File --></label>
+        <name>CCE_Construction_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- CCE Construction URL --></label>
+        <name>CCE_Construction_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- CCE Approval Form(Engineering) File URL --></label>
+        <name>CCE_Engineering_File_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- BE CCE (Engineering) Not Applicable --></label>
+        <name>CCE_Engineering_Not_Applicable__c</name>
+    </fields>
+    <fields>
+        <label><!-- CCE Engineering URL --></label>
+        <name>CCE_Engineering_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Not Applicable --></label>
+        <name>Not_Applicable__c</name>
+    </fields>
+    <layouts>
+        <layout>CCE with Sub Contract Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว)</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

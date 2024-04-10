@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ITB with Sub Contract*</value>
+    </caseValues>
+    <fields>
+        <label><!-- BE ITB Subcontract 10 ID --></label>
+        <name>BE_ITB_Subcontract_10_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- ไฟล์ของมูล ITB ของการทำ Construction --></help>
+        <label><!-- ITB (Construction) File --></label>
+        <name>ITB_Construction_File_CB__c</name>
+    </fields>
+    <fields>
+        <label><!-- ITB (Construction) File URL --></label>
+        <name>ITB_Construction_File_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- ITB Construction URL --></label>
+        <name>ITB_Construction_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- ITB (Engineering) File URL --></label>
+        <name>ITB_Engineering_File_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- BE ITB (Engineering) Not Applicable --></label>
+        <name>ITB_Engineering_Not_Applicable__c</name>
+    </fields>
+    <fields>
+        <label><!-- ITB Engineering URL --></label>
+        <name>ITB_Engineering_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- ITB Standard --></label>
+        <name>ITB_Standard__c</name>
+        <relationshipLabel><!-- ITB with Sub Contract* --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Not Applicable --></label>
+        <name>Not_Applicable__c</name>
+    </fields>
+    <layouts>
+        <layout>ITB with Sub Contract Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว)</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Order Operation</value>
+    </caseValues>
+    <fields>
+        <label><!-- Control Key --></label>
+        <name>Control_Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Main Work Center --></label>
+        <name>Main_Work_Center_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Main Work Center --></label>
+        <name>Main_Work_Center__c</name>
+        <relationshipLabel><!-- Order Operations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Operation Short Text --></label>
+        <name>Operation_Shot_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Operation Text --></label>
+        <name>Operation_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Operation --></label>
+        <name>Operation__c</name>
+        <relationshipLabel><!-- Order Operations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- OrderOperation --></label>
+        <name>OrderOperation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+        <relationshipLabel><!-- Order Operations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Plant --></label>
+        <name>Plant__c</name>
+        <relationshipLabel><!-- Order Operations (Plant) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- SubOperation --></label>
+        <name>SubOperation__c</name>
+    </fields>
+    <layouts>
+        <layout>Order Operation Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

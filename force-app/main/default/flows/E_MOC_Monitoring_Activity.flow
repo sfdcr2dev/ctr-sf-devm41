@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Copy_1_of_Send_email_to_MOC_Pass</name>
+        <label>Copy 1 of Send email to MOC Pass</label>
+        <locationX>581</locationX>
+        <locationY>623</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Body_Not_Pass</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Recipient</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>sfdc.r2@roundtwosolutions.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>SubjectNotPass</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_email_to_MOC_Pass</name>
+        <label>Send email to MOC Pass</label>
+        <locationX>317</locationX>
+        <locationY>623</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Body_Pass</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Recipient</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>sfdc.r2@roundtwosolutions.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>Subject_pass</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Copy_1_of_Assign_recipient</name>
+        <label>Copy 1 of Assign recipient</label>
+        <locationX>581</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>Recipient</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.E_MOC_Application_No__r.MOC_Focal_Point_Name__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Copy_1_of_Send_email_to_MOC_Pass</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Copy_1_of_Copy_1_of_Assign_recipient</name>
+        <label>Copy 1 of Copy 1 of Assign recipient</label>
+        <locationX>317</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>Recipient</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.E_MOC_Application_No__r.MOC_Focal_Point_Name__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_email_to_MOC_Pass</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Check_pass_or_not_pass</name>
+        <label>Check pass or not pass</label>
+        <locationX>581</locationX>
+        <locationY>383</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Pass</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Monitoring_result_Pass__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Copy_1_of_Assign_recipient</targetReference>
+            </connector>
+            <label>Pass</label>
+        </rules>
+        <rules>
+            <name>Not_Pass</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Monitoring_result_Not_Pass__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Assign_recipient</targetReference>
+            </connector>
+            <label>Not Pass</label>
+        </rules>
+    </decisions>
+    <description>Revise email template</description>
+    <interviewLabel>E-MOC Monitoring Activity {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>E-MOC Monitoring Activity</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <startElementReference>Check_pass_or_not_pass</startElementReference>
+    <status>Active</status>
+    <textTemplates>
+        <name>Body_Not_Pass</name>
+        <text>MOC Title : {!$Record.E_MOC_Application_No__r.E_MOC_Title__c}
+Functional Location : {!$Record.E_MOC_Application_No__r.Functional_Location__r.Name}
+FL Description : {!$Record.E_MOC_Application_No__r.Functional_Location__r.Description__c}
+Category Type :{!$Record.E_MOC_Application_No__r.Category_Type__c}
+Status : {!$Record.E_MOC_Application_No__r.Status_Common_Workflow__c}
+Link: https://thaioil.lightning.force.com/lightning/r/E_MOC_Application__c/{!$Record.E_MOC_Application_No__r.Id}/view</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Body_Pass</name>
+        <text>MOC Title : {!$Record.E_MOC_Application_No__r.E_MOC_Title__c}
+Functional Location : {!$Record.E_MOC_Application_No__r.Functional_Location__r.Name}
+FL Description : {!$Record.E_MOC_Application_No__r.Functional_Location__r.Description__c}
+Category Type :{!$Record.E_MOC_Application_No__r.Category_Type__c}
+Status : {!$Record.E_MOC_Application_No__r.Status_Common_Workflow__c}
+Link: https://thaioil.lightning.force.com/lightning/r/E_MOC_Application__c/{!$Record.E_MOC_Application_No__r.Id}/view</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Subject_pass</name>
+        <text>[E-MOC Application] For information: Monitoring Result passed criteria; Common Workflow / {!$Record.E_MOC_Application_No__r.Name}/{!$Record.E_MOC_Application_No__r.Functional_Location__r.Name}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>SubjectNotPass</name>
+        <text>[E-MOC Application] Please decide whether existing solution can be continued due to monitoring result not pass and then execute.; Common Workflow /{!$Record.E_MOC_Application_No__r.Name}/{!$Record.E_MOC_Application_No__r.Functional_Location__r.Name}</text>
+    </textTemplates>
+    <variables>
+        <name>Recipient</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

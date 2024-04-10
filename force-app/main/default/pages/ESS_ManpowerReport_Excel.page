@@ -1,0 +1,150 @@
+<apex:page controller="ESS_ManpowerReportExcelController"
+  language="th"
+  cache="true" showHeader="false" action="{!OnloadExcel}"
+  contentType="application/vnd.ms-excel#Manpower Report - {!todayDate}.xls">
+  <!-- contentType="application/vnd.ms-excel#Manpower Report - {!todayDate}.xls"> -->
+    
+    <html lang="en">
+      <head>
+          <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+          <style>
+                table, td, th {
+                  border: 1px solid;
+                }
+                
+                table {
+                  width: 100%;
+                  border-collapse: collapse;
+                }
+            </style>
+      </head>
+      <body>
+          
+          <apex:outputPanel rendered="{!manpowerSize > 0}">
+              <h3>Manpower Report</h3> <br/>
+              <table>
+                  <tr>
+                      <th>Document No.</th>
+                      <th>Current Status</th>
+                      <th>Service For</th>
+                      <th>G/L Account</th>
+                      <th>Cost Center</th>
+                      <th>Internal Order (WBS)</th>
+                      <th>No. of Staff required</th>
+                      <th>Type of Service</th>
+                      <th>Objective</th>
+                      <th>Job Title</th>
+                      <th>Scope of Service Id</th>
+                      <th>Project Name</th>
+                      <th>Unit</th>
+                      <th>Section</th>
+                      <th>Department</th>
+                      <th>Function</th>
+                      <th>Work Location</th>
+                      <th>Date Commencement</th>
+                      <th>Date of Completion</th>
+                      <th>Working Day</th>
+                      <th>JE Score</th>
+                      <th>Other comment for JE Score</th>
+                      <th>Requester</th>
+                      <th>Created Date</th>
+                      <th>Submitted Date</th>
+                      <th>On Behalf of</th>
+                      <th>Employee Approved Date</th>
+                      <th>Section Head</th>
+                      <th>Section Head Approved Date</th>
+                      <th>VP Name</th>
+                      <th>VP Approved Date</th>
+                      <th>Project Manager Name</th>
+                      <th>Project Manager Approved Date</th>
+                      <th>Completed Date</th>
+                      <th>Cancelled By</th>
+                      <th>Cancelled Date</th>
+                  </tr>
+                  <apex:repeat value="{!manpowerTables}" var="Data">
+                      <tr>
+                          <td>{!Data.documentNo}</td>
+                          <td>{!Data.currentStatus.value}</td>
+                          <td>{!Data.serviceFor}</td>
+                          <td>{!Data.glAccount}</td>
+                          <td>{!Data.costCenter}</td>
+                          <td>{!Data.internalOrderWBS}</td>
+                          <td>{!Data.noOfStaffRequired}</td>
+                          <td>{!Data.typeOfService.value}</td>
+                          <td>{!Data.objective.value}</td>
+                          <td>{!Data.jobTitle}</td>
+                          <td>{!Data.scopeOfServiceId}</td>
+                          <td>{!Data.projectName}</td>
+                          <td>{!Data.unit}</td>
+                          <td>{!Data.section}</td>
+                          <td>{!Data.department}</td>
+                          <td>{!Data.function}</td>
+                          <td>{!Data.workLocation.value}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.commencementDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.completionDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.workingDay}</td>
+                          <td>{!Data.jeScore}</td>
+                          <td>{!Data.comment}</td>
+                          <td>{!Data.requester}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.createdDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.submittedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.onBehalfOf}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.employeeApprovedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.sectionHeadName}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.sectionHeadApprovedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.vpName}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.vpApprovedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.projectManagerName}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.projectManagerApprovedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.completedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.cancelledBy}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.cancelledDate}"/>  
+                              </apex:outputText>
+                          </td>
+                      </tr>
+                  </apex:repeat>
+              </table>
+          </apex:outputPanel>
+          
+      </body>
+  </html>
+    
+</apex:page>

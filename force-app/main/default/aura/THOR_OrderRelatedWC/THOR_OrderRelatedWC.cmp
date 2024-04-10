@@ -1,0 +1,85 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable"
+	access="global" controller="THOR_OrderRelatedWCCtrl">
+
+	<!-- Attributes -->
+	<aura:attribute name="recordId" type="String" />
+	<aura:attribute name="hasWriteAccess" type="Boolean" default="false" />
+	<aura:attribute name="title" type="String" default="" />
+	<aura:attribute name="labelSequence" type="String" default="Work Clearance Number, FL, Priority, Maintenance Unit, Description" />
+
+	<aura:attribute name="RelatedWorkClearances" type="List" default="[]" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<lightning:navigation aura:id="navService" />
+
+	<aura:registerEvent name="stopLoadingEvent" type="c:THOR_Event" />
+
+	<!-- BODY -->
+	<lightning:layout>
+		<lightning:layoutItem size="12" class="container">
+			<div class="slds-text-body_regular totalRequests">Work Clearance ({!v.RelatedWorkClearances.length})</div>
+			<div class="iconContainer">
+				<!-- <lightning:icon class="addIcon" iconName="utility:add" size="small" alternativeText="add" onclick="{! c.navigateToAddRequest}" /> -->
+				<c:THOR_OrderRelatedWCCreation orderId="{!v.recordId}" />
+			</div>
+			<lightning:layout>
+				<lightning:layoutItem size="12">
+
+					<aura:if isTrue="{!not(empty(v.title))}">
+						<p class="title">You have {! v.title}</p>
+					</aura:if>
+					<aura:if isTrue="{!not(empty(v.labelSequence))}">
+						<aura:if isTrue="{! greaterthan(v.RelatedWorkClearances.length,0)}">
+							<p class="labelSequence">{! v.labelSequence}</p>
+						</aura:if>
+					</aura:if>
+					<div class="cardContainer">
+						<div class="slds-box">
+							<aura:if isTrue="{!v.RelatedWorkClearances.length}">
+								<aura:iteration items="{! v.RelatedWorkClearances }" var="item" indexVar="index">
+									<div class="wc-box" data-index="{!index}" onclick="{!c.toggleAccordion}">
+										<div class="wc-box-chevron">
+											<aura:if isTrue="{!item.WorkClearance.showHistory}">
+												<lightning:button variant="link" value="{!index}"
+													onclick="{!c.toggleAccordion}">
+													<lightning:icon iconName="utility:chevrondown" size="xx-small" />
+												</lightning:button>
+												<aura:set attribute="else">
+													<lightning:button variant="link" value="{!index}"
+														onclick="{!c.toggleAccordion}">
+														<lightning:icon iconName="utility:chevronright" size="xx-small" />
+													</lightning:button>
+												</aura:set>
+											</aura:if>
+										</div>
+										<div class="wc-box-title">
+											<a onclick="{!c.goToWorkClearance}" data-record-id="{!item.WorkClearance.Id}" data-is-historical="false">
+												{!item.WorkClearance.Name}<aura:if isTrue="{!item.WorkClearance.Extend_No__c}">/{!item.WorkClearance.Extend_No__c}</aura:if>
+											</a><br />
+											{!item.WorkClearance.Functional_Location__c}, {!item.WorkClearance.Priority_Map__c},
+											{!item.WorkClearance.Maintenance_Unit__c}, {!item.WorkClearance.Description__c}
+										</div>
+										<aura:iteration items="{! item.WorkClearanceHistorical }" var="itemh">
+											<div
+												class="{!if(item.WorkClearance.showHistory, 'slds-m-left_xx-large wc-box-hist','slds-m-left_xx-large wc-box-hist slds-hide')}">
+												<a onclick="{!c.goToWorkClearance}" data-record-id="{!itemh.Id}" data-is-historical="true">
+													{!itemh.Name}<aura:if isTrue="{!itemh.Extend_No__c}">/{!itemh.Extend_No__c}</aura:if>
+												</a><br />
+												{!itemh.Functional_Location__c}, {!itemh.Priority_Map__c},
+												{!itemh.Maintenance_Unit__c}, {!itemh.Description__c}
+											</div>
+										</aura:iteration>
+									</div>
+								</aura:iteration>
+								<aura:set attribute="else">
+									There are no related Work Clearances
+								</aura:set>
+							</aura:if>
+						</div>
+					</div>
+				</lightning:layoutItem>
+			</lightning:layout>
+		</lightning:layoutItem>
+	</lightning:layout>
+
+</aura:component>

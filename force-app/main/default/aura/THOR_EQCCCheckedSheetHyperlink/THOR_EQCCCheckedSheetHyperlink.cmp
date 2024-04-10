@@ -1,0 +1,45 @@
+<aura:component controller="EQCCCheckedSheetNavigationController">
+
+    <aura:attribute name="headerSheetId" type="String" default=""/>
+    <aura:attribute name="headerId" type="String" default=""/>
+    <aura:attribute name="checkedSheetName" type="String" default=""/>
+    <aura:attribute name="checkedSheetCode" type="String" default=""/>
+    <aura:attribute name="checkedSheetFormName" type="String" default=""/>
+    <aura:attribute name="checkedSheetGroup" type="String" default=""/>
+    <aura:attribute name="checkedSheetStatus" type="String" default=""/>
+    <aura:attribute name="checkedSheetRequester" type="String" default=""/>
+    <aura:attribute name="checkedSheetCreatedDate" type="Date"/>
+    <aura:attribute name="checkedSheetLastModifiedDate" type="Date"/>
+    <aura:attribute name="currentStepId" type="String"/>
+    <aura:attribute name="backToTabIndex" type="Integer" default="0" access="global" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:navigation aura:id="navService" />
+
+    <p class="clickable" onclick="{!c.navigateToEQCCViewer}">
+        =>
+        <lightning:formattedText value="{! v.checkedSheetName}" />,
+        <lightning:formattedText value="{! v.checkedSheetCode }" />,
+        <lightning:formattedText value="{! v.checkedSheetFormName }" />,
+        <lightning:formattedText value="{! v.checkedSheetStatus }" />,
+        <lightning:formattedText value="{! v.checkedSheetRequester }" />,
+        <lightning:formattedDateTime value="{! v.checkedSheetCreatedDate }"
+                                     year="numeric"
+                                     month="numeric"
+                                     day="numeric"
+                                     hour="2-digit"
+                                     minute="2-digit"
+                                     second="2-digit"
+                                     timeZone="UTC" />,
+        <lightning:formattedDateTime value="{! v.checkedSheetLastModifiedDate }"
+                                     year="numeric"
+                                     month="numeric"
+                                     day="numeric"
+                                     hour="2-digit"
+                                     minute="2-digit"
+                                     second="2-digit"
+                                     timeZone="UTC" />
+    </p>
+
+
+</aura:component>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>FieldList__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>FieldList</label>
+        <length>131072</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Object__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Object</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>CTRRequestFormHeader__c</fullName>
+                    <default>true</default>
+                    <label>CTRRequestFormHeader__c</label>
+                </value>
+                <value>
+                    <fullName>CTRRequestFormItem__c</fullName>
+                    <default>false</default>
+                    <label>CTRRequestFormItem__c</label>
+                </value>
+                <value>
+                    <fullName>CTRShareholder__c</fullName>
+                    <default>false</default>
+                    <label>CTRShareholder__c</label>
+                </value>
+                <value>
+                    <fullName>CTRShippingCountry__c</fullName>
+                    <default>false</default>
+                    <label>CTRShippingCountry__c</label>
+                </value>
+                <value>
+                    <fullName>Account</fullName>
+                    <default>false</default>
+                    <label>Account</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Source__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Source</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Counter party</fullName>
+                    <default>true</default>
+                    <label>Counter party</label>
+                </value>
+                <value>
+                    <fullName>SAP Information</fullName>
+                    <default>false</default>
+                    <label>SAP Information</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>CTRFieldEditLog</label>
+    <visibility>Public</visibility>
+</CustomObject>

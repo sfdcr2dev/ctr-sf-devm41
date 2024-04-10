@@ -1,0 +1,826 @@
+<aura:component
+    implements="lightning:hasPageReference,lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+    access="global" controller="CTRLeadOverideNewController">
+
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.onPageReferenceChanged}" />
+
+    <aura:attribute name="ObjectType" type="String" default="Lead" />
+    <aura:attribute name="onPageRecordID" type="String" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="recordTypeId" type="String" />
+
+    <aura:attribute name="editRecord" type="Boolean" />
+    <aura:attribute name="showUnqualifiedReason" type="Boolean" default="false" />
+    <aura:attribute name="showOtherUnqualifiedReason" type="Boolean" default="false" />
+    <aura:attribute name="showLoading" type="Boolean" default="false" />
+
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <div class="card">
+        <lightning:layoutItem padding="around-small">
+                <aura:if isTrue="{!v.showLoading}">
+                    <lightning:spinner alternativeText="Loading" size="medium" />
+                </aura:if>
+            <lightning:recordEditForm aura:id="recordEditForm" recordId="{!v.onPageRecordID}"
+                objectApiName="{!v.ObjectType}" recordTypeId="{!v.recordTypeId}" onsuccess="{!c.handleSuccess}" onerror="{!c.handleError}" onsubmit="{!c.handleSubmit}">
+                <!--Initial Information section header-->
+                <div class="slds-section slds-is-open animate" aura:id="InitialInformation">
+                    <h3 class="slds-section__title">
+                        <button aria-controls="InitialInformationList" class="slds-button slds-section__title-action"
+                            onclick="{!c.toggleSection}" data-auraId="InitialInformation">
+                            <lightning:icon iconName="utility:switch" size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"
+                                alternativeText="button icon" />
+                            <span class="slds-truncate" title="Counterparty Information">Initial Information</span>
+                        </button>
+                    </h3>
+                    <!--section body-->
+                    <div class="slds-section__content" id="InitialInformationList">
+                        <div class="slds-grid slds-wrap">
+
+                            <!-- row 1 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label><span style="color:red; font-style: italic;">* </span>Lead Source</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="LeadSource" fieldName="LeadSource" variant="label-hidden"
+                                    required="true" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label><span style="color:red; font-style: italic;">* </span>Lead Status</label>
+
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Status" fieldName="Status" variant="label-hidden"
+                                    required="true" onchange="{!c.onchangeStatus}" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+                            <!-- row 2 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Referral By</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="ReferralBy__c" fieldName="ReferralBy__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <!-- Lead Status == Unqualified -->
+                            <aura:if isTrue="{!v.showUnqualifiedReason == true}">
+                                <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                    <label>Unqualified reason</label>
+                                </div>
+                                <div class="slds-col slds-size_4-of-12">
+
+                                    <lightning:inputField aura:id="UnqualifiedReason__c"
+                                        fieldName="UnqualifiedReason__c" variant="label-hidden"
+                                        onchange="{!c.onchangeUnqualifiedReason}"/>
+
+                                </div>
+                            </aura:if>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 3 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                            </div>
+                            <!-- Unqualified reason == Other -->
+                            <aura:if isTrue="{!v.showOtherUnqualifiedReason == true}">
+                                <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                    <label>Other Unqualified Reason</label>
+                                </div>
+                                <div class="slds-col slds-size_4-of-12">
+
+                                    <lightning:inputField aura:id="OtherUnqualifiedReason__c"
+                                        fieldName="OtherUnqualifiedReason__c" variant="label-hidden" />
+
+                                </div>
+                            </aura:if>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Lead Owner section header-->
+                <div class="slds-section slds-is-open animate" aura:id="LeadOwner">
+                    <h3 class="slds-section__title">
+                        <button aria-controls="LeadOwnerList" class="slds-button slds-section__title-action"
+                            onclick="{!c.toggleSection}" data-auraId="LeadOwner">
+                            <lightning:icon iconName="utility:switch" size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"
+                                alternativeText="button icon" />
+                            <span class="slds-truncate" title="Lead Owner">Lead Owner</span>
+                        </button>
+                    </h3>
+                    <!--section body-->
+                    <div class="slds-section__content" id="LeadOwnerList">
+                        <div class="slds-grid slds-wrap">
+                            <!-- row 1 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Section of Lead Owner</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="SectionofLeadOwner__c" fieldName="SectionofLeadOwner__c"
+                                    variant="label-hidden" disabled="true" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Lead Owner</label>
+
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:outputField aura:id="OwnerId" fieldName="OwnerId" variant="label-hidden" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--Company Information section header-->
+                <div class="slds-section slds-is-open animate" aura:id="CompanyInformation">
+                    <h3 class="slds-section__title">
+                        <button aria-controls="CompanyInformationList" class="slds-button slds-section__title-action"
+                            onclick="{!c.toggleSection}" data-auraId="CompanyInformation">
+                            <lightning:icon iconName="utility:switch" size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"
+                                alternativeText="button icon" />
+                            <span class="slds-truncate" title="Company Information ">Company Information </span>
+                        </button>
+                    </h3>
+                    <!--section body-->
+                    <div class="slds-section__content" id="CompanyInformationList">
+                        <!--<lightning:messages />-->
+                        <div class="slds-grid slds-wrap">
+                            <!-- row 1 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label><span style="color:red; font-style: italic;">* </span>Company
+                                    Name(English)</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Company" fieldName="Company" variant="label-hidden"
+                                    required="true" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;"></div>
+                            <div class="slds-col slds-size_4-of-12"></div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 2 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Company Name(Other Languages)</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="CompanyNameOtherLanguages__c"
+                                    fieldName="CompanyNameOtherLanguages__c" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Specify Language of Company Name</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="SpecifyLanguageofCompanyName__c"
+                                    fieldName="SpecifyLanguageofCompanyName__c" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 3 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Former Name of company</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="FormerNameofCompany__c"
+                                    fieldName="FormerNameofCompany__c" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label><span style="color:red; font-style: italic;">* </span>Country</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Country__c" fieldName="Country__c" variant="label-hidden"
+                                    required="true" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 4 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>TAX Number</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="TAXNumber__c" fieldName="TAXNumber__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Overview</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Overview__c" fieldName="Overview__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 5 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Company Profile</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="CompanyProfile__c" fieldName="CompanyProfile__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Business Background</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="BusinessBackground__c" fieldName="BusinessBackground__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--Product Type of Interested section header-->
+                <div class="slds-section slds-is-open animate" aura:id="ProductTypeofInterested">
+                    <h3 class="slds-section__title">
+                        <button aria-controls="ProductTypeofInterestedList"
+                            class="slds-button slds-section__title-action" onclick="{!c.toggleSection}"
+                            data-auraId="ProductTypeofInterested">
+                            <lightning:icon iconName="utility:switch" size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"
+                                alternativeText="button icon" />
+                            <span class="slds-truncate" title="Product Type of Interested">Product Type of Interested (*Must Select at least 1 Type)</span>
+                        </button>
+                    </h3>
+                    <!--section body-->
+                    <div class="slds-section__content" id="ProductTypeofInterestedList">
+                        <!--<lightning:messages />-->
+                        <div class="slds-grid slds-wrap">
+                            <!-- row 1 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Registered as Customer</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="RegisteredasCustomer__c"
+                                    fieldName="RegisteredasCustomer__c" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Registered as Supplier</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="RegisteredasSupplier__c"
+                                    fieldName="RegisteredasSupplier__c" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 2 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Interested Product Typeas Customer</label>
+
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="InterestedProductTypeAsCustomerTOP__c"
+                                    fieldName="InterestedProductTypeAsCustomerTOP__c" variant="label-hidden" />
+                                <!-- <lightning:inputField aura:id="InterestedProductTypeasCustomer__c"
+                                    fieldName="InterestedProductTypeasCustomer__c" variant="label-hidden" /> -->
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Interested Product Type as Supplier</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="InterestedProductTypeAsSupplierTOP__c"
+                                    fieldName="InterestedProductTypeAsSupplierTOP__c" variant="label-hidden" />
+                                <!-- <lightning:inputField aura:id="InterestedProductTypeasSupplier__c"
+                                    fieldName="InterestedProductTypeasSupplier__c" variant="label-hidden" /> -->
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 3 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Customer Product Identification</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Customer_Product_Identification__c"
+                                    fieldName="Customer_Product_Identification__c" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Supplier Product Identification</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="SupplierProductIdentification__c"
+                                    fieldName="SupplierProductIdentification__c" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 4 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Lube Base Products</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="LubeBaseProductsText__c"
+                                    fieldName="LubeBaseProductsText__c" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Petroleum and Component Products</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="PetroleumProductsAndComponents__c"
+                                    fieldName="PetroleumProductsAndComponents__c" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 5 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>LABIX Products</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="LABIXProducts__c" fieldName="LABIXProducts__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Supplier Other Products</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="SupplierProductIdentification__c"
+                                    fieldName="SupplierProductIdentification__c" variant="label-hidden" />
+                            </div>
+
+                            <!--
+                            
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                            </div>
+                            -->
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+							
+                            <!-- row 6 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Customer Other Products</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="CustomerProductIdentification__c" fieldName="CustomerProductIdentification__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+                            
+                            <!-- row 7 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Customer Type</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="CustomerType__c" fieldName="CustomerType__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+							
+							
+                        </div>
+                    </div>
+                </div>
+
+                <!--Registered Address header-->
+                <div class="slds-section slds-is-open animate" aura:id="RegisteredAddress">
+                    <h3 class="slds-section__title">
+                        <button aria-controls="RegisteredAddressList" class="slds-button slds-section__title-action"
+                            onclick="{!c.toggleSection}" data-auraId="RegisteredAddress">
+                            <lightning:icon iconName="utility:switch" size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"
+                                alternativeText="button icon" />
+                            <span class="slds-truncate" title="Registered Address">Registered Address</span>
+                        </button>
+                    </h3>
+                    <!--section body-->
+                    <div class="slds-section__content" id="RegisteredAddressList">
+                        <!--<lightning:messages />-->
+                        <div class="slds-grid slds-wrap">
+                            <!-- row 1 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>House no.</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="HouseNo__c" fieldName="HouseNo__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Building Code</label>
+
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="BuildingCode__c" fieldName="BuildingCode__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 2 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Room</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Room__c" fieldName="Room__c" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Floor</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Floor__c" fieldName="Floor__c" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 3 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Street</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Street__c" fieldName="Street__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 4 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Sub District</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="SubDistrict__c" fieldName="SubDistrict__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>District</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="District__c" fieldName="District__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 5 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>City/State</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="CityState__c" fieldName="CityState__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Postal Code</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="PostalCode__c" fieldName="PostalCode__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--Contact Person section header-->
+                <div class="slds-section slds-is-open animate" aura:id="ContactPerson">
+                    <h3 class="slds-section__title">
+                        <button aria-controls="ContactPersonList" class="slds-button slds-section__title-action"
+                            onclick="{!c.toggleSection}" data-auraId="ContactPerson">
+                            <lightning:icon iconName="utility:switch" size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"
+                                alternativeText="button icon" />
+                            <span class="slds-truncate" title="Contact Person">Contact Person</span>
+                        </button>
+                    </h3>
+                    <!--section body-->
+                    <div class="slds-section__content" id="ContactPersonList">
+                        <!--<lightning:messages />-->
+                        <div class="slds-grid slds-wrap">
+                            <!-- row 1 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Title (Mr./Mrs./Miss)</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Title" fieldName="Title" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Nickname</label>
+
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Nickname__c" fieldName="Nickname__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 2 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label><span style="color:red; font-style: italic;">* </span>First Name</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="FirstName" fieldName="FirstName" variant="label-hidden"
+                                    required="true" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label><span style="color:red; font-style: italic;">* </span>Last Name</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="LastName" fieldName="LastName" variant="label-hidden"
+                                    required="true" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 3 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Position</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Position__c" fieldName="Position__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label><span style="color:red; font-style: italic;">* </span>Email</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Email" fieldName="Email" variant="label-hidden"
+                                    required="true" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 4 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label><span style="color:red; font-style: italic;">* </span>Country
+                                    Code(Mobile)</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="MobileCountryCode__c" fieldName="MobileCountryCode__c"
+                                    variant="label-hidden" required="true" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label><span style="color:red; font-style: italic;">* </span>Mobile</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="MobilePhone" fieldName="MobilePhone"
+                                    variant="label-hidden" required="true" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 5 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Country Code(Phone)</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="PhoneCountryCode__c" fieldName="PhoneCountryCode__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Phone</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Phone" fieldName="Phone" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 6 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Country Code(Fax)</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="FaxCountryCode__c" fieldName="FaxCountryCode__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Fax</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Fax" fieldName="Fax" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Additional Contact Information section header-->
+                <div class="slds-section slds-is-open animate" aura:id="AdditionalContactInformation">
+                    <h3 class="slds-section__title">
+                        <button aria-controls="AdditionalContactInformationList"
+                            class="slds-button slds-section__title-action" onclick="{!c.toggleSection}"
+                            data-auraId="AdditionalContactInformation">
+                            <lightning:icon iconName="utility:switch" size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"
+                                alternativeText="button icon" />
+                            <span class="slds-truncate" title="Additional Contact Information">Additional Contact
+                                Information</span>
+                        </button>
+                    </h3>
+                    <!--section body-->
+                    <div class="slds-section__content" id="AdditionalContactInformationList">
+                        <div class="slds-grid slds-wrap">
+                            <!-- row 1 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Phone 1 Country Code</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Phone1CountryCode__c" fieldName="Phone1CountryCode__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Phone 1</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Phone1__c" fieldName="Phone1__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 2 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Phone 2 Country Code</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Phone2CountryCode__c" fieldName="Phone2CountryCode__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Phone 2</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Phone2__c" fieldName="Phone2__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 3 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Phone 3 Country Code</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Phone3CountryCode__c" fieldName="Phone3CountryCode__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Phone 3</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Phone3__c" fieldName="Phone3__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 4 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Phone 4 Country Code</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Phone4CountryCode__c" fieldName="Phone4CountryCode__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Phone 4</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Phone4__c" fieldName="Phone4__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 5 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Phone 5 Country Code</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Phone5CountryCode__c" fieldName="Phone5CountryCode__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Phone 5</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="Phone5__c" fieldName="Phone5__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Contact Channel section header-->
+                <div class="slds-section slds-is-open animate" aura:id="ContactChannel">
+                    <h3 class="slds-section__title">
+                        <button aria-controls="ContactChannelList" class="slds-button slds-section__title-action"
+                            onclick="{!c.toggleSection}" data-auraId="ContactChannel">
+                            <lightning:icon iconName="utility:switch" size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"
+                                alternativeText="button icon" />
+                            <span class="slds-truncate" title="Contact Channel">Contact Channel</span>
+                        </button>
+                    </h3>
+                    <!--section body-->
+                    <div class="slds-section__content" id="ContactChannelList">
+                        <div class="slds-grid slds-wrap">
+                            <!-- row 1 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Do Not Call</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="DoNotCall" fieldName="DoNotCall"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 2 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Preferred Contact Channel</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="PreferredContactChannel__c"
+                                    fieldName="PreferredContactChannel__c" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Time Zone</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="TimeZone__c" fieldName="TimeZone__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 3 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Preferred Contact Start Time (HH:mm)</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="PreferredContactStartTimeHHmm__c"
+                                    fieldName="PreferredContactStartTimeHHmm__c" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Preferred Contact End Time (HH:mm)</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="PreferredContactEndTimeHHmm__c"
+                                    fieldName="PreferredContactEndTimeHHmm__c" variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+
+                            <!-- row 4 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Social Type</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="SocialType__c" fieldName="SocialType__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Social Contact</label>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <lightning:inputField aura:id="SocialContact__c" fieldName="SocialContact__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Reference Picture section header-->
+                <div class="slds-section slds-is-open animate" aura:id="ReferencePicture">
+                    <h3 class="slds-section__title">
+                        <button aria-controls="ReferencePictureList" class="slds-button slds-section__title-action"
+                            onclick="{!c.toggleSection}" data-auraId="ReferencePicture">
+                            <lightning:icon iconName="utility:switch" size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"
+                                alternativeText="button icon" />
+                            <span class="slds-truncate" title="Reference Picture">Reference Picture</span>
+                        </button>
+                    </h3>
+                    <!--section body-->
+                    <div class="slds-section__content" id="ReferencePictureList">
+                        <div class="slds-grid slds-wrap">
+                            <!-- row 1 -->
+                            <div class="slds-col slds-size_2-of-12" style="text-align: center; margin-top: 5px;">
+                                <label>Reference Picture</label>
+                            </div>
+                            <div class="slds-col slds-size_10-of-12">
+                                <lightning:inputField aura:id="ReferencePicture__c" fieldName="ReferencePicture__c"
+                                    variant="label-hidden" />
+                            </div>
+                            <div class="slds-col slds-size_12-of-12" style="height: 16px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-align_absolute-center" style="height:5rem">
+                    <lightning:button class="slds-m-top_small" variant="brand" type="cancel" name="cancel"
+                        label="Cancel" onclick="{! c.handleCancel}" />
+                    <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="save" label="Save" onclick="{!c.onclickSave}" />
+                </div>
+
+            </lightning:recordEditForm>
+        </lightning:layoutItem>
+    </div>
+</aura:component>

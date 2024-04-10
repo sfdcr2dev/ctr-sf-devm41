@@ -1,0 +1,17 @@
+.THIS .display-flex .slds-form-element__control {
+    display: flex;
+}
+
+.THIS .display-table .slds-form-element__label {
+    display: table;
+    max-width: 50%;
+    /* calc(50% - var(--lwc-squareIconUtilityMedium,1.25rem)); */
+}
+
+@media (min-width: 48em) {
+    .THIS .slds-form-element_horizontal .slds-form-element__control, 
+    .THIS .slds-form_horizontal .slds-form-element .slds-form-element__control, 
+    .THIS .slds-form_stacked .slds-form-element_horizontal .slds-form-element__control {
+        padding-left: 16.66%;
+    }
+}

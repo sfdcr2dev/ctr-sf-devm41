@@ -1,0 +1,184 @@
+<aura:component
+    implements="force:lightningQuickAction,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName"
+    access="global" controller="CTRSapInformationController"> 
+    <aura:attribute name="BussinessUnit" type="String" default="TOP" />
+    <!--<aura:attribute name="recordId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />-->
+
+
+    <!--<aura:if isTrue="{!v.BussinessUnit == 'TOP'}">
+        <c:CTRSapInformationTOP recordId="{!v.recordId}" isModalOpen="true"></c:CTRSapInformationTOP>
+    </aura:if>
+    <aura:if isTrue="{!v.BussinessUnit == 'TX'}">
+        <c:CTRSapInformationTX recordId="{!v.recordId}" isModalOpen="true"></c:CTRSapInformationTX>
+    </aura:if>-->
+
+    <aura:attribute name="requestFormHeaderObj" type="CTRRequestFormHeader__c" default="{}" />
+    <aura:attribute name="requestFormItemObj" type="CTRRequestFormItem__c" default="{}" />
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="recordIdFormHeader" type="String" />
+    <aura:attribute name="recordTypeNameCustomer" type="Boolean" />
+    <aura:attribute name="recordTypeName" type="String" />
+    <aura:attribute name="currentUserName" type="String" />
+    
+    <aura:attribute name="ChangedFieldForEDITHeader" type="List" default = "[]"/>
+    <aura:attribute name="ChangedFieldForEDITItem" type="List" default = "[]"/>
+
+    <aura:attribute name="isModalOpen" type="Boolean" default="true" />
+    <aura:attribute name="showLoading" type="Boolean" default="true" /> 
+
+
+    <aura:attribute name="validateMissingFieldList" type="List" />
+    <aura:attribute name="validateMissingField" type="String"/>
+    <aura:attribute name="validateFieldShow" type="Boolean" default="false"/>
+
+    <aura:attribute name="isTOP" type="Boolean" default="false" />
+    <aura:attribute name="isTX" type="Boolean" default="false" /> 
+    <aura:attribute name="SentGeneralView" type="Boolean" default="false" />
+    <aura:attribute name="PendingApproval" type="Boolean" default="false" />
+    <aura:attribute name="isNotShipTo" type="Boolean" default="true" />
+
+    <aura:attribute name="TypeOfBusinessList" type="List" />
+    <aura:attribute name="LanguageList" type="List" />
+    <aura:attribute name="CountryCodePhoneList" type="List" />
+    <aura:attribute name="TradingPartnerList" type="List" />
+    <aura:attribute name="RegionList" type="List" />
+
+    <aura:attribute name="mDependencyMap" type="Map" default="{}"/>
+
+    <aura:attribute name="mLanguageValueMap" type="Map" default="{}"/>
+    <aura:attribute name="mPaymentGuaranteeProcedureValueMap" type="Map" default="{}"/>
+    <aura:attribute name="mTaxClassificationList" type="Map" default="{}"/>
+    <aura:attribute name="mTaxClassificationMap" type="Map" default="{}"/>
+    <aura:attribute name="mCurrencyMap" type="Map" default="{}"/>
+
+    <aura:attribute name="AccountGroupList" type="List" />
+    <aura:attribute name="DistributionChannelList" type="List" />
+    <aura:attribute name="AllDistributionChannelList" type="List" />
+
+    
+    <!-- Picklist BOTH TX AND TOP     -->
+    <aura:attribute name="IncotermsList" type="List" />
+    <aura:attribute name="CurrencyList" type="List" />
+    <aura:attribute name="PaymentTermList" type="List" />
+    <aura:attribute name="PaymentGuaranteeProcedureList" type="List" />
+    <aura:attribute name="AccountAssignmentGroupList" type="List" />
+    <aura:attribute name="CashManagementGroupList" type="List" />
+    <aura:attribute name="DivisionList" type="List" />
+
+    <!-- Picklist ONLY TX     -->
+    <aura:attribute name="SalesOrgTXList" type="List" />
+    <aura:attribute name="PurchasingOrgTXList" type="List" />
+
+    <aura:attribute name="SalesDistrictList" type="List" />
+    <aura:attribute name="SalesOfficeList" type="List" />
+    <aura:attribute name="DeliveryPriorityList" type="List" />
+    <aura:attribute name="ShippingConditionsList" type="List" />
+    <aura:attribute name="DeliveryPlantList" type="List" />
+    <aura:attribute name="Incoterms2List" type="List" />
+    <aura:attribute name="RiskCategoryList" type="List" />
+    
+    <aura:attribute name="SalesGroupList" type="List" />
+    <aura:attribute name="PartialDeliveriesperitemList" type="List" />
+    <aura:attribute name="CreditControlAreaList" type="List" />
+
+    <!-- Picklist ONLY TOP     -->
+    <aura:attribute name="SalesOrgTOPList" type="List" />
+    <aura:attribute name="PurchasingOrgTOPList" type="List" />
+    <aura:attribute name="CompanyCodeTOPList" type="List" />
+
+    
+    <aura:attribute name="TaxClassificationList" type="List" />
+    <aura:attribute name="PriceGroupList" type="List" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+
+    <aura:html tag="style">
+        .slds-modal__container {
+            overflow-y:hidden !important;
+        	width: 90% !important;
+            max-width: 80% !important;
+        	height: 100% !important;
+            /*   width:210mm;
+            height:297mm;*/
+        }
+        .cuf-content {
+            padding: 0 0rem !important;
+        }
+
+
+        .slds-p-around--medium {
+
+            padding: 0rem !important;
+
+        }       
+    </aura:html>
+
+
+    <aura:if isTrue="{!v.showLoading}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+
+    <aura:if isTrue="{!v.isModalOpen}">
+        
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                class="slds-modal slds-fade-in-open slds-modal_small"
+                style="padding-top:3%;">
+                
+                <aura:if isTrue="{!!v.showLoading}">
+                <div class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                        SAP Information
+                    </h2>           
+                    
+                </div>
+                <aura:if isTrue="{!v.validateFieldShow}">
+                    <div class="slds-modal__content slds-p-around_medium" style="background-color: red;">
+                        <div style="position: sticky;">
+                            <b style="color: white; padding-top: 8px">Missing Field on Tab</b><br/>
+                            <aura:iteration items="{!v.validateMissingFieldList}" var="val" indexVar="key">
+                                <div style="text-align: left; padding-left: 10px; display: flex;">
+                                    <b style="color: white;"> - {!val.Key}:</b>&nbsp;<p style="color: white;">{!val.Values}</p><br/>
+                                </div>
+                            </aura:iteration>
+                            <!-- <p style="color: white; padding-top: 8px">{!v.validateMissingField}</p> -->
+                        </div>
+                    </div>
+                </aura:if>
+
+                <aura:renderIf isTrue="{!v.isTX}">
+                    <c:CTRSapInformationTX recordId="{!v.recordId}" recordTypeNameCustomer="{!v.recordTypeNameCustomer}" requestFormHeaderObj = "{!v.requestFormHeaderObj}" recordTypeName = "{!v.recordTypeName}"
+                    requestFormItemObj = "{!v.requestFormItemObj}" recordIdFormHeader = "{!v.recordIdFormHeader}" DivisionList = "{v.DivisionList}" 
+                    SalesOrgList = "{!v.SalesOrgTXList}" PurchasingOrgList = "{!v.PurchasingOrgTXList}" 
+                    TaxClassificationList = "{!v.TaxClassificationList}"
+                    SentGeneralView = "{!v.SentGeneralView}" ChangedFieldForEDITHeader="{!v.ChangedFieldForEDITHeader}" ChangedFieldForEDITItem="{!v.ChangedFieldForEDITItem}"
+                    AccountGroupList = "{!v.AccountGroupList}" TypeOfBusinessList = "{!v.TypeOfBusinessList}" CountryCodePhoneList = "{!v.CountryCodePhoneList}" 
+                    TradingPartnerList = "{!v.TradingPartnerList}" RegionList = "{!v.RegionList}" LanguageList = "{!v.LanguageList}" currentUserName = "{!v.currentUserName}" PendingApproval = "{!v.PendingApproval}" isNotShipTo = "{!v.isNotShipTo}"/>
+                </aura:renderIf>
+
+                <aura:renderIf isTrue="{!v.isTOP}">
+                    <c:CTRSapInformationTOP recordId="{!v.recordId}" recordTypeNameCustomer="{!v.recordTypeNameCustomer}" requestFormHeaderObj = "{!v.requestFormHeaderObj}" recordTypeName = "{!v.recordTypeName}" DistributionChannelList = "{!v.DistributionChannelList}"
+                    requestFormItemObj = "{!v.requestFormItemObj}" recordIdFormHeader = "{!v.recordIdFormHeader}" IncotermsList = "{!v.IncotermsList}" CurrencyList = "{!v.CurrencyList}" PaymentTermList = "{!v.PaymentTermList}" 
+                    SalesOrgList = "{!v.SalesOrgTOPList}" PurchasingOrgTOPList = "{!v.PurchasingOrgTOPList}" CompanyCodeTOPList = "{!v.CompanyCodeTOPList}" AllDistributionChannelList = "{!v.AllDistributionChannelList}"
+                    PaymentGuaranteeProcedureList = "{!v.PaymentGuaranteeProcedureList}" AccountAssignmentGroupList = "{!v.AccountAssignmentGroupList}" TaxClassificationList = "{!v.TaxClassificationList}" PriceGroupList = "{!v.PriceGroupList}" DivisionList = "{!v.DivisionList}"
+                    SentGeneralView = "{!v.SentGeneralView}"  ChangedFieldForEDITHeader="{!v.ChangedFieldForEDITHeader}" ChangedFieldForEDITItem="{!v.ChangedFieldForEDITItem}" mDependencyMap = "{!v.mDependencyMap}" currentUserName = "{!v.currentUserName}"/>
+
+                </aura:renderIf>
+
+                <!-- Modal Footer -->
+                <footer class="slds-modal__footer">
+                    <aura:renderIf isTrue="{!!v.PendingApproval}">
+                    <lightning:button type="cancel" variant="brand-outline" label="Cancel" title="Cancel" onclick="{!c.handleCancel}" />
+                    <lightning:button type="submit" variant="brand" label="Save" title="Save" onclick="{!c.handleSave}"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.PendingApproval}">
+                    <lightning:button type="cancel" variant="brand-outline" label="Done" title="Done" onclick="{!c.handleCancel}" />
+                </aura:renderIf>
+                </footer>
+            </aura:if>
+            </section>
+    </aura:if>
+
+</aura:component>

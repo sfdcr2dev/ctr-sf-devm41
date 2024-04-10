@@ -1,0 +1,5 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName" access="global" controller="CTRCommitteeSendToSap">
+
+<c:CTRSendInformationToSap recordId = "{!v.recordId}" mainComponentName="Customer"/>   
+
+</aura:component>

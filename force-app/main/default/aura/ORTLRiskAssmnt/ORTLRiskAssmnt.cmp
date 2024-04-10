@@ -1,0 +1,150 @@
+<aura:component implements="force:hasRecordId" controller="ORTLRiskAssmntCtrl">
+
+    <aura:attribute name="setting" type="Map" default="{
+        enableSelectConsequence: false,
+        bgColor: {
+            levelH: 'rgb(255, 0, 0, 0.7)',
+            levelM: 'rgb(255, 255, 0, 0.7)',
+            levelL: 'rgb(0, 255, 0, 0.7)',
+            levelLN: 'rgb(0, 0, 255, 0.5)',
+            orange: 'rgb(255, 248, 204, 1)',
+            gray: 'rgb(128, 128, 128, 0.25)'
+        }
+    }"/>
+
+    <aura:attribute name="initialEstimatedValueInUSD" type="String"/>
+    <aura:attribute name="initialEstimatedValueInTHB" type="String"/>
+    <aura:attribute name="finalEstimatedValueInUSD" type="String"/>
+    <aura:attribute name="finalEstimatedValueInTHB" type="String"/>
+    <aura:attribute name="constants" type="Object"/>
+    <aura:attribute name="options" type="Map" />
+    <aura:attribute name="metadata" type="Map" />
+    <aura:attribute name="attachments" type="Map" />
+    <aura:attribute name="attendees" type="List" />
+    <aura:attribute name="deleteAttendees" type="List" />
+
+    <aura:attribute name="risk" type="Object" />
+    <aura:attribute name="riskUi" type="Object" />
+    <aura:attribute name="recordLoadError" type="Object" />
+
+    <force:recordData
+        aura:id="recordLoader"
+        recordId="{!v.recordId}"
+        fields="Name, IntRiskCons__c, InitialSeverity__c, IntlLikelihood__c, InitialRisk__c, IntConsEffect__c"
+        targetFields="{!v.risk}"
+        targetRecord="{!v.riskUi}"
+        targetError="{!v.recordLoadError}"
+        recordUpdated="{!c.handleRecordUpdated}"
+    />
+
+    <lightning:navigation aura:id="navService" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:html tag="style">
+        .level-h {
+            background-color: {!$Label.c.ORTLBgLevelH}
+        }
+
+        .level-m {
+            background-color: {!$Label.c.ORTLBgLevelM};
+        }
+
+        .level-l {
+            background-color: {!$Label.c.ORTLBgLevelL};
+        }
+
+        .level-ln {
+            background-color: {!$Label.c.ORTLBgLevelLN};
+        }
+
+        .bg-orange {
+            background-color: {!$Label.c.ORTLBgOrange};
+        }
+
+        .bg-gray {
+            background-color: {!$Label.c.ORTLBgGray};
+        }
+
+        @media (min-width: 768px) {
+            .slds-modal__container {
+                width: 90%;
+                max-width: 90%
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .slds-modal__container {
+                width: 80%;
+                max-width: 80%
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .slds-modal__container {
+                width: 75%;
+                max-width: 75%
+            }
+        }
+    </aura:html>
+
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <div class="slds-scrollable">
+
+        <table class="slds-var-m-vertical_large">
+            <thead class="bg-gray">
+                <tr>
+                    <th class="bg-orange" rowspan="5">Severity</th>
+                    <th class="bg-orange" colspan="{!v.options.InitialRiskConsequence.length}">Consequence</th>
+                    <th colspan="{!v.options.InitialLikelihood.length}">Likelihood</th>
+                </tr>
+                <tr>
+                    <aura:iteration items="{!v.options.InitialRiskConsequence}" var="option">
+                        <th class="bg-orange" rowspan="4">{!option.value}</th>
+                    </aura:iteration>
+                    <aura:iteration items="{!v.options.InitialLikelihood}" var="option">
+                        <th>{!option.value}</th>
+                    </aura:iteration>
+                </tr>
+                <tr>
+                    <aura:iteration items="{!v.options.InitialLikelihood}" var="likelihood">
+                        <th>{!likelihood.Caption2__c}</th>
+                    </aura:iteration>
+                </tr>
+                <tr>
+                    <aura:iteration items="{!v.options.InitialLikelihood}" var="likelihood">
+                        <th>{!likelihood.Caption3__c}</th>
+                    </aura:iteration>
+                </tr>
+                <tr>
+                    <aura:iteration items="{!v.options.InitialLikelihood}" var="likelihood">
+                        <th>{!likelihood.Caption4__c}</th>
+                    </aura:iteration>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.options.InitialSeverity}" var="severity">
+                    <tr>
+                        <td class="bg-orange">{!severity.value}</td>
+                        <aura:iteration items="{!severity.ConsequenceDescription}" var="desc">
+                            <td data-severity="{!desc.Severity__c}"
+                            data-consequence="{!desc.Consequence__c}"
+                            class="{!v.setting.enableSelectConsequence ? 'bg-orange cursor-pointer' : 'bg-orange'}"
+                            style="{!and(v.setting.enableSelectConsequence, and(v.risk.IntRiskCons__c == desc.Consequence__c, v.risk.InitialSeverity__c == desc.Severity__c)) ? 'background-color:rgb(66, 66, 66);color:rgb(255, 255, 255);' : ''}"
+                            >{!desc.ConsequenceDesc__c}</td>
+                        </aura:iteration>
+                        <aura:iteration items="{!severity.RiskLevel}" var="level">
+                            <td data-severity="{!level.Severity__c}"
+                            data-likelihood="{!level.Likelihood__c}"
+                            class="{!level.RiskLevel__c == 'H' ? 'level-h cursor-pointer' : level.RiskLevel__c == 'M' ? 'level-m cursor-pointer' : level.RiskLevel__c == 'L' ? 'level-l cursor-pointer' : 'level-ln cursor-pointer'}"
+                            style="{!and(v.risk.IntlLikelihood__c == level.Likelihood__c, v.risk.InitialSeverity__c == level.Severity__c) ? 'background-color:rgb(66, 66, 66);color:rgb(255, 255, 255);' : ''}"
+                            >{!level.RiskLevel__c}</td>
+                        </aura:iteration>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div>
+
+</aura:component>

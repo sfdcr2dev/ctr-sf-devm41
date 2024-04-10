@@ -1,0 +1,86 @@
+.THIS th,
+.THIS td {
+    text-align: center;
+    /* cursor: pointer;
+    border: 1px solid black;
+    background-color: white; */
+    border: 0.5px solid rgb(201, 201, 201);
+    border-collapse: collapse;
+}
+
+.THIS .cursor-pointer {
+    cursor: pointer;
+}
+
+.THIS thead.gray th {
+    border-color: rgb(128, 128, 128);
+}
+
+.THIS .risk-level {
+    display: flex;
+    width: 210px;
+    flex-wrap: wrap;
+}
+
+.THIS .risk-level div {
+    padding: 1rem;
+    width: 70px;
+    text-align: center;
+    border: 1px solid rgb(201, 201, 201);
+}
+
+.THIS .risk-level div:nth-child(4) {
+    width: 140px;
+}
+
+.THIS .risk-level div:nth-child(5) {
+    width: 70px;
+}
+
+.THIS .risk-level div:nth-child(4),
+.THIS .risk-level div:nth-child(5) {
+    border-top: none;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+
+.THIS .table-user {
+    position: relative;
+    z-index: 1;
+}
+
+.THIS .table-user th,
+.THIS .table-user td {
+    border: none;
+}
+
+.THIS .table-user th:nth-child(2),
+.THIS .table-user td:nth-child(2) {
+    text-align: left;
+}
+
+.THIS .table-user tr th:nth-child(1),
+.THIS .table-user tr th:nth-child(3),
+.THIS .table-user tr td:nth-child(1),
+.THIS .table-user tr td:nth-child(3) {
+    width: 4rem;
+    text-align: center;
+}
+
+.THIS .table-user {
+    /* margin-bottom: 10rem; */
+}
+
+.THIS .user {
+    width: 15rem;
+    max-width: 100%;
+}
+
+.THIS svg[data-key="delete"] {
+    fill: red;
+}
+
+.THIS lightning-file-upload .slds-file-selector__text,
+.THIS lightning-file-upload .slds-form-element__label {
+    display: none;
+}

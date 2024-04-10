@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <interviewLabel>OPSTriggerNotificationUpdateMaintenancePlant {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>OPSTriggerNotificationUpdateMaintenancePlant</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>UpdateNotificationMaintenancePlantAndPlantSectionText</name>
+        <label>UpdateNotificationMaintenancePlantAndPlantSectionText</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <inputAssignments>
+            <field>MaintenancePlantText__c</field>
+            <value>
+                <elementReference>$Record.Maintenance_Plant__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PlantSectionText__c</field>
+            <value>
+                <elementReference>$Record.Plant_Section__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <startElementReference>UpdateNotificationMaintenancePlantAndPlantSectionText</startElementReference>
+    <status>Active</status>
+</Flow>

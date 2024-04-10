@@ -1,0 +1,1582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SalesArea</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>SalesArea</fullName>
+        <fields>AccountNumber__c</fields>
+        <fields>Name</fields>
+        <fields>SalesOrganization__c</fields>
+        <fields>DistributionChannel__c</fields>
+        <label>Sales Area</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>AccountAssignmentGroup__c</fullName>
+        <externalId>false</externalId>
+        <label>Account Assignment Group</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>01</fullName>
+                    <default>false</default>
+                    <label>Domestic Revenues</label>
+                </value>
+                <value>
+                    <fullName>02</fullName>
+                    <default>false</default>
+                    <label>Foreign Revenues</label>
+                </value>
+                <value>
+                    <fullName>03</fullName>
+                    <default>false</default>
+                    <label>Affiliat Comp Revenu</label>
+                </value>
+                <value>
+                    <fullName>04</fullName>
+                    <default>false</default>
+                    <label>Business Area Revenu</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>AccountNumber__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Company Name</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Sales Area</relationshipLabel>
+        <relationshipName>Sales_Area</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ApplicationCode__c</fullName>
+        <externalId>false</externalId>
+        <label>Application Code</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ApplicationDesc__c</fullName>
+        <externalId>false</externalId>
+        <label>Application Desc</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Applications__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF (ApplicationCode__c = Null || ApplicationDesc__c= Null ,&quot;&quot;,ApplicationCode__c &amp;&quot;=&quot;&amp; ApplicationDesc__c)</formula>
+        <label>Applications</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BillingDate__c</fullName>
+        <description>Invoice Customer</description>
+        <externalId>false</externalId>
+        <label>Billing Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>BillingNumber__c</fullName>
+        <description>Invoice Customer</description>
+        <externalId>false</externalId>
+        <label>Billing Number</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BillingType__c</fullName>
+        <description>Invoice Customer</description>
+        <externalId>false</externalId>
+        <label>Billing Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Z1CD</fullName>
+                    <default>false</default>
+                    <label>Crude Inv./Tax Inv.</label>
+                </value>
+                <value>
+                    <fullName>Z1DP</fullName>
+                    <default>false</default>
+                    <label>Deposit Invoice</label>
+                </value>
+                <value>
+                    <fullName>Z1IF</fullName>
+                    <default>false</default>
+                    <label>Final Invoice</label>
+                </value>
+                <value>
+                    <fullName>Z1OT</fullName>
+                    <default>false</default>
+                    <label>Other Invoice</label>
+                </value>
+                <value>
+                    <fullName>Z2F2</fullName>
+                    <default>false</default>
+                    <label>Invoice/Tax Inv. TPX</label>
+                </value>
+                <value>
+                    <fullName>Z2OT</fullName>
+                    <default>false</default>
+                    <label>Other Invoice TPX</label>
+                </value>
+                <value>
+                    <fullName>Z3CD</fullName>
+                    <default>false</default>
+                    <label>Crude Inv/TaxInv TLB</label>
+                </value>
+                <value>
+                    <fullName>Z3DP</fullName>
+                    <default>false</default>
+                    <label>Deposit Invoice TLB</label>
+                </value>
+                <value>
+                    <fullName>Z3F2</fullName>
+                    <default>false</default>
+                    <label>Invoice/Tax Inv. TLB</label>
+                </value>
+                <value>
+                    <fullName>Z3IF</fullName>
+                    <default>false</default>
+                    <label>Final Invoice TLB</label>
+                </value>
+                <value>
+                    <fullName>Z3OT</fullName>
+                    <default>false</default>
+                    <label>Other Invoice TLB</label>
+                </value>
+                <value>
+                    <fullName>Z3V1</fullName>
+                    <default>false</default>
+                    <label>Commercial Serv. TLB</label>
+                </value>
+                <value>
+                    <fullName>Z4EX</fullName>
+                    <default>false</default>
+                    <label>TX Export Invoice</label>
+                </value>
+                <value>
+                    <fullName>Z4IN</fullName>
+                    <default>false</default>
+                    <label>TX Domestic Invoice</label>
+                </value>
+                <value>
+                    <fullName>Z5IN</fullName>
+                    <default>false</default>
+                    <label>TSV Tax Invoice</label>
+                </value>
+                <value>
+                    <fullName>Z6F2</fullName>
+                    <default>false</default>
+                    <label>Invoice/Tax Inv. LAB</label>
+                </value>
+                <value>
+                    <fullName>Z6IF</fullName>
+                    <default>false</default>
+                    <label>Final Invoice LAB</label>
+                </value>
+                <value>
+                    <fullName>Z6OT</fullName>
+                    <default>false</default>
+                    <label>Other Invoice LAB</label>
+                </value>
+                <value>
+                    <fullName>Z6V1</fullName>
+                    <default>false</default>
+                    <label>Commercial Serv. LAB</label>
+                </value>
+                <value>
+                    <fullName>Z1IV</fullName>
+                    <default>false</default>
+                    <label>Invoice/Tax Invoice</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>BlockStatus__c</fullName>
+        <externalId>false</externalId>
+        <label>Block Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>Overall block</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>Test block</label>
+                </value>
+                <value>
+                    <fullName>T1</fullName>
+                    <default>false</default>
+                    <label>Customer incompleted</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>All free of charge</label>
+                </value>
+                <value>
+                    <fullName>test (e)</fullName>
+                    <default>false</default>
+                    <label>test (e)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CompanyNumber__c</fullName>
+        <externalId>false</externalId>
+        <formula>AccountNumber__r.AccountNumber__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AccountNumber</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CreditControlArea__c</fullName>
+        <externalId>false</externalId>
+        <label>Credit Control Area</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>CreditControlArea</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Currency__c</fullName>
+        <externalId>false</externalId>
+        <label>Currency</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Currency</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CustPriceProc__c</fullName>
+        <externalId>false</externalId>
+        <label>Cust.pric.proc</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>CustPriceProc</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CustStatGroup__c</fullName>
+        <externalId>false</externalId>
+        <label>Cust.Stat.Group</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>CustStatGroup</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CustomerGroup1__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Group1</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>GR1</fullName>
+                    <default>false</default>
+                    <label>GR1=Customer Grp1</label>
+                </value>
+                <value>
+                    <fullName>Y01</fullName>
+                    <default>false</default>
+                    <label>Y01=Excise 01-46</label>
+                </value>
+                <value>
+                    <fullName>Z1</fullName>
+                    <default>false</default>
+                    <label>Z1=Uncontrolled excise</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CustomerGroup2__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Group2</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>GR2</fullName>
+                    <default>false</default>
+                    <label>GR2=Customer Grp2</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CustomerGroup3__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Group3</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>GR3</fullName>
+                    <default>false</default>
+                    <label>GR3	Customer Grp3</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CustomerGroup4__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Group4</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>GR4</fullName>
+                    <default>false</default>
+                    <label>GR4=Customer Grp4</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CustomerGroup5__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Group5</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>GR5</fullName>
+                    <default>false</default>
+                    <label>GR5=Customer Grp5</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CustomerGroup__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Group</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>01</fullName>
+                    <default>false</default>
+                    <label>01 High</label>
+                </value>
+                <value>
+                    <fullName>02</fullName>
+                    <default>false</default>
+                    <label>02 Normal Item</label>
+                </value>
+                <value>
+                    <fullName>03</fullName>
+                    <default>false</default>
+                    <label>03</label>
+                </value>
+                <value>
+                    <fullName>04</fullName>
+                    <default>false</default>
+                    <label>04</label>
+                </value>
+                <value>
+                    <fullName>05</fullName>
+                    <default>false</default>
+                    <label>05</label>
+                </value>
+                <value>
+                    <fullName>06</fullName>
+                    <default>false</default>
+                    <label>06 Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CustomerPayment__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Payment Guarantee Procedure</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ZA01</fullName>
+                    <default>false</default>
+                    <label>ZA01- Low Risk (Open)</label>
+                </value>
+                <value>
+                    <fullName>ZA02</fullName>
+                    <default>false</default>
+                    <label>ZA02- Low Risk (Parent Guarantee)</label>
+                </value>
+                <value>
+                    <fullName>ZB01</fullName>
+                    <default>false</default>
+                    <label>ZB01-Medium Risk (Credit Limit)</label>
+                </value>
+                <value>
+                    <fullName>ZB02</fullName>
+                    <default>false</default>
+                    <label>ZB02-Medium Risk (Credit Limit Group)</label>
+                </value>
+                <value>
+                    <fullName>ZC01</fullName>
+                    <default>false</default>
+                    <label>ZC01-High Risk (Advance Payment)</label>
+                </value>
+                <value>
+                    <fullName>ZC02</fullName>
+                    <default>false</default>
+                    <label>ZC02-High Risk (Collateral)</label>
+                </value>
+                <value>
+                    <fullName>ZC03</fullName>
+                    <default>false</default>
+                    <label>ZC03-High Risk (Export Cash)</label>
+                </value>
+                <value>
+                    <fullName>ZC04</fullName>
+                    <default>false</default>
+                    <label>ZC04-High Risk (Export L/C)</label>
+                </value>
+                <value>
+                    <fullName>ZC05</fullName>
+                    <default>false</default>
+                    <label>ZC05-High Risk (Cash&amp;Credit)</label>
+                </value>
+                <value>
+                    <fullName>ZC06</fullName>
+                    <default>false</default>
+                    <label>ZC06-High Risk (Credit Limit)</label>
+                </value>
+                <value>
+                    <fullName>ZC07</fullName>
+                    <default>false</default>
+                    <label>ZC07-High Risk (Cash)</label>
+                </value>
+                <value>
+                    <fullName>ZI01</fullName>
+                    <default>false</default>
+                    <label>ZI01-TOP Group</label>
+                </value>
+                <value>
+                    <fullName>0001</fullName>
+                    <default>false</default>
+                    <label>(Don&apos;t Use) Letters of credit</label>
+                </value>
+                <value>
+                    <fullName>0002</fullName>
+                    <default>false</default>
+                    <label>(Don&apos;t Use) Payment cards</label>
+                </value>
+                <value>
+                    <fullName>ZDUM</fullName>
+                    <default>false</default>
+                    <label>ZDUM</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CustomerTypeCode__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Type Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CustomerTypeDesc__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Type Desc</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>END CONSUMER</fullName>
+                    <default>false</default>
+                    <label>END CONSUMER</label>
+                </value>
+                <value>
+                    <fullName>Not assigned</fullName>
+                    <default>false</default>
+                    <label>Not assigned</label>
+                </value>
+                <value>
+                    <fullName>RETAIL</fullName>
+                    <default>false</default>
+                    <label>RETAIL</label>
+                </value>
+                <value>
+                    <fullName>WHOLESALE</fullName>
+                    <default>false</default>
+                    <label>WHOLESALE</label>
+                </value>
+                <value>
+                    <fullName>N/A</fullName>
+                    <default>false</default>
+                    <label>N/A</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CustomerType__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF (CustomerTypeCode__c = Null ||  ISPICKVAL(CustomerTypeDesc__c,&quot;&quot;)  ,&quot;&quot;,CustomerTypeCode__c &amp;&quot;=&quot;&amp;  TEXT( CustomerTypeDesc__c ) )</formula>
+        <label>Customer Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DeliveryPlant__c</fullName>
+        <externalId>false</externalId>
+        <label>Delivery Plant</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>DeliveryPlant</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>DeliveryPriority__c</fullName>
+        <externalId>false</externalId>
+        <label>Delivery Priority</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>DeliveryPriority</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>DistributionChannel__c</fullName>
+        <externalId>false</externalId>
+        <label>Distribution Channel</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>DistributionChannel</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Division__c</fullName>
+        <externalId>false</externalId>
+        <label>Division</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Division</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ExchangeRateType__c</fullName>
+        <externalId>false</externalId>
+        <label>Exchange Rate Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>100* = Reference value = group value</fullName>
+                    <default>false</default>
+                    <label>100* = Reference value = group value</label>
+                </value>
+                <value>
+                    <fullName>1001 = Current exchange rate</fullName>
+                    <default>false</default>
+                    <label>1001 = Current exchange rate</label>
+                </value>
+                <value>
+                    <fullName>1002 = Average exchange rate</fullName>
+                    <default>false</default>
+                    <label>1002 = Average exchange rate</label>
+                </value>
+                <value>
+                    <fullName>EURO = EMU reguration, fixed exchange rate</fullName>
+                    <default>false</default>
+                    <label>EURO = EMU reguration, fixed exchange rate</label>
+                </value>
+                <value>
+                    <fullName>Z1 = Standard translation for Hard Curr. (VN)</fullName>
+                    <default>false</default>
+                    <label>Z1 = Standard translation for Hard Curr. (VN)</label>
+                </value>
+                <value>
+                    <fullName>B</fullName>
+                    <default>false</default>
+                    <label>B</label>
+                </value>
+                <value>
+                    <fullName>M</fullName>
+                    <default>false</default>
+                    <label>M</label>
+                </value>
+                <value>
+                    <fullName>G</fullName>
+                    <default>false</default>
+                    <label>G</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Incoterms2__c</fullName>
+        <description>Incoterms 2</description>
+        <externalId>false</externalId>
+        <label>Incoterms 2</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Incoterms__c</fullName>
+        <externalId>false</externalId>
+        <label>Incoterms</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Incoterm</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>IndustryCode__c</fullName>
+        <externalId>false</externalId>
+        <label>Industry Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IndustryDesc__c</fullName>
+        <externalId>false</externalId>
+        <label>Industry Desc</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Industry__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+    OR(
+        OR(ISBLANK(IndustryCode__c), IndustryCode__c = &quot;&quot;),
+        OR(ISBLANK(IndustryDesc__c), IndustryDesc__c = &quot;&quot;)
+    ),
+    &quot;&quot;,
+    IndustryCode__c &amp;&quot; = &quot;&amp; IndustryDesc__c
+)</formula>
+        <label>Industry</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>InterGroup__c</fullName>
+        <externalId>false</externalId>
+        <label>Inter Group</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>InterGroup</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>IsPriceDetermin__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Price determin</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Key__c</fullName>
+        <description>Sales area External id</description>
+        <externalId>true</externalId>
+        <label>Key</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LatestBlockingDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Latest Blocking Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>LatestReEvaluationDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Latest Re-Evaluation Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MaxPartialDeliveries__c</fullName>
+        <externalId>false</externalId>
+        <label>Max Partial Deliveries</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NextReEvaluationDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Next Re-Evaluation Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>NumDays__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+        AND(ISBLANK(PODate__c), NOT(ISBLANK(BillingDate__c))),
+        TODAY() - BillingDate__c,
+        IF(
+                AND(NOT(ISBLANK(PODate__c)), ISBLANK(BillingDate__c)),
+                TODAY() - PODate__c,
+                IF(
+                        AND(NOT(ISBLANK(PODate__c)), NOT(ISBLANK(BillingDate__c))),
+                        IF(
+                                PODate__c &gt; BillingDate__c,
+                                TODAY() - PODate__c,
+                                TODAY() - BillingDate__c
+                        ),
+                        0
+                )
+        )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Number of Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OrderCombination__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Order Combination</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OrderProbability__c</fullName>
+        <externalId>false</externalId>
+        <label>Order Probability</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OverdeliveryTolerance__c</fullName>
+        <externalId>false</externalId>
+        <label>Overdelivery Tolerance</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PODate__c</fullName>
+        <description>Invoice Customer</description>
+        <externalId>false</externalId>
+        <label>PO Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>PONumber__c</fullName>
+        <description>Invoice Customer</description>
+        <externalId>false</externalId>
+        <label>PO Number</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PartialDeliveriesperitem__c</fullName>
+        <externalId>false</externalId>
+        <label>Partial Deliveries per item</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>PartialDeliveriesperitem</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>PartialDeliveryitem__c</fullName>
+        <externalId>false</externalId>
+        <label>Partial Delivery/item</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Blank</fullName>
+                    <default>false</default>
+                    <label>Partial delivery allowed</label>
+                </value>
+                <value>
+                    <fullName>A</fullName>
+                    <default>false</default>
+                    <label>Create a delivery with qty greater than zero</label>
+                </value>
+                <value>
+                    <fullName>B</fullName>
+                    <default>false</default>
+                    <label>Create only one delivery (also with quantity = 0)</label>
+                </value>
+                <value>
+                    <fullName>C</fullName>
+                    <default>false</default>
+                    <label>Only complete delivery allowed</label>
+                </value>
+                <value>
+                    <fullName>D</fullName>
+                    <default>false</default>
+                    <label>No limit to subsequent deliveries</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>PaymentGuaranteeProcedure__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment Guarantee Procedure</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>PaymentGuaranteeProcedure</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>PriceGroup__c</fullName>
+        <externalId>false</externalId>
+        <label>Price Group</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Z1</fullName>
+                    <default>false</default>
+                    <label>Z1 = Major Oil</label>
+                </value>
+                <value>
+                    <fullName>Z2</fullName>
+                    <default>false</default>
+                    <label>Z2 = 3rd Party</label>
+                </value>
+                <value>
+                    <fullName>Z3</fullName>
+                    <default>false</default>
+                    <label>Z3 = Related</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>Z4</fullName>
+                    <default>false</default>
+                    <label>Z4</label>
+                </value>
+                <value>
+                    <fullName>Z5</fullName>
+                    <default>false</default>
+                    <label>Z5</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Pricelist__c</fullName>
+        <externalId>false</externalId>
+        <label>Price list</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>01</fullName>
+                    <default>false</default>
+                    <label>01 = Combine Invoice</label>
+                </value>
+                <value>
+                    <fullName>02</fullName>
+                    <default>false</default>
+                    <label>02 = Split invoice</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>PricingProcedure__c</fullName>
+        <externalId>false</externalId>
+        <label>Pricing Procedure</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1 = Standard</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2 = Stand Incl Sales Tax</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3 = Refund</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4 = Bunker</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5 = GTM Standard</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>RawDataBI__c</fullName>
+        <description>RawData from BI</description>
+        <externalId>false</externalId>
+        <label>RawDataBI</label>
+        <length>2000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>20</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Rebate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Rebate</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SalesDistrict__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales District</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>SalesDistrict</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>SalesGroup__c</fullName>
+        <description>Sales Group</description>
+        <externalId>false</externalId>
+        <label>Sales Group</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>SalesGroup</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>SalesOffice__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Office</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>SalesOffice</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>SalesOrganization__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Organization</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>SalesOrganization</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ShippingCondition__c</fullName>
+        <description>Shipping Condition</description>
+        <externalId>false</externalId>
+        <label>Shipping Condition</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>ShippingConditions</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ShippingConditions__c</fullName>
+        <externalId>false</externalId>
+        <label>Shipping Conditions</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>ShippingConditions</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>false</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>Inactive</fullName>
+                    <default>false</default>
+                    <label>Inactive</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>SubIndustryCode__c</fullName>
+        <externalId>false</externalId>
+        <label>SubIndustry</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SubIndustryDesc__c</fullName>
+        <description>SubIndustry Desc</description>
+        <externalId>false</externalId>
+        <label>SubIndustry Desc</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SubIndustry__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF (SubIndustryCode__c = Null  || SubIndustryDesc__c = Null ,&quot;&quot;,SubIndustryCode__c &amp;&quot;=&quot;&amp; SubIndustryDesc__c)</formula>
+        <label>Sub Industry</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TOPCustomerGroup__c</fullName>
+        <externalId>false</externalId>
+        <label>TOP Customer Group</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>PT-GROUP</fullName>
+                    <default>false</default>
+                    <label>PT-GROUP</label>
+                </value>
+                <value>
+                    <fullName>SHELL-FZ</fullName>
+                    <default>false</default>
+                    <label>SHELL-FZ</label>
+                </value>
+                <value>
+                    <fullName>CHEVRON-FZ</fullName>
+                    <default>false</default>
+                    <label>CHEVRON-FZ</label>
+                </value>
+                <value>
+                    <fullName>PTTOR-FZ</fullName>
+                    <default>false</default>
+                    <label>PTTOR-FZ</label>
+                </value>
+                <value>
+                    <fullName>SHELL-EX</fullName>
+                    <default>false</default>
+                    <label>SHELL-EX</label>
+                </value>
+                <value>
+                    <fullName>CHEVRON-EX</fullName>
+                    <default>false</default>
+                    <label>CHEVRON-EX</label>
+                </value>
+                <value>
+                    <fullName>PTTOR-EX</fullName>
+                    <default>false</default>
+                    <label>PTTOR-EX</label>
+                </value>
+                <value>
+                    <fullName>CG001</fullName>
+                    <default>false</default>
+                    <label>ALCAN GROUP</label>
+                </value>
+                <value>
+                    <fullName>CG002</fullName>
+                    <default>false</default>
+                    <label>BASF GROUP</label>
+                </value>
+                <value>
+                    <fullName>CG003</fullName>
+                    <default>false</default>
+                    <label>BRIDGESTONE GROUP</label>
+                </value>
+                <value>
+                    <fullName>CG004</fullName>
+                    <default>false</default>
+                    <label>CAP</label>
+                </value>
+                <value>
+                    <fullName>CG005</fullName>
+                    <default>false</default>
+                    <label>CUSTOMER</label>
+                </value>
+                <value>
+                    <fullName>CG006</fullName>
+                    <default>false</default>
+                    <label>IRPC</label>
+                </value>
+                <value>
+                    <fullName>CG007</fullName>
+                    <default>false</default>
+                    <label>MING DHI GROUP</label>
+                </value>
+                <value>
+                    <fullName>CG008</fullName>
+                    <default>false</default>
+                    <label>NANPAO GROUP</label>
+                </value>
+                <value>
+                    <fullName>CG009</fullName>
+                    <default>false</default>
+                    <label>NIPPON GROUP</label>
+                </value>
+                <value>
+                    <fullName>CG010</fullName>
+                    <default>false</default>
+                    <label>PTT GROUP</label>
+                </value>
+                <value>
+                    <fullName>CG011</fullName>
+                    <default>false</default>
+                    <label>PTTEP GROUP</label>
+                </value>
+                <value>
+                    <fullName>CG012</fullName>
+                    <default>false</default>
+                    <label>PTTGC GROUP</label>
+                </value>
+                <value>
+                    <fullName>CG013</fullName>
+                    <default>false</default>
+                    <label>PTTOR</label>
+                </value>
+                <value>
+                    <fullName>CG014</fullName>
+                    <default>false</default>
+                    <label>SAKC</label>
+                </value>
+                <value>
+                    <fullName>CG020</fullName>
+                    <default>false</default>
+                    <label>SCG GROUP</label>
+                </value>
+                <value>
+                    <fullName>CG015</fullName>
+                    <default>false</default>
+                    <label>SHELL GROUP</label>
+                </value>
+                <value>
+                    <fullName>CG016</fullName>
+                    <default>false</default>
+                    <label>TOA GROUP</label>
+                </value>
+                <value>
+                    <fullName>CG017</fullName>
+                    <default>false</default>
+                    <label>TOP GROUP</label>
+                </value>
+                <value>
+                    <fullName>CG018</fullName>
+                    <default>false</default>
+                    <label>TS GROUP</label>
+                </value>
+                <value>
+                    <fullName>CG019</fullName>
+                    <default>false</default>
+                    <label>UBONBIO</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TermofPayment__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Term of Payment</label>
+        <lookupFilter>
+            <active>true</active>
+            <booleanFilter>1 OR 2</booleanFilter>
+            <filterItems>
+                <field>Master_Map__c.Type__c</field>
+                <operation>equals</operation>
+                <value>Payment Term</value>
+            </filterItems>
+            <filterItems>
+                <field>Master_Map__c.Type__c</field>
+                <operation>equals</operation>
+                <value>None</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Master_Map__c</referenceTo>
+        <relationshipLabel>Sales Area</relationshipLabel>
+        <relationshipName>Sales_Area</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UnderdeliveryTolerance__c</fullName>
+        <externalId>false</externalId>
+        <label>Underdelivery Tolerance</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Sales Area</label>
+    <nameField>
+        <displayFormat>SA-{00000000}</displayFormat>
+        <label>Sales Area Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

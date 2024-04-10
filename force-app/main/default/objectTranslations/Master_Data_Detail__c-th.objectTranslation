@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Master Data Detail</value>
+    </caseValues>
+    <fields>
+        <label><!-- Group --></label>
+        <name>Group__c</name>
+    </fields>
+    <fields>
+        <label><!-- Guideline --></label>
+        <name>Guideline__c</name>
+    </fields>
+    <fields>
+        <label><!-- Icon --></label>
+        <name>Icon__c</name>
+    </fields>
+    <fields>
+        <label><!-- Master Data --></label>
+        <name>Master_Data__c</name>
+        <relationshipLabel><!-- Master Data Detail --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- SME --></label>
+        <lookupFilter>
+            <errorMessage><!-- Selected user is not SME user. Please select SME user. --></errorMessage>
+            <informationalMessage><!-- Please select SME user. --></informationalMessage>
+        </lookupFilter>
+        <name>SME__c</name>
+        <relationshipLabel><!-- Master Data Detail --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Work Process Group --></label>
+        <name>Work_Process_Group__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Process No --></label>
+        <name>Work_Process_No__c</name>
+    </fields>
+    <layouts>
+        <layout>Master Data Detail Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- SME and Guideline --></label>
+            <section>SME and Guideline</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Please fill in &apos;Work Process No&apos; , &apos;Group&apos; and &apos;Work Process Group&apos; . --></errorMessage>
+        <name>Check_Require_Validation</name>
+    </validationRules>
+</CustomObjectTranslation>

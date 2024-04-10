@@ -1,0 +1,1233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Request Items</value>
+    </caseValues>
+    <fields>
+        <label><!-- Actual Software Version --></label>
+        <name>Actual_Software_Version__c</name>
+        <relationshipLabel><!-- Request Items (Actual Software Version) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Actual Version --></label>
+        <name>Actual_Version__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target User --></label>
+        <name>Asset_Owner__c</name>
+        <relationshipLabel><!-- Request Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Authority Request --></label>
+        <name>Authority_Request__c</name>
+        <picklistValues>
+            <masterLabel>Ariba</masterLabel>
+            <translation><!-- Ariba --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Enable LAN Port</masterLabel>
+            <translation><!-- Enable LAN Port --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internet Access</masterLabel>
+            <translation><!-- Internet Access --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intranet Access</masterLabel>
+            <translation><!-- Intranet Access --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAP</masterLabel>
+            <translation><!-- SAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TOP Space</masterLabel>
+            <translation><!-- TOP Space --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>User Account</masterLabel>
+            <translation><!-- User Account --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>User Account + Email</masterLabel>
+            <translation><!-- User Account + Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VPN</masterLabel>
+            <translation><!-- VPN --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Case --></label>
+        <name>Case__c</name>
+        <relationshipLabel><!-- Request Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Child Version --></label>
+        <name>Child_Version__c</name>
+        <picklistValues>
+            <masterLabel>Version A</masterLabel>
+            <translation><!-- Version A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Version B</masterLabel>
+            <translation><!-- Version B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Version C</masterLabel>
+            <translation><!-- Version C --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Department --></label>
+        <name>Department__c</name>
+        <picklistValues>
+            <masterLabel>-</masterLabel>
+            <translation><!-- - --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ACVP</masterLabel>
+            <translation><!-- ACVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ADVP</masterLabel>
+            <translation><!-- ADVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BDVP</masterLabel>
+            <translation><!-- BDVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAVP</masterLabel>
+            <translation><!-- CAVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CMVP</masterLabel>
+            <translation><!-- CMVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COMG</masterLabel>
+            <translation><!-- COMG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CPVP</masterLabel>
+            <translation><!-- CPVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CRVP</masterLabel>
+            <translation><!-- CRVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CSMG</masterLabel>
+            <translation><!-- CSMG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CTVP</masterLabel>
+            <translation><!-- CTVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DGVP</masterLabel>
+            <translation><!-- DGVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EMMG</masterLabel>
+            <translation><!-- EMMG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ENVP</masterLabel>
+            <translation><!-- ENVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EOVP</masterLabel>
+            <translation><!-- EOVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FPVP</masterLabel>
+            <translation><!-- FPVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GLVP</masterLabel>
+            <translation><!-- GLVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GSVP</masterLabel>
+            <translation><!-- GSVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IAVP</masterLabel>
+            <translation><!-- IAVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MGT-SA</masterLabel>
+            <translation><!-- MGT-SA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MMVP</masterLabel>
+            <translation><!-- MMVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MPVP</masterLabel>
+            <translation><!-- MPVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MRVP</masterLabel>
+            <translation><!-- MRVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NBVP</masterLabel>
+            <translation><!-- NBVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PCVP</masterLabel>
+            <translation><!-- PCVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PEVP</masterLabel>
+            <translation><!-- PEVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PMVP</masterLabel>
+            <translation><!-- PMVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POMG</masterLabel>
+            <translation><!-- POMG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PRMG</masterLabel>
+            <translation><!-- PRMG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PTMG</masterLabel>
+            <translation><!-- PTMG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QMVP</masterLabel>
+            <translation><!-- QMVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SA</masterLabel>
+            <translation><!-- SA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCVP</masterLabel>
+            <translation><!-- SCVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SHMG</masterLabel>
+            <translation><!-- SHMG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SPVP</masterLabel>
+            <translation><!-- SPVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TNVP</masterLabel>
+            <translation><!-- TNVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TRVP</masterLabel>
+            <translation><!-- TRVP --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Detail --></label>
+        <name>Detail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Full Name --></label>
+        <name>Full_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Hardware Item --></label>
+        <name>Hardware_Item__c</name>
+        <picklistValues>
+            <masterLabel>Computer</masterLabel>
+            <translation><!-- Computer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monitor</masterLabel>
+            <translation><!-- Monitor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Notebook</masterLabel>
+            <translation><!-- Notebook --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Hardware Other --></label>
+        <name>Hardware_Other__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incident Item --></label>
+        <name>Incident_Item__c</name>
+        <picklistValues>
+            <masterLabel>App</masterLabel>
+            <translation><!-- App --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Network</masterLabel>
+            <translation><!-- Network --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PC</masterLabel>
+            <translation><!-- PC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Telecom</masterLabel>
+            <translation><!-- Telecom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VDO Conference</masterLabel>
+            <translation><!-- VDO Conference --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IsForceChange --></label>
+        <name>IsForceChange__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Summited PMAsset --></label>
+        <name>Is_Summited_PMAsset__c</name>
+    </fields>
+    <fields>
+        <label><!-- New Hardware to Install (WinNo) --></label>
+        <name>New_WinNo__c</name>
+        <relationshipLabel><!-- Request Items (New Hardware to Install (WinNo)) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Hardware to install (WinNo) --></label>
+        <name>OPP_IT_Asset__c</name>
+        <relationshipLabel><!-- Request Items (Hardware to install (WinNo)) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Software Name --></label>
+        <name>OPP_Software_Asset__c</name>
+        <relationshipLabel><!-- Request Items (Software Name) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Price Per Unit --></label>
+        <name>Price_Per_Unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quantity --></label>
+        <name>Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Response PM Asset --></label>
+        <name>Response_PM_Asset__c</name>
+    </fields>
+    <fields>
+        <label><!-- Software Name Version --></label>
+        <name>Software_Name_ChildVersion__c</name>
+        <relationshipLabel><!-- Request Items (Software Name Version) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Software Other --></label>
+        <name>Software_Other__c</name>
+    </fields>
+    <fields>
+        <label><!-- Software Type --></label>
+        <name>Software_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Software Version (If Any) --></label>
+        <name>Software_Version__c</name>
+    </fields>
+    <fields>
+        <label><!-- Software Version for Others --></label>
+        <name>Software_Version_for_Others__c</name>
+    </fields>
+    <fields>
+        <label><!-- Accessory Item --></label>
+        <name>Stationery_Item__c</name>
+        <picklistValues>
+            <masterLabel>CDR</masterLabel>
+            <translation><!-- CDR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DVD-R</masterLabel>
+            <translation><!-- DVD-R --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DeskjestPlus 4120/4121/4122 : 67A (Black)</masterLabel>
+            <translation><!-- DeskjestPlus 4120/4121/4122 : 67A (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DeskjestPlus 4120/4121/4122 : 67A (Tri-color)</masterLabel>
+            <translation><!-- DeskjestPlus 4120/4121/4122 : 67A (Tri-color) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EPSON DL 3800/9400 (Black)</masterLabel>
+            <translation><!-- EPSON DL 3800/9400 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EPSON LQ 2090 Black</masterLabel>
+            <translation><!-- EPSON LQ 2090 Black --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EPSON LQ 300 (Black)</masterLabel>
+            <translation><!-- EPSON LQ 300 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuji Xerox Apeosport 3560-v1860/2560/3060 :CT205208 (Black)</masterLabel>
+            <translation><!-- Fuji Xerox Apeosport 3560-v1860/2560/3060 :CT205208 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuji Xerox Apeosport 3560-v1860/2560/3060 :CT351089 (Drum Cartidge)</masterLabel>
+            <translation><!-- Fuji Xerox Apeosport 3560-v1860/2560/3060 :CT351089 (Drum Cartidge) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuji Xerox Apeosport C3070 :CT202634 (Black)</masterLabel>
+            <translation><!-- Fuji Xerox Apeosport C3070 :CT202634 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuji Xerox Apeosport C3070 :CT202635 (Cyan)</masterLabel>
+            <translation><!-- Fuji Xerox Apeosport C3070 :CT202635 (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuji Xerox Apeosport C3070 :CT202636 (Meaenta)</masterLabel>
+            <translation><!-- Fuji Xerox Apeosport C3070 :CT202636 (Meaenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuji Xerox Apeosport C3070 :CT202637 (Yellow)</masterLabel>
+            <translation><!-- Fuji Xerox Apeosport C3070 :CT202637 (Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuji Xerox Apeosport C3070 :CT351105 (Drum Cartidge)</masterLabel>
+            <translation><!-- Fuji Xerox Apeosport C3070 :CT351105 (Drum Cartidge) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuji Xerox Apeosport C3070 :CWAA0901 (Waste Toner Container)</masterLabel>
+            <translation><!-- Fuji Xerox Apeosport C3070 :CWAA0901 (Waste Toner Container) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuji Xerox Apeosport C66880/6685 :CT201586 (Black)</masterLabel>
+            <translation><!-- Fuji Xerox Apeosport C66880/6685 :CT201586 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuji Xerox Apeosport C66880/6685 :CT201587 (Cyan)</masterLabel>
+            <translation><!-- Fuji Xerox Apeosport C66880/6685 :CT201587 (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuji Xerox Apeosport C66880/6685 :CT201588 (Megenta)</masterLabel>
+            <translation><!-- Fuji Xerox Apeosport C66880/6685 :CT201588 (Megenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuji Xerox Apeosport C66880/6685 :CT201589 Yellow)</masterLabel>
+            <translation><!-- Fuji Xerox Apeosport C66880/6685 :CT201589 Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fujitsu DL 3800/9400 : Black</masterLabel>
+            <translation><!-- Fujitsu DL 3800/9400 : Black --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HP 76A BLACK LJ TONER CARTRIDGE</masterLabel>
+            <translation><!-- HP 76A BLACK LJ TONER CARTRIDGE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HP Cartridge CE505A</masterLabel>
+            <translation><!-- HP Cartridge CE505A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HP Cartridge CF226</masterLabel>
+            <translation><!-- HP Cartridge CF226 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HP Cartridge CF248</masterLabel>
+            <translation><!-- HP Cartridge CF248 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HP Cartridge CF276</masterLabel>
+            <translation><!-- HP Cartridge CF276 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HP Cartridge CF280X</masterLabel>
+            <translation><!-- HP Cartridge CF280X --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HP Cartridge CF285</masterLabel>
+            <translation><!-- HP Cartridge CF285 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HP Laser jet 206A</masterLabel>
+            <translation><!-- HP Laser jet 206A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HP Q 5949A</masterLabel>
+            <translation><!-- HP Q 5949A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HP Q 7553A</masterLabel>
+            <translation><!-- HP Q 7553A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HP laser Jet Pro M203</masterLabel>
+            <translation><!-- HP laser Jet Pro M203 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Headset Jack</masterLabel>
+            <translation><!-- Headset Jack --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Headset USB</masterLabel>
+            <translation><!-- Headset USB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Keyboard</masterLabel>
+            <translation><!-- Keyboard --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Laptop Stand</masterLabel>
+            <translation><!-- Laptop Stand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Laserjet CF248A : 48A (Black)</masterLabel>
+            <translation><!-- Laserjet CF248A : 48A (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MFP M227 (30A)</masterLabel>
+            <translation><!-- MFP M227 (30A) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mouse Wireless</masterLabel>
+            <translation><!-- Mouse Wireless --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RIBBON  EPSON  LQ310</masterLabel>
+            <translation><!-- RIBBON  EPSON  LQ310 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RIBBON  EPSON  LQ590</masterLabel>
+            <translation><!-- RIBBON  EPSON  LQ590 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RIBBON EPSON LQ2170/2070,2090</masterLabel>
+            <translation><!-- RIBBON EPSON LQ2170/2070,2090 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TONER LASER CE285A  FOR 1102</masterLabel>
+            <translation><!-- TONER LASER CE285A  FOR 1102 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Desjet No.680 Ink For 4675 Advantage (Black)</masterLabel>
+            <translation><!-- Toner Desjet No.680 Ink For 4675 Advantage (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Desjet No.680 Ink For 4675 Advantage (Tri-colour)</masterLabel>
+            <translation><!-- Toner Desjet No.680 Ink For 4675 Advantage (Tri-colour) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Desjet No.682 Ink For 4675 Advantage (Black)</masterLabel>
+            <translation><!-- Toner Desjet No.682 Ink For 4675 Advantage (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Desjet No.682 Ink For 4675 Advantage (Tri-colour)</masterLabel>
+            <translation><!-- Toner Desjet No.682 Ink For 4675 Advantage (Tri-colour) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Epson RIBBON LQ-630</masterLabel>
+            <translation><!-- Toner Epson RIBBON LQ-630 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP 107A</masterLabel>
+            <translation><!-- Toner HP 107A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP 151A (Black)</masterLabel>
+            <translation><!-- Toner HP 151A (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP 83A</masterLabel>
+            <translation><!-- Toner HP 83A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Cartridge CE285A</masterLabel>
+            <translation><!-- Toner HP Cartridge CE285A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 46  (Tri-colour)</masterLabel>
+            <translation><!-- Toner HP Ink 46  (Tri-colour) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 46 (Black)</masterLabel>
+            <translation><!-- Toner HP Ink 46 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 60  (Tri-colour)</masterLabel>
+            <translation><!-- Toner HP Ink 60  (Tri-colour) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 60 (Black)</masterLabel>
+            <translation><!-- Toner HP Ink 60 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 61  (Tri-colour)</masterLabel>
+            <translation><!-- Toner HP Ink 61  (Tri-colour) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 61 (Black)</masterLabel>
+            <translation><!-- Toner HP Ink 61 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 67  (Tri-colour)</masterLabel>
+            <translation><!-- Toner HP Ink 67  (Tri-colour) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 67 (Black)</masterLabel>
+            <translation><!-- Toner HP Ink 67 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 678  (Black)</masterLabel>
+            <translation><!-- Toner HP Ink 678  (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 678 (Tri-colour)</masterLabel>
+            <translation><!-- Toner HP Ink 678 (Tri-colour) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 920 (Black)</masterLabel>
+            <translation><!-- Toner HP Ink 920 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 920 (Cyan)</masterLabel>
+            <translation><!-- Toner HP Ink 920 (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 920 (Megenta)</masterLabel>
+            <translation><!-- Toner HP Ink 920 (Megenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 920 (Yellow)</masterLabel>
+            <translation><!-- Toner HP Ink 920 (Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 932 (Black)</masterLabel>
+            <translation><!-- Toner HP Ink 932 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 933 (Black)</masterLabel>
+            <translation><!-- Toner HP Ink 933 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 933 (Cyan)</masterLabel>
+            <translation><!-- Toner HP Ink 933 (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 933 (Megenta)</masterLabel>
+            <translation><!-- Toner HP Ink 933 (Megenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 933 (Yellow)</masterLabel>
+            <translation><!-- Toner HP Ink 933 (Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 95  (Tri-colour)</masterLabel>
+            <translation><!-- Toner HP Ink 95  (Tri-colour) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 95 (Black)</masterLabel>
+            <translation><!-- Toner HP Ink 95 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 950 (Black)</masterLabel>
+            <translation><!-- Toner HP Ink 950 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 970  (Black)</masterLabel>
+            <translation><!-- Toner HP Ink 970  (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 970 (Tri-colour)</masterLabel>
+            <translation><!-- Toner HP Ink 970 (Tri-colour) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 98  (Tri-colour)</masterLabel>
+            <translation><!-- Toner HP Ink 98  (Tri-colour) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Ink 98 (Black)</masterLabel>
+            <translation><!-- Toner HP Ink 98 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Laser Jet 304A (Black)</masterLabel>
+            <translation><!-- Toner HP Laser Jet 304A (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Laser Jet 304A (Cyan)</masterLabel>
+            <translation><!-- Toner HP Laser Jet 304A (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Laser Jet 304A (Magenta)</masterLabel>
+            <translation><!-- Toner HP Laser Jet 304A (Magenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Laser Jet 304A (yellow)</masterLabel>
+            <translation><!-- Toner HP Laser Jet 304A (yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Laser Jet color 215A (Black)</masterLabel>
+            <translation><!-- Toner HP Laser Jet color 215A (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Laser Jet color 215A (Cyan)</masterLabel>
+            <translation><!-- Toner HP Laser Jet color 215A (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Laser Jet color 215A (Magenta)</masterLabel>
+            <translation><!-- Toner HP Laser Jet color 215A (Magenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner HP Laser Jet color 215A (Yellow)</masterLabel>
+            <translation><!-- Toner HP Laser Jet color 215A (Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Jet M401/M400/M425: CF280X (Original)</masterLabel>
+            <translation><!-- Toner Jet M401/M400/M425: CF280X (Original) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Laser Jet P2035/P2055: CE505A (Remanu)</masterLabel>
+            <translation><!-- Toner Laser Jet P2035/P2055: CE505A (Remanu) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Laser Jet Pro 32A</masterLabel>
+            <translation><!-- Toner Laser Jet Pro 32A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Laser Jet Pro MFP M254 M280 M281fdn: 202A (Black)</masterLabel>
+            <translation><!-- Toner Laser Jet Pro MFP M254 M280 M281fdn: 202A (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Laser Jet Pro MFP M254 M280 M281fdn: 202A (Cyan)</masterLabel>
+            <translation><!-- Toner Laser Jet Pro MFP M254 M280 M281fdn: 202A (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Laser Jet Pro MFP M254 M280 M281fdn: 202A (Megenta)</masterLabel>
+            <translation><!-- Toner Laser Jet Pro MFP M254 M280 M281fdn: 202A (Megenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Laser Jet Pro MFP M254 M280 M281fdn: 202A (Yellow)</masterLabel>
+            <translation><!-- Toner Laser Jet Pro MFP M254 M280 M281fdn: 202A (Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Laser Jet color CM1415/CP1525:128A (Black)</masterLabel>
+            <translation><!-- Toner Laser Jet color CM1415/CP1525:128A (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Laser Jet color CM1415/CP1525:128A (Cyan)</masterLabel>
+            <translation><!-- Toner Laser Jet color CM1415/CP1525:128A (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Laser Jet color CM1415/CP1525:128A (Megenta)</masterLabel>
+            <translation><!-- Toner Laser Jet color CM1415/CP1525:128A (Megenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Laser Jet color CM1415/CP1525:128A (Yellow)</masterLabel>
+            <translation><!-- Toner Laser Jet color CM1415/CP1525:128A (Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro  307 (Yellow)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro  307 (Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro  410  (Cyan)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro  410  (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro  410  (Yellow)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro  410  (Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro  410 (Megenta)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro  410 (Megenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 200 color  125 A (Cyan)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 200 color  125 A (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 200 color  125 A (Yellow)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 200 color  125 A (Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 200 color 125 A (Black)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 200 color 125 A (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 200 color 125 A (Megenta)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 200 color 125 A (Megenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 200 color M251/M276: 131 A (Black)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 200 color M251/M276: 131 A (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 200 color M251/M276: 131 A (Cyan)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 200 color M251/M276: 131 A (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 200 color M251/M276: 131 A (Megenta)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 200 color M251/M276: 131 A (Megenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 200 color M251/M276: 131 A (Yellow)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 200 color M251/M276: 131 A (Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 218 (Black)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 218 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 218 (Cyan)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 218 (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 218 (Megenta)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 218 (Megenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 218 (Yellow)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 218 (Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 305 (Black)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 305 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 307 (Black)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 307 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 307 (Cyan)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 307 (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 307 (Megenta)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 307 (Megenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro 410 (Black)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro 410 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro MFP M281fdn: 201 (Black)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro MFP M281fdn: 201 (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro MFP M281fdn: 201 (Cyan)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro MFP M281fdn: 201 (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro MFP M281fdn: 201 (Megenta)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro MFP M281fdn: 201 (Megenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro MFP M281fdn: 201 (Yellow)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro MFP M281fdn: 201 (Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro MFP M281fdn: 202X (Black)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro MFP M281fdn: 202X (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro MFP M281fdn: 202X (Cyan)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro MFP M281fdn: 202X (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro MFP M281fdn: 202X (Megenta)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro MFP M281fdn: 202X (Megenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Leser Jet Pro MFP M281fdn: 202X (Yellow)</masterLabel>
+            <translation><!-- Toner Leser Jet Pro MFP M281fdn: 202X (Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Office Jet Pro x551dw Color: 971XL (Black)</masterLabel>
+            <translation><!-- Toner Office Jet Pro x551dw Color: 971XL (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Office Jet Pro x551dw Color: 971XL (Cyan)</masterLabel>
+            <translation><!-- Toner Office Jet Pro x551dw Color: 971XL (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Office Jet Pro x551dw Color: 971XL (Megenta)</masterLabel>
+            <translation><!-- Toner Office Jet Pro x551dw Color: 971XL (Megenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Office Jet Pro x551dw Color: 971XL (Yellow)</masterLabel>
+            <translation><!-- Toner Office Jet Pro x551dw Color: 971XL (Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Officejet Pro 8600/8100 color: 950XL (Black)</masterLabel>
+            <translation><!-- Toner Officejet Pro 8600/8100 color: 950XL (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Officejet Pro 8600/8100 color: 951XL (Black)</masterLabel>
+            <translation><!-- Toner Officejet Pro 8600/8100 color: 951XL (Black) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Officejet Pro 8600/8100 color: 951XL (Cyan)</masterLabel>
+            <translation><!-- Toner Officejet Pro 8600/8100 color: 951XL (Cyan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Officejet Pro 8600/8100 color: 951XL (Megenta)</masterLabel>
+            <translation><!-- Toner Officejet Pro 8600/8100 color: 951XL (Megenta) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toner Officejet Pro 8600/8100 color: 951XL (Yellow)</masterLabel>
+            <translation><!-- Toner Officejet Pro 8600/8100 color: 951XL (Yellow) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>แผ่นรองเม้าส์</masterLabel>
+            <translation><!-- แผ่นรองเม้าส์ --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Accessory Other --></label>
+        <name>Stationery_Other__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price Per Unit --></label>
+        <name>standardSoftwarePrice__c</name>
+    </fields>
+    <layouts>
+        <layout>OPP Authorization</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>OPP Case Line Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>OPP Hardware - Catalog</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>OPP Hardware - Non Catalog</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>OPP IT Stationery - Catalog</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>OPP IT Stationery - Non Catalog</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>OPP Incident</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>OPP Software - Catalog</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>OPP Software - Non Catalog</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Authorization - Application --></label>
+        <name>Authorization_Application</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Authorization - IT Infrastructure --></label>
+        <name>Authorization_IT_Infrastructure</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Authorization - IT Infrastructure (Special) --></label>
+        <name>Authorization_IT_Infrastructure_Special</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Authorization - SAP Account --></label>
+        <name>Authorization_SAP_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Hardware - Catalog --></label>
+        <name>Hardware_Catalog</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Hardware - Non Catalog --></label>
+        <name>Hardware_Non_Catalog</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- IT Stationery - Catalog --></label>
+        <name>IT_Stationery_Catalog</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- IT Stationery - Non Catalog --></label>
+        <name>IT_Stationery_Non_Catalog</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Incident --></label>
+        <name>Incident</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Others --></label>
+        <name>Others</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Project Request --></label>
+        <name>Project_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SectHead-AUTH-APP --></label>
+        <name>SectHead_AUTH_APP</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SectHead-AUTH-INFRA --></label>
+        <name>SectHead_AUTH_INFRA</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SectHead-AUTH-INFRA-SPE --></label>
+        <name>SectHead_AUTH_INFRA_SPE</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SectHead-AUTH-SAP --></label>
+        <name>SectHead_AUTH_SAP</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SectHead-HW --></label>
+        <name>SectHead_HW</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SectHead-HW-NON --></label>
+        <name>SectHead_HW_NON</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SectHead-PROJ --></label>
+        <name>SectHead_PROJ</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SectHead-STAT --></label>
+        <name>SectHead_STAT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SectHead-STAT-NON --></label>
+        <name>SectHead_STAT_NON</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SectHead-SW --></label>
+        <name>SectHead_SW</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SectHead-SW-NON --></label>
+        <name>SectHead_SW_NON</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Software - Catalog --></label>
+        <name>Software_Catalog</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Software - Non Catalog --></label>
+        <name>Software_Non_Catalog</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Staff-AUTH-APP --></label>
+        <name>Staff_AUTH_APP</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Staff-AUTH-INFRA --></label>
+        <name>Staff_AUTH_INFRA</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Staff-AUTH-INFRA-SPE --></label>
+        <name>Staff_AUTH_INFRA_SPE</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Staff-AUTH-SAP --></label>
+        <name>Staff_AUTH_SAP</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Staff-HW --></label>
+        <name>Staff_HW</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Staff-HW-NON --></label>
+        <name>Staff_HW_NON</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Staff-PROJ --></label>
+        <name>Staff_PROJ</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Staff-STAT --></label>
+        <name>Staff_STAT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Staff-STAT-NON --></label>
+        <name>Staff_STAT_NON</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Staff-SW --></label>
+        <name>Staff_SW</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Staff-SW-NON --></label>
+        <name>Staff_SW_NON</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- VP-AUTH-APP --></label>
+        <name>VP_AUTH_APP</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- VP-AUTH-INFRA --></label>
+        <name>VP_AUTH_INFRA</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- VP-AUTH-INFRA-SPE --></label>
+        <name>VP_AUTH_INFRA_SPE</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- VP-AUTH-SAP --></label>
+        <name>VP_AUTH_SAP</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- VP-HW --></label>
+        <name>VP_HW</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- VP-HW-NON --></label>
+        <name>VP_HW_NON</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- VP-PROJ --></label>
+        <name>VP_PROJ</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- VP-STAT --></label>
+        <name>VP_STAT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- VP-STAT-NON --></label>
+        <name>VP_STAT_NON</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- VP-SW --></label>
+        <name>VP_SW</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- VP-SW-NON --></label>
+        <name>VP_SW_NON</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- You cannot edit request item --></errorMessage>
+        <name>Authorization_Cannot_Edit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit any information in request item --></errorMessage>
+        <name>Hardware_Cannot_Edit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can edit only new hardware to install (Win no.) --></errorMessage>
+        <name>Hardware_Inprogress_DG</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit information after Submit for Approval --></errorMessage>
+        <name>Hardware_Inprogress_Requester</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit request item --></errorMessage>
+        <name>Incident_Cannot_Edit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can edit price per unit only --></errorMessage>
+        <name>Other_Hardware_DGCheckPrice_DGLead</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit information after Submit for Approval --></errorMessage>
+        <name>Other_Hardware_DGCheckPrice_Requester</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit price and new hardware to install during draft status --></errorMessage>
+        <name>Other_Hardware_Draft_Status</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can edit price per unit only --></errorMessage>
+        <name>Other_Software_DGCheckPrice_DGLead</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit information after Submit for Approval --></errorMessage>
+        <name>Other_Software_DGCheckPrice_Requester</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit price during draft status --></errorMessage>
+        <name>Other_Software_Draft_Status</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit price during draft status --></errorMessage>
+        <name>Other_Stationeries_Draft_Status</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can edit price per unit only --></errorMessage>
+        <name>Other_Stationery_DGCheckPrice_DGLead</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit information after Submit for Approval --></errorMessage>
+        <name>Other_Stationery_DGCheckPrice_Requester</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit any information in request item --></errorMessage>
+        <name>Software_Cannot_Edit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can edit software version only --></errorMessage>
+        <name>Software_DGApproval_DG</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit information after Submit for Approval --></errorMessage>
+        <name>Software_DGApproval_Requester</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can edit actual software version only --></errorMessage>
+        <name>Software_Inprogress_DG</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit information after Submit for Approval --></errorMessage>
+        <name>Software_Inprogress_Requester</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit any information in request item --></errorMessage>
+        <name>Stationeries_Cannot_Edit</name>
+    </validationRules>
+</CustomObjectTranslation>

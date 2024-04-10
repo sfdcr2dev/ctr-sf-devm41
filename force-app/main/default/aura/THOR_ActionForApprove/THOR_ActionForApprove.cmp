@@ -1,0 +1,167 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable"
+    access="global" controller="THOR_ActionForApproveController">
+
+    <!--
+        recordId is the EQCC_Checked_Sheet__c Id that relates all the steps together
+     -->
+
+    <!-- ATTRIBUTES -->
+    <aura:attribute name="eqccStepId" type="String" />
+
+    <aura:attribute name="isApproving" type="Boolean" default="false" access="private" />
+    <aura:attribute name="canApprove" type="Boolean" default="false" access="private" />
+    <aura:attribute name="actionLabel" type="String" default="false" access="private" />
+    <aura:attribute name="reassignId" type="String" default="false" access="private" />
+    <aura:attribute name="showModal" type="Boolean" default="false" access="private" />
+    <aura:attribute name="comments" type="String" default="" access="private" />
+
+    <aura:attribute name="showButton" type="Boolean" default="true" access="global" />
+
+    <aura:attribute name="rejectedForm" type="Header_Sheet__c" default="" />
+    <aura:attribute name="isRejected" type="Boolean" default="false" />
+
+    <aura:attribute name="approvalItems" type="List" access="global" />
+    <aura:attribute name="userOrgList" type="User[]" access="global" />
+    <aura:attribute name="selectedUser" type="User" access="global" />
+    <aura:attribute name="historyCount" type="String" default="0" />
+    <aura:attribute name="selectedApprovalItem" type="String" />
+    <aura:attribute name="isComment" type="Boolean" />
+    <aura:attribute name="approvalAction" type="String" />
+    <aura:attribute name="approvalActionText" type="String" />
+    <aura:attribute name="comment" type="String" />
+    <aura:attribute name="stepCount" type="String" default="" />
+    <aura:attribute name="sheetCode" type="String" default="" />
+    <aura:attribute name="forApprovals" type="Boolean" default="true" />
+
+    <lightning:notificationsLibrary aura:id="notifLib"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.forceRefresh}" />
+    <aura:registerEvent name="THOR_refreshStepsAfterRevise" type="c:THOR_refreshStepsAfterRevise"/>
+    <!-- EVENTS -->
+    <aura:handler name="selectedEvent" event="c:THOR_Event" action="{!c.handleUserSelected}" />
+    <aura:registerEvent name="stopLoadingEvent" type="c:THOR_Event"/>
+
+    <lightning:navigation aura:id="navService"/>
+
+    <lightning:layout>
+        <lightning:layoutItem padding="horizontal-small" size="12" aura:id="top" class="slds-scrollable_y">
+
+            <div class="table-header">
+                <aura:if isTrue="{! and( v.canApprove, v.forApprovals) }" >
+                    <span class="approve-revise-btns">
+                        <div class="inline-button">
+                            <button class="approve-button" onclick="{! c.handleApprove }"></button>
+                            <p>Approve</p>
+                        </div>
+                        <div class="inline-button">
+                            <button class="revise-button" onclick="{! c.handleRevision }"></button>
+                            <p>Revise</p>
+                        </div>
+                        <div class="inline-button">
+                            <button class="reassign-button" onclick="{! c.handleReassign }"></button>
+                            <p>Reassign</p>
+                        </div>
+                        <div class="inline-button">
+                        </div>
+                    </span>
+                    <aura:set attribute="else">
+                        <div><p>View Only: Not available to approve/revise or reassign based on role, profile or status.</p></div>
+                    </aura:set>
+                </aura:if>
+            </div>
+            <div class="">
+                <h2>
+                    Approval History ({! v.historyCount })
+                </h2>
+            </div>
+
+            <div class="approval-table">
+                <aura:if isTrue="{! not(empty(v.approvalItems)) }" >
+                    <div aura:id="approval-rows-list" class="approval-rows-list">
+                        <aura:iteration items="{!v.approvalItems}" var="approvalItem" >
+                            <h2>{! approvalItem.Name }</h2>
+                            <div class="field-item">
+                                <p>Date:</p>
+                                <p>{! approvalItem.Date }</p>
+                            </div>
+                            <div class="field-item">
+                                <p>Status:</p>
+                                <p>{! approvalItem.Status }</p>
+                            </div>
+                            <div class="field-item">
+                                <p>Original Assigned:</p>
+                                <p>{! approvalItem.Assigned }</p>
+                            </div>
+                            <div class="field-item">
+                                <p>Actual Assigned:</p>
+                                <p>{! approvalItem.ActualAssigned }</p>
+                            </div>
+                            <aura:if isTrue="{! and(approvalItem.Status != 'Reassigned', approvalItem.Status != 'Submitted') }">
+                                <div class="field-item">
+                                    <p>Comments:</p>
+                                    <p>{! approvalItem.Comment }</p>
+                                </div>
+                            </aura:if>
+                            <hr />
+                        </aura:iteration>
+                    </div>
+                    <aura:set attribute="else">
+                        <aura:if isTrue="{!v.isRejected}">
+                            <div aura:id="approval-rows-list" class="approval-rows-list">
+                                <div class="field-item">
+                                    <p>Date:</p>
+                                    <p>
+                                        {!v.rejectedForm.Rejection_Datetime__c}
+                                    </p>
+                                </div>
+                                <div class="field-item">
+                                    <p>Status:</p>
+                                    <p>{! v.rejectedForm.Status__c }</p>
+                                </div>
+                                <div class="field-item">
+                                    <p>Comments:</p>
+                                    <p>{! v.rejectedForm.Rejection_Reason__c }</p>
+                                </div>
+                                <hr />
+                            </div>
+                        </aura:if>
+                    </aura:set>
+                </aura:if>
+            </div>
+
+        </lightning:layoutItem>
+        <aura:if isTrue="{!v.isComment}">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close" onclick="{! c.handleClose }" alternativeText="close"
+                            variant="bare-inverse" class="slds-modal__close" />
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{!v.approvalActionText} step</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_large" id="modal-content-id-1">
+                        <lightning:recordEditForm aura:id="approvalAction" objectApiName="ProcessInstanceStep"
+                            onsubmit="{!c.handleSubmit}">
+                            <aura:if isTrue="{!v.approvalAction == 'Reassign'}">
+                                <c:THOR_CustomLookup objectName="User" fieldName="Name" label="Reassign to"
+                                iconName="custom:custom69" placeholder="Search Users..." />
+                                <lightning:textarea aura:id="commentArea" label="Comments" value="{! v.comment}" />
+                            </aura:if>
+                            <aura:if isTrue="{!v.approvalAction == 'Reject'}">
+                                <lightning:textarea aura:id="commentArea" label="Comments" value="{! v.comment}" />
+                            </aura:if>
+                            <aura:if isTrue="{!v.approvalAction == 'Approve'}">
+                                <lightning:textarea aura:id="commentArea" label="Comments" value="{! v.comment}" />
+                            </aura:if>
+                            <lightning:button class="slds-m-top_small" type="submit" label="{!v.approvalActionText}"
+                                onclick="{! c.handleApprovalAction }" />
+                            <lightning:button class="slds-m-top_small" variant="neutral" label="Cancel" title="Cancel"
+                                onclick="{! c.handleClose }" />
+                        </lightning:recordEditForm>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+     </lightning:layout>
+</aura:component>

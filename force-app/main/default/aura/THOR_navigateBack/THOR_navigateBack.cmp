@@ -1,0 +1,25 @@
+<aura:component implements="flexipage:availableForAllPageTypes,lightning:isUrlAddressable">
+	<lightning:navigation aura:id="navLink" />
+	<aura:attribute name="initCalled" type="Boolean" default="false" access="global" />
+	<aura:attribute name="backToTabIndex" type="Integer" default="0" access="global" />
+
+	<aura:method name="navBackJS" action="{!c.handleClick}" />
+
+	<aura:handler event="aura:doneRendering" action="{!c.doInit}" />
+	<!-- <button class="back-button slds-p-horizontal_large" onclick="{!c.handleClick}">
+		<span>&#8249;</span>
+	</button> -->
+
+	<lightning:layout>
+		<lightning:layoutItem padding="horizontal-small">
+			<lightning:buttonIcon
+				class="slds-p-horizontal_large"
+				alternativeText="Redirect Back"
+				size="large"
+				variant="border-filled"
+				iconName="utility:chevronleft"
+				onclick="{!c.handleRedirectBack}"
+			/>
+		</lightning:layoutItem>
+	</lightning:layout>
+</aura:component>

@@ -1,0 +1,25 @@
+<aura:component>
+
+    <!-- ATTRIBUTES -->
+    <aura:attribute name="functionalLocationName" type="String" default="" access="global" />
+    <aura:attribute name="orderIdForFL" type="String" default="" access="global" />
+
+    <aura:attribute name="orderRecord" type="Object" default="" access="private" />
+    <aura:attribute name="recordOrderError" type="String" default="" access="private" />
+
+    <!-- BODY -->
+
+    <aura:if isTrue="{!v.orderIdForFL}">
+        <force:recordData aura:id="orderLoader" recordId="{!v.orderIdForFL}" fields="Functional_Location__r.Name"
+            targetFields="{!v.orderRecord}" targetError="{!v.recordOrderError}"
+            recordUpdated="{!c.handleRecordUpdated}" />
+    </aura:if>
+
+    <div class="slds-form-element custom-padding">
+        <label class="slds-form-element__label" for="text-input-id-1">Functional Location</label>
+        <div class="slds-form-element__control">
+            <input type="text" id="text-input-id-1" placeholder="Related to selected order" value="{!v.functionalLocationName}" disabled="true"
+                class="slds-input" />
+        </div>
+    </div>
+</aura:component>

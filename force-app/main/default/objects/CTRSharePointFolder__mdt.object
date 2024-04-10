@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Button_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Button Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Folder__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Folder</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Common</fullName>
+                    <default>true</default>
+                    <label>Common</label>
+                </value>
+                <value>
+                    <fullName>1100 TOP</fullName>
+                    <default>false</default>
+                    <label>1100 TOP</label>
+                </value>
+                <value>
+                    <fullName>1300 TPX</fullName>
+                    <default>false</default>
+                    <label>1300 TPX</label>
+                </value>
+                <value>
+                    <fullName>1400 TLB</fullName>
+                    <default>false</default>
+                    <label>1400 TLB</label>
+                </value>
+                <value>
+                    <fullName>1700 LABIX</fullName>
+                    <default>false</default>
+                    <label>1700 LABIX</label>
+                </value>
+                <value>
+                    <fullName>2000 TXTH</fullName>
+                    <default>false</default>
+                    <label>2000 TXTH</label>
+                </value>
+                <value>
+                    <fullName>9100 TSV</fullName>
+                    <default>false</default>
+                    <label>9100 TSV</label>
+                </value>
+                <value>
+                    <fullName>9200 TSR</fullName>
+                    <default>false</default>
+                    <label>9200 TSR</label>
+                </value>
+                <value>
+                    <fullName>9300 JSKem</fullName>
+                    <default>false</default>
+                    <label>9300 JSKem</label>
+                </value>
+                <value>
+                    <fullName>9400 TXIN</fullName>
+                    <default>false</default>
+                    <label>9400 TXIN</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Main__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Main</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Path__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Path</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Salesforce_Object_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Salesforce Object Name</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SubFolder__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>SubFolder</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>01 Lead</fullName>
+                    <default>true</default>
+                    <label>01 Lead</label>
+                </value>
+                <value>
+                    <fullName>02 CTR</fullName>
+                    <default>false</default>
+                    <label>02 CTR</label>
+                </value>
+                <value>
+                    <fullName>01 Customer</fullName>
+                    <default>false</default>
+                    <label>01 Customer</label>
+                </value>
+                <value>
+                    <fullName>02 Supplier</fullName>
+                    <default>false</default>
+                    <label>02 Supplier</label>
+                </value>
+                <value>
+                    <fullName>03 Hedging</fullName>
+                    <default>false</default>
+                    <label>03 Hedging</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>CTRSharePointFolder</label>
+    <listViews>
+        <fullName>View_All</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>Button_Name__c</columns>
+        <columns>Salesforce_Object_Name__c</columns>
+        <columns>Active__c</columns>
+        <columns>Main__c</columns>
+        <columns>Folder__c</columns>
+        <columns>SubFolder__c</columns>
+        <columns>Path__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>View All</label>
+    </listViews>
+    <visibility>Public</visibility>
+</CustomObject>

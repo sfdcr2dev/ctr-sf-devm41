@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SuggestedResult__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Suggested Result</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Low Risk</fullName>
+                    <default>true</default>
+                    <label>Low Risk</label>
+                </value>
+                <value>
+                    <fullName>Medium Risk</fullName>
+                    <default>false</default>
+                    <label>Medium Risk</label>
+                </value>
+                <value>
+                    <fullName>High Risk</fullName>
+                    <default>false</default>
+                    <label>High Risk</label>
+                </value>
+                <value>
+                    <fullName>Very High Risk</fullName>
+                    <default>false</default>
+                    <label>High-High Risk</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>CTRComplianceRiskLevelEvaluation</label>
+    <visibility>Public</visibility>
+</CustomObject>

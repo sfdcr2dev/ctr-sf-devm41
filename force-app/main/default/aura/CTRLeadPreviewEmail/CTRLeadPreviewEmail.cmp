@@ -1,0 +1,151 @@
+<aura:component 
+    implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName" access="global">
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="disabled" type="boolean" default="false" />
+    <aura:attribute name="isEdit" type="Boolean" default="true" />
+    <aura:attribute name="SObj" type="sObject" default="{}" />
+    <aura:attribute name="LeadObj" type="sObject" default="{}" />
+    <aura:attribute name="emailTo" type="String" default="" />
+    <aura:attribute name="previewEmailObj" type="sObject" default="{}" />
+    <aura:attribute name="attachments" type="List" default="[]" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+        <aura:attribute name="openModal" type="Boolean" default="true" /><!--default="false"-->
+    <aura:attribute name="isChildModal" type="Boolean" default="true" /><!--default="false"-->
+
+ <aura:if isTrue="{!v.openModal}">
+     
+            <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open slds-modal_small" 
+                     style="z-index:100000;max-height: 100vh;" >
+                <div class="slds-modal__container">
+                    <div style="max-height: 90vh;">
+                <!-- Modal Header -->
+                <header class="slds-modal__header"   style="margin-top: 30px;">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                        Preview Email
+                    </h2>
+                </header>
+
+                <!-- Modal Body -->
+                    <div class="slds-modal__content slds-var-p-around_medium">
+                        <div class="slds-var-m-top_medium slds-var-m-bottom_x-large" style="background-color: white;">
+                            <div class="slds-grid slds-wrap">
+                                <!-- Committee Email -->
+                                <div class="slds-section slds-is-open" style="width:100%" aura:id="mailtoCommitteeSection">
+                                    <div class="slds-section__content" id="mailtoCommitteeDetail">
+                                        <div class="slds-grid slds-wrap slds-var-p-around_large">
+                                            <!-- Email To -->
+                                            <div class="slds-col slds-size_12-of-12 custom-slds-line-break">
+                                                <div class="slds-form slds-form_horizontal">
+                                                    <div class="slds-form-element slds-m-bottom_small">
+                                                        <label
+                                                            class="slds-form-element__label slds-text-title slds-size_1-of-12">Email To:
+                                                        </label>
+                                                        <div class="slds-form-element__control slds-size_11-of-12"
+                                                            style="font-weight:bold;margin-left:-20%;margin-top:0.25%;word-break:break-word;">
+                                                            {!v.SObj.EmailTo__c}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <!-- CC Email -->
+                                            <div class="slds-col slds-size_12-of-12 custom-slds-line-break">
+                                                <div class="slds-form slds-form_horizontal">
+                                                    <div class="slds-form-element slds-m-bottom_small">
+                                                        <label class="slds-form-element__label slds-text-title">CC: </label>
+                                                        <div class="slds-form-element__control"
+                                                            style="font-weight:bold;margin-left:-20%;margin-top:0.25%;">
+                                                            {!v.SObj.EmailCC__c}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <!-- Subject -->
+                                            <div class="slds-col slds-size_12-of-12 custom-slds-line-break">
+                                                <div class="slds-form slds-form_horizontal">
+                                                    <div class="slds-form-element slds-m-bottom_small">
+                                                        <label class="slds-form-element__label slds-text-title">Subject:
+                                                        </label>
+                                                        <div class="slds-form-element__control"
+                                                            style="font-weight:bold;margin-left:-20%;margin-top:0.25%;">
+                                                            {!v.SObj.Subject__c}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <!-- Message -->
+                                            <div class="slds-col slds-size_12-of-12 custom-slds-line-break">
+                                                <div class="slds-form slds-form_horizontal">
+                                                    <div class="slds-form-element slds-m-bottom_small">
+                                                        <label class="slds-form-element__label slds-text-title">Message:
+                                                        </label>
+                                                        <div class="slds-form-element__control"
+                                                            style="margin-left:-20%;margin-top:0.25%;">
+                                                            <lightning:formattedRichText
+                                                                value="{!v.SObj.Message__c}" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+     
+                                            <!-- Attachment -->
+                                            <aura:if isTrue="{!AND(v.attachments, v.attachments.length > 0)}">
+                                                <div class="slds-col slds-size_12-of-12 custom-slds-line-break" >
+                                                    <!-- New attachment list table -->
+                                                    <table
+                                                        class="slds-table slds-table_bordered slds-table_cell-buffer slds-border_right slds-border_left">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Attachments</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <aura:iteration items="{!v.attachments}" var="attachment">
+                                                               
+                                                                    <tr>
+                                                                        <td>{!attachment.Title}</td>
+                                                                    </tr>
+                                                               
+                                                            </aura:iteration>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </aura:if>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        
+                        <div class="slds-modal__footer">
+                        <div class="slds-grid slds-wrap" style="justify-content: center; margin-top: 1%;">
+                        <div style="">
+                            <button type="button" class="slds-button slds-button_neutral" onclick="{!c.handleClose}">Close</button>
+                        </div>
+                        
+                    </div>
+                    </div>
+                        
+                 </div>   
+                    <!--
+                    <div class="slds-modal__footer">
+                        <div class="slds-grid slds-wrap" style="justify-content: center; margin-top: 1%;">
+                        <div style="">
+                            <button type="button" class="slds-button slds-button_neutral" onclick="{!c.handleClose}">Cancel</button>
+                        </div>
+                        
+                    </div>
+                    </div>-->
+                    
+                </div></section>
+     		<aura:if isTrue="{!v.isChildModal}">
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        	</aura:if>
+    </aura:if>
+    
+</aura:component>

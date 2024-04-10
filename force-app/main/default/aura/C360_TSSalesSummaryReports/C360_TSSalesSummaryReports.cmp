@@ -1,0 +1,480 @@
+<aura:component  controller="C360_ReportTxSalesSummaryController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+	 
+    <aura:html tag="style">
+        .slds-modal__container{
+        height : auto;
+        width: 80%;
+        max-width: 85rem;
+        }
+        .modal-body{
+        height : 400px !important;
+        max-height: 550px !important;
+        }
+        
+        .customFooter{
+        display: inline !important;
+        }
+    </aura:html> 
+        <ltng:require styles="{!$Resource.Select2css}"
+                  scripts="{!join(',',$Resource.jQuery224,
+                            $Resource.Select2js)}"
+                  afterScriptsLoaded="{!c.loadJquery}"/>
+    
+       <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	 <aura:attribute name="CurrentUser" type="Object"/>
+    <force:recordData recordId="{!$SObjectType.CurrentUser.Id}"
+                      fields="Profile.Name"
+                      targetFields="{!v.CurrentUser}"/>
+    <aura:attribute name="currentYear" type="string"/>
+     <aura:attribute name="currentMonth" type="string"/>
+    <aura:attribute name="AccountObject" type="Object"/>
+    <aura:attribute name="AccountMap" type="Map"/>
+    <aura:attribute name="AccNumPicklist" type="List"/>
+      <aura:attribute name="AccNumPicklistTest" type="string"/>
+    <aura:attribute name="Bu" type="List"/>
+    <aura:attribute name="Yearlist" type="List"/>
+	<aura:attribute name="bothCustomerMap" type="Map"/>
+    <aura:attribute name="bothCustomerObject" type="Object"/>
+    <aura:attribute name="salesGrouplist" type="List"/>
+    <aura:attribute name="Info" type="Object"/>
+    
+    <aura:attribute name="selectedAccount" type="String" />
+    <aura:attribute name="selectedMonth" type="String" />
+    <aura:attribute name="selectedYear" type="String" default="{!v.currentYear}"/>
+    <aura:attribute name="selectedSalesOrg" type="String" />
+    <aura:attribute name="selectedSalesGroup" type="String" />
+    <aura:attribute name="selectedDistributionChannel" type="String" />
+    <aura:attribute name="selectedBu" type="String" />
+    
+    <aura:attribute name="ColorList" type="List" default="['','','','','','','','','','','','']"/>
+
+<div class="slds-page-header">
+  <div class="slds-page-header__row">
+    <div class="slds-page-header__col-title">
+      <div class="slds-media">
+        <div class="slds-media__figure">
+          
+            
+        </div>
+      <div class="slds-media__body">
+          <div class="slds-page-header__name">
+            <div class="slds-page-header__name-title">
+              <h1>
+                <span class="slds-page-header__title slds-truncate" title="TX Sales Summary Reports">TX Sales Summary Reports</span>
+              </h1>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <br/>
+        <div class="row">   
+          <table class="slds-table slds-table_bordered slds-table_cell-buffer"  width ="80%">
+                    <tr>
+                         <th  width ="50%">
+                          <lightning:select name="Year" label="Year: " value="{!v.selectedYear}" required="true" >
+                              <!-- <option value="All">All</option>-->
+                              
+                                <aura:iteration items="{!v.Yearlist}" var="yearIteration">
+                                      <option value="{!yearIteration}" selected ="{!yearIteration==v.selectedYear}">{!yearIteration}</option>
+                                  </aura:iteration>
+                         </lightning:select>
+                      </th>
+                      
+                    <th>
+                           <lightning:select name="SalesGroup" label="Sales Group: " value="{!v.selectedSalesGroup}" onchange="{!c.getAccWhenSelectedSalesGp}">
+                          <!-- <lightning:select name="SalesGroup" label="Sales Group: " value="{!v.selectedSalesGroup}">-->
+                              <option value="">All</option>
+                              <aura:iteration items="{!v.salesGrouplist}" var="salesGrpIteration">
+                                      <option value="{!salesGrpIteration}">{!salesGrpIteration}</option>
+                                  </aura:iteration>
+                         </lightning:select>
+                      </th>
+                    </tr>
+                     <tr>
+                         <th  width ="50%">
+                          <lightning:select name="Month" label="Month: " value="{!v.selectedMonth}"  required="true">
+                              <option value="All">All</option>
+                              <option value="1" selected ="{!v.currentMonth == '1'}">January</option>
+                               <option value="2" selected ="{!v.currentMonth =='2'}">February</option>
+                               <option value="3" selected ="{!v.currentMonth == '3'}">March</option>
+                               <option value="4" selected ="{!v.currentMonth == '4'}">April</option>
+                               <option value="5" selected ="{!v.currentMonth == '5'}">May</option> 
+                               <option value="6" selected ="{!v.currentMonth =='6'}"> June</option>
+                               <option value="7" selected ="{!v.currentMonth =='7'}">July</option>
+                               <option value="8" selected ="{!v.currentMonth == '8'}">August</option>
+                               <option value="9" selected ="{!v.currentMonth =='9'}">September</option>
+                               <option value="10" selected ="{!v.currentMonth == '10'}">October</option>
+                               <option value="11" selected ="{!v.currentMonth == '11'}">November</option>
+                               <option value="12" selected ="{!v.currentMonth == '12'}">December</option>
+                         </lightning:select>
+                        
+                       </th>
+                		  <th>  
+                         <label class="slds-form-element__label" for="combobox-id-2" id="combobox-label-id-7">Sold to name :</label><br/>
+                             <select class="select2-hidden-accessible" name="AccNumPicklist" id="AccNumPicklist" label ="Sold to name :">
+                                    <option value="">All</option>
+                                     <aura:iteration items="{!v.AccountMap}" var="ind" indexVar="key">
+                            		<option value="{!ind.key}">{!ind.value}</option>
+                       		 </aura:iteration>
+                                </select>
+                         <!-- 
+                         <lightning:select aura:id="AccNumPicklist" value="{!v.selectedAccount}"  name="AccNumPicklist" required=""  label ="Sold to name :"  >
+                              <option value="">All</option>
+                              <aura:iteration items="{!v.AccountMap}" var="ind" indexVar="key">
+                            		<option value="{!ind.key}">{!ind.value}</option>
+                       		 </aura:iteration>
+                    	</lightning:select> >-->
+                     
+                    </th>
+                    </tr>
+              		<tr>
+                      <th>
+                          <lightning:select name="SalesOrg" label="Sales Organization: " value="{!v.selectedSalesOrg}" onchange="{!c.getSalesGroupWhenSelectedSalesOrg}">
+                              <option value="">All</option>
+                              <option value="2000">2000-TOP SOLVENT CO.,LTD</option>
+                              <option value="9100">9100-TOP SOLVENT VIETNAM</option>
+                           	 <!-- <option value="9200">9200-PT.TIRTA SURYA RAYA</option>
+                              <option value="9300">9300-JSKem Pte Ltd</option>
+                              <option value="9400">9400-TSChem</option> -->
+                         </lightning:select>
+                       </th>
+                       
+                    
+                   <th>
+                          <lightning:select name="Bu"  value="{!v.selectedBu}"  required="" label="Business Unit (BU)" >
+                                  <option value="">All</option>
+                                  <aura:iteration items="{!v.Bu}" var="BuIteration">
+                                      <option value="{!BuIteration}">{!BuIteration}</option>
+                                  </aura:iteration>
+                         
+                             </lightning:select>
+                                           
+                     </th>
+                    </tr>
+                     <tr>
+                    <th>
+                         
+                              <aura:if isTrue = "{!v.selectedSalesOrg == '2000'}">
+                                    <lightning:select name="DistributionChannel" label="Distribution Channel: " value="{!v.selectedDistributionChannel}" onchange="{!c.getSalesGroupWhenSelectedChannel}">
+                                  		<option value="">All</option>
+                                      	<option value="16">16-Domestic</option>
+                                      	<option value="25">25-Export</option>
+                                      	<option value="IC">IC-Intra-comp. Transfer</option>
+                                      </lightning:select>
+                           	  <aura:set attribute = "else">
+                                   <lightning:select name="DistributionChannel" label="Distribution Channel: " value="{!v.selectedDistributionChannel}" onchange="{!c.getSalesGroupWhenSelectedChannel}">
+                              		  <option value="">All</option>
+                                      <option value="16">16-Domestic</option>
+                                      <option value="17">17-Free Tax Zone</option>
+                                      <option value="25">25-Export</option>
+                                      <option value="IC">IC-Intra-comp. Transfer</option>
+                                    </lightning:select>
+                                 </aura:set>
+                              </aura:if>
+                        
+                       </th>
+                     <th>  
+
+                    </th>
+                	 </tr>
+                    <tr class="slds-text-title_caps">
+                     <th>
+                          
+                       </th>
+                       <th>
+                         		  <div class="row">
+                                    <div style="text-align: right">
+                                        <button id="Nextbutton" 
+                                                onclick="{!c.nextAction}" class="slds-button slds-button_brand">Search</button>
+                                    </div>
+                                </div> 
+                      </th>
+                	 </tr>
+              
+            </table>
+          </div>
+    <br/>
+     <div class="row">
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_col-bordered">
+                                <thead>
+                                    <tr class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_col-bordered">
+                                        <th rowspan="2" style="text-align:Center; border-collapse: collapse;">Criteria</th>
+                                        <th rowspan="2"  style="text-align:Center;">Unit</th>
+                                        <th colspan="5" style="text-align:Center; "> Monthly</th>
+                                        
+                                    </tr>
+                                    <tr class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_col-bordered">
+                                    	<th style="text-align:Center;">Last Year</th>
+                                        <th style="text-align:Center;">CP Target</th>
+                                        <th style="text-align:center;">Actual</th>
+                                        <th style="text-align:Center;">Actual/LY %</th>
+                                        <th style="text-align:Center;">Actual/Target %</th>
+                                    </tr>
+                                    
+                                   
+                                </thead>
+                                <tbody> <!--items="{!item.promotions}" -->
+                                    
+                                    <tr>
+                                        <td style="text-align:Center; width:150px">Net Profit</td>
+                                        <td style="text-align:Center;  width:120px"> USD</td>
+                                        <td style="width:100px;text-align:right; ">
+                                            <div class="slds-truncate" title="1"><lightning:formattedNumber value="{!v.Info.LastYearNetProfitUSD__c}"  maximumFractionDigits="2"/></div>
+                                            <!--<ui:outputNumber value="{!promotion.orderquantity}" format="0"/>-->
+                                        </td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="2"><lightning:formattedNumber value="{!v.Info.CPtargetNetProfitUSD__c}"  maximumFractionDigits="2"/></div>
+                                            <!--<ui:outputNumber value="{!promotion.orderquantity}" format="0"/>-->
+                                        </td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="3"><lightning:formattedNumber value="{!v.Info.NetProfitUSD__c}"  maximumFractionDigits="2"/></div>
+                                            <!--<ui:outputNumber value="{!promotion.orderquantity}" format="0"/>-->
+                                        </td>
+                                        <aura:renderIf isTrue="{!(v.Info.LastYearNetProfitUSD__c)!=0}">
+                                            <td style="width:80px;text-align:right;">
+                                                <div class="slds-truncate" title="4" style="{!v.ColorList[0]}" ><lightning:formattedNumber value="{!(v.Info.NetProfitUSD__c/v.Info.LastYearNetProfitUSD__c)}" style="percent" maximumFractionDigits="2"/></div>
+                                        	</td>
+												<aura:set attribute="else">
+														<td style="width:80px;text-align:right;">
+                                            					<div class="slds-truncate" title="4" style="background-color:#FD3F19" >0%</div>
+                                        				</td>
+												</aura:set>
+			  							</aura:renderIf> 
+                                        
+                                        <aura:renderIf isTrue="{!(v.Info.CPtargetNetProfitUSD__c)!=0}">
+                                            	<td style="width:100px;text-align:right;">
+                                            			<div class="slds-truncate" title="5" style="{!v.ColorList[1]}" ><lightning:formattedNumber value="{!(v.Info.NetProfitUSD__c/v.Info.CPtargetNetProfitUSD__c)}" style="percent" maximumFractionDigits="2"/></div>
+                                        		</td>
+												<aura:set attribute="else">
+														<td style="width:80px;text-align:right;">
+                                            					<div class="slds-truncate" title="5" style="background-color:#FD3F19" >0%</div>
+                                        				</td>
+												</aura:set>
+			  							</aura:renderIf> 
+                                        
+                                        
+                                        
+                                    </tr>
+                                     <tr>
+                                        <td style="text-align:Center; width:150px">Sales Volume</td>
+                                        <td style="text-align:Center; width:120px">MT</td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="6"><lightning:formattedNumber value="{!v.Info.LastYearQuantity__c}"  maximumFractionDigits="2"/></div>
+                                            <!--<ui:outputNumber value="{!promotion.orderquantity}" format="0"/>-->
+                                        </td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="7"><lightning:formattedNumber value="{!v.Info.CPtargetVolume__c}"  maximumFractionDigits="2"/></div>
+                                            <!--<ui:outputNumber value="{!promotion.orderquantity}" format="0"/>-->
+                                        </td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="8"><lightning:formattedNumber value="{!v.Info.Volume__c}"  maximumFractionDigits="2"/></div>
+                                            <!--<ui:outputNumber value="{!promotion.orderquantity}" format="0"/>-->
+                                        </td>
+                                         
+                                         <aura:renderIf isTrue="{!(v.Info.LastYearQuantity__c)!=0}">
+                                            	<td style="width:80px;text-align:right;">
+                                           <div class="slds-truncate" title="9" style="{!v.ColorList[2]}" ><lightning:formattedNumber value="{!(v.Info.Volume__c/v.Info.LastYearQuantity__c)}" style="percent" maximumFractionDigits="2"/></div>
+                                        </td>
+										<aura:set attribute="else">
+											<td style="width:80px;text-align:right;">
+                                            					<div class="slds-truncate" title="9" style="background-color:#FD3F19" >0%</div>
+                                        	</td>
+										</aura:set>
+			  							</aura:renderIf> 
+                                         <aura:renderIf isTrue="{!(v.Info.CPtargetVolume__c)!=0}">
+                                            	<td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="10" style="{!v.ColorList[3]}" ><lightning:formattedNumber value="{!(v.Info.Volume__c/v.Info.CPtargetVolume__c)}" style="percent" maximumFractionDigits="2"/></div>
+                                        </td>
+												<aura:set attribute="else">
+														<td style="width:80px;text-align:right;">
+                                            					<div class="slds-truncate" title="10" style="background-color:#FD3F19" >0%</div>
+                                        				</td>
+												</aura:set>
+			  							</aura:renderIf> 
+                                        
+                                    </tr>
+                                     <tr>
+                                        <td style="text-align:Center; width:150px">Pocket Margin</td>
+                                        <td style="text-align:Center; width:120px">USD</td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="11"><lightning:formattedNumber value="{!v.Info.LastYearMonthlyPocketmarginUSD__c}"  maximumFractionDigits="2"/></div>
+                                            <!--<ui:outputNumber value="{!promotion.orderquantity}" format="0"/>-->
+                                        </td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="12"><lightning:formattedNumber value="{!v.Info.CPtargetPocketMarginUSD__c}"  maximumFractionDigits="2"/></div>
+                                            <!--<ui:outputNumber value="{!promotion.orderquantity}" format="0"/>-->
+                                        </td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="13"><lightning:formattedNumber value="{!v.Info.PocketmarginUSD__c}"  maximumFractionDigits="2"/></div>
+                                            <!--<ui:outputNumber value="{!promotion.orderquantity}" format="0"/>-->
+                                        </td>
+                                         
+                                         <aura:renderIf isTrue="{!(v.Info.LastYearMonthlyPocketmarginUSD__c)!=0}">
+                                            	<td style="width:80px;text-align:right;">
+                                                   		<div class="slds-truncate" title="14" style="{!v.ColorList[4]}" ><lightning:formattedNumber value="{!(v.Info.PocketmarginUSD__c/v.Info.LastYearMonthlyPocketmarginUSD__c)}" style="percent" maximumFractionDigits="2"/></div>
+                                        		</td>
+												<aura:set attribute="else">
+														<td style="width:80px;text-align:right;">
+                                            					<div class="slds-truncate" title="14" style="background-color:#FD3F19" >0%</div>
+                                        				</td>
+												</aura:set>
+			  							</aura:renderIf> 
+                                         
+                                         <aura:renderIf isTrue="{!(v.Info.CPtargetPocketMarginUSD__c)!=0}">
+                                            	 <td style="width:100px;text-align:right;">
+                                            		<div class="slds-truncate" title="15" style="{!v.ColorList[5]}" ><lightning:formattedNumber value="{!(v.Info.PocketmarginUSD__c/v.Info.CPtargetPocketMarginUSD__c)}" style="percent" maximumFractionDigits="2"/></div>
+                                       			 </td>
+												<aura:set attribute="else">
+														<td style="width:80px;text-align:right;">
+                                            					<div class="slds-truncate" title="15" style="background-color:#FD3F19" >0%</div>
+                                        				</td>
+												</aura:set>
+			  							</aura:renderIf> 
+                                        
+                                       
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+         </div>
+<br></br>
+    <div class="row">
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_col-bordered">
+                                <thead>
+                                    <tr class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_col-bordered">
+                                        <th rowspan="2" style="text-align:Center; border-collapse: collapse;">Criteria</th>
+                                        <th rowspan="2"  style="text-align:Center;">Unit</th>
+                                        <th colspan="5" style="text-align:Center; "> Cumulative</th>
+                                        
+                                    </tr>
+                                    <tr class="slds-table slds-table_bordered slds-table_cell-buffer  slds-table_col-bordered">
+                                    	<th style="text-align:Center;">Last Year</th>
+                                        <th style="text-align:Center;">CP Target</th>
+                                        <th style="text-align:center;">Actual</th>
+                                        <th style="text-align:Center;">Actual/LY %</th>
+                                        <th style="text-align:Center;">Actual/Target %</th>
+                                    </tr>
+                                    
+                                   
+                                </thead>
+                                <tbody> <!--items="{!item.promotions}" -->
+                                    
+                                    <tr>
+                                        <td style="text-align:Center; width:150px">Net Profit</td>
+                                        <td style="text-align:Center;  width:120px"> USD</td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="1"><lightning:formattedNumber value="{!v.Info.CumLYNetProfitUSD__c}" maximumFractionDigits="2"/></div>
+                                            
+                                        </td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="2"><lightning:formattedNumber value="{!v.Info.CumCPtargetNetProfitUSD__c}" maximumFractionDigits="2"/></div>
+                                           
+                                        </td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="3"><lightning:formattedNumber value="{!v.Info.CumNetProfitUSD__c}" maximumFractionDigits="2"/></div>
+                                            
+                                        </td>
+                                        
+                                        <aura:renderIf isTrue="{!(v.Info.CumLYNetProfitUSD__c)!=0}">
+                                            	 <td style="width:80px;text-align:right;">
+                                                     <div class="slds-truncate" title="4" style="{!v.ColorList[6]}" ><lightning:formattedNumber value="{!(v.Info.CumNetProfitUSD__c/v.Info.CumLYNetProfitUSD__c)}" style="percent" maximumFractionDigits="2"/></div>
+                                        		</td>
+												<aura:set attribute="else">
+														<td style="width:80px;text-align:right;">
+                                            					<div class="slds-truncate" title="4" style="background-color:#FD3F19" >0%</div>
+                                        				</td>
+												</aura:set>
+			  							</aura:renderIf> 
+                                        
+                                        <aura:renderIf isTrue="{!(v.Info.CumCPtargetNetProfitUSD__c)!=0}">
+                                            	 <td style="width:100px;text-align:right;">
+                                                     <div class="slds-truncate" title="5" style="{!v.ColorList[7]}" ><lightning:formattedNumber value="{!(v.Info.CumNetProfitUSD__c/v.Info.CumCPtargetNetProfitUSD__c)}" style="percent" maximumFractionDigits="2"/></div>
+                                        		</td>
+												<aura:set attribute="else">
+														<td style="width:80px;text-align:right;">
+                                            					<div class="slds-truncate" title="5" style="background-color:#FD3F19" >0%</div>
+                                        				</td>
+												</aura:set>
+			  							</aura:renderIf> 
+                                        
+                                    </tr>
+                                     <tr>
+                                        <td style="text-align:Center; width:150px">Sales Volume</td>
+                                        <td style="text-align:Center; width:120px">MT</td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="6"><lightning:formattedNumber value="{!v.Info.CumLastYearVolume__c}" maximumFractionDigits="2"/></div>    
+                                        </td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="7"><lightning:formattedNumber value="{!v.Info.CumCPTargetVolume__c}" maximumFractionDigits="2"/></div>                                           
+                                        </td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="8"><lightning:formattedNumber value="{!v.Info.CumVolume__c}" maximumFractionDigits="2"/></div>                    
+                                        </td>
+                                         
+                                         <aura:renderIf isTrue="{!(v.Info.CumLastYearVolume__c)!=0}">
+                                            	 <td style="width:80px;text-align:right;">
+                                                     <div class="slds-truncate" title="9" style="{!v.ColorList[8]}" ><lightning:formattedNumber value="{!(v.Info.CumVolume__c/v.Info.CumLastYearVolume__c)}" style="percent" maximumFractionDigits="2"/></div>
+                                        		</td>
+												<aura:set attribute="else">
+														<td style="width:80px;text-align:right;">
+                                            					<div class="slds-truncate" title="9" style="background-color:#FD3F19" >0%</div>
+                                        				</td>
+												</aura:set>
+			  							</aura:renderIf> 
+                                        <aura:renderIf isTrue="{!(v.Info.CumCPTargetVolume__c)!=0}">
+                                            	 <td style="width:100px;text-align:right;">
+                                                     <div class="slds-truncate" title="10" style="{!v.ColorList[9]}" ><lightning:formattedNumber value="{!(v.Info.CumVolume__c/v.Info.CumCPTargetVolume__c)}" style="percent" maximumFractionDigits="2"/></div>
+                                        		</td>
+												<aura:set attribute="else">
+														<td style="width:80px;text-align:right;">
+                                            					<div class="slds-truncate" title="10" style="background-color:#FD3F19" >0%</div>
+                                        				</td>
+												</aura:set>
+			  							</aura:renderIf>  
+                                        
+                                        
+                                    </tr>
+                                     <tr>
+                                        <td style="text-align:Center; width:150px">Pocket Margin</td>
+                                        <td style="text-align:Center; width:120px">USD</td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="11"><lightning:formattedNumber value="{!v.Info.CumLYPocketmarginUSD__c}" maximumFractionDigits="2"/></div>
+                                        </td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="12"><lightning:formattedNumber value="{!v.Info.CumCPtargetPocketMarginUSD__c}" maximumFractionDigits="2"/></div> 
+                                        </td>
+                                        <td style="width:100px;text-align:right;">
+                                            <div class="slds-truncate" title="13"><lightning:formattedNumber value="{!v.Info.CumPocketmarginUSD__c}" maximumFractionDigits="2"/></div>
+                                        </td>
+                                         <aura:renderIf isTrue="{!(v.Info.CumLYPocketmarginUSD__c)!=0}">
+                                            	 <td style="width:80px;text-align:right;">
+                                                     <div class="slds-truncate" title="141" style="{!v.ColorList[10]}" ><lightning:formattedNumber value="{!(v.Info.CumPocketmarginUSD__c/v.Info.CumLYPocketmarginUSD__c)}" style="percent" maximumFractionDigits="2"/></div>
+                                             	</td>
+												<aura:set attribute="else">
+														<td style="width:80px;text-align:right;">
+                                            					<div class="slds-truncate" title="14" style="background-color:#FD3F19" >0%</div>
+                                        				</td>
+												</aura:set>
+			  							</aura:renderIf>  
+                                         <aura:renderIf isTrue="{!(v.Info.CumCPtargetPocketMarginUSD__c)!=0}">
+                                            	 <td style="width:100px;text-align:right;">
+                                                     <div class="slds-truncate" title="15" style="{!v.ColorList[11]}" ><lightning:formattedNumber value="{!(v.Info.CumPocketmarginUSD__c/v.Info.CumCPtargetPocketMarginUSD__c)}" style="percent" maximumFractionDigits="2"/></div>
+                                        		</td>
+												<aura:set attribute="else">
+														<td style="width:80px;text-align:right;">
+                                            					<div class="slds-truncate" title="15" style="background-color:#FD3F19">0%</div>
+                                        				</td>
+												</aura:set>
+			  							</aura:renderIf>  
+                                        
+                                        
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+         </div>
+</aura:component>

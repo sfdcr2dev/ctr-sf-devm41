@@ -1,0 +1,45 @@
+.THIS {
+}
+.THIS .myButton {
+    position: absolute;
+    right: 75px;
+}
+
+.THIS .showAtTop {
+    justify-content: flex-start !important;
+}
+
+.THIS .custom-modal {
+    position: absolute !important;
+    left: 20%;
+    right: auto;
+    top: 29%;
+    bottom: auto;
+}
+
+.THIS .center-screen {
+    position: absolute;
+    left: 10%;
+    top: 29%;
+}
+
+.THIS .center-screen2 {
+    position: absolute;
+    left: 10%;
+    top: 36%;
+}
+
+.THIS .modal {
+    min-width: 1200px;
+    z-index: 10000 !important;
+}
+
+
+@media (max-width: 950px){
+    .THIS .slds-modal__container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}

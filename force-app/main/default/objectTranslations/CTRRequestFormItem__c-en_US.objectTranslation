@@ -1,0 +1,4621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CTR Request Form Item</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CTR Request Form Item</value>
+    </caseValues>
+    <fields>
+        <label><!-- Accig Clerk --></label>
+        <name>AccigClerk__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Assignment Group --></label>
+        <name>AccountAssignmentGroup__c</name>
+        <picklistValues>
+            <masterLabel>01 Domestic Revenues</masterLabel>
+            <translation><!-- 01 Domestic Revenues --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>02 Foreign Revenues</masterLabel>
+            <translation><!-- 02 Foreign Revenues --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>03 Affiliate Comp Revenues</masterLabel>
+            <translation><!-- 03 Affiliate Comp Revenues --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business Area Revenu</masterLabel>
+            <translation><!-- Business Area Revenu --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Account Group Data not correct --></label>
+        <name>AccountGroupDatanotcorrect__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Group --></label>
+        <name>AccountGroup__c</name>
+    </fields>
+    <fields>
+        <label><!-- AdditionalInfoKey --></label>
+        <name>AdditionalInfoKey__c</name>
+    </fields>
+    <fields>
+        <label><!-- 9. Additional opinions or recommendation --></label>
+        <name>AdditionalOpinions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Agree as trader comment --></label>
+        <name>AgreeAsTraderCommentSH__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Agree as trader comment --></label>
+        <name>AgreeAsTraderCommentVP__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- 7. Do you agree to register customer --></label>
+        <name>AgreeRegisterCustomer__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Amount --></label>
+        <name>AmountBankGuarantee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount --></label>
+        <name>AmountBuyTrade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount --></label>
+        <name>AmountCreditTerm__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount --></label>
+        <name>AmountDCLCondition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount --></label>
+        <name>AmountOpenedCredit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application --></label>
+        <name>Application__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Application) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Approval Trader Credit Limit Currency --></label>
+        <name>ApprovalTraderCreditLimitCurrency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Trader Risk Category --></label>
+        <name>ApprovalTraderRiskCategory__c</name>
+        <picklistValues>
+            <masterLabel>A: Low Risk</masterLabel>
+            <translation><!-- A: Low Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B: Medium Risk</masterLabel>
+            <translation><!-- B: Medium Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C: High Risk</masterLabel>
+            <translation><!-- C: High Risk --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Approval Trader Trade Credit Currency --></label>
+        <name>ApprovalTraderTradeCreditCurrency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Trader Credit Condition --></label>
+        <name>ApprovalTrader_CreditCondition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Trader Credit Limit --></label>
+        <name>ApprovalTrader_CreditLimit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Trader Credit Rating --></label>
+        <name>ApprovalTrader_CreditRating__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Trader Credit Limit --></label>
+        <name>ApprovalTrader_FMCreditLimit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Trader Payment Condition --></label>
+        <name>ApprovalTrader_PaymentCondition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Trader Payment Term --></label>
+        <name>ApprovalTrader_PaymentTerm__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Approval Trader Payment Term) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Approval Trader Remark --></label>
+        <name>ApprovalTrader_Remark__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Trader Trade Credit Insurance --></label>
+        <name>ApprovalTrader_TradeCreditInsurance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval SH Agree --></label>
+        <name>Approval_SHAgree__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Approval SH Remark --></label>
+        <name>Approval_SHRemark__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval SH Submit Date --></label>
+        <name>Approval_SHSubmitDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Step --></label>
+        <name>Approval_Step__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credit Exemption</masterLabel>
+            <translation><!-- Credit Exemption --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credit Rating</masterLabel>
+            <translation><!-- Credit Rating --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Due Diligence</masterLabel>
+            <translation><!-- Due Diligence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inform Counterparty</masterLabel>
+            <translation><!-- Inform Counterparty --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Review Pre-Screen</masterLabel>
+            <translation><!-- Review Pre-Screen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Select Committee</masterLabel>
+            <translation><!-- Select Committee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Summary Report</masterLabel>
+            <translation><!-- Summary Report --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Verify Documents</masterLabel>
+            <translation><!-- Verify Documents --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting for Approval</masterLabel>
+            <translation><!-- Waiting for Approval --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Approval TRCR Submit Date --></label>
+        <name>Approval_TRCRSubmitDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Trader Submit Date --></label>
+        <name>Approval_TraderSubmitDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Trader Credit Limit Currency --></label>
+        <name>Approval_Trader_Credit_Limit_Currency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval VP Agree --></label>
+        <name>Approval_VPAgree__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Approval VP Remark --></label>
+        <name>Approval_VPRemark__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval VP Submit Date --></label>
+        <name>Approval_VPSubmitDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approve Due Diligence by CEO --></label>
+        <name>ApproveDDbyCEO__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Approve Due Diligence By --></label>
+        <name>ApproveDueDiligenceBy__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Approve Due Diligence By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Approve Due Diligence Comment --></label>
+        <name>ApproveDueDiligenceComment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approve Due Diligence Date/Time --></label>
+        <name>ApproveDueDiligenceDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approve Due Diligence Result --></label>
+        <name>ApproveDueDiligenceResult__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- ApprovedChangeCounterparty --></label>
+        <name>ApprovedChangeCounterparty__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting to inform</masterLabel>
+            <translation><!-- Waiting to inform --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- ApprovedCounterParty --></label>
+        <name>ApprovedCounterParty__c</name>
+    </fields>
+    <fields>
+        <label><!-- ApprovedSapInfo --></label>
+        <name>ApprovedSapInfo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approver Step --></label>
+        <name>ApproverStep__c</name>
+        <picklistValues>
+            <masterLabel>Done</masterLabel>
+            <translation><!-- Done --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SH</masterLabel>
+            <translation><!-- SH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TRCR</masterLabel>
+            <translation><!-- TRCR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trader</masterLabel>
+            <translation><!-- Trader --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VP</masterLabel>
+            <translation><!-- VP --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Authorization --></label>
+        <name>Authorization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Automatic Purchase order --></label>
+        <name>AutomaticPurchaseOrder__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Block --></label>
+        <name>BillingBlock__c</name>
+        <picklistValues>
+            <masterLabel>All Sales Area</masterLabel>
+            <translation><!-- All Sales Area --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Selected Sales Area</masterLabel>
+            <translation><!-- Selected Sales Area --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- ​ --></label>
+        <name>BlankSpace__c</name>
+    </fields>
+    <fields>
+        <label><!-- Block Sales Support --></label>
+        <name>BlockSalesSupport__c</name>
+        <picklistValues>
+            <masterLabel>All Sales Area</masterLabel>
+            <translation><!-- All Sales Area --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Selected Sales Area</masterLabel>
+            <translation><!-- Selected Sales Area --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Reason --></label>
+        <name>BlockedReason__c</name>
+    </fields>
+    <fields>
+        <label><!-- Building Code --></label>
+        <name>BuildingCodeLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Type --></label>
+        <name>BusinessType__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Unit --></label>
+        <name>BusinessUnit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buy Trade Credit Insurance-DCL Condition --></label>
+        <name>BuyTradeDCLCondition__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Buy Trade Credit Insurance-Endorsement? --></label>
+        <name>BuyTradeEndorsement__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Buyer --></label>
+        <name>Buyer__c</name>
+        <picklistValues>
+            <masterLabel>2000 - TXTH</masterLabel>
+            <translation><!-- 2000 - TXTH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9100 - TSV</masterLabel>
+            <translation><!-- 9100 - TSV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9200 - TSR</masterLabel>
+            <translation><!-- 9200 - TSR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9300 – JSKem</masterLabel>
+            <translation><!-- 9300 – JSKem --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9400 - TX INDIA</masterLabel>
+            <translation><!-- 9400 - TX INDIA --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- CCEmail --></label>
+        <name>CCEmail__c</name>
+    </fields>
+    <fields>
+        <label><!-- CDD Result --></label>
+        <name>CDDResult__c</name>
+    </fields>
+    <fields>
+        <label><!-- CMVP Pre-Screen By --></label>
+        <name>CMVPPreScreenBy__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (CMVP Pre-Screen By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CMVP Pre-Screen Comment --></label>
+        <name>CMVPPreScreenComment__c</name>
+    </fields>
+    <fields>
+        <label><!-- CMVP Pre-Screen Date/Time --></label>
+        <name>CMVPPreScreenDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- CMVP Pre-Screen Decision --></label>
+        <name>CMVPPreScreenDecision__c</name>
+        <picklistValues>
+            <masterLabel>Not Pass</masterLabel>
+            <translation><!-- Not Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation><!-- Pass --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- CMVP Review Due Diligence By --></label>
+        <name>CMVPReviewDueDiligenceBy__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (CMVP Review Due Diligence By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CMVP Review Due Diligence Comment --></label>
+        <name>CMVPReviewDueDiligenceComment__c</name>
+    </fields>
+    <fields>
+        <label><!-- CMVP Review Due Diligence Date/Time --></label>
+        <name>CMVPReviewDueDiligenceDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- CMVP Review Due Diligence Result --></label>
+        <name>CMVPReviewDueDiligenceResult__c</name>
+        <picklistValues>
+            <masterLabel>Not Proceed</masterLabel>
+            <translation><!-- Not Proceed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Proceed</masterLabel>
+            <translation><!-- Proceed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- CMVP Team Email --></label>
+        <name>CMVPTeamEmail__c</name>
+    </fields>
+    <fields>
+        <label><!-- CPCE Review Due Diligence By --></label>
+        <name>CPXXReviewDueDiligenceBy__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (CPCE Review Due Diligence By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CPCE Review Due Diligence Comment --></label>
+        <name>CPXXReviewDueDiligenceComment__c</name>
+    </fields>
+    <fields>
+        <label><!-- CPCE Review Due Diligence Date/Time --></label>
+        <name>CPXXReviewDueDiligenceDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- CPCE Review Due Diligence Result --></label>
+        <name>CPXXReviewDueDiligenceResult__c</name>
+        <picklistValues>
+            <masterLabel>Not Proceed</masterLabel>
+            <translation><!-- Not Proceed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Proceed</masterLabel>
+            <translation><!-- Proceed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- CTREDDDearHeaderForEmail --></label>
+        <name>CTREDDDearHeaderForEmail__c</name>
+    </fields>
+    <fields>
+        <label><!-- CTR Request Form Header --></label>
+        <name>CTRRequestFormHeader__c</name>
+        <relationshipLabel><!-- CTR Request Form Item --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CallOutCDD --></label>
+        <name>CallOutCDD__c</name>
+    </fields>
+    <fields>
+        <label><!-- CallOutNews --></label>
+        <name>CallOutNews__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cash Management Group --></label>
+        <name>CashManagementGroup__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cash Mgmnt Group Data not correct --></label>
+        <name>CashMgmntGroupDatanotcorrect__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cash on Delivery or Payment in Advance? --></label>
+        <name>CashOnDelivery__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Amount --></label>
+        <name>ChangeCreditAmount__c</name>
+        <picklistValues>
+            <masterLabel>20,001 - 50,000</masterLabel>
+            <translation><!-- 20,001 - 50,000 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>&lt;=20,000</masterLabel>
+            <translation><!-- &lt;=20,000 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unlimited</masterLabel>
+            <translation><!-- Unlimited --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Credit Condition --></label>
+        <name>ChangeCreditCreditCondition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Limit Currency --></label>
+        <name>ChangeCreditCreditLimitCurrency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Limit --></label>
+        <name>ChangeCreditCreditLimit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Internal Credit Rating --></label>
+        <name>ChangeCreditInternalCreditRating__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trade Credit Insurance Currency --></label>
+        <name>ChangeCreditTradeCreditInsuranceCurrency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trade Credit Insurance --></label>
+        <name>ChangeCreditTradeCreditInsurance__c</name>
+    </fields>
+    <fields>
+        <label><!-- ChangedCounterParty --></label>
+        <name>ChangedCounterParty__c</name>
+    </fields>
+    <fields>
+        <label><!-- Changed SAP Information --></label>
+        <name>ChangedSAPInformation__c</name>
+    </fields>
+    <fields>
+        <label><!-- CheckSensitiveField --></label>
+        <name>CheckSensitiveField__c</name>
+    </fields>
+    <fields>
+        <label><!-- Checklist By --></label>
+        <name>ChecklistBy__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Checklist By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Checklist Date/Time --></label>
+        <name>ChecklistDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Chk double inv. --></label>
+        <name>Chkdoubleinv__c</name>
+    </fields>
+    <fields>
+        <label><!-- City/State --></label>
+        <name>CityStateLocal__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (City/State) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Comment --></label>
+        <name>Comment__c</name>
+    </fields>
+    <fields>
+        <label><!-- 5.1 Commercial risks --></label>
+        <name>CommercialRisks__c</name>
+    </fields>
+    <fields>
+        <label><!-- CommercialScoringBy --></label>
+        <name>CommercialScoringBy__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (CommercialScoringBy) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Commercial Scoring Date --></label>
+        <name>CommercialScoringDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Commercial Scoring Result --></label>
+        <name>CommercialScoringResult__c</name>
+    </fields>
+    <fields>
+        <label><!-- Committee Attachment --></label>
+        <name>CommitteeAttachment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Committee Comment --></label>
+        <name>CommitteeComment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Committee Email --></label>
+        <name>CommitteeEmail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Committee Name --></label>
+        <name>CommitteeName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Committee Owner --></label>
+        <name>CommitteeOwner__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Committee Owner) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Committee Reassign --></label>
+        <name>CommitteeReassign__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Committee Reassign) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Committee Status --></label>
+        <name>CommitteeStatus__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Draft</masterLabel>
+            <translation><!-- Draft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reverted to Credit Team</masterLabel>
+            <translation><!-- Reverted to Credit Team --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting Section Head Review</masterLabel>
+            <translation><!-- Waiting Section Head Review --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Company Code (TOP) --></label>
+        <name>CompanyCodeTOP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Code (TX) --></label>
+        <name>CompanyCodeTX__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company&apos;s latest credit rating --></label>
+        <name>CompanyLatestCreditRating__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>CompanyNameSubject__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>CompanyName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Compliance Advice By --></label>
+        <name>ComplianceAdviceBy__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Compliance Advice By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Compliance Advice Comment --></label>
+        <name>ComplianceAdviceComment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Compliance Advice Date/Time --></label>
+        <name>ComplianceAdviceDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Compliance Advice Result --></label>
+        <name>ComplianceAdviceResult__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Compliance Check Result --></label>
+        <name>ComplianceCheckResult__c</name>
+    </fields>
+    <fields>
+        <label><!-- Compliance risk news --></label>
+        <name>Compliancerisknews__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Contact Salutation --></label>
+        <name>ContactSalutation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Person --></label>
+        <name>Contact_Person__c</name>
+    </fields>
+    <fields>
+        <label><!-- Corporate Governance policy --></label>
+        <name>CorporateGovernancePolicy__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Counterparty Type --></label>
+        <name>CounterpartyType__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Country) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CreateSharePointSubFolderForInitial --></label>
+        <name>CreateSharePointSubFolderForInitial__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Control Area --></label>
+        <name>CreditControlArea__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Limit Currency --></label>
+        <name>CreditLimitCurrency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Limit --></label>
+        <name>CreditLimit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Owner Name --></label>
+        <name>CreditOwnerName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Owner Section Head --></label>
+        <name>CreditOwnerSectionHead__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Credit Owner Section Head) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Credit Owner --></label>
+        <name>CreditOwner__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Credit Owner) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Credit Condition --></label>
+        <name>Credit_Condition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Currency Data not correct --></label>
+        <name>CurrencyDatanotcorrect__c</name>
+    </fields>
+    <fields>
+        <label><!-- Currency --></label>
+        <name>Currency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Approver --></label>
+        <name>CurrentApprover__c</name>
+        <picklistValues>
+            <masterLabel>Done</masterLabel>
+            <translation><!-- Done --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Head</masterLabel>
+            <translation><!-- Head --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trader</masterLabel>
+            <translation><!-- Trader --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VP</masterLabel>
+            <translation><!-- VP --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- 2. Current Supplier --></label>
+        <name>Current_Supplier__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cust.pric.proc --></label>
+        <name>CustPriceProc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cust.Stat.Group --></label>
+        <name>CustStatGroup__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Attachment --></label>
+        <name>CustomerAttachment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Email CC --></label>
+        <name>CustomerEmailCC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Email To --></label>
+        <name>CustomerEmailTo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Group --></label>
+        <name>CustomerGroup__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Customer Group) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Customer Message --></label>
+        <name>CustomerMessage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Products (Customer) --></label>
+        <name>CustomerOtherProducts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Other Products --></label>
+        <name>CustomerProductIdentification__c</name>
+    </fields>
+    <fields>
+        <label><!-- Search Term 2 (English) --></label>
+        <name>CustomerSearchTermEN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Search Term 1 --></label>
+        <name>CustomerSearchTermLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- CustomerSubject --></label>
+        <name>CustomerSubject__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Type --></label>
+        <name>CustomerType__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Customer Type) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Customer Name --></label>
+        <name>Customer__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Customer Name) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Declare the information --></label>
+        <name>DeclareTheInformation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery Block --></label>
+        <name>DeliveryBlock__c</name>
+        <picklistValues>
+            <masterLabel>All Sales Area</masterLabel>
+            <translation><!-- All Sales Area --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Selected Sales Area</masterLabel>
+            <translation><!-- Selected Sales Area --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Delivery Plant --></label>
+        <name>DeliveryPlant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery Priority --></label>
+        <name>DeliveryPriority__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- 7.1 Disagreement Customer --></label>
+        <name>DisagreementCustomer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distribution Channel --></label>
+        <name>DistributionChannel__c</name>
+    </fields>
+    <fields>
+        <label><!-- District --></label>
+        <name>DistrictLocalText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Division --></label>
+        <name>Division__c</name>
+    </fields>
+    <fields>
+        <label><!-- DocumentChecklistButton --></label>
+        <name>DocumentChecklistButton__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document Submitted Date/Time --></label>
+        <name>DocumentSubmittedDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Domestic office  location --></label>
+        <name>DomesticOfficeLocation__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- EVPC Review EDD By --></label>
+        <name>EVPCReviewEDDBy__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (EVPC Review EDD By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- EVPC EDD Comment --></label>
+        <name>EVPCReviewEDDComment__c</name>
+    </fields>
+    <fields>
+        <label><!-- EVPC EDD Date/Time --></label>
+        <name>EVPCReviewEDDDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- EVPC EDD Result --></label>
+        <name>EVPCReviewEDDResult__c</name>
+        <picklistValues>
+            <masterLabel>Endorsed</masterLabel>
+            <translation><!-- Endorsed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Effective Date Form --></label>
+        <name>EffectiveDateForm__c</name>
+    </fields>
+    <fields>
+        <label><!-- Effective Date To --></label>
+        <name>EffectiveDateTo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Effective Date --></label>
+        <name>EffectiveDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Effective Type --></label>
+        <name>EffectiveType__c</name>
+        <picklistValues>
+            <masterLabel>Immediately</masterLabel>
+            <translation><!-- Immediately --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Schedule</masterLabel>
+            <translation><!-- Schedule --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Email Authorization --></label>
+        <name>EmailAuthorization__c</name>
+        <picklistValues>
+            <masterLabel>CEO Required</masterLabel>
+            <translation><!-- CEO Required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Committee Required</masterLabel>
+            <translation><!-- Committee Required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Required</masterLabel>
+            <translation><!-- Not Required --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Email CC --></label>
+        <name>EmailCC__c</name>
+    </fields>
+    <fields>
+        <label><!-- EmailHTML --></label>
+        <name>EmailHTML__c</name>
+    </fields>
+    <fields>
+        <label><!-- EmailPageAttachment --></label>
+        <name>EmailPageAttachment__c</name>
+    </fields>
+    <fields>
+        <label><!-- EmailPageEmailCC --></label>
+        <name>EmailPageEmailCC__c</name>
+    </fields>
+    <fields>
+        <label><!-- EmailPageEmailTo --></label>
+        <name>EmailPageEmailTo__c</name>
+    </fields>
+    <fields>
+        <label><!-- EmailPageMessage --></label>
+        <name>EmailPageMessage__c</name>
+    </fields>
+    <fields>
+        <label><!-- EmailPageSubject --></label>
+        <name>EmailPageSubject__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email To --></label>
+        <name>EmailTo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email Urgent --></label>
+        <name>EmailUrgent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recorded EDD By --></label>
+        <name>EndorseDueDiligenceBy__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Recorded EDD By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- AMM EDD Comment --></label>
+        <name>EndorseDueDiligenceComment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recorded EDD Date/Time --></label>
+        <name>EndorseDueDiligenceDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- AMM EDD Result --></label>
+        <name>EndorseDueDiligenceResult__c</name>
+        <picklistValues>
+            <masterLabel>Endorsed</masterLabel>
+            <translation><!-- Endorsed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Enhance Due Diligence By --></label>
+        <name>EnhanceDueDiligenceBy__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Enhance Due Diligence By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Enhance Due Diligence Comment By EDD --></label>
+        <name>EnhanceDueDiligenceCommentByEDD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enhance Due Diligence Comment By Trader --></label>
+        <name>EnhanceDueDiligenceCommentByTrader__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enhance Due Diligence Date/Time --></label>
+        <name>EnhanceDueDiligenceDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enhance Due Diligence Proceed By Trader --></label>
+        <name>EnhanceDueDiligenceProceedByTrader__c</name>
+        <picklistValues>
+            <masterLabel>Not Proceed</masterLabel>
+            <translation><!-- Not Proceed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Proceed</masterLabel>
+            <translation><!-- Proceed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Enhance Due Diligence Result --></label>
+        <name>EnhanceDueDiligenceResult__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Environment policy --></label>
+        <name>EnvironmentPolicy__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Exch. Rate Type --></label>
+        <name>ExchRateType__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exchange Rate Type --></label>
+        <name>ExchangeRateType__c</name>
+        <picklistValues>
+            <masterLabel>B</masterLabel>
+            <translation><!-- B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>M</masterLabel>
+            <translation><!-- M --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- ExtendHeroku --></label>
+        <name>ExtendHeroku__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Limit --></label>
+        <name>FMCreditLimit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fax Country Code --></label>
+        <name>FaxCountryCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fax Extension --></label>
+        <name>FaxExtension__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fax --></label>
+        <name>Fax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Amount (Bank Guarantee) --></label>
+        <name>FinAmountBankGuarantee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Amount (Endorsement) --></label>
+        <name>FinAmountBuyTrade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Amount (Credit Term or Letter) --></label>
+        <name>FinAmountCreditTerm__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Amount (DCLCondition) --></label>
+        <name>FinAmountDCLCondition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Amount (Opened Credit) --></label>
+        <name>FinAmountOpenedCredit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Buy Trade Cr. Insr. - DCL --></label>
+        <name>FinBuyTradeDCLCondition__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Buy Trade Cr. Insr. - Endorsement --></label>
+        <name>FinBuyTradeEndorsement__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Cash on Delivery or Payment --></label>
+        <name>FinCashOnDelivery__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Credit Condition --></label>
+        <name>FinCrCond__c</name>
+        <picklistValues>
+            <masterLabel>Cash in Advance</masterLabel>
+            <translation><!-- Cash in Advance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Domestic L/C</masterLabel>
+            <translation><!-- Domestic L/C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>L/C</masterLabel>
+            <translation><!-- L/C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open Account</masterLabel>
+            <translation><!-- Open Account --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open Account With Collateral</masterLabel>
+            <translation><!-- Open Account With Collateral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Others</masterLabel>
+            <translation><!-- Others --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Credit Limit Currency --></label>
+        <name>FinCrLimitCur__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Credit Limit --></label>
+        <name>FinCrLimit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Having Collateral (Bank Guarantee) --></label>
+        <name>FinHavingCollateral__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Having Credit Term or Letter --></label>
+        <name>FinHavingCreditTermOrLetter__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Having Opened Credit --></label>
+        <name>FinHavingOpenedCredit__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Internal Credit Rating --></label>
+        <name>FinIntCrRating__c</name>
+        <picklistValues>
+            <masterLabel>A</masterLabel>
+            <translation><!-- A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B</masterLabel>
+            <translation><!-- B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C</masterLabel>
+            <translation><!-- C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C+</masterLabel>
+            <translation><!-- C+ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D</masterLabel>
+            <translation><!-- D --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>G/S</masterLabel>
+            <translation><!-- G/S --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Other Condition --></label>
+        <name>FinOtherCondition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Payment Condition --></label>
+        <name>FinPaymentCond__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Payment Term --></label>
+        <name>FinPaymentTerm__c</name>
+        <picklistValues>
+            <masterLabel>Z010: Pay at 10th date following month end of delivery</masterLabel>
+            <translation><!-- Z010: Pay at 10th date following month end of delivery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z011: Pay within 5 days from invoice receipt</masterLabel>
+            <translation><!-- Z011: Pay within 5 days from invoice receipt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z012: Pay within 7 days after invoice receipt</masterLabel>
+            <translation><!-- Z012: Pay within 7 days after invoice receipt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z013: Pay within 15 th date following the delivery month</masterLabel>
+            <translation><!-- Z013: Pay within 15 th date following the delivery month --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z014: Pay within 15 days follow end of month of delivery</masterLabel>
+            <translation><!-- Z014: Pay within 15 days follow end of month of delivery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z015: Pay within 15 days after invoice recept</masterLabel>
+            <translation><!-- Z015: Pay within 15 days after invoice recept --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Risk Category --></label>
+        <name>FinRiskCategory__c</name>
+        <picklistValues>
+            <masterLabel>A: Low Risk</masterLabel>
+            <translation><!-- A: Low Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B: Medium Risk</masterLabel>
+            <translation><!-- B: Medium Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C: High Risk</masterLabel>
+            <translation><!-- C: High Risk --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Total Secured Amount --></label>
+        <name>FinTotalSecuredAmount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Total Secured Currency --></label>
+        <name>FinTotalSecuredCurrency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Trade Credit Insurance Currency --></label>
+        <name>FinTradeCrInsCu__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Trade Credit Insurance --></label>
+        <name>FinTradeCrIns__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Credit Condition Unit --></label>
+        <name>FinalCreditConditionUnit__c</name>
+        <picklistValues>
+            <masterLabel>THB</masterLabel>
+            <translation><!-- THB --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Final Performance Bond --></label>
+        <name>FinalPerformanceBond__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Risk Level --></label>
+        <name>FinalRiskLevel__c</name>
+        <picklistValues>
+            <masterLabel>High Risk</masterLabel>
+            <translation><!-- High Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High-High Risk</masterLabel>
+            <translation><!-- High-High Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low Risk</masterLabel>
+            <translation><!-- Low Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium Risk</masterLabel>
+            <translation><!-- Medium Risk --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- FinancialKey --></label>
+        <name>FinancialKey__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Name --></label>
+        <name>FirstName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Floor --></label>
+        <name>FloorLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- GR-Based Inv.Verif --></label>
+        <name>GRBasedInvVerif__c</name>
+    </fields>
+    <fields>
+        <label><!-- IntegrationId --></label>
+        <name>GatewayId__c</name>
+    </fields>
+    <fields>
+        <label><!-- HasCOI --></label>
+        <name>HasCOI__c</name>
+        <picklistValues>
+            <masterLabel>Not Pass</masterLabel>
+            <translation><!-- Not Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation><!-- Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waive</masterLabel>
+            <translation><!-- Waive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Has Cert of VAT Registration --></label>
+        <name>HasCertofVATRegistration__c</name>
+        <picklistValues>
+            <masterLabel>Not Pass</masterLabel>
+            <translation><!-- Not Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation><!-- Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waive</masterLabel>
+            <translation><!-- Waive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- HasMDA --></label>
+        <name>HasMDA__c</name>
+        <picklistValues>
+            <masterLabel>Not Pass</masterLabel>
+            <translation><!-- Not Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation><!-- Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waive</masterLabel>
+            <translation><!-- Waive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- HasMOA --></label>
+        <name>HasMOA__c</name>
+        <picklistValues>
+            <masterLabel>Not Pass</masterLabel>
+            <translation><!-- Not Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation><!-- Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waive</masterLabel>
+            <translation><!-- Waive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Has Other Document --></label>
+        <name>HasOtherDocument__c</name>
+        <picklistValues>
+            <masterLabel>Not Pass</masterLabel>
+            <translation><!-- Not Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation><!-- Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waive</masterLabel>
+            <translation><!-- Waive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Has Power of Attorney --></label>
+        <name>HasPowerofAttorney__c</name>
+        <picklistValues>
+            <masterLabel>Not Pass</masterLabel>
+            <translation><!-- Not Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation><!-- Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waive</masterLabel>
+            <translation><!-- Waive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Has Registration Issue --></label>
+        <name>HasRegistrationIssue__c</name>
+        <picklistValues>
+            <masterLabel>Not Pass</masterLabel>
+            <translation><!-- Not Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation><!-- Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waive</masterLabel>
+            <translation><!-- Waive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Has List of ShareHolders --></label>
+        <name>HasShareHolders__c</name>
+        <picklistValues>
+            <masterLabel>Not Pass</masterLabel>
+            <translation><!-- Not Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation><!-- Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waive</masterLabel>
+            <translation><!-- Waive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Having collateral (Bank Guarantee)? --></label>
+        <name>HavingCollateral__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Having Credit Term or Letter --></label>
+        <name>HavingCreditTermOrLetter__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Having Opened Credit? --></label>
+        <name>HavingOpenedCredit__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Registered Address House no. --></label>
+        <name>HousenoLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Immidiate Parent Company --></label>
+        <name>ImmidiateParentCompany__c</name>
+    </fields>
+    <fields>
+        <label><!-- Import Excel Summary --></label>
+        <name>ImportExcelSummary__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incoterms 2 (Port) --></label>
+        <name>Incoterms2__c</name>
+        <picklistValues>
+            <masterLabel>Abidjan, Ivory Coast</masterLabel>
+            <translation><!-- Abidjan, Ivory Coast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Adelaide, Australia</masterLabel>
+            <translation><!-- Adelaide, Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Alexandria, Egypt</masterLabel>
+            <translation><!-- Alexandria, Egypt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Amsterdam, Netherlands</masterLabel>
+            <translation><!-- Amsterdam, Netherlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Apapa, Nigeria</masterLabel>
+            <translation><!-- Apapa, Nigeria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Auckland, New Zealand</masterLabel>
+            <translation><!-- Auckland, New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bac Giang, Vietnam</masterLabel>
+            <translation><!-- Bac Giang, Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bangkok, Thailand</masterLabel>
+            <translation><!-- Bangkok, Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Beirut, Lebanon</masterLabel>
+            <translation><!-- Beirut, Lebanon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Belawan, Indonesia</masterLabel>
+            <translation><!-- Belawan, Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Binh Duong, Vietnam</masterLabel>
+            <translation><!-- Binh Duong, Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brisbane, Australia</masterLabel>
+            <translation><!-- Brisbane, Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Busan, South Korea</masterLabel>
+            <translation><!-- Busan, South Korea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cat Lai, Vietnam</masterLabel>
+            <translation><!-- Cat Lai, Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Caucedo, Dominican republic</masterLabel>
+            <translation><!-- Caucedo, Dominican republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chalmers, New Zealand</masterLabel>
+            <translation><!-- Chalmers, New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chantrea, Cambodia</masterLabel>
+            <translation><!-- Chantrea, Cambodia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chattogram, Bangladesh</masterLabel>
+            <translation><!-- Chattogram, Bangladesh --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chennai, India</masterLabel>
+            <translation><!-- Chennai, India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Christchurch, New Zealand</masterLabel>
+            <translation><!-- Christchurch, New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Colombo, Sri Lanka</masterLabel>
+            <translation><!-- Colombo, Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cotonou, Benin</masterLabel>
+            <translation><!-- Cotonou, Benin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dammam, Saudi Arabia</masterLabel>
+            <translation><!-- Dammam, Saudi Arabia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Danang, Vietnam</masterLabel>
+            <translation><!-- Danang, Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dar Es Salam, Tanzania</masterLabel>
+            <translation><!-- Dar Es Salam, Tanzania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deendayal, India</masterLabel>
+            <translation><!-- Deendayal, India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Djibouti, Ethiopia</masterLabel>
+            <translation><!-- Djibouti, Ethiopia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Doha, United Arab Emirates</masterLabel>
+            <translation><!-- Doha, United Arab Emirates --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dong Nai, Vietnam</masterLabel>
+            <translation><!-- Dong Nai, Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Douala, Cameroon</masterLabel>
+            <translation><!-- Douala, Cameroon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Durban, South Africa</masterLabel>
+            <translation><!-- Durban, South Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ennore, India</masterLabel>
+            <translation><!-- Ennore, India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Erdenet, Mongolia</masterLabel>
+            <translation><!-- Erdenet, Mongolia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fremantle, Australia</masterLabel>
+            <translation><!-- Fremantle, Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gebze, Turkey</masterLabel>
+            <translation><!-- Gebze, Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Geelong, Australia</masterLabel>
+            <translation><!-- Geelong, Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Go Dau, Vietnam</masterLabel>
+            <translation><!-- Go Dau, Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Haiphong, Vietnam</masterLabel>
+            <translation><!-- Haiphong, Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Haldia, India</masterLabel>
+            <translation><!-- Haldia, India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hamburg, Germany</masterLabel>
+            <translation><!-- Hamburg, Germany --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ho Chi Minh, Vietnam</masterLabel>
+            <translation><!-- Ho Chi Minh, Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hong Kong, Hong Kong</masterLabel>
+            <translation><!-- Hong Kong, Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Huangpu, China</masterLabel>
+            <translation><!-- Huangpu, China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incheon, South Korea</masterLabel>
+            <translation><!-- Incheon, South Korea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jakarta, Indonesia</masterLabel>
+            <translation><!-- Jakarta, Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jebel Ali, UAE</masterLabel>
+            <translation><!-- Jebel Ali, UAE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jeddah, United Arab Emirates</masterLabel>
+            <translation><!-- Jeddah, United Arab Emirates --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kandla, India</masterLabel>
+            <translation><!-- Kandla, India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kaohsiung, Taiwan</masterLabel>
+            <translation><!-- Kaohsiung, Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Karachi, Pakistan</masterLabel>
+            <translation><!-- Karachi, Pakistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Keelung, Taiwan</masterLabel>
+            <translation><!-- Keelung, Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Koh kong, Cambodia</masterLabel>
+            <translation><!-- Koh kong, Cambodia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kolkata, India</masterLabel>
+            <translation><!-- Kolkata, India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kuantan, Malaysia</masterLabel>
+            <translation><!-- Kuantan, Malaysia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kwang Yang, South Korea</masterLabel>
+            <translation><!-- Kwang Yang, South Korea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ladkrabang, Thailand</masterLabel>
+            <translation><!-- Ladkrabang, Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Laem Chabang, Thailand</masterLabel>
+            <translation><!-- Laem Chabang, Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lianyungang, China</masterLabel>
+            <translation><!-- Lianyungang, China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Liverpool, United of Kingdom</masterLabel>
+            <translation><!-- Liverpool, United of Kingdom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lome, Togo</masterLabel>
+            <translation><!-- Lome, Togo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lyttelton, New Zealand</masterLabel>
+            <translation><!-- Lyttelton, New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manila (North), Philippines</masterLabel>
+            <translation><!-- Manila (North), Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manila (South), Philippines</masterLabel>
+            <translation><!-- Manila (South), Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manila (West), Philippines</masterLabel>
+            <translation><!-- Manila (West), Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manzanillo, Mexico</masterLabel>
+            <translation><!-- Manzanillo, Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Maptaphut, Thailand</masterLabel>
+            <translation><!-- Maptaphut, Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Matadi, Congo</masterLabel>
+            <translation><!-- Matadi, Congo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Measod, Thailand</masterLabel>
+            <translation><!-- Measod, Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Melbourne, Australia</masterLabel>
+            <translation><!-- Melbourne, Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Merak Java, Indonesia</masterLabel>
+            <translation><!-- Merak Java, Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mombasa, Kenya</masterLabel>
+            <translation><!-- Mombasa, Kenya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Muara, Brunei</masterLabel>
+            <translation><!-- Muara, Brunei --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mundra, India</masterLabel>
+            <translation><!-- Mundra, India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Myanmar, Myanmar</masterLabel>
+            <translation><!-- Myanmar, Myanmar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Myawaddy, Myanmar</masterLabel>
+            <translation><!-- Myawaddy, Myanmar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nanjing, China</masterLabel>
+            <translation><!-- Nanjing, China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Natong, China</masterLabel>
+            <translation><!-- Natong, China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nhava Sheva, India</masterLabel>
+            <translation><!-- Nhava Sheva, India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ningbo, China</masterLabel>
+            <translation><!-- Ningbo, China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Onne, Nigeria</masterLabel>
+            <translation><!-- Onne, Nigeria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Osaka, Japan</masterLabel>
+            <translation><!-- Osaka, Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Palembang, Indonesia</masterLabel>
+            <translation><!-- Palembang, Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pasir Gudang, Malaysia</masterLabel>
+            <translation><!-- Pasir Gudang, Malaysia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Penang, Malaysia</masterLabel>
+            <translation><!-- Penang, Malaysia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Phnom Penh, Cambodia</masterLabel>
+            <translation><!-- Phnom Penh, Cambodia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Port Klang (North), Malaysia</masterLabel>
+            <translation><!-- Port Klang (North), Malaysia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Port Klang (West), Malaysia</masterLabel>
+            <translation><!-- Port Klang (West), Malaysia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Puerto Cortes, Honduras</masterLabel>
+            <translation><!-- Puerto Cortes, Honduras --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Puerto Quetzal, Guatemala</masterLabel>
+            <translation><!-- Puerto Quetzal, Guatemala --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Qingdao, China</masterLabel>
+            <translation><!-- Qingdao, China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rayong, Thailand</masterLabel>
+            <translation><!-- Rayong, Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rotterdam, Netherlands</masterLabel>
+            <translation><!-- Rotterdam, Netherlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>San Juan, Puerto Rico</masterLabel>
+            <translation><!-- San Juan, Puerto Rico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shanghai, China</masterLabel>
+            <translation><!-- Shanghai, China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Singapore, Singapore</masterLabel>
+            <translation><!-- Singapore, Singapore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sriracha, Thailand</masterLabel>
+            <translation><!-- Sriracha, Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Subic Bay, Philippines</masterLabel>
+            <translation><!-- Subic Bay, Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Surabaya, Indonesia</masterLabel>
+            <translation><!-- Surabaya, Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sydney, Australia</masterLabel>
+            <translation><!-- Sydney, Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Taichung, Taiwan</masterLabel>
+            <translation><!-- Taichung, Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tanjung Pelepas, Malaysia</masterLabel>
+            <translation><!-- Tanjung Pelepas, Malaysia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tauranga, New Zealand</masterLabel>
+            <translation><!-- Tauranga, New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tema, Ghana</masterLabel>
+            <translation><!-- Tema, Ghana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tianjin, Mongolia</masterLabel>
+            <translation><!-- Tianjin, Mongolia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tincan, Nigeria</masterLabel>
+            <translation><!-- Tincan, Nigeria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vientiane, Laos</masterLabel>
+            <translation><!-- Vientiane, Laos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Visakhapatnam, India</masterLabel>
+            <translation><!-- Visakhapatnam, India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vung Tau, Vietnam</masterLabel>
+            <translation><!-- Vung Tau, Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wellington, New Zealand</masterLabel>
+            <translation><!-- Wellington, New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Xingang, China</masterLabel>
+            <translation><!-- Xingang, China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yangon, Myanmar</masterLabel>
+            <translation><!-- Yangon, Myanmar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Zhangjiagang, China</masterLabel>
+            <translation><!-- Zhangjiagang, China --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Incoterms --></label>
+        <name>Incoterms__c</name>
+    </fields>
+    <fields>
+        <label><!-- Industry --></label>
+        <name>Industry__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Industry) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Integration Message --></label>
+        <name>IntegrationMessage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Integration Status --></label>
+        <name>IntegrationStatus__c</name>
+        <picklistValues>
+            <masterLabel>Fail</masterLabel>
+            <translation><!-- Fail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Success</masterLabel>
+            <translation><!-- Success --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Inter Group --></label>
+        <name>InterGroup__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Inter Group) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Interested Product Type as Customer TOP --></label>
+        <name>InterestedProductTypeAsCustomerTOP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interested Product Type as Customer TX --></label>
+        <name>InterestedProductTypeAsCustomerTX__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interested Product Type as Customer --></label>
+        <name>InterestedProductTypeAsCustomer__c</name>
+        <picklistValues>
+            <masterLabel>Aromatic</masterLabel>
+            <translation><!-- Aromatic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuel</masterLabel>
+            <translation><!-- Fuel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LAB</masterLabel>
+            <translation><!-- LAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lube</masterLabel>
+            <translation><!-- Lube --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Olefin</masterLabel>
+            <translation><!-- Olefin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Petrochemical Products</masterLabel>
+            <translation><!-- Petrochemical Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Solvents &amp; Chemical</masterLabel>
+            <translation><!-- Solvents &amp; Chemical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sulfer</masterLabel>
+            <translation><!-- Sulfer --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Interested Product Type as Supplier TOP --></label>
+        <name>InterestedProductTypeAsSupplierTOP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interested Product Type as Supplier TX --></label>
+        <name>InterestedProductTypeAsSupplierTX__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interested Product Type as Supplier --></label>
+        <name>InterestedProductTypeAsSupplier__c</name>
+        <picklistValues>
+            <masterLabel>B100/Ethanol</masterLabel>
+            <translation><!-- B100/Ethanol --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Crude</masterLabel>
+            <translation><!-- Crude --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Normal Paraffin</masterLabel>
+            <translation><!-- Normal Paraffin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Products</masterLabel>
+            <translation><!-- Other Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Petroleum and Components</masterLabel>
+            <translation><!-- Petroleum and Components --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Interested in registration to Customer --></label>
+        <name>InterestedRegistrationToCustomer__c</name>
+    </fields>
+    <fields>
+        <label><!-- InternalCreditRatingTOP --></label>
+        <name>InternalCreditRatingTOP__c</name>
+        <picklistValues>
+            <masterLabel>A</masterLabel>
+            <translation><!-- A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B</masterLabel>
+            <translation><!-- B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C</masterLabel>
+            <translation><!-- C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D</masterLabel>
+            <translation><!-- D --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Internal Credit Rating --></label>
+        <name>InternalCreditRating__c</name>
+    </fields>
+    <fields>
+        <label><!-- Internal Edit Field --></label>
+        <name>InternalEditField__c</name>
+    </fields>
+    <fields>
+        <label><!-- Internal General Changed Field --></label>
+        <name>InternalGeneralChangedField__c</name>
+    </fields>
+    <fields>
+        <label><!-- Internal Original Field --></label>
+        <name>InternalOriginalField__c</name>
+    </fields>
+    <fields>
+        <label><!-- International office  location --></label>
+        <name>InternationalOfficeLocation__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IsCentralUnit --></label>
+        <name>IsCentralUnit__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsCheckDueDiligence --></label>
+        <name>IsCheckDueDiligence__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsCreditOwner --></label>
+        <name>IsCreditOwner__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsCreditTeam --></label>
+        <name>IsCreditTeam__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsDueDiligenceSearch --></label>
+        <name>IsDueDiligenceSearch__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsOwner --></label>
+        <name>IsOwner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price determin. --></label>
+        <name>IsPriceDetermin__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsTraderSaved --></label>
+        <name>IsTraderSaved__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsUpdatedNews --></label>
+        <name>IsUpdatedNews__c</name>
+    </fields>
+    <fields>
+        <label><!-- LABIX Products --></label>
+        <name>LABIXProducts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Name --></label>
+        <name>LastName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Latest Integration Name --></label>
+        <name>LatestIntegrationName__c</name>
+        <picklistValues>
+            <masterLabel>Block Purchasing View</masterLabel>
+            <translation><!-- Block Purchasing View --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Block Sales View</masterLabel>
+            <translation><!-- Block Sales View --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Block Sales View/Purchasing View</masterLabel>
+            <translation><!-- Block Sales View/Purchasing View --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Create Ship to General+Sales View</masterLabel>
+            <translation><!-- Create Ship to General+Sales View --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Edit Customer General+Sales View</masterLabel>
+            <translation><!-- Edit Customer General+Sales View --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Edit Ship to General+Sales View</masterLabel>
+            <translation><!-- Edit Ship to General+Sales View --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Edit Supplier General+Purchasing View</masterLabel>
+            <translation><!-- Edit Supplier General+Purchasing View --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initial Customer Additional Information</masterLabel>
+            <translation><!-- Initial Customer Additional Information --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initial Customer General View</masterLabel>
+            <translation><!-- Initial Customer General View --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initial Customer Sales View</masterLabel>
+            <translation><!-- Initial Customer Sales View --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initial Supplier General+Purchasing View</masterLabel>
+            <translation><!-- Initial Supplier General+Purchasing View --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initial Supplier Only Purchasing View</masterLabel>
+            <translation><!-- Initial Supplier Only Purchasing View --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Lead Owner (TX Sales Representative) --></label>
+        <name>LeadOwnerforTX__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Lead Owner (TX Sales Representative)) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Legal Entity (Commercial Evaluation) --></label>
+        <name>LegalEntityCommercialEvaluation__c</name>
+        <picklistValues>
+            <masterLabel>Other (Please specify)</masterLabel>
+            <translation><!-- Other (Please specify) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Private Individual Or Sole proprietorship</masterLabel>
+            <translation><!-- Private Individual Or Sole proprietorship --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Private Limited Company</masterLabel>
+            <translation><!-- Private Limited Company --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Limited Company</masterLabel>
+            <translation><!-- Public Limited Company --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Subsidiary Company Of Public Limited Company</masterLabel>
+            <translation><!-- Subsidiary Company Of Public Limited Company --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Liable 1 Data not correct --></label>
+        <name>Liable1Datanotcorrect__c</name>
+    </fields>
+    <fields>
+        <label><!-- Liable 1 --></label>
+        <name>Liable1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Liable 2 Data not correct --></label>
+        <name>Liable2Datanotcorrect__c</name>
+    </fields>
+    <fields>
+        <label><!-- Liable 2 --></label>
+        <name>Liable2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Link to NEWS --></label>
+        <name>LinkToNEWS__c</name>
+    </fields>
+    <fields>
+        <label><!-- List of Other Document --></label>
+        <name>ListOtherDocument__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location in Google Maps (Latitude) --></label>
+        <name>LocationInGoogleMapsLatitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location in Google Maps (Link) --></label>
+        <name>LocationInGoogleMapsLinks__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location in Google Maps (Longtitude) --></label>
+        <name>LocationInGoogleMapsLongtitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lube Base Products --></label>
+        <name>LubeBaseProducts__c</name>
+    </fields>
+    <fields>
+        <label><!-- MDCM Approval Status --></label>
+        <name>MDCMApprovalStatus__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected (NonSensitive)</masterLabel>
+            <translation><!-- Rejected (NonSensitive) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected (Sensitive)</masterLabel>
+            <translation><!-- Rejected (Sensitive) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting for Approval</masterLabel>
+            <translation><!-- Waiting for Approval --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Master Data Controller Manager Name --></label>
+        <name>MDCMngName__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Master Data Controller Manager Name) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Master Data Controller Name --></label>
+        <name>MDCName__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Master Data Controller Name) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- C/O --></label>
+        <name>MailingCoName__c</name>
+    </fields>
+    <fields>
+        <label><!-- MainSharePointFolderIsReady --></label>
+        <name>MainSharePointFolderIsReady__c</name>
+    </fields>
+    <fields>
+        <label><!-- Max Partial Deliveries --></label>
+        <name>MaxPartialDeliveries__c</name>
+    </fields>
+    <fields>
+        <label><!-- Message --></label>
+        <name>Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mobile Country Code --></label>
+        <name>MobileCountryCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mobile Phone --></label>
+        <name>MobilePhone__c</name>
+    </fields>
+    <fields>
+        <help><!-- ชื่อ-นามสกุลผู้ติดต่อของ lead --></help>
+        <label><!-- Name (Customer/Supplier Contact Person) --></label>
+        <name>NameCustomerSupplierContactPerson__c</name>
+        <relationshipLabel><!-- CTR Request Form Item --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- New Ship-to Country --></label>
+        <name>NewShiptoCty__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (New Ship-to Country) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- News Result --></label>
+        <name>NewsResult__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nickname --></label>
+        <name>Nickname__c</name>
+    </fields>
+    <fields>
+        <label><!-- No Of Registration (Ministry Energy) --></label>
+        <name>NoOfRegistrationMinistryEnergy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Non-SAP Customer Number --></label>
+        <name>NonSAPCustomerCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Non-SAP Supplier Number --></label>
+        <name>NonSAPSupplierCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notify Custom Action --></label>
+        <name>NotifyCustomAction__c</name>
+        <picklistValues>
+            <masterLabel>Approved Send to SAP</masterLabel>
+            <translation><!-- Approved Send to SAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Committee Approved</masterLabel>
+            <translation><!-- Committee Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Committee Rejected</masterLabel>
+            <translation><!-- Committee Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Emailed to Customer</masterLabel>
+            <translation><!-- Emailed to Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Emailed to Supplier</masterLabel>
+            <translation><!-- Emailed to Supplier --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected Send to SAP</masterLabel>
+            <translation><!-- Rejected Send to SAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SH Approved Edit Ship to</masterLabel>
+            <translation><!-- SH Approved Edit Ship to --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SH Rejected Edit Ship to</masterLabel>
+            <translation><!-- SH Rejected Edit Ship to --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Send to SAP</masterLabel>
+            <translation><!-- Send to SAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submit Summary Report</masterLabel>
+            <translation><!-- Submit Summary Report --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Notify Type --></label>
+        <name>NotifyType__c</name>
+        <picklistValues>
+            <masterLabel>Revert to Financial</masterLabel>
+            <translation><!-- Revert to Financial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submit to the Committee</masterLabel>
+            <translation><!-- Submit to the Committee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submit to the Financial Manager</masterLabel>
+            <translation><!-- Submit to the Financial Manager --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Number registration Ministry of Energy --></label>
+        <name>NumberRegistrationMinistryEnergy__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Objective --></label>
+        <name>Objective__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order Block --></label>
+        <name>OrderBlock__c</name>
+        <picklistValues>
+            <masterLabel>01: Overall Block</masterLabel>
+            <translation><!-- 01: Overall Block --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1: Customer incompleted</masterLabel>
+            <translation><!-- T1: Customer incompleted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Order Combination --></label>
+        <name>OrderCombination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order Probability --></label>
+        <name>OrderProbability__c</name>
+    </fields>
+    <fields>
+        <label><!-- Original Destination Country --></label>
+        <name>OriginalDestinationCountry__c</name>
+    </fields>
+    <fields>
+        <label><!-- Original Request Form Item --></label>
+        <name>OriginalRequestFormItem__c</name>
+        <relationshipLabel><!-- CTR Request Form Item --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Other Condition --></label>
+        <name>OtherCondition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Over Deliveries --></label>
+        <name>OverDeliveries__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overdelivery Tolerance --></label>
+        <name>OverdeliveryTolerance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Email --></label>
+        <name>OwnerEmail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Name --></label>
+        <name>OwnerName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Custom --></label>
+        <name>Owner__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Owner Custom) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Owner&apos;s CMVP --></label>
+        <name>OwnersCMVP__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Owner&apos;s CMVP) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Owner&apos;s Section Head --></label>
+        <name>OwnersSectionHead__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Owner&apos;s Section Head) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Partial Deliveries per item --></label>
+        <name>PartialDeliveriesperitem__c</name>
+    </fields>
+    <fields>
+        <label><!-- Partner --></label>
+        <name>Partner__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Partner) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Payment Condition --></label>
+        <name>PaymentCondition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Guarantee Procedure --></label>
+        <name>PaymentGuaranteeProcedure__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment History Record --></label>
+        <name>PaymentHistoryRecord__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Method --></label>
+        <name>PaymentMethod__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Term --></label>
+        <name>PaymentTerm__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (PaymentTerm) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Performance Bond --></label>
+        <name>PerformanceBond__c</name>
+    </fields>
+    <fields>
+        <label><!-- Petroleum and Components Products --></label>
+        <name>PetroleumAndComponentsProducts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone Country Code --></label>
+        <name>PhoneCountryCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone Extension --></label>
+        <name>PhoneExtension__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone --></label>
+        <name>Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Position --></label>
+        <name>Position__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code --></label>
+        <name>PostalCodeLocalText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price Group --></label>
+        <name>PriceGroup__c</name>
+        <picklistValues>
+            <masterLabel>Z1 : Major Oil</masterLabel>
+            <translation><!-- Z1 : Major Oil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z2 : 3rd Party</masterLabel>
+            <translation><!-- Z2 : 3rd Party --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z3 : Related</masterLabel>
+            <translation><!-- Z3 : Related --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z4 : Non-Related</masterLabel>
+            <translation><!-- Z4 : Non-Related --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z5 : Export</masterLabel>
+            <translation><!-- Z5 : Export --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Product Name --></label>
+        <name>ProductName_NotUse__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Name --></label>
+        <name>ProductName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>Product__c</name>
+    </fields>
+    <fields>
+        <label><!-- 8. Proposed Credit Condition (optional) --></label>
+        <name>ProposedCreditCondition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Purchasing Organization (TOP) --></label>
+        <name>PurchasingOrganizationTOP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Purchasing Organization (TX) --></label>
+        <name>PurchasingOrganizationTX__c</name>
+    </fields>
+    <fields>
+        <help><!-- In case select other product, Please specify Purchasing Organization. --></help>
+        <label><!-- Purchasing Organization --></label>
+        <name>PurchasingOrganization__c</name>
+    </fields>
+    <fields>
+        <label><!-- PurchasingViewKey --></label>
+        <name>PurchasingViewKey__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason of Violating anti-money law --></label>
+        <name>ReasonOfViolatingantimoneylaw__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rebate --></label>
+        <name>Rebate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recon Account Data not correct --></label>
+        <name>ReconAccountDatanotcorrect__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recon Account --></label>
+        <name>ReconAccount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type Name --></label>
+        <name>RecordTypeName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rec.ty 1 Data not correct --></label>
+        <name>Recty1Datanotcorrect__c</name>
+    </fields>
+    <fields>
+        <help><!-- Rec.ty 1 --></help>
+        <label><!-- Rec.ty 1 --></label>
+        <name>Recty1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rec.ty 2Data not correct --></label>
+        <name>Recty2Datanotcorrect__c</name>
+    </fields>
+    <fields>
+        <help><!-- Rec.ty 2 --></help>
+        <label><!-- Rec.ty 2 --></label>
+        <name>Recty2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Region --></label>
+        <name>Region__c</name>
+    </fields>
+    <fields>
+        <label><!-- Registered Address --></label>
+        <name>RegisteredAddress__c</name>
+    </fields>
+    <fields>
+        <label><!-- Remark Performance Bond --></label>
+        <name>RemarkPerformanceBond__c</name>
+    </fields>
+    <fields>
+        <label><!-- Remind Date --></label>
+        <name>RemindDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reply To TRCR History --></label>
+        <name>ReplyToTRCRHistory__c</name>
+    </fields>
+    <fields>
+        <help><!-- 1. Reputation in the market:
+(Refers to how much the company well-known in the market in terms of commercial view) --></help>
+        <label><!-- 1. Reputation in The Market --></label>
+        <name>ReputationInTheMarket__c</name>
+        <picklistValues>
+            <masterLabel>General / Known (3 Point)</masterLabel>
+            <translation><!-- General / Known (3 Point) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unknown (1 Point)</masterLabel>
+            <translation><!-- Unknown (1 Point) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Well-known (5 Point)</masterLabel>
+            <translation><!-- Well-known (5 Point) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Request to Change Credit --></label>
+        <name>RequestToChangeCredit__c</name>
+        <picklistValues>
+            <masterLabel>Other requests</masterLabel>
+            <translation><!-- Other requests --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Request to Change Credit Condition</masterLabel>
+            <translation><!-- Request to Change Credit Condition --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Request to reduce/waive late payment</masterLabel>
+            <translation><!-- Request to reduce/waive late payment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Request to set due date of debit/credit note</masterLabel>
+            <translation><!-- Request to set due date of debit/credit note --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Required Document Completion --></label>
+        <name>RequiredDocCompletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Responsible S/H Name --></label>
+        <name>ResponsibleSHName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Responsible Trader Email --></label>
+        <name>ResponsibleTraderEmail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Responsible Trader Name --></label>
+        <name>ResponsibleTraderName__c</name>
+    </fields>
+    <fields>
+        <label><!-- 4. Result From News Screening --></label>
+        <name>ResultFromNewsScreening__c</name>
+        <picklistValues>
+            <masterLabel>Has compliance risk news (please specify)</masterLabel>
+            <translation><!-- Has compliance risk news (please specify) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No compliance risk news</masterLabel>
+            <translation><!-- No compliance risk news --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Result from news Specify --></label>
+        <name>ResultFromNewsSpecify__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reverted --></label>
+        <name>RevertedTRCRSH__c</name>
+    </fields>
+    <fields>
+        <label><!-- Review Due Diligence Comment --></label>
+        <name>ReviewDueDiligenceCommentBy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Risk Category --></label>
+        <name>RiskCategory__c</name>
+        <picklistValues>
+            <masterLabel>A: Low Risk</masterLabel>
+            <translation><!-- A: Low Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B: Medium Risk</masterLabel>
+            <translation><!-- B: Medium Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C: High Risk</masterLabel>
+            <translation><!-- C: High Risk --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Risk Level by CPCE --></label>
+        <name>RiskLevelbyCPXX__c</name>
+        <picklistValues>
+            <masterLabel>High Risk</masterLabel>
+            <translation><!-- High Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High-High Risk</masterLabel>
+            <translation><!-- High-High Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low Risk</masterLabel>
+            <translation><!-- Low Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium Risk</masterLabel>
+            <translation><!-- Medium Risk --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Risk Level by System --></label>
+        <name>RiskLevelbySystem__c</name>
+        <picklistValues>
+            <masterLabel>High Risk</masterLabel>
+            <translation><!-- High Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High-High Risk</masterLabel>
+            <translation><!-- High-High Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low Risk</masterLabel>
+            <translation><!-- Low Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium Risk</masterLabel>
+            <translation><!-- Medium Risk --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Risk Level by TRCR --></label>
+        <name>RiskLevelbyTRCR__c</name>
+        <picklistValues>
+            <masterLabel>High Risk</masterLabel>
+            <translation><!-- High Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High-High Risk</masterLabel>
+            <translation><!-- High-High Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low Risk</masterLabel>
+            <translation><!-- Low Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium Risk</masterLabel>
+            <translation><!-- Medium Risk --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- 6. Risks or observations --></label>
+        <name>RisksOrObservations__c</name>
+    </fields>
+    <fields>
+        <label><!-- Room --></label>
+        <name>RoomLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAP CCA Mapped --></label>
+        <name>SAPCCAMapped__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAPGeneralSent --></label>
+        <name>SAPGeneralSent__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAP Initial General Confirmed --></label>
+        <name>SAPInitialGeneralConfirmed__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAP Number --></label>
+        <name>SAPNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAP Sales/Purchasing view confirmed --></label>
+        <name>SAPSalesOrPurchasingViewConfirmed__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAP Status --></label>
+        <name>SAPStatus__c</name>
+        <picklistValues>
+            <masterLabel>Pending CCA</masterLabel>
+            <translation><!-- Pending CCA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Queue CCA</masterLabel>
+            <translation><!-- Queue CCA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAP Confirmed General View</masterLabel>
+            <translation><!-- SAP Confirmed General View --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAP Confirmed Sales/Purchasing View</masterLabel>
+            <translation><!-- SAP Confirmed Sales/Purchasing View --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Send General View To SAP</masterLabel>
+            <translation><!-- Send General View To SAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Send Sales/Purchasing View To SAP</masterLabel>
+            <translation><!-- Send Sales/Purchasing View To SAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unsuccessful Send General view to SAP</masterLabel>
+            <translation><!-- Unsuccessful Send General view to SAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unsuccessful Send Sales/Purchasing view to SAP</masterLabel>
+            <translation><!-- Unsuccessful Send Sales/Purchasing view to SAP --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- SAP Submit Time --></label>
+        <name>SAPSubmitTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- S/H Pre-Screen By --></label>
+        <name>SHPreScreenBy__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (S/H Pre-Screen By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- S/H Pre-Screen By --></label>
+        <name>SHPreScreenBys__c</name>
+    </fields>
+    <fields>
+        <label><!-- S/H Pre-Screen Comment --></label>
+        <name>SHPreScreenComment__c</name>
+    </fields>
+    <fields>
+        <label><!-- S/H Pre-Screen Date/Time --></label>
+        <name>SHPreScreenDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- S/H Pre-screen Decision --></label>
+        <name>SHPrescreenDecision__c</name>
+        <picklistValues>
+            <masterLabel>Not Pass</masterLabel>
+            <translation><!-- Not Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation><!-- Pass --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- S/H Team Email --></label>
+        <name>SHTeamEmail__c</name>
+    </fields>
+    <fields>
+        <label><!-- SalesAreaKey --></label>
+        <name>SalesAreaKey__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales District --></label>
+        <name>SalesDistrict__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Group --></label>
+        <name>SalesGroup__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Office --></label>
+        <name>SalesOffice__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization (TOP) --></label>
+        <name>SalesOrganizationTOP__c</name>
+        <picklistValues>
+            <masterLabel>1100-Thai Oil</masterLabel>
+            <translation><!-- 1100-Thai Oil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1300-Thai Paraxylene</masterLabel>
+            <translation><!-- 1300-Thai Paraxylene --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1400-Thai Lube Base</masterLabel>
+            <translation><!-- 1400-Thai Lube Base --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1700-LABIX</masterLabel>
+            <translation><!-- 1700-LABIX --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Seller --></label>
+        <name>SalesOrganizationTX__c</name>
+        <picklistValues>
+            <masterLabel>2000-TOP NEXT International Company Limited</masterLabel>
+            <translation><!-- 2000-TOP NEXT International Company Limited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9100-TOP SOLVENT VIETNAM</masterLabel>
+            <translation><!-- 9100-TOP SOLVENT VIETNAM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9200-PT.TIRTA SURYA RAYA</masterLabel>
+            <translation><!-- 9200-PT.TIRTA SURYA RAYA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9300-JSKem Pte Ltd</masterLabel>
+            <translation><!-- 9300-JSKem Pte Ltd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9400-TSChem</masterLabel>
+            <translation><!-- 9400-TSChem --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- In case select other product, Please specify Sales Organization. --></help>
+        <label><!-- Sales Organization --></label>
+        <name>SalesOrganization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Screen News By --></label>
+        <name>ScreenNewsBy__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Screen News By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Screen News --></label>
+        <name>ScreenNews__c</name>
+    </fields>
+    <fields>
+        <label><!-- Selected Purchasing Organization --></label>
+        <name>SelectedPurchasingOrg__c</name>
+    </fields>
+    <fields>
+        <label><!-- Seller --></label>
+        <name>Seller__c</name>
+        <picklistValues>
+            <masterLabel>2000-TOP NEXT International Company Limited</masterLabel>
+            <translation><!-- 2000-TOP NEXT International Company Limited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9100-TOP SOLVENT VIETNAM</masterLabel>
+            <translation><!-- 9100-TOP SOLVENT VIETNAM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9200-PT.TIRTA SURYA RAYA</masterLabel>
+            <translation><!-- 9200-PT.TIRTA SURYA RAYA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9300-JSKem Pte Ltd</masterLabel>
+            <translation><!-- 9300-JSKem Pte Ltd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9400-TSChem</masterLabel>
+            <translation><!-- 9400-TSChem --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- SendtoSAPBIButton --></label>
+        <name>SendtoSAPBIButton__c</name>
+    </fields>
+    <fields>
+        <label><!-- SendtoSAPButton --></label>
+        <name>SendtoSAPButton__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sensitive Data --></label>
+        <name>SensitiveData__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sensitive --></label>
+        <name>Sensitive__c</name>
+    </fields>
+    <fields>
+        <label><!-- SharePointSubFolderName --></label>
+        <name>SharePointSubFolderName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ship-To Name (English) --></label>
+        <name>ShipToNameEng__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ship-To Name (Other Languages) --></label>
+        <name>ShipToNameLocl__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping Conditions --></label>
+        <name>ShippingConditions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sort Key Data not correct --></label>
+        <name>SortKeyDatanotcorrect__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sort Key --></label>
+        <name>SortKey__c</name>
+        <picklistValues>
+            <masterLabel>000: Allocation number</masterLabel>
+            <translation><!-- 000: Allocation number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>001: Posting date</masterLabel>
+            <translation><!-- 001: Posting date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>002: Doc.no., fiscal year</masterLabel>
+            <translation><!-- 002: Doc.no., fiscal year --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>003: Document date</masterLabel>
+            <translation><!-- 003: Document date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>004: Branch account</masterLabel>
+            <translation><!-- 004: Branch account --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>005: Loc.currency amount</masterLabel>
+            <translation><!-- 005: Loc.currency amount --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>006: Doc.currency amount</masterLabel>
+            <translation><!-- 006: Doc.currency amount --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>007: Bill/exch.due date</masterLabel>
+            <translation><!-- 007: Bill/exch.due date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>008: Cost center</masterLabel>
+            <translation><!-- 008: Cost center --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>009: External doc.number</masterLabel>
+            <translation><!-- 009: External doc.number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>010: Purchase order no.</masterLabel>
+            <translation><!-- 010: Purchase order no. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>011: Plant number</masterLabel>
+            <translation><!-- 011: Plant number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>012: Vendor number</masterLabel>
+            <translation><!-- 012: Vendor number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>014: Purchase order</masterLabel>
+            <translation><!-- 014: Purchase order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>015: Personnel number</masterLabel>
+            <translation><!-- 015: Personnel number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>016: Settlement period</masterLabel>
+            <translation><!-- 016: Settlement period --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>017: Settl.per., pers.no.</masterLabel>
+            <translation><!-- 017: Settl.per., pers.no. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>018: Asset number</masterLabel>
+            <translation><!-- 018: Asset number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>021: Segment text</masterLabel>
+            <translation><!-- 021: Segment text --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>022: One-time name / city</masterLabel>
+            <translation><!-- 022: One-time name / city --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>023: One-time city / name</masterLabel>
+            <translation><!-- 023: One-time city / name --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>024: Document header text</masterLabel>
+            <translation><!-- 024: Document header text --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>025: CPU date</masterLabel>
+            <translation><!-- 025: CPU date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>026: Pmnt per.bslne date</masterLabel>
+            <translation><!-- 026: Pmnt per.bslne date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>027: Value date</masterLabel>
+            <translation><!-- 027: Value date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>028: Asset number</masterLabel>
+            <translation><!-- 028: Asset number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>029: Pstng month, vendor</masterLabel>
+            <translation><!-- 029: Pstng month, vendor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>031: Customer number</masterLabel>
+            <translation><!-- 031: Customer number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>032: Pstng yr,month,curr.</masterLabel>
+            <translation><!-- 032: Pstng yr,month,curr. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>033: Cost center</masterLabel>
+            <translation><!-- 033: Cost center --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>034: Month, cost center</masterLabel>
+            <translation><!-- 034: Month, cost center --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>035: Contract number</masterLabel>
+            <translation><!-- 035: Contract number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>036: Order</masterLabel>
+            <translation><!-- 036: Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>037: Currency key</masterLabel>
+            <translation><!-- 037: Currency key --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>039: Project number</masterLabel>
+            <translation><!-- 039: Project number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>055: Fiscal year, month</masterLabel>
+            <translation><!-- 055: Fiscal year, month --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>060: Test0</masterLabel>
+            <translation><!-- 060: Test0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>061: Test1</masterLabel>
+            <translation><!-- 061: Test1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>065: Test5</masterLabel>
+            <translation><!-- 065: Test5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>101: Cash discnt clearing</masterLabel>
+            <translation><!-- 101: Cash discnt clearing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>105: Test</masterLabel>
+            <translation><!-- 105: Test --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z02: Material Code</masterLabel>
+            <translation><!-- Z02: Material Code --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Start Trading Date --></label>
+        <name>StartTradingDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Approval In Progress</masterLabel>
+            <translation><!-- Approval In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Review</masterLabel>
+            <translation><!-- In Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Passed</masterLabel>
+            <translation><!-- Passed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pre Screen</masterLabel>
+            <translation><!-- Pre Screen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submit for Verification</masterLabel>
+            <translation><!-- Submit for Verification --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Street --></label>
+        <name>StreetLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- SubBU --></label>
+        <name>SubBU__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub-Industry --></label>
+        <name>SubIndustry__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Sub-Industry) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sub Type Condition 2 --></label>
+        <name>SubTypeCondition2__c</name>
+        <picklistValues>
+            <masterLabel>First time of late payment</masterLabel>
+            <translation><!-- First time of late payment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not first time of late payment</masterLabel>
+            <translation><!-- Not first time of late payment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Others</masterLabel>
+            <translation><!-- Others --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sub Type Condition --></label>
+        <name>SubTypeCondition__c</name>
+        <picklistValues>
+            <masterLabel>Change Credit Condition</masterLabel>
+            <translation><!-- Change Credit Condition --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer False</masterLabel>
+            <translation><!-- Customer False --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Early payment for next invoice</masterLabel>
+            <translation><!-- Early payment for next invoice --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expand Credit Line</masterLabel>
+            <translation><!-- Expand Credit Line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expand Temporary Credit Line</masterLabel>
+            <translation><!-- Expand Temporary Credit Line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal False</masterLabel>
+            <translation><!-- Internal False --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Others</masterLabel>
+            <translation><!-- Others --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Subject --></label>
+        <name>Subject__c</name>
+    </fields>
+    <fields>
+        <label><!-- Submit To SAP User Email --></label>
+        <name>SubmitToSAPUserEmail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Submit To SAP User Name --></label>
+        <name>SubmitToSAPUserName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Submit to SAP User --></label>
+        <name>SubmitToSAPUser__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Submit to SAP User) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- SubmittedCounterParty --></label>
+        <name>SubmittedCounterParty__c</name>
+    </fields>
+    <fields>
+        <label><!-- SubmittedSAPInfo --></label>
+        <name>SubmittedSAPInfo__c</name>
+    </fields>
+    <fields>
+        <label><!-- SubmittedTRCRSHReport --></label>
+        <name>SubmittedTRCRSHReport__c</name>
+    </fields>
+    <fields>
+        <label><!-- SubmittedTRCR --></label>
+        <name>SubmittedTRCR__c</name>
+    </fields>
+    <fields>
+        <label><!-- SubmittedTraderSH --></label>
+        <name>SubmittedTraderSH__c</name>
+    </fields>
+    <fields>
+        <label><!-- SubmittedTraderSendEmail --></label>
+        <name>SubmittedTraderSendEmail__c</name>
+    </fields>
+    <fields>
+        <label><!-- SubmittedTrader --></label>
+        <name>SubmittedTrader__c</name>
+    </fields>
+    <fields>
+        <label><!-- SubmittedVPPrescreen --></label>
+        <name>SubmittedVPPrescreen__c</name>
+    </fields>
+    <fields>
+        <label><!-- SubmittedVP --></label>
+        <name>SubmittedVP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Summarize Report Attachment --></label>
+        <name>SummarizeReportAttachment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Summarize Report Email CC --></label>
+        <name>SummarizeReportEmailCC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Summarize Report Email To --></label>
+        <name>SummarizeReportEmailTo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Summarize Report Message --></label>
+        <name>SummarizeReportMessage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Summarize Report Reassign --></label>
+        <name>SummarizeReportReassign__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Summarize Report Reassign) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Summarize Report Subject --></label>
+        <name>SummarizeReportSubject__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Products (Supplier) --></label>
+        <name>SupplierOtherProducts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supplier Other Products --></label>
+        <name>SupplierProductIdentification__c</name>
+    </fields>
+    <fields>
+        <label><!-- TD Performance Bond --></label>
+        <name>TDPerformanceBond__c</name>
+    </fields>
+    <fields>
+        <label><!-- TD Remark Performance Bond --></label>
+        <name>TDRemarkPerformanceBond__c</name>
+    </fields>
+    <fields>
+        <label><!-- TRCR Team Email --></label>
+        <name>TRCRTeamEmail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tax Classification --></label>
+        <name>TaxClassification__c</name>
+        <picklistValues>
+            <masterLabel>0 : Tax Excempt</masterLabel>
+            <translation><!-- 0 : Tax Excempt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1 : Liable for Taxes</masterLabel>
+            <translation><!-- 1 : Liable for Taxes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 : Free Tax Zone</masterLabel>
+            <translation><!-- 2 : Free Tax Zone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3 : Non Tax</masterLabel>
+            <translation><!-- 3 : Non Tax --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- TAX Number --></label>
+        <name>TaxCode1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Telephone --></label>
+        <name>Telephone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Term of payment --></label>
+        <name>TermOfPayment__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Term of payment) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- The destination country --></label>
+        <name>TheDestinationCountry__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- The efficiency level of Facility --></label>
+        <name>TheEfficiencyLevelOfFacility__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- The level of experience --></label>
+        <name>TheLevelOfExperience__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- The level of reputation --></label>
+        <name>Thelevelofreputation__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Total Secured Amount --></label>
+        <name>TotalSecuredAmount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Secured Currency --></label>
+        <name>TotalSecuredCurrency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trade Credit Insurance Currency --></label>
+        <name>TradeCreditInsuranceCurrency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trade Credit Insurance --></label>
+        <name>Trade_Credit_Insurance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date and Time --></label>
+        <name>TraderDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trader Enhance Due Diligence By --></label>
+        <name>TraderEnhanceDueDiligenceBy__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Trader Enhance Due Diligence By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Trader Enhance Due Diligence Date/Time --></label>
+        <name>TraderEnhanceDueDiligenceDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trader Pre-Screen By --></label>
+        <name>TraderPreScreenBy__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Trader Pre-Screen By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Trader Pre-Screen Comment --></label>
+        <name>TraderPreScreenComment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trader Pre-Screen Date/Time --></label>
+        <name>TraderPreScreenDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trader Pre-Screen Decision --></label>
+        <name>TraderPreScreenDecision__c</name>
+        <picklistValues>
+            <masterLabel>Not Pass</masterLabel>
+            <translation><!-- Not Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation><!-- Pass --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Trader Remark --></label>
+        <name>TraderRemark__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trader Sheet Completed By --></label>
+        <name>TraderSheetCompletedBy__c</name>
+        <relationshipLabel><!-- CTR Request Form Item (Trader Sheet Completed By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Trader Team Email --></label>
+        <name>TraderTeamEmail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Trader Waive --></label>
+        <name>TraderWaive__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Do you want to waive Condition --></label>
+        <name>Traderwaivecond__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Transportation Zone --></label>
+        <name>TransportationZone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type Of Business Others --></label>
+        <name>TypeOfBusinessOther__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type of Business --></label>
+        <name>TypeOfBusiness__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ultimate Parent Company --></label>
+        <name>UltimateParentCompany__c</name>
+    </fields>
+    <fields>
+        <label><!-- Underdelivery Tolerance --></label>
+        <name>UnderdeliveryTolerance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique Running Number --></label>
+        <name>UniqueRunningNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor Name --></label>
+        <name>VendorName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor Phone --></label>
+        <name>VendorPhone__c</name>
+    </fields>
+    <fields>
+        <label><!-- WH Tax Country Data not correct --></label>
+        <name>WHTaxCountryDatanotcorrect__c</name>
+    </fields>
+    <fields>
+        <label><!-- WH Tax Country --></label>
+        <name>WHTaxCountry__c</name>
+    </fields>
+    <fields>
+        <label><!-- WaiveRequest --></label>
+        <name>WaiveRequest__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Wth.t.type 1 Data not correct --></label>
+        <name>Wthttype1Datanotcorrect__c</name>
+    </fields>
+    <fields>
+        <help><!-- Wth.t.type 1 --></help>
+        <label><!-- Wth.t.type 1 --></label>
+        <name>Wthttype1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wth.t.type 2 Data not correct --></label>
+        <name>Wthttype2Datanotcorrect__c</name>
+    </fields>
+    <fields>
+        <help><!-- Wth.t.type 2 --></help>
+        <label><!-- Wth.t.type 2 --></label>
+        <name>Wthttype2__c</name>
+    </fields>
+    <fields>
+        <help><!-- (Commercial Evaluation) --></help>
+        <label><!-- Year of experience ? --></label>
+        <name>Yearofexperience__c</name>
+    </fields>
+    <fields>
+        <label><!-- fmlAccountTypeName --></label>
+        <name>fmlAccountTypeName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Address --></label>
+        <name>fmlCompanyAddress__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Name --></label>
+        <name>fmlContactName__c</name>
+    </fields>
+    <fields>
+        <label><!-- fml Customer/Supplier Number --></label>
+        <name>fmlCustomerSupplierNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- fmlPositionNameOfFinancial --></label>
+        <name>fmlPositionNameOfFinancial__c</name>
+    </fields>
+    <fields>
+        <label><!-- fmlPositionNameOfTrader --></label>
+        <name>fmlPositionNameOfTrader__c</name>
+    </fields>
+    <fields>
+        <label><!-- fmlPositionNameOfVP --></label>
+        <name>fmlPositionNameOfVP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Search Term (Local) --></label>
+        <name>fmlSearchTermLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- TX System Name --></label>
+        <name>fmlTXSystemName__c</name>
+    </fields>
+    <fields>
+        <label><!-- has Audited Finalcial --></label>
+        <name>hasAuditedFinalcial__c</name>
+        <picklistValues>
+            <masterLabel>Not Pass</masterLabel>
+            <translation><!-- Not Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation><!-- Pass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waive</masterLabel>
+            <translation><!-- Waive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- isMigrateData --></label>
+        <name>isMigrateData__c</name>
+    </fields>
+    <fields>
+        <label><!-- isTRCR --></label>
+        <name>isTRCR__c</name>
+    </fields>
+    <layouts>
+        <layout>CTR Edit Supplier Information</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Conditions --></label>
+            <section>Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- Control Data --></label>
+            <section>Control Data</section>
+        </sections>
+        <sections>
+            <label><!-- Currency --></label>
+            <section>Currency</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Purchasing Area --></label>
+            <section>Purchasing Area</section>
+        </sections>
+        <sections>
+            <label><!-- Request Details --></label>
+            <section>Request Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CTR LABIX Customer Request Form Item</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Request Details --></label>
+            <section>Request Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CTR LABIX Supplier Request Form Item</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Request Details --></label>
+            <section>Request Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CTR Request Form Item Layout</layout>
+        <sections>
+            <label><!-- Account Information --></label>
+            <section>Account Information</section>
+        </sections>
+        <sections>
+            <label><!-- Approval Trader --></label>
+            <section>Approval Trader</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Document --></label>
+            <section>Billing Document</section>
+        </sections>
+        <sections>
+            <label><!-- CMVP Pre-Screen Result --></label>
+            <section>CMVP Pre-Screen Result</section>
+        </sections>
+        <sections>
+            <label><!-- Counterparty Information --></label>
+            <section>Counterparty Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Excel Summary --></label>
+            <section>Excel Summary</section>
+        </sections>
+        <sections>
+            <label><!-- FA Reassign Task --></label>
+            <section>FA Reassign Task</section>
+        </sections>
+        <sections>
+            <label><!-- Pre-Screen-Commercial Evaluation --></label>
+            <section>Pre-Screen-Commercial Evaluation</section>
+        </sections>
+        <sections>
+            <label><!-- Request Detail --></label>
+            <section>Request Detail</section>
+        </sections>
+        <sections>
+            <label><!-- S/H Pre-Screen Result --></label>
+            <section>S/H Pre-Screen Result</section>
+        </sections>
+        <sections>
+            <label><!-- Sales --></label>
+            <section>Sales</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Area --></label>
+            <section>Sales Area</section>
+        </sections>
+        <sections>
+            <label><!-- Shipping --></label>
+            <section>Shipping</section>
+        </sections>
+        <sections>
+            <label><!-- Trader Comment --></label>
+            <section>Trader Comment</section>
+        </sections>
+        <sections>
+            <label><!-- Trader Pre-Screen Result --></label>
+            <section>Trader Pre-Screen Result</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CTR TOP Check Ship To Country Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Request Detail --></label>
+            <section>Request Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Ship-to --></label>
+            <section>Ship-to</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CTR TOP Customer Edit Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Request Detail --></label>
+            <section>Request Detail</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CTR TOP Customer Request Form Item</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Request Details --></label>
+            <section>Request Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CTR TOP Supplier Edit Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Request Detail --></label>
+            <section>Request Detail</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CTR TOP Supplier Request Form Item</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Request Details --></label>
+            <section>Request Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CTR TX Create Ship-To Layout</layout>
+        <sections>
+            <label><!-- Billing Document --></label>
+            <section>Billing Document</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Person Information --></label>
+            <section>Contact Person Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Registered Address --></label>
+            <section>Registered Address</section>
+        </sections>
+        <sections>
+            <label><!-- Sales --></label>
+            <section>Sales</section>
+        </sections>
+        <sections>
+            <label><!-- Search Terms --></label>
+            <section>Search Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Selected Sales Area --></label>
+            <section>Selected Sales Area</section>
+        </sections>
+        <sections>
+            <label><!-- Ship-To Information --></label>
+            <section>Ship-To Information</section>
+        </sections>
+        <sections>
+            <label><!-- Shipping --></label>
+            <section>Shipping</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CTR TX Customer Request Form Item</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Document --></label>
+            <section>Billing Document</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Request Details --></label>
+            <section>Request Details</section>
+        </sections>
+        <sections>
+            <label><!-- Sales --></label>
+            <section>Sales</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Area --></label>
+            <section>Sales Area</section>
+        </sections>
+        <sections>
+            <label><!-- Shipping --></label>
+            <section>Shipping</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CTR TX Edit Customer Request Form Item</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Document --></label>
+            <section>Billing Document</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Request Details --></label>
+            <section>Request Details</section>
+        </sections>
+        <sections>
+            <label><!-- Sales --></label>
+            <section>Sales</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Area --></label>
+            <section>Sales Area</section>
+        </sections>
+        <sections>
+            <label><!-- Shipping --></label>
+            <section>Shipping</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CTR TX Edit Ship-To Layout</layout>
+        <sections>
+            <label><!-- Billing Document --></label>
+            <section>Billing Document</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Person Information --></label>
+            <section>Contact Person Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Registered Address --></label>
+            <section>Registered Address</section>
+        </sections>
+        <sections>
+            <label><!-- Sales --></label>
+            <section>Sales</section>
+        </sections>
+        <sections>
+            <label><!-- Search Terms --></label>
+            <section>Search Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Selected Sales Area --></label>
+            <section>Selected Sales Area</section>
+        </sections>
+        <sections>
+            <label><!-- Ship-To Information --></label>
+            <section>Ship-To Information</section>
+        </sections>
+        <sections>
+            <label><!-- Shipping --></label>
+            <section>Shipping</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CTR TX Supplier Request Form Item</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Conditions --></label>
+            <section>Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- Control Data --></label>
+            <section>Control Data</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Purchasing Area --></label>
+            <section>Purchasing Area</section>
+        </sections>
+        <sections>
+            <label><!-- Request Details --></label>
+            <section>Request Details</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Request Number --></nameFieldLabel>
+    <quickActions>
+        <label><!-- Approve --></label>
+        <name>Approval</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Approve with Condition --></label>
+        <name>Approval_with_Condition</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Check Due Diligence --></label>
+        <name>Check_Due_Diligence</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Compliance Check --></label>
+        <name>Compliance_Check</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Disclaimer --></label>
+        <name>Disclaimer</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Document Checklist --></label>
+        <name>Document_Checklist</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Edit Counterparty --></label>
+        <name>EditCounterParty</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Email to Customer --></label>
+        <name>Email_to_Customer</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Email to Supplier --></label>
+        <name>Email_to_Supplier</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Inform TRCR Section Header --></label>
+        <name>InformTRCRSectionHeader</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Inform Change Information --></label>
+        <name>Inform_Change_Information</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Inform FALB Section Head --></label>
+        <name>Inform_FALB_Section_Head</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reject --></label>
+        <name>Reject</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reject Request Form --></label>
+        <name>Reject_Request_Form</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reply To FA --></label>
+        <name>Reply_To_FA</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reply To FALB --></label>
+        <name>Reply_To_FALB</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reply To TRCR --></label>
+        <name>Reply_To_TRCR</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Due Diligence Search --></label>
+        <name>RequestDueDiligence</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update News --></label>
+        <name>RequestNEWS</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Approve, --></label>
+        <name>SAPInfoApprove</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reject, --></label>
+        <name>SAPInfoReject</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SAP Information --></label>
+        <name>SAP_Information</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Screen News --></label>
+        <name>Screen_News</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Send To SAP --></label>
+        <name>SendToSAP</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Send to SAP (Supplier) --></label>
+        <name>Send_to_SAP_Supplier</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Send to SAP BI --></label>
+        <name>SendtoSAPBI</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Send to SAP (Customer) --></label>
+        <name>SendtoSAP_Customer</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SubmitATF --></label>
+        <name>SubmitATF</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Submit Edit Info --></label>
+        <name>SubmitEditInfo</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Submit Registration --></label>
+        <name>SubmitRegistration</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Submit Request --></label>
+        <name>SubmitRequestEditCo</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Submit for ApprovalS --></label>
+        <name>SubmitShipToforApproval</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- (NO USE)Submit Registration --></label>
+        <name>Submit_Registration</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Submit for Verification --></label>
+        <name>SubmitforVerification</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Submit to Central Unit --></label>
+        <name>SubmittoCentralUnit</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Summary Report --></label>
+        <name>Summary_Report</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- TEST Edit counter party --></label>
+        <name>TEST_Edit_counter_party</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Approve. --></label>
+        <name>TRCRSectionHeaderApprove</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reject. --></label>
+        <name>TRCRSectionHeaderReject</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- TestReply --></label>
+        <name>TestReply</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- TestReply2 --></label>
+        <name>TestReply2</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Test Sharepoint Link --></label>
+        <name>Test_Sharepoint_Link</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- dev test button --></label>
+        <name>dev_test_button</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- testEDD --></label>
+        <name>testEDD</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- Block Customer --></label>
+        <name>CustomerBlock</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Change Customer Credit Condition --></label>
+        <name>CustomerChangeCrCond</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Edit Customer Information --></label>
+        <name>CustomerEditInfo</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Extend Customer --></label>
+        <name>CustomerExtend</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- New Customer --></label>
+        <name>CustomerInitial</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Change Hedging Credit Condition --></label>
+        <name>HedgingChangeCrCond</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Edit Hedging Information --></label>
+        <name>HedgingEditInfo</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- New Hedging --></label>
+        <name>HedgingInitial</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Change Master File (Annual Review) --></label>
+        <name>MasterChangeAnnualReview</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Change Master File (Mass Update) --></label>
+        <name>MasterChangeMassUpdate</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Check Ship-to Country --></label>
+        <name>ShipToCheckCountry</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Create Ship-to --></label>
+        <name>ShipToCreate</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Edit Ship-to --></label>
+        <name>ShipToEdit</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Block Supplier --></label>
+        <name>SupplierBlock</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Change Supplier Credit Condition --></label>
+        <name>SupplierChangeCrCond</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Edit Supplier Information --></label>
+        <name>SupplierEditInfo</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Extend Supplier --></label>
+        <name>SupplierExtend</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- New Supplier --></label>
+        <name>SupplierInitial</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Cannot change value of Request Number --></errorMessage>
+        <name>CheckIsChangeRequestNumber</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Inform_Section_Head --></label>
+        <name>Inform_Section_Head</name>
+    </webLinks>
+</CustomObjectTranslation>

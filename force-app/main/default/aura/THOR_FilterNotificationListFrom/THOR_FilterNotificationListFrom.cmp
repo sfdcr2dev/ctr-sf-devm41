@@ -1,0 +1,85 @@
+<aura:component>
+	<aura:attribute name="form" type="Map" default="{}" />
+	<aura:method name="reset" action="{!c.reset}" />
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<aura:attribute name="reverseValueMaintenancePlant" type="List" default="[]" access="private" />
+	<aura:handler name="change" value="{!v.form.Location__c}" action="{!c.reverseValueMaintenancePlant}" />
+	<aura:handler name="change" value="{!v.form.Plant_Section__c}" action="{!c.reverseValueMaintenancePlant}" />
+	<div class="THOR_FilterNotificationListFrom__container">
+		<lightning:layout multipleRows="true">
+			<lightning:layoutItem size="12" smallDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField aura:id="inputField" fieldName="Notification_Number__c" />
+			</lightning:layoutItem>
+			<lightning:layoutItem size="12" smallDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField aura:id="inputField" fieldName="Notification_Type__c" />
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="12" smallDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField aura:id="inputField" fieldName="Functional_Location__c" />
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="12" smallDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField aura:id="inputField" fieldName="Create_Date_From__c" />
+			</lightning:layoutItem>
+			<lightning:layoutItem size="12" smallDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField aura:id="inputField" fieldName="Create_Date_To__c" />
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="12" smallDeviceSize="12" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField aura:id="inputField" fieldName="Description__c" />
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="12" smallDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField aura:id="inputField" fieldName="Priority__c" />
+			</lightning:layoutItem>
+			<lightning:layoutItem size="12" smallDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="Main_Work_Center__c" value="{!v.form.Main_Work_Center__c}" />
+				<c:thorFilterSuggest
+					fieldName="Main_Work_Center__c"
+					value="{!v.form.Main_Work_Center__c}"
+					onchangeValue="{!c.handleChange}"
+					masterMapType="Main Work Center"
+				/>
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="12" smallDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="Maintenance_Plant__c" value="{!v.form.Maintenance_Plant__c}" />
+				<c:thorFilterSuggest
+					fieldName="Maintenance_Plant__c"
+					value="{!v.form.Maintenance_Plant__c}"
+					onchangeValue="{!c.handleChange}"
+					masterMapType="Plant"
+					reverseValue="{!v.reverseValueMaintenancePlant}"
+				/>
+			</lightning:layoutItem>
+			<lightning:layoutItem size="6" smallDeviceSize="3" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField aura:id="inputField" fieldName="Breakdown__c" />
+			</lightning:layoutItem>
+			<lightning:layoutItem size="6" smallDeviceSize="3" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField aura:id="inputField" fieldName="My_Tasks__c" />
+			</lightning:layoutItem>
+
+			<lightning:layoutItem size="12" smallDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="Location__c" value="{!v.form.Location__c}" />
+				<c:thorFilterSuggest
+					fieldName="Location__c"
+					value="{!v.form.Location__c}"
+					onchangeValue="{!c.handleChange}"
+					masterMapType="LocationWithPlant"
+					dependencyValue="{!v.form.Maintenance_Plant__c}"
+				/>
+			</lightning:layoutItem>
+			<lightning:layoutItem size="12" smallDeviceSize="6" flexibility="auto" padding="horizontal-medium">
+				<lightning:inputField class="slds-hide" aura:id="inputField" fieldName="Plant_Section__c" value="{!v.form.Plant_Section__c}" />
+				<c:thorFilterSuggest
+					fieldName="Plant_Section__c"
+					value="{!v.form.Plant_Section__c}"
+					onchangeValue="{!c.handleChange}"
+					masterMapType="PlantSectionWithPlant"
+					dependencyValue="{!v.form.Maintenance_Plant__c}"
+				/>
+			</lightning:layoutItem>
+		</lightning:layout>
+	</div>
+</aura:component>

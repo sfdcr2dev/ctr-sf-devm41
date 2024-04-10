@@ -1,0 +1,27 @@
+<aura:component controller="PageLinkController"  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    
+    <aura:attribute name="RecordData" type="Object"/>
+    <force:recordData aura:id="recordLoader"
+      fields="Name,No__c,Project__c"
+      recordId="{!v.recordId}"
+      targetFields="{!v.RecordData}"
+      /> 
+    
+    <div class="slds-m-around_xx-small">
+        <div class="customDiv">
+            <lightning:Button class="roadmapButton" variant="brand"
+                              label="Project Roadmap" 
+                              title="Project Roadmap"
+                              onclick="{! c.goToRoadmap }" />
+            
+            <lightning:Button class="groupButton" variant="brand"
+                              label="Work Process Group" 
+                              title="Work Process Group"
+                              onclick="{! c.goToWorkProcessGroup }" />
+        </div>
+    </div>
+	
+</aura:component>

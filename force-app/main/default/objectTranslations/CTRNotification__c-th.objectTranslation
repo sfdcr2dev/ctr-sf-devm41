@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CTR Notification</value>
+    </caseValues>
+    <fields>
+        <label><!-- Body --></label>
+        <name>Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- CTR User --></label>
+        <name>CTRUser__c</name>
+        <relationshipLabel><!-- CTR Notification --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Is Read --></label>
+        <name>IsRead__c</name>
+    </fields>
+    <fields>
+        <label><!-- RedirectTo --></label>
+        <name>RedirectTo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Id --></label>
+        <name>TargetId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Additional Information</masterLabel>
+            <translation><!-- Additional Information --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Annual Review</masterLabel>
+            <translation><!-- Annual Review --></translation>
+        </picklistValues>
+    </fields>
+</CustomObjectTranslation>

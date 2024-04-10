@@ -1,0 +1,28 @@
+<aura:component controller="ODM_FileUploadActionController"
+    implements="flexipage:availableForRecordHome,force:hasRecordId">
+    <aura:attribute name="recordId" type="String" default="" />
+    <aura:attribute name="multiple" type="Boolean" default="true" />
+    <aura:attribute name="disabled" type="Boolean" default="true" />
+    <aura:attribute name="currentUploadedDocumentId" type="String" />
+    <aura:attribute name="hasWriteAccess" type="Boolean" default="false" />
+    <aura:attribute name="originalFileName" type="String" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:registerEvent name="refreshFileListEvt" type="c:ODM_WorkClearanceVerificationUploadRefresh" />
+
+    <div class="slds-grid slds-grid_align-spread">
+        <div class="slds-col">
+            <p class="slds-text-heading--large">Attachment</p>
+        </div>
+        <div>
+            <lightning:fileUpload
+                class="muh-class slds-col slds-grow-none" 
+                label="" 
+                name="fileUploader"
+                recordId="{!v.recordId}" 
+                onuploadfinished="{!c.handleUploadFinished}" />
+        </div>
+    </div>
+
+</aura:component>

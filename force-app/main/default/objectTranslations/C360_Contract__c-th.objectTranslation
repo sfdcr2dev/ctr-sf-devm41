@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Contract</value>
+    </caseValues>
+    <fields>
+        <label><!-- Action Taken --></label>
+        <name>ActionTaken__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Name --></label>
+        <name>Bank_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- ComX ID --></label>
+        <name>ComXID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contract Documents --></label>
+        <name>ContractDocuments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contract End Date --></label>
+        <name>ContractEndDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contract Number --></label>
+        <name>ContractNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contract Start Date --></label>
+        <name>ContractStartDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contract Type --></label>
+        <name>ContractType__c</name>
+        <picklistValues>
+            <masterLabel>Small Volume</masterLabel>
+            <translation><!-- Small Volume --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spot</masterLabel>
+            <translation><!-- Spot --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Term</masterLabel>
+            <translation><!-- Term --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Create By BU --></label>
+        <name>Create_By_BU__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Limit --></label>
+        <name>CreditLimit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Currency --></label>
+        <name>Currency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Discharge Port --></label>
+        <name>Discharge_Port__c</name>
+        <picklistValues>
+            <masterLabel>Chennai</masterLabel>
+            <translation><!-- Chennai --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kandla</masterLabel>
+            <translation><!-- Kandla --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nhava Sheva</masterLabel>
+            <translation><!-- Nhava Sheva --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Distribution Channel --></label>
+        <name>DistributionChannel__c</name>
+    </fields>
+    <fields>
+        <label><!-- Division --></label>
+        <name>Division__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document Number --></label>
+        <name>DocumentNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>EndDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incoterms --></label>
+        <name>Incoterms__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Modified By BU --></label>
+        <name>Last_Modified_By_BU__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loading End Date --></label>
+        <name>LoadingEndDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loading Start Date --></label>
+        <name>LoadingStartDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Master Contract --></label>
+        <name>MasterContract__c</name>
+        <relationshipLabel><!-- Contract --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- PO Date --></label>
+        <name>PODate__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO Number --></label>
+        <name>PONumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Term --></label>
+        <name>PaymentTerm__c</name>
+        <relationshipLabel><!-- Contract (Payment Term) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Pricing Date --></label>
+        <name>PricingDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Remaining Days --></label>
+        <name>RemainingDays__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Document Type --></label>
+        <name>SalesDocumentType__c</name>
+        <relationshipLabel><!-- Contract (Sales Document Type) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>SalesOrganization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ship-To Party --></label>
+        <name>ShipTo__c</name>
+        <relationshipLabel><!-- Contract (Ship-To Party) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Shipping Condition --></label>
+        <name>ShippingCondition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sold-To Party --></label>
+        <name>SoldTo__c</name>
+        <relationshipLabel><!-- Contract (Sold-To Party) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>TOP Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contract Details --></label>
+            <section>Contract Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Purchase Order Information --></label>
+            <section>Purchase Order Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TS Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contract Details --></label>
+            <section>Contract Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Purchase Order Information --></label>
+            <section>Purchase Order Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>View-Only Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contract Details --></label>
+            <section>Contract Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Purchase Order Information --></label>
+            <section>Purchase Order Information</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- New Contract Line Item --></label>
+        <name>NewContractLineItem</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Action Taken --></label>
+        <name>UpdateActionTaken</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- Please check your URL again --></errorMessage>
+        <name>URLFormatValidation</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,347 @@
+<aura:component controller="THOR_OrderRelatedWorkClearanceCtr">
+
+    <!-- Attributes -->
+    <aura:attribute name="recordId" type="String"/>
+	<aura:attribute name="wcId" type="String"/>
+    <aura:attribute name="workclearance" type="Work_Clearance__c"/>
+    <aura:attribute name="finishedLoading" type="Boolean" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:registerEvent name="stopLoadingEvent" type="c:THOR_Event"/>
+
+        <!-- BODY -->
+        <div class="slds-theme_default">
+            <aura:if isTrue="{!v.finishedLoading}">
+                <aura:if isTrue="{!not(empty(v.workclearance))}">
+                    <!--<p class="labelSequence">Sequential no, Work Clearance no., FL, Priority, Main Work Center, Description</p>
+                    <lightning:layout multipleRows="true">
+                        <aura:iteration items="{! v.RelatedWorkClearances }" var="wc">
+            
+                            <lightning:layoutItem size="12">
+                                <div class="slds-box slds-box_xx-small">
+                                    <lightning:layout verticalAlign="center">
+                                        <lightning:layoutItem size="11" padding="horizontal-small">
+                                            {! wc.workClearanceName } . 
+                                            {! wc.workClearance } . 
+                                            {! wc.workClearanceFunctionalLocation } . 
+                                            {! wc.workClearanceDescription } . 
+                                            {! wc.workClearancePriority } . 
+                                            {! wc.workClearanceMainWorkCenter }
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem size="1" >
+                                        <div id="{! wc.workClearanceFiles[0].ContentDocumentId }" onclick="{!c.preview }" style="text-align: center;">
+                                            <lightning:icon iconName="doctype:pdf" alternativeText="PDF" title="PDF" />
+                                        </div>
+                                    </lightning:layoutItem>
+                                    </lightning:layout> 
+                                </div>
+                            </lightning:layoutItem>
+
+                        </aura:iteration>
+                    </lightning:layout>-->
+                    <lightning:layout multipleRows="true" verticalAlign="stretch">
+                    <lightning:layoutItem size="6" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name">Clearence No.</label>
+                        <p>{!v.workclearance.Work_Clearance__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type"></label>
+                        <img src="{!'https://www.webarcode.com/barcode/image.php?code=' + v.workclearance.Work_Clearance__c + '&amp;type=C128B&amp;xres=3&amp;font=5&amp;output=png&amp;style=68'}" />
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name">Notification</label>
+                        <p>{!v.workclearance.Notification__r.Name}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type">Priority</label>
+                        <aura:if isTrue="{!v.workclearance.Priority__c == '1'}">
+                            <p>Immediately</p>
+                        </aura:if>
+                        <aura:if isTrue="{!v.workclearance.Priority__c == '2'}">
+                            <p>Urgent</p>
+                        </aura:if>
+                        <aura:if isTrue="{!v.workclearance.Priority__c == '3'}">
+                            <p>Normal</p>
+                        </aura:if>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type">Requester</label>
+                        <p>{!v.workclearance.Requester__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name">Functional Location</label>
+                        <p>{!v.workclearance.Functional_Location__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type">Description</label>
+                        <p>{!v.workclearance.Description__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name">Area</label>
+                        <p>{!v.workclearance.Area__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type">Maintenance Unit</label>
+                        <p>{!v.workclearance.Maintenance_Unit__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="12" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name">Problem</label>
+                        <p>{!v.workclearance.Problem__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="12" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type">Work Detail</label>
+                        <p>{!v.workclearance.Work_Detail__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name">Thaioil Supervisor Indicator</label>
+                        <p>{!v.workclearance.Thaioil_Supervisor_Indicator__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name">Telephone No</label>
+                        <p>{!v.workclearance.TOP_Supervisor_Telephone__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name">Applicant or Bearer</label>
+                        <p>{!v.workclearance.Applicant_or_Bearer__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name">Telephone No</label>
+                        <p>{!v.workclearance.Applicant_or_Bearer_Telephone__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name">Bearer : 1</label>
+                        <p>{!v.workclearance.Bearer1__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type">Bearer : 2</label>
+                        <p>{!v.workclearance.Bearer2__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type">Bearer : 3</label>
+                        <p>{!v.workclearance.Bearer3__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="12" flexibility="auto" padding="around-small"
+                        class="custom-box slds-text-align_center">
+                        <label class="slds-form-element__label" for="of-Name">3 What's</label>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box slds-text-align_center">
+                        <label class="slds-form-element__label" for="of-Name">What can go wrong?</label>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box slds-text-align_center">
+                        <label class="slds-form-element__label" for="of-Name">What can cause it to go wrong?</label>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box slds-text-align_center">
+                        <label class="slds-form-element__label" for="of-Name">What can you do to prevent if from going wrong?</label>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name"></label>
+                        <p>{!v.workclearance.Can_go_wrong1__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type"></label>
+                        <p>{!v.workclearance.Cause1__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type"></label>
+                        <p>{!v.workclearance.Prevent1__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name"></label>
+                        <p>{!v.workclearance.Can_go_wrong2__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type"></label>
+                        <p>{!v.workclearance.Cause2__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type"></label>
+                        <p>{!v.workclearance.Prevent2__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name"></label>
+                        <p>{!v.workclearance.Can_go_wrong3__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type"></label>
+                        <p>{!v.workclearance.Cause3__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type"></label>
+                        <p>{!v.workclearance.Prevent3__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name"></label>
+                        <p>{!v.workclearance.Can_go_wrong4__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type"></label>
+                        <p>{!v.workclearance.Cause4__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type"></label>
+                        <p>{!v.workclearance.Prevent4__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name">Authorized Signature / Indicator</label>
+                        <p>{!v.workclearance.Authorized_Indicator__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name">Applicant or Bearer</label>
+                        <p>{!v.workclearance.Applicant_or_Bearer__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="12" flexibility="auto" padding="around-small"
+                        class="custom-box slds-text-align_center">
+                        <label class="slds-form-element__label" for="of-Name">Approval</label>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name">Authorized Signatory</label>
+                        <p>{!v.workclearance.Authorized_Signatory__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type">Date</label>
+                        <p>{!v.workclearance.Check_Date__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type">Time</label>
+                        <p>{!v.workclearance.Check_Time__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name">Extending Time</label>
+                        <p class="slds-grid">{!v.workclearance.Extend_Time_To__c}
+                            <aura:if isTrue="{!not(empty(v.workclearance.Extend_Time_Flag__c))}">
+                                <div class="slds-form-element mgl-5">
+                              <div class="slds-form-element__control">
+                                <div class="slds-checkbox">
+                                  <input type="checkbox" name="options" id="checkbox-unique-id-73" value="checkbox-unique-id-73" checked="true" disabled="true"/>
+                                  <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label"></span>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                                <aura:set attribute="else">
+                                    <div class="slds-form-element mgl-5">
+                              <div class="slds-form-element__control">
+                                <div class="slds-checkbox">
+                                  <input type="checkbox" name="options" id="checkbox-unique-id-73" value="checkbox-unique-id-73" checked="false" disabled="true"/>
+                                  <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label"></span>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                                </aura:set>
+                            </aura:if>
+                        	
+                        </p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type">Applicant or Bearer</label>
+                        <p>{!v.workclearance.Extend_Applicant_or_Bearer__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type">Extend Authorized Sign</label>
+                        <p>{!v.workclearance.Extend_Authorized_Sign__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Name">Sign off</label>
+                        <p class="slds-grid">
+                            <aura:if isTrue="{!not(empty(v.workclearance.Sign_off_Flag__c))}">
+                                <div class="slds-form-element mgl-5">
+                              <div class="slds-form-element__control">
+                                <div class="slds-checkbox">
+                                  <input type="checkbox" name="options" id="checkbox-unique-id-73" value="checkbox-unique-id-73" checked="true" disabled="true"/>
+                                  <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label"></span>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                                <aura:set attribute="else">
+                                    <div class="slds-form-element mgl-5">
+                              <div class="slds-form-element__control">
+                                <div class="slds-checkbox">
+                                  <input type="checkbox" name="options" id="checkbox-unique-id-73" value="checkbox-unique-id-73" checked="false" disabled="true"/>
+                                  <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label"></span>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                                </aura:set>
+                            </aura:if>
+                        </p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type">Applicant or Bearer</label>
+                        <p>{!v.workclearance.Close_Applicant_or_Bearer__c}</p>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="4" flexibility="auto" padding="around-small"
+                        class="custom-box">
+                        <label class="slds-form-element__label" for="of-Type">Authorized Sign off</label>
+                        <p>{!v.workclearance.Close_Authorized_Sign_off__c}</p>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <div class="right-align">
+                    <lightning:button variant="brand" label="Print PDF" title="Print PDF" onclick="{!c.openPDF}" />
+                </div>
+                 <aura:set attribute="else">
+                    <p>There are no related Work Clearances</p>
+                 </aura:set>
+                </aura:if> 
+             <aura:set attribute="else">
+                <p>Loading Work Clearances...</p>
+             </aura:set>
+            </aura:if>        
+        </div>
+        <!-- /BODY -->
+
+</aura:component>

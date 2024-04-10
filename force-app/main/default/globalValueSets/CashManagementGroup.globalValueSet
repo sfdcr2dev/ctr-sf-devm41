@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>BC</fullName>
+        <default>false</default>
+        <label>BC : BORROW/CRUDE</label>
+    </customValue>
+    <customValue>
+        <fullName>BP</fullName>
+        <default>false</default>
+        <label>BP : BORROW/PRODUCT</label>
+    </customValue>
+    <customValue>
+        <fullName>P0</fullName>
+        <default>false</default>
+        <label>P0 : Lr-Feedstock</label>
+    </customValue>
+    <customValue>
+        <fullName>P1</fullName>
+        <default>false</default>
+        <label>P1 : Revenue Department</label>
+    </customValue>
+    <customValue>
+        <fullName>P2</fullName>
+        <default>false</default>
+        <label>P2 : Platformate</label>
+    </customValue>
+    <customValue>
+        <fullName>P3</fullName>
+        <default>false</default>
+        <label>P3 : Operating Expense</label>
+    </customValue>
+    <customValue>
+        <fullName>P4</fullName>
+        <default>false</default>
+        <label>P4 : Vat Crude</label>
+    </customValue>
+    <customValue>
+        <fullName>P5</fullName>
+        <default>false</default>
+        <label>P5 : Electric-IPT</label>
+    </customValue>
+    <customValue>
+        <fullName>P6</fullName>
+        <default>false</default>
+        <label>P6 : Hedging(Loss)</label>
+    </customValue>
+    <customValue>
+        <fullName>P7</fullName>
+        <default>false</default>
+        <label>P7 : Utilities</label>
+    </customValue>
+    <customValue>
+        <fullName>P8</fullName>
+        <default>false</default>
+        <label>P8 : Mixed Xylene</label>
+    </customValue>
+    <customValue>
+        <fullName>P9</fullName>
+        <default>false</default>
+        <label>P9 : Swap Export IRP</label>
+    </customValue>
+    <customValue>
+        <fullName>PA</fullName>
+        <default>false</default>
+        <label>PA : IPT</label>
+    </customValue>
+    <customValue>
+        <fullName>PB</fullName>
+        <default>false</default>
+        <label>PB : TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>PC</fullName>
+        <default>false</default>
+        <label>PC : TOM</label>
+    </customValue>
+    <customValue>
+        <fullName>PD</fullName>
+        <default>false</default>
+        <label>PD : TP</label>
+    </customValue>
+    <customValue>
+        <fullName>PE</fullName>
+        <default>false</default>
+        <label>PE : TPX</label>
+    </customValue>
+    <customValue>
+        <fullName>PF</fullName>
+        <default>false</default>
+        <label>PF : CAPEX</label>
+    </customValue>
+    <customValue>
+        <fullName>PG</fullName>
+        <default>false</default>
+        <label>PG : Excise</label>
+    </customValue>
+    <customValue>
+        <fullName>PH</fullName>
+        <default>false</default>
+        <label>PH : Eoff</label>
+    </customValue>
+    <customValue>
+        <fullName>PI</fullName>
+        <default>false</default>
+        <label>PI : Roff</label>
+    </customValue>
+    <customValue>
+        <fullName>PJ</fullName>
+        <default>false</default>
+        <label>PJ : Freight-Feedstock</label>
+    </customValue>
+    <customValue>
+        <fullName>PK</fullName>
+        <default>false</default>
+        <label>PK : Vat Crude-Feedstock</label>
+    </customValue>
+    <customValue>
+        <fullName>PL</fullName>
+        <default>false</default>
+        <label>PL : Fob-Feedstock</label>
+    </customValue>
+    <customValue>
+        <fullName>PM</fullName>
+        <default>false</default>
+        <label>PM : Fuel Costs-TPX</label>
+    </customValue>
+    <customValue>
+        <fullName>PN</fullName>
+        <default>false</default>
+        <label>PN : Fuel Costs-PTT</label>
+    </customValue>
+    <customValue>
+        <fullName>PO</fullName>
+        <default>false</default>
+        <label>PO : Fuel Costs-TOP</label>
+    </customValue>
+    <customValue>
+        <fullName>PP</fullName>
+        <default>false</default>
+        <label>PP : OneTimes A/P</label>
+    </customValue>
+    <customValue>
+        <fullName>PQ</fullName>
+        <default>false</default>
+        <label>PQ : Chemical</label>
+    </customValue>
+    <customValue>
+        <fullName>PR</fullName>
+        <default>false</default>
+        <label>PR : Electric &amp; Stream</label>
+    </customValue>
+    <customValue>
+        <fullName>PS</fullName>
+        <default>false</default>
+        <label>PS : Insurance</label>
+    </customValue>
+    <customValue>
+        <fullName>PT</fullName>
+        <default>false</default>
+        <label>PT : Land Lease</label>
+    </customValue>
+    <customValue>
+        <fullName>PU</fullName>
+        <default>false</default>
+        <label>PU : Other Expenses</label>
+    </customValue>
+    <customValue>
+        <fullName>PV</fullName>
+        <default>false</default>
+        <label>PV : Sparepart</label>
+    </customValue>
+    <customValue>
+        <fullName>PW</fullName>
+        <default>false</default>
+        <label>PW : Salary</label>
+    </customValue>
+    <customValue>
+        <fullName>PX</fullName>
+        <default>false</default>
+        <label>PX : Service &amp; Supply</label>
+    </customValue>
+    <customValue>
+        <fullName>PY</fullName>
+        <default>false</default>
+        <label>PY : Crude</label>
+    </customValue>
+    <customValue>
+        <fullName>PZ</fullName>
+        <default>false</default>
+        <label>PZ : Freight</label>
+    </customValue>
+    <customValue>
+        <fullName>Q0</fullName>
+        <default>false</default>
+        <label>Q0 : Hydro Cracking Bottom</label>
+    </customValue>
+    <customValue>
+        <fullName>Q1</fullName>
+        <default>false</default>
+        <label>Q1 : Crude TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>Q2</fullName>
+        <default>false</default>
+        <label>Q2 : Welfare</label>
+    </customValue>
+    <customValue>
+        <fullName>Q3</fullName>
+        <default>false</default>
+        <label>Q3 : Dividend Paid</label>
+    </customValue>
+    <customValue>
+        <fullName>Q4</fullName>
+        <default>false</default>
+        <label>Q4 : Int/Commit Expense</label>
+    </customValue>
+    <customValue>
+        <fullName>R1</fullName>
+        <default>false</default>
+        <label>R1 : Dividend Receipt</label>
+    </customValue>
+    <customValue>
+        <fullName>R2</fullName>
+        <default>false</default>
+        <label>R2 : Interest Receipt</label>
+    </customValue>
+    <customValue>
+        <fullName>R3</fullName>
+        <default>false</default>
+        <label>R3 : Export</label>
+    </customValue>
+    <customValue>
+        <fullName>RA</fullName>
+        <default>false</default>
+        <label>RA : OneTimes A/R</label>
+    </customValue>
+    <customValue>
+        <fullName>RB</fullName>
+        <default>false</default>
+        <label>RB : Affiliates</label>
+    </customValue>
+    <customValue>
+        <fullName>RC</fullName>
+        <default>false</default>
+        <label>RC : GPP</label>
+    </customValue>
+    <customValue>
+        <fullName>RD</fullName>
+        <default>false</default>
+        <label>RD : CHEVRON</label>
+    </customValue>
+    <customValue>
+        <fullName>RE</fullName>
+        <default>false</default>
+        <label>RE : TOP</label>
+    </customValue>
+    <customValue>
+        <fullName>RF</fullName>
+        <default>false</default>
+        <label>RF : SMPC</label>
+    </customValue>
+    <customValue>
+        <fullName>RG</fullName>
+        <default>false</default>
+        <label>RG : INDORAMA</label>
+    </customValue>
+    <customValue>
+        <fullName>RH</fullName>
+        <default>false</default>
+        <label>RH : Tax Refund</label>
+    </customValue>
+    <customValue>
+        <fullName>RI</fullName>
+        <default>false</default>
+        <label>RI : IRPC</label>
+    </customValue>
+    <customValue>
+        <fullName>RJ</fullName>
+        <default>false</default>
+        <label>RJ : Electric-EGAT</label>
+    </customValue>
+    <customValue>
+        <fullName>RK</fullName>
+        <default>false</default>
+        <label>RK : Electric-TOP</label>
+    </customValue>
+    <customValue>
+        <fullName>RL</fullName>
+        <default>false</default>
+        <label>RL : Electric-TPX</label>
+    </customValue>
+    <customValue>
+        <fullName>RM</fullName>
+        <default>false</default>
+        <label>RM : Electric-TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>RN</fullName>
+        <default>false</default>
+        <label>RN : Electric-IPT</label>
+    </customValue>
+    <customValue>
+        <fullName>RO</fullName>
+        <default>false</default>
+        <label>RO : Stream-EGAT</label>
+    </customValue>
+    <customValue>
+        <fullName>RP</fullName>
+        <default>false</default>
+        <label>RP : Stream-TOP</label>
+    </customValue>
+    <customValue>
+        <fullName>RQ</fullName>
+        <default>false</default>
+        <label>RQ : Stream-TPX</label>
+    </customValue>
+    <customValue>
+        <fullName>RR</fullName>
+        <default>false</default>
+        <label>RR : Stream-TLB</label>
+    </customValue>
+    <customValue>
+        <fullName>RS</fullName>
+        <default>false</default>
+        <label>RS : Stream-IPT</label>
+    </customValue>
+    <customValue>
+        <fullName>RT</fullName>
+        <default>false</default>
+        <label>RT : Other Receipt</label>
+    </customValue>
+    <customValue>
+        <fullName>RU</fullName>
+        <default>false</default>
+        <label>RU : Hedging(Gain)</label>
+    </customValue>
+    <customValue>
+        <fullName>RV</fullName>
+        <default>false</default>
+        <label>RV : PTT</label>
+    </customValue>
+    <customValue>
+        <fullName>RW</fullName>
+        <default>false</default>
+        <label>RW : Sales by product</label>
+    </customValue>
+    <customValue>
+        <fullName>RX</fullName>
+        <default>false</default>
+        <label>RX : Other Refineries</label>
+    </customValue>
+    <customValue>
+        <fullName>RY</fullName>
+        <default>false</default>
+        <label>RY : SHELL</label>
+    </customValue>
+    <customValue>
+        <fullName>RZ</fullName>
+        <default>false</default>
+        <label>RZ : Third parties</label>
+    </customValue>
+    <masterLabel>Cash Management Group</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

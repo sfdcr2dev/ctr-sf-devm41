@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>3D Model*</value>
+    </caseValues>
+    <fields>
+        <label><!-- Engineering Data Book and 3D Model --></label>
+        <name>Engineering_Data_Book_and_3D_Model__c</name>
+        <relationshipLabel><!-- 3D Model* --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Progress --></label>
+        <name>Progress__c</name>
+        <picklistValues>
+            <masterLabel>30%</masterLabel>
+            <translation><!-- 30% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>60%</masterLabel>
+            <translation><!-- 60% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>90%</masterLabel>
+            <translation><!-- 90% --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- URL --></label>
+        <name>URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- 3D Model Report File URL --></label>
+        <name>X3D_Model_File_URL__c</name>
+    </fields>
+    <fields>
+        <help><!-- ไฟล์ข้อมูล 3D Model --></help>
+        <label><!-- 3D Model Report File --></label>
+        <name>X3D_Model_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- 3D Model Report File URL --></label>
+        <name>X3D_Model_URL__c</name>
+    </fields>
+    <layouts>
+        <layout>3D Model Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว) --></label>
+            <section>Document Checklist (ระบุเอกสารที่อัพโหลดแล้ว)</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

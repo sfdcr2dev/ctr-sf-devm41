@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Audit Fill in</value>
+    </caseValues>
+    <fields>
+        <help><!-- วันที่ปิด --></help>
+        <label><!-- Closed Date --></label>
+        <name>Closed_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- สถานะ --></help>
+        <label><!-- Status --></label>
+        <name>Closure_Status__c</name>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- CompanyId --></label>
+        <name>CompanyId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company --></label>
+        <name>Company__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Entered (Month) --></label>
+        <name>Date_Entered_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Entered (Year) --></label>
+        <name>Date_Entered_Year__c</name>
+    </fields>
+    <fields>
+        <help><!-- วันที่ --></help>
+        <label><!-- Date Entered --></label>
+        <name>Date_Entered__c</name>
+    </fields>
+    <fields>
+        <help><!-- รายละเอียด --></help>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Improved By --></label>
+        <name>Improved_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Improvement --></label>
+        <name>Owner_Improvement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recommendation (คำแนะนำ) --></label>
+        <name>Recommendation__c</name>
+    </fields>
+    <fields>
+        <help><!-- พื้นที่ --></help>
+        <label><!-- Area --></label>
+        <name>SD_Area__c</name>
+        <relationshipLabel><!-- Audit Fill in --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- HOX Element --></label>
+        <lookupFilter>
+            <errorMessage><!-- กรุณาเลือก HOX Element ที่ Active อยู่เท่านั้น --></errorMessage>
+            <informationalMessage><!-- จะโชว์เฉพาะ HOX Element ที่ Active อยู่เท่านั้น --></informationalMessage>
+        </lookupFilter>
+        <name>SD_HOX_Element__c</name>
+        <relationshipLabel><!-- Audit Fill in --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- PSM --></label>
+        <lookupFilter>
+            <errorMessage><!-- กรุณาเลือก PSM ที่อยู่ภายใต้ HOX Element นี้เท่านั้น --></errorMessage>
+            <informationalMessage><!-- จะโชว์ PSM ที่อยู่ภายใต้ HOX Element นี้เท่านั้น --></informationalMessage>
+        </lookupFilter>
+        <name>SD_PSM__c</name>
+        <relationshipLabel><!-- Audit Fill in --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- พื้นที่ย่อย --></help>
+        <label><!-- Sub Area --></label>
+        <lookupFilter>
+            <errorMessage><!-- กรุณาเลือก Sub Area ที่อยู๋ภายใต้ Area นี้เท่านั้น --></errorMessage>
+            <informationalMessage><!-- ถ้าไม่มี Sub Area ขึ้นให้ทำการพิมพ์ 2 ตัวอักษรขึ้นไปเพื่อทำการ Search --></informationalMessage>
+        </lookupFilter>
+        <name>SD_Sub_Area__c</name>
+        <relationshipLabel><!-- Audit Fill in --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- หน่วยกลั่น/หน่วยผลิต --></help>
+        <label><!-- Unit --></label>
+        <name>Unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Verified By --></label>
+        <name>Verified_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- Verifier Comment --></label>
+        <name>Verifier_Comment__c</name>
+    </fields>
+    <layouts>
+        <layout>Audit Layout</layout>
+        <sections>
+            <label><!-- Audit Follow Up --></label>
+            <section>Audit Follow Up</section>
+        </sections>
+        <sections>
+            <label><!-- Audit Status --></label>
+            <section>Audit Status</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

@@ -1,0 +1,125 @@
+.THIS .preventOverflowY {
+    overflow-y: hidden;
+}
+
+.THIS .preventOverflowX {
+    overflow-x: hidden;
+}
+
+.THIS .slideLeft {
+    transition: margin-left 0.5s ease;
+    margin-left: -12%;
+}
+
+.THIS .slideBack {
+    transition: margin-left 0.5s ease;
+    margin-left: 75%;
+}
+
+.THIS .fadeOut {
+    transition: opacity 0.5s ease;
+    opacity: 0;
+}
+
+.THIS .fadeIn {
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+.THIS .rotateOut {
+    transition: transform .5s ease;
+    transform: rotateY(180deg);
+    height: 3em;
+    box-shadow: none;
+    width: 2em;
+}
+
+.THIS .rotateIn {
+    transition: transform .5s ease;
+    transform: rotateY(0deg);
+    height: 3em;
+    border-left: 1px solid #c7c3c3;
+    border-radius: 5px;
+    box-shadow: none;
+    width: 2em;
+}
+
+.THIS .oktanaShow {
+    margin-top: 0%;
+}
+
+.THIS .oktanaHide {
+    margin-top: -100%;
+}
+
+.THIS .shadow {
+    box-shadow: 0px 2px 2px 0px #cccccc;
+}
+
+.THIS .shadow:hover {
+    box-shadow: 0px 0px 0px 0px #cccccc;
+}
+
+.THIS .cardHover:hover {
+    background-color: #f7f7f7 !important;
+    border-bottom-color: rgb(196, 196, 196);
+}
+
+
+.THIS.oktana-delete {
+
+    animation-name: oktana-delete;
+    animation-timing-function: cubic-bezier(0, 0.6, 0.79, -0.21);
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes oktana-delete {
+    0% {
+        opacity: 1;
+        margin-bottom: 1em;
+    }
+
+    95% {
+        opacity: 0.01;
+        margin-bottom: -6em;
+    }
+
+    100% {
+        opacity: 0;
+        position: absolute;
+        transform: translate3d(0, -100%, 0);
+    }
+}
+
+.THIS .oktana-showup {
+    animation-name: oktana-showup;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.6s;
+    animation-fill-mode: forwards;
+}
+
+.THIS .trunc-text {
+    width: 350px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@keyframes oktana-showup {
+    0% {
+        margin-top: -9em;
+        opacity: 0;
+    }
+
+    70% {
+        margin-top: 0em;
+        opacity: 0.7;
+        margin-bottom: 2em;
+    }
+
+    100% {
+        margin-top: 0em;
+        opacity: 1;
+    }
+}

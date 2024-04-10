@@ -1,0 +1,107 @@
+<aura:component
+    controller="CTRFileUploadController"
+    implements="force:hasRecordId,force:hasSObjectName"
+    access="global">
+
+    <aura:attribute name="fields" type="List" default="[]" access="private" />
+
+    <aura:attribute name="newAttachments" type="List" default="[]" access="public" />
+    <aura:attribute name="uploadedAttachments" type="List" default="[]" access="public" />
+    <aura:attribute name="deletedAttachments" type="List" default="[]" access="public" />
+    <aura:attribute name="errorAttachments" type="List" default="[]" access="public" />
+    <aura:attribute name="disabled" type="Boolean" default="false" access="public" />
+    <aura:attribute name="fieldName" type="string" default="" access="public" />
+    
+    <aura:attribute name="errorList" type="List" default="[]" />
+    <aura:attribute name="isUploading" type="boolean" default="false" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:method name="saveAttachments" action="{!c.saveAttachments}" access="public" />
+    <aura:method name="deletePendingAttachments" action="{!c.deletePendingAttachments}" access="public" />
+    <aura:method name="getMergedAttachments" action="{!c.getMergedAttachments}" access="public" />
+
+    <aura:if isTrue="{!v.isUploading}">
+        <lightning:spinner alternative-text="Loading" size="large"></lightning:spinner>
+    </aura:if>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_1-of-1">
+            <lightning:fileUpload
+                aura:id="fileUpload"
+                label=""
+                name="fileUploader"
+                multiple="true"
+                recordId="{!v.recordId}"
+                disabled="{!v.disabled}"
+                onuploadfinished="{!c.handleUploadFinished}" />
+            </div>
+        <div class="slds-col slds-size_1-of-1">
+            <aura:if isTrue="{!v.isUploading}">
+                <div class="slds-var-m-top_x-large slds-text-body_small slds-text-color_error">
+                    <img src="/auraFW/resources/aura/images/spinner.gif" class="spinner-img" alt="Loading" />
+                </div>
+            </aura:if>
+        </div>
+        <div class="slds-col slds-size_1-of-1">
+            <aura:if isTrue="{!AND(v.newAttachments, v.newAttachments.length > 0)}">
+                <div class="slds-var-m-top_x-large">
+                    <h3 class="slds-var-p-top_xx-small slds-var-p-bottom_x-small caption">New Attachments</h3>
+                    <table class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-col slds-size_6-of-12">
+                        <tbody>
+                            <aura:iteration items="{!v.newAttachments}" var="file">
+                                <tr>
+                                    <td style="width:80%">{!file.Title}</td>
+                                    <td>
+                                        <a onclick="{!c.handleDeleteNewAttachments}" data-value="{!file.Id}">
+                                            <lightning:icon iconName="utility:delete" variant="error"
+                                                class="slds-icon slds-icon_small" size="small" />
+                                        </a>
+                                    </td>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                </div>
+            </aura:if>
+            <aura:if isTrue="{!AND(v.uploadedAttachments, v.uploadedAttachments.length > 0)}">
+                <div class="slds-var-m-top_x-large">
+                    <h3 class="slds-var-p-bottom_x-small caption">Uploaded Attachments</h3>
+                    <table class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-col slds-size_6-of-12">
+                        <tbody>
+                            <aura:iteration items="{!v.uploadedAttachments}" var="file">
+                                <aura:if isTrue="{!file.IsSaved}">
+                                    <tr>
+                                        <td style="width:80%">{!file.Title}</td>
+                                        <td>
+                                            <aura:if isTrue="{!!v.disabled}">
+                                                <a onclick="{!c.handleDeleteUploadedAttachments}" data-value="{!file.Id}">
+                                                    <lightning:icon iconName="utility:delete" variant="error"
+                                                        class="slds-icon slds-icon_small" size="small" />
+                                                </a>
+                                            </aura:if>
+                                        </td>
+                                    </tr>
+                                </aura:if>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                </div>
+            </aura:if>
+            <aura:if isTrue="{!AND(v.errorList, v.errorList.length > 0)}">
+                <div class="slds-var-m-top_x-large">
+                    <h3 class="slds-var-p-bottom_x-small caption">Error List</h3>
+                    <table class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-col slds-size_6-of-12">
+                        <tbody>
+                            <aura:iteration items="{!v.errorList}" var="errorDescription">
+                                <tr>
+                                    <td style="color:red">{!errorDescription}</td>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                </div>
+            </aura:if>
+        </div>
+    </div>
+
+</aura:component>

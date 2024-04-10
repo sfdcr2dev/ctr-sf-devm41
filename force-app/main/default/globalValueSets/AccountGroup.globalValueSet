@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>TOPG</fullName>
+        <default>false</default>
+        <label>TOPG=TOP Group</label>
+    </customValue>
+    <customValue>
+        <fullName>TRDL</fullName>
+        <default>false</default>
+        <label>TRDL=Trade Receivable - Local</label>
+    </customValue>
+    <customValue>
+        <fullName>ZSHP</fullName>
+        <default>false</default>
+        <label>ZSHP=Ship-to Party</label>
+    </customValue>
+    <customValue>
+        <fullName>TRDF</fullName>
+        <default>false</default>
+        <label>TRDF=Trade Receivable - Foreign</label>
+    </customValue>
+    <customValue>
+        <fullName>ZBIL</fullName>
+        <default>false</default>
+        <label>ZBIL=Bill-to Party</label>
+    </customValue>
+    <customValue>
+        <fullName>NTRF</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>NTRF : Non Trade Payable - Foreign</label>
+    </customValue>
+    <customValue>
+        <fullName>NTRL</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>NTRL : Non Trade Payable - Local</label>
+    </customValue>
+    <customValue>
+        <fullName>ONET</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>ONET : One Time Vendor Group</label>
+    </customValue>
+    <customValue>
+        <fullName>GOVN</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>GOVN : Government Vendor Group</label>
+    </customValue>
+    <masterLabel>Account Group</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

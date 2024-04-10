@@ -1,0 +1,146 @@
+<aura:component implements="lightning:isUrlAddressable" controller="THOR_AddComponentRequestController">
+	<aura:attribute name="recordId" type="String" access="global" />
+	<aura:attribute name="cart" type="Set" />
+	<aura:attribute name="existingCart" type="List" />
+	<aura:attribute name="existingCartSize" type="Integer" default="0" />
+	<aura:attribute name="cols" type="List" />
+	<aura:attribute name="components" type="List" />
+	<aura:attribute name="filteredComponents" type="List" />
+	<aura:attribute name="selectedComponents" type="List" />
+	<aura:attribute name="selectedRows" type="List" />
+	<aura:attribute name="showConfirmation" type="Boolean" default="false" />
+	<aura:attribute name="modalContent" type="String" />
+	<aura:attribute name="isLoading" type="Boolean" default="true" />
+	<aura:attribute name="noResults" type="Boolean" />
+	<aura:attribute name="functionalLocation" type="String" />
+	<aura:attribute name="equipment" type="String" />
+	<aura:attribute name="material" type="String" />
+	<aura:attribute name="message" type="String" />
+	<aura:attribute name="additionalConstraint" type="String" access="private" default="" />
+	<aura:attribute name="showSearch" type="Boolean" default="false" />
+	<aura:attribute name="hideSearch" type="Boolean" default="true" />
+
+	<aura:attribute name="displayFilteredComponents" type="List" />
+	<aura:attribute name="enableInfiniteLoading" type="Boolean" default="false" />
+	<aura:attribute name="loadMoreOffset" type="Integer" />
+	<aura:attribute name="rowPerPage" type="Integer" default="50" />
+	<aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" access="private" />
+
+	<aura:handler name="init" value="{! this }" action="{! c.init }" />
+	<aura:handler name="change" value="{!v.pageReference}" action="{!c.forceRefresh}" />
+	<aura:handler name="closeModalEvent" event="c:THOR_Event" action="{!c.handleConfirmationModal}" />
+	<aura:handler name="selectedEvent" event="c:THOR_Event" action="{!c.handleSelectedEvent}" />
+	<aura:registerEvent name="closeModalEvent" type="c:THOR_Event" />
+	<lightning:navigation aura:id="navService" />
+	<aura:if isTrue="{!v.showConfirmation}">
+		<c:THOR_ConfirmationModal content="{!v.modalContent}" />
+	</aura:if>
+
+	<div class="slds-text-heading_medium slds-var-m-vertical_small">
+		<!-- <c:THOR_navigateBack backToTabIndex="3" /> -->
+		<c:THOR_previousBack />
+	</div>
+
+	<lightning:card title="" class="slds-var-p-top_x-small slds-var-p-horizontal_medium">
+		<div class="slds-form slds-grid slds-wrap slds-grid_vertical-align-end">
+			<div class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-horizontal_small">
+				<h2 class="slds-card__header-title">ADD COMPONENT REQUEST</h2>
+			</div>
+			<div class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-horizontal_small">
+				<div class="iconContainer slds-float_right slds-var-p-top_xxx-small">
+					<div class="slds-is-relative carContainer" onclick="{!c.navigateToCart}">
+						<lightning:icon class="carIcon" iconName="standard:work_order" size="small" alternativeText="car" />
+						<div class="slds-text-align_center slds-p-around_none slds-m-around_none slds-is-absolute slds-text-body_regular carNumber">
+							{!v.existingCartSize + (v.cart.size == null ? 0 : v.cart.size)}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-horizontal_small">
+				<aura:if isTrue="{!v.showSearch}">
+					<c:THOR_CustomLookup value="{!v.functionalLocation}" objectName="Functional_Location__c" fieldName="Name" label="Functional Location" />
+				</aura:if>
+			</div>
+			<div class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-horizontal_small"></div>
+			<div class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-horizontal_small">
+				<aura:if isTrue="{!v.showSearch}">
+					<c:THOR_CustomLookup
+						value="{!v.equipment}"
+						objectName="Equipment__c"
+						fieldName="Name"
+						label="Equipment"
+						additionalConstraint="{!v.additionalConstraint}"
+					/>
+				</aura:if>
+			</div>
+			<div class="slds-col slds-size_1-of-2 slds-p-top_x-small slds-p-horizontal_small">
+				<div class="slds-form-element">
+					<aura:if isTrue="{!v.showSearch}">
+						<div class="slds-form slds-grid slds-wrap slds-grid_vertical-align-end">
+							<div class="slds-col slds-size_2-of-3">
+								<lightning:input
+									value="{!v.material}"
+									aura:id="material"
+									name="material"
+									label="Material"
+									type="search"
+									class="searchInput"
+									onchange="{!c.checkLength}"
+								/>
+							</div>
+
+							<div class="slds-col slds-size_1-of-3 slds-text-align_center">
+								<lightning:button disabled="{!v.hideSearch}" variant="brand" label="Search" title="Brand action" onclick="{! c.selectedEvent}" />
+								<!--onchange="{!c.handleSelectedEvent}"-->
+							</div>
+						</div>
+					</aura:if>
+				</div>
+			</div>
+			<div class="slds-col slds-p-top_x-small slds-p-horizontal_small">
+				<lightning:button
+					class="slds-align_absolute-center slds-size_1-of-1"
+					label="ADD-COMPONENT"
+					iconName="utility:add"
+					iconPosition="left"
+					onclick="{!c.addToCart}"
+					disabled="{! v.selectedComponents.length > 0 ? 'false' : 'true'}"
+				/>
+			</div>
+
+			<!--<div class="slds-col slds-size_1-of-2">
+                <div class="slds-form-element">
+                    <lightning:input
+                        aura:id="enter-search"
+                        name="enter-search"
+                        type="search"
+                        placeholder="Search Results..."
+                        onchange="{!c.handleSearchFilter}"
+                        class="searchInput"
+                    />
+                </div>
+            </div>-->
+		</div>
+
+		<div class="slds-var-p-top_large slds-scrollable_y" style="{!if(v.displayFilteredComponents.length > 0, 'height:calc(100vh - 420px);', '')}">
+			<!-- class="{! v.formFactor == 'TABLET' ? 'slds-max-medium-table_stacked' : '' }" -->
+			<!-- showRowNumberColumn="true" -->
+			<lightning:datatable
+				columns="{!v.cols}"
+				data="{!v.displayFilteredComponents}"
+				keyField="Id"
+				onrowselection="{!c.handleRowSelection}"
+				selectedRows="{!v.selectedRows}"
+				enableInfiniteLoading="{! v.enableInfiniteLoading }"
+				onloadmore="{! c.handleLoadMoreData }"
+				loadMoreOffset="{! v.loadMoreOffset }"
+			/>
+			<aura:if isTrue="{!v.isLoading}">
+				<lightning:spinner alternativeText="Loading" />
+			</aura:if>
+			<aura:if isTrue="{!v.noResults}">
+				<div class="slds-align_absolute-center" style="height: 5rem">{!v.message}</div>
+			</aura:if>
+		</div>
+	</lightning:card>
+</aura:component>

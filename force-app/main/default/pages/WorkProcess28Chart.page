@@ -1,0 +1,104 @@
+<apex:page standardController="MC_RSFU__c" extensions="MCRFSUChart" applyHtmlTag="true" applyBodyTag="true" standardStylesheets="true" lightningStylesheets="false">
+
+    <apex:includeScript value="{!URLFOR($Resource.HighCharts, 'donutchart/highcharts-v8.2.0.js')}"/>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta
+        http-equiv="X-UA-Compatible"
+        content="IE=edge"
+      />
+      <title>AI-CPEM</title>
+    </head>
+    
+    <body>
+    
+    <apex:outputPanel rendered="{!isDataAvailable == false}">
+        <div align="center">
+            <span style="font-size:20px;margin-left:0px;color:red;">&nbsp;No data available yet.</span>
+        </div>
+    </apex:outputPanel>
+    
+    <apex:outputPanel rendered="{!isDataAvailable == true}">
+        <section class="section">
+        <div class="box">
+    
+          <div id="chart"></div>
+    
+        </div>
+      </section>
+    </apex:outputPanel>
+      
+    
+      <script>
+        Highcharts.chart('chart', {
+          chart: {
+            type: 'pie',
+            height: 450
+          },
+          title: {
+            text: 'SYSTEM Waiting to MC & MC & RFSU',
+            style: {
+              fontWeight: 'bold'
+            }
+          },
+          credits: {
+            enabled: false,
+          },
+          tooltip: {
+            enabled: false,
+          },
+          accessibility: {
+            point: {
+              valueSuffix: '%'
+            }
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: false,
+              dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>, {point.y}, {point.percentage:.0f} %',
+                style: {
+                  fontSize: '12px',
+                },
+              },
+              showInLegend: true,
+              states: {
+                hover: {
+                  enabled: false,
+                },
+                inactive: {
+                  enabled: false,
+                },
+              },
+            }
+          },
+          legend: {
+            verticalAlign: 'top'
+          },
+          series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            innerSize: '50%',
+            data: [{
+              name: 'Waiting to MC',
+              color: '#E11483',
+              y: {!WaitingMCCount}
+            }, {
+              name: 'MC',
+              color: '#4371C2',
+              y: {!MCCount},
+            }, {
+              name: 'RFSU',
+              color: '#E87C32',
+              y: {!RFSUCount},
+            }]
+          }]
+        });
+      </script>
+    </body>
+    
+    </html>
+
+</apex:page>

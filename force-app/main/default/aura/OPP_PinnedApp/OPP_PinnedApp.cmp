@@ -1,0 +1,125 @@
+<aura:component
+    implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+    access="global" controller="OPP_HomeController">
+
+    <!-- <lightning:navigation aura:id="navService"/> -->
+    <aura:attribute name="applications" type="Object[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.reInit}" />
+    <aura:html tag="style">
+        @font-face {
+            font-family: 'FC Iconic';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('FC Iconic'), local('FC Iconic-Regular'), url({!$Resource.OPPNews + '/assets/font/FC_Iconic_Regular.otf'}) format('opentype');;
+        }
+        @font-face {
+          font-family: 'Poppins';
+          font-style: normal;
+          font-weight: 400;
+          font-display: swap;
+          src: local('Poppins'), local('Poppins-Regular'), url({!$Resource.OPPNews + '/assets/font/Poppins-Regular.otf'}) format('opentype');;
+      }
+    </aura:html>
+    <div class="card">
+      <div class="slds-card-body">
+        <div class="slds-card__header slds-grid">
+          <header class="slds-media slds-media_center slds-has-flexi-truncate header">
+            <div class="slds-media__body">
+              <h1 class="slds-card__header-title">
+                <span class="black">Favorite Apps</span>
+              </h1>
+            </div>
+            <div class="slds-no-flex flex-more">
+              <!-- <lightning:buttonMenu alternativeText="View more" variant="border-filled" class="slds-m-left_large"
+                iconName="" iconSize="large" menuAlignment="right"  onselect="{! c.goToPinnedApps }">
+                <lightning:menuItem value="MenuItemOne" label="Edit Apps" />
+              </lightning:buttonMenu> -->
+              <img src="{!$Resource.More}" title="Edit" class="more" onclick="{! c.goToPinnedApps }"/>
+              <!-- <lightning:icon iconName="utility:threedots" alternativeText="Edit" title="Edit" class="edit-header" onclick="{! c.goToPinnedApps }"/> -->
+            </div>
+          </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner inner">
+          <div class="slds-grid slds-wrap box-container">
+            <aura:iteration items="{!v.applications}" var="application">
+              <div class="slds-size_4-of-12 slds-medium-size_4-of-12 slds-large-size_4-of-12 box-center">
+                <span class="slds-avatar slds-avatar_circle slds-avatar_large image">
+                  <aura:if isTrue="{!not(empty(application.appName))}">
+                    <aura:if isTrue="{!$Browser.formFactor == 'DESKTOP'}">
+                    <a href="{!application.url}" target="_blank"><img
+                      src="{!'/sfc/servlet.shepherd/document/download/' + application.fileId}" /></a>
+                  </aura:if>
+                  <aura:if isTrue="{!$Browser.isIPhone}">
+                    <aura:if isTrue="{!not(empty(application.ios))}">
+                      <a href="{!application.ios}" target="_blank"><img
+                        src="{!'/sfc/servlet.shepherd/document/download/' + application.fileId}" /></a>
+                        <aura:set attribute="else">
+                          <a href="{!application.url}" target="_blank"><img
+                            src="{!'/sfc/servlet.shepherd/document/download/' + application.fileId}" /></a>
+                        </aura:set>
+                    </aura:if>
+                  </aura:if>
+                  <aura:if isTrue="{!$Browser.isAndroid}">
+                    <aura:if isTrue="{!not(empty(application.android))}">
+                      <a href="{!application.android}" target="_blank"><img
+                        src="{!'/sfc/servlet.shepherd/document/download/' + application.fileId}" /></a>
+                        <aura:set attribute="else">
+                          <a href="{!application.url}" target="_blank"><img
+                            src="{!'/sfc/servlet.shepherd/document/download/' + application.fileId}" /></a>
+                        </aura:set>
+                    </aura:if>
+                  </aura:if>
+                  <aura:if isTrue="{!$Browser.isIPad}">
+                    <aura:if isTrue="{!not(empty(application.ios))}">
+                      <a href="{!application.ios}" target="_blank"><img
+                        src="{!'/sfc/servlet.shepherd/document/download/' + application.fileId}" /></a>
+                        <aura:set attribute="else">
+                          <a href="{!application.url}" target="_blank"><img
+                            src="{!'/sfc/servlet.shepherd/document/download/' + application.fileId}" /></a>
+                        </aura:set>
+                    </aura:if>
+                  </aura:if>
+                    <aura:set attribute="else">
+                      <!-- <lightning:icon iconName="utility:new" alternativeText="Add" title="Add" size="large"/> -->
+                      <img src="{!$Resource.Add_App}" class="slds-m-right_small" onclick="{! c.goToPinnedApps }"/>
+                    </aura:set>
+                  </aura:if>
+                </span>
+                <p class="title">
+                  <aura:if isTrue="{!$Browser.formFactor == 'DESKTOP'}">
+                    <a href="{!application.url}" target="_blank"><span>{!application.appName}</span></a>
+                  </aura:if>
+                  <aura:if isTrue="{!$Browser.isIPhone}">
+                    <aura:if isTrue="{!not(empty(application.ios))}">
+                      <a href="{!application.ios}" target="_blank"><span>{!application.appName}</span></a>
+                        <aura:set attribute="else">
+                          <a href="{!application.url}" target="_blank"><span>{!application.appName}</span></a>
+                        </aura:set>
+                    </aura:if>
+                  </aura:if>
+                  <aura:if isTrue="{!$Browser.isAndroid}">
+                    <aura:if isTrue="{!not(empty(application.android))}">
+                      <a href="{!application.android}" target="_blank"><span>{!application.appName}</span></a>
+                        <aura:set attribute="else">
+                          <a href="{!application.url}" target="_blank"><span>{!application.appName}</span></a>
+                        </aura:set>
+                    </aura:if>
+                    <aura:if isTrue="{!$Browser.isIPad}">
+                      <aura:if isTrue="{!not(empty(application.ios))}">
+                        <a href="{!application.ios}" target="_blank"><span>{!application.appName}</span></a>
+                          <aura:set attribute="else">
+                            <a href="{!application.url}" target="_blank"><span>{!application.appName}</span></a>
+                          </aura:set>
+                      </aura:if>
+                    </aura:if>
+                  </aura:if>
+                </p>
+              </div>
+            </aura:iteration>
+          </div>
+        </div>
+      </div> 
+    </div>
+</aura:component>

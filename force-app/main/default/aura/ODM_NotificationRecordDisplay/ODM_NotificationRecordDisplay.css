@@ -1,0 +1,75 @@
+.THIS {
+    /* height: 100% !important; */
+    /* position: relative; */
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.THIS .header-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding-left: 0.5rem;
+    color: #222;
+}
+
+.THIS .slds-button_brand.tab-button {
+    border-radius: 0.875rem;
+    background-color: #2a7393;
+    border-color: #2a7393;
+}
+
+.THIS .slds-button_outline-brand.tab-button {
+    background-color: #ffffff;
+}
+
+.THIS.phone {
+    height: 100%
+}
+
+.THIS.phone .slds-button {
+    --slds-c-button-line-height: 2rem;
+    font-size: 0.85rem;
+}
+
+.THIS.phone .slds-dropdown {
+    font-size: 0.75rem;
+}
+
+.THIS.phone .slds-form-element__control,
+.THIS.phone .slds-form-element__static,
+.THIS.phone .slds-form-element__label {
+    font-size: 0.75rem;
+}
+
+.THIS label,
+.THIS .slds-form-element__label {
+    font-weight: 700;
+}
+
+.THIS .custom-box {
+    border-bottom: 1px solid #d8dde6;
+}
+
+/*
+.THIS .custom-box-gray {
+    background-color: #eaeaea;
+    opacity: 0.6;
+}
+*/
+
+.THIS .slds-notify_alert {
+    border-radius: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.THIS .slds-button {
+    border-radius: 0.875rem;
+}
+
+.THIS .slds-card {
+    /* border-radius: 2rem; */
+}
+
+.THIS .hidden {
+    display: none;
+}

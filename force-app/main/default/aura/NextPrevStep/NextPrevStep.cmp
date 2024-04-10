@@ -1,0 +1,45 @@
+<aura:component controller="NextPrevController"  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    <lightning:navigation aura:id="navLink"/>
+    
+    <aura:attribute name="isNextAvailable" type="boolean" default="false"/>
+    <aura:attribute name="isPrevAvailable" type="boolean" default="false"/>
+    <aura:attribute name="guideline" type="string" default=""/>
+    
+    <aura:attribute name="RecordData" type="Object"/>
+    <force:recordData aura:id="recordLoader"
+      recordId="{!v.recordId}"
+      fields="Name,No__c,Project__c"
+      targetFields="{!v.RecordData}"
+      /> 
+    
+    <div class="slds-m-around_xx-small">
+        <aura:if isTrue="{!v.RecordData.No__c == 1}">    
+        	<lightning:Button class="nxtFullButton" variant="brand"
+                              label="Next Work Process" 
+                              title="Next Work Process"
+                              onclick="{! c.goToNextStep }" />
+        </aura:if>
+        <aura:if isTrue="{!v.RecordData.No__c == 32}">    
+        	<lightning:Button class="prevFullButton" variant="brand"
+                              label="Previous Work Process" 
+                              title="Previous Work Process"
+                              onclick="{! c.goToPrevStep }" />
+        </aura:if>
+        <aura:if isTrue="{!and((v.RecordData.No__c != 1), (v.RecordData.No__c != 32), (v.RecordData.No__c != 0))}">    
+        	<lightning:Button class="prevButton" variant="brand"
+                              label="Previous Work Process" 
+                              title="Previous Work Process"
+                              onclick="{! c.goToPrevStep }" />
+        </aura:if>
+        <aura:if isTrue="{!and((v.RecordData.No__c != 32), (v.RecordData.No__c != 1), (v.RecordData.No__c != 0))}">    
+        	<lightning:Button class="nxtButton" variant="brand"
+                              label="Next Work Process" 
+                              title="Next Work Process"
+                              onclick="{! c.goToNextStep }" />
+        </aura:if>
+    </div>
+	
+</aura:component>

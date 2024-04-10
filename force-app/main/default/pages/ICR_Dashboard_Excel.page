@@ -1,0 +1,107 @@
+<apex:page controller="ICR_DashboardExcelController" contentType="application/vnd.ms-excel#ICRDashboard - {!TodayDate}.xls" cache="true" showHeader="false" > {!LanguageThai} <!-- contentType="application/vnd.ms-excel#ICRDashboard - {!TodayDate}.xls" -->
+    
+    <html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        </head>
+        <body>
+        
+            <table style="border:solid black 1px;">
+                <tr>
+                    <th  style="border:solid black 1px;">Document No</th>
+                    <th  style="border:solid black 1px;">Workflow Status</th>
+                    <th  style="border:solid black 1px;">Committee Title</th>
+                    <th  style="border:solid black 1px;">Approval Type</th>
+                    <th  style="border:solid black 1px;">Requester</th>
+                    <th  style="border:solid black 1px;">Circurlar No</th>
+                    <th  style="border:solid black 1px;">Request Date</th>
+                    <th  style="border:solid black 1px;">Effective Start Date</th>
+                    <th  style="border:solid black 1px;">Effective End Date</th>
+                    <th  style="border:solid black 1px;">Finished Date</th>
+                    <th  style="border:solid black 1px;">Active Committee Status</th>
+                </tr>
+                <apex:repeat value="{!ICRTWs}" var="ICR">
+                    <tr>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!ICR.DocumentNo}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!ICR.WorkflowStatus}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!ICR.CommitteeTitle}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!ICR.ApprovalType}"/></td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!ICR.RequesterName}"/></td>
+                        <td style="border:solid black 1px;">=CONCATENATE("","<apex:outputText value="{!ICR.CircularNo}"/>")</td>
+                        <td style="border:solid black 1px;">
+                            <apex:outputText value="{0,date,yyyy'-'MM'-'dd}" >  
+                                <apex:param value="{!ICR.RequestDate}"/>  
+                            </apex:outputText>
+                        </td>
+                        <td style="border:solid black 1px;">
+                            <apex:outputText value="{0,date,yyyy'-'MM'-'dd}" >  
+                                <apex:param value="{!ICR.EffectiveStartDate}"/>  
+                            </apex:outputText>
+                        </td>
+                        <td style="border:solid black 1px;">
+                            <apex:outputText value="{0,date,yyyy'-'MM'-'dd}" >  
+                                <apex:param value="{!ICR.EffectiveEndDate}"/>  
+                            </apex:outputText>
+                            <apex:outputPanel rendered="{!ICR.EffectiveEndDate == null}">
+                                <apex:outputText value="จนกว่าจะมีคำสั่งเปลี่ยนแปลง" />
+                            </apex:outputPanel>
+                        </td>
+                        <td style="border:solid black 1px;">
+                            <apex:outputText value="{0,date,yyyy'-'MM'-'dd}" >  
+                                <apex:param value="{!ICR.FinishedDate}"/>  
+                            </apex:outputText>
+                        </td>
+                        <td style="border:solid black 1px;"><apex:outputText value="{!ICR.ActiveStatus}"/></td>
+                    </tr>
+                </apex:repeat>
+            </table>
+            
+        </body>
+    </html>
+    
+    <!-- <apex:form>
+        <apex:pageBlock title="Export All ICR">
+            <apex:pageBlockTable value="{!ICRTWs}" var="ICR">
+                <apex:column headerValue="Document No" value="{!ICR.DocumentNo}"/>
+                <apex:column value="{!ICR.WorkflowStatus}"/>
+                <apex:column value="{!ICR.CircularNo}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form> -->
+    
+    <!-- <Workbook>
+        <Styles>
+            <Style ss_ID="s1">
+            <Alignment/>
+            <Borders/>
+            <Font ss_Bold="1"/>
+            <Interior/>            
+            <NumberFormat/>
+            <Protection/>
+            </Style>
+        </Styles>
+        <Worksheet ss_Name="ICRDashboard - {!TodayDate}">
+            <Table x_FullColumns="3" x_FullRows="1">
+
+                <Column ss_Width="170"/>
+                <Column ss_Width="170"/>
+                <Column ss_Width="170"/>
+                <Row>
+                    <Cell ss_StyleID="s1"><Data ss_Type="String" >Document No</Data></Cell>
+                    <Cell ss_StyleID="s1"><Data ss_Type="String" >Workflow Status</Data></Cell>
+                    <Cell ss_StyleID="s1"><Data ss_Type="String" >Committee Title</Data></Cell>
+                </Row>
+                
+                <apex:repeat value="{!ICRTWs}" var="ICR">
+                <Row>
+                    <Cell><Data ss_Type="String">{!ICR.DocumentNo}</Data></Cell>
+                    <Cell><Data ss_Type="String">{!ICR.WorkflowStatus}</Data></Cell>
+                    <Cell><Data ss_Type="String">{!ICR.CircularNo}</Data></Cell>
+                </Row>
+                </apex:repeat>
+                
+                </Table>
+        </Worksheet>
+    </Workbook> -->
+
+</apex:page>

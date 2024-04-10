@@ -1,0 +1,201 @@
+<apex:page controller="ESS_StationaryExcelController"
+  language="th"
+  cache="true" showHeader="false" action="{!OnloadExcel}"
+  contentType="application/vnd.ms-excel#Stationary Report - {!todayDate}.xls">
+  
+  <html lang="en">
+      <head>
+          <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+          <style>
+                table, td, th {
+                  border: 1px solid;
+                }
+                
+                table {
+                  width: 100%;
+                  border-collapse: collapse;
+                }
+                .text { mso-number-format:\@; }
+            </style>
+      </head>
+      <body>
+      
+          <apex:outputPanel rendered="{!stationarySize > 0}">
+              <h3>Stationary Report</h3>
+              <b>Data as of : {!todayDate} Time : {!todayTime}</b> <br/>
+              <b>Year : {!year}, Month : {!monthName}, Stationery From : {!stationaryFrom}</b> <br/><br/>
+              <table>
+                  <tr>
+                      <th>Document No</th>
+                      <th>Document Type</th>
+                      <th>ต้องการเบิกจาก</th>
+                      <th>เพื่อใช้ในบริษัท (Service For)</th>
+                      <th>สถานที่จัดส่ง</th>
+                      <th>เบอร์โทรศัพท์ภายใน</th>
+                      <th>เบอร์โทรศัพท์มือถือ</th>
+                      <th>วันที่ต้องการของ (Need Date)</th>
+                      <th>Type of Stationery</th>
+                      <th>รหัสสินค้า</th>
+                      <th>ชื่อสินค้า</th>
+                      <th>Stock on Hand</th>
+                      <th>จำนวน (Qty)</th>
+                      <th>จ่ายจริง (R. Qty)</th>
+                      <th>หน่วย</th>
+                      <th>ราคาต่อหน่วย</th>
+                      <th>ราคารวมอุปกรณ์ในคลัง</th>
+                      <th>ราคารวมอุปกรณ์อื่นๆ</th>
+                      <th>รวมราคาทั้งหมด</th>
+                      <th>ใช้สำหรับ (For)</th>
+                      <th>Employee Name (Requester)</th>
+                      <th>Employee ID (Requester)</th>
+                      <th>Email (Requester)</th>
+                      <th>Position (Requester)</th>
+                      <th>Function (Requester)</th>
+                      <th>Department (Requester)</th>
+                      <th>Section (Requester)</th>
+                      <th>Unit (Requester)</th>
+                      <th>Created Date</th>
+                      <th>Submitted Date</th>
+                      <th>Employee Name (On Behalf Of)</th>
+                      <th>Employee ID (On Behalf Of)</th>
+                      <th>Email (On Behalf Of)</th>
+                      <th>Position (On Behalf Of)</th>
+                      <th>Function (On Behalf Of)</th>
+                      <th>Department (On Behalf Of)</th>
+                      <th>Section (On Behalf Of)</th>
+                      <th>Unit (On Behalf Of)</th>
+                      <th>Verified / Reject</th>
+                      <th>เหตุผล (On Behalf Of)</th>
+                      <th>Verified Date / Reject Date</th>
+                      <th>User Manager</th>
+                      <th>Approved / Reject</th>
+                      <th>เหตุผล (Manager)</th>
+                      <th>Approved Date / Reject Date</th>
+                      <th>Completed Date</th>
+                      <th>Completed By</th>
+                      <th>ข้อความถึงพนักงาน</th>
+                      <th>ข้อความสำหรับ Admin PMSV/GSBO</th>
+                      <th>Current Status</th>
+                      <th>Rating (Requester)</th>
+                      <th>มือความเอาใจใส่ (Requester)</th>
+                      <th>ทำงานรวดเร็ว (Requester)</th>
+                      <th>ตรงต่อเวลา (Requester)</th>
+                      <th>มีความเชี่ยวชาญ (Requester)</th>
+                      <th>Rating (On Behalf of)</th>
+                      <th>มือความเอาใจใส่ (On Behalf of)</th>
+                      <th>ทำงานรวดเร็ว (On Behalf of)</th>
+                      <th>ตรงต่อเวลา (On Behalf of)</th>
+                      <th>มีความเชี่ยวชาญ (On Behalf of)</th>
+                  </tr>
+                  <apex:repeat value="{!stationaryTables}" var="Data">
+                      <tr>
+                          <td>{!Data.documentNo}</td>
+                          <td>{!Data.documentType}</td>
+                          <td>{!Data.withdrawFrom}</td>
+                          <td>{!Data.serviceFor}</td>
+                          <td>{!Data.location}</td>
+                          <td class="text">{!Data.internalNo}</td>
+                          <td class="text">{!Data.mobileNo}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.needDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.typeOfStationary}</td>
+                          <td>{!Data.stationaryId}</td>
+                          <td>{!Data.stationaryName}</td>
+                          <td>{!Data.stockOnHand}</td>
+                          <td>{!Data.withdrawQuantity}</td>
+                          <td>{!Data.actualQuantity}</td>
+                          <td>{!Data.unit}</td>
+                          <td>{!Data.price}</td>
+                          <td>{!Data.totalStock}</td>
+                          <td>{!Data.totalOther}</td>
+                          <td>{!Data.total}</td>
+                          <td>{!Data.comment}</td>
+                          <td>{!Data.requesterName}</td>
+                          <td class="text">{!Data.requesterEmployeeId}</td>
+                          <td>{!Data.requesterEmail}</td>
+                          <td>{!Data.requesterPosition}</td>
+                          <td>{!Data.requesterFunction}</td>
+                          <td>{!Data.requesterDepartment}</td>
+                          <td>{!Data.requesterSection}</td>
+                          <td>{!Data.requesterUnit}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.createdDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.submittedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.obhName}</td>
+                          <td class="text">{!Data.obhEmployeeId}</td>
+                          <td>{!Data.obhEmail}</td>
+                          <td>{!Data.obhPosition}</td>
+                          <td>{!Data.obhFunction}</td>
+                          <td>{!Data.obhDepartment}</td>
+                          <td>{!Data.obhSection}</td>
+                          <td>{!Data.obhUnit}</td>
+                          <td>{!Data.verifyStatus}</td>
+                          <td>{!Data.obhComment}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.verifiedRejectedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.userManagerName}</td>
+                          <td>{!Data.approveStatus}</td>
+                          <td>{!Data.userManagerComment}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.approvedRejectedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.completedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.completedBy}</td>
+                          <td>{!Data.staffComment}</td>
+                          <td>{!Data.pmsvComment}</td>
+                          <td>{!Data.currentStatus}</td>
+                          <apex:outputPanel rendered="{!Data.requesterRatingCompleted == true}">
+                              <td>{!Data.requesterRating}</td>
+                              <td>{!Data.requesterAttentiveness}</td>
+                              <td>{!Data.requesterFast}</td>
+                              <td>{!Data.requesterPunctuality}</td>
+                              <td>{!Data.requesterExpertise}</td>
+                          </apex:outputPanel>
+                          <apex:outputPanel rendered="{!Data.requesterRatingCompleted == false}">
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                          </apex:outputPanel>
+                          <apex:outputPanel rendered="{!Data.obhRatingCompleted == true}">
+                              <td>{!Data.obhRating}</td>
+                              <td>{!Data.obhAttentiveness}</td>
+                              <td>{!Data.obhFast}</td>
+                              <td>{!Data.obhPunctuality}</td>
+                              <td>{!Data.obhExpertise}</td>
+                          </apex:outputPanel>
+                          <apex:outputPanel rendered="{!Data.obhRatingCompleted == false}">
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                          </apex:outputPanel>
+                      </tr>
+                  </apex:repeat>
+              </table>
+          </apex:outputPanel>
+          
+      </body>
+  </html>
+</apex:page>

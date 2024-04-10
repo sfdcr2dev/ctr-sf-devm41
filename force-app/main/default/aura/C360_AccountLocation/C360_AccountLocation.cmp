@@ -1,0 +1,34 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                			access="global" controller="C360_AccountController">
+	<aura:attribute name="accountLocation" type="Object"/>
+    <aura:attribute name="zoom" type="Integer" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="zoomLevel" type="Integer" />
+    <aura:attribute name="Latitude" type="Integer" />
+    <aura:attribute name="Longitude" type="Integer" />
+    <aura:attribute name="Location" type="String" />
+    <aura:attribute name="ll" type="String" />
+    
+    <aura:handler name="init" value="{! this }" action="{!c.initialize }"/>
+    
+    <aura:handler event="force:refreshView" action="{!c.initialize}" />
+    
+    <aura:attribute name="showConfirmDialog" type="boolean" default="false"/>
+    
+    <aura:if isTrue="{!v.Location}" >
+        
+        <lightning:tabset variant="scoped">
+            <lightning:tab label="Map">
+                <lightning:map mapMarkers="{! v.accountLocation }" zoomLevel="{!v.zoomLevel}" />
+                <a href="{!'https://www.google.com/maps/place/'+''+(v.ll)}" target="_blank">Open GoogleMap</a>
+            </lightning:tab>
+        </lightning:tabset>
+    </aura:if>
+    <!--
+    <div class="slds-m-around_small">
+        <div class="content">
+   			<lightning:button variant="Neutral" label="Update Location" iconName="utility:checkin" onclick="{! c.getCurrentLocation }" /> 
+        </div>
+    </div>
+-->
+</aura:component>

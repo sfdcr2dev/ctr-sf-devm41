@@ -1,0 +1,367 @@
+<aura:component controller="OPP_NewsController"
+                implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,force:lightningQuickAction"
+                access="global" >
+
+    <ltng:require styles="{!$Resource.OPPNews + '/assets/css/news.css'}" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <aura:attribute name="today" type="Date" />
+    <aura:attribute name="coinExpiryDate" type="String" />
+    <aura:attribute name="coinBalance" type="Decimal" />
+    <aura:attribute name="c__recordId" type="Object" />
+    <aura:attribute name="newsContent" type="OPP_News__c" />
+    <aura:attribute name="isLiked" type="Boolean" default="false"/>
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="attachments" type="String" />
+
+    <aura:attribute name="news" type="OPP_News__c[]" />
+    <aura:attribute name="newsMostView" type="OPP_News__c[]" />
+    <aura:attribute name="categories" type="String[]" />
+    <aura:attribute name="selectedCategory" type="String" />
+    <aura:attribute name="newsLink" type="String" />
+    <aura:attribute name="urlAndroidThaioilHub" type="String" />
+    <aura:attribute name="urlIPhoneThaioilHub" type="String" />
+    <aura:attribute name="urlQRCodeThaioilHub" type="String" default="{!$Resource.OPPNews + '/assets/img/thaioilhub-qrcode.jpg'}" />
+
+    <lightning:navigation aura:id="navigation"/>
+    <aura:attribute name="url" type="String"/>
+    <aura:attribute name="pageReference" type="Object"/>
+
+    <aura:html tag="style">
+        [data-component-id="forceChatter_exposedFeed"] {
+        	background-color: rgb(255, 255, 255, 1);
+        }
+        [flexipage-component2_component2-host]:not(:last-child):not(:empty) {
+            margin-bottom: 0px;
+        }
+        @font-face {
+            font-family: 'FC Iconic';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('FC Iconic'), local('FC Iconic-Regular'), url({!$Resource.OPPNews + '/assets/font/FC_Iconic_Regular.otf'}) format('opentype');;
+        }
+        @font-face {
+            font-family: 'DB Heavent';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('DB Heavent'), local('DB Heavent-Regular'), url({!$Resource.OPPNews + '/assets/font/DB_Heavent_v3.2.ttf'}) format('truetype');
+        }
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('Poppins'), local('Poppins-Regular'), url({!$Resource.OPPNews + '/assets/font/Poppins-Regular.otf'}) format('opentype');;
+        }
+        .news-shop-modal .slds-modal__container {
+            width: 100%;
+            max-width: 50rem;
+        }
+        @media (min-width: 768px) {
+            [data-component-id="forceChatter_exposedFeed"] {
+                margin-left: -10px;
+                margin-right: -10px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .forceChatterExposedFeedDesktop {
+                width: 1024px;
+                margin: auto;
+            }
+        }
+        @media (min-width: 1280px) {
+            .forceChatterExposedFeedDesktop {
+                width: 75%;
+                margin: auto;
+            }
+        }
+    </aura:html>
+    <c:OPP_Counter page="News Detail" />
+
+    <div>
+
+        <lightning:overlayLibrary aura:id="overlayLib"/>
+
+        <div class="news-page-header">
+            <div class="news-wrapper">
+                <div class="slds-grid slds-gutters slds-p-vertical_small">
+                    <!--
+                    <div class="slds-col slds-size_6-of-12 news-logo">
+                        <img src="{!$Resource.OPPNews + '/assets/img/thaioil-news.png'}" />
+                        <div class="news-today-date">
+                            <lightning:formattedDateTime value="{!v.today}" /> | <lightning:formattedDateTime value="{!v.today}" hour="2-digit" minute="2-digit" style="color:gray;" />
+                        </div>
+                    </div>
+                    -->
+                    <!--
+                    <div class="slds-col slds-size_12-of-12 slds-p-right_small news-coin">
+                        <div class="news-coin-balance">
+                            <label>จำนวนเหรียญของคุณทั้งหมด</label>
+                            <aura:if isTrue="{!$Browser.formFactor == 'DESKTOP'}">
+                                <a onclick="{!c.clickGoToShop}">
+                                    <img src="{!$Resource.OPPNews + '/assets/img/coin.png'}" class="slds-m-right_small" />
+                                </a>
+                            </aura:if>
+                            <aura:if isTrue="{!$Browser.isAndroid}">
+                                <a href="{!v.urlAndroidThaioilHub}">
+                                    <img src="{!$Resource.OPPNews + '/assets/img/coin.png'}" class="slds-m-right_small" />
+                                </a>
+                            </aura:if>
+                            <aura:if isTrue="{!$Browser.isIPhone}">
+                                <a href="{!v.urlIPhoneThaioilHub}">
+                                    <img src="{!$Resource.OPPNews + '/assets/img/coin.png'}" class="slds-m-right_small" />
+                                </a>
+                            </aura:if>
+                            <lightning:formattedNumber value="{!v.coinBalance}"/>
+                        </div>
+                        <div class="news-coin-expiry">เหรียญจะหมดอายุในวันที่ {!v.coinExpiryDate}</div>
+                    </div>
+                    -->
+                    <aura:if isTrue="{!$Browser.formFactor == 'DESKTOP'}">
+                        <div class="slds-col slds-size_12-of-12 slds-p-right_small news-coin">
+                            <div class="news-coin-balance">
+                                <label>จำนวนเหรียญของคุณทั้งหมด</label>
+                                <a onclick="{!c.clickGoToShop}">
+                                    <img src="{!$Resource.OPPNews + '/assets/img/coin.png'}" class="slds-m-right_small" />
+                                </a>
+                                <lightning:formattedNumber value="{!v.coinBalance}"/>
+                            </div>
+                            <div class="news-coin-expiry">เหรียญจะหมดอายุในวันที่ {!v.coinExpiryDate}</div>
+                        </div>
+                    </aura:if>
+                    <aura:if isTrue="{!$Browser.formFactor == 'isAndroid'}">
+                        <div class="slds-col slds-size_12-of-12 slds-p-right_small news-coin">
+                            <div class="news-coin-balance">
+                                <label>จำนวนเหรียญของคุณทั้งหมด</label>
+                                <a href="{!v.urlAndroidThaioilHub}">
+                                    <img src="{!$Resource.OPPNews + '/assets/img/coin.png'}" class="slds-m-right_small" />
+                                </a>
+                                <lightning:formattedNumber value="{!v.coinBalance}"/>
+                            </div>
+                            <div class="news-coin-expiry">เหรียญจะหมดอายุในวันที่ {!v.coinExpiryDate}</div>
+                        </div>
+                    </aura:if>
+                    <aura:if isTrue="{!$Browser.formFactor == 'isIPhone'}">
+                        <div class="slds-col slds-size_12-of-12 slds-p-right_small news-coin" style="letter-spacing:normal;">
+                            <div class="news-coin-balance">
+                                <label>จำนวนเหรียญของคุณทั้งหมด</label>
+                                <a href="{!v.urlIPhoneThaioilHub}">
+                                    <img src="{!$Resource.OPPNews + '/assets/img/coin.png'}" class="slds-m-right_small" />
+                                </a>
+                                <lightning:formattedNumber value="{!v.coinBalance}"/>
+                            </div>
+                            <div class="news-coin-expiry">เหรียญจะหมดอายุในวันที่ {!v.coinExpiryDate}</div>
+                        </div>
+                    </aura:if>
+                </div>
+
+                <div class="news-categories">
+                    <aura:iteration items="{!v.categories}" var="category">
+                        <div style="padding-top: 10px; padding-bottom:10px; padding-right:10px; flex: 1 1 auto;">
+                            <div class="{!if(category.name == v.selectedCategory, 'news-category active', 'news-category')}" data-category="{!category.name}" onclick="{!c.clickSelectCategory}" onmouseenter="{!c.mouseenterCategory}" onmouseleave="{!c.mouseleaveCategory}">
+                                <aura:if isTrue="{!or(category.isHover, category.name == v.selectedCategory)}">
+                                    <img src="{!$Resource.OPPNews + '/assets/img/' + category.name + '-White.png'}" />
+                                    <span class="slds-p-left_x-small" style="color:white">{!category.name}</span>
+                                    <aura:set attribute="else">
+                                        <img src="{!$Resource.OPPNews + '/assets/img/' + category.name + '.png'}" />
+                                        <span class="slds-p-left_x-small">{!category.name}</span>
+                                    </aura:set>
+                                </aura:if>
+                            </div>
+                        </div>
+                    </aura:iteration>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-wrapper">
+
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_12-of-12 slds-medium-size_12-of-12 news-content">
+
+                    <nav role="navigation" aria-label="Breadcrumbs" class="slds-p-vertical_medium news-breadcrumb">
+                        <ol class="slds-breadcrumb slds-list_horizontal slds-wrap">
+                            <li class="slds-breadcrumb__item">
+                                <a href="#">News</a>
+                            </li>
+                            <li class="slds-breadcrumb__item">
+                                <a href="#">{!v.newsContent.Category__c}</a>
+                            </li>
+                            <li class="slds-breadcrumb__item">
+                                <a href="#">{!v.newsContent.Title__c}</a>
+                            </li>
+                        </ol>
+                    </nav>
+
+                    <!--
+                    <div class="slds-m-vertical_medium" data-category="{!v.newsContent.Category__c}">
+                        <lightning:badge label="{!v.newsContent.Category__c}" />
+                    </div>
+                    -->
+
+                    <h1 class="slds-p-vertical_small news-title">{!v.newsContent.Title__c}</h1>
+
+                    <div class="slds-grid slds-m-vertical_small news-subtitle">
+                        <div class="slds-col slds-size_8-of-12 slds-p-horizontal_none">
+                            <!--
+                            <lightning:badge label="{!v.newsContent.Category__c}" />
+                            <span class="slds-m-left_medium"></span>
+							-->
+                            <lightning:formattedDateTime value="{!v.newsContent.Publish_Date__c}" />
+                            <span class="slds-m-left_medium"></span>
+                            <span class="slds-p-horizontal_small">
+                                {!if(empty(v.newsContent.View__c) , 'View: 0', 'View: ' + v.newsContent.View__c)}
+                            </span>
+                            <!--
+                            <span class="slds-p-right_small">{!if(empty(v.newsContent.View__c) , 'Comment: 0', 'View: ' + v.newsContent.View__c)}</span>
+                            -->
+                            <span class="slds-m-left_medium"></span>
+                            <lightning:buttonStateful
+                                labelWhenOff="Like"
+                                labelWhenOn="Liked"
+                                labelWhenHover="Unlike"
+                                iconNameWhenOff="utility:add"
+                                iconNameWhenOn="utility:check"
+                                iconNameWhenHover="utility:close"
+                                state="{! v.isLiked }"
+                                onclick="{! c.toggleLike }"
+                            />
+                            <span class="slds-m-left_medium"></span>
+                            <lightning:button label="Copy Link" iconName="utility:link" title="Copy Link To Clipboard" onclick="{!c.clickCopyLinkToClipboard}"/>
+                            <input type="text" id="txtCopyLinkToClipboard" value="{!v.newsLink}" style="display:none"/>
+                        </div>
+                        <div class="slds-col slds-size_4-of-12 slds-p-horizontal_none slds-text-align_right">
+                            <aura:if isTrue="{!and(or(v.newsContent.Coin_Type__c == 'Read', v.newsContent.Coin_Type__c == 'Vote'), v.newsContent.Coin__c > 0)}">
+                                <span class="slds-float_right news-coin-amount">{!v.newsContent.Coin__c}</span>
+                                <img class="slds-float_right news-coin-icon" src="{!$Resource.OPPNews + '/assets/img/coin.png'}" />
+                            </aura:if>
+                        </div>
+                    </div>
+
+                    <!--
+                    <div class="slds-align_absolute-center">
+                        <aura:if isTrue="{!v.newsContent.ContentDocumentLinks}">
+                        	<img style="width:100%" src="{!'/sfc/servlet.shepherd/document/download/' + v.newsContent.ContentDocumentLinks[0].ContentDocumentId}"></img>
+                            <aura:set attribute="else">
+                                <img src="{!v.newsContent.Thumbnail__c}"></img>
+                            </aura:set>
+                        </aura:if>
+                    </div>
+					-->
+
+                    <div class="slds-m-vertical_large content">
+                        <aura:if isTrue="{!v.newsContent.Video_Link__c}">
+                            <video controls="true" style="width:100%;padding-bottom:20px;">
+                                <source src="{!v.newsContent.Video_Link__c}" />
+                            </video>
+                        </aura:if>
+                        <lightning:formattedRichText value="{!v.newsContent.Content__c}"></lightning:formattedRichText>
+
+                        <a href="{!v.newsContent.Link__c}" target="_blank" style="word-break:break-word;overflow-wrap:break-word;word-wrap:break-word;">{!v.newsContent.Link__c}</a>
+
+                        <aura:if isTrue="{!not(empty(v.attachments))}">
+                            <h3>เอกสารประกอบ</h3>
+                            <lightning:formattedRichText value="{!v.attachments}"></lightning:formattedRichText>
+                        </aura:if>
+                    </div>
+
+                     <!--
+                    <div class="slds-p-top_small">
+                        <forceChatter:feed type="Record" subjectId="{!v.recordId}" />
+                    </div>
+                    -->
+                </div>
+                <!--
+                <div class="slds-col slds-size_12-of-12 slds-medium-size_4-of-12">
+
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_12-of-12 slds-m-top_xx-large">
+
+                            <div class="slds-grid">
+                                <div class="slds-col slds-p-horizontal_none">
+                                    <div class="slds-border_bottom news-mostview-head">
+                                        <div class="slds-is-relative">
+                                            <label class="title">Most View</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-gutters slds-wrap">
+                                <aura:iteration items="{!v.newsMostView}" var="item" indexVar="index" start="0" end="5">
+                                    <div class="slds-col slds-size_12-of-12">
+                                        <div class="slds-p-vertical_xx-small news news-mostview" data-category="{!item.Category__c}" data-record-id="{!item.Id}" onclick="{!c.clickRead}">
+                                            <div class="slds-is-relative news-header">
+                                                <span class="slds-avatar slds-avatar_large">
+                                                    <abbr class="slds-avatar__initials slds-avatar__initials_inverse" title="{!index + 1}">{!index + 1}</abbr>
+                                                </span>
+                                            </div>
+                                            <div class="slds-p-top_small news-body">
+                                                <label class="slds-line-clamp_small news-title">
+                                                    {!item.Title__c}
+                                                </label>
+                                                <div class="news-body-foot">
+                                                    <lightning:formattedDateTime value="{!item.Publish_Date__c}" />
+                                                    <span>{!if(empty(item.View__c), '  View: 0', '  View: ' + item.View__c)}</span>
+                                                    <span class="slds-float_right news-coin-amount">{!item.Coin__c}</span>
+                                                    <img class="slds-float_right news-coin-icon" src="{!$Resource.OPPNews + '/assets/img/coin.png'}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </aura:iteration>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-size_12-of-12 slds-m-top_medium">
+
+                            <div class="slds-grid">
+                                <div class="slds-col slds-p-horizontal_none">
+                                    <div class="slds-border_bottom news-topshop-head">
+                                        <div class="slds-is-relative">
+                                            <label class="title">TOP Shop</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slds-grid slds-gutters slds-wrap">
+                                <aura:iteration items="{!v.news}" var="item" indexVar="index" start="0" end="4">
+                                    <div class="slds-col slds-size_12-of-12">
+                                        <div class="slds-p-vertical_xx-small news news-topshop" data-category="{!item.Category__c}" data-record-id="{!item.Id}" onclick="{!c.clickRead}">
+                                            <div class="slds-is-relative news-header">
+                                                <aura:if isTrue="{!item.ContentDocumentLinks}">
+                                                        <img src="{!'/sfc/servlet.shepherd/document/download/' + item.ContentDocumentLinks[0].ContentDocumentId}"></img>
+                                                    <aura:set attribute="else">
+                                                        <img src="https://brunet.one/placeholder.png"></img>
+                                                    </aura:set>
+                                                </aura:if>
+                                            </div>
+                                            <div class="slds-p-top_small news-body">
+                                                <label class="slds-line-clamp_small news-title">
+                                                    {!v.news[0].Title__c}
+                                                </label>
+                                                <div class="news-body-foot">
+                                                    <span class="slds-float_right news-coin-amount">{!v.news[0].Coin__c}</span>
+                                                    <img class="slds-float_right news-coin-icon" src="{!$Resource.OPPNews + '/assets/img/coin.png'}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </aura:iteration>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                -->
+            </div>
+
+        </div>
+
+    </div>
+
+</aura:component>

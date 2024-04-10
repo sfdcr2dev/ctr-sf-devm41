@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <name>is_Create_Update</name>
+        <label>is Create/Update</label>
+        <locationX>769</locationX>
+        <locationY>463</locationY>
+        <defaultConnectorLabel>is Update</defaultConnectorLabel>
+        <rules>
+            <name>is_Create</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>is Create</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <name>isNew</name>
+        <dataType>Boolean</dataType>
+        <expression>isnew()</expression>
+    </formulas>
+    <interviewLabel>CTRTriggerRequestFormItemMaintenHeaderDataAfterUpdate {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CTRTriggerRequestFormItemMaintenHeaderDataAfterUpdate</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <startElementReference>is_Create_Update</startElementReference>
+    <status>Draft</status>
+</Flow>

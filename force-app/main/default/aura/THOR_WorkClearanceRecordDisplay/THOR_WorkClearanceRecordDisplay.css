@@ -1,0 +1,40 @@
+.THIS {
+	/*background-color: rgba(0, 0, 0, 0);*/
+}
+
+.THIS .slds-tabs_default__nav {
+	background-color: white;
+}
+
+.THIS .custom-box {
+	border: 1px solid #d8dde6;
+}
+
+.THIS .cTHOR_SingleTab {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.THIS .slds-tabs_scoped__content {
+	padding: 0 !important;
+}
+
+.THIS .tab-Padding {
+	padding: 1em !important;
+}
+
+@media (min-width: 48em) {
+	.THIS .slds-modal__container {
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: -40px;
+		width: 95%;
+		max-width: 95%;
+		min-width: 95%;
+		height: 1000px;
+	}
+
+	.THIS .slds-modal__close {
+		right: -0.25rem;
+	}
+}

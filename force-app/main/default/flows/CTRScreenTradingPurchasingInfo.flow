@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Screen Flow to display trading or purchasing information on Account (Customer/Supplier)</description>
+    <formulas>
+        <name>fxAccountGroup</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK(TEXT({!getAccountRec.AccountGroup__c})), &quot;-&quot;, TEXT({!getAccountRec.AccountGroup__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>fxGroupKey</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!getAccountRec.GroupKeyAccountKeyOfBank__c}), &quot;-&quot;, {!getAccountRec.GroupKeyAccountKeyOfBank__c})</expression>
+    </formulas>
+    <formulas>
+        <name>fxRegion</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK(TEXT({!getAccountRec.RegionSAP__c})), &quot;-&quot;, TEXT({!getAccountRec.RegionSAP__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>fxTradingPartner</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!getAccountRec.TradingPartner__c}), &quot;-&quot;, {!getAccountRec.TradingPartner__r.Description__c})</expression>
+    </formulas>
+    <formulas>
+        <name>fxTransportationZone</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!getAccountRec.TransportationZone__c}), &quot;-&quot;, {!getAccountRec.TransportationZone__r.Description__c})</expression>
+    </formulas>
+    <interviewLabel>CTRScreenTrading {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CTRScreenTradingPurchasingInfo</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>getAccountRec</name>
+        <label>getAccountRec</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>screenCustomerTradingInfo</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>Account</object>
+    </recordLookups>
+    <screens>
+        <name>screenCustomerTradingInfo</name>
+        <label>screenCustomerTradingInfo</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>TradingInformation</name>
+            <fieldText>Trading Information</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>PurchasingInformation</name>
+            <fieldText>Purchasing Information</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <startElementReference>getAccountRec</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

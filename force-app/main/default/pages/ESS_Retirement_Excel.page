@@ -1,0 +1,77 @@
+<apex:page controller="ESS_RetirementExcelController" 
+    cache="true" showHeader="false" 
+    contentType="application/vnd.ms-excel#Retirement Employee List - {!todayDate}.xls"> {!LanguageThai} <!-- contentType="application/vnd.ms-excel#Retirement Employee List - {!todayDate}.xls" -->
+
+     <html lang="en">
+          <head>
+              <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+              <style>
+                    table, td, th {
+                      border: 1px solid;
+                    }
+                    
+                    table {
+                      width: 100%;
+                      border-collapse: collapse;
+                    }
+                    .text { mso-number-format:\@; }
+                </style>
+          </head>
+          <body>
+          
+              <apex:outputPanel rendered="{!resultSize = 0}">
+                  <b><apex:outputText style="font-size:20px;"> Employee Retirement not found. </apex:outputText></b>
+              </apex:outputPanel>
+          
+              <apex:outputPanel rendered="{!resultSize > 0}">
+                  <h3>Retirement Employee List</h3>
+                  <table>
+                      <tr>
+                          <th>Employee ID</th>
+                          <th>Employee Name</th>
+                          <th>Birth Date</th>
+                          <th>Age</th>
+                          <th>Function</th>
+                          <th>Department</th>
+                          <th>Section</th>
+                          <th>Level</th>
+                          <th>Immediate Line / Section Head Employee Id</th>
+                          <th>Immediate Line / Section Head Name</th>
+                          <th>Department Head Employee Id</th>
+                          <th>Department Head Name</th>
+                      </tr>
+                      <apex:repeat value="{!results}" var="retirement">
+                          <tr>
+                              <td class="text">{!retirement.employeeId}</td>
+                              <td>{!retirement.employeeName}</td>
+                              <td>
+                                  <apex:outputText value="{0,date, dd/MM/yyyy}" >  
+                                    <apex:param value="{!retirement.birthDate}"/>  
+                                  </apex:outputText>
+                              </td>
+                              <td>{!retirement.age}</td>
+                              <td>{!retirement.function}</td>
+                              <td>{!retirement.department}</td>
+                              <td>{!retirement.section}</td>
+                              <td>{!retirement.level}</td>
+                              <td class="text">
+                                  <apex:outputPanel rendered="{!retirement.sectionHeadEmployeeId != null}">
+                                     {!retirement.sectionHeadEmployeeId}
+                                  </apex:outputPanel>
+                              </td>
+                              <td>{!retirement.sectionHeadName}</td>
+                              <td class="text">
+                                  <apex:outputPanel rendered="{!retirement.departmentHeadEmployeeId != null}">
+                                      {!retirement.departmentHeadEmployeeId}
+                                  </apex:outputPanel>
+                              </td>
+                              <td>{!retirement.departmentHeadName}</td>
+                          </tr>
+                      </apex:repeat>
+                  </table>
+              </apex:outputPanel>
+              
+          </body>
+      </html>
+
+</apex:page>

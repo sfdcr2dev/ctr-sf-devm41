@@ -1,0 +1,27 @@
+<aura:component controller="CTRLeadOverideNewController" implements="lightning:hasPageReference,lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+
+    <aura:attribute name="userProfile" type="String"/>
+    <aura:attribute name="recordTypeId" type="String"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="recordIdDummy" type="String"/>
+    <aura:attribute name="ObjectType" type="String" default="Lead"/>
+    <aura:attribute name="onPageRecordID" type="String"/>
+
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.onPageReferenceChanged}" />
+
+    <aura:html tag="style">
+        [data-target-selection-name="sfdc:RecordField.Lead.Name"] [data-field="firstName"] label::before {
+            content: "*";
+            color: red;
+            margin: 0px 0.1rem;
+        }
+        .uiModal--horizontalForm .modal-container:has([data-target-selection-name="sfdc:RecordField.Lead.Name"]) {
+            width: 90%;
+            max-width: 1280px;
+        }
+    </aura:html>
+
+</aura:component>

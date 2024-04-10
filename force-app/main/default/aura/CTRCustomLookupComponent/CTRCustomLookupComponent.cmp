@@ -1,0 +1,99 @@
+<aura:component controller="CTRCustomLookupController" implements="flexipage:availableForRecordHome,force:hasRecordId"
+    access="global">
+
+    <aura:attribute name="recordId" type="String" default="" />
+    <aura:attribute name="objectName" type="String" default="" />
+    <aura:attribute name="searchString" type="String" default="" />
+    <aura:attribute name="allRecords" type="List" default="[]" />
+    <aura:attribute name="records" type="List" default="[]" />
+    <aura:attribute name="selectedRecord" type="Object" />
+    <aura:attribute name="selectedRecordId" type="String" default="" />
+    <aura:attribute name="iconName" type="String" default="" />
+    <aura:attribute name="disabled" type="Boolean" default="false" />
+    <aura:attribute name="fieldName" type="String" default="" />
+    <aura:attribute name="fieldQuery" type="String" default="" />
+    <aura:attribute name="lookupId" type="String" default="" />
+    <aura:attribute name="lookupName" type="String" default="" />
+    <aura:attribute name="conditionString" type="String" default="" />
+
+    <aura:attribute name="ownerOptions" type="List" default="[]" />
+    <aura:attribute name="filteredOwnerOptions" type="List" default="[]" />
+    <aura:attribute name="selectedOwnerId" type="String" default="" />
+    <aura:attribute name="showSearch" type="Boolean" default="true" />
+    <aura:attribute name="showSelected" type="Boolean" default="false" />
+
+    <!-- <aura:registerEvent name="CTRPassValueEvent" type="c:CTRPassValueEvent" /> -->
+    <aura:handler name="change" value="{!v.conditionString}" action="{!c.getObjectRecord}" />
+    <aura:handler name="change" value="{!v.lookupId}" action="{!c.doInit}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <!-- style CSS -->
+    <aura:attribute name="iconlayout" type="String" default="" />
+    <aura:attribute name="inputlayout" type="String" default="" />
+    <aura:attribute name="marginleft" type="String" default="margin-left:33%;" />
+
+    <!-- Test Component -->
+
+
+    <lightning:card>
+
+        <!-- Lookup -->
+        <div class="slds-form slds-form_horizontal">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="search">{!v.fieldName}</label>
+                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left-right" >
+                    <aura:if isTrue="{!v.showSearch}">
+                        <!-- Search Icon -->
+                        <span
+                            class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_left" >
+                            <lightning:icon iconName="utility:search" size="x-small" />
+                        </span>
+                        <!-- Text Input -->
+                        <input type="text" id="search" class="slds-input" value="{!v.searchString}"
+                            placeholder="Search..." oninput="{!c.search}" size="75" disabled="{!v.disabled}" />
+                    </aura:if>
+                    <aura:if isTrue="{!v.showSelected}">
+                        <div class="slds-pill_container">
+                            <span class="slds-pill slds-pill_link slds-size_1-of-1 slds-pill_bare">
+                                <span class="slds-pill__icon_container">
+                                    <span class="slds-icon_container">
+                                        <lightning:icon iconName="{!v.iconName}" size="xx-small" />
+                                    </span>
+                                </span>
+                                <span class="slds-pill__label slds-p-left_x-large">{!v.lookupName}</span>
+                                <!-- <a href="#" class="slds-pill__action">
+                                    <span class="slds-pill__label">{!v.selectedRecord.Name}</span>
+                                </a> -->
+                                <button class="slds-button slds-button_icon slds-button_icon slds-pill__remove"
+                                    title="Remove" disabled="{!v.disabled}">
+                                    <lightning:icon iconName="utility:clear" size="x-small"
+                                        onclick="{!c.clearSelectedRecord}" />
+                                </button>
+                            </span>
+                        </div>
+                    </aura:if>
+                </div>
+            </div>
+        </div>
+
+
+        <aura:if isTrue="{!v.records.length > 0}">
+            <lightning:card title="">
+                <ul class="slds-border_bottom slds-border_right slds-border_left" style="{!v.marginleft}">
+                    <aura:iteration items="{!v.records}" var="record">
+                        <lightning:layout class="slds-m-top--small slds-p-left_small">
+                            <lightning:layoutItem size="2">
+                                <lightning:icon iconName="{!v.iconName}" />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="6">
+                                <a onclick="{!c.selectRecord}" data-record="{!record.Id}">
+                                    <strong class="custom-class">{!record.Name}</strong>
+                                </a>
+                            </lightning:layoutItem>
+                        </lightning:layout>
+                    </aura:iteration>
+                </ul>
+            </lightning:card>
+        </aura:if>
+    </lightning:card>
+</aura:component>

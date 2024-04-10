@@ -1,0 +1,21 @@
+<aura:component implements="lightning:isUrlAddressable" controller="THOR_customRedirectToController">
+	<aura:attribute name="recordId" type="String" />
+	<aura:attribute name="fieldLabel" type="String" />
+	<aura:attribute name="orderName" type="String" />
+	<aura:attribute name="orderId" type="String" />
+	<aura:attribute name="fromRecord" type="String" />
+	<aura:attribute name="relatedField" type="String" />
+	<aura:attribute name="relatedObject" type="String" />
+	<aura:attribute name="toThisComponent" type="String" />
+
+	<aura:registerEvent name="navagationHelper" type="c:THOR_navigateTo" />
+	<aura:method name="reInitMe" action="{!c.callReInit}" access="PUBLIC" />
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<div class="theCustomField slds-form-element slds-form-element_stacked" aura:id="theCustomField">
+		<label class="slds-form-element__label" for="of-Type">{!v.fieldLabel}</label>
+		<div class="slds-form-element__control">
+			<a onclick="{!c.preventMe}" href="{!v.orderId}"> {!v.orderName} </a>
+		</div>
+	</div>
+</aura:component>

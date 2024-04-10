@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CTR Shipping Country</value>
+    </caseValues>
+    <fields>
+        <label><!-- CTR Request Form Item --></label>
+        <name>CTRRequestFormItem__c</name>
+        <relationshipLabel><!-- CTR Shipping Country --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Customer --></label>
+        <name>Customer__c</name>
+        <relationshipLabel><!-- CTR Shipping Country --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Location Type --></label>
+        <name>LocationType__c</name>
+        <picklistValues>
+            <masterLabel>Export</masterLabel>
+            <translation><!-- Export --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local</masterLabel>
+            <translation><!-- Local --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Product Name --></label>
+        <name>ProductName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Form Status --></label>
+        <name>RequestFormStatus__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping Country --></label>
+        <name>ShippingCountry__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+    </fields>
+</CustomObjectTranslation>

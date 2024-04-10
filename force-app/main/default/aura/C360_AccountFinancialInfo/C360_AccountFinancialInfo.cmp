@@ -1,0 +1,14 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                			access="global" controller="C360_IRPAIntegration_FinancialInfo">
+    
+	<aura:attribute name="recordId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <!--
+    <div class="">
+        <lightning:button variant="brand" label="Get Financial Info" title="Get Financial Info" onclick="{! c.handleClick }" />
+    </div>
+	-->    
+    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+      <p>This page will be refresh in 15 sec.</p>
+    </div>
+</aura:component>

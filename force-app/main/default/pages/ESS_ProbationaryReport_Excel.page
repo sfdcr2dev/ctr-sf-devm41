@@ -1,0 +1,123 @@
+<apex:page controller="ESS_ProbationaryReportExcelController"
+  language="th"
+  cache="true" showHeader="false" action="{!OnloadExcel}"
+  contentType="application/vnd.ms-excel#Probationary Report - {!todayDate}.xls">
+  <!-- contentType="application/vnd.ms-excel#Probationary Report - {!todayDate}.xls" -->
+    
+    <html lang="en">
+      <head>
+          <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+          <style>
+                table, td, th {
+                  border: 1px solid;
+                }
+                
+                table {
+                  width: 100%;
+                  border-collapse: collapse;
+                }
+                .text { mso-number-format:\@; }
+            </style>
+      </head>
+      <body>
+      
+          <apex:outputPanel rendered="{!probationSize > 0}">
+              <h3>Probationary Report</h3> <br/>
+              <table>
+                  <tr>
+                      <th>Document No.</th>
+                      <th>Employee Id</th>
+                      <th>Employee Name</th>
+                      <th>Date Joint Company</th>
+                      <th>Date Completed Probation</th>
+                      <th>Current Status</th>
+                      <th>Created Date</th>
+                      <th>Immediate Line / Seciton Head Employee Id</th>
+                      <th>Immediate Line / Seciton Head</th>
+                      <th>Immediate Line / Section Head Submitted Date</th>
+                      <th>Reassigned (Immediate Supervisor / Section Head) Employee Id</th>
+                      <th>Reassigned (Immediate Supervisor / Section Head)</th>
+                      <th>Reassigned (Immediate Supervisor / Section Head) Submitted Date</th>
+                      <th>Department Head Employee Id</th>
+                      <th>Department Head</th>
+                      <th>Department Head Submitted Date</th>
+                      <th>Reassigned (Department Head) Employee Id</th>
+                      <th>Reassigned (Department Head)</th>
+                      <th>Reassigned (Department Head) Submitted Date</th>
+                      <th>Completed Date</th>
+                      <th>Probation Status</th>
+                      <th>Function</th>
+                      <th>Department</th>
+                      <th>Section</th>
+                      <th>Unit</th>
+                      <th>Level</th>
+                  </tr>
+                  <apex:repeat value="{!probationTables}" var="Data">
+                      <tr>
+                          <td>{!Data.documentNo}</td>
+                          <td class="text">{!Data.employeeId}</td>
+                          <td>{!Data.employeeName}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.dateJoinedCompany}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.dateCompletedProbation}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.currentStatus.value}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.createdDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td class="text">{!Data.sectionHeadEmployeeId}</td>
+                          <td>{!Data.sectionHead}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.sectionHeadSubmittedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td class="text">{!Data.reassignSectionHeadEmployeeId}</td>
+                          <td>{!Data.reassignSectionHead}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.reassignSectionHeadSubmittedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td class="text">{!Data.departmentHeadEmployeeId}</td>
+                          <td>{!Data.departmentHead}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.departmentHeadSubmittedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td class="text">{!Data.reassignDepartmentHeadEmployeeId}</td>
+                          <td>{!Data.reassignDepartmentHead}</td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.reassignDepartmentHeadSubmittedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>
+                              <apex:outputText value="{0,date,yyyy'/'MM'/'dd}" >  
+                                <apex:param value="{!Data.completedDate}"/>  
+                              </apex:outputText>
+                          </td>
+                          <td>{!Data.probationStatus.value}</td>
+                          <td>{!Data.function}</td>
+                          <td>{!Data.department}</td>
+                          <td>{!Data.section}</td>
+                          <td>{!Data.unit}</td>
+                          <td>{!Data.level}</td>
+                      </tr>
+                  </apex:repeat>
+              </table>
+          </apex:outputPanel>
+          
+      </body>
+  </html>
+    
+</apex:page>

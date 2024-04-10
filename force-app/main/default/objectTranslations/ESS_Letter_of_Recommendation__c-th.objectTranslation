@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ESS Letter of Recommendation</value>
+    </caseValues>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>Company_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Status --></label>
+        <name>Current_Status__c</name>
+        <picklistValues>
+            <masterLabel>Created</masterLabel>
+            <translation><!-- Created --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Generated to PDF</masterLabel>
+            <translation><!-- Generated to PDF --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Date Joined Company --></label>
+        <name>Date_Joined_Company__c</name>
+    </fields>
+    <fields>
+        <label><!-- Department Full EN --></label>
+        <name>Department_Full_EN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Department Full TH --></label>
+        <name>Department_Full_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- Department --></label>
+        <name>Department__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document No --></label>
+        <name>Document_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Employee ID --></label>
+        <name>Employee_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Employee Name TH --></label>
+        <name>Employee_Name_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- Employee Name --></label>
+        <name>Employee_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Function --></label>
+        <name>Function__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gender --></label>
+        <name>Gender__c</name>
+        <picklistValues>
+            <masterLabel>Female</masterLabel>
+            <translation><!-- Female --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Male</masterLabel>
+            <translation><!-- Male --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Generate PDF Date --></label>
+        <name>Generate_PDF_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Language --></label>
+        <name>Language__c</name>
+        <picklistValues>
+            <masterLabel>ภาษาอังกฤษ</masterLabel>
+            <translation><!-- ภาษาอังกฤษ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ภาษาไทย</masterLabel>
+            <translation><!-- ภาษาไทย --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- วันที่สิ้นสุดการลา --></label>
+        <name>Leave_End__c</name>
+    </fields>
+    <fields>
+        <label><!-- วันที่เริ่มต้นการลา --></label>
+        <name>Leave_Start__c</name>
+    </fields>
+    <fields>
+        <label><!-- Letter Type --></label>
+        <name>Letter_Type__c</name>
+        <picklistValues>
+            <masterLabel>จดหมายผ่านสิทธิ์ (สำหรับทำธุรกรรมกับธนาคาร ธอส.)</masterLabel>
+            <translation><!-- จดหมายผ่านสิทธิ์ (สำหรับทำธุรกรรมกับธนาคาร ธอส.) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>จดหมายรับรองการทำงาน ไม่ระบุเงินเดือน</masterLabel>
+            <translation><!-- จดหมายรับรองการทำงาน ไม่ระบุเงินเดือน --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>จดหมายรับรองเงินเดือน (สำหรับทำธุรกรรมทางการเงิน)</masterLabel>
+            <translation><!-- จดหมายรับรองเงินเดือน (สำหรับทำธุรกรรมทางการเงิน) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>จดหมายรับรองเงินเดือน แบบระบุวันลา (สำหรับยื่นขอ Visa)</masterLabel>
+            <translation><!-- จดหมายรับรองเงินเดือน แบบระบุวันลา (สำหรับยื่นขอ Visa) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>จดหมายรับรองเงินเดือน แบบไม่ระบุวันลา (สำหรับยื่นขอ Visa)</masterLabel>
+            <translation><!-- จดหมายรับรองเงินเดือน แบบไม่ระบุวันลา (สำหรับยื่นขอ Visa) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- ระบุชื่อหน่วยงาน --></label>
+        <name>Other_Organization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Position TH --></label>
+        <name>Position_TH__c</name>
+    </fields>
+    <fields>
+        <label><!-- Position --></label>
+        <name>Position__c</name>
+    </fields>
+    <fields>
+        <label><!-- Remark --></label>
+        <name>Remark__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- To Organization EN --></label>
+        <name>To_Organization_EN__c</name>
+        <picklistValues>
+            <masterLabel>BNP Paribas</masterLabel>
+            <translation><!-- BNP Paribas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bangkok Bank Public Company Limited</masterLabel>
+            <translation><!-- Bangkok Bank Public Company Limited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bank for Agriculture and Agricultural Co-operatives</masterLabel>
+            <translation><!-- Bank for Agriculture and Agricultural Co-operatives --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bank of Ayudhya Public Company Limited</masterLabel>
+            <translation><!-- Bank of Ayudhya Public Company Limited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bank of China (Thai) Public Company Limited</masterLabel>
+            <translation><!-- Bank of China (Thai) Public Company Limited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CIMB Thai Bank Public Company Limited</masterLabel>
+            <translation><!-- CIMB Thai Bank Public Company Limited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Citibank</masterLabel>
+            <translation><!-- Citibank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Argentina</masterLabel>
+            <translation><!-- Embassy of Argentina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Australia</masterLabel>
+            <translation><!-- Embassy of Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Austria</masterLabel>
+            <translation><!-- Embassy of Austria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Belgium</masterLabel>
+            <translation><!-- Embassy of Belgium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Brazil</masterLabel>
+            <translation><!-- Embassy of Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Brunei</masterLabel>
+            <translation><!-- Embassy of Brunei --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Canada</masterLabel>
+            <translation><!-- Embassy of Canada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Chile</masterLabel>
+            <translation><!-- Embassy of Chile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Croatia</masterLabel>
+            <translation><!-- Embassy of Croatia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Denmark</masterLabel>
+            <translation><!-- Embassy of Denmark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Egypt</masterLabel>
+            <translation><!-- Embassy of Egypt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Finland</masterLabel>
+            <translation><!-- Embassy of Finland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of France</masterLabel>
+            <translation><!-- Embassy of France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Germany</masterLabel>
+            <translation><!-- Embassy of Germany --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Greece</masterLabel>
+            <translation><!-- Embassy of Greece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Hungary</masterLabel>
+            <translation><!-- Embassy of Hungary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of India</masterLabel>
+            <translation><!-- Embassy of India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Italy</masterLabel>
+            <translation><!-- Embassy of Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Japan</masterLabel>
+            <translation><!-- Embassy of Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Malaysia</masterLabel>
+            <translation><!-- Embassy of Malaysia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Myanmar</masterLabel>
+            <translation><!-- Embassy of Myanmar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of New Zealand</masterLabel>
+            <translation><!-- Embassy of New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Norway</masterLabel>
+            <translation><!-- Embassy of Norway --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Oman</masterLabel>
+            <translation><!-- Embassy of Oman --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Portugal</masterLabel>
+            <translation><!-- Embassy of Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Qatar</masterLabel>
+            <translation><!-- Embassy of Qatar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Russia</masterLabel>
+            <translation><!-- Embassy of Russia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Saudi Arabia</masterLabel>
+            <translation><!-- Embassy of Saudi Arabia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Singapore</masterLabel>
+            <translation><!-- Embassy of Singapore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of South Africa</masterLabel>
+            <translation><!-- Embassy of South Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Spain</masterLabel>
+            <translation><!-- Embassy of Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Sweden</masterLabel>
+            <translation><!-- Embassy of Sweden --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Switzerland</masterLabel>
+            <translation><!-- Embassy of Switzerland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of The People&apos;s Republic of China</masterLabel>
+            <translation><!-- Embassy of The People&apos;s Republic of China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Turkey</masterLabel>
+            <translation><!-- Embassy of Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Vietnam</masterLabel>
+            <translation><!-- Embassy of Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of the Czech Republic</masterLabel>
+            <translation><!-- Embassy of the Czech Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of the Netherlands</masterLabel>
+            <translation><!-- Embassy of the Netherlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of the Republic of China (Taiwan)</masterLabel>
+            <translation><!-- Embassy of the Republic of China (Taiwan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of the Republic of Korea</masterLabel>
+            <translation><!-- Embassy of the Republic of Korea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of the Republic of the Philippines</masterLabel>
+            <translation><!-- Embassy of the Republic of the Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of the United Arab Emirates</masterLabel>
+            <translation><!-- Embassy of the United Arab Emirates --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of the United State of America</masterLabel>
+            <translation><!-- Embassy of the United State of America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Government Housing Bank</masterLabel>
+            <translation><!-- Government Housing Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Government Savings Bank</masterLabel>
+            <translation><!-- Government Savings Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HSBC Thailand</masterLabel>
+            <translation><!-- HSBC Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indian Overseas Bank</masterLabel>
+            <translation><!-- Indian Overseas Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Industrial and Commercial Bank of China (Asia) Limited</masterLabel>
+            <translation><!-- Industrial and Commercial Bank of China (Asia) Limited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JPMorgan Chase</masterLabel>
+            <translation><!-- JPMorgan Chase --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kasikornbank</masterLabel>
+            <translation><!-- Kasikornbank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kiatnakin Phatra Bank</masterLabel>
+            <translation><!-- Kiatnakin Phatra Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korea Immigration Services</masterLabel>
+            <translation><!-- Korea Immigration Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Krungthai Bank Public Company Limited</masterLabel>
+            <translation><!-- Krungthai Bank Public Company Limited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Land and Houses Public Company Limited</masterLabel>
+            <translation><!-- Land and Houses Public Company Limited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MEGA International Commercial Bank Public Company Limited</masterLabel>
+            <translation><!-- MEGA International Commercial Bank Public Company Limited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mizuho Bank</masterLabel>
+            <translation><!-- Mizuho Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OCBC Bank</masterLabel>
+            <translation><!-- OCBC Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RHB</masterLabel>
+            <translation><!-- RHB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Siam Commercial Bank</masterLabel>
+            <translation><!-- Siam Commercial Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard Chartered Bank (Thai) PCL</masterLabel>
+            <translation><!-- Standard Chartered Bank (Thai) PCL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sumitomo Mitsui Banking Corporation</masterLabel>
+            <translation><!-- Sumitomo Mitsui Banking Corporation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sumitomo Mitsui Trust Bank (Thai) PCL</masterLabel>
+            <translation><!-- Sumitomo Mitsui Trust Bank (Thai) PCL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TISCO Bank</masterLabel>
+            <translation><!-- TISCO Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TMB Thanachart Bank</masterLabel>
+            <translation><!-- TMB Thanachart Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thai Credit Retail Bank Public Company</masterLabel>
+            <translation><!-- Thai Credit Retail Bank Public Company --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>The British Embassy</masterLabel>
+            <translation><!-- The British Embassy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>United Overseas Bank Limited (UOB)</masterLabel>
+            <translation><!-- United Overseas Bank Limited (UOB) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- หน่วยงาน --></label>
+        <name>To_Organization__c</name>
+        <picklistValues>
+            <masterLabel>Embassy of Argentina</masterLabel>
+            <translation><!-- Embassy of Argentina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Australia</masterLabel>
+            <translation><!-- Embassy of Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Austria</masterLabel>
+            <translation><!-- Embassy of Austria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Belgium</masterLabel>
+            <translation><!-- Embassy of Belgium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Brazil</masterLabel>
+            <translation><!-- Embassy of Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Brunei</masterLabel>
+            <translation><!-- Embassy of Brunei --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Canada</masterLabel>
+            <translation><!-- Embassy of Canada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Chile</masterLabel>
+            <translation><!-- Embassy of Chile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Croatia</masterLabel>
+            <translation><!-- Embassy of Croatia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Denmark</masterLabel>
+            <translation><!-- Embassy of Denmark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Egypt</masterLabel>
+            <translation><!-- Embassy of Egypt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Finland</masterLabel>
+            <translation><!-- Embassy of Finland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of France</masterLabel>
+            <translation><!-- Embassy of France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Germany</masterLabel>
+            <translation><!-- Embassy of Germany --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Greece</masterLabel>
+            <translation><!-- Embassy of Greece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Hungary</masterLabel>
+            <translation><!-- Embassy of Hungary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of India</masterLabel>
+            <translation><!-- Embassy of India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Italy</masterLabel>
+            <translation><!-- Embassy of Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Japan</masterLabel>
+            <translation><!-- Embassy of Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Malaysia</masterLabel>
+            <translation><!-- Embassy of Malaysia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Myanmar</masterLabel>
+            <translation><!-- Embassy of Myanmar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of New Zealand</masterLabel>
+            <translation><!-- Embassy of New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Norway</masterLabel>
+            <translation><!-- Embassy of Norway --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Oman</masterLabel>
+            <translation><!-- Embassy of Oman --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Portugal</masterLabel>
+            <translation><!-- Embassy of Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Qatar</masterLabel>
+            <translation><!-- Embassy of Qatar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Russia</masterLabel>
+            <translation><!-- Embassy of Russia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Saudi Arabia</masterLabel>
+            <translation><!-- Embassy of Saudi Arabia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Singapore</masterLabel>
+            <translation><!-- Embassy of Singapore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of South Africa</masterLabel>
+            <translation><!-- Embassy of South Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Spain</masterLabel>
+            <translation><!-- Embassy of Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Sweden</masterLabel>
+            <translation><!-- Embassy of Sweden --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Switzerland</masterLabel>
+            <translation><!-- Embassy of Switzerland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of The People&apos;s Republic of China</masterLabel>
+            <translation><!-- Embassy of The People&apos;s Republic of China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Turkey</masterLabel>
+            <translation><!-- Embassy of Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of Vietnam</masterLabel>
+            <translation><!-- Embassy of Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of the Czech Republic</masterLabel>
+            <translation><!-- Embassy of the Czech Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of the Netherlands</masterLabel>
+            <translation><!-- Embassy of the Netherlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of the Republic of China (Taiwan)</masterLabel>
+            <translation><!-- Embassy of the Republic of China (Taiwan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of the Republic of Korea</masterLabel>
+            <translation><!-- Embassy of the Republic of Korea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of the Republic of the Philippines</masterLabel>
+            <translation><!-- Embassy of the Republic of the Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of the United Arab Emirates</masterLabel>
+            <translation><!-- Embassy of the United Arab Emirates --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Embassy of the United State of America</masterLabel>
+            <translation><!-- Embassy of the United State of America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korea Immigration Services</masterLabel>
+            <translation><!-- Korea Immigration Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>The British Embassy</masterLabel>
+            <translation><!-- The British Embassy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารซิตี้แบงก์ เอ็น.เอ.</masterLabel>
+            <translation><!-- ธนาคารซิตี้แบงก์ เอ็น.เอ. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารซูมิโตโม มิตซุย ทรัสต์ (ไทย) จำกัด (มหาชน)</masterLabel>
+            <translation><!-- ธนาคารซูมิโตโม มิตซุย ทรัสต์ (ไทย) จำกัด (มหาชน) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารซูมิโตโม มิตซุย แบงกิ้ง คอร์ปอเรชั่น</masterLabel>
+            <translation><!-- ธนาคารซูมิโตโม มิตซุย แบงกิ้ง คอร์ปอเรชั่น --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารดอยซ์แบงก์ เอจี</masterLabel>
+            <translation><!-- ธนาคารดอยซ์แบงก์ เอจี --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารทหารไทยธนชาต จำกัด (มหาชน)</masterLabel>
+            <translation><!-- ธนาคารทหารไทยธนชาต จำกัด (มหาชน) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารทิสโก้ จำกัด (มหาชน)</masterLabel>
+            <translation><!-- ธนาคารทิสโก้ จำกัด (มหาชน) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารธนชาต จำกัด (มหาชน)</masterLabel>
+            <translation><!-- ธนาคารธนชาต จำกัด (มหาชน) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารบีเอ็นพี พารีบาส์</masterLabel>
+            <translation><!-- ธนาคารบีเอ็นพี พารีบาส์ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารมิซูโฮ จำกัด สาขากรุงเทพฯ</masterLabel>
+            <translation><!-- ธนาคารมิซูโฮ จำกัด สาขากรุงเทพฯ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารยูโอบี จำกัด (มหาชน)</masterLabel>
+            <translation><!-- ธนาคารยูโอบี จำกัด (มหาชน) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารสแตนดาร์ดชาร์เตอร์ด (ไทย) จำกัด (มหาชน)</masterLabel>
+            <translation><!-- ธนาคารสแตนดาร์ดชาร์เตอร์ด (ไทย) จำกัด (มหาชน) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารออมสิน</masterLabel>
+            <translation><!-- ธนาคารออมสิน --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารอาคารสงเคราะห์</masterLabel>
+            <translation><!-- ธนาคารอาคารสงเคราะห์ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารอาร์ เอช บี จำกัด</masterLabel>
+            <translation><!-- ธนาคารอาร์ เอช บี จำกัด --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารอินเดียนโอเวอร์ซีส์</masterLabel>
+            <translation><!-- ธนาคารอินเดียนโอเวอร์ซีส์ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารฮ่องกงและเซี่ยงไฮ้แบงกิ้งคอร์ปอเรชั่น จำกัด</masterLabel>
+            <translation><!-- ธนาคารฮ่องกงและเซี่ยงไฮ้แบงกิ้งคอร์ปอเรชั่น จำกัด --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารเจพีมอร์แกน เชส</masterLabel>
+            <translation><!-- ธนาคารเจพีมอร์แกน เชส --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารเพื่อการเกษตรและสหกรณ์</masterLabel>
+            <translation><!-- ธนาคารเพื่อการเกษตรและสหกรณ์ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารเมกะ สากลพาณิชย์ จำกัด (มหาชน)</masterLabel>
+            <translation><!-- ธนาคารเมกะ สากลพาณิชย์ จำกัด (มหาชน) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารเอเอ็นแซด (ไทย) จำกัด (มหาชน)</masterLabel>
+            <translation><!-- ธนาคารเอเอ็นแซด (ไทย) จำกัด (มหาชน) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารแลนด์ แอนด์ เฮ้าส์ จำกัด (มหาชน)</masterLabel>
+            <translation><!-- ธนาคารแลนด์ แอนด์ เฮ้าส์ จำกัด (มหาชน) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารแห่งประเทศจีน (ไทย) จำกัด (มหาชน)</masterLabel>
+            <translation><!-- ธนาคารแห่งประเทศจีน (ไทย) จำกัด (มหาชน) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารแห่งอเมริกาเนชั่นแนลแอสโซซิเอชั่น</masterLabel>
+            <translation><!-- ธนาคารแห่งอเมริกาเนชั่นแนลแอสโซซิเอชั่น --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารโอเวอร์ซี-ไชนีสแบงกิ้งคอร์ปอเรชั่น จำกัด</masterLabel>
+            <translation><!-- ธนาคารโอเวอร์ซี-ไชนีสแบงกิ้งคอร์ปอเรชั่น จำกัด --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารไทยพาณิชย์ จำกัด (มหาชน)</masterLabel>
+            <translation><!-- ธนาคารไทยพาณิชย์ จำกัด (มหาชน) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารไทยเครดิต เพื่อรายย่อย จำกัด (มหาชน)</masterLabel>
+            <translation><!-- ธนาคารไทยเครดิต เพื่อรายย่อย จำกัด (มหาชน) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ธนาคารไอซีบีซี (ไทย) จำกัด (มหาชน)</masterLabel>
+            <translation><!-- ธนาคารไอซีบีซี (ไทย) จำกัด (มหาชน) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Unit --></label>
+        <name>Unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- วัตถุประสงค์ของการขอจดหมายรับรอง --></label>
+        <name>letter_purpose__c</name>
+    </fields>
+    <layouts>
+        <layout>จดหมายรับรองเงินเดือน (สำหรับทำธุรกรรมทางการเงิน)</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- DOCUMENT INFORMATION --></label>
+            <section>DOCUMENT INFORMATION</section>
+        </sections>
+        <sections>
+            <label><!-- EMPLOYEE INFORMATION --></label>
+            <section>EMPLOYEE INFORMATION</section>
+        </sections>
+        <sections>
+            <label><!-- LETTER INFORMATION --></label>
+            <section>LETTER INFORMATION</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>จดหมายรับรองเงินเดือน แบบระบุวันลา (สำหรับยื่นขอ Visa)</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- DOCUMENT INFORMATION --></label>
+            <section>DOCUMENT INFORMATION</section>
+        </sections>
+        <sections>
+            <label><!-- EMPLOYEE INFORMATION --></label>
+            <section>EMPLOYEE INFORMATION</section>
+        </sections>
+        <sections>
+            <label><!-- LETTER INFORMATION --></label>
+            <section>LETTER INFORMATION</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

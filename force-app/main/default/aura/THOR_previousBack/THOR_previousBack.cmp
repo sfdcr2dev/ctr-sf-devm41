@@ -1,0 +1,17 @@
+<aura:component>
+	<lightning:navigation aura:id="navService" />
+	<lightning:layout>
+		<lightning:layoutItem>
+			<lightning:layoutItem padding="horizontal-small">
+				<lightning:buttonIcon
+					class="slds-p-horizontal_large"
+					alternativeText="Previous back"
+					size="large"
+					variant="border-filled"
+					iconName="utility:chevronleft"
+					onclick="{! c.previousBack }"
+				/>
+			</lightning:layoutItem>
+		</lightning:layoutItem>
+	</lightning:layout>
+</aura:component>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>News</value>
+    </caseValues>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>Akanee</masterLabel>
+            <translation><!-- Akanee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Club</masterLabel>
+            <translation><!-- Club --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corporate</masterLabel>
+            <translation><!-- Corporate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital</masterLabel>
+            <translation><!-- Digital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KM</masterLabel>
+            <translation><!-- KM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operation</masterLabel>
+            <translation><!-- Operation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PM4U</masterLabel>
+            <translation><!-- PM4U --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QSHE</masterLabel>
+            <translation><!-- QSHE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Special Issues</masterLabel>
+            <translation><!-- Special Issues --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Coin Expire --></label>
+        <name>Coin_Expire__c</name>
+    </fields>
+    <fields>
+        <label><!-- Coin Type --></label>
+        <name>Coin_Type__c</name>
+        <picklistValues>
+            <masterLabel>Read</masterLabel>
+            <translation><!-- Read --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vote</masterLabel>
+            <translation><!-- Vote --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Coin --></label>
+        <name>Coin__c</name>
+    </fields>
+    <fields>
+        <help><!-- Recommend 
+- Picture pixels :  1080 x 700 pixels
+- Size : less than &lt; 5 Mb --></help>
+        <label><!-- Content --></label>
+        <name>Content__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expire Date --></label>
+        <name>Expire_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Upload Files --></label>
+        <name>File_Attachment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Highlight --></label>
+        <name>Highlight__c</name>
+    </fields>
+    <fields>
+        <label><!-- Link --></label>
+        <name>Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Publish Date --></label>
+        <name>Publish_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Draft</masterLabel>
+            <translation><!-- Draft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expired</masterLabel>
+            <translation><!-- Expired --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Published</masterLabel>
+            <translation><!-- Published --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sub Category --></label>
+        <name>Sub_Category__c</name>
+        <picklistValues>
+            <masterLabel>HOX</masterLabel>
+            <translation><!-- HOX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KM</masterLabel>
+            <translation><!-- KM --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Subtitle --></label>
+        <name>Subtitle__c</name>
+    </fields>
+    <fields>
+        <label><!-- Thumbnail --></label>
+        <name>Thumbnail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Video Link --></label>
+        <name>Video_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- View --></label>
+        <name>View__c</name>
+    </fields>
+    <layouts>
+        <layout>News Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>News Layout for Admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>News</nameFieldLabel>
+    <quickActions>
+        <label><!-- Preview --></label>
+        <name>Preview</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- Only News administrator for this category can create news. --></errorMessage>
+        <name>Validate_User_News_Admin_Category</name>
+    </validationRules>
+</CustomObjectTranslation>

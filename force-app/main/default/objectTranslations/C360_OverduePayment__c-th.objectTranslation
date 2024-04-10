@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Overdue Payment</value>
+    </caseValues>
+    <fields>
+        <label><!-- Amount in Local Currency --></label>
+        <name>AmountinLocalCurrency__c</name>
+    </fields>
+    <fields>
+        <label><!-- As of --></label>
+        <name>As_of__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>CompanyCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>CompanyName__c</name>
+        <relationshipLabel><!-- Overdue Payment --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Doc Currency --></label>
+        <name>DocCurrency__c</name>
+    </fields>
+    <fields>
+        <label><!-- DocumentNumber --></label>
+        <name>DocumentNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- FiscalYear --></label>
+        <name>FiscalYear__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overdue Amount in Doc Currency --></label>
+        <name>OverdueAmountinDocCurrency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overdue day --></label>
+        <name>Overdueday__c</name>
+    </fields>
+    <layouts>
+        <layout>Overdue Payment Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

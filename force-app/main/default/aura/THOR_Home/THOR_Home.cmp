@@ -1,0 +1,17 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes">
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:attribute name="pageReference" type="Object"/>
+    <aura:attribute name="navUrl" type="String"/>
+
+    <ltng:require styles="{!$Resource.noHeader}" />
+    <c:ThaioilLogo />
+    <span class="slds-hide">
+        <lightning:icon class="calendarPosition slds-p-right_small" iconName="utility:date_input" size="small" alternativeText="calendar" onclick="{!c.openCalendar}" />
+    </span>
+
+    <span style="display: none;">
+        <c:THOR_navigateBack />
+    </span>
+
+</aura:component>

@@ -1,0 +1,152 @@
+.THIS {
+    font-family: Poppins;
+}
+
+.THIS .top-page {
+    margin-bottom: 1rem;
+}
+.THIS .slds-card__header {
+    margin: 0;
+    padding-top: 0;
+}
+.THIS .slds-card__header-title {
+    margin-left: 3px;
+    /* text-transform: uppercase; */
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: Poppins;
+}
+.THIS .top {
+    margin-top: 1rem;
+}
+
+.THIS .bottom-container {
+    padding-bottom: 1rem;
+}
+.THIS .right-container {
+    padding-right: 0.5rem;
+    padding-left: 0.75rem;
+}
+.THIS .col-box {
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+}
+.THIS .header {
+    padding-top: 1rem;
+    margin-left: 12px;
+}
+.THIS .app {
+    margin: auto;
+    height: 70px;
+    width: 70px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 10px 0 rgb(0 0 0 / 60%);
+}
+.THIS .app svg {
+    margin-top: 15px;
+    width: 100%;
+}
+.THIS .slds-tabs_scoped__item, .THIS .slds-tabs--scoped__item {
+    font-size: 1.2rem;
+    font-family: Poppins;
+}
+.THIS .slds-button_icon-more {
+    border-color: #ffffff;
+    width: 0px;
+    margin-right: 12px;
+}
+.THIS .pdl-10 {
+    padding-left: 10px;
+}
+.THIS .mgt-5 {
+    margin-top: 5px;
+}
+.THIS .slds-icon-text-default {
+    fill: #dddddd;
+    width: 18px;
+}
+.THIS .icn svg {
+    fill: #ffffff;
+}
+
+.THIS .slds-tabs_scoped__content, .THIS .slds-tabs--scoped__content {
+    border: 0px;
+}
+
+.THIS .slds-tabs_scoped__nav, .THIS .slds-tabs--scoped__nav {
+    border: 0px;
+    height: 30px;
+}
+.THIS .news-coin-icon {
+    width: 16px;
+}
+.THIS .card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: var(--sds-c-card-shadow, var(--lwc-cardShadow,0 2px 2px 0 rgba(0, 0, 0, 0.10)));
+}
+.THIS .card-custom {
+    background: #4D6BB3;
+}
+.THIS .card-height {
+    height: 320px;
+}
+.THIS .text-right {
+    text-align: right;
+}
+
+@media (min-width: 48em) {
+    .THIS .card-height-newfeed {
+        height: auto;
+    }
+    .THIS .slds-card__header-title {
+        margin-left: 0px;
+    }
+}
+
+@media (min-width: 64em) {
+    .THIS .card-height-newfeed {
+        height: 320px;
+    }
+    .THIS .slds-card__header-title {
+        margin-left: 0px;
+    }
+}
+
+.THIS .slds-col {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.THIS a {
+    cursor: pointer;
+}
+
+.THIS #myBtn {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    /* font-size: 18px; */
+    border: none;
+    outline: none;
+    background-color: rgb(77 107 179);
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    width: 54px;
+    border-radius: 28px;
+  }
+  
+  .THIS #myBtn:hover {
+    background-color: rgb(255, 255, 255);
+  }
+
+  .THIS #myBtn svg {
+      fill:rgb(255, 255, 255);
+  }
+
+  .THIS #myBtn svg:hover {
+    fill:#dddddd;
+}

@@ -1,0 +1,80 @@
+<aura:component controller="THOR_FilterController">
+    <!-- ATTRIBUTES -->
+    <aura:attribute name="options" type="List" default='[]' access="global" />
+    <aura:attribute name="filterActive" type="Boolean" default="false" access="global" />
+    <aura:attribute name="viewFilterOptions" type="Boolean" default="false" access="global" />
+    <aura:attribute name="viewDateFilter" type="Boolean" default="false" access="global" />
+    <aura:attribute name="clickedOption" type="String" default="" access="global" />
+    <aura:attribute name="userFilterActive" type="Boolean" default="false" access="global" />
+    <aura:attribute name="dateFilterActive" type="Boolean" default="false" access="global" />
+    <aura:attribute name="fromDateFilter" type="Date" default="" access="global" />
+    <aura:attribute name="toDateFilter" type="Date" default="" access="global" />
+    <aura:attribute name="pageName" type="String" default="" access="global" />
+
+    <aura:attribute name="excludedFilter" type="String" default="" access="global" />
+
+    <!-- EVENTS -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:registerEvent name="filterSelectedEvent" type="c:THOR_Event" />
+
+    <!-- BODY -->
+    <aura:if isTrue="{!and(v.excludedFilter != 'userFilter', v.pageName != 'home')}">
+        <lightning:icon iconName="utility:user" size="small" alternativeText="alternativeText"
+            onclick="{!c.filterByResposible}" class="{!v.userFilterActive?'filterActive': ''}" />
+    </aura:if>
+    <aura:if isTrue="{!v.excludedFilter != 'mwcFilter'}">
+        <lightning:icon iconName="utility:checkin" size="small" alternativeText="alternativeText"
+            onclick="{!c.showFilterOptions}" class="{!v.filterActive?'filterActive': ''}" />
+    </aura:if>
+    <lightning:icon iconName="utility:date_input" size="small" alternativeText="alternativeText"
+        onclick="{!c.showDateFilter}" class="{!v.dateFilterActive?'filterActive': ''}" />
+
+    <aura:if isTrue="{!v.viewFilterOptions}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="left-align slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <ul>
+                        <aura:iteration items="{!v.options}" var="item" indexVar="index">
+                            <li id="{!item}" onclick="{!c.optionSelected}">{!item}</li>
+                        </aura:iteration>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+
+    <aura:if isTrue="{!v.viewDateFilter}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="left-align slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+
+                    <div class="slds-grid slds-gutters">
+
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning:input type="date" name="input1" label="From" value="{!v.fromDateFilter}" />
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning:input type="date" name="input2" label="To" value="{!v.toDateFilter}" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-2 right-align">
+                            <lightning:button label="Submit" title="Submit" onclick="{! c.submit }" />
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning:button label="Clear" title="Clear" onclick="{! c.clear }" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+</aura:component>

@@ -1,0 +1,70 @@
+<aura:component controller="OPP_CaseController" implements="lightning:actionOverride,force:lightningQuickActionWithoutHeader,force:hasRecordId" access="global">
+    <aura:html tag="style">
+        <!-- .modal-container.slds-modal__container{
+        background: transparent;
+        box-shadow: none !important;
+        }
+        .modal-container.slds-modal__container .modal-header.slds-modal__header{
+        display:none;
+        }
+        .modal-container.slds-modal__container .modal-body{
+        background: transparent;
+        box-shadow: none !important;;
+        }
+        .modal-container.slds-modal__container .modal-footer.slds-modal__footer{
+        display:none;
+        } -->
+        @media (min-width: 48em) {
+        .slds-button.slds-modal__close{
+        display:none;
+        }
+        .quick-actions-panel .slds-modal__content {
+        height: 100% !important;
+        max-height: 100% !important;
+        }
+        .slds-modal__container{
+        max-width: 50% !important;
+        }
+        }
+    </aura:html>
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
+
+    <aura:attribute name="recordTypeName" type="String" default="" />
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="recordUi" type="Map" default="{}" />
+
+    <!-- <aura:attribute name="errorMessage" type="String" default="" /> -->
+
+    <aura:attribute name="isLoading" type="Boolean" default="false" />
+    <aura:attribute name="isDisable" type="Boolean" default="true" />
+
+
+    <lightning:recordEditForm aura:id="recordEditForm" recordId="{!v.recordId}" objectApiName="Case" onload="{!c.handleLoad}" onsubmit="{!c.handleSubmit}"
+        onsuccess="{!c.handleSuccess}" onerror="{!c.handleError}">
+        <lightning:card iconName="{! v.iconName }" class="container slds-is-relative">
+            <aura:set attribute="title">
+                Close Job
+            </aura:set>
+            <aura:if isTrue="{! v.isLoading }">
+                <lightning:spinner alternativeText="Loading" variant="brand" />
+            </aura:if>
+            <lightning:messages aura:id="messages" />
+            <div class="slds-box">
+
+                <lightning:inputField fieldName="Status" class="slds-hide" value="Closed" />
+                <!-- <lightning:inputField fieldName="Solution__c" class="slds-size_1-of-1" /> -->
+                <div class="slds-text-align_center">
+                    <lightning:formattedText value="{!$Label.c.DG_Service_Confirm_to_Close_Case}" />
+                </div>
+            </div>
+
+            <aura:set attribute="footer">
+                <div class="slds-modal__footer slds-modal__footer_directional">
+                    <lightning:button label="Close" title="Close" onclick="{! c.onClose }" />
+                    <lightning:button variant="brand" label="Confirm" type="submit" disabled="{!v.isLoading || v.isDisable}" />
+                </div>
+            </aura:set>
+        </lightning:card>
+    </lightning:recordEditForm>
+
+</aura:component>

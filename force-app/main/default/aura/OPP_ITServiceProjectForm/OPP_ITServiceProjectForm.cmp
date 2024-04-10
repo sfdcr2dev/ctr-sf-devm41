@@ -1,0 +1,91 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global"
+    controller="OPP_CaseController">
+    <lightning:navigation aura:id="navService" />
+
+    <aura:attribute name="case" type="Object" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <!-- <aura:registerEvent name="oppEvent" type="c:OPP_CaseEvent" /> -->
+    
+	<aura:attribute name="recordTypeIdsMap" type="Map" default="{}" />
+    <aura:attribute name="describeFields" type="Map" default="{}" />
+
+    <aura:attribute name="formFactor" type="String" default="{!$Browser.formFactor}" />
+    <aura:attribute name="isEmployee" type="Boolean" default="true" />
+    <aura:attribute name="isLoading" type="Boolean" default="false" />
+    <aura:attribute name="autoApproval" type="Boolean" default="false" />
+
+    <div class="slds-var-m-bottom_x-large slds-is-relative">
+        <ui:scrollerWrapper class="scrollerWrapper">
+            <lightning:recordEditForm recordTypeId="{!v.case.RecordTypeId}" objectApiName="Case" onsubmit="{!c.handleSubmit}" onsuccess="{!c.handleSuccess}"
+                onerror="{!c.handleError}" aura:id="projectForm">
+                <lightning:card>
+                    <aura:set attribute="title">
+                        <div class="header">New case : Project Request</div>
+                    </aura:set>
+
+
+                    <aura:if isTrue="{!v.isLoading}">
+                        <lightning:spinner alternativeText="Loading" size="medium" />
+                    </aura:if>
+
+                    <div class="slds-form_horizontal slds-form slds-grid slds-wrap slds-var-p-horizontal_small">
+                        <lightning:messages />
+                        <div class="slds-scoped-notification slds-scoped-notification_light pink">
+                            <div class="slds-media">
+                                <div class="slds-media__body">
+                                    <p>Requester Information | รายละเอียดผู้ร้องขอ
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="slds-m-top_medium"></div> -->
+                        <lightning:inputField fieldName="OwnerId" class="slds-size_1-of-1" disabled="true" />
+                        <aura:if isTrue="{!!v.isEmployee}">
+                            <lightning:input type="email" label="{!v.describeFields.Case.Creator_Email__c.label}" required="true"
+                                value="{!v.case.Creator_Email__c}" />
+                            <lightning:inputField class="slds-hide" fieldName="Creator_Email__c" value="{!v.case.Creator_Email__c}" />
+                        </aura:if>
+                        <lightning:inputField fieldName="Requester__c" aura:id="Requester" class="slds-size_1-of-1" required="true"  onchange="{!c.handleRequester}"
+                            value="{!v.case.Requester__c}"  />
+
+                        <div class="slds-scoped-notification slds-scoped-notification_light blue">
+                            <div class="slds-media">
+                                <div class="slds-media__body">
+                                    <p>Request Information | รายละเอียดการขออื่นๆ
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <lightning:inputField fieldName="Project_Name__c" aura:id="ProjectName" class="slds-size_1-of-1" required="true" />
+                        <lightning:inputField fieldName="Project_Owner__c" aura:id="ProjectOwner" class="slds-size_1-of-1" required="true" />
+                        <lightning:inputField fieldName="Objective__c" aura:id="Objective" class="slds-size_1-of-1" required="true" />
+                        <lightning:inputField fieldName="Phone__c" class="slds-size_1-of-1" required="true"/>
+                        <lightning:inputField fieldName="More_Details__c" class="slds-size_1-of-1" />
+                    </div>
+
+
+                    <aura:set attribute="actions">
+                        <aura:if isTrue="{!v.formFactor == 'DESKTOP'}">
+                            <lightning:button class="slds-var-m-left_small" variant="neutral" label="Cancel" onclick="{!c.closeModal}" />
+                            <lightning:button class="slds-var-m-left_small" variant="neutral" label="Save Draft" type="submit" />
+                            <lightning:button class="slds-var-m-left_small" variant="neutral" label="Submit for Approval" type="button"
+                                onclick="{!c.handleAutoApproval}" />
+                            <c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+                        </aura:if>
+                    </aura:set>
+
+                    <aura:set attribute="footer">
+                        <aura:if isTrue="{!v.formFactor == 'PHONE'}">
+                            <lightning:buttonGroup>
+                                <lightning:button variant="neutral" label="Cancel" onclick="{!c.closeModal}" />
+                                <lightning:button variant="neutral" label="Save Draft" type="submit" />
+                                <lightning:button variant="neutral" label="Submit for Approval" type="button" onclick="{!c.handleAutoApproval}" />
+                            </lightning:buttonGroup>
+                            <c:utilityLwcButton class="slds-hide" aura:id="utilityLwcButton" type="submit" />
+                        </aura:if>
+                    </aura:set>
+                </lightning:card>
+            </lightning:recordEditForm>
+        </ui:scrollerWrapper>
+    </div>
+</aura:component>

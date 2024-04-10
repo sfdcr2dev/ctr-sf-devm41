@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ORTLActionAPUA</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ORTL: Action-APU A</label>
+        <sharedTo>
+            <group>ORTLA</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>A</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ORTLActionAPUB</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ORTL: Action-APU B</label>
+        <sharedTo>
+            <group>ORTLB</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>B</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ORTLActionAPUC</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ORTL: Action-APU C</label>
+        <sharedTo>
+            <group>ORTLC</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>C</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ORTLActionAPUD</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ORTL: Action-APU D</label>
+        <sharedTo>
+            <group>ORTLD</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>D</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ORTLActionAPUE</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ORTL: Action-APU E</label>
+        <sharedTo>
+            <group>ORTLE</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>E</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ORTLActionAPUF</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ORTL: Action-APU F</label>
+        <sharedTo>
+            <group>ORTLF</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>APU__c</field>
+            <operation>equals</operation>
+            <value>F</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+</SharingRules>
